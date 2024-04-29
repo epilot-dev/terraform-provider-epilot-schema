@@ -4,41 +4,47 @@ package provider
 
 import (
 	"context"
-	"github.com/epilot-dev/terraform-provider-epilot-product/internal/sdk"
-	"github.com/epilot-dev/terraform-provider-epilot-product/internal/sdk/pkg/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/models/shared"
 )
 
-var _ provider.Provider = &EpilotProductProvider{}
+var _ provider.Provider = &TerraformProvider{}
 
-type EpilotProductProvider struct {
+type TerraformProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
 }
 
-// EpilotProductProviderModel describes the provider data model.
-type EpilotProductProviderModel struct {
+// TerraformProviderModel describes the provider data model.
+type TerraformProviderModel struct {
 	ServerURL  types.String `tfsdk:"server_url"`
 	EpilotAuth types.String `tfsdk:"epilot_auth"`
 	EpilotOrg  types.String `tfsdk:"epilot_org"`
 }
 
-func (p *EpilotProductProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "epilot-product"
+func (p *TerraformProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "terraform"
 	resp.Version = p.version
 }
 
-func (p *EpilotProductProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *TerraformProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		MarkdownDescription: `Entity API: Flexible data layer for epilot Entities.` + "\n" +
+			`` + "\n" +
+			`Use this API configure and access your business objects like Contacts, Opportunities and Products.` + "\n" +
+			`` + "\n" +
+			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)` + "\n" +
+			``,
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to https://product.sls.epilot.io)",
+				MarkdownDescription: "Server URL (defaults to https://entity.sls.epilot.io)",
 				Optional:            true,
 				Required:            false,
 			},
@@ -54,8 +60,8 @@ func (p *EpilotProductProvider) Schema(ctx context.Context, req provider.SchemaR
 	}
 }
 
-func (p *EpilotProductProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data EpilotProductProviderModel
+func (p *TerraformProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data TerraformProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 
@@ -66,7 +72,7 @@ func (p *EpilotProductProvider) Configure(ctx context.Context, req provider.Conf
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "https://product.sls.epilot.io"
+		ServerURL = "https://entity.sls.epilot.io"
 	}
 
 	epilotAuth := new(string)
@@ -96,25 +102,23 @@ func (p *EpilotProductProvider) Configure(ctx context.Context, req provider.Conf
 	resp.ResourceData = client
 }
 
-func (p *EpilotProductProvider) Resources(ctx context.Context) []func() resource.Resource {
+func (p *TerraformProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		NewPriceResource,
-		NewProductResource,
-		NewTaxResource,
+		NewSchemaResource,
 	}
 }
 
-func (p *EpilotProductProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
+func (p *TerraformProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		NewPriceDataSource,
-		NewProductDataSource,
-		NewTaxDataSource,
+		NewSchemaDataSource,
+		NewSchemaAttributeDataSource,
+		NewSchemaCapabilityDataSource,
 	}
 }
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &EpilotProductProvider{
+		return &TerraformProvider{
 			version: version,
 		}
 	}

@@ -5,8 +5,8 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/epilot-dev/terraform-provider-epilot-product/internal/sdk/pkg/models/shared"
-	"github.com/epilot-dev/terraform-provider-epilot-product/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/models/shared"
+	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -14,7 +14,7 @@ import (
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
 	// Production server
-	"https://product.sls.epilot.io",
+	"https://entity.sls.epilot.io",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -62,13 +62,14 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
+// SDK - Entity API: Flexible data layer for epilot Entities.
+//
+// Use this API configure and access your business objects like Contacts, Opportunities and Products.
+//
+// [Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)
 type SDK struct {
-	// Price operations
-	Price *Price
-	// Product operations
-	Product *Product
-	// Tax operations
-	Tax *Tax
+	// Model Entities
+	Schemas *Schemas
 
 	sdkConfiguration sdkConfiguration
 }
@@ -145,9 +146,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.6.0",
+			SDKVersion:        "0.0.3",
 			GenVersion:        "2.230.1",
-			UserAgent:         "speakeasy-sdk/go 0.6.0 2.230.1 1.0.0 epilot-product",
+			UserAgent:         "speakeasy-sdk/go 0.0.3 2.230.1 1.0.0 terraform",
 		},
 	}
 	for _, opt := range opts {
@@ -166,11 +167,7 @@ func New(opts ...SDKOption) *SDK {
 		}
 	}
 
-	sdk.Price = newPrice(sdk.sdkConfiguration)
-
-	sdk.Product = newProduct(sdk.sdkConfiguration)
-
-	sdk.Tax = newTax(sdk.sdkConfiguration)
+	sdk.Schemas = newSchemas(sdk.sdkConfiguration)
 
 	return sdk
 }

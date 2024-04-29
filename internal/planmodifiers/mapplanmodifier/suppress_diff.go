@@ -4,7 +4,7 @@ package mapplanmodifier
 
 import (
 	"context"
-	"github.com/epilot-dev/terraform-provider-epilot-product/internal/planmodifiers/utils"
+	"github.com/speakeasy/terraform-provider-terraform/internal/planmodifiers/utils"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )

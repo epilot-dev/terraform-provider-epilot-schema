@@ -1,4 +1,4 @@
-module github.com/epilot-dev/terraform-provider-epilot-product
+module github.com/speakeasy/terraform-provider-terraform
 
 go 1.18
 
