@@ -59,14 +59,14 @@ To install this provider, copy and paste this code into your Terraform configura
 ```hcl
 terraform {
   required_providers {
-    terraform = {
-      source  = "speakeasy/terraform"
-      version = "0.0.3"
+    epilot-schema = {
+      source  = "speakeasy/epilot-schema"
+      version = "0.2.0"
     }
   }
 }
 
-provider "terraform" {
+provider "epilot-schema" {
   # Configuration options
 }
 ```

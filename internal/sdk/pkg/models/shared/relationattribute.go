@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/utils"
 	"time"
 )
 

@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/utils"
 )
 
 // PartnerStatusAttributeConstraints - A set of constraints applicable to the attribute.

@@ -5,8 +5,8 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/models/shared"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/pkg/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/models/shared"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -146,9 +146,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.1.0",
+			SDKVersion:        "0.2.0",
 			GenVersion:        "2.230.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.0 2.230.1 1.0.0 terraform",
+			UserAgent:         "speakeasy-sdk/go 0.2.0 2.230.1 1.0.0 epilot-schema",
 		},
 	}
 	for _, opt := range opts {
