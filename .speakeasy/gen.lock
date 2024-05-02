@@ -1,12 +1,11 @@
 lockVersion: 2.0.0
 id: 5a857039-7f4b-42d5-86fd-449767242ed2
 management:
-  docChecksum: b6b17d3bd71a50f252ac7907295a55f7
+  docChecksum: 10c003e2703033f6cf376ed52c7e9080
   docVersion: 1.0.0
   speakeasyVersion: internal
   generationVersion: 2.230.1
-  releaseVersion: 0.0.3
-  configChecksum: 6d0277e894ce8e878edb40571c23f84f
+  configChecksum: c85a8b6811b9da011ad66351e371b9e0
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
   repoSubDirectory: .
   published: true
@@ -25,6 +24,7 @@ features:
     core: 3.8.1
     globalSecurity: 2.81.2
     globalServerURLs: 2.82.1
+    inputOutputModels: 2.83.0
     unions: 2.81.7
 generatedFiles:
   - internal/sdk/schemas.go
@@ -98,7 +98,7 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/getschemacapability.go
   - internal/sdk/pkg/models/operations/putschemacapability.go
   - internal/sdk/pkg/models/operations/deleteschemacapability.go
-  - internal/sdk/pkg/models/shared/entityschema.go
+  - internal/sdk/pkg/models/shared/entityschemaitem.go
   - internal/sdk/pkg/models/shared/searchmappings.go
   - internal/sdk/pkg/models/shared/attribute.go
   - internal/sdk/pkg/models/shared/textattribute.go
@@ -141,88 +141,7 @@ generatedFiles:
   - internal/sdk/pkg/models/shared/entityviewdisabled.go
   - internal/sdk/pkg/models/shared/entitydefaultcreate.go
   - internal/sdk/pkg/models/shared/entitydefaulttable.go
-  - internal/sdk/pkg/models/shared/baseattribute.go
+  - internal/sdk/pkg/models/shared/entityschema.go
+  - internal/sdk/pkg/models/shared/attributewithcompositeid.go
+  - internal/sdk/pkg/models/shared/entitycapabilitywithcompositeid.go
   - internal/sdk/pkg/models/shared/security.go
-  - internal/provider/type_address_relation_attribute_constraints.go
-  - internal/provider/type_address_relation_attribute_info_helpers.go
-  - internal/provider/type_setting_flag.go
-  - internal/provider/type_address_relation_attribute.go
-  - internal/provider/type_automation_attribute.go
-  - internal/provider/type_boolean_attribute.go
-  - internal/provider/type_computed_attribute.go
-  - internal/provider/type_consent_attribute.go
-  - internal/provider/type_country_attribute.go
-  - internal/provider/type_currency1.go
-  - internal/provider/type_currency.go
-  - internal/provider/type_currency_attribute.go
-  - internal/provider/type_date_attribute.go
-  - internal/provider/type_file_attribute.go
-  - internal/provider/type_internal_attribute.go
-  - internal/provider/type_internal_user_attribute.go
-  - internal/provider/type_invitation_email_attribute.go
-  - internal/provider/type_link_attribute.go
-  - internal/provider/type_two.go
-  - internal/provider/type_multi_select_attribute_options.go
-  - internal/provider/type_multi_select_attribute.go
-  - internal/provider/type_number_attribute.go
-  - internal/provider/type_ordered_list_attribute.go
-  - internal/provider/type_partner_organisation_attribute.go
-  - internal/provider/type_partner_status_attribute.go
-  - internal/provider/type_payment_method_relation_attribute.go
-  - internal/provider/type_purpose_attribute.go
-  - internal/provider/type_entity_acl.go
-  - internal/provider/type_entity_owner.go
-  - internal/provider/type_new_entity_item.go
-  - internal/provider/type_actions.go
-  - internal/provider/type_summary_field.go
-  - internal/provider/type_summary_fields.go
-  - internal/provider/type_relation_attribute.go
-  - internal/provider/type_repeatable_attribute.go
-  - internal/provider/type_options.go
-  - internal/provider/type_select_attribute.go
-  - internal/provider/type_sequence_attribute.go
-  - internal/provider/type_status_attribute.go
-  - internal/provider/type_tags_attribute.go
-  - internal/provider/type_text_attribute.go
-  - internal/provider/type_user_relation_attribute.go
-  - internal/provider/type_attribute.go
-  - internal/provider/type_required_permission.go
-  - internal/provider/type_ui_hooks.go
-  - internal/provider/type_entity_capability.go
-  - internal/provider/type_search_mappings.go
-  - internal/provider/type_info_tooltip_title.go
-  - internal/provider/type_group_settings.go
-  - internal/provider/type_layout_settings.go
-  - internal/provider/type_entity_default_create.go
-  - internal/provider/type_entity_view_disabled.go
-  - internal/provider/type_redirect_entity_view.go
-  - internal/provider/type_create_view.go
-  - internal/provider/type_entity_default_edit.go
-  - internal/provider/type_edit_view.go
-  - internal/provider/type_entity_action.go
-  - internal/provider/type_summary_attribute.go
-  - internal/provider/type_summary_attributes.go
-  - internal/provider/type_list_item.go
-  - internal/provider/type_sharing.go
-  - internal/provider/type_bulk_actions.go
-  - internal/provider/type_entity_default_table_options.go
-  - internal/provider/type_navbar_actions.go
-  - internal/provider/type_entity_default_table.go
-  - internal/provider/type_table_view.go
-  - internal/provider/type_ui_config.go
-  - USAGE.md
-  - internal/provider/provider.go
-  - examples/provider/provider.tf
-  - internal/provider/schema_resource.go
-  - internal/provider/schema_resource_sdk.go
-  - examples/resources/terraform_schema/resource.tf
-  - internal/provider/schema_data_source.go
-  - internal/provider/schema_data_source_sdk.go
-  - examples/data-sources/terraform_schema/data-source.tf
-  - internal/provider/schemaattribute_data_source.go
-  - internal/provider/schemaattribute_data_source_sdk.go
-  - examples/data-sources/terraform_schema_attribute/data-source.tf
-  - internal/provider/schemacapability_data_source.go
-  - internal/provider/schemacapability_data_source_sdk.go
-  - examples/data-sources/terraform_schema_capability/data-source.tf
-  - .gitattributes

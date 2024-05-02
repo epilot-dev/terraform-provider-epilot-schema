@@ -8,9 +8,9 @@ import (
 )
 
 type PutSchemaCapabilityRequest struct {
-	// Schema Slug and the Capability ID
-	CompositeID      string                   `pathParam:"style=simple,explode=false,name=composite_id"`
-	EntityCapability *shared.EntityCapability `request:"mediaType=application/json"`
+	// Schema Slug and the Attribute ID
+	CompositeID                     string                                       `pathParam:"style=simple,explode=false,name=composite_id"`
+	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeIDInput `request:"mediaType=application/json"`
 }
 
 func (o *PutSchemaCapabilityRequest) GetCompositeID() string {
@@ -20,11 +20,11 @@ func (o *PutSchemaCapabilityRequest) GetCompositeID() string {
 	return o.CompositeID
 }
 
-func (o *PutSchemaCapabilityRequest) GetEntityCapability() *shared.EntityCapability {
+func (o *PutSchemaCapabilityRequest) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeIDInput {
 	if o == nil {
 		return nil
 	}
-	return o.EntityCapability
+	return o.EntityCapabilityWithCompositeID
 }
 
 type PutSchemaCapabilityResponse struct {
@@ -35,7 +35,7 @@ type PutSchemaCapabilityResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	EntityCapability *shared.EntityCapability
+	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
 }
 
 func (o *PutSchemaCapabilityResponse) GetContentType() string {
@@ -59,9 +59,9 @@ func (o *PutSchemaCapabilityResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PutSchemaCapabilityResponse) GetEntityCapability() *shared.EntityCapability {
+func (o *PutSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityCapability
+	return o.EntityCapabilityWithCompositeID
 }

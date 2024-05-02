@@ -30,9 +30,10 @@ tags:
 security:
   - EpilotAuth: []
   - EpilotOrg: []
+
 servers:
 - url: https://entity.sls.epilot.io
-  description: Production server
+  description: Entity production
 
 paths:
   /v1/entity/schemas/{slug}:
@@ -55,13 +56,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EntitySchema"
+                $ref: "#/components/schemas/EntitySchemaItem"
 
     put:
       operationId: putSchema
       summary: putSchema
-      x-speakeasy-entity-operation: Schema#create
       description: Create or update a schema with a new version
+      x-speakeasy-entity-operation: Schema#create
       tags:
         - Schemas
       parameters:
@@ -87,8 +88,8 @@ paths:
     delete:
       operationId: deleteSchema
       summary: deleteSchema
-      x-speakeasy-entity-operation: Schema#delete
       description: Delete a schema, or a specific version of a schema
+      x-speakeasy-entity-operation: Schema#delete
       tags:
         - Schemas
       parameters:
@@ -96,21 +97,22 @@ paths:
       responses:
         "204":
           description: Success
-  
-  # Terraform Schema API - # Attributes
+
+  # Terraform Schema API - CRUDable schema attributes and capabilities
+  # Attributes
   /v1/entity/schemas/attributes/{composite_id}:
     get:
       operationId: getSchemaAttribute
       summary: getSchemaAttribute
-      x-speakeasy-entity-operation: SchemaAttribute#get
       description: Get a schema attribute from given attribute ID
+      x-speakeasy-entity-operation: SchemaAttribute#get
       x-internal: true
       tags:
         - Schemas
       parameters:
         - name: composite_id
-          x-speakeasy-match: <slug>,<id>
           description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -123,19 +125,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BaseAttribute"
+                $ref: "#/components/schemas/AttributeWithCompositeID"
     put:
       operationId: putSchemaAttribute
       summary: putSchemaAttribute
       description: Adds or updates an attribute in the schema
-      x-internal: true
       x-speakeasy-entity-operation: SchemaAttribute#update
+      x-internal: true
       tags:
         - Schemas
       parameters:
         - name: composite_id
-          x-speakeasy-match: <slug>,<id>
           description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -146,14 +148,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BaseAttribute"
+              $ref: "#/components/schemas/AttributeWithCompositeID"
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BaseAttribute"
+                $ref: "#/components/schemas/AttributeWithCompositeID"
     delete:
       operationId: deleteSchemaAttribute
       summary: deleteSchemaAttribute
@@ -165,7 +167,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: <slug>,<id>
+          x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -178,9 +180,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BaseAttribute"
+                $ref: "#/components/schemas/AttributeWithCompositeID"
 
-  # Terraform Schema API - Capabilities
+  # Capabilities
   /v1/entity/schemas/capabilities/{composite_id}:
     get:
       operationId: getSchemaCapability
@@ -193,7 +195,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: <slug>,<id>
+          x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -206,19 +208,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EntityCapability"    
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
     put:
       operationId: putSchemaCapability
       summary: putSchemaCapability
       description: Adds or updates an capability in the schema
-      x-internal: true   
       x-speakeasy-entity-operation: SchemaCapability#update   
+      x-internal: true      
       tags:
         - Schemas
       parameters:
         - name: composite_id
-          x-speakeasy-match: <slug>,<id>
-          description: Schema Slug and the Capability ID
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -229,14 +231,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EntityCapability"
+              $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EntityCapability"
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
     delete:
       operationId: deleteSchemaCapability
       summary: deleteSchemaCapability
@@ -247,9 +249,9 @@ paths:
         - Schemas
       parameters:
         - name: composite_id
-          description: Schema Slug and the Capability ID
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
           in: path
-          x-speakeasy-match: <slug>,<id>
           required: true
           schema:
             type: string
@@ -261,7 +263,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EntityCapability"
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
   
 components:
   securitySchemes:
@@ -294,7 +296,6 @@ components:
       format: uuid
     EntitySchema:
       description: The "type" of an Entity. Describes the shape. Includes Entity Attributes, Relations and Capabilities.
-      x-speakeasy-entity: Schema
       type: object
       properties:
         slug:
@@ -546,10 +547,20 @@ components:
         - $ref: "#/components/schemas/InternalUserAttribute"
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
+    AttributeWithCompositeID:
+      allOf:
+        - $ref: "#/components/schemas/Attribute"
+        - type: object
+          description: a readonly computed ID for the attribute including schema slug and the attribute ID
+          properties:
+            composite_id:
+              type: string
+              readOnly: true
+              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      x-speakeasy-entity: SchemaAttribute
 
     BaseAttribute:
       type: object
-      x-speakeasy-entity: SchemaAttribute
       properties:
         name:
           type: string
@@ -569,6 +580,9 @@ components:
           type: boolean
           default: true
         required:
+          type: boolean
+          default: false
+        readonly:
           type: boolean
           default: false
         deprecated:
@@ -1316,7 +1330,6 @@ components:
     EntityCapability:
       description: Capabilities the Entity has. Turn features on/off for entities.
       type: object
-      x-speakeasy-entity: SchemaCapability
       properties:
         name:
           type: string
@@ -1404,6 +1417,17 @@ components:
             $ref: "#/components/schemas/SettingFlag"
       required:
         - name
+    EntityCapabilityWithCompositeID:
+      x-speakeasy-entity: SchemaCapability
+      allOf:
+        - $ref: "#/components/schemas/EntityCapability"
+        - type: object
+          description: a readonly computed ID for the entity capability including schema slug and the capability ID
+          properties:
+            composite_id:
+              type: string
+              readOnly: true
+              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
 
     EntityViewDisabled:
       type: object
@@ -2233,7 +2257,7 @@ components:
         - name
     ClassificationId:
       type: string
-      format: uuid
+      example: "taxonomy-slug:classification-slug"
     ClassificationSlug:
       type: string
       description: URL-friendly identifier for the classification
@@ -2256,7 +2280,10 @@ components:
         delete:
           type: array
           items:
-            $ref: "#/components/schemas/ClassificationId"
+            anyOf:
+              - $ref: "#/components/schemas/ClassificationId"
+              - type: string
+                example: "taxonomy-slug:classification-slug"
 
     ESClusterAssignment:
       type: object
@@ -2276,6 +2303,7 @@ components:
         enabled:
           type: boolean
           description: Whether the setting should be enabled or not
+
   parameters:
     EntityIdPathParam:
       name: id
@@ -2286,8 +2314,8 @@ components:
         $ref: "#/components/schemas/EntityId"
     EntitySlugPathParam:
       name: slug
-      x-speakeasy-match: slug
       description: Entity Type
+      x-speakeasy-match: slug
       in: path
       required: true
       schema:
@@ -2301,566 +2329,3 @@ components:
         allOf:
           - $ref: "#/components/schemas/EntitySlug"
         example: price
-    TaxonomySlugQueryParam:
-      name: taxonomySlug
-      description: Taxonomy slug
-      in: query
-      schema:
-        type: string
-      required: true
-    TaxonomySlugPathParam:
-      name: taxonomySlug
-      description: Taxonomy slug
-      in: path
-      required: true
-      schema:
-        type: string
-    TaxonomyClassificationSlugPathParam:
-      name: taxonomyClassificationSlug
-      description: Taxonomy Classification slug
-      in: path
-      required: true
-      schema:
-        type: string
-    SavedViewIdPathParam:
-      name: id
-      description: View id
-      in: path
-      required: true
-      schema:
-        $ref: "#/components/schemas/SavedViewId"
-    AsyncOperationQueryParam:
-      name: async
-      description: Don't wait for updated entity to become available in Search API. Useful for large migrations
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
-    HydrateEntitiesQueryParam:
-      name: hydrate
-      description: When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
-      in: query
-      schema:
-        default: false
-        type: boolean
-    ActivityIdQueryParam:
-      name: activity_id
-      description: Activity to include in event feed
-      in: query
-      required: false
-      schema:
-        $ref: "#/components/schemas/ActivityId"
-    ActivityIdPathParam:
-      name: id
-      description: Activity Id
-      in: path
-      required: true
-      schema:
-        $ref: "#/components/schemas/ActivityId"
-    FromPageQueryParam:
-      name: from
-      description: Starting page number
-      in: query
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    IncludeReverseDeprecatedQueryParam:
-      name: include_reverse
-      description: |
-        When true, includes reverse relations in response (other entities pointing to this entity)
-        *It gets overriden by mode query parameter.*
-      in: query
-      deprecated: true
-      schema:
-        default: false
-        type: boolean
-    IncludeReverseQueryParam:
-      name: include_reverse
-      description: When true, includes reverse relations in response (other entities pointing to this entity)
-      in: query
-      schema:
-        default: false
-        type: boolean
-    IncludeSchemasQueryParam:
-      name: include_schemas
-      description: Filter results to only include schemas
-      in: query
-      required: false
-      style: form
-      explode: false
-      example: contact,account
-      schema:
-        type: array
-        items:
-          $ref: "#/components/schemas/EntitySlug"
-    ExcludeSchemasQueryParam:
-      name: exclude_schemas
-      description: Filter results to exclude schemas
-      in: query
-      required: false
-      style: form
-      explode: false
-      example: file,message
-      schema:
-        type: array
-        items:
-          $ref: "#/components/schemas/EntitySlug"
-    EntityRelationsModeQueryParam:
-      name: mode
-      description: |
-        Options to determine how relations will be included in the result.
-        *It overrides the include_reverse query param.*
-        Explanation of possible options:
-        - direct: include relations to which the searched entity refers
-        - reverse: include relations that refer to the entity you are looking for
-        - both: both direct and reverse relations
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-          - direct
-          - reverse
-          - both
-    DryRunQueryParam:
-      name: dry_run
-      description: Dry Run mode = return results but does not perform the operation.
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
-
-  examples:
-    EmptyGenericEntity:
-      description: Example of an empty, generic entity
-      value: {}
-    TaxEntity:
-      description: Example of a Tax Rate entity
-      value:
-        active: true
-        type: VAT
-        region: Germany
-        region_label: All Regions
-        rate: 19
-        behavior: Exclusive
-        description: MwSt. 19%
-    ContactEntity:
-      description: Example of a contact entity
-      value:
-        status: Active
-        customer_number: "abc123"
-        first_name: First
-        middle_name: Middle
-        last_name: Last
-        title: Herr Prof. Dr.
-        email:
-          - email: user@example.com
-            _tags: ["work"]
-        phone:
-          - phone: "+49123456789"
-            _tags: ["personal", "mobile"]
-        address:
-          - country: Germany
-            city: Koln
-            postal_code: 81475
-            street: Melatengürtel
-            street_number: 71
-            additional_info: 5. Etage
-            _tags: ["billing", "delivery"]
-        birthdate: "2019-08-24"
-        account:
-          $relation:
-            - entity_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              _tags: ["company"]
-        consent_email_marketing:
-          status: OPTED_IN
-          events:
-            - type: OPT_IN
-              organization_id: "123"
-              created_at: 2021-07-05T09:12:29.352Z
-              topic: EMAIL_MARKETING
-              identifier: user@example.com
-              source: https://consent.sls.epilot.io/optin?token=abc123
-              meta:
-                ip_address: 1.1.1.1
-                user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
-            - type: DOUBLE_OPT_IN_REQUEST
-              organization_id: "123"
-              created_at: 2021-07-05T08:12:29.352Z
-              topic: EMAIL_MARKETING
-              identifier: user@example.com
-              source: consent-api
-              meta:
-                token: abc123
-            - type: OPT_IN
-              organization_id: "123"
-              created_at: 2021-07-04T09:12:29.352Z
-              topic: EMAIL_MARKETING
-              identifier: user@example.com
-              source: https://frontend.epilot.cloud
-              meta:
-                ip_address: 1.1.1.1
-                user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
-    AccountEntity:
-      description: Example of an account entity
-      value:
-        status: Active
-        name: Example Company
-        tax_id: DE123456789
-        email:
-          - email: user@example.com
-            _tags: ["work"]
-        phone:
-          - phone: "+49123456789"
-            _tags: ["personal", "mobile"]
-        address:
-          - country: Germany
-            city: Koln
-            postal_code: 81475
-            street: Melatengürtel
-            street_number: 71
-            additional_info: 5. Etage
-            _tags: ["billing", "delivery"]
-        website: http://company.com
-        tax_exemption: "2021-02-23T09:08:57.320Z"
-        registry_court: "Amtsgericht Köln"
-        registry_number: "HRB 95505"
-        company_size: "50-99"
-        industry: ["ecommerce", "tech"]
-        annual_revenue: "5000000"
-        contact:
-          $relation:
-            - entity_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-              _tags: ["CEO"]
-    ProductEntity:
-      description: Example of a product entity
-      value:
-        code: SunrockSolar375
-        type: Product
-        name: Sunrock Solar Panel
-        description: Sunrock Solar Panel, provide high capacity power generation even at night.
-        shippable: true,
-        _files:
-          type: file
-          attachments:
-            - key: f001-32123-asdasd-23213
-              mime: application/pdf
-              name: wallbox-premium.pdf
-              size: 6933430
-              image_url: https://s3-bucket.epilot.cloud/uid/f001-32123-asdasd-23213
-              download_url: https://s3-bucket.epilot.cloud/uid/f001-32123-asdasd-23213
-        _images:
-          type: image
-          attachments:
-            - key: i001-32123-asdasd-23213
-              mime: application/pdf
-              name: wallbox-premium.pdf
-              size: 6933430
-              image_url: https://s3-bucket.epilot.cloud/uid/f001-32123-asdasd-23213
-              download_url: https://s3-bucket.epilot.cloud/uid/f001-32123-asdasd-23213
-        prices:
-          $relation:
-            - entity_id: a38cca03-18a2-4e9c-8516-0918d81e7830
-              _tags: ["price"]
-            - entity_id: 3d10c912-c419-42d7-9270-02b7d05294e5
-              _tags: ["price"]
-    PriceEntity:
-      description: Example of a price entity
-      value:
-        code: MODEL_375KW_PREMIUM
-        type: One Time
-        description: Solar Panel 375 kWp Premium
-        internal_description: Solar Panel 375 kWp Premium
-        billing_scheme: per_unit
-        unit_amount: € 28500
-        tiers_mode: Standard
-    OrderEntity:
-      description: Example of a Order entity
-      value:
-        amount_subtotal: 23045
-        amount_total: 27424
-        billing_address:
-          - additional_info: ""
-            city: "City"
-            country: "DE"
-            postal_code: "123"
-            street: "Street 1"
-            street_number: "2"
-            _tags: []
-        billing_company_name: "Epilot"
-        billing_contact:
-          $relation:
-            - entity_id: "0691f503-5a3c-4e9e-b036-ffb21ea1d284"
-              relationText: "Daniel Test"
-              _schema: "contact"
-              _tags: []
-        billing_email: "x@email.xyz"
-        billing_first_name: "Paulo"
-        billing_last_name: "Henriques"
-        billing_phone: "00351912611099"
-        billing_vat: "123456789"
-        currency: "EUR"
-        delivery_address:
-          - additional_info: ""
-            city: "City"
-            country: "DE"
-            postal_code: "123"
-            street: "Street 1"
-            street_number: "2"
-            _tags: []
-        footer_notes: "Footer"
-        line_items:
-          - amount_subtotal: 23045
-            amount_total: 27424
-            currency: "EUR"
-            description: "Basic Model - No Wifi"
-            price_id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-            product_id: "beefa9f1-29a8-448e-94d5-ebf1963428f8"
-            quantity: 1
-            taxes:
-              - amount: 4379
-                rate: "standard"
-            unit_amount: 23045
-            _price:
-              active: false
-              billing_duration_amount: "2"
-              billing_duration_unit: "years"
-              billing_period: "monthly"
-              description: "Basic Model - No Wifi"
-              notice_time_amount: "1"
-              notice_time_unit: "months"
-              price_display_in_journeys: "show_price"
-              renewal_duration_amount: "1"
-              renewal_duration_unit: "years"
-              sales_tax: "standard"
-              tax_behavior: "exclusive"
-              termination_time_amount: "1"
-              termination_time_unit: "months"
-              type: "recurring"
-              unit_amount: 23045
-              unit_amount_currency: "EUR"
-              unit_amount_decimal: "230.4524"
-              _created_at: "2021-12-15T12:34:59.579Z"
-              _id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-              _org: "739224"
-              _schema: "price"
-              _tags: ["basic-model", "wifi"]
-              _title: "Basic Model - No Wifi"
-              _updated_at: "2021-12-31T13:07:51.392Z"
-            _product:
-              active: true
-              code: "PWB"
-              feature:
-                - _tags: []
-                  feature: "Pure Energon Fueled"
-                - _tags: []
-                  feature: "Mobile App Available"
-              name: "Pinho Walls in a Box"
-              price_options:
-                $relation:
-                  - entity_id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-              type: "product"
-              _created_at: "2021-12-15T12:35:08.438Z"
-              _id: "beefa9f1-29a8-448e-94d5-ebf1963428f8"
-              _org: "739224"
-              _schema: "product"
-              _tags: ["energon", "eco-friendly", "wallbox"]
-              _title: "Pinho Walls in a Box"
-              _updated_at: "2022-01-03T17:14:41.042Z"
-        memo: "Memo"
-        status: "Paid"
-        total_details:
-          amount_tax: 4379
-          breakdown:
-            recurrences:
-              - amount_subtotal: 23045
-                amount_tax: 4379
-                amount_total: 27424
-                billing_period: "monthly"
-                type: "recurring"
-            taxes:
-              - amount: 4379
-                rate: "standard"
-    OpportunityEntity:
-      description: Example of an Opportunity entity
-      value:
-        amount_subtotal: 23045
-        amount_total: 27424
-        assignees:
-          $relation:
-            - entity_id: "66a1a6a3-38ee-4ffe-b68d-ee90e3bb1a77"
-              relationText: "Claudius Iohannis"
-              _schema: "contact"
-              _tags: []
-        billing_address:
-          - additional_info: ""
-            city: "City"
-            country: "DE"
-            postal_code: "123"
-            street: "Street 1"
-            street_number: "2"
-            _tags: []
-        billing_company_name: "Epilot"
-        billing_contact:
-          $relation:
-            - entity_id: "0691f503-5a3c-4e9e-b036-ffb21ea1d284"
-              relationText: "Daniel Test"
-              _schema: "contact"
-              _tags: []
-        billing_email: "customer@email.xyz"
-        billing_first_name: "Customer First Name"
-        billing_last_name: "Customer Last Name"
-        billing_phone: "00351912611098"
-        billing_vat: "123456789"
-        currency: "EUR"
-        delivery_address:
-          - additional_info: ""
-            city: "City"
-            country: "DE"
-            postal_code: "123"
-            street: "Street 1"
-            street_number: "2"
-            _tags: []
-        line_items:
-          - amount_subtotal: 23045
-            amount_total: 27424
-            currency: "EUR"
-            description: "Basic Model - No Wifi"
-            price_id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-            product_id: "beefa9f1-29a8-448e-94d5-ebf1963428f8"
-            quantity: 1
-            taxes:
-              - amount: 4379
-                rate: "standard"
-            unit_amount: 23045
-            _price:
-              active: false
-              billing_duration_amount: "2"
-              billing_duration_unit: "years"
-              billing_period: "monthly"
-              description: "Basic Model - No Wifi"
-              notice_time_amount: "1"
-              notice_time_unit: "months"
-              price_display_in_journeys: "show_price"
-              renewal_duration_amount: "1"
-              renewal_duration_unit: "years"
-              sales_tax: "standard"
-              tax_behavior: "exclusive"
-              termination_time_amount: "1"
-              termination_time_unit: "months"
-              type: "recurring"
-              unit_amount: 23045
-              unit_amount_currency: "EUR"
-              unit_amount_decimal: "230.4524"
-              _created_at: "2021-12-15T12:34:59.579Z"
-              _id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-              _org: "739224"
-              _schema: "price"
-              _tags: ["basic-model", "wifi"]
-              _title: "Basic Model - No Wifi"
-              _updated_at: "2021-12-31T13:07:51.392Z"
-            _product:
-              active: true
-              code: "PWB"
-              feature:
-                - _tags: []
-                  feature: "Pure Energon Fueled"
-                - _tags: []
-                  feature: "Mobile App Available"
-              name: "Pinho Walls in a Box"
-              price_options:
-                $relation:
-                  - entity_id: "efe9ff76-865c-4287-8de9-422cfc741ff9"
-              type: "product"
-              _created_at: "2021-12-15T12:35:08.438Z"
-              _id: "beefa9f1-29a8-448e-94d5-ebf1963428f8"
-              _org: "739224"
-              _schema: "product"
-              _tags: ["energon", "eco-friendly", "wallbox"]
-              _title: "Pinho Walls in a Box"
-              _updated_at: "2022-01-03T17:14:41.042Z"
-        opportunity_number: "20220105-768854819"
-        participants:
-          $relation:
-            - entity_id: "9bbfdaa9-22b2-4100-a256-67600202e3f4"
-              relationText: "Alex Marques"
-              _schema: "contact"
-              _tags: []
-        status: "Lead"
-        total_details:
-          amount_tax: 4379
-          breakdown:
-            recurrences:
-              - amount_subtotal: 23045
-                amount_tax: 4379
-                amount_total: 27424
-                billing_period: "monthly"
-                type: "recurring"
-            taxes:
-              - amount: 4379
-                rate: "standard"
-    EmailTemplateEntity:
-      description: Example of an email template entity
-      value:
-        attachments: []
-        body: '<p fr-original-style="caret-color: rgb(65, 65, 65); color: rgb(65, 65, 65); font-family: sans-serif;" id="isPasted" style="caret-color: rgb(65, 65, 65); color: rgb(65, 65, 65); font-family: sans-serif; box-sizing: inherit; border-color: rgba(229, 231, 235, var(--tw-border-opacity));"><span fr-original-style="font-weight: 700;" style="font-weight: 700; box-sizing: inherit; border-color: rgba(229, 231, 235, var(--tw-border-opacity));">Variablen - Kontakt</span></p>'
-        brand_id: 7066103
-        from:
-          name: "Name"
-          email: "admin@email.xyz"
-        name: "PH Test"
-        subject: "Example Subject"
-        system_template: false
-        to:
-          - id: "1"
-            name: "Contact Name"
-            email: "Contact email"
-        _tags: ["Bestellung"]
-    FileEntity:
-      description: Example of a file template entity
-      value:
-        access_control: "private"
-        filename: "solar_panel_ph.jpeg"
-        s3ref:
-          bucket: "epilot-staging-user-content"
-          key: "728/temp/6d450fd1-2d63-435f-b598-c605dfb89cbc/solar_panel_ph.jpeg"
-    WorkflowStepEntity:
-      description: Example of a workflow step template entity
-      value:
-        name: "Name"
-        assigned_to": ["10000563"]
-        status: "Unassigned"
-        order: 123
-        tags: ["tag1"]
-    SubmissionEntity:
-      description: Example of a submission step template entity
-      value:
-        mapped_entities:
-          $relation:
-            - entity_id: "4ffb071c-2821-4505-86d0-09b801ffd97a"
-              relationText: "4ffb071c-2821-4505-86d0-09b801ffd97a"
-              _schema: "price"
-              _tags: []
-    EntityValidationError:
-      description: Example of an entity validation error
-      value:
-        code: string
-        params:
-          type: string
-        path:
-          - string
-        message: string
-    EntityValidationResultSuccess:
-      description: Example of a successful entity validation result
-      value:
-        status: "success"
-        errors: []
-    EntityValidationResultError:
-      description: Example of a failed entity validation result
-      value:
-        status: "error"
-        errors:
-          - $ref: "#/components/examples/EntityValidationError"

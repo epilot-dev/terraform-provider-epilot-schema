@@ -27,7 +27,7 @@ type GetSchemaAttributeResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	BaseAttribute *shared.BaseAttribute
+	AttributeWithCompositeID *shared.AttributeWithCompositeID
 }
 
 func (o *GetSchemaAttributeResponse) GetContentType() string {
@@ -51,9 +51,9 @@ func (o *GetSchemaAttributeResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSchemaAttributeResponse) GetBaseAttribute() *shared.BaseAttribute {
+func (o *GetSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
 	if o == nil {
 		return nil
 	}
-	return o.BaseAttribute
+	return o.AttributeWithCompositeID
 }

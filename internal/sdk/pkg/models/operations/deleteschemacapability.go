@@ -8,7 +8,7 @@ import (
 )
 
 type DeleteSchemaCapabilityRequest struct {
-	// Schema Slug and the Capability ID
+	// Schema Slug and the Attribute ID
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
@@ -27,7 +27,7 @@ type DeleteSchemaCapabilityResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	EntityCapability *shared.EntityCapability
+	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
 }
 
 func (o *DeleteSchemaCapabilityResponse) GetContentType() string {
@@ -51,9 +51,9 @@ func (o *DeleteSchemaCapabilityResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *DeleteSchemaCapabilityResponse) GetEntityCapability() *shared.EntityCapability {
+func (o *DeleteSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityCapability
+	return o.EntityCapabilityWithCompositeID
 }

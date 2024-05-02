@@ -98,6 +98,7 @@ type InvitationEmailAttribute struct {
 	// Allow sorting by this attribute in table views if `show_in_table` is true
 	Sortable     *bool       `default:"true" json:"sortable"`
 	Required     *bool       `default:"false" json:"required"`
+	Readonly     *bool       `default:"false" json:"readonly"`
 	Deprecated   *bool       `default:"false" json:"deprecated"`
 	DefaultValue interface{} `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
@@ -194,6 +195,13 @@ func (o *InvitationEmailAttribute) GetRequired() *bool {
 		return nil
 	}
 	return o.Required
+}
+
+func (o *InvitationEmailAttribute) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
 }
 
 func (o *InvitationEmailAttribute) GetDeprecated() *bool {

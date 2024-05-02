@@ -27,7 +27,7 @@ type GetSchemaCapabilityResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	EntityCapability *shared.EntityCapability
+	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
 }
 
 func (o *GetSchemaCapabilityResponse) GetContentType() string {
@@ -51,9 +51,9 @@ func (o *GetSchemaCapabilityResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSchemaCapabilityResponse) GetEntityCapability() *shared.EntityCapability {
+func (o *GetSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityCapability
+	return o.EntityCapabilityWithCompositeID
 }

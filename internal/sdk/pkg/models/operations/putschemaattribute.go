@@ -9,8 +9,8 @@ import (
 
 type PutSchemaAttributeRequest struct {
 	// Schema Slug and the Attribute ID
-	CompositeID   string                `pathParam:"style=simple,explode=false,name=composite_id"`
-	BaseAttribute *shared.BaseAttribute `request:"mediaType=application/json"`
+	CompositeID              string                                `pathParam:"style=simple,explode=false,name=composite_id"`
+	AttributeWithCompositeID *shared.AttributeWithCompositeIDInput `request:"mediaType=application/json"`
 }
 
 func (o *PutSchemaAttributeRequest) GetCompositeID() string {
@@ -20,11 +20,11 @@ func (o *PutSchemaAttributeRequest) GetCompositeID() string {
 	return o.CompositeID
 }
 
-func (o *PutSchemaAttributeRequest) GetBaseAttribute() *shared.BaseAttribute {
+func (o *PutSchemaAttributeRequest) GetAttributeWithCompositeID() *shared.AttributeWithCompositeIDInput {
 	if o == nil {
 		return nil
 	}
-	return o.BaseAttribute
+	return o.AttributeWithCompositeID
 }
 
 type PutSchemaAttributeResponse struct {
@@ -35,7 +35,7 @@ type PutSchemaAttributeResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	BaseAttribute *shared.BaseAttribute
+	AttributeWithCompositeID *shared.AttributeWithCompositeID
 }
 
 func (o *PutSchemaAttributeResponse) GetContentType() string {
@@ -59,9 +59,9 @@ func (o *PutSchemaAttributeResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PutSchemaAttributeResponse) GetBaseAttribute() *shared.BaseAttribute {
+func (o *PutSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
 	if o == nil {
 		return nil
 	}
-	return o.BaseAttribute
+	return o.AttributeWithCompositeID
 }

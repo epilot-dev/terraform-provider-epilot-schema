@@ -35,7 +35,7 @@ type GetSchemaResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	EntitySchema *shared.EntitySchema
+	EntitySchemaItem *shared.EntitySchemaItem
 }
 
 func (o *GetSchemaResponse) GetContentType() string {
@@ -59,9 +59,9 @@ func (o *GetSchemaResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSchemaResponse) GetEntitySchema() *shared.EntitySchema {
+func (o *GetSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
 	if o == nil {
 		return nil
 	}
-	return o.EntitySchema
+	return o.EntitySchemaItem
 }

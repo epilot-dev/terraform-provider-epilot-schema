@@ -13,7 +13,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	// Production server
+	// Entity production
 	"https://entity.sls.epilot.io",
 }
 
@@ -146,9 +146,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.0.3",
+			SDKVersion:        "0.1.0",
 			GenVersion:        "2.230.1",
-			UserAgent:         "speakeasy-sdk/go 0.0.3 2.230.1 1.0.0 terraform",
+			UserAgent:         "speakeasy-sdk/go 0.1.0 2.230.1 1.0.0 terraform",
 		},
 	}
 	for _, opt := range opts {
