@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5a857039-7f4b-42d5-86fd-449767242ed2
 management:
-  docChecksum: e960c8461662ce145179eaa3d62504ab
+  docChecksum: e9ca3a0a1edd9eb78d846e1d0d3addaa
   docVersion: 1.0.0
-  speakeasyVersion: internal
-  generationVersion: 2.230.1
-  releaseVersion: 0.2.0
-  configChecksum: a60aff325fe58fb1fa94446b1e910451
+  speakeasyVersion: 1.278.0
+  generationVersion: 2.322.4
+  releaseVersion: 0.3.0
+  configChecksum: b63fadb5c41997e740be55f4adc97d9b
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
   repoSubDirectory: .
   published: true
@@ -21,14 +21,91 @@ features:
     unions: 2.85.0
   terraform:
     additionalProperties: 0.1.2
-    constsAndDefaults: 0.1.2
-    core: 3.8.1
-    globalSecurity: 2.81.2
+    constsAndDefaults: 0.1.4
+    core: 3.19.0
+    globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
-    unions: 2.81.7
+    inputOutputModels: 2.83.0
+    unions: 2.81.12
 generatedFiles:
   - internal/sdk/schemas.go
   - internal/sdk/sdk.go
+  - internal/sdk/models/errors/sdkerror.go
+  - internal/sdk/types/bigint.go
+  - internal/sdk/types/date.go
+  - internal/sdk/types/datetime.go
+  - internal/sdk/types/decimal.go
+  - internal/sdk/types/pointers.go
+  - internal/sdk/internal/utils/contenttype.go
+  - internal/sdk/internal/utils/form.go
+  - internal/sdk/internal/utils/headers.go
+  - internal/sdk/internal/utils/json.go
+  - internal/sdk/internal/utils/pathparams.go
+  - internal/sdk/internal/utils/queryparams.go
+  - internal/sdk/internal/utils/requestbody.go
+  - internal/sdk/internal/utils/retries.go
+  - internal/sdk/internal/utils/security.go
+  - internal/sdk/internal/utils/utils.go
+  - internal/sdk/models/operations/getschema.go
+  - internal/sdk/models/operations/putschema.go
+  - internal/sdk/models/operations/deleteschema.go
+  - internal/sdk/models/operations/getschemaattribute.go
+  - internal/sdk/models/operations/putschemaattribute.go
+  - internal/sdk/models/operations/deleteschemaattribute.go
+  - internal/sdk/models/operations/getschemacapability.go
+  - internal/sdk/models/operations/putschemacapability.go
+  - internal/sdk/models/operations/deleteschemacapability.go
+  - internal/sdk/models/shared/entityschemaitem.go
+  - internal/sdk/models/shared/searchmappings.go
+  - internal/sdk/models/shared/attribute.go
+  - internal/sdk/models/shared/textattribute.go
+  - internal/sdk/models/shared/settingflag.go
+  - internal/sdk/models/shared/linkattribute.go
+  - internal/sdk/models/shared/dateattribute.go
+  - internal/sdk/models/shared/countryattribute.go
+  - internal/sdk/models/shared/booleanattribute.go
+  - internal/sdk/models/shared/selectattribute.go
+  - internal/sdk/models/shared/multiselectattribute.go
+  - internal/sdk/models/shared/statusattribute.go
+  - internal/sdk/models/shared/sequenceattribute.go
+  - internal/sdk/models/shared/relationattribute.go
+  - internal/sdk/models/shared/summaryfield.go
+  - internal/sdk/models/shared/entityacl.go
+  - internal/sdk/models/shared/entityowner.go
+  - internal/sdk/models/shared/userrelationattribute.go
+  - internal/sdk/models/shared/addressrelationattribute.go
+  - internal/sdk/models/shared/paymentmethodrelationattribute.go
+  - internal/sdk/models/shared/currencyattribute.go
+  - internal/sdk/models/shared/repeatableattribute.go
+  - internal/sdk/models/shared/tagsattribute.go
+  - internal/sdk/models/shared/numberattribute.go
+  - internal/sdk/models/shared/consentattribute.go
+  - internal/sdk/models/shared/internalattribute.go
+  - internal/sdk/models/shared/orderedlistattribute.go
+  - internal/sdk/models/shared/fileattribute.go
+  - internal/sdk/models/shared/computedattribute.go
+  - internal/sdk/models/shared/partnerstatusattribute.go
+  - internal/sdk/models/shared/invitationemailattribute.go
+  - internal/sdk/models/shared/automationattribute.go
+  - internal/sdk/models/shared/internaluserattribute.go
+  - internal/sdk/models/shared/purposeattribute.go
+  - internal/sdk/models/shared/partnerorganisationattribute.go
+  - internal/sdk/models/shared/entitycapability.go
+  - internal/sdk/models/shared/entityaction.go
+  - internal/sdk/models/shared/summaryattribute.go
+  - internal/sdk/models/shared/entitydefaultedit.go
+  - internal/sdk/models/shared/redirectentityview.go
+  - internal/sdk/models/shared/entityviewdisabled.go
+  - internal/sdk/models/shared/entitydefaultcreate.go
+  - internal/sdk/models/shared/entitydefaulttable.go
+  - internal/sdk/models/shared/entityschema.go
+  - internal/sdk/models/shared/attributewithcompositeid.go
+  - internal/sdk/models/shared/entitycapabilitywithcompositeid.go
+  - internal/sdk/models/shared/security.go
+  - internal/sdk/.gitignore
+  - internal/sdk/.gitattributes
+  - internal/sdk/internal/hooks/registration.go
+  - internal/sdk/internal/hooks/hooks.go
   - examples/README.md
   - go.mod
   - go.sum
@@ -57,22 +134,6 @@ generatedFiles:
   - internal/provider/reflect/slice.go
   - internal/provider/reflect/struct.go
   - internal/provider/utils.go
-  - internal/sdk/pkg/models/sdkerrors/sdkerror.go
-  - internal/sdk/pkg/types/bigint.go
-  - internal/sdk/pkg/types/date.go
-  - internal/sdk/pkg/types/datetime.go
-  - internal/sdk/pkg/types/decimal.go
-  - internal/sdk/pkg/types/pointers.go
-  - internal/sdk/pkg/utils/contenttype.go
-  - internal/sdk/pkg/utils/form.go
-  - internal/sdk/pkg/utils/headers.go
-  - internal/sdk/pkg/utils/json.go
-  - internal/sdk/pkg/utils/pathparams.go
-  - internal/sdk/pkg/utils/queryparams.go
-  - internal/sdk/pkg/utils/requestbody.go
-  - internal/sdk/pkg/utils/retries.go
-  - internal/sdk/pkg/utils/security.go
-  - internal/sdk/pkg/utils/utils.go
   - internal/validators/DateValidator.go
   - internal/validators/ExactlyOneChild.go
   - internal/validators/JSONParseValidator.go
@@ -89,129 +150,124 @@ generatedFiles:
   - main.go
   - terraform-registry-manifest.json
   - tools/tools.go
-  - internal/sdk/pkg/models/operations/getschema.go
-  - internal/sdk/pkg/models/operations/putschema.go
-  - internal/sdk/pkg/models/operations/deleteschema.go
-  - internal/sdk/pkg/models/shared/entityschemaitem.go
-  - internal/sdk/pkg/models/shared/searchmappings.go
-  - internal/sdk/pkg/models/shared/attribute.go
-  - internal/sdk/pkg/models/shared/textattribute.go
-  - internal/sdk/pkg/models/shared/settingflag.go
-  - internal/sdk/pkg/models/shared/linkattribute.go
-  - internal/sdk/pkg/models/shared/dateattribute.go
-  - internal/sdk/pkg/models/shared/countryattribute.go
-  - internal/sdk/pkg/models/shared/booleanattribute.go
-  - internal/sdk/pkg/models/shared/selectattribute.go
-  - internal/sdk/pkg/models/shared/multiselectattribute.go
-  - internal/sdk/pkg/models/shared/statusattribute.go
-  - internal/sdk/pkg/models/shared/sequenceattribute.go
-  - internal/sdk/pkg/models/shared/relationattribute.go
-  - internal/sdk/pkg/models/shared/summaryfield.go
-  - internal/sdk/pkg/models/shared/entityacl.go
-  - internal/sdk/pkg/models/shared/entityowner.go
-  - internal/sdk/pkg/models/shared/userrelationattribute.go
-  - internal/sdk/pkg/models/shared/addressrelationattribute.go
-  - internal/sdk/pkg/models/shared/paymentmethodrelationattribute.go
-  - internal/sdk/pkg/models/shared/currencyattribute.go
-  - internal/sdk/pkg/models/shared/repeatableattribute.go
-  - internal/sdk/pkg/models/shared/tagsattribute.go
-  - internal/sdk/pkg/models/shared/numberattribute.go
-  - internal/sdk/pkg/models/shared/consentattribute.go
-  - internal/sdk/pkg/models/shared/internalattribute.go
-  - internal/sdk/pkg/models/shared/orderedlistattribute.go
-  - internal/sdk/pkg/models/shared/fileattribute.go
-  - internal/sdk/pkg/models/shared/computedattribute.go
-  - internal/sdk/pkg/models/shared/partnerstatusattribute.go
-  - internal/sdk/pkg/models/shared/invitationemailattribute.go
-  - internal/sdk/pkg/models/shared/automationattribute.go
-  - internal/sdk/pkg/models/shared/internaluserattribute.go
-  - internal/sdk/pkg/models/shared/purposeattribute.go
-  - internal/sdk/pkg/models/shared/partnerorganisationattribute.go
-  - internal/sdk/pkg/models/shared/entitycapability.go
-  - internal/sdk/pkg/models/shared/entityaction.go
-  - internal/sdk/pkg/models/shared/summaryattribute.go
-  - internal/sdk/pkg/models/shared/entitydefaultedit.go
-  - internal/sdk/pkg/models/shared/redirectentityview.go
-  - internal/sdk/pkg/models/shared/entityviewdisabled.go
-  - internal/sdk/pkg/models/shared/entitydefaultcreate.go
-  - internal/sdk/pkg/models/shared/entitydefaulttable.go
-  - internal/sdk/pkg/models/shared/entityschema.go
-  - internal/sdk/pkg/models/shared/security.go
-  - internal/provider/type_address_relation_attribute_constraints.go
-  - internal/provider/type_address_relation_attribute_info_helpers.go
-  - internal/provider/type_setting_flag.go
-  - internal/provider/type_address_relation_attribute.go
-  - internal/provider/type_automation_attribute.go
-  - internal/provider/type_boolean_attribute.go
-  - internal/provider/type_computed_attribute.go
-  - internal/provider/type_consent_attribute.go
-  - internal/provider/type_country_attribute.go
-  - internal/provider/type_currency1.go
-  - internal/provider/type_currency.go
-  - internal/provider/type_currency_attribute.go
-  - internal/provider/type_date_attribute.go
-  - internal/provider/type_file_attribute.go
-  - internal/provider/type_internal_attribute.go
-  - internal/provider/type_internal_user_attribute.go
-  - internal/provider/type_invitation_email_attribute.go
-  - internal/provider/type_link_attribute.go
-  - internal/provider/type_two.go
-  - internal/provider/type_multi_select_attribute_options.go
-  - internal/provider/type_multi_select_attribute.go
-  - internal/provider/type_number_attribute.go
-  - internal/provider/type_ordered_list_attribute.go
-  - internal/provider/type_partner_organisation_attribute.go
-  - internal/provider/type_partner_status_attribute.go
-  - internal/provider/type_payment_method_relation_attribute.go
-  - internal/provider/type_purpose_attribute.go
-  - internal/provider/type_entity_acl.go
-  - internal/provider/type_entity_owner.go
-  - internal/provider/type_new_entity_item.go
-  - internal/provider/type_actions.go
-  - internal/provider/type_summary_field.go
-  - internal/provider/type_summary_fields.go
-  - internal/provider/type_relation_attribute.go
-  - internal/provider/type_repeatable_attribute.go
-  - internal/provider/type_options.go
-  - internal/provider/type_select_attribute.go
-  - internal/provider/type_sequence_attribute.go
-  - internal/provider/type_status_attribute.go
-  - internal/provider/type_tags_attribute.go
-  - internal/provider/type_text_attribute.go
-  - internal/provider/type_user_relation_attribute.go
-  - internal/provider/type_attribute.go
-  - internal/provider/type_required_permission.go
-  - internal/provider/type_ui_hooks.go
-  - internal/provider/type_entity_capability.go
-  - internal/provider/type_search_mappings.go
-  - internal/provider/type_entity_schema_info_tooltip_title.go
-  - internal/provider/type_group_settings.go
-  - internal/provider/type_entity_schema_layout_settings.go
-  - internal/provider/type_source.go
-  - internal/provider/type_entity_default_create.go
-  - internal/provider/type_entity_view_disabled.go
-  - internal/provider/type_redirect_entity_view.go
-  - internal/provider/type_entity_schema_create_view.go
-  - internal/provider/type_entity_default_edit.go
-  - internal/provider/type_entity_schema_edit_view.go
-  - internal/provider/type_entity_action.go
-  - internal/provider/type_summary_attribute.go
-  - internal/provider/type_summary_attributes.go
-  - internal/provider/type_entity_schema_list_item.go
-  - internal/provider/type_entity_schema_sharing.go
-  - internal/provider/type_bulk_actions.go
-  - internal/provider/type_entity_default_table_options.go
-  - internal/provider/type_navbar_actions.go
-  - internal/provider/type_entity_default_table.go
-  - internal/provider/type_entity_schema_table_view.go
-  - internal/provider/type_entity_schema_ui_config.go
+  - internal/provider/types/address_relation_attribute_constraints.go
+  - internal/provider/types/address_relation_attribute_info_helpers.go
+  - internal/provider/types/setting_flag.go
+  - internal/provider/types/address_relation_attribute.go
+  - internal/provider/types/automation_attribute.go
+  - internal/provider/types/boolean_attribute.go
+  - internal/provider/types/computed_attribute.go
+  - internal/provider/types/consent_attribute.go
+  - internal/provider/types/country_attribute.go
+  - internal/provider/types/currency1.go
+  - internal/provider/types/currency.go
+  - internal/provider/types/currency_attribute.go
+  - internal/provider/types/date_attribute.go
+  - internal/provider/types/file_attribute.go
+  - internal/provider/types/internal_attribute.go
+  - internal/provider/types/internal_user_attribute.go
+  - internal/provider/types/invitation_email_attribute.go
+  - internal/provider/types/link_attribute.go
+  - internal/provider/types/two.go
+  - internal/provider/types/multi_select_attribute_options.go
+  - internal/provider/types/multi_select_attribute.go
+  - internal/provider/types/number_attribute.go
+  - internal/provider/types/ordered_list_attribute.go
+  - internal/provider/types/partner_organisation_attribute.go
+  - internal/provider/types/partner_status_attribute.go
+  - internal/provider/types/payment_method_relation_attribute.go
+  - internal/provider/types/purpose_attribute.go
+  - internal/provider/types/entity_acl.go
+  - internal/provider/types/entity_owner.go
+  - internal/provider/types/new_entity_item.go
+  - internal/provider/types/actions.go
+  - internal/provider/types/summary_field.go
+  - internal/provider/types/summary_fields.go
+  - internal/provider/types/relation_attribute.go
+  - internal/provider/types/repeatable_attribute.go
+  - internal/provider/types/options.go
+  - internal/provider/types/select_attribute.go
+  - internal/provider/types/sequence_attribute.go
+  - internal/provider/types/status_attribute.go
+  - internal/provider/types/tags_attribute.go
+  - internal/provider/types/text_attribute.go
+  - internal/provider/types/user_relation_attribute.go
+  - internal/provider/types/attribute.go
+  - internal/provider/types/required_permission.go
+  - internal/provider/types/ui_hooks.go
+  - internal/provider/types/entity_capability.go
+  - internal/provider/types/search_mappings.go
+  - internal/provider/types/entity_schema_info_tooltip_title.go
+  - internal/provider/types/group_settings.go
+  - internal/provider/types/entity_schema_layout_settings.go
+  - internal/provider/types/source.go
+  - internal/provider/types/entity_default_create.go
+  - internal/provider/types/entity_view_disabled.go
+  - internal/provider/types/redirect_entity_view.go
+  - internal/provider/types/entity_schema_create_view.go
+  - internal/provider/types/entity_default_edit.go
+  - internal/provider/types/entity_schema_edit_view.go
+  - internal/provider/types/entity_action.go
+  - internal/provider/types/summary_attribute.go
+  - internal/provider/types/summary_attributes.go
+  - internal/provider/types/entity_schema_list_item.go
+  - internal/provider/types/entity_schema_sharing.go
+  - internal/provider/types/bulk_actions.go
+  - internal/provider/types/entity_default_table_options.go
+  - internal/provider/types/navbar_actions.go
+  - internal/provider/types/entity_default_table.go
+  - internal/provider/types/entity_schema_table_view.go
+  - internal/provider/types/entity_schema_ui_config.go
+  - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_automation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_boolean_attribute.go
+  - internal/provider/types/attribute_with_composite_id_computed_attribute.go
+  - internal/provider/types/attribute_with_composite_id_consent_attribute.go
+  - internal/provider/types/attribute_with_composite_id_country_attribute.go
+  - internal/provider/types/attribute_with_composite_id_currency_attribute.go
+  - internal/provider/types/attribute_with_composite_id_date_attribute.go
+  - internal/provider/types/attribute_with_composite_id_file_attribute.go
+  - internal/provider/types/attribute_with_composite_id_internal_attribute.go
+  - internal/provider/types/attribute_with_composite_id_internal_user_attribute.go
+  - internal/provider/types/attribute_with_composite_id_invitation_email_attribute.go
+  - internal/provider/types/attribute_with_composite_id_link_attribute.go
+  - internal/provider/types/attribute_with_composite_id_multi_select_attribute.go
+  - internal/provider/types/attribute_with_composite_id_number_attribute.go
+  - internal/provider/types/attribute_with_composite_id_ordered_list_attribute.go
+  - internal/provider/types/attribute_with_composite_id_partner_organisation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_partner_status_attribute.go
+  - internal/provider/types/attribute_with_composite_id_payment_method_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_purpose_attribute.go
+  - internal/provider/types/attribute_with_composite_id_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_repeatable_attribute.go
+  - internal/provider/types/attribute_with_composite_id_select_attribute.go
+  - internal/provider/types/attribute_with_composite_id_sequence_attribute.go
+  - internal/provider/types/attribute_with_composite_id_status_attribute.go
+  - internal/provider/types/attribute_with_composite_id_tags_attribute.go
+  - internal/provider/types/attribute_with_composite_id_text_attribute.go
+  - internal/provider/types/attribute_with_composite_id_user_relation_attribute.go
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
+  - examples/resources/epilot_schema_schema/import.sh
   - internal/provider/schema_resource.go
   - internal/provider/schema_resource_sdk.go
   - examples/resources/epilot-schema_schema/resource.tf
+  - examples/resources/epilot_schema_schema_attribute/import.sh
+  - internal/provider/schemaattribute_resource.go
+  - internal/provider/schemaattribute_resource_sdk.go
+  - examples/resources/epilot-schema_schema_attribute/resource.tf
+  - examples/resources/epilot_schema_schema_capability/import.sh
+  - internal/provider/schemacapability_resource.go
+  - internal/provider/schemacapability_resource_sdk.go
+  - examples/resources/epilot-schema_schema_capability/resource.tf
   - internal/provider/schema_data_source.go
   - internal/provider/schema_data_source_sdk.go
   - examples/data-sources/epilot-schema_schema/data-source.tf
+  - internal/provider/schemaattribute_data_source.go
+  - internal/provider/schemaattribute_data_source_sdk.go
+  - examples/data-sources/epilot-schema_schema_attribute/data-source.tf
+  - internal/provider/schemacapability_data_source.go
+  - internal/provider/schemacapability_data_source_sdk.go
+  - examples/data-sources/epilot-schema_schema_capability/data-source.tf
   - .gitattributes

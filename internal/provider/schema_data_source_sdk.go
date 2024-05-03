@@ -5,4535 +5,4618 @@ package provider
 import (
 	"encoding/json"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/models/shared"
+	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"time"
 )
 
 func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.EntitySchemaItem) {
-	if len(r.Attributes) > len(resp.Attributes) {
-		r.Attributes = r.Attributes[:len(resp.Attributes)]
-	}
-	for attributesCount, attributesItem := range resp.Attributes {
-		var attributes1 Attribute
-		if attributesItem.AddressRelationAttribute != nil {
-			attributes1.AddressRelationAttribute = &AddressRelationAttribute{}
-			attributes1.AddressRelationAttribute.Purpose = nil
-			for _, v := range attributesItem.AddressRelationAttribute.Purpose {
-				attributes1.AddressRelationAttribute.Purpose = append(attributes1.AddressRelationAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.AddressRelationAttribute.Constraints == nil {
-				attributes1.AddressRelationAttribute.Constraints = nil
-			} else {
-				attributes1.AddressRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.AddressRelationAttribute.DefaultValue == nil {
-				attributes1.AddressRelationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult, _ := json.Marshal(attributesItem.AddressRelationAttribute.DefaultValue)
-				attributes1.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult))
-			}
-			attributes1.AddressRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Deprecated)
-			attributes1.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AddressRelationAttribute.EntityBuilderDisableEdit)
-			attributes1.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AddressRelationAttribute.FeatureFlag)
-			attributes1.AddressRelationAttribute.Group = types.StringPointerValue(attributesItem.AddressRelationAttribute.Group)
-			attributes1.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HasPrimary)
-			attributes1.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Hidden)
-			attributes1.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HideLabel)
-			attributes1.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem.AddressRelationAttribute.Icon)
-			if attributesItem.AddressRelationAttribute.InfoHelpers == nil {
-				attributes1.AddressRelationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.AddressRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintText)
-				attributes1.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintTextKey)
-				attributes1.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.AddressRelationAttribute.Label = types.StringValue(attributesItem.AddressRelationAttribute.Label)
-			attributes1.AddressRelationAttribute.Layout = types.StringPointerValue(attributesItem.AddressRelationAttribute.Layout)
-			attributes1.AddressRelationAttribute.Name = types.StringValue(attributesItem.AddressRelationAttribute.Name)
-			attributes1.AddressRelationAttribute.Order = types.Int64PointerValue(attributesItem.AddressRelationAttribute.Order)
-			attributes1.AddressRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.AddressRelationAttribute.Placeholder)
-			attributes1.AddressRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.AddressRelationAttribute.PreviewValueFormatter)
-			attributes1.AddressRelationAttribute.Protected = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Protected)
-			attributes1.AddressRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Readonly)
-			attributes1.AddressRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AddressRelationAttribute.RenderCondition)
-			attributes1.AddressRelationAttribute.Required = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Required)
-			for settingsFlagCount, settingsFlagItem := range attributesItem.AddressRelationAttribute.SettingsFlag {
-				var settingsFlag1 SettingFlag
-				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
-				if settingsFlagCount+1 > len(attributes1.AddressRelationAttribute.SettingsFlag) {
-					attributes1.AddressRelationAttribute.SettingsFlag = append(attributes1.AddressRelationAttribute.SettingsFlag, settingsFlag1)
-				} else {
-					attributes1.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-					attributes1.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
-				}
-			}
-			attributes1.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.AddressRelationAttribute.ShowInTable)
-			attributes1.AddressRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Sortable)
-			if attributesItem.AddressRelationAttribute.Type != nil {
-				attributes1.AddressRelationAttribute.Type = types.StringValue(string(*attributesItem.AddressRelationAttribute.Type))
-			} else {
-				attributes1.AddressRelationAttribute.Type = types.StringNull()
-			}
-			attributes1.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.AddressRelationAttribute.ValueFormatter)
+	if resp != nil {
+		if len(r.Attributes) > len(resp.Attributes) {
+			r.Attributes = r.Attributes[:len(resp.Attributes)]
 		}
-		if attributesItem.AutomationAttribute != nil {
-			attributes1.AutomationAttribute = &AutomationAttribute{}
-			attributes1.AutomationAttribute.Purpose = nil
-			for _, v := range attributesItem.AutomationAttribute.Purpose {
-				attributes1.AutomationAttribute.Purpose = append(attributes1.AutomationAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.AutomationAttribute.Constraints == nil {
-				attributes1.AutomationAttribute.Constraints = nil
-			} else {
-				attributes1.AutomationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.AutomationAttribute.DefaultValue == nil {
-				attributes1.AutomationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult1, _ := json.Marshal(attributesItem.AutomationAttribute.DefaultValue)
-				attributes1.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult1))
-			}
-			attributes1.AutomationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AutomationAttribute.Deprecated)
-			attributes1.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AutomationAttribute.EntityBuilderDisableEdit)
-			attributes1.AutomationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AutomationAttribute.FeatureFlag)
-			attributes1.AutomationAttribute.Group = types.StringPointerValue(attributesItem.AutomationAttribute.Group)
-			attributes1.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem.AutomationAttribute.Hidden)
-			attributes1.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AutomationAttribute.HideLabel)
-			attributes1.AutomationAttribute.Icon = types.StringPointerValue(attributesItem.AutomationAttribute.Icon)
-			if attributesItem.AutomationAttribute.InfoHelpers == nil {
-				attributes1.AutomationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.AutomationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintText)
-				attributes1.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintTextKey)
-				attributes1.AutomationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.AutomationAttribute.Label = types.StringValue(attributesItem.AutomationAttribute.Label)
-			attributes1.AutomationAttribute.Layout = types.StringPointerValue(attributesItem.AutomationAttribute.Layout)
-			attributes1.AutomationAttribute.Name = types.StringValue(attributesItem.AutomationAttribute.Name)
-			attributes1.AutomationAttribute.Order = types.Int64PointerValue(attributesItem.AutomationAttribute.Order)
-			attributes1.AutomationAttribute.Placeholder = types.StringPointerValue(attributesItem.AutomationAttribute.Placeholder)
-			attributes1.AutomationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.AutomationAttribute.PreviewValueFormatter)
-			attributes1.AutomationAttribute.Protected = types.BoolPointerValue(attributesItem.AutomationAttribute.Protected)
-			attributes1.AutomationAttribute.Readonly = types.BoolPointerValue(attributesItem.AutomationAttribute.Readonly)
-			attributes1.AutomationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AutomationAttribute.RenderCondition)
-			attributes1.AutomationAttribute.Required = types.BoolPointerValue(attributesItem.AutomationAttribute.Required)
-			for settingsFlagCount1, settingsFlagItem1 := range attributesItem.AutomationAttribute.SettingsFlag {
-				var settingsFlag3 SettingFlag
-				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
-				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
-				if settingsFlagCount1+1 > len(attributes1.AutomationAttribute.SettingsFlag) {
-					attributes1.AutomationAttribute.SettingsFlag = append(attributes1.AutomationAttribute.SettingsFlag, settingsFlag3)
+		for attributesCount, attributesItem := range resp.Attributes {
+			var attributes1 tfTypes.Attribute
+			if attributesItem.AddressRelationAttribute != nil {
+				attributes1.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+				attributes1.AddressRelationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.AddressRelationAttribute.Purpose {
+					attributes1.AddressRelationAttribute.Purpose = append(attributes1.AddressRelationAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.AddressRelationAttribute.Constraints == nil {
+					attributes1.AddressRelationAttribute.Constraints = nil
 				} else {
-					attributes1.AutomationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
-					attributes1.AutomationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
+					attributes1.AddressRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-			}
-			attributes1.AutomationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.AutomationAttribute.ShowInTable)
-			attributes1.AutomationAttribute.Sortable = types.BoolPointerValue(attributesItem.AutomationAttribute.Sortable)
-			if attributesItem.AutomationAttribute.Type != nil {
-				attributes1.AutomationAttribute.Type = types.StringValue(string(*attributesItem.AutomationAttribute.Type))
-			} else {
-				attributes1.AutomationAttribute.Type = types.StringNull()
-			}
-			attributes1.AutomationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.AutomationAttribute.ValueFormatter)
-		}
-		if attributesItem.BooleanAttribute != nil {
-			attributes1.BooleanAttribute = &BooleanAttribute{}
-			attributes1.BooleanAttribute.Purpose = nil
-			for _, v := range attributesItem.BooleanAttribute.Purpose {
-				attributes1.BooleanAttribute.Purpose = append(attributes1.BooleanAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.BooleanAttribute.Constraints == nil {
-				attributes1.BooleanAttribute.Constraints = nil
-			} else {
-				attributes1.BooleanAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.BooleanAttribute.DefaultValue == nil {
-				attributes1.BooleanAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult2, _ := json.Marshal(attributesItem.BooleanAttribute.DefaultValue)
-				attributes1.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult2))
-			}
-			attributes1.BooleanAttribute.Deprecated = types.BoolPointerValue(attributesItem.BooleanAttribute.Deprecated)
-			attributes1.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.BooleanAttribute.EntityBuilderDisableEdit)
-			attributes1.BooleanAttribute.FeatureFlag = types.StringPointerValue(attributesItem.BooleanAttribute.FeatureFlag)
-			attributes1.BooleanAttribute.Group = types.StringPointerValue(attributesItem.BooleanAttribute.Group)
-			attributes1.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem.BooleanAttribute.Hidden)
-			attributes1.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem.BooleanAttribute.HideLabel)
-			attributes1.BooleanAttribute.Icon = types.StringPointerValue(attributesItem.BooleanAttribute.Icon)
-			if attributesItem.BooleanAttribute.InfoHelpers == nil {
-				attributes1.BooleanAttribute.InfoHelpers = nil
-			} else {
-				attributes1.BooleanAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintText)
-				attributes1.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintTextKey)
-				attributes1.BooleanAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.BooleanAttribute.Label = types.StringValue(attributesItem.BooleanAttribute.Label)
-			attributes1.BooleanAttribute.Layout = types.StringPointerValue(attributesItem.BooleanAttribute.Layout)
-			attributes1.BooleanAttribute.Name = types.StringValue(attributesItem.BooleanAttribute.Name)
-			attributes1.BooleanAttribute.Order = types.Int64PointerValue(attributesItem.BooleanAttribute.Order)
-			attributes1.BooleanAttribute.Placeholder = types.StringPointerValue(attributesItem.BooleanAttribute.Placeholder)
-			attributes1.BooleanAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.BooleanAttribute.PreviewValueFormatter)
-			attributes1.BooleanAttribute.Protected = types.BoolPointerValue(attributesItem.BooleanAttribute.Protected)
-			attributes1.BooleanAttribute.Readonly = types.BoolPointerValue(attributesItem.BooleanAttribute.Readonly)
-			attributes1.BooleanAttribute.RenderCondition = types.StringPointerValue(attributesItem.BooleanAttribute.RenderCondition)
-			attributes1.BooleanAttribute.Required = types.BoolPointerValue(attributesItem.BooleanAttribute.Required)
-			for settingsFlagCount2, settingsFlagItem2 := range attributesItem.BooleanAttribute.SettingsFlag {
-				var settingsFlag5 SettingFlag
-				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
-				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
-				if settingsFlagCount2+1 > len(attributes1.BooleanAttribute.SettingsFlag) {
-					attributes1.BooleanAttribute.SettingsFlag = append(attributes1.BooleanAttribute.SettingsFlag, settingsFlag5)
+				if attributesItem.AddressRelationAttribute.DefaultValue == nil {
+					attributes1.AddressRelationAttribute.DefaultValue = types.StringNull()
 				} else {
-					attributes1.BooleanAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
-					attributes1.BooleanAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
+					defaultValueResult, _ := json.Marshal(attributesItem.AddressRelationAttribute.DefaultValue)
+					attributes1.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult))
 				}
-			}
-			attributes1.BooleanAttribute.ShowInTable = types.BoolPointerValue(attributesItem.BooleanAttribute.ShowInTable)
-			attributes1.BooleanAttribute.Sortable = types.BoolPointerValue(attributesItem.BooleanAttribute.Sortable)
-			if attributesItem.BooleanAttribute.Type != nil {
-				attributes1.BooleanAttribute.Type = types.StringValue(string(*attributesItem.BooleanAttribute.Type))
-			} else {
-				attributes1.BooleanAttribute.Type = types.StringNull()
-			}
-			attributes1.BooleanAttribute.ValueFormatter = types.StringPointerValue(attributesItem.BooleanAttribute.ValueFormatter)
-		}
-		if attributesItem.ComputedAttribute != nil {
-			attributes1.ComputedAttribute = &ComputedAttribute{}
-			attributes1.ComputedAttribute.Purpose = nil
-			for _, v := range attributesItem.ComputedAttribute.Purpose {
-				attributes1.ComputedAttribute.Purpose = append(attributes1.ComputedAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.ComputedAttribute.Constraints == nil {
-				attributes1.ComputedAttribute.Constraints = nil
-			} else {
-				attributes1.ComputedAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.ComputedAttribute.DefaultValue == nil {
-				attributes1.ComputedAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult3, _ := json.Marshal(attributesItem.ComputedAttribute.DefaultValue)
-				attributes1.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult3))
-			}
-			attributes1.ComputedAttribute.Deprecated = types.BoolPointerValue(attributesItem.ComputedAttribute.Deprecated)
-			attributes1.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ComputedAttribute.EntityBuilderDisableEdit)
-			attributes1.ComputedAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ComputedAttribute.FeatureFlag)
-			attributes1.ComputedAttribute.Group = types.StringPointerValue(attributesItem.ComputedAttribute.Group)
-			attributes1.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem.ComputedAttribute.Hidden)
-			attributes1.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem.ComputedAttribute.HideLabel)
-			attributes1.ComputedAttribute.Icon = types.StringPointerValue(attributesItem.ComputedAttribute.Icon)
-			if attributesItem.ComputedAttribute.InfoHelpers == nil {
-				attributes1.ComputedAttribute.InfoHelpers = nil
-			} else {
-				attributes1.ComputedAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintText)
-				attributes1.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintTextKey)
-				attributes1.ComputedAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.ComputedAttribute.Label = types.StringValue(attributesItem.ComputedAttribute.Label)
-			attributes1.ComputedAttribute.Layout = types.StringPointerValue(attributesItem.ComputedAttribute.Layout)
-			attributes1.ComputedAttribute.Name = types.StringValue(attributesItem.ComputedAttribute.Name)
-			attributes1.ComputedAttribute.Order = types.Int64PointerValue(attributesItem.ComputedAttribute.Order)
-			attributes1.ComputedAttribute.Placeholder = types.StringPointerValue(attributesItem.ComputedAttribute.Placeholder)
-			attributes1.ComputedAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.ComputedAttribute.PreviewValueFormatter)
-			attributes1.ComputedAttribute.Protected = types.BoolPointerValue(attributesItem.ComputedAttribute.Protected)
-			attributes1.ComputedAttribute.Readonly = types.BoolPointerValue(attributesItem.ComputedAttribute.Readonly)
-			attributes1.ComputedAttribute.RenderCondition = types.StringPointerValue(attributesItem.ComputedAttribute.RenderCondition)
-			attributes1.ComputedAttribute.Required = types.BoolPointerValue(attributesItem.ComputedAttribute.Required)
-			for settingsFlagCount3, settingsFlagItem3 := range attributesItem.ComputedAttribute.SettingsFlag {
-				var settingsFlag7 SettingFlag
-				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
-				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
-				if settingsFlagCount3+1 > len(attributes1.ComputedAttribute.SettingsFlag) {
-					attributes1.ComputedAttribute.SettingsFlag = append(attributes1.ComputedAttribute.SettingsFlag, settingsFlag7)
+				attributes1.AddressRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Deprecated)
+				attributes1.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AddressRelationAttribute.EntityBuilderDisableEdit)
+				attributes1.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AddressRelationAttribute.FeatureFlag)
+				attributes1.AddressRelationAttribute.Group = types.StringPointerValue(attributesItem.AddressRelationAttribute.Group)
+				attributes1.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HasPrimary)
+				attributes1.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Hidden)
+				attributes1.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HideLabel)
+				attributes1.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem.AddressRelationAttribute.Icon)
+				if attributesItem.AddressRelationAttribute.InfoHelpers == nil {
+					attributes1.AddressRelationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.ComputedAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
-					attributes1.ComputedAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
+					attributes1.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintText)
+					attributes1.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintTextKey)
+					attributes1.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-			}
-			attributes1.ComputedAttribute.ShowInTable = types.BoolPointerValue(attributesItem.ComputedAttribute.ShowInTable)
-			attributes1.ComputedAttribute.Sortable = types.BoolPointerValue(attributesItem.ComputedAttribute.Sortable)
-			if attributesItem.ComputedAttribute.Type != nil {
-				attributes1.ComputedAttribute.Type = types.StringValue(string(*attributesItem.ComputedAttribute.Type))
-			} else {
-				attributes1.ComputedAttribute.Type = types.StringNull()
-			}
-			attributes1.ComputedAttribute.ValueFormatter = types.StringPointerValue(attributesItem.ComputedAttribute.ValueFormatter)
-		}
-		if attributesItem.ConsentAttribute != nil {
-			attributes1.ConsentAttribute = &ConsentAttribute{}
-			attributes1.ConsentAttribute.Purpose = nil
-			for _, v := range attributesItem.ConsentAttribute.Purpose {
-				attributes1.ConsentAttribute.Purpose = append(attributes1.ConsentAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.ConsentAttribute.Constraints == nil {
-				attributes1.ConsentAttribute.Constraints = nil
-			} else {
-				attributes1.ConsentAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.ConsentAttribute.DefaultValue == nil {
-				attributes1.ConsentAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult4, _ := json.Marshal(attributesItem.ConsentAttribute.DefaultValue)
-				attributes1.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult4))
-			}
-			attributes1.ConsentAttribute.Deprecated = types.BoolPointerValue(attributesItem.ConsentAttribute.Deprecated)
-			attributes1.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ConsentAttribute.EntityBuilderDisableEdit)
-			attributes1.ConsentAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ConsentAttribute.FeatureFlag)
-			attributes1.ConsentAttribute.Group = types.StringPointerValue(attributesItem.ConsentAttribute.Group)
-			attributes1.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem.ConsentAttribute.Hidden)
-			attributes1.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem.ConsentAttribute.HideLabel)
-			attributes1.ConsentAttribute.Icon = types.StringPointerValue(attributesItem.ConsentAttribute.Icon)
-			attributes1.ConsentAttribute.Identifiers = nil
-			for _, v := range attributesItem.ConsentAttribute.Identifiers {
-				attributes1.ConsentAttribute.Identifiers = append(attributes1.ConsentAttribute.Identifiers, types.StringValue(v))
-			}
-			if attributesItem.ConsentAttribute.InfoHelpers == nil {
-				attributes1.ConsentAttribute.InfoHelpers = nil
-			} else {
-				attributes1.ConsentAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintText)
-				attributes1.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintTextKey)
-				attributes1.ConsentAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.ConsentAttribute.Label = types.StringValue(attributesItem.ConsentAttribute.Label)
-			attributes1.ConsentAttribute.Layout = types.StringPointerValue(attributesItem.ConsentAttribute.Layout)
-			attributes1.ConsentAttribute.Name = types.StringValue(attributesItem.ConsentAttribute.Name)
-			attributes1.ConsentAttribute.Order = types.Int64PointerValue(attributesItem.ConsentAttribute.Order)
-			attributes1.ConsentAttribute.Placeholder = types.StringPointerValue(attributesItem.ConsentAttribute.Placeholder)
-			attributes1.ConsentAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.ConsentAttribute.PreviewValueFormatter)
-			attributes1.ConsentAttribute.Protected = types.BoolPointerValue(attributesItem.ConsentAttribute.Protected)
-			attributes1.ConsentAttribute.Readonly = types.BoolPointerValue(attributesItem.ConsentAttribute.Readonly)
-			attributes1.ConsentAttribute.RenderCondition = types.StringPointerValue(attributesItem.ConsentAttribute.RenderCondition)
-			attributes1.ConsentAttribute.Required = types.BoolPointerValue(attributesItem.ConsentAttribute.Required)
-			for settingsFlagCount4, settingsFlagItem4 := range attributesItem.ConsentAttribute.SettingsFlag {
-				var settingsFlag9 SettingFlag
-				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
-				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
-				if settingsFlagCount4+1 > len(attributes1.ConsentAttribute.SettingsFlag) {
-					attributes1.ConsentAttribute.SettingsFlag = append(attributes1.ConsentAttribute.SettingsFlag, settingsFlag9)
-				} else {
-					attributes1.ConsentAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
-					attributes1.ConsentAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
-				}
-			}
-			attributes1.ConsentAttribute.ShowInTable = types.BoolPointerValue(attributesItem.ConsentAttribute.ShowInTable)
-			attributes1.ConsentAttribute.Sortable = types.BoolPointerValue(attributesItem.ConsentAttribute.Sortable)
-			attributes1.ConsentAttribute.Topic = types.StringValue(attributesItem.ConsentAttribute.Topic)
-			attributes1.ConsentAttribute.Type = types.StringValue(string(attributesItem.ConsentAttribute.Type))
-			attributes1.ConsentAttribute.ValueFormatter = types.StringPointerValue(attributesItem.ConsentAttribute.ValueFormatter)
-		}
-		if attributesItem.CountryAttribute != nil {
-			attributes1.CountryAttribute = &CountryAttribute{}
-			attributes1.CountryAttribute.Purpose = nil
-			for _, v := range attributesItem.CountryAttribute.Purpose {
-				attributes1.CountryAttribute.Purpose = append(attributes1.CountryAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.CountryAttribute.Constraints == nil {
-				attributes1.CountryAttribute.Constraints = nil
-			} else {
-				attributes1.CountryAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.CountryAttribute.DefaultValue == nil {
-				attributes1.CountryAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult5, _ := json.Marshal(attributesItem.CountryAttribute.DefaultValue)
-				attributes1.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult5))
-			}
-			attributes1.CountryAttribute.Deprecated = types.BoolPointerValue(attributesItem.CountryAttribute.Deprecated)
-			attributes1.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CountryAttribute.EntityBuilderDisableEdit)
-			attributes1.CountryAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CountryAttribute.FeatureFlag)
-			attributes1.CountryAttribute.Group = types.StringPointerValue(attributesItem.CountryAttribute.Group)
-			attributes1.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem.CountryAttribute.Hidden)
-			attributes1.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem.CountryAttribute.HideLabel)
-			attributes1.CountryAttribute.Icon = types.StringPointerValue(attributesItem.CountryAttribute.Icon)
-			if attributesItem.CountryAttribute.InfoHelpers == nil {
-				attributes1.CountryAttribute.InfoHelpers = nil
-			} else {
-				attributes1.CountryAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintText)
-				attributes1.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintTextKey)
-				attributes1.CountryAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.CountryAttribute.Label = types.StringValue(attributesItem.CountryAttribute.Label)
-			attributes1.CountryAttribute.Layout = types.StringPointerValue(attributesItem.CountryAttribute.Layout)
-			attributes1.CountryAttribute.Name = types.StringValue(attributesItem.CountryAttribute.Name)
-			attributes1.CountryAttribute.Order = types.Int64PointerValue(attributesItem.CountryAttribute.Order)
-			attributes1.CountryAttribute.Placeholder = types.StringPointerValue(attributesItem.CountryAttribute.Placeholder)
-			attributes1.CountryAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.CountryAttribute.PreviewValueFormatter)
-			attributes1.CountryAttribute.Protected = types.BoolPointerValue(attributesItem.CountryAttribute.Protected)
-			attributes1.CountryAttribute.Readonly = types.BoolPointerValue(attributesItem.CountryAttribute.Readonly)
-			attributes1.CountryAttribute.RenderCondition = types.StringPointerValue(attributesItem.CountryAttribute.RenderCondition)
-			attributes1.CountryAttribute.Required = types.BoolPointerValue(attributesItem.CountryAttribute.Required)
-			for settingsFlagCount5, settingsFlagItem5 := range attributesItem.CountryAttribute.SettingsFlag {
-				var settingsFlag11 SettingFlag
-				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
-				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
-				if settingsFlagCount5+1 > len(attributes1.CountryAttribute.SettingsFlag) {
-					attributes1.CountryAttribute.SettingsFlag = append(attributes1.CountryAttribute.SettingsFlag, settingsFlag11)
-				} else {
-					attributes1.CountryAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
-					attributes1.CountryAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
-				}
-			}
-			attributes1.CountryAttribute.ShowInTable = types.BoolPointerValue(attributesItem.CountryAttribute.ShowInTable)
-			attributes1.CountryAttribute.Sortable = types.BoolPointerValue(attributesItem.CountryAttribute.Sortable)
-			if attributesItem.CountryAttribute.Type != nil {
-				attributes1.CountryAttribute.Type = types.StringValue(string(*attributesItem.CountryAttribute.Type))
-			} else {
-				attributes1.CountryAttribute.Type = types.StringNull()
-			}
-			attributes1.CountryAttribute.ValueFormatter = types.StringPointerValue(attributesItem.CountryAttribute.ValueFormatter)
-		}
-		if attributesItem.CurrencyAttribute != nil {
-			attributes1.CurrencyAttribute = &CurrencyAttribute{}
-			attributes1.CurrencyAttribute.Purpose = nil
-			for _, v := range attributesItem.CurrencyAttribute.Purpose {
-				attributes1.CurrencyAttribute.Purpose = append(attributes1.CurrencyAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.CurrencyAttribute.Constraints == nil {
-				attributes1.CurrencyAttribute.Constraints = nil
-			} else {
-				attributes1.CurrencyAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
-				var currency1 Currency
-				if currencyItem.Currency1 != nil {
-					currency1.One = &Currency1{}
-					currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
-					currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
-					currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
-					currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
-				}
-				if currencyCount+1 > len(attributes1.CurrencyAttribute.Currency) {
-					attributes1.CurrencyAttribute.Currency = append(attributes1.CurrencyAttribute.Currency, currency1)
-				} else {
-				}
-			}
-			attributes1.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(attributesItem.CurrencyAttribute.CurrencySelectorOnly)
-			if attributesItem.CurrencyAttribute.DefaultValue == nil {
-				attributes1.CurrencyAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult6, _ := json.Marshal(attributesItem.CurrencyAttribute.DefaultValue)
-				attributes1.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult6))
-			}
-			attributes1.CurrencyAttribute.Deprecated = types.BoolPointerValue(attributesItem.CurrencyAttribute.Deprecated)
-			attributes1.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CurrencyAttribute.EntityBuilderDisableEdit)
-			attributes1.CurrencyAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CurrencyAttribute.FeatureFlag)
-			attributes1.CurrencyAttribute.Group = types.StringPointerValue(attributesItem.CurrencyAttribute.Group)
-			attributes1.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem.CurrencyAttribute.Hidden)
-			attributes1.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem.CurrencyAttribute.HideLabel)
-			attributes1.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem.CurrencyAttribute.Icon)
-			if attributesItem.CurrencyAttribute.InfoHelpers == nil {
-				attributes1.CurrencyAttribute.InfoHelpers = nil
-			} else {
-				attributes1.CurrencyAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintText)
-				attributes1.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintTextKey)
-				attributes1.CurrencyAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.CurrencyAttribute.Label = types.StringValue(attributesItem.CurrencyAttribute.Label)
-			attributes1.CurrencyAttribute.Layout = types.StringPointerValue(attributesItem.CurrencyAttribute.Layout)
-			attributes1.CurrencyAttribute.Name = types.StringValue(attributesItem.CurrencyAttribute.Name)
-			attributes1.CurrencyAttribute.Order = types.Int64PointerValue(attributesItem.CurrencyAttribute.Order)
-			attributes1.CurrencyAttribute.Placeholder = types.StringPointerValue(attributesItem.CurrencyAttribute.Placeholder)
-			attributes1.CurrencyAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.CurrencyAttribute.PreviewValueFormatter)
-			attributes1.CurrencyAttribute.Protected = types.BoolPointerValue(attributesItem.CurrencyAttribute.Protected)
-			attributes1.CurrencyAttribute.Readonly = types.BoolPointerValue(attributesItem.CurrencyAttribute.Readonly)
-			attributes1.CurrencyAttribute.RenderCondition = types.StringPointerValue(attributesItem.CurrencyAttribute.RenderCondition)
-			attributes1.CurrencyAttribute.Required = types.BoolPointerValue(attributesItem.CurrencyAttribute.Required)
-			for settingsFlagCount6, settingsFlagItem6 := range attributesItem.CurrencyAttribute.SettingsFlag {
-				var settingsFlag13 SettingFlag
-				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
-				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
-				if settingsFlagCount6+1 > len(attributes1.CurrencyAttribute.SettingsFlag) {
-					attributes1.CurrencyAttribute.SettingsFlag = append(attributes1.CurrencyAttribute.SettingsFlag, settingsFlag13)
-				} else {
-					attributes1.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
-					attributes1.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
-				}
-			}
-			attributes1.CurrencyAttribute.ShowInTable = types.BoolPointerValue(attributesItem.CurrencyAttribute.ShowInTable)
-			attributes1.CurrencyAttribute.Sortable = types.BoolPointerValue(attributesItem.CurrencyAttribute.Sortable)
-			attributes1.CurrencyAttribute.Type = types.StringValue(string(attributesItem.CurrencyAttribute.Type))
-			attributes1.CurrencyAttribute.ValueFormatter = types.StringPointerValue(attributesItem.CurrencyAttribute.ValueFormatter)
-		}
-		if attributesItem.DateAttribute != nil {
-			attributes1.DateAttribute = &DateAttribute{}
-			attributes1.DateAttribute.Purpose = nil
-			for _, v := range attributesItem.DateAttribute.Purpose {
-				attributes1.DateAttribute.Purpose = append(attributes1.DateAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.DateAttribute.Constraints == nil {
-				attributes1.DateAttribute.Constraints = nil
-			} else {
-				attributes1.DateAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.DateAttribute.DefaultValue == nil {
-				attributes1.DateAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult7, _ := json.Marshal(attributesItem.DateAttribute.DefaultValue)
-				attributes1.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult7))
-			}
-			attributes1.DateAttribute.Deprecated = types.BoolPointerValue(attributesItem.DateAttribute.Deprecated)
-			attributes1.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.DateAttribute.EntityBuilderDisableEdit)
-			attributes1.DateAttribute.FeatureFlag = types.StringPointerValue(attributesItem.DateAttribute.FeatureFlag)
-			attributes1.DateAttribute.Group = types.StringPointerValue(attributesItem.DateAttribute.Group)
-			attributes1.DateAttribute.Hidden = types.BoolPointerValue(attributesItem.DateAttribute.Hidden)
-			attributes1.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem.DateAttribute.HideLabel)
-			attributes1.DateAttribute.Icon = types.StringPointerValue(attributesItem.DateAttribute.Icon)
-			if attributesItem.DateAttribute.InfoHelpers == nil {
-				attributes1.DateAttribute.InfoHelpers = nil
-			} else {
-				attributes1.DateAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintText)
-				attributes1.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintTextKey)
-				attributes1.DateAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.DateAttribute.Label = types.StringValue(attributesItem.DateAttribute.Label)
-			attributes1.DateAttribute.Layout = types.StringPointerValue(attributesItem.DateAttribute.Layout)
-			attributes1.DateAttribute.Name = types.StringValue(attributesItem.DateAttribute.Name)
-			attributes1.DateAttribute.Order = types.Int64PointerValue(attributesItem.DateAttribute.Order)
-			attributes1.DateAttribute.Placeholder = types.StringPointerValue(attributesItem.DateAttribute.Placeholder)
-			attributes1.DateAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.DateAttribute.PreviewValueFormatter)
-			attributes1.DateAttribute.Protected = types.BoolPointerValue(attributesItem.DateAttribute.Protected)
-			attributes1.DateAttribute.Readonly = types.BoolPointerValue(attributesItem.DateAttribute.Readonly)
-			attributes1.DateAttribute.RenderCondition = types.StringPointerValue(attributesItem.DateAttribute.RenderCondition)
-			attributes1.DateAttribute.Required = types.BoolPointerValue(attributesItem.DateAttribute.Required)
-			for settingsFlagCount7, settingsFlagItem7 := range attributesItem.DateAttribute.SettingsFlag {
-				var settingsFlag15 SettingFlag
-				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
-				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
-				if settingsFlagCount7+1 > len(attributes1.DateAttribute.SettingsFlag) {
-					attributes1.DateAttribute.SettingsFlag = append(attributes1.DateAttribute.SettingsFlag, settingsFlag15)
-				} else {
-					attributes1.DateAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
-					attributes1.DateAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
-				}
-			}
-			attributes1.DateAttribute.ShowInTable = types.BoolPointerValue(attributesItem.DateAttribute.ShowInTable)
-			attributes1.DateAttribute.Sortable = types.BoolPointerValue(attributesItem.DateAttribute.Sortable)
-			if attributesItem.DateAttribute.Type != nil {
-				attributes1.DateAttribute.Type = types.StringValue(string(*attributesItem.DateAttribute.Type))
-			} else {
-				attributes1.DateAttribute.Type = types.StringNull()
-			}
-			attributes1.DateAttribute.ValueFormatter = types.StringPointerValue(attributesItem.DateAttribute.ValueFormatter)
-		}
-		if attributesItem.FileAttribute != nil {
-			attributes1.FileAttribute = &FileAttribute{}
-			attributes1.FileAttribute.Purpose = nil
-			for _, v := range attributesItem.FileAttribute.Purpose {
-				attributes1.FileAttribute.Purpose = append(attributes1.FileAttribute.Purpose, types.StringValue(v))
-			}
-			attributes1.FileAttribute.AllowedExtensions = nil
-			for _, v := range attributesItem.FileAttribute.AllowedExtensions {
-				attributes1.FileAttribute.AllowedExtensions = append(attributes1.FileAttribute.AllowedExtensions, types.StringValue(v))
-			}
-			if attributesItem.FileAttribute.Constraints == nil {
-				attributes1.FileAttribute.Constraints = nil
-			} else {
-				attributes1.FileAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.FileAttribute.DefaultAccessControl != nil {
-				attributes1.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem.FileAttribute.DefaultAccessControl))
-			} else {
-				attributes1.FileAttribute.DefaultAccessControl = types.StringNull()
-			}
-			if attributesItem.FileAttribute.DefaultValue == nil {
-				attributes1.FileAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult8, _ := json.Marshal(attributesItem.FileAttribute.DefaultValue)
-				attributes1.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult8))
-			}
-			attributes1.FileAttribute.Deprecated = types.BoolPointerValue(attributesItem.FileAttribute.Deprecated)
-			attributes1.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(attributesItem.FileAttribute.DisplayImagesLandscaped)
-			attributes1.FileAttribute.EnableDescription = types.BoolPointerValue(attributesItem.FileAttribute.EnableDescription)
-			attributes1.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.FileAttribute.EntityBuilderDisableEdit)
-			attributes1.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem.FileAttribute.FeatureFlag)
-			attributes1.FileAttribute.Group = types.StringPointerValue(attributesItem.FileAttribute.Group)
-			attributes1.FileAttribute.Hidden = types.BoolPointerValue(attributesItem.FileAttribute.Hidden)
-			attributes1.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem.FileAttribute.HideLabel)
-			attributes1.FileAttribute.Icon = types.StringPointerValue(attributesItem.FileAttribute.Icon)
-			if attributesItem.FileAttribute.InfoHelpers == nil {
-				attributes1.FileAttribute.InfoHelpers = nil
-			} else {
-				attributes1.FileAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintText)
-				attributes1.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintTextKey)
-				attributes1.FileAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.FileAttribute.Label = types.StringValue(attributesItem.FileAttribute.Label)
-			attributes1.FileAttribute.Layout = types.StringPointerValue(attributesItem.FileAttribute.Layout)
-			attributes1.FileAttribute.Multiple = types.BoolPointerValue(attributesItem.FileAttribute.Multiple)
-			attributes1.FileAttribute.Name = types.StringValue(attributesItem.FileAttribute.Name)
-			attributes1.FileAttribute.Order = types.Int64PointerValue(attributesItem.FileAttribute.Order)
-			attributes1.FileAttribute.Placeholder = types.StringPointerValue(attributesItem.FileAttribute.Placeholder)
-			attributes1.FileAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.FileAttribute.PreviewValueFormatter)
-			attributes1.FileAttribute.Protected = types.BoolPointerValue(attributesItem.FileAttribute.Protected)
-			attributes1.FileAttribute.Readonly = types.BoolPointerValue(attributesItem.FileAttribute.Readonly)
-			attributes1.FileAttribute.RenderCondition = types.StringPointerValue(attributesItem.FileAttribute.RenderCondition)
-			attributes1.FileAttribute.Required = types.BoolPointerValue(attributesItem.FileAttribute.Required)
-			for settingsFlagCount8, settingsFlagItem8 := range attributesItem.FileAttribute.SettingsFlag {
-				var settingsFlag17 SettingFlag
-				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
-				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
-				if settingsFlagCount8+1 > len(attributes1.FileAttribute.SettingsFlag) {
-					attributes1.FileAttribute.SettingsFlag = append(attributes1.FileAttribute.SettingsFlag, settingsFlag17)
-				} else {
-					attributes1.FileAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
-					attributes1.FileAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
-				}
-			}
-			attributes1.FileAttribute.ShowInTable = types.BoolPointerValue(attributesItem.FileAttribute.ShowInTable)
-			attributes1.FileAttribute.Sortable = types.BoolPointerValue(attributesItem.FileAttribute.Sortable)
-			attributes1.FileAttribute.Type = types.StringValue(string(attributesItem.FileAttribute.Type))
-			attributes1.FileAttribute.ValueFormatter = types.StringPointerValue(attributesItem.FileAttribute.ValueFormatter)
-		}
-		if attributesItem.InternalAttribute != nil {
-			attributes1.InternalAttribute = &InternalAttribute{}
-			attributes1.InternalAttribute.Purpose = nil
-			for _, v := range attributesItem.InternalAttribute.Purpose {
-				attributes1.InternalAttribute.Purpose = append(attributes1.InternalAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.InternalAttribute.Constraints == nil {
-				attributes1.InternalAttribute.Constraints = nil
-			} else {
-				attributes1.InternalAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.InternalAttribute.DefaultValue == nil {
-				attributes1.InternalAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult9, _ := json.Marshal(attributesItem.InternalAttribute.DefaultValue)
-				attributes1.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult9))
-			}
-			attributes1.InternalAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalAttribute.Deprecated)
-			attributes1.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalAttribute.EntityBuilderDisableEdit)
-			attributes1.InternalAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalAttribute.FeatureFlag)
-			attributes1.InternalAttribute.Group = types.StringPointerValue(attributesItem.InternalAttribute.Group)
-			attributes1.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalAttribute.Hidden)
-			attributes1.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalAttribute.HideLabel)
-			attributes1.InternalAttribute.Icon = types.StringPointerValue(attributesItem.InternalAttribute.Icon)
-			if attributesItem.InternalAttribute.InfoHelpers == nil {
-				attributes1.InternalAttribute.InfoHelpers = nil
-			} else {
-				attributes1.InternalAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintText)
-				attributes1.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintTextKey)
-				attributes1.InternalAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.InternalAttribute.Label = types.StringValue(attributesItem.InternalAttribute.Label)
-			attributes1.InternalAttribute.Layout = types.StringPointerValue(attributesItem.InternalAttribute.Layout)
-			attributes1.InternalAttribute.Name = types.StringValue(attributesItem.InternalAttribute.Name)
-			attributes1.InternalAttribute.Order = types.Int64PointerValue(attributesItem.InternalAttribute.Order)
-			attributes1.InternalAttribute.Placeholder = types.StringPointerValue(attributesItem.InternalAttribute.Placeholder)
-			attributes1.InternalAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InternalAttribute.PreviewValueFormatter)
-			attributes1.InternalAttribute.Protected = types.BoolPointerValue(attributesItem.InternalAttribute.Protected)
-			attributes1.InternalAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalAttribute.Readonly)
-			attributes1.InternalAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalAttribute.RenderCondition)
-			attributes1.InternalAttribute.Required = types.BoolPointerValue(attributesItem.InternalAttribute.Required)
-			for settingsFlagCount9, settingsFlagItem9 := range attributesItem.InternalAttribute.SettingsFlag {
-				var settingsFlag19 SettingFlag
-				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
-				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
-				if settingsFlagCount9+1 > len(attributes1.InternalAttribute.SettingsFlag) {
-					attributes1.InternalAttribute.SettingsFlag = append(attributes1.InternalAttribute.SettingsFlag, settingsFlag19)
-				} else {
-					attributes1.InternalAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
-					attributes1.InternalAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
-				}
-			}
-			attributes1.InternalAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InternalAttribute.ShowInTable)
-			attributes1.InternalAttribute.Sortable = types.BoolPointerValue(attributesItem.InternalAttribute.Sortable)
-			if attributesItem.InternalAttribute.Type != nil {
-				attributes1.InternalAttribute.Type = types.StringValue(string(*attributesItem.InternalAttribute.Type))
-			} else {
-				attributes1.InternalAttribute.Type = types.StringNull()
-			}
-			attributes1.InternalAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InternalAttribute.ValueFormatter)
-		}
-		if attributesItem.InternalUserAttribute != nil {
-			attributes1.InternalUserAttribute = &InternalUserAttribute{}
-			attributes1.InternalUserAttribute.Purpose = nil
-			for _, v := range attributesItem.InternalUserAttribute.Purpose {
-				attributes1.InternalUserAttribute.Purpose = append(attributes1.InternalUserAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.InternalUserAttribute.Constraints == nil {
-				attributes1.InternalUserAttribute.Constraints = nil
-			} else {
-				attributes1.InternalUserAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.InternalUserAttribute.DefaultValue == nil {
-				attributes1.InternalUserAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult10, _ := json.Marshal(attributesItem.InternalUserAttribute.DefaultValue)
-				attributes1.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult10))
-			}
-			attributes1.InternalUserAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalUserAttribute.Deprecated)
-			attributes1.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalUserAttribute.EntityBuilderDisableEdit)
-			attributes1.InternalUserAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalUserAttribute.FeatureFlag)
-			attributes1.InternalUserAttribute.Group = types.StringPointerValue(attributesItem.InternalUserAttribute.Group)
-			attributes1.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalUserAttribute.Hidden)
-			attributes1.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalUserAttribute.HideLabel)
-			attributes1.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem.InternalUserAttribute.Icon)
-			if attributesItem.InternalUserAttribute.InfoHelpers == nil {
-				attributes1.InternalUserAttribute.InfoHelpers = nil
-			} else {
-				attributes1.InternalUserAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintText)
-				attributes1.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintTextKey)
-				attributes1.InternalUserAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.InternalUserAttribute.Label = types.StringValue(attributesItem.InternalUserAttribute.Label)
-			attributes1.InternalUserAttribute.Layout = types.StringPointerValue(attributesItem.InternalUserAttribute.Layout)
-			attributes1.InternalUserAttribute.Name = types.StringValue(attributesItem.InternalUserAttribute.Name)
-			attributes1.InternalUserAttribute.Order = types.Int64PointerValue(attributesItem.InternalUserAttribute.Order)
-			attributes1.InternalUserAttribute.Placeholder = types.StringPointerValue(attributesItem.InternalUserAttribute.Placeholder)
-			attributes1.InternalUserAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InternalUserAttribute.PreviewValueFormatter)
-			attributes1.InternalUserAttribute.Protected = types.BoolPointerValue(attributesItem.InternalUserAttribute.Protected)
-			attributes1.InternalUserAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalUserAttribute.Readonly)
-			attributes1.InternalUserAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalUserAttribute.RenderCondition)
-			attributes1.InternalUserAttribute.Required = types.BoolPointerValue(attributesItem.InternalUserAttribute.Required)
-			for settingsFlagCount10, settingsFlagItem10 := range attributesItem.InternalUserAttribute.SettingsFlag {
-				var settingsFlag21 SettingFlag
-				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
-				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
-				if settingsFlagCount10+1 > len(attributes1.InternalUserAttribute.SettingsFlag) {
-					attributes1.InternalUserAttribute.SettingsFlag = append(attributes1.InternalUserAttribute.SettingsFlag, settingsFlag21)
-				} else {
-					attributes1.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
-					attributes1.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
-				}
-			}
-			attributes1.InternalUserAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InternalUserAttribute.ShowInTable)
-			attributes1.InternalUserAttribute.Sortable = types.BoolPointerValue(attributesItem.InternalUserAttribute.Sortable)
-			if attributesItem.InternalUserAttribute.Type != nil {
-				attributes1.InternalUserAttribute.Type = types.StringValue(string(*attributesItem.InternalUserAttribute.Type))
-			} else {
-				attributes1.InternalUserAttribute.Type = types.StringNull()
-			}
-			attributes1.InternalUserAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InternalUserAttribute.ValueFormatter)
-		}
-		if attributesItem.InvitationEmailAttribute != nil {
-			attributes1.InvitationEmailAttribute = &InvitationEmailAttribute{}
-			attributes1.InvitationEmailAttribute.Purpose = nil
-			for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
-				attributes1.InvitationEmailAttribute.Purpose = append(attributes1.InvitationEmailAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.InvitationEmailAttribute.Constraints == nil {
-				attributes1.InvitationEmailAttribute.Constraints = nil
-			} else {
-				attributes1.InvitationEmailAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.InvitationEmailAttribute.DefaultValue == nil {
-				attributes1.InvitationEmailAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult11, _ := json.Marshal(attributesItem.InvitationEmailAttribute.DefaultValue)
-				attributes1.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult11))
-			}
-			attributes1.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Deprecated)
-			attributes1.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.EntityBuilderDisableEdit)
-			attributes1.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InvitationEmailAttribute.FeatureFlag)
-			attributes1.InvitationEmailAttribute.Group = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Group)
-			attributes1.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Hidden)
-			attributes1.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.HideLabel)
-			attributes1.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Icon)
-			if attributesItem.InvitationEmailAttribute.InfoHelpers == nil {
-				attributes1.InvitationEmailAttribute.InfoHelpers = nil
-			} else {
-				attributes1.InvitationEmailAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintText)
-				attributes1.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintTextKey)
-				attributes1.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.InvitationEmailAttribute.Label = types.StringValue(attributesItem.InvitationEmailAttribute.Label)
-			attributes1.InvitationEmailAttribute.Layout = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Layout)
-			attributes1.InvitationEmailAttribute.Name = types.StringValue(attributesItem.InvitationEmailAttribute.Name)
-			attributes1.InvitationEmailAttribute.Order = types.Int64PointerValue(attributesItem.InvitationEmailAttribute.Order)
-			attributes1.InvitationEmailAttribute.Placeholder = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Placeholder)
-			attributes1.InvitationEmailAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InvitationEmailAttribute.PreviewValueFormatter)
-			attributes1.InvitationEmailAttribute.Protected = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Protected)
-			attributes1.InvitationEmailAttribute.Readonly = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Readonly)
-			attributes1.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(attributesItem.InvitationEmailAttribute.RenderCondition)
-			attributes1.InvitationEmailAttribute.Required = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Required)
-			for settingsFlagCount11, settingsFlagItem11 := range attributesItem.InvitationEmailAttribute.SettingsFlag {
-				var settingsFlag23 SettingFlag
-				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
-				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
-				if settingsFlagCount11+1 > len(attributes1.InvitationEmailAttribute.SettingsFlag) {
-					attributes1.InvitationEmailAttribute.SettingsFlag = append(attributes1.InvitationEmailAttribute.SettingsFlag, settingsFlag23)
-				} else {
-					attributes1.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
-					attributes1.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
-				}
-			}
-			attributes1.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.ShowInTable)
-			attributes1.InvitationEmailAttribute.Sortable = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Sortable)
-			if attributesItem.InvitationEmailAttribute.Type != nil {
-				attributes1.InvitationEmailAttribute.Type = types.StringValue(string(*attributesItem.InvitationEmailAttribute.Type))
-			} else {
-				attributes1.InvitationEmailAttribute.Type = types.StringNull()
-			}
-			attributes1.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InvitationEmailAttribute.ValueFormatter)
-		}
-		if attributesItem.LinkAttribute != nil {
-			attributes1.LinkAttribute = &LinkAttribute{}
-			attributes1.LinkAttribute.Purpose = nil
-			for _, v := range attributesItem.LinkAttribute.Purpose {
-				attributes1.LinkAttribute.Purpose = append(attributes1.LinkAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.LinkAttribute.Constraints == nil {
-				attributes1.LinkAttribute.Constraints = nil
-			} else {
-				attributes1.LinkAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.LinkAttribute.DefaultValue == nil {
-				attributes1.LinkAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult12, _ := json.Marshal(attributesItem.LinkAttribute.DefaultValue)
-				attributes1.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult12))
-			}
-			attributes1.LinkAttribute.Deprecated = types.BoolPointerValue(attributesItem.LinkAttribute.Deprecated)
-			attributes1.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.LinkAttribute.EntityBuilderDisableEdit)
-			attributes1.LinkAttribute.FeatureFlag = types.StringPointerValue(attributesItem.LinkAttribute.FeatureFlag)
-			attributes1.LinkAttribute.Group = types.StringPointerValue(attributesItem.LinkAttribute.Group)
-			attributes1.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem.LinkAttribute.Hidden)
-			attributes1.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem.LinkAttribute.HideLabel)
-			attributes1.LinkAttribute.Icon = types.StringPointerValue(attributesItem.LinkAttribute.Icon)
-			if attributesItem.LinkAttribute.InfoHelpers == nil {
-				attributes1.LinkAttribute.InfoHelpers = nil
-			} else {
-				attributes1.LinkAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintText)
-				attributes1.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintTextKey)
-				attributes1.LinkAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.LinkAttribute.Label = types.StringValue(attributesItem.LinkAttribute.Label)
-			attributes1.LinkAttribute.Layout = types.StringPointerValue(attributesItem.LinkAttribute.Layout)
-			attributes1.LinkAttribute.Name = types.StringValue(attributesItem.LinkAttribute.Name)
-			attributes1.LinkAttribute.Order = types.Int64PointerValue(attributesItem.LinkAttribute.Order)
-			attributes1.LinkAttribute.Placeholder = types.StringPointerValue(attributesItem.LinkAttribute.Placeholder)
-			attributes1.LinkAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.LinkAttribute.PreviewValueFormatter)
-			attributes1.LinkAttribute.Protected = types.BoolPointerValue(attributesItem.LinkAttribute.Protected)
-			attributes1.LinkAttribute.Readonly = types.BoolPointerValue(attributesItem.LinkAttribute.Readonly)
-			attributes1.LinkAttribute.RenderCondition = types.StringPointerValue(attributesItem.LinkAttribute.RenderCondition)
-			attributes1.LinkAttribute.Required = types.BoolPointerValue(attributesItem.LinkAttribute.Required)
-			for settingsFlagCount12, settingsFlagItem12 := range attributesItem.LinkAttribute.SettingsFlag {
-				var settingsFlag25 SettingFlag
-				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
-				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
-				if settingsFlagCount12+1 > len(attributes1.LinkAttribute.SettingsFlag) {
-					attributes1.LinkAttribute.SettingsFlag = append(attributes1.LinkAttribute.SettingsFlag, settingsFlag25)
-				} else {
-					attributes1.LinkAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
-					attributes1.LinkAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
-				}
-			}
-			attributes1.LinkAttribute.ShowInTable = types.BoolPointerValue(attributesItem.LinkAttribute.ShowInTable)
-			attributes1.LinkAttribute.Sortable = types.BoolPointerValue(attributesItem.LinkAttribute.Sortable)
-			if attributesItem.LinkAttribute.Type != nil {
-				attributes1.LinkAttribute.Type = types.StringValue(string(*attributesItem.LinkAttribute.Type))
-			} else {
-				attributes1.LinkAttribute.Type = types.StringNull()
-			}
-			attributes1.LinkAttribute.ValueFormatter = types.StringPointerValue(attributesItem.LinkAttribute.ValueFormatter)
-		}
-		if attributesItem.MultiSelectAttribute != nil {
-			attributes1.MultiSelectAttribute = &MultiSelectAttribute{}
-			attributes1.MultiSelectAttribute.Purpose = nil
-			for _, v := range attributesItem.MultiSelectAttribute.Purpose {
-				attributes1.MultiSelectAttribute.Purpose = append(attributes1.MultiSelectAttribute.Purpose, types.StringValue(v))
-			}
-			attributes1.MultiSelectAttribute.AllowAny = types.BoolPointerValue(attributesItem.MultiSelectAttribute.AllowAny)
-			attributes1.MultiSelectAttribute.AllowExtraOptions = types.BoolPointerValue(attributesItem.MultiSelectAttribute.AllowExtraOptions)
-			if attributesItem.MultiSelectAttribute.Constraints == nil {
-				attributes1.MultiSelectAttribute.Constraints = nil
-			} else {
-				attributes1.MultiSelectAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.MultiSelectAttribute.DefaultValue == nil {
-				attributes1.MultiSelectAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult13, _ := json.Marshal(attributesItem.MultiSelectAttribute.DefaultValue)
-				attributes1.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult13))
-			}
-			attributes1.MultiSelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Deprecated)
-			attributes1.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(attributesItem.MultiSelectAttribute.DisableCaseSensitive)
-			attributes1.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.MultiSelectAttribute.EntityBuilderDisableEdit)
-			attributes1.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.MultiSelectAttribute.FeatureFlag)
-			attributes1.MultiSelectAttribute.Group = types.StringPointerValue(attributesItem.MultiSelectAttribute.Group)
-			attributes1.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Hidden)
-			attributes1.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.MultiSelectAttribute.HideLabel)
-			attributes1.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem.MultiSelectAttribute.Icon)
-			if attributesItem.MultiSelectAttribute.InfoHelpers == nil {
-				attributes1.MultiSelectAttribute.InfoHelpers = nil
-			} else {
-				attributes1.MultiSelectAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintText)
-				attributes1.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintTextKey)
-				attributes1.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
-			attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
-			attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
-			for optionsCount, optionsItem := range attributesItem.MultiSelectAttribute.Options {
-				var options1 MultiSelectAttributeOptions
-				if optionsItem.Str != nil {
-					options1.Str = types.StringPointerValue(optionsItem.Str)
-				}
-				if optionsItem.Two != nil {
-					options1.Two = &Two{}
-					options1.Two.Title = types.StringPointerValue(optionsItem.Two.Title)
-					options1.Two.Value = types.StringValue(optionsItem.Two.Value)
-				}
-				if optionsCount+1 > len(attributes1.MultiSelectAttribute.Options) {
-					attributes1.MultiSelectAttribute.Options = append(attributes1.MultiSelectAttribute.Options, options1)
-				} else {
-				}
-			}
-			attributes1.MultiSelectAttribute.Order = types.Int64PointerValue(attributesItem.MultiSelectAttribute.Order)
-			attributes1.MultiSelectAttribute.Placeholder = types.StringPointerValue(attributesItem.MultiSelectAttribute.Placeholder)
-			attributes1.MultiSelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.MultiSelectAttribute.PreviewValueFormatter)
-			attributes1.MultiSelectAttribute.Protected = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Protected)
-			attributes1.MultiSelectAttribute.Readonly = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Readonly)
-			attributes1.MultiSelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.MultiSelectAttribute.RenderCondition)
-			attributes1.MultiSelectAttribute.Required = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Required)
-			for settingsFlagCount13, settingsFlagItem13 := range attributesItem.MultiSelectAttribute.SettingsFlag {
-				var settingsFlag27 SettingFlag
-				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
-				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
-				if settingsFlagCount13+1 > len(attributes1.MultiSelectAttribute.SettingsFlag) {
-					attributes1.MultiSelectAttribute.SettingsFlag = append(attributes1.MultiSelectAttribute.SettingsFlag, settingsFlag27)
-				} else {
-					attributes1.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
-					attributes1.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
-				}
-			}
-			attributes1.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem.MultiSelectAttribute.ShowInTable)
-			attributes1.MultiSelectAttribute.Sortable = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Sortable)
-			if attributesItem.MultiSelectAttribute.Type != nil {
-				attributes1.MultiSelectAttribute.Type = types.StringValue(string(*attributesItem.MultiSelectAttribute.Type))
-			} else {
-				attributes1.MultiSelectAttribute.Type = types.StringNull()
-			}
-			attributes1.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem.MultiSelectAttribute.ValueFormatter)
-		}
-		if attributesItem.NumberAttribute != nil {
-			attributes1.NumberAttribute = &NumberAttribute{}
-			attributes1.NumberAttribute.Purpose = nil
-			for _, v := range attributesItem.NumberAttribute.Purpose {
-				attributes1.NumberAttribute.Purpose = append(attributes1.NumberAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.NumberAttribute.Constraints == nil {
-				attributes1.NumberAttribute.Constraints = nil
-			} else {
-				attributes1.NumberAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.NumberAttribute.DefaultValue == nil {
-				attributes1.NumberAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult14, _ := json.Marshal(attributesItem.NumberAttribute.DefaultValue)
-				attributes1.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult14))
-			}
-			attributes1.NumberAttribute.Deprecated = types.BoolPointerValue(attributesItem.NumberAttribute.Deprecated)
-			attributes1.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.NumberAttribute.EntityBuilderDisableEdit)
-			attributes1.NumberAttribute.FeatureFlag = types.StringPointerValue(attributesItem.NumberAttribute.FeatureFlag)
-			attributes1.NumberAttribute.Format = types.StringPointerValue(attributesItem.NumberAttribute.Format)
-			attributes1.NumberAttribute.Group = types.StringPointerValue(attributesItem.NumberAttribute.Group)
-			attributes1.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem.NumberAttribute.Hidden)
-			attributes1.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem.NumberAttribute.HideLabel)
-			attributes1.NumberAttribute.Icon = types.StringPointerValue(attributesItem.NumberAttribute.Icon)
-			if attributesItem.NumberAttribute.InfoHelpers == nil {
-				attributes1.NumberAttribute.InfoHelpers = nil
-			} else {
-				attributes1.NumberAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintText)
-				attributes1.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintTextKey)
-				attributes1.NumberAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.NumberAttribute.Label = types.StringValue(attributesItem.NumberAttribute.Label)
-			attributes1.NumberAttribute.Layout = types.StringPointerValue(attributesItem.NumberAttribute.Layout)
-			attributes1.NumberAttribute.Name = types.StringValue(attributesItem.NumberAttribute.Name)
-			attributes1.NumberAttribute.Order = types.Int64PointerValue(attributesItem.NumberAttribute.Order)
-			attributes1.NumberAttribute.Placeholder = types.StringPointerValue(attributesItem.NumberAttribute.Placeholder)
-			attributes1.NumberAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.NumberAttribute.PreviewValueFormatter)
-			attributes1.NumberAttribute.Protected = types.BoolPointerValue(attributesItem.NumberAttribute.Protected)
-			attributes1.NumberAttribute.Readonly = types.BoolPointerValue(attributesItem.NumberAttribute.Readonly)
-			attributes1.NumberAttribute.RenderCondition = types.StringPointerValue(attributesItem.NumberAttribute.RenderCondition)
-			attributes1.NumberAttribute.Required = types.BoolPointerValue(attributesItem.NumberAttribute.Required)
-			for settingsFlagCount14, settingsFlagItem14 := range attributesItem.NumberAttribute.SettingsFlag {
-				var settingsFlag29 SettingFlag
-				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
-				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
-				if settingsFlagCount14+1 > len(attributes1.NumberAttribute.SettingsFlag) {
-					attributes1.NumberAttribute.SettingsFlag = append(attributes1.NumberAttribute.SettingsFlag, settingsFlag29)
-				} else {
-					attributes1.NumberAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
-					attributes1.NumberAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
-				}
-			}
-			attributes1.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem.NumberAttribute.ShowInTable)
-			attributes1.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem.NumberAttribute.Sortable)
-			if attributesItem.NumberAttribute.Type != nil {
-				attributes1.NumberAttribute.Type = types.StringValue(string(*attributesItem.NumberAttribute.Type))
-			} else {
-				attributes1.NumberAttribute.Type = types.StringNull()
-			}
-			attributes1.NumberAttribute.ValueFormatter = types.StringPointerValue(attributesItem.NumberAttribute.ValueFormatter)
-		}
-		if attributesItem.OrderedListAttribute != nil {
-			attributes1.OrderedListAttribute = &OrderedListAttribute{}
-			attributes1.OrderedListAttribute.Purpose = nil
-			for _, v := range attributesItem.OrderedListAttribute.Purpose {
-				attributes1.OrderedListAttribute.Purpose = append(attributes1.OrderedListAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.OrderedListAttribute.Constraints == nil {
-				attributes1.OrderedListAttribute.Constraints = nil
-			} else {
-				attributes1.OrderedListAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.OrderedListAttribute.DefaultValue == nil {
-				attributes1.OrderedListAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult15, _ := json.Marshal(attributesItem.OrderedListAttribute.DefaultValue)
-				attributes1.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
-			}
-			attributes1.OrderedListAttribute.Deprecated = types.BoolPointerValue(attributesItem.OrderedListAttribute.Deprecated)
-			attributes1.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.OrderedListAttribute.EntityBuilderDisableEdit)
-			attributes1.OrderedListAttribute.FeatureFlag = types.StringPointerValue(attributesItem.OrderedListAttribute.FeatureFlag)
-			attributes1.OrderedListAttribute.Group = types.StringPointerValue(attributesItem.OrderedListAttribute.Group)
-			attributes1.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem.OrderedListAttribute.Hidden)
-			attributes1.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem.OrderedListAttribute.HideLabel)
-			attributes1.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem.OrderedListAttribute.Icon)
-			if attributesItem.OrderedListAttribute.InfoHelpers == nil {
-				attributes1.OrderedListAttribute.InfoHelpers = nil
-			} else {
-				attributes1.OrderedListAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintText)
-				attributes1.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintTextKey)
-				attributes1.OrderedListAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.OrderedListAttribute.Label = types.StringValue(attributesItem.OrderedListAttribute.Label)
-			attributes1.OrderedListAttribute.Layout = types.StringPointerValue(attributesItem.OrderedListAttribute.Layout)
-			attributes1.OrderedListAttribute.Name = types.StringValue(attributesItem.OrderedListAttribute.Name)
-			attributes1.OrderedListAttribute.Order = types.Int64PointerValue(attributesItem.OrderedListAttribute.Order)
-			attributes1.OrderedListAttribute.Placeholder = types.StringPointerValue(attributesItem.OrderedListAttribute.Placeholder)
-			attributes1.OrderedListAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.OrderedListAttribute.PreviewValueFormatter)
-			attributes1.OrderedListAttribute.Protected = types.BoolPointerValue(attributesItem.OrderedListAttribute.Protected)
-			attributes1.OrderedListAttribute.Readonly = types.BoolPointerValue(attributesItem.OrderedListAttribute.Readonly)
-			attributes1.OrderedListAttribute.RenderCondition = types.StringPointerValue(attributesItem.OrderedListAttribute.RenderCondition)
-			attributes1.OrderedListAttribute.Required = types.BoolPointerValue(attributesItem.OrderedListAttribute.Required)
-			for settingsFlagCount15, settingsFlagItem15 := range attributesItem.OrderedListAttribute.SettingsFlag {
-				var settingsFlag31 SettingFlag
-				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
-				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
-				if settingsFlagCount15+1 > len(attributes1.OrderedListAttribute.SettingsFlag) {
-					attributes1.OrderedListAttribute.SettingsFlag = append(attributes1.OrderedListAttribute.SettingsFlag, settingsFlag31)
-				} else {
-					attributes1.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
-					attributes1.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
-				}
-			}
-			attributes1.OrderedListAttribute.ShowInTable = types.BoolPointerValue(attributesItem.OrderedListAttribute.ShowInTable)
-			attributes1.OrderedListAttribute.Sortable = types.BoolPointerValue(attributesItem.OrderedListAttribute.Sortable)
-			if attributesItem.OrderedListAttribute.Type != nil {
-				attributes1.OrderedListAttribute.Type = types.StringValue(string(*attributesItem.OrderedListAttribute.Type))
-			} else {
-				attributes1.OrderedListAttribute.Type = types.StringNull()
-			}
-			attributes1.OrderedListAttribute.ValueFormatter = types.StringPointerValue(attributesItem.OrderedListAttribute.ValueFormatter)
-		}
-		if attributesItem.PartnerOrganisationAttribute != nil {
-			attributes1.PartnerOrganisationAttribute = &PartnerOrganisationAttribute{}
-			attributes1.PartnerOrganisationAttribute.Purpose = nil
-			for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
-				attributes1.PartnerOrganisationAttribute.Purpose = append(attributes1.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.PartnerOrganisationAttribute.Constraints == nil {
-				attributes1.PartnerOrganisationAttribute.Constraints = nil
-			} else {
-				attributes1.PartnerOrganisationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.PartnerOrganisationAttribute.DefaultValue == nil {
-				attributes1.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult16, _ := json.Marshal(attributesItem.PartnerOrganisationAttribute.DefaultValue)
-				attributes1.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
-			}
-			attributes1.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Deprecated)
-			attributes1.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.EntityBuilderDisableEdit)
-			attributes1.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.FeatureFlag)
-			attributes1.PartnerOrganisationAttribute.Group = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Group)
-			attributes1.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Hidden)
-			attributes1.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.HideLabel)
-			attributes1.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Icon)
-			if attributesItem.PartnerOrganisationAttribute.InfoHelpers == nil {
-				attributes1.PartnerOrganisationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.PartnerOrganisationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintText)
-				attributes1.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintTextKey)
-				attributes1.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.PartnerOrganisationAttribute.Label = types.StringValue(attributesItem.PartnerOrganisationAttribute.Label)
-			attributes1.PartnerOrganisationAttribute.Layout = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Layout)
-			attributes1.PartnerOrganisationAttribute.Name = types.StringValue(attributesItem.PartnerOrganisationAttribute.Name)
-			attributes1.PartnerOrganisationAttribute.Order = types.Int64PointerValue(attributesItem.PartnerOrganisationAttribute.Order)
-			attributes1.PartnerOrganisationAttribute.Placeholder = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Placeholder)
-			attributes1.PartnerOrganisationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.PreviewValueFormatter)
-			attributes1.PartnerOrganisationAttribute.Protected = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Protected)
-			attributes1.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Readonly)
-			attributes1.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.RenderCondition)
-			attributes1.PartnerOrganisationAttribute.Required = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Required)
-			for settingsFlagCount16, settingsFlagItem16 := range attributesItem.PartnerOrganisationAttribute.SettingsFlag {
-				var settingsFlag33 SettingFlag
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
-				if settingsFlagCount16+1 > len(attributes1.PartnerOrganisationAttribute.SettingsFlag) {
-					attributes1.PartnerOrganisationAttribute.SettingsFlag = append(attributes1.PartnerOrganisationAttribute.SettingsFlag, settingsFlag33)
-				} else {
-					attributes1.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
-					attributes1.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
-				}
-			}
-			attributes1.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.ShowInTable)
-			attributes1.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Sortable)
-			if attributesItem.PartnerOrganisationAttribute.Type != nil {
-				attributes1.PartnerOrganisationAttribute.Type = types.StringValue(string(*attributesItem.PartnerOrganisationAttribute.Type))
-			} else {
-				attributes1.PartnerOrganisationAttribute.Type = types.StringNull()
-			}
-			attributes1.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.ValueFormatter)
-		}
-		if attributesItem.PartnerStatusAttribute != nil {
-			attributes1.PartnerStatusAttribute = &PartnerStatusAttribute{}
-			attributes1.PartnerStatusAttribute.Purpose = nil
-			for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
-				attributes1.PartnerStatusAttribute.Purpose = append(attributes1.PartnerStatusAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.PartnerStatusAttribute.Constraints == nil {
-				attributes1.PartnerStatusAttribute.Constraints = nil
-			} else {
-				attributes1.PartnerStatusAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.PartnerStatusAttribute.DefaultValue == nil {
-				attributes1.PartnerStatusAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult17, _ := json.Marshal(attributesItem.PartnerStatusAttribute.DefaultValue)
-				attributes1.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
-			}
-			attributes1.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Deprecated)
-			attributes1.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.EntityBuilderDisableEdit)
-			attributes1.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerStatusAttribute.FeatureFlag)
-			attributes1.PartnerStatusAttribute.Group = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Group)
-			attributes1.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Hidden)
-			attributes1.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.HideLabel)
-			attributes1.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Icon)
-			if attributesItem.PartnerStatusAttribute.InfoHelpers == nil {
-				attributes1.PartnerStatusAttribute.InfoHelpers = nil
-			} else {
-				attributes1.PartnerStatusAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintText)
-				attributes1.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintTextKey)
-				attributes1.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.PartnerStatusAttribute.Label = types.StringValue(attributesItem.PartnerStatusAttribute.Label)
-			attributes1.PartnerStatusAttribute.Layout = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Layout)
-			attributes1.PartnerStatusAttribute.Name = types.StringValue(attributesItem.PartnerStatusAttribute.Name)
-			attributes1.PartnerStatusAttribute.Order = types.Int64PointerValue(attributesItem.PartnerStatusAttribute.Order)
-			attributes1.PartnerStatusAttribute.Placeholder = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Placeholder)
-			attributes1.PartnerStatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PartnerStatusAttribute.PreviewValueFormatter)
-			attributes1.PartnerStatusAttribute.Protected = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Protected)
-			attributes1.PartnerStatusAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Readonly)
-			attributes1.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerStatusAttribute.RenderCondition)
-			attributes1.PartnerStatusAttribute.Required = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Required)
-			for settingsFlagCount17, settingsFlagItem17 := range attributesItem.PartnerStatusAttribute.SettingsFlag {
-				var settingsFlag35 SettingFlag
-				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
-				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
-				if settingsFlagCount17+1 > len(attributes1.PartnerStatusAttribute.SettingsFlag) {
-					attributes1.PartnerStatusAttribute.SettingsFlag = append(attributes1.PartnerStatusAttribute.SettingsFlag, settingsFlag35)
-				} else {
-					attributes1.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
-					attributes1.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
-				}
-			}
-			attributes1.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.ShowInTable)
-			attributes1.PartnerStatusAttribute.Sortable = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Sortable)
-			if attributesItem.PartnerStatusAttribute.Type != nil {
-				attributes1.PartnerStatusAttribute.Type = types.StringValue(string(*attributesItem.PartnerStatusAttribute.Type))
-			} else {
-				attributes1.PartnerStatusAttribute.Type = types.StringNull()
-			}
-			attributes1.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PartnerStatusAttribute.ValueFormatter)
-		}
-		if attributesItem.PaymentMethodRelationAttribute != nil {
-			attributes1.PaymentMethodRelationAttribute = &PaymentMethodRelationAttribute{}
-			attributes1.PaymentMethodRelationAttribute.Purpose = nil
-			for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
-				attributes1.PaymentMethodRelationAttribute.Purpose = append(attributes1.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.PaymentMethodRelationAttribute.Constraints == nil {
-				attributes1.PaymentMethodRelationAttribute.Constraints = nil
-			} else {
-				attributes1.PaymentMethodRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.PaymentMethodRelationAttribute.DefaultValue == nil {
-				attributes1.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult18, _ := json.Marshal(attributesItem.PaymentMethodRelationAttribute.DefaultValue)
-				attributes1.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
-			}
-			attributes1.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Deprecated)
-			attributes1.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.EntityBuilderDisableEdit)
-			attributes1.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.FeatureFlag)
-			attributes1.PaymentMethodRelationAttribute.Group = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Group)
-			attributes1.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HasPrimary)
-			attributes1.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Hidden)
-			attributes1.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HideLabel)
-			attributes1.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Icon)
-			if attributesItem.PaymentMethodRelationAttribute.InfoHelpers == nil {
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintText)
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
-				attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.PaymentMethodRelationAttribute.Label = types.StringValue(attributesItem.PaymentMethodRelationAttribute.Label)
-			attributes1.PaymentMethodRelationAttribute.Layout = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Layout)
-			attributes1.PaymentMethodRelationAttribute.Name = types.StringValue(attributesItem.PaymentMethodRelationAttribute.Name)
-			attributes1.PaymentMethodRelationAttribute.Order = types.Int64PointerValue(attributesItem.PaymentMethodRelationAttribute.Order)
-			attributes1.PaymentMethodRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Placeholder)
-			attributes1.PaymentMethodRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.PreviewValueFormatter)
-			attributes1.PaymentMethodRelationAttribute.Protected = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Protected)
-			attributes1.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Readonly)
-			attributes1.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.RenderCondition)
-			attributes1.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Required)
-			for settingsFlagCount18, settingsFlagItem18 := range attributesItem.PaymentMethodRelationAttribute.SettingsFlag {
-				var settingsFlag37 SettingFlag
-				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
-				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
-				if settingsFlagCount18+1 > len(attributes1.PaymentMethodRelationAttribute.SettingsFlag) {
-					attributes1.PaymentMethodRelationAttribute.SettingsFlag = append(attributes1.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag37)
-				} else {
-					attributes1.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
-					attributes1.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
-				}
-			}
-			attributes1.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.ShowInTable)
-			attributes1.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Sortable)
-			if attributesItem.PaymentMethodRelationAttribute.Type != nil {
-				attributes1.PaymentMethodRelationAttribute.Type = types.StringValue(string(*attributesItem.PaymentMethodRelationAttribute.Type))
-			} else {
-				attributes1.PaymentMethodRelationAttribute.Type = types.StringNull()
-			}
-			attributes1.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.ValueFormatter)
-		}
-		if attributesItem.PurposeAttribute != nil {
-			attributes1.PurposeAttribute = &PurposeAttribute{}
-			attributes1.PurposeAttribute.Purpose = nil
-			for _, v := range attributesItem.PurposeAttribute.Purpose {
-				attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.PurposeAttribute.Constraints == nil {
-				attributes1.PurposeAttribute.Constraints = nil
-			} else {
-				attributes1.PurposeAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.PurposeAttribute.CreatedAt != nil {
-				attributes1.PurposeAttribute.CreatedAt = types.StringValue(attributesItem.PurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
-			} else {
-				attributes1.PurposeAttribute.CreatedAt = types.StringNull()
-			}
-			if attributesItem.PurposeAttribute.DefaultValue == nil {
-				attributes1.PurposeAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult19, _ := json.Marshal(attributesItem.PurposeAttribute.DefaultValue)
-				attributes1.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
-			}
-			attributes1.PurposeAttribute.Deprecated = types.BoolPointerValue(attributesItem.PurposeAttribute.Deprecated)
-			attributes1.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PurposeAttribute.EntityBuilderDisableEdit)
-			attributes1.PurposeAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PurposeAttribute.FeatureFlag)
-			attributes1.PurposeAttribute.Group = types.StringPointerValue(attributesItem.PurposeAttribute.Group)
-			attributes1.PurposeAttribute.Hidden = types.BoolPointerValue(attributesItem.PurposeAttribute.Hidden)
-			attributes1.PurposeAttribute.HideLabel = types.BoolPointerValue(attributesItem.PurposeAttribute.HideLabel)
-			attributes1.PurposeAttribute.Icon = types.StringPointerValue(attributesItem.PurposeAttribute.Icon)
-			attributes1.PurposeAttribute.ID = types.StringPointerValue(attributesItem.PurposeAttribute.ID)
-			if attributesItem.PurposeAttribute.InfoHelpers == nil {
-				attributes1.PurposeAttribute.InfoHelpers = nil
-			} else {
-				attributes1.PurposeAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintText)
-				attributes1.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintTextKey)
-				attributes1.PurposeAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.PurposeAttribute.Label = types.StringValue(attributesItem.PurposeAttribute.Label)
-			attributes1.PurposeAttribute.Layout = types.StringPointerValue(attributesItem.PurposeAttribute.Layout)
-			attributes1.PurposeAttribute.Name = types.StringValue(attributesItem.PurposeAttribute.Name)
-			attributes1.PurposeAttribute.Order = types.Int64PointerValue(attributesItem.PurposeAttribute.Order)
-			attributes1.PurposeAttribute.Parents = nil
-			for _, v := range attributesItem.PurposeAttribute.Parents {
-				attributes1.PurposeAttribute.Parents = append(attributes1.PurposeAttribute.Parents, types.StringValue(v))
-			}
-			attributes1.PurposeAttribute.Placeholder = types.StringPointerValue(attributesItem.PurposeAttribute.Placeholder)
-			attributes1.PurposeAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PurposeAttribute.PreviewValueFormatter)
-			attributes1.PurposeAttribute.Protected = types.BoolPointerValue(attributesItem.PurposeAttribute.Protected)
-			attributes1.PurposeAttribute.Readonly = types.BoolPointerValue(attributesItem.PurposeAttribute.Readonly)
-			attributes1.PurposeAttribute.RenderCondition = types.StringPointerValue(attributesItem.PurposeAttribute.RenderCondition)
-			attributes1.PurposeAttribute.Required = types.BoolPointerValue(attributesItem.PurposeAttribute.Required)
-			for settingsFlagCount19, settingsFlagItem19 := range attributesItem.PurposeAttribute.SettingsFlag {
-				var settingsFlag39 SettingFlag
-				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
-				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
-				if settingsFlagCount19+1 > len(attributes1.PurposeAttribute.SettingsFlag) {
-					attributes1.PurposeAttribute.SettingsFlag = append(attributes1.PurposeAttribute.SettingsFlag, settingsFlag39)
-				} else {
-					attributes1.PurposeAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
-					attributes1.PurposeAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
-				}
-			}
-			attributes1.PurposeAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PurposeAttribute.ShowInTable)
-			attributes1.PurposeAttribute.Slug = types.StringPointerValue(attributesItem.PurposeAttribute.Slug)
-			attributes1.PurposeAttribute.Sortable = types.BoolPointerValue(attributesItem.PurposeAttribute.Sortable)
-			if attributesItem.PurposeAttribute.Type != nil {
-				attributes1.PurposeAttribute.Type = types.StringValue(string(*attributesItem.PurposeAttribute.Type))
-			} else {
-				attributes1.PurposeAttribute.Type = types.StringNull()
-			}
-			if attributesItem.PurposeAttribute.UpdatedAt != nil {
-				attributes1.PurposeAttribute.UpdatedAt = types.StringValue(attributesItem.PurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
-			} else {
-				attributes1.PurposeAttribute.UpdatedAt = types.StringNull()
-			}
-			attributes1.PurposeAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PurposeAttribute.ValueFormatter)
-		}
-		if attributesItem.RelationAttribute != nil {
-			attributes1.RelationAttribute = &RelationAttribute{}
-			attributes1.RelationAttribute.Purpose = nil
-			for _, v := range attributesItem.RelationAttribute.Purpose {
-				attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
-			}
-			for actionsCount, actionsItem := range attributesItem.RelationAttribute.Actions {
-				var actions1 Actions
-				if actionsItem.ActionType != nil {
-					actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
-				} else {
-					actions1.ActionType = types.StringNull()
-				}
-				actions1.Default = types.BoolPointerValue(actionsItem.Default)
-				actions1.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
-				actions1.Label = types.StringPointerValue(actionsItem.Label)
-				if actionsItem.NewEntityItem == nil {
-					actions1.NewEntityItem = nil
-				} else {
-					actions1.NewEntityItem = &NewEntityItem{}
-					if actionsItem.NewEntityItem.ACL == nil {
-						actions1.NewEntityItem.ACL = nil
+				attributes1.AddressRelationAttribute.Label = types.StringValue(attributesItem.AddressRelationAttribute.Label)
+				attributes1.AddressRelationAttribute.Layout = types.StringPointerValue(attributesItem.AddressRelationAttribute.Layout)
+				attributes1.AddressRelationAttribute.Name = types.StringValue(attributesItem.AddressRelationAttribute.Name)
+				attributes1.AddressRelationAttribute.Order = types.Int64PointerValue(attributesItem.AddressRelationAttribute.Order)
+				attributes1.AddressRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.AddressRelationAttribute.Placeholder)
+				attributes1.AddressRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.AddressRelationAttribute.PreviewValueFormatter)
+				attributes1.AddressRelationAttribute.Protected = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Protected)
+				attributes1.AddressRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Readonly)
+				attributes1.AddressRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AddressRelationAttribute.RenderCondition)
+				attributes1.AddressRelationAttribute.Required = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Required)
+				for settingsFlagCount, settingsFlagItem := range attributesItem.AddressRelationAttribute.SettingsFlag {
+					var settingsFlag1 tfTypes.SettingFlag
+					settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+					settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
+					if settingsFlagCount+1 > len(attributes1.AddressRelationAttribute.SettingsFlag) {
+						attributes1.AddressRelationAttribute.SettingsFlag = append(attributes1.AddressRelationAttribute.SettingsFlag, settingsFlag1)
 					} else {
-						actions1.NewEntityItem.ACL = &EntityACL{}
-						if actionsItem.NewEntityItem.ACL.AdditionalProperties == nil {
-							actions1.NewEntityItem.ACL.AdditionalProperties = types.StringNull()
+						attributes1.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
+						attributes1.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
+					}
+				}
+				attributes1.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.AddressRelationAttribute.ShowInTable)
+				attributes1.AddressRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Sortable)
+				if attributesItem.AddressRelationAttribute.Type != nil {
+					attributes1.AddressRelationAttribute.Type = types.StringValue(string(*attributesItem.AddressRelationAttribute.Type))
+				} else {
+					attributes1.AddressRelationAttribute.Type = types.StringNull()
+				}
+				attributes1.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.AddressRelationAttribute.ValueFormatter)
+			}
+			if attributesItem.AutomationAttribute != nil {
+				attributes1.AutomationAttribute = &tfTypes.AutomationAttribute{}
+				attributes1.AutomationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.AutomationAttribute.Purpose {
+					attributes1.AutomationAttribute.Purpose = append(attributes1.AutomationAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.AutomationAttribute.Constraints == nil {
+					attributes1.AutomationAttribute.Constraints = nil
+				} else {
+					attributes1.AutomationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.AutomationAttribute.DefaultValue == nil {
+					attributes1.AutomationAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult1, _ := json.Marshal(attributesItem.AutomationAttribute.DefaultValue)
+					attributes1.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult1))
+				}
+				attributes1.AutomationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AutomationAttribute.Deprecated)
+				attributes1.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AutomationAttribute.EntityBuilderDisableEdit)
+				attributes1.AutomationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AutomationAttribute.FeatureFlag)
+				attributes1.AutomationAttribute.Group = types.StringPointerValue(attributesItem.AutomationAttribute.Group)
+				attributes1.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem.AutomationAttribute.Hidden)
+				attributes1.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AutomationAttribute.HideLabel)
+				attributes1.AutomationAttribute.Icon = types.StringPointerValue(attributesItem.AutomationAttribute.Icon)
+				if attributesItem.AutomationAttribute.InfoHelpers == nil {
+					attributes1.AutomationAttribute.InfoHelpers = nil
+				} else {
+					attributes1.AutomationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintText)
+					attributes1.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintTextKey)
+					attributes1.AutomationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.AutomationAttribute.Label = types.StringValue(attributesItem.AutomationAttribute.Label)
+				attributes1.AutomationAttribute.Layout = types.StringPointerValue(attributesItem.AutomationAttribute.Layout)
+				attributes1.AutomationAttribute.Name = types.StringValue(attributesItem.AutomationAttribute.Name)
+				attributes1.AutomationAttribute.Order = types.Int64PointerValue(attributesItem.AutomationAttribute.Order)
+				attributes1.AutomationAttribute.Placeholder = types.StringPointerValue(attributesItem.AutomationAttribute.Placeholder)
+				attributes1.AutomationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.AutomationAttribute.PreviewValueFormatter)
+				attributes1.AutomationAttribute.Protected = types.BoolPointerValue(attributesItem.AutomationAttribute.Protected)
+				attributes1.AutomationAttribute.Readonly = types.BoolPointerValue(attributesItem.AutomationAttribute.Readonly)
+				attributes1.AutomationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AutomationAttribute.RenderCondition)
+				attributes1.AutomationAttribute.Required = types.BoolPointerValue(attributesItem.AutomationAttribute.Required)
+				for settingsFlagCount1, settingsFlagItem1 := range attributesItem.AutomationAttribute.SettingsFlag {
+					var settingsFlag3 tfTypes.SettingFlag
+					settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
+					settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
+					if settingsFlagCount1+1 > len(attributes1.AutomationAttribute.SettingsFlag) {
+						attributes1.AutomationAttribute.SettingsFlag = append(attributes1.AutomationAttribute.SettingsFlag, settingsFlag3)
+					} else {
+						attributes1.AutomationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
+						attributes1.AutomationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
+					}
+				}
+				attributes1.AutomationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.AutomationAttribute.ShowInTable)
+				attributes1.AutomationAttribute.Sortable = types.BoolPointerValue(attributesItem.AutomationAttribute.Sortable)
+				if attributesItem.AutomationAttribute.Type != nil {
+					attributes1.AutomationAttribute.Type = types.StringValue(string(*attributesItem.AutomationAttribute.Type))
+				} else {
+					attributes1.AutomationAttribute.Type = types.StringNull()
+				}
+				attributes1.AutomationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.AutomationAttribute.ValueFormatter)
+			}
+			if attributesItem.BooleanAttribute != nil {
+				attributes1.BooleanAttribute = &tfTypes.BooleanAttribute{}
+				attributes1.BooleanAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.BooleanAttribute.Purpose {
+					attributes1.BooleanAttribute.Purpose = append(attributes1.BooleanAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.BooleanAttribute.Constraints == nil {
+					attributes1.BooleanAttribute.Constraints = nil
+				} else {
+					attributes1.BooleanAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.BooleanAttribute.DefaultValue == nil {
+					attributes1.BooleanAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult2, _ := json.Marshal(attributesItem.BooleanAttribute.DefaultValue)
+					attributes1.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult2))
+				}
+				attributes1.BooleanAttribute.Deprecated = types.BoolPointerValue(attributesItem.BooleanAttribute.Deprecated)
+				attributes1.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.BooleanAttribute.EntityBuilderDisableEdit)
+				attributes1.BooleanAttribute.FeatureFlag = types.StringPointerValue(attributesItem.BooleanAttribute.FeatureFlag)
+				attributes1.BooleanAttribute.Group = types.StringPointerValue(attributesItem.BooleanAttribute.Group)
+				attributes1.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem.BooleanAttribute.Hidden)
+				attributes1.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem.BooleanAttribute.HideLabel)
+				attributes1.BooleanAttribute.Icon = types.StringPointerValue(attributesItem.BooleanAttribute.Icon)
+				if attributesItem.BooleanAttribute.InfoHelpers == nil {
+					attributes1.BooleanAttribute.InfoHelpers = nil
+				} else {
+					attributes1.BooleanAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintText)
+					attributes1.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintTextKey)
+					attributes1.BooleanAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.BooleanAttribute.Label = types.StringValue(attributesItem.BooleanAttribute.Label)
+				attributes1.BooleanAttribute.Layout = types.StringPointerValue(attributesItem.BooleanAttribute.Layout)
+				attributes1.BooleanAttribute.Name = types.StringValue(attributesItem.BooleanAttribute.Name)
+				attributes1.BooleanAttribute.Order = types.Int64PointerValue(attributesItem.BooleanAttribute.Order)
+				attributes1.BooleanAttribute.Placeholder = types.StringPointerValue(attributesItem.BooleanAttribute.Placeholder)
+				attributes1.BooleanAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.BooleanAttribute.PreviewValueFormatter)
+				attributes1.BooleanAttribute.Protected = types.BoolPointerValue(attributesItem.BooleanAttribute.Protected)
+				attributes1.BooleanAttribute.Readonly = types.BoolPointerValue(attributesItem.BooleanAttribute.Readonly)
+				attributes1.BooleanAttribute.RenderCondition = types.StringPointerValue(attributesItem.BooleanAttribute.RenderCondition)
+				attributes1.BooleanAttribute.Required = types.BoolPointerValue(attributesItem.BooleanAttribute.Required)
+				for settingsFlagCount2, settingsFlagItem2 := range attributesItem.BooleanAttribute.SettingsFlag {
+					var settingsFlag5 tfTypes.SettingFlag
+					settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
+					settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
+					if settingsFlagCount2+1 > len(attributes1.BooleanAttribute.SettingsFlag) {
+						attributes1.BooleanAttribute.SettingsFlag = append(attributes1.BooleanAttribute.SettingsFlag, settingsFlag5)
+					} else {
+						attributes1.BooleanAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
+						attributes1.BooleanAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
+					}
+				}
+				attributes1.BooleanAttribute.ShowInTable = types.BoolPointerValue(attributesItem.BooleanAttribute.ShowInTable)
+				attributes1.BooleanAttribute.Sortable = types.BoolPointerValue(attributesItem.BooleanAttribute.Sortable)
+				if attributesItem.BooleanAttribute.Type != nil {
+					attributes1.BooleanAttribute.Type = types.StringValue(string(*attributesItem.BooleanAttribute.Type))
+				} else {
+					attributes1.BooleanAttribute.Type = types.StringNull()
+				}
+				attributes1.BooleanAttribute.ValueFormatter = types.StringPointerValue(attributesItem.BooleanAttribute.ValueFormatter)
+			}
+			if attributesItem.ComputedAttribute != nil {
+				attributes1.ComputedAttribute = &tfTypes.ComputedAttribute{}
+				attributes1.ComputedAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.ComputedAttribute.Purpose {
+					attributes1.ComputedAttribute.Purpose = append(attributes1.ComputedAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.ComputedAttribute.Constraints == nil {
+					attributes1.ComputedAttribute.Constraints = nil
+				} else {
+					attributes1.ComputedAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.ComputedAttribute.DefaultValue == nil {
+					attributes1.ComputedAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult3, _ := json.Marshal(attributesItem.ComputedAttribute.DefaultValue)
+					attributes1.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult3))
+				}
+				attributes1.ComputedAttribute.Deprecated = types.BoolPointerValue(attributesItem.ComputedAttribute.Deprecated)
+				attributes1.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ComputedAttribute.EntityBuilderDisableEdit)
+				attributes1.ComputedAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ComputedAttribute.FeatureFlag)
+				attributes1.ComputedAttribute.Group = types.StringPointerValue(attributesItem.ComputedAttribute.Group)
+				attributes1.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem.ComputedAttribute.Hidden)
+				attributes1.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem.ComputedAttribute.HideLabel)
+				attributes1.ComputedAttribute.Icon = types.StringPointerValue(attributesItem.ComputedAttribute.Icon)
+				if attributesItem.ComputedAttribute.InfoHelpers == nil {
+					attributes1.ComputedAttribute.InfoHelpers = nil
+				} else {
+					attributes1.ComputedAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintText)
+					attributes1.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintTextKey)
+					attributes1.ComputedAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.ComputedAttribute.Label = types.StringValue(attributesItem.ComputedAttribute.Label)
+				attributes1.ComputedAttribute.Layout = types.StringPointerValue(attributesItem.ComputedAttribute.Layout)
+				attributes1.ComputedAttribute.Name = types.StringValue(attributesItem.ComputedAttribute.Name)
+				attributes1.ComputedAttribute.Order = types.Int64PointerValue(attributesItem.ComputedAttribute.Order)
+				attributes1.ComputedAttribute.Placeholder = types.StringPointerValue(attributesItem.ComputedAttribute.Placeholder)
+				attributes1.ComputedAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.ComputedAttribute.PreviewValueFormatter)
+				attributes1.ComputedAttribute.Protected = types.BoolPointerValue(attributesItem.ComputedAttribute.Protected)
+				attributes1.ComputedAttribute.Readonly = types.BoolPointerValue(attributesItem.ComputedAttribute.Readonly)
+				attributes1.ComputedAttribute.RenderCondition = types.StringPointerValue(attributesItem.ComputedAttribute.RenderCondition)
+				attributes1.ComputedAttribute.Required = types.BoolPointerValue(attributesItem.ComputedAttribute.Required)
+				for settingsFlagCount3, settingsFlagItem3 := range attributesItem.ComputedAttribute.SettingsFlag {
+					var settingsFlag7 tfTypes.SettingFlag
+					settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
+					settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
+					if settingsFlagCount3+1 > len(attributes1.ComputedAttribute.SettingsFlag) {
+						attributes1.ComputedAttribute.SettingsFlag = append(attributes1.ComputedAttribute.SettingsFlag, settingsFlag7)
+					} else {
+						attributes1.ComputedAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
+						attributes1.ComputedAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
+					}
+				}
+				attributes1.ComputedAttribute.ShowInTable = types.BoolPointerValue(attributesItem.ComputedAttribute.ShowInTable)
+				attributes1.ComputedAttribute.Sortable = types.BoolPointerValue(attributesItem.ComputedAttribute.Sortable)
+				if attributesItem.ComputedAttribute.Type != nil {
+					attributes1.ComputedAttribute.Type = types.StringValue(string(*attributesItem.ComputedAttribute.Type))
+				} else {
+					attributes1.ComputedAttribute.Type = types.StringNull()
+				}
+				attributes1.ComputedAttribute.ValueFormatter = types.StringPointerValue(attributesItem.ComputedAttribute.ValueFormatter)
+			}
+			if attributesItem.ConsentAttribute != nil {
+				attributes1.ConsentAttribute = &tfTypes.ConsentAttribute{}
+				attributes1.ConsentAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.ConsentAttribute.Purpose {
+					attributes1.ConsentAttribute.Purpose = append(attributes1.ConsentAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.ConsentAttribute.Constraints == nil {
+					attributes1.ConsentAttribute.Constraints = nil
+				} else {
+					attributes1.ConsentAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.ConsentAttribute.DefaultValue == nil {
+					attributes1.ConsentAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult4, _ := json.Marshal(attributesItem.ConsentAttribute.DefaultValue)
+					attributes1.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult4))
+				}
+				attributes1.ConsentAttribute.Deprecated = types.BoolPointerValue(attributesItem.ConsentAttribute.Deprecated)
+				attributes1.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ConsentAttribute.EntityBuilderDisableEdit)
+				attributes1.ConsentAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ConsentAttribute.FeatureFlag)
+				attributes1.ConsentAttribute.Group = types.StringPointerValue(attributesItem.ConsentAttribute.Group)
+				attributes1.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem.ConsentAttribute.Hidden)
+				attributes1.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem.ConsentAttribute.HideLabel)
+				attributes1.ConsentAttribute.Icon = types.StringPointerValue(attributesItem.ConsentAttribute.Icon)
+				attributes1.ConsentAttribute.Identifiers = []types.String{}
+				for _, v := range attributesItem.ConsentAttribute.Identifiers {
+					attributes1.ConsentAttribute.Identifiers = append(attributes1.ConsentAttribute.Identifiers, types.StringValue(v))
+				}
+				if attributesItem.ConsentAttribute.InfoHelpers == nil {
+					attributes1.ConsentAttribute.InfoHelpers = nil
+				} else {
+					attributes1.ConsentAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintText)
+					attributes1.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintTextKey)
+					attributes1.ConsentAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.ConsentAttribute.Label = types.StringValue(attributesItem.ConsentAttribute.Label)
+				attributes1.ConsentAttribute.Layout = types.StringPointerValue(attributesItem.ConsentAttribute.Layout)
+				attributes1.ConsentAttribute.Name = types.StringValue(attributesItem.ConsentAttribute.Name)
+				attributes1.ConsentAttribute.Order = types.Int64PointerValue(attributesItem.ConsentAttribute.Order)
+				attributes1.ConsentAttribute.Placeholder = types.StringPointerValue(attributesItem.ConsentAttribute.Placeholder)
+				attributes1.ConsentAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.ConsentAttribute.PreviewValueFormatter)
+				attributes1.ConsentAttribute.Protected = types.BoolPointerValue(attributesItem.ConsentAttribute.Protected)
+				attributes1.ConsentAttribute.Readonly = types.BoolPointerValue(attributesItem.ConsentAttribute.Readonly)
+				attributes1.ConsentAttribute.RenderCondition = types.StringPointerValue(attributesItem.ConsentAttribute.RenderCondition)
+				attributes1.ConsentAttribute.Required = types.BoolPointerValue(attributesItem.ConsentAttribute.Required)
+				for settingsFlagCount4, settingsFlagItem4 := range attributesItem.ConsentAttribute.SettingsFlag {
+					var settingsFlag9 tfTypes.SettingFlag
+					settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
+					settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
+					if settingsFlagCount4+1 > len(attributes1.ConsentAttribute.SettingsFlag) {
+						attributes1.ConsentAttribute.SettingsFlag = append(attributes1.ConsentAttribute.SettingsFlag, settingsFlag9)
+					} else {
+						attributes1.ConsentAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
+						attributes1.ConsentAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
+					}
+				}
+				attributes1.ConsentAttribute.ShowInTable = types.BoolPointerValue(attributesItem.ConsentAttribute.ShowInTable)
+				attributes1.ConsentAttribute.Sortable = types.BoolPointerValue(attributesItem.ConsentAttribute.Sortable)
+				attributes1.ConsentAttribute.Topic = types.StringValue(attributesItem.ConsentAttribute.Topic)
+				attributes1.ConsentAttribute.Type = types.StringValue(string(attributesItem.ConsentAttribute.Type))
+				attributes1.ConsentAttribute.ValueFormatter = types.StringPointerValue(attributesItem.ConsentAttribute.ValueFormatter)
+			}
+			if attributesItem.CountryAttribute != nil {
+				attributes1.CountryAttribute = &tfTypes.CountryAttribute{}
+				attributes1.CountryAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.CountryAttribute.Purpose {
+					attributes1.CountryAttribute.Purpose = append(attributes1.CountryAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.CountryAttribute.Constraints == nil {
+					attributes1.CountryAttribute.Constraints = nil
+				} else {
+					attributes1.CountryAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.CountryAttribute.DefaultValue == nil {
+					attributes1.CountryAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult5, _ := json.Marshal(attributesItem.CountryAttribute.DefaultValue)
+					attributes1.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult5))
+				}
+				attributes1.CountryAttribute.Deprecated = types.BoolPointerValue(attributesItem.CountryAttribute.Deprecated)
+				attributes1.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CountryAttribute.EntityBuilderDisableEdit)
+				attributes1.CountryAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CountryAttribute.FeatureFlag)
+				attributes1.CountryAttribute.Group = types.StringPointerValue(attributesItem.CountryAttribute.Group)
+				attributes1.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem.CountryAttribute.Hidden)
+				attributes1.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem.CountryAttribute.HideLabel)
+				attributes1.CountryAttribute.Icon = types.StringPointerValue(attributesItem.CountryAttribute.Icon)
+				if attributesItem.CountryAttribute.InfoHelpers == nil {
+					attributes1.CountryAttribute.InfoHelpers = nil
+				} else {
+					attributes1.CountryAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintText)
+					attributes1.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintTextKey)
+					attributes1.CountryAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.CountryAttribute.Label = types.StringValue(attributesItem.CountryAttribute.Label)
+				attributes1.CountryAttribute.Layout = types.StringPointerValue(attributesItem.CountryAttribute.Layout)
+				attributes1.CountryAttribute.Name = types.StringValue(attributesItem.CountryAttribute.Name)
+				attributes1.CountryAttribute.Order = types.Int64PointerValue(attributesItem.CountryAttribute.Order)
+				attributes1.CountryAttribute.Placeholder = types.StringPointerValue(attributesItem.CountryAttribute.Placeholder)
+				attributes1.CountryAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.CountryAttribute.PreviewValueFormatter)
+				attributes1.CountryAttribute.Protected = types.BoolPointerValue(attributesItem.CountryAttribute.Protected)
+				attributes1.CountryAttribute.Readonly = types.BoolPointerValue(attributesItem.CountryAttribute.Readonly)
+				attributes1.CountryAttribute.RenderCondition = types.StringPointerValue(attributesItem.CountryAttribute.RenderCondition)
+				attributes1.CountryAttribute.Required = types.BoolPointerValue(attributesItem.CountryAttribute.Required)
+				for settingsFlagCount5, settingsFlagItem5 := range attributesItem.CountryAttribute.SettingsFlag {
+					var settingsFlag11 tfTypes.SettingFlag
+					settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
+					settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
+					if settingsFlagCount5+1 > len(attributes1.CountryAttribute.SettingsFlag) {
+						attributes1.CountryAttribute.SettingsFlag = append(attributes1.CountryAttribute.SettingsFlag, settingsFlag11)
+					} else {
+						attributes1.CountryAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
+						attributes1.CountryAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
+					}
+				}
+				attributes1.CountryAttribute.ShowInTable = types.BoolPointerValue(attributesItem.CountryAttribute.ShowInTable)
+				attributes1.CountryAttribute.Sortable = types.BoolPointerValue(attributesItem.CountryAttribute.Sortable)
+				if attributesItem.CountryAttribute.Type != nil {
+					attributes1.CountryAttribute.Type = types.StringValue(string(*attributesItem.CountryAttribute.Type))
+				} else {
+					attributes1.CountryAttribute.Type = types.StringNull()
+				}
+				attributes1.CountryAttribute.ValueFormatter = types.StringPointerValue(attributesItem.CountryAttribute.ValueFormatter)
+			}
+			if attributesItem.CurrencyAttribute != nil {
+				attributes1.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+				attributes1.CurrencyAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.CurrencyAttribute.Purpose {
+					attributes1.CurrencyAttribute.Purpose = append(attributes1.CurrencyAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.CurrencyAttribute.Constraints == nil {
+					attributes1.CurrencyAttribute.Constraints = nil
+				} else {
+					attributes1.CurrencyAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
+					var currency1 tfTypes.Currency
+					if currencyItem.Currency1 != nil {
+						currency1.One = &tfTypes.Currency1{}
+						currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
+						currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
+						currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
+						currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
+					}
+					if currencyCount+1 > len(attributes1.CurrencyAttribute.Currency) {
+						attributes1.CurrencyAttribute.Currency = append(attributes1.CurrencyAttribute.Currency, currency1)
+					} else {
+						attributes1.CurrencyAttribute.Currency[currencyCount].One = currency1.One
+					}
+				}
+				attributes1.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(attributesItem.CurrencyAttribute.CurrencySelectorOnly)
+				if attributesItem.CurrencyAttribute.DefaultValue == nil {
+					attributes1.CurrencyAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult6, _ := json.Marshal(attributesItem.CurrencyAttribute.DefaultValue)
+					attributes1.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult6))
+				}
+				attributes1.CurrencyAttribute.Deprecated = types.BoolPointerValue(attributesItem.CurrencyAttribute.Deprecated)
+				attributes1.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CurrencyAttribute.EntityBuilderDisableEdit)
+				attributes1.CurrencyAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CurrencyAttribute.FeatureFlag)
+				attributes1.CurrencyAttribute.Group = types.StringPointerValue(attributesItem.CurrencyAttribute.Group)
+				attributes1.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem.CurrencyAttribute.Hidden)
+				attributes1.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem.CurrencyAttribute.HideLabel)
+				attributes1.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem.CurrencyAttribute.Icon)
+				if attributesItem.CurrencyAttribute.InfoHelpers == nil {
+					attributes1.CurrencyAttribute.InfoHelpers = nil
+				} else {
+					attributes1.CurrencyAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintText)
+					attributes1.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintTextKey)
+					attributes1.CurrencyAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.CurrencyAttribute.Label = types.StringValue(attributesItem.CurrencyAttribute.Label)
+				attributes1.CurrencyAttribute.Layout = types.StringPointerValue(attributesItem.CurrencyAttribute.Layout)
+				attributes1.CurrencyAttribute.Name = types.StringValue(attributesItem.CurrencyAttribute.Name)
+				attributes1.CurrencyAttribute.Order = types.Int64PointerValue(attributesItem.CurrencyAttribute.Order)
+				attributes1.CurrencyAttribute.Placeholder = types.StringPointerValue(attributesItem.CurrencyAttribute.Placeholder)
+				attributes1.CurrencyAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.CurrencyAttribute.PreviewValueFormatter)
+				attributes1.CurrencyAttribute.Protected = types.BoolPointerValue(attributesItem.CurrencyAttribute.Protected)
+				attributes1.CurrencyAttribute.Readonly = types.BoolPointerValue(attributesItem.CurrencyAttribute.Readonly)
+				attributes1.CurrencyAttribute.RenderCondition = types.StringPointerValue(attributesItem.CurrencyAttribute.RenderCondition)
+				attributes1.CurrencyAttribute.Required = types.BoolPointerValue(attributesItem.CurrencyAttribute.Required)
+				for settingsFlagCount6, settingsFlagItem6 := range attributesItem.CurrencyAttribute.SettingsFlag {
+					var settingsFlag13 tfTypes.SettingFlag
+					settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
+					settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
+					if settingsFlagCount6+1 > len(attributes1.CurrencyAttribute.SettingsFlag) {
+						attributes1.CurrencyAttribute.SettingsFlag = append(attributes1.CurrencyAttribute.SettingsFlag, settingsFlag13)
+					} else {
+						attributes1.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
+						attributes1.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
+					}
+				}
+				attributes1.CurrencyAttribute.ShowInTable = types.BoolPointerValue(attributesItem.CurrencyAttribute.ShowInTable)
+				attributes1.CurrencyAttribute.Sortable = types.BoolPointerValue(attributesItem.CurrencyAttribute.Sortable)
+				attributes1.CurrencyAttribute.Type = types.StringValue(string(attributesItem.CurrencyAttribute.Type))
+				attributes1.CurrencyAttribute.ValueFormatter = types.StringPointerValue(attributesItem.CurrencyAttribute.ValueFormatter)
+			}
+			if attributesItem.DateAttribute != nil {
+				attributes1.DateAttribute = &tfTypes.DateAttribute{}
+				attributes1.DateAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.DateAttribute.Purpose {
+					attributes1.DateAttribute.Purpose = append(attributes1.DateAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.DateAttribute.Constraints == nil {
+					attributes1.DateAttribute.Constraints = nil
+				} else {
+					attributes1.DateAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.DateAttribute.DefaultValue == nil {
+					attributes1.DateAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult7, _ := json.Marshal(attributesItem.DateAttribute.DefaultValue)
+					attributes1.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult7))
+				}
+				attributes1.DateAttribute.Deprecated = types.BoolPointerValue(attributesItem.DateAttribute.Deprecated)
+				attributes1.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.DateAttribute.EntityBuilderDisableEdit)
+				attributes1.DateAttribute.FeatureFlag = types.StringPointerValue(attributesItem.DateAttribute.FeatureFlag)
+				attributes1.DateAttribute.Group = types.StringPointerValue(attributesItem.DateAttribute.Group)
+				attributes1.DateAttribute.Hidden = types.BoolPointerValue(attributesItem.DateAttribute.Hidden)
+				attributes1.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem.DateAttribute.HideLabel)
+				attributes1.DateAttribute.Icon = types.StringPointerValue(attributesItem.DateAttribute.Icon)
+				if attributesItem.DateAttribute.InfoHelpers == nil {
+					attributes1.DateAttribute.InfoHelpers = nil
+				} else {
+					attributes1.DateAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintText)
+					attributes1.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintTextKey)
+					attributes1.DateAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.DateAttribute.Label = types.StringValue(attributesItem.DateAttribute.Label)
+				attributes1.DateAttribute.Layout = types.StringPointerValue(attributesItem.DateAttribute.Layout)
+				attributes1.DateAttribute.Name = types.StringValue(attributesItem.DateAttribute.Name)
+				attributes1.DateAttribute.Order = types.Int64PointerValue(attributesItem.DateAttribute.Order)
+				attributes1.DateAttribute.Placeholder = types.StringPointerValue(attributesItem.DateAttribute.Placeholder)
+				attributes1.DateAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.DateAttribute.PreviewValueFormatter)
+				attributes1.DateAttribute.Protected = types.BoolPointerValue(attributesItem.DateAttribute.Protected)
+				attributes1.DateAttribute.Readonly = types.BoolPointerValue(attributesItem.DateAttribute.Readonly)
+				attributes1.DateAttribute.RenderCondition = types.StringPointerValue(attributesItem.DateAttribute.RenderCondition)
+				attributes1.DateAttribute.Required = types.BoolPointerValue(attributesItem.DateAttribute.Required)
+				for settingsFlagCount7, settingsFlagItem7 := range attributesItem.DateAttribute.SettingsFlag {
+					var settingsFlag15 tfTypes.SettingFlag
+					settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
+					settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
+					if settingsFlagCount7+1 > len(attributes1.DateAttribute.SettingsFlag) {
+						attributes1.DateAttribute.SettingsFlag = append(attributes1.DateAttribute.SettingsFlag, settingsFlag15)
+					} else {
+						attributes1.DateAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
+						attributes1.DateAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
+					}
+				}
+				attributes1.DateAttribute.ShowInTable = types.BoolPointerValue(attributesItem.DateAttribute.ShowInTable)
+				attributes1.DateAttribute.Sortable = types.BoolPointerValue(attributesItem.DateAttribute.Sortable)
+				if attributesItem.DateAttribute.Type != nil {
+					attributes1.DateAttribute.Type = types.StringValue(string(*attributesItem.DateAttribute.Type))
+				} else {
+					attributes1.DateAttribute.Type = types.StringNull()
+				}
+				attributes1.DateAttribute.ValueFormatter = types.StringPointerValue(attributesItem.DateAttribute.ValueFormatter)
+			}
+			if attributesItem.FileAttribute != nil {
+				attributes1.FileAttribute = &tfTypes.FileAttribute{}
+				attributes1.FileAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.FileAttribute.Purpose {
+					attributes1.FileAttribute.Purpose = append(attributes1.FileAttribute.Purpose, types.StringValue(v))
+				}
+				attributes1.FileAttribute.AllowedExtensions = []types.String{}
+				for _, v := range attributesItem.FileAttribute.AllowedExtensions {
+					attributes1.FileAttribute.AllowedExtensions = append(attributes1.FileAttribute.AllowedExtensions, types.StringValue(v))
+				}
+				if attributesItem.FileAttribute.Constraints == nil {
+					attributes1.FileAttribute.Constraints = nil
+				} else {
+					attributes1.FileAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.FileAttribute.DefaultAccessControl != nil {
+					attributes1.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem.FileAttribute.DefaultAccessControl))
+				} else {
+					attributes1.FileAttribute.DefaultAccessControl = types.StringNull()
+				}
+				if attributesItem.FileAttribute.DefaultValue == nil {
+					attributes1.FileAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult8, _ := json.Marshal(attributesItem.FileAttribute.DefaultValue)
+					attributes1.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult8))
+				}
+				attributes1.FileAttribute.Deprecated = types.BoolPointerValue(attributesItem.FileAttribute.Deprecated)
+				attributes1.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(attributesItem.FileAttribute.DisplayImagesLandscaped)
+				attributes1.FileAttribute.EnableDescription = types.BoolPointerValue(attributesItem.FileAttribute.EnableDescription)
+				attributes1.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.FileAttribute.EntityBuilderDisableEdit)
+				attributes1.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem.FileAttribute.FeatureFlag)
+				attributes1.FileAttribute.Group = types.StringPointerValue(attributesItem.FileAttribute.Group)
+				attributes1.FileAttribute.Hidden = types.BoolPointerValue(attributesItem.FileAttribute.Hidden)
+				attributes1.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem.FileAttribute.HideLabel)
+				attributes1.FileAttribute.Icon = types.StringPointerValue(attributesItem.FileAttribute.Icon)
+				if attributesItem.FileAttribute.InfoHelpers == nil {
+					attributes1.FileAttribute.InfoHelpers = nil
+				} else {
+					attributes1.FileAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintText)
+					attributes1.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintTextKey)
+					attributes1.FileAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.FileAttribute.Label = types.StringValue(attributesItem.FileAttribute.Label)
+				attributes1.FileAttribute.Layout = types.StringPointerValue(attributesItem.FileAttribute.Layout)
+				attributes1.FileAttribute.Multiple = types.BoolPointerValue(attributesItem.FileAttribute.Multiple)
+				attributes1.FileAttribute.Name = types.StringValue(attributesItem.FileAttribute.Name)
+				attributes1.FileAttribute.Order = types.Int64PointerValue(attributesItem.FileAttribute.Order)
+				attributes1.FileAttribute.Placeholder = types.StringPointerValue(attributesItem.FileAttribute.Placeholder)
+				attributes1.FileAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.FileAttribute.PreviewValueFormatter)
+				attributes1.FileAttribute.Protected = types.BoolPointerValue(attributesItem.FileAttribute.Protected)
+				attributes1.FileAttribute.Readonly = types.BoolPointerValue(attributesItem.FileAttribute.Readonly)
+				attributes1.FileAttribute.RenderCondition = types.StringPointerValue(attributesItem.FileAttribute.RenderCondition)
+				attributes1.FileAttribute.Required = types.BoolPointerValue(attributesItem.FileAttribute.Required)
+				for settingsFlagCount8, settingsFlagItem8 := range attributesItem.FileAttribute.SettingsFlag {
+					var settingsFlag17 tfTypes.SettingFlag
+					settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
+					settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
+					if settingsFlagCount8+1 > len(attributes1.FileAttribute.SettingsFlag) {
+						attributes1.FileAttribute.SettingsFlag = append(attributes1.FileAttribute.SettingsFlag, settingsFlag17)
+					} else {
+						attributes1.FileAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
+						attributes1.FileAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
+					}
+				}
+				attributes1.FileAttribute.ShowInTable = types.BoolPointerValue(attributesItem.FileAttribute.ShowInTable)
+				attributes1.FileAttribute.Sortable = types.BoolPointerValue(attributesItem.FileAttribute.Sortable)
+				attributes1.FileAttribute.Type = types.StringValue(string(attributesItem.FileAttribute.Type))
+				attributes1.FileAttribute.ValueFormatter = types.StringPointerValue(attributesItem.FileAttribute.ValueFormatter)
+			}
+			if attributesItem.InternalAttribute != nil {
+				attributes1.InternalAttribute = &tfTypes.InternalAttribute{}
+				attributes1.InternalAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.InternalAttribute.Purpose {
+					attributes1.InternalAttribute.Purpose = append(attributes1.InternalAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.InternalAttribute.Constraints == nil {
+					attributes1.InternalAttribute.Constraints = nil
+				} else {
+					attributes1.InternalAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.InternalAttribute.DefaultValue == nil {
+					attributes1.InternalAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult9, _ := json.Marshal(attributesItem.InternalAttribute.DefaultValue)
+					attributes1.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult9))
+				}
+				attributes1.InternalAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalAttribute.Deprecated)
+				attributes1.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalAttribute.EntityBuilderDisableEdit)
+				attributes1.InternalAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalAttribute.FeatureFlag)
+				attributes1.InternalAttribute.Group = types.StringPointerValue(attributesItem.InternalAttribute.Group)
+				attributes1.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalAttribute.Hidden)
+				attributes1.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalAttribute.HideLabel)
+				attributes1.InternalAttribute.Icon = types.StringPointerValue(attributesItem.InternalAttribute.Icon)
+				if attributesItem.InternalAttribute.InfoHelpers == nil {
+					attributes1.InternalAttribute.InfoHelpers = nil
+				} else {
+					attributes1.InternalAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintText)
+					attributes1.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintTextKey)
+					attributes1.InternalAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.InternalAttribute.Label = types.StringValue(attributesItem.InternalAttribute.Label)
+				attributes1.InternalAttribute.Layout = types.StringPointerValue(attributesItem.InternalAttribute.Layout)
+				attributes1.InternalAttribute.Name = types.StringValue(attributesItem.InternalAttribute.Name)
+				attributes1.InternalAttribute.Order = types.Int64PointerValue(attributesItem.InternalAttribute.Order)
+				attributes1.InternalAttribute.Placeholder = types.StringPointerValue(attributesItem.InternalAttribute.Placeholder)
+				attributes1.InternalAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InternalAttribute.PreviewValueFormatter)
+				attributes1.InternalAttribute.Protected = types.BoolPointerValue(attributesItem.InternalAttribute.Protected)
+				attributes1.InternalAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalAttribute.Readonly)
+				attributes1.InternalAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalAttribute.RenderCondition)
+				attributes1.InternalAttribute.Required = types.BoolPointerValue(attributesItem.InternalAttribute.Required)
+				for settingsFlagCount9, settingsFlagItem9 := range attributesItem.InternalAttribute.SettingsFlag {
+					var settingsFlag19 tfTypes.SettingFlag
+					settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
+					settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
+					if settingsFlagCount9+1 > len(attributes1.InternalAttribute.SettingsFlag) {
+						attributes1.InternalAttribute.SettingsFlag = append(attributes1.InternalAttribute.SettingsFlag, settingsFlag19)
+					} else {
+						attributes1.InternalAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
+						attributes1.InternalAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
+					}
+				}
+				attributes1.InternalAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InternalAttribute.ShowInTable)
+				attributes1.InternalAttribute.Sortable = types.BoolPointerValue(attributesItem.InternalAttribute.Sortable)
+				if attributesItem.InternalAttribute.Type != nil {
+					attributes1.InternalAttribute.Type = types.StringValue(string(*attributesItem.InternalAttribute.Type))
+				} else {
+					attributes1.InternalAttribute.Type = types.StringNull()
+				}
+				attributes1.InternalAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InternalAttribute.ValueFormatter)
+			}
+			if attributesItem.InternalUserAttribute != nil {
+				attributes1.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+				attributes1.InternalUserAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.InternalUserAttribute.Purpose {
+					attributes1.InternalUserAttribute.Purpose = append(attributes1.InternalUserAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.InternalUserAttribute.Constraints == nil {
+					attributes1.InternalUserAttribute.Constraints = nil
+				} else {
+					attributes1.InternalUserAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.InternalUserAttribute.DefaultValue == nil {
+					attributes1.InternalUserAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult10, _ := json.Marshal(attributesItem.InternalUserAttribute.DefaultValue)
+					attributes1.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult10))
+				}
+				attributes1.InternalUserAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalUserAttribute.Deprecated)
+				attributes1.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalUserAttribute.EntityBuilderDisableEdit)
+				attributes1.InternalUserAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalUserAttribute.FeatureFlag)
+				attributes1.InternalUserAttribute.Group = types.StringPointerValue(attributesItem.InternalUserAttribute.Group)
+				attributes1.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalUserAttribute.Hidden)
+				attributes1.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalUserAttribute.HideLabel)
+				attributes1.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem.InternalUserAttribute.Icon)
+				if attributesItem.InternalUserAttribute.InfoHelpers == nil {
+					attributes1.InternalUserAttribute.InfoHelpers = nil
+				} else {
+					attributes1.InternalUserAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintText)
+					attributes1.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintTextKey)
+					attributes1.InternalUserAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.InternalUserAttribute.Label = types.StringValue(attributesItem.InternalUserAttribute.Label)
+				attributes1.InternalUserAttribute.Layout = types.StringPointerValue(attributesItem.InternalUserAttribute.Layout)
+				attributes1.InternalUserAttribute.Name = types.StringValue(attributesItem.InternalUserAttribute.Name)
+				attributes1.InternalUserAttribute.Order = types.Int64PointerValue(attributesItem.InternalUserAttribute.Order)
+				attributes1.InternalUserAttribute.Placeholder = types.StringPointerValue(attributesItem.InternalUserAttribute.Placeholder)
+				attributes1.InternalUserAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InternalUserAttribute.PreviewValueFormatter)
+				attributes1.InternalUserAttribute.Protected = types.BoolPointerValue(attributesItem.InternalUserAttribute.Protected)
+				attributes1.InternalUserAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalUserAttribute.Readonly)
+				attributes1.InternalUserAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalUserAttribute.RenderCondition)
+				attributes1.InternalUserAttribute.Required = types.BoolPointerValue(attributesItem.InternalUserAttribute.Required)
+				for settingsFlagCount10, settingsFlagItem10 := range attributesItem.InternalUserAttribute.SettingsFlag {
+					var settingsFlag21 tfTypes.SettingFlag
+					settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
+					settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
+					if settingsFlagCount10+1 > len(attributes1.InternalUserAttribute.SettingsFlag) {
+						attributes1.InternalUserAttribute.SettingsFlag = append(attributes1.InternalUserAttribute.SettingsFlag, settingsFlag21)
+					} else {
+						attributes1.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
+						attributes1.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
+					}
+				}
+				attributes1.InternalUserAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InternalUserAttribute.ShowInTable)
+				attributes1.InternalUserAttribute.Sortable = types.BoolPointerValue(attributesItem.InternalUserAttribute.Sortable)
+				if attributesItem.InternalUserAttribute.Type != nil {
+					attributes1.InternalUserAttribute.Type = types.StringValue(string(*attributesItem.InternalUserAttribute.Type))
+				} else {
+					attributes1.InternalUserAttribute.Type = types.StringNull()
+				}
+				attributes1.InternalUserAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InternalUserAttribute.ValueFormatter)
+			}
+			if attributesItem.InvitationEmailAttribute != nil {
+				attributes1.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+				attributes1.InvitationEmailAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
+					attributes1.InvitationEmailAttribute.Purpose = append(attributes1.InvitationEmailAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.InvitationEmailAttribute.Constraints == nil {
+					attributes1.InvitationEmailAttribute.Constraints = nil
+				} else {
+					attributes1.InvitationEmailAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.InvitationEmailAttribute.DefaultValue == nil {
+					attributes1.InvitationEmailAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult11, _ := json.Marshal(attributesItem.InvitationEmailAttribute.DefaultValue)
+					attributes1.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult11))
+				}
+				attributes1.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Deprecated)
+				attributes1.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.EntityBuilderDisableEdit)
+				attributes1.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InvitationEmailAttribute.FeatureFlag)
+				attributes1.InvitationEmailAttribute.Group = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Group)
+				attributes1.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Hidden)
+				attributes1.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.HideLabel)
+				attributes1.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Icon)
+				if attributesItem.InvitationEmailAttribute.InfoHelpers == nil {
+					attributes1.InvitationEmailAttribute.InfoHelpers = nil
+				} else {
+					attributes1.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintText)
+					attributes1.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintTextKey)
+					attributes1.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.InvitationEmailAttribute.Label = types.StringValue(attributesItem.InvitationEmailAttribute.Label)
+				attributes1.InvitationEmailAttribute.Layout = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Layout)
+				attributes1.InvitationEmailAttribute.Name = types.StringValue(attributesItem.InvitationEmailAttribute.Name)
+				attributes1.InvitationEmailAttribute.Order = types.Int64PointerValue(attributesItem.InvitationEmailAttribute.Order)
+				attributes1.InvitationEmailAttribute.Placeholder = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Placeholder)
+				attributes1.InvitationEmailAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.InvitationEmailAttribute.PreviewValueFormatter)
+				attributes1.InvitationEmailAttribute.Protected = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Protected)
+				attributes1.InvitationEmailAttribute.Readonly = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Readonly)
+				attributes1.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(attributesItem.InvitationEmailAttribute.RenderCondition)
+				attributes1.InvitationEmailAttribute.Required = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Required)
+				for settingsFlagCount11, settingsFlagItem11 := range attributesItem.InvitationEmailAttribute.SettingsFlag {
+					var settingsFlag23 tfTypes.SettingFlag
+					settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
+					settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
+					if settingsFlagCount11+1 > len(attributes1.InvitationEmailAttribute.SettingsFlag) {
+						attributes1.InvitationEmailAttribute.SettingsFlag = append(attributes1.InvitationEmailAttribute.SettingsFlag, settingsFlag23)
+					} else {
+						attributes1.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
+						attributes1.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
+					}
+				}
+				attributes1.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.ShowInTable)
+				attributes1.InvitationEmailAttribute.Sortable = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Sortable)
+				if attributesItem.InvitationEmailAttribute.Type != nil {
+					attributes1.InvitationEmailAttribute.Type = types.StringValue(string(*attributesItem.InvitationEmailAttribute.Type))
+				} else {
+					attributes1.InvitationEmailAttribute.Type = types.StringNull()
+				}
+				attributes1.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(attributesItem.InvitationEmailAttribute.ValueFormatter)
+			}
+			if attributesItem.LinkAttribute != nil {
+				attributes1.LinkAttribute = &tfTypes.LinkAttribute{}
+				attributes1.LinkAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.LinkAttribute.Purpose {
+					attributes1.LinkAttribute.Purpose = append(attributes1.LinkAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.LinkAttribute.Constraints == nil {
+					attributes1.LinkAttribute.Constraints = nil
+				} else {
+					attributes1.LinkAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.LinkAttribute.DefaultValue == nil {
+					attributes1.LinkAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult12, _ := json.Marshal(attributesItem.LinkAttribute.DefaultValue)
+					attributes1.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult12))
+				}
+				attributes1.LinkAttribute.Deprecated = types.BoolPointerValue(attributesItem.LinkAttribute.Deprecated)
+				attributes1.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.LinkAttribute.EntityBuilderDisableEdit)
+				attributes1.LinkAttribute.FeatureFlag = types.StringPointerValue(attributesItem.LinkAttribute.FeatureFlag)
+				attributes1.LinkAttribute.Group = types.StringPointerValue(attributesItem.LinkAttribute.Group)
+				attributes1.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem.LinkAttribute.Hidden)
+				attributes1.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem.LinkAttribute.HideLabel)
+				attributes1.LinkAttribute.Icon = types.StringPointerValue(attributesItem.LinkAttribute.Icon)
+				if attributesItem.LinkAttribute.InfoHelpers == nil {
+					attributes1.LinkAttribute.InfoHelpers = nil
+				} else {
+					attributes1.LinkAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintText)
+					attributes1.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintTextKey)
+					attributes1.LinkAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.LinkAttribute.Label = types.StringValue(attributesItem.LinkAttribute.Label)
+				attributes1.LinkAttribute.Layout = types.StringPointerValue(attributesItem.LinkAttribute.Layout)
+				attributes1.LinkAttribute.Name = types.StringValue(attributesItem.LinkAttribute.Name)
+				attributes1.LinkAttribute.Order = types.Int64PointerValue(attributesItem.LinkAttribute.Order)
+				attributes1.LinkAttribute.Placeholder = types.StringPointerValue(attributesItem.LinkAttribute.Placeholder)
+				attributes1.LinkAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.LinkAttribute.PreviewValueFormatter)
+				attributes1.LinkAttribute.Protected = types.BoolPointerValue(attributesItem.LinkAttribute.Protected)
+				attributes1.LinkAttribute.Readonly = types.BoolPointerValue(attributesItem.LinkAttribute.Readonly)
+				attributes1.LinkAttribute.RenderCondition = types.StringPointerValue(attributesItem.LinkAttribute.RenderCondition)
+				attributes1.LinkAttribute.Required = types.BoolPointerValue(attributesItem.LinkAttribute.Required)
+				for settingsFlagCount12, settingsFlagItem12 := range attributesItem.LinkAttribute.SettingsFlag {
+					var settingsFlag25 tfTypes.SettingFlag
+					settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
+					settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
+					if settingsFlagCount12+1 > len(attributes1.LinkAttribute.SettingsFlag) {
+						attributes1.LinkAttribute.SettingsFlag = append(attributes1.LinkAttribute.SettingsFlag, settingsFlag25)
+					} else {
+						attributes1.LinkAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
+						attributes1.LinkAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
+					}
+				}
+				attributes1.LinkAttribute.ShowInTable = types.BoolPointerValue(attributesItem.LinkAttribute.ShowInTable)
+				attributes1.LinkAttribute.Sortable = types.BoolPointerValue(attributesItem.LinkAttribute.Sortable)
+				if attributesItem.LinkAttribute.Type != nil {
+					attributes1.LinkAttribute.Type = types.StringValue(string(*attributesItem.LinkAttribute.Type))
+				} else {
+					attributes1.LinkAttribute.Type = types.StringNull()
+				}
+				attributes1.LinkAttribute.ValueFormatter = types.StringPointerValue(attributesItem.LinkAttribute.ValueFormatter)
+			}
+			if attributesItem.MultiSelectAttribute != nil {
+				attributes1.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+				attributes1.MultiSelectAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.MultiSelectAttribute.Purpose {
+					attributes1.MultiSelectAttribute.Purpose = append(attributes1.MultiSelectAttribute.Purpose, types.StringValue(v))
+				}
+				attributes1.MultiSelectAttribute.AllowAny = types.BoolPointerValue(attributesItem.MultiSelectAttribute.AllowAny)
+				attributes1.MultiSelectAttribute.AllowExtraOptions = types.BoolPointerValue(attributesItem.MultiSelectAttribute.AllowExtraOptions)
+				if attributesItem.MultiSelectAttribute.Constraints == nil {
+					attributes1.MultiSelectAttribute.Constraints = nil
+				} else {
+					attributes1.MultiSelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.MultiSelectAttribute.DefaultValue == nil {
+					attributes1.MultiSelectAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult13, _ := json.Marshal(attributesItem.MultiSelectAttribute.DefaultValue)
+					attributes1.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult13))
+				}
+				attributes1.MultiSelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Deprecated)
+				attributes1.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(attributesItem.MultiSelectAttribute.DisableCaseSensitive)
+				attributes1.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.MultiSelectAttribute.EntityBuilderDisableEdit)
+				attributes1.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.MultiSelectAttribute.FeatureFlag)
+				attributes1.MultiSelectAttribute.Group = types.StringPointerValue(attributesItem.MultiSelectAttribute.Group)
+				attributes1.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Hidden)
+				attributes1.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.MultiSelectAttribute.HideLabel)
+				attributes1.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem.MultiSelectAttribute.Icon)
+				if attributesItem.MultiSelectAttribute.InfoHelpers == nil {
+					attributes1.MultiSelectAttribute.InfoHelpers = nil
+				} else {
+					attributes1.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintText)
+					attributes1.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintTextKey)
+					attributes1.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
+				attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
+				attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
+				for optionsCount, optionsItem := range attributesItem.MultiSelectAttribute.Options {
+					var options1 tfTypes.MultiSelectAttributeOptions
+					if optionsItem.Str != nil {
+						options1.Str = types.StringPointerValue(optionsItem.Str)
+					}
+					if optionsItem.Two != nil {
+						options1.Two = &tfTypes.Two{}
+						options1.Two.Title = types.StringPointerValue(optionsItem.Two.Title)
+						options1.Two.Value = types.StringValue(optionsItem.Two.Value)
+					}
+					if optionsCount+1 > len(attributes1.MultiSelectAttribute.Options) {
+						attributes1.MultiSelectAttribute.Options = append(attributes1.MultiSelectAttribute.Options, options1)
+					} else {
+						attributes1.MultiSelectAttribute.Options[optionsCount].Str = options1.Str
+						attributes1.MultiSelectAttribute.Options[optionsCount].Two = options1.Two
+					}
+				}
+				attributes1.MultiSelectAttribute.Order = types.Int64PointerValue(attributesItem.MultiSelectAttribute.Order)
+				attributes1.MultiSelectAttribute.Placeholder = types.StringPointerValue(attributesItem.MultiSelectAttribute.Placeholder)
+				attributes1.MultiSelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.MultiSelectAttribute.PreviewValueFormatter)
+				attributes1.MultiSelectAttribute.Protected = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Protected)
+				attributes1.MultiSelectAttribute.Readonly = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Readonly)
+				attributes1.MultiSelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.MultiSelectAttribute.RenderCondition)
+				attributes1.MultiSelectAttribute.Required = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Required)
+				for settingsFlagCount13, settingsFlagItem13 := range attributesItem.MultiSelectAttribute.SettingsFlag {
+					var settingsFlag27 tfTypes.SettingFlag
+					settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
+					settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
+					if settingsFlagCount13+1 > len(attributes1.MultiSelectAttribute.SettingsFlag) {
+						attributes1.MultiSelectAttribute.SettingsFlag = append(attributes1.MultiSelectAttribute.SettingsFlag, settingsFlag27)
+					} else {
+						attributes1.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
+						attributes1.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
+					}
+				}
+				attributes1.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem.MultiSelectAttribute.ShowInTable)
+				attributes1.MultiSelectAttribute.Sortable = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Sortable)
+				if attributesItem.MultiSelectAttribute.Type != nil {
+					attributes1.MultiSelectAttribute.Type = types.StringValue(string(*attributesItem.MultiSelectAttribute.Type))
+				} else {
+					attributes1.MultiSelectAttribute.Type = types.StringNull()
+				}
+				attributes1.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem.MultiSelectAttribute.ValueFormatter)
+			}
+			if attributesItem.NumberAttribute != nil {
+				attributes1.NumberAttribute = &tfTypes.NumberAttribute{}
+				attributes1.NumberAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.NumberAttribute.Purpose {
+					attributes1.NumberAttribute.Purpose = append(attributes1.NumberAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.NumberAttribute.Constraints == nil {
+					attributes1.NumberAttribute.Constraints = nil
+				} else {
+					attributes1.NumberAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.NumberAttribute.DefaultValue == nil {
+					attributes1.NumberAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult14, _ := json.Marshal(attributesItem.NumberAttribute.DefaultValue)
+					attributes1.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult14))
+				}
+				attributes1.NumberAttribute.Deprecated = types.BoolPointerValue(attributesItem.NumberAttribute.Deprecated)
+				attributes1.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.NumberAttribute.EntityBuilderDisableEdit)
+				attributes1.NumberAttribute.FeatureFlag = types.StringPointerValue(attributesItem.NumberAttribute.FeatureFlag)
+				attributes1.NumberAttribute.Format = types.StringPointerValue(attributesItem.NumberAttribute.Format)
+				attributes1.NumberAttribute.Group = types.StringPointerValue(attributesItem.NumberAttribute.Group)
+				attributes1.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem.NumberAttribute.Hidden)
+				attributes1.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem.NumberAttribute.HideLabel)
+				attributes1.NumberAttribute.Icon = types.StringPointerValue(attributesItem.NumberAttribute.Icon)
+				if attributesItem.NumberAttribute.InfoHelpers == nil {
+					attributes1.NumberAttribute.InfoHelpers = nil
+				} else {
+					attributes1.NumberAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintText)
+					attributes1.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintTextKey)
+					attributes1.NumberAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.NumberAttribute.Label = types.StringValue(attributesItem.NumberAttribute.Label)
+				attributes1.NumberAttribute.Layout = types.StringPointerValue(attributesItem.NumberAttribute.Layout)
+				attributes1.NumberAttribute.Name = types.StringValue(attributesItem.NumberAttribute.Name)
+				attributes1.NumberAttribute.Order = types.Int64PointerValue(attributesItem.NumberAttribute.Order)
+				attributes1.NumberAttribute.Placeholder = types.StringPointerValue(attributesItem.NumberAttribute.Placeholder)
+				attributes1.NumberAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.NumberAttribute.PreviewValueFormatter)
+				attributes1.NumberAttribute.Protected = types.BoolPointerValue(attributesItem.NumberAttribute.Protected)
+				attributes1.NumberAttribute.Readonly = types.BoolPointerValue(attributesItem.NumberAttribute.Readonly)
+				attributes1.NumberAttribute.RenderCondition = types.StringPointerValue(attributesItem.NumberAttribute.RenderCondition)
+				attributes1.NumberAttribute.Required = types.BoolPointerValue(attributesItem.NumberAttribute.Required)
+				for settingsFlagCount14, settingsFlagItem14 := range attributesItem.NumberAttribute.SettingsFlag {
+					var settingsFlag29 tfTypes.SettingFlag
+					settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
+					settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
+					if settingsFlagCount14+1 > len(attributes1.NumberAttribute.SettingsFlag) {
+						attributes1.NumberAttribute.SettingsFlag = append(attributes1.NumberAttribute.SettingsFlag, settingsFlag29)
+					} else {
+						attributes1.NumberAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
+						attributes1.NumberAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
+					}
+				}
+				attributes1.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem.NumberAttribute.ShowInTable)
+				attributes1.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem.NumberAttribute.Sortable)
+				if attributesItem.NumberAttribute.Type != nil {
+					attributes1.NumberAttribute.Type = types.StringValue(string(*attributesItem.NumberAttribute.Type))
+				} else {
+					attributes1.NumberAttribute.Type = types.StringNull()
+				}
+				attributes1.NumberAttribute.ValueFormatter = types.StringPointerValue(attributesItem.NumberAttribute.ValueFormatter)
+			}
+			if attributesItem.OrderedListAttribute != nil {
+				attributes1.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+				attributes1.OrderedListAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.OrderedListAttribute.Purpose {
+					attributes1.OrderedListAttribute.Purpose = append(attributes1.OrderedListAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.OrderedListAttribute.Constraints == nil {
+					attributes1.OrderedListAttribute.Constraints = nil
+				} else {
+					attributes1.OrderedListAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.OrderedListAttribute.DefaultValue == nil {
+					attributes1.OrderedListAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult15, _ := json.Marshal(attributesItem.OrderedListAttribute.DefaultValue)
+					attributes1.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
+				}
+				attributes1.OrderedListAttribute.Deprecated = types.BoolPointerValue(attributesItem.OrderedListAttribute.Deprecated)
+				attributes1.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.OrderedListAttribute.EntityBuilderDisableEdit)
+				attributes1.OrderedListAttribute.FeatureFlag = types.StringPointerValue(attributesItem.OrderedListAttribute.FeatureFlag)
+				attributes1.OrderedListAttribute.Group = types.StringPointerValue(attributesItem.OrderedListAttribute.Group)
+				attributes1.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem.OrderedListAttribute.Hidden)
+				attributes1.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem.OrderedListAttribute.HideLabel)
+				attributes1.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem.OrderedListAttribute.Icon)
+				if attributesItem.OrderedListAttribute.InfoHelpers == nil {
+					attributes1.OrderedListAttribute.InfoHelpers = nil
+				} else {
+					attributes1.OrderedListAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintText)
+					attributes1.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintTextKey)
+					attributes1.OrderedListAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.OrderedListAttribute.Label = types.StringValue(attributesItem.OrderedListAttribute.Label)
+				attributes1.OrderedListAttribute.Layout = types.StringPointerValue(attributesItem.OrderedListAttribute.Layout)
+				attributes1.OrderedListAttribute.Name = types.StringValue(attributesItem.OrderedListAttribute.Name)
+				attributes1.OrderedListAttribute.Order = types.Int64PointerValue(attributesItem.OrderedListAttribute.Order)
+				attributes1.OrderedListAttribute.Placeholder = types.StringPointerValue(attributesItem.OrderedListAttribute.Placeholder)
+				attributes1.OrderedListAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.OrderedListAttribute.PreviewValueFormatter)
+				attributes1.OrderedListAttribute.Protected = types.BoolPointerValue(attributesItem.OrderedListAttribute.Protected)
+				attributes1.OrderedListAttribute.Readonly = types.BoolPointerValue(attributesItem.OrderedListAttribute.Readonly)
+				attributes1.OrderedListAttribute.RenderCondition = types.StringPointerValue(attributesItem.OrderedListAttribute.RenderCondition)
+				attributes1.OrderedListAttribute.Required = types.BoolPointerValue(attributesItem.OrderedListAttribute.Required)
+				for settingsFlagCount15, settingsFlagItem15 := range attributesItem.OrderedListAttribute.SettingsFlag {
+					var settingsFlag31 tfTypes.SettingFlag
+					settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
+					settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
+					if settingsFlagCount15+1 > len(attributes1.OrderedListAttribute.SettingsFlag) {
+						attributes1.OrderedListAttribute.SettingsFlag = append(attributes1.OrderedListAttribute.SettingsFlag, settingsFlag31)
+					} else {
+						attributes1.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
+						attributes1.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
+					}
+				}
+				attributes1.OrderedListAttribute.ShowInTable = types.BoolPointerValue(attributesItem.OrderedListAttribute.ShowInTable)
+				attributes1.OrderedListAttribute.Sortable = types.BoolPointerValue(attributesItem.OrderedListAttribute.Sortable)
+				if attributesItem.OrderedListAttribute.Type != nil {
+					attributes1.OrderedListAttribute.Type = types.StringValue(string(*attributesItem.OrderedListAttribute.Type))
+				} else {
+					attributes1.OrderedListAttribute.Type = types.StringNull()
+				}
+				attributes1.OrderedListAttribute.ValueFormatter = types.StringPointerValue(attributesItem.OrderedListAttribute.ValueFormatter)
+			}
+			if attributesItem.PartnerOrganisationAttribute != nil {
+				attributes1.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+				attributes1.PartnerOrganisationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
+					attributes1.PartnerOrganisationAttribute.Purpose = append(attributes1.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.PartnerOrganisationAttribute.Constraints == nil {
+					attributes1.PartnerOrganisationAttribute.Constraints = nil
+				} else {
+					attributes1.PartnerOrganisationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.PartnerOrganisationAttribute.DefaultValue == nil {
+					attributes1.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult16, _ := json.Marshal(attributesItem.PartnerOrganisationAttribute.DefaultValue)
+					attributes1.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
+				}
+				attributes1.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Deprecated)
+				attributes1.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.EntityBuilderDisableEdit)
+				attributes1.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.FeatureFlag)
+				attributes1.PartnerOrganisationAttribute.Group = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Group)
+				attributes1.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Hidden)
+				attributes1.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.HideLabel)
+				attributes1.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Icon)
+				if attributesItem.PartnerOrganisationAttribute.InfoHelpers == nil {
+					attributes1.PartnerOrganisationAttribute.InfoHelpers = nil
+				} else {
+					attributes1.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintText)
+					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintTextKey)
+					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.PartnerOrganisationAttribute.Label = types.StringValue(attributesItem.PartnerOrganisationAttribute.Label)
+				attributes1.PartnerOrganisationAttribute.Layout = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Layout)
+				attributes1.PartnerOrganisationAttribute.Name = types.StringValue(attributesItem.PartnerOrganisationAttribute.Name)
+				attributes1.PartnerOrganisationAttribute.Order = types.Int64PointerValue(attributesItem.PartnerOrganisationAttribute.Order)
+				attributes1.PartnerOrganisationAttribute.Placeholder = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Placeholder)
+				attributes1.PartnerOrganisationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.PreviewValueFormatter)
+				attributes1.PartnerOrganisationAttribute.Protected = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Protected)
+				attributes1.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Readonly)
+				attributes1.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.RenderCondition)
+				attributes1.PartnerOrganisationAttribute.Required = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Required)
+				for settingsFlagCount16, settingsFlagItem16 := range attributesItem.PartnerOrganisationAttribute.SettingsFlag {
+					var settingsFlag33 tfTypes.SettingFlag
+					settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
+					settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
+					if settingsFlagCount16+1 > len(attributes1.PartnerOrganisationAttribute.SettingsFlag) {
+						attributes1.PartnerOrganisationAttribute.SettingsFlag = append(attributes1.PartnerOrganisationAttribute.SettingsFlag, settingsFlag33)
+					} else {
+						attributes1.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
+						attributes1.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
+					}
+				}
+				attributes1.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.ShowInTable)
+				attributes1.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Sortable)
+				if attributesItem.PartnerOrganisationAttribute.Type != nil {
+					attributes1.PartnerOrganisationAttribute.Type = types.StringValue(string(*attributesItem.PartnerOrganisationAttribute.Type))
+				} else {
+					attributes1.PartnerOrganisationAttribute.Type = types.StringNull()
+				}
+				attributes1.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.ValueFormatter)
+			}
+			if attributesItem.PartnerStatusAttribute != nil {
+				attributes1.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+				attributes1.PartnerStatusAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
+					attributes1.PartnerStatusAttribute.Purpose = append(attributes1.PartnerStatusAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.PartnerStatusAttribute.Constraints == nil {
+					attributes1.PartnerStatusAttribute.Constraints = nil
+				} else {
+					attributes1.PartnerStatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.PartnerStatusAttribute.DefaultValue == nil {
+					attributes1.PartnerStatusAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult17, _ := json.Marshal(attributesItem.PartnerStatusAttribute.DefaultValue)
+					attributes1.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
+				}
+				attributes1.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Deprecated)
+				attributes1.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.EntityBuilderDisableEdit)
+				attributes1.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerStatusAttribute.FeatureFlag)
+				attributes1.PartnerStatusAttribute.Group = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Group)
+				attributes1.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Hidden)
+				attributes1.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.HideLabel)
+				attributes1.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Icon)
+				if attributesItem.PartnerStatusAttribute.InfoHelpers == nil {
+					attributes1.PartnerStatusAttribute.InfoHelpers = nil
+				} else {
+					attributes1.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintText)
+					attributes1.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintTextKey)
+					attributes1.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.PartnerStatusAttribute.Label = types.StringValue(attributesItem.PartnerStatusAttribute.Label)
+				attributes1.PartnerStatusAttribute.Layout = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Layout)
+				attributes1.PartnerStatusAttribute.Name = types.StringValue(attributesItem.PartnerStatusAttribute.Name)
+				attributes1.PartnerStatusAttribute.Order = types.Int64PointerValue(attributesItem.PartnerStatusAttribute.Order)
+				attributes1.PartnerStatusAttribute.Placeholder = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Placeholder)
+				attributes1.PartnerStatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PartnerStatusAttribute.PreviewValueFormatter)
+				attributes1.PartnerStatusAttribute.Protected = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Protected)
+				attributes1.PartnerStatusAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Readonly)
+				attributes1.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerStatusAttribute.RenderCondition)
+				attributes1.PartnerStatusAttribute.Required = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Required)
+				for settingsFlagCount17, settingsFlagItem17 := range attributesItem.PartnerStatusAttribute.SettingsFlag {
+					var settingsFlag35 tfTypes.SettingFlag
+					settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
+					settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
+					if settingsFlagCount17+1 > len(attributes1.PartnerStatusAttribute.SettingsFlag) {
+						attributes1.PartnerStatusAttribute.SettingsFlag = append(attributes1.PartnerStatusAttribute.SettingsFlag, settingsFlag35)
+					} else {
+						attributes1.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
+						attributes1.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
+					}
+				}
+				attributes1.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.ShowInTable)
+				attributes1.PartnerStatusAttribute.Sortable = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Sortable)
+				if attributesItem.PartnerStatusAttribute.Type != nil {
+					attributes1.PartnerStatusAttribute.Type = types.StringValue(string(*attributesItem.PartnerStatusAttribute.Type))
+				} else {
+					attributes1.PartnerStatusAttribute.Type = types.StringNull()
+				}
+				attributes1.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PartnerStatusAttribute.ValueFormatter)
+			}
+			if attributesItem.PaymentMethodRelationAttribute != nil {
+				attributes1.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+				attributes1.PaymentMethodRelationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
+					attributes1.PaymentMethodRelationAttribute.Purpose = append(attributes1.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.PaymentMethodRelationAttribute.Constraints == nil {
+					attributes1.PaymentMethodRelationAttribute.Constraints = nil
+				} else {
+					attributes1.PaymentMethodRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.PaymentMethodRelationAttribute.DefaultValue == nil {
+					attributes1.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult18, _ := json.Marshal(attributesItem.PaymentMethodRelationAttribute.DefaultValue)
+					attributes1.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
+				}
+				attributes1.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Deprecated)
+				attributes1.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.EntityBuilderDisableEdit)
+				attributes1.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.FeatureFlag)
+				attributes1.PaymentMethodRelationAttribute.Group = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Group)
+				attributes1.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HasPrimary)
+				attributes1.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Hidden)
+				attributes1.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HideLabel)
+				attributes1.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Icon)
+				if attributesItem.PaymentMethodRelationAttribute.InfoHelpers == nil {
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers = nil
+				} else {
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintText)
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.PaymentMethodRelationAttribute.Label = types.StringValue(attributesItem.PaymentMethodRelationAttribute.Label)
+				attributes1.PaymentMethodRelationAttribute.Layout = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Layout)
+				attributes1.PaymentMethodRelationAttribute.Name = types.StringValue(attributesItem.PaymentMethodRelationAttribute.Name)
+				attributes1.PaymentMethodRelationAttribute.Order = types.Int64PointerValue(attributesItem.PaymentMethodRelationAttribute.Order)
+				attributes1.PaymentMethodRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Placeholder)
+				attributes1.PaymentMethodRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.PreviewValueFormatter)
+				attributes1.PaymentMethodRelationAttribute.Protected = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Protected)
+				attributes1.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Readonly)
+				attributes1.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.RenderCondition)
+				attributes1.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Required)
+				for settingsFlagCount18, settingsFlagItem18 := range attributesItem.PaymentMethodRelationAttribute.SettingsFlag {
+					var settingsFlag37 tfTypes.SettingFlag
+					settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
+					settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
+					if settingsFlagCount18+1 > len(attributes1.PaymentMethodRelationAttribute.SettingsFlag) {
+						attributes1.PaymentMethodRelationAttribute.SettingsFlag = append(attributes1.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag37)
+					} else {
+						attributes1.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
+						attributes1.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
+					}
+				}
+				attributes1.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.ShowInTable)
+				attributes1.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Sortable)
+				if attributesItem.PaymentMethodRelationAttribute.Type != nil {
+					attributes1.PaymentMethodRelationAttribute.Type = types.StringValue(string(*attributesItem.PaymentMethodRelationAttribute.Type))
+				} else {
+					attributes1.PaymentMethodRelationAttribute.Type = types.StringNull()
+				}
+				attributes1.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.ValueFormatter)
+			}
+			if attributesItem.PurposeAttribute != nil {
+				attributes1.PurposeAttribute = &tfTypes.PurposeAttribute{}
+				attributes1.PurposeAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.PurposeAttribute.Purpose {
+					attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
+				}
+				if attributesItem.PurposeAttribute.Constraints == nil {
+					attributes1.PurposeAttribute.Constraints = nil
+				} else {
+					attributes1.PurposeAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+				}
+				if attributesItem.PurposeAttribute.CreatedAt != nil {
+					attributes1.PurposeAttribute.CreatedAt = types.StringValue(attributesItem.PurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
+				} else {
+					attributes1.PurposeAttribute.CreatedAt = types.StringNull()
+				}
+				if attributesItem.PurposeAttribute.DefaultValue == nil {
+					attributes1.PurposeAttribute.DefaultValue = types.StringNull()
+				} else {
+					defaultValueResult19, _ := json.Marshal(attributesItem.PurposeAttribute.DefaultValue)
+					attributes1.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
+				}
+				attributes1.PurposeAttribute.Deprecated = types.BoolPointerValue(attributesItem.PurposeAttribute.Deprecated)
+				attributes1.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PurposeAttribute.EntityBuilderDisableEdit)
+				attributes1.PurposeAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PurposeAttribute.FeatureFlag)
+				attributes1.PurposeAttribute.Group = types.StringPointerValue(attributesItem.PurposeAttribute.Group)
+				attributes1.PurposeAttribute.Hidden = types.BoolPointerValue(attributesItem.PurposeAttribute.Hidden)
+				attributes1.PurposeAttribute.HideLabel = types.BoolPointerValue(attributesItem.PurposeAttribute.HideLabel)
+				attributes1.PurposeAttribute.Icon = types.StringPointerValue(attributesItem.PurposeAttribute.Icon)
+				attributes1.PurposeAttribute.ID = types.StringPointerValue(attributesItem.PurposeAttribute.ID)
+				if attributesItem.PurposeAttribute.InfoHelpers == nil {
+					attributes1.PurposeAttribute.InfoHelpers = nil
+				} else {
+					attributes1.PurposeAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintText)
+					attributes1.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintTextKey)
+					attributes1.PurposeAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintTooltipPlacement)
+				}
+				attributes1.PurposeAttribute.Label = types.StringValue(attributesItem.PurposeAttribute.Label)
+				attributes1.PurposeAttribute.Layout = types.StringPointerValue(attributesItem.PurposeAttribute.Layout)
+				attributes1.PurposeAttribute.Name = types.StringValue(attributesItem.PurposeAttribute.Name)
+				attributes1.PurposeAttribute.Order = types.Int64PointerValue(attributesItem.PurposeAttribute.Order)
+				attributes1.PurposeAttribute.Parents = []types.String{}
+				for _, v := range attributesItem.PurposeAttribute.Parents {
+					attributes1.PurposeAttribute.Parents = append(attributes1.PurposeAttribute.Parents, types.StringValue(v))
+				}
+				attributes1.PurposeAttribute.Placeholder = types.StringPointerValue(attributesItem.PurposeAttribute.Placeholder)
+				attributes1.PurposeAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.PurposeAttribute.PreviewValueFormatter)
+				attributes1.PurposeAttribute.Protected = types.BoolPointerValue(attributesItem.PurposeAttribute.Protected)
+				attributes1.PurposeAttribute.Readonly = types.BoolPointerValue(attributesItem.PurposeAttribute.Readonly)
+				attributes1.PurposeAttribute.RenderCondition = types.StringPointerValue(attributesItem.PurposeAttribute.RenderCondition)
+				attributes1.PurposeAttribute.Required = types.BoolPointerValue(attributesItem.PurposeAttribute.Required)
+				for settingsFlagCount19, settingsFlagItem19 := range attributesItem.PurposeAttribute.SettingsFlag {
+					var settingsFlag39 tfTypes.SettingFlag
+					settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
+					settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
+					if settingsFlagCount19+1 > len(attributes1.PurposeAttribute.SettingsFlag) {
+						attributes1.PurposeAttribute.SettingsFlag = append(attributes1.PurposeAttribute.SettingsFlag, settingsFlag39)
+					} else {
+						attributes1.PurposeAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
+						attributes1.PurposeAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
+					}
+				}
+				attributes1.PurposeAttribute.ShowInTable = types.BoolPointerValue(attributesItem.PurposeAttribute.ShowInTable)
+				attributes1.PurposeAttribute.Slug = types.StringPointerValue(attributesItem.PurposeAttribute.Slug)
+				attributes1.PurposeAttribute.Sortable = types.BoolPointerValue(attributesItem.PurposeAttribute.Sortable)
+				if attributesItem.PurposeAttribute.Type != nil {
+					attributes1.PurposeAttribute.Type = types.StringValue(string(*attributesItem.PurposeAttribute.Type))
+				} else {
+					attributes1.PurposeAttribute.Type = types.StringNull()
+				}
+				if attributesItem.PurposeAttribute.UpdatedAt != nil {
+					attributes1.PurposeAttribute.UpdatedAt = types.StringValue(attributesItem.PurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
+				} else {
+					attributes1.PurposeAttribute.UpdatedAt = types.StringNull()
+				}
+				attributes1.PurposeAttribute.ValueFormatter = types.StringPointerValue(attributesItem.PurposeAttribute.ValueFormatter)
+			}
+			if attributesItem.RelationAttribute != nil {
+				attributes1.RelationAttribute = &tfTypes.RelationAttribute{}
+				attributes1.RelationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.RelationAttribute.Purpose {
+					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
+				}
+				for actionsCount, actionsItem := range attributesItem.RelationAttribute.Actions {
+					var actions1 tfTypes.Actions
+					if actionsItem.ActionType != nil {
+						actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
+					} else {
+						actions1.ActionType = types.StringNull()
+					}
+					actions1.Default = types.BoolPointerValue(actionsItem.Default)
+					actions1.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
+					actions1.Label = types.StringPointerValue(actionsItem.Label)
+					if actionsItem.NewEntityItem == nil {
+						actions1.NewEntityItem = nil
+					} else {
+						actions1.NewEntityItem = &tfTypes.NewEntityItem{}
+						if actionsItem.NewEntityItem.ACL == nil {
+							actions1.NewEntityItem.ACL = nil
 						} else {
-							additionalPropertiesResult, _ := json.Marshal(actionsItem.NewEntityItem.ACL.AdditionalProperties)
-							actions1.NewEntityItem.ACL.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
-						}
-						actions1.NewEntityItem.ACL.Delete = nil
-						for _, v := range actionsItem.NewEntityItem.ACL.Delete {
-							actions1.NewEntityItem.ACL.Delete = append(actions1.NewEntityItem.ACL.Delete, types.StringValue(v))
-						}
-						actions1.NewEntityItem.ACL.Edit = nil
-						for _, v := range actionsItem.NewEntityItem.ACL.Edit {
-							actions1.NewEntityItem.ACL.Edit = append(actions1.NewEntityItem.ACL.Edit, types.StringValue(v))
-						}
-						actions1.NewEntityItem.ACL.View = nil
-						for _, v := range actionsItem.NewEntityItem.ACL.View {
-							actions1.NewEntityItem.ACL.View = append(actions1.NewEntityItem.ACL.View, types.StringValue(v))
-						}
-					}
-					if actionsItem.NewEntityItem.CreatedAt != nil {
-						actions1.NewEntityItem.CreatedAt = types.StringValue(actionsItem.NewEntityItem.CreatedAt.Format(time.RFC3339Nano))
-					} else {
-						actions1.NewEntityItem.CreatedAt = types.StringNull()
-					}
-					actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
-					actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
-					for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
-						var owners1 EntityOwner
-						owners1.OrgID = types.StringValue(ownersItem.OrgID)
-						owners1.UserID = types.StringPointerValue(ownersItem.UserID)
-						if ownersCount+1 > len(actions1.NewEntityItem.Owners) {
-							actions1.NewEntityItem.Owners = append(actions1.NewEntityItem.Owners, owners1)
-						} else {
-							actions1.NewEntityItem.Owners[ownersCount].OrgID = owners1.OrgID
-							actions1.NewEntityItem.Owners[ownersCount].UserID = owners1.UserID
-						}
-					}
-					actions1.NewEntityItem.Schema = types.StringValue(actionsItem.NewEntityItem.Schema)
-					actions1.NewEntityItem.Tags = nil
-					for _, v := range actionsItem.NewEntityItem.Tags {
-						actions1.NewEntityItem.Tags = append(actions1.NewEntityItem.Tags, types.StringValue(v))
-					}
-					actions1.NewEntityItem.Title = types.StringPointerValue(actionsItem.NewEntityItem.Title)
-					if actionsItem.NewEntityItem.UpdatedAt != nil {
-						actions1.NewEntityItem.UpdatedAt = types.StringValue(actionsItem.NewEntityItem.UpdatedAt.Format(time.RFC3339Nano))
-					} else {
-						actions1.NewEntityItem.UpdatedAt = types.StringNull()
-					}
-					if actionsItem.NewEntityItem.AdditionalProperties == nil {
-						actions1.NewEntityItem.AdditionalProperties = types.StringNull()
-					} else {
-						additionalPropertiesResult1, _ := json.Marshal(actionsItem.NewEntityItem.AdditionalProperties)
-						actions1.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
-					}
-				}
-				for settingsFlagCount20, settingsFlagItem20 := range actionsItem.SettingsFlag {
-					var settingsFlag41 SettingFlag
-					settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
-					settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
-					if settingsFlagCount20+1 > len(actions1.SettingsFlag) {
-						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag41)
-					} else {
-						actions1.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
-						actions1.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
-					}
-				}
-				if actionsCount+1 > len(attributes1.RelationAttribute.Actions) {
-					attributes1.RelationAttribute.Actions = append(attributes1.RelationAttribute.Actions, actions1)
-				} else {
-					attributes1.RelationAttribute.Actions[actionsCount].ActionType = actions1.ActionType
-					attributes1.RelationAttribute.Actions[actionsCount].Default = actions1.Default
-					attributes1.RelationAttribute.Actions[actionsCount].FeatureFlag = actions1.FeatureFlag
-					attributes1.RelationAttribute.Actions[actionsCount].Label = actions1.Label
-					attributes1.RelationAttribute.Actions[actionsCount].NewEntityItem = actions1.NewEntityItem
-					attributes1.RelationAttribute.Actions[actionsCount].SettingsFlag = actions1.SettingsFlag
-				}
-			}
-			attributes1.RelationAttribute.AddButtonLabel = types.StringPointerValue(attributesItem.RelationAttribute.AddButtonLabel)
-			attributes1.RelationAttribute.AllowedSchemas = nil
-			for _, v := range attributesItem.RelationAttribute.AllowedSchemas {
-				attributes1.RelationAttribute.AllowedSchemas = append(attributes1.RelationAttribute.AllowedSchemas, types.StringValue(v))
-			}
-			if attributesItem.RelationAttribute.Constraints == nil {
-				attributes1.RelationAttribute.Constraints = nil
-			} else {
-				attributes1.RelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.RelationAttribute.DefaultValue == nil {
-				attributes1.RelationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult20, _ := json.Marshal(attributesItem.RelationAttribute.DefaultValue)
-				attributes1.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
-			}
-			attributes1.RelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.RelationAttribute.Deprecated)
-			attributes1.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(attributesItem.RelationAttribute.DetailsViewModeEnabled)
-			if attributesItem.RelationAttribute.DrawerSize != nil {
-				attributes1.RelationAttribute.DrawerSize = types.StringValue(string(*attributesItem.RelationAttribute.DrawerSize))
-			} else {
-				attributes1.RelationAttribute.DrawerSize = types.StringNull()
-			}
-			if attributesItem.RelationAttribute.EditMode != nil {
-				attributes1.RelationAttribute.EditMode = types.StringValue(string(*attributesItem.RelationAttribute.EditMode))
-			} else {
-				attributes1.RelationAttribute.EditMode = types.StringNull()
-			}
-			attributes1.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationPicker)
-			attributes1.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationTags)
-			attributes1.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RelationAttribute.EntityBuilderDisableEdit)
-			attributes1.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RelationAttribute.FeatureFlag)
-			attributes1.RelationAttribute.Group = types.StringPointerValue(attributesItem.RelationAttribute.Group)
-			attributes1.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RelationAttribute.HasPrimary)
-			attributes1.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem.RelationAttribute.Hidden)
-			attributes1.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.RelationAttribute.HideLabel)
-			attributes1.RelationAttribute.Icon = types.StringPointerValue(attributesItem.RelationAttribute.Icon)
-			if attributesItem.RelationAttribute.InfoHelpers == nil {
-				attributes1.RelationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.RelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintText)
-				attributes1.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintTextKey)
-				attributes1.RelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.RelationAttribute.Label = types.StringValue(attributesItem.RelationAttribute.Label)
-			attributes1.RelationAttribute.Layout = types.StringPointerValue(attributesItem.RelationAttribute.Layout)
-			attributes1.RelationAttribute.Name = types.StringValue(attributesItem.RelationAttribute.Name)
-			attributes1.RelationAttribute.Order = types.Int64PointerValue(attributesItem.RelationAttribute.Order)
-			attributes1.RelationAttribute.Placeholder = types.StringPointerValue(attributesItem.RelationAttribute.Placeholder)
-			attributes1.RelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.PreviewValueFormatter)
-			attributes1.RelationAttribute.Protected = types.BoolPointerValue(attributesItem.RelationAttribute.Protected)
-			attributes1.RelationAttribute.Readonly = types.BoolPointerValue(attributesItem.RelationAttribute.Readonly)
-			if attributesItem.RelationAttribute.RelationAffinityMode != nil {
-				attributes1.RelationAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RelationAttribute.RelationAffinityMode))
-			} else {
-				attributes1.RelationAttribute.RelationAffinityMode = types.StringNull()
-			}
-			if attributesItem.RelationAttribute.RelationType != nil {
-				attributes1.RelationAttribute.RelationType = types.StringValue(string(*attributesItem.RelationAttribute.RelationType))
-			} else {
-				attributes1.RelationAttribute.RelationType = types.StringNull()
-			}
-			attributes1.RelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.RelationAttribute.RenderCondition)
-			attributes1.RelationAttribute.Required = types.BoolPointerValue(attributesItem.RelationAttribute.Required)
-			if len(attributesItem.RelationAttribute.ReverseAttributes) > 0 {
-				attributes1.RelationAttribute.ReverseAttributes = make(map[string]types.String)
-				for key, value1 := range attributesItem.RelationAttribute.ReverseAttributes {
-					attributes1.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
-				}
-			}
-			attributes1.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem.RelationAttribute.SearchPlaceholder)
-			for settingsFlagCount21, settingsFlagItem21 := range attributesItem.RelationAttribute.SettingsFlag {
-				var settingsFlag43 SettingFlag
-				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
-				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
-				if settingsFlagCount21+1 > len(attributes1.RelationAttribute.SettingsFlag) {
-					attributes1.RelationAttribute.SettingsFlag = append(attributes1.RelationAttribute.SettingsFlag, settingsFlag43)
-				} else {
-					attributes1.RelationAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
-					attributes1.RelationAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
-				}
-			}
-			attributes1.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RelationAttribute.ShowInTable)
-			attributes1.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem.RelationAttribute.Sortable)
-			for summaryFieldsCount, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
-				var summaryFields1 SummaryFields
-				if summaryFieldsItem.Str != nil {
-					summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
-				}
-				if summaryFieldsItem.SummaryField != nil {
-					summaryFields1.SummaryField = &SummaryField{}
-					summaryFields1.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
-					summaryFields1.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
-				}
-				if summaryFieldsCount+1 > len(attributes1.RelationAttribute.SummaryFields) {
-					attributes1.RelationAttribute.SummaryFields = append(attributes1.RelationAttribute.SummaryFields, summaryFields1)
-				} else {
-				}
-			}
-			if attributesItem.RelationAttribute.Type != nil {
-				attributes1.RelationAttribute.Type = types.StringValue(string(*attributesItem.RelationAttribute.Type))
-			} else {
-				attributes1.RelationAttribute.Type = types.StringNull()
-			}
-			attributes1.RelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.ValueFormatter)
-		}
-		if attributesItem.RepeatableAttribute != nil {
-			attributes1.RepeatableAttribute = &RepeatableAttribute{}
-			attributes1.RepeatableAttribute.Purpose = nil
-			for _, v := range attributesItem.RepeatableAttribute.Purpose {
-				attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.RepeatableAttribute.Constraints == nil {
-				attributes1.RepeatableAttribute.Constraints = nil
-			} else {
-				attributes1.RepeatableAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.RepeatableAttribute.DefaultValue == nil {
-				attributes1.RepeatableAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult21, _ := json.Marshal(attributesItem.RepeatableAttribute.DefaultValue)
-				attributes1.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
-			}
-			attributes1.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem.RepeatableAttribute.Deprecated)
-			attributes1.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RepeatableAttribute.EnableRelationPicker)
-			attributes1.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RepeatableAttribute.EntityBuilderDisableEdit)
-			attributes1.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RepeatableAttribute.FeatureFlag)
-			attributes1.RepeatableAttribute.Group = types.StringPointerValue(attributesItem.RepeatableAttribute.Group)
-			attributes1.RepeatableAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RepeatableAttribute.HasPrimary)
-			attributes1.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem.RepeatableAttribute.Hidden)
-			attributes1.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem.RepeatableAttribute.HideLabel)
-			attributes1.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem.RepeatableAttribute.Icon)
-			if attributesItem.RepeatableAttribute.InfoHelpers == nil {
-				attributes1.RepeatableAttribute.InfoHelpers = nil
-			} else {
-				attributes1.RepeatableAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintText)
-				attributes1.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintTextKey)
-				attributes1.RepeatableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.RepeatableAttribute.Label = types.StringValue(attributesItem.RepeatableAttribute.Label)
-			attributes1.RepeatableAttribute.Layout = types.StringPointerValue(attributesItem.RepeatableAttribute.Layout)
-			attributes1.RepeatableAttribute.Name = types.StringValue(attributesItem.RepeatableAttribute.Name)
-			attributes1.RepeatableAttribute.Order = types.Int64PointerValue(attributesItem.RepeatableAttribute.Order)
-			attributes1.RepeatableAttribute.Placeholder = types.StringPointerValue(attributesItem.RepeatableAttribute.Placeholder)
-			attributes1.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.PreviewValueFormatter)
-			attributes1.RepeatableAttribute.Protected = types.BoolPointerValue(attributesItem.RepeatableAttribute.Protected)
-			attributes1.RepeatableAttribute.Readonly = types.BoolPointerValue(attributesItem.RepeatableAttribute.Readonly)
-			if attributesItem.RepeatableAttribute.RelationAffinityMode != nil {
-				attributes1.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RepeatableAttribute.RelationAffinityMode))
-			} else {
-				attributes1.RepeatableAttribute.RelationAffinityMode = types.StringNull()
-			}
-			attributes1.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem.RepeatableAttribute.RenderCondition)
-			attributes1.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Repeatable)
-			attributes1.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem.RepeatableAttribute.Required)
-			for settingsFlagCount22, settingsFlagItem22 := range attributesItem.RepeatableAttribute.SettingsFlag {
-				var settingsFlag45 SettingFlag
-				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
-				if settingsFlagCount22+1 > len(attributes1.RepeatableAttribute.SettingsFlag) {
-					attributes1.RepeatableAttribute.SettingsFlag = append(attributes1.RepeatableAttribute.SettingsFlag, settingsFlag45)
-				} else {
-					attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-					attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
-				}
-			}
-			attributes1.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RepeatableAttribute.ShowInTable)
-			attributes1.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Sortable)
-			if attributesItem.RepeatableAttribute.Type != nil {
-				attributes1.RepeatableAttribute.Type = types.StringValue(string(*attributesItem.RepeatableAttribute.Type))
-			} else {
-				attributes1.RepeatableAttribute.Type = types.StringNull()
-			}
-			attributes1.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.ValueFormatter)
-		}
-		if attributesItem.SelectAttribute != nil {
-			attributes1.SelectAttribute = &SelectAttribute{}
-			attributes1.SelectAttribute.Purpose = nil
-			for _, v := range attributesItem.SelectAttribute.Purpose {
-				attributes1.SelectAttribute.Purpose = append(attributes1.SelectAttribute.Purpose, types.StringValue(v))
-			}
-			attributes1.SelectAttribute.AllowAny = types.BoolPointerValue(attributesItem.SelectAttribute.AllowAny)
-			if attributesItem.SelectAttribute.Constraints == nil {
-				attributes1.SelectAttribute.Constraints = nil
-			} else {
-				attributes1.SelectAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.SelectAttribute.DefaultValue == nil {
-				attributes1.SelectAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult22, _ := json.Marshal(attributesItem.SelectAttribute.DefaultValue)
-				attributes1.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
-			}
-			attributes1.SelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.SelectAttribute.Deprecated)
-			attributes1.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SelectAttribute.EntityBuilderDisableEdit)
-			attributes1.SelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SelectAttribute.FeatureFlag)
-			attributes1.SelectAttribute.Group = types.StringPointerValue(attributesItem.SelectAttribute.Group)
-			attributes1.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem.SelectAttribute.Hidden)
-			attributes1.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.SelectAttribute.HideLabel)
-			attributes1.SelectAttribute.Icon = types.StringPointerValue(attributesItem.SelectAttribute.Icon)
-			if attributesItem.SelectAttribute.InfoHelpers == nil {
-				attributes1.SelectAttribute.InfoHelpers = nil
-			} else {
-				attributes1.SelectAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintText)
-				attributes1.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintTextKey)
-				attributes1.SelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.SelectAttribute.Label = types.StringValue(attributesItem.SelectAttribute.Label)
-			attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
-			attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
-			for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-				var options3 Options
-				if optionsItem1.Str != nil {
-					options3.Str = types.StringPointerValue(optionsItem1.Str)
-				}
-				if optionsItem1.One != nil {
-					options3.One = &Two{}
-					options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
-					options3.One.Value = types.StringValue(optionsItem1.One.Value)
-				}
-				if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
-					attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)
-				} else {
-				}
-			}
-			attributes1.SelectAttribute.Order = types.Int64PointerValue(attributesItem.SelectAttribute.Order)
-			attributes1.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem.SelectAttribute.Placeholder)
-			attributes1.SelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.SelectAttribute.PreviewValueFormatter)
-			attributes1.SelectAttribute.Protected = types.BoolPointerValue(attributesItem.SelectAttribute.Protected)
-			attributes1.SelectAttribute.Readonly = types.BoolPointerValue(attributesItem.SelectAttribute.Readonly)
-			attributes1.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.SelectAttribute.RenderCondition)
-			attributes1.SelectAttribute.Required = types.BoolPointerValue(attributesItem.SelectAttribute.Required)
-			for settingsFlagCount23, settingsFlagItem23 := range attributesItem.SelectAttribute.SettingsFlag {
-				var settingsFlag47 SettingFlag
-				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
-				if settingsFlagCount23+1 > len(attributes1.SelectAttribute.SettingsFlag) {
-					attributes1.SelectAttribute.SettingsFlag = append(attributes1.SelectAttribute.SettingsFlag, settingsFlag47)
-				} else {
-					attributes1.SelectAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-					attributes1.SelectAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
-				}
-			}
-			attributes1.SelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SelectAttribute.ShowInTable)
-			attributes1.SelectAttribute.Sortable = types.BoolPointerValue(attributesItem.SelectAttribute.Sortable)
-			if attributesItem.SelectAttribute.Type != nil {
-				attributes1.SelectAttribute.Type = types.StringValue(string(*attributesItem.SelectAttribute.Type))
-			} else {
-				attributes1.SelectAttribute.Type = types.StringNull()
-			}
-			attributes1.SelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem.SelectAttribute.ValueFormatter)
-		}
-		if attributesItem.SequenceAttribute != nil {
-			attributes1.SequenceAttribute = &SequenceAttribute{}
-			attributes1.SequenceAttribute.Purpose = nil
-			for _, v := range attributesItem.SequenceAttribute.Purpose {
-				attributes1.SequenceAttribute.Purpose = append(attributes1.SequenceAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.SequenceAttribute.Constraints == nil {
-				attributes1.SequenceAttribute.Constraints = nil
-			} else {
-				attributes1.SequenceAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.SequenceAttribute.DefaultValue == nil {
-				attributes1.SequenceAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult23, _ := json.Marshal(attributesItem.SequenceAttribute.DefaultValue)
-				attributes1.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
-			}
-			attributes1.SequenceAttribute.Deprecated = types.BoolPointerValue(attributesItem.SequenceAttribute.Deprecated)
-			attributes1.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SequenceAttribute.EntityBuilderDisableEdit)
-			attributes1.SequenceAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SequenceAttribute.FeatureFlag)
-			attributes1.SequenceAttribute.Group = types.StringPointerValue(attributesItem.SequenceAttribute.Group)
-			attributes1.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem.SequenceAttribute.Hidden)
-			attributes1.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem.SequenceAttribute.HideLabel)
-			attributes1.SequenceAttribute.Icon = types.StringPointerValue(attributesItem.SequenceAttribute.Icon)
-			if attributesItem.SequenceAttribute.InfoHelpers == nil {
-				attributes1.SequenceAttribute.InfoHelpers = nil
-			} else {
-				attributes1.SequenceAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintText)
-				attributes1.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintTextKey)
-				attributes1.SequenceAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.SequenceAttribute.Label = types.StringValue(attributesItem.SequenceAttribute.Label)
-			attributes1.SequenceAttribute.Layout = types.StringPointerValue(attributesItem.SequenceAttribute.Layout)
-			attributes1.SequenceAttribute.Name = types.StringValue(attributesItem.SequenceAttribute.Name)
-			attributes1.SequenceAttribute.Order = types.Int64PointerValue(attributesItem.SequenceAttribute.Order)
-			attributes1.SequenceAttribute.Placeholder = types.StringPointerValue(attributesItem.SequenceAttribute.Placeholder)
-			attributes1.SequenceAttribute.Prefix = types.StringPointerValue(attributesItem.SequenceAttribute.Prefix)
-			attributes1.SequenceAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.SequenceAttribute.PreviewValueFormatter)
-			attributes1.SequenceAttribute.Protected = types.BoolPointerValue(attributesItem.SequenceAttribute.Protected)
-			attributes1.SequenceAttribute.Readonly = types.BoolPointerValue(attributesItem.SequenceAttribute.Readonly)
-			attributes1.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem.SequenceAttribute.RenderCondition)
-			attributes1.SequenceAttribute.Required = types.BoolPointerValue(attributesItem.SequenceAttribute.Required)
-			for settingsFlagCount24, settingsFlagItem24 := range attributesItem.SequenceAttribute.SettingsFlag {
-				var settingsFlag49 SettingFlag
-				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
-				if settingsFlagCount24+1 > len(attributes1.SequenceAttribute.SettingsFlag) {
-					attributes1.SequenceAttribute.SettingsFlag = append(attributes1.SequenceAttribute.SettingsFlag, settingsFlag49)
-				} else {
-					attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-					attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
-				}
-			}
-			attributes1.SequenceAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SequenceAttribute.ShowInTable)
-			attributes1.SequenceAttribute.Sortable = types.BoolPointerValue(attributesItem.SequenceAttribute.Sortable)
-			attributes1.SequenceAttribute.StartNumber = types.Int64PointerValue(attributesItem.SequenceAttribute.StartNumber)
-			if attributesItem.SequenceAttribute.Type != nil {
-				attributes1.SequenceAttribute.Type = types.StringValue(string(*attributesItem.SequenceAttribute.Type))
-			} else {
-				attributes1.SequenceAttribute.Type = types.StringNull()
-			}
-			attributes1.SequenceAttribute.ValueFormatter = types.StringPointerValue(attributesItem.SequenceAttribute.ValueFormatter)
-		}
-		if attributesItem.StatusAttribute != nil {
-			attributes1.StatusAttribute = &StatusAttribute{}
-			attributes1.StatusAttribute.Purpose = nil
-			for _, v := range attributesItem.StatusAttribute.Purpose {
-				attributes1.StatusAttribute.Purpose = append(attributes1.StatusAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.StatusAttribute.Constraints == nil {
-				attributes1.StatusAttribute.Constraints = nil
-			} else {
-				attributes1.StatusAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.StatusAttribute.DefaultValue == nil {
-				attributes1.StatusAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult24, _ := json.Marshal(attributesItem.StatusAttribute.DefaultValue)
-				attributes1.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
-			}
-			attributes1.StatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.StatusAttribute.Deprecated)
-			attributes1.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.StatusAttribute.EntityBuilderDisableEdit)
-			attributes1.StatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.StatusAttribute.FeatureFlag)
-			attributes1.StatusAttribute.Group = types.StringPointerValue(attributesItem.StatusAttribute.Group)
-			attributes1.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem.StatusAttribute.Hidden)
-			attributes1.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.StatusAttribute.HideLabel)
-			attributes1.StatusAttribute.Icon = types.StringPointerValue(attributesItem.StatusAttribute.Icon)
-			if attributesItem.StatusAttribute.InfoHelpers == nil {
-				attributes1.StatusAttribute.InfoHelpers = nil
-			} else {
-				attributes1.StatusAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintText)
-				attributes1.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintTextKey)
-				attributes1.StatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
-			attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
-			attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
-			for optionsCount2, optionsItem2 := range attributesItem.StatusAttribute.Options {
-				var options5 MultiSelectAttributeOptions
-				if optionsItem2.Str != nil {
-					options5.Str = types.StringPointerValue(optionsItem2.Str)
-				}
-				if optionsItem2.Options2 != nil {
-					options5.Two = &Two{}
-					options5.Two.Title = types.StringPointerValue(optionsItem2.Options2.Title)
-					options5.Two.Value = types.StringValue(optionsItem2.Options2.Value)
-				}
-				if optionsCount2+1 > len(attributes1.StatusAttribute.Options) {
-					attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options5)
-				} else {
-				}
-			}
-			attributes1.StatusAttribute.Order = types.Int64PointerValue(attributesItem.StatusAttribute.Order)
-			attributes1.StatusAttribute.Placeholder = types.StringPointerValue(attributesItem.StatusAttribute.Placeholder)
-			attributes1.StatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.StatusAttribute.PreviewValueFormatter)
-			attributes1.StatusAttribute.Protected = types.BoolPointerValue(attributesItem.StatusAttribute.Protected)
-			attributes1.StatusAttribute.Readonly = types.BoolPointerValue(attributesItem.StatusAttribute.Readonly)
-			attributes1.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.StatusAttribute.RenderCondition)
-			attributes1.StatusAttribute.Required = types.BoolPointerValue(attributesItem.StatusAttribute.Required)
-			for settingsFlagCount25, settingsFlagItem25 := range attributesItem.StatusAttribute.SettingsFlag {
-				var settingsFlag51 SettingFlag
-				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
-				if settingsFlagCount25+1 > len(attributes1.StatusAttribute.SettingsFlag) {
-					attributes1.StatusAttribute.SettingsFlag = append(attributes1.StatusAttribute.SettingsFlag, settingsFlag51)
-				} else {
-					attributes1.StatusAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-					attributes1.StatusAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
-				}
-			}
-			attributes1.StatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem.StatusAttribute.ShowInTable)
-			attributes1.StatusAttribute.Sortable = types.BoolPointerValue(attributesItem.StatusAttribute.Sortable)
-			if attributesItem.StatusAttribute.Type != nil {
-				attributes1.StatusAttribute.Type = types.StringValue(string(*attributesItem.StatusAttribute.Type))
-			} else {
-				attributes1.StatusAttribute.Type = types.StringNull()
-			}
-			attributes1.StatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem.StatusAttribute.ValueFormatter)
-		}
-		if attributesItem.TagsAttribute != nil {
-			attributes1.TagsAttribute = &TagsAttribute{}
-			attributes1.TagsAttribute.Purpose = nil
-			for _, v := range attributesItem.TagsAttribute.Purpose {
-				attributes1.TagsAttribute.Purpose = append(attributes1.TagsAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.TagsAttribute.Constraints == nil {
-				attributes1.TagsAttribute.Constraints = nil
-			} else {
-				attributes1.TagsAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.TagsAttribute.DefaultValue == nil {
-				attributes1.TagsAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult25, _ := json.Marshal(attributesItem.TagsAttribute.DefaultValue)
-				attributes1.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
-			}
-			attributes1.TagsAttribute.Deprecated = types.BoolPointerValue(attributesItem.TagsAttribute.Deprecated)
-			attributes1.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TagsAttribute.EntityBuilderDisableEdit)
-			attributes1.TagsAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TagsAttribute.FeatureFlag)
-			attributes1.TagsAttribute.Group = types.StringPointerValue(attributesItem.TagsAttribute.Group)
-			attributes1.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem.TagsAttribute.Hidden)
-			attributes1.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem.TagsAttribute.HideLabel)
-			attributes1.TagsAttribute.Icon = types.StringPointerValue(attributesItem.TagsAttribute.Icon)
-			if attributesItem.TagsAttribute.InfoHelpers == nil {
-				attributes1.TagsAttribute.InfoHelpers = nil
-			} else {
-				attributes1.TagsAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintText)
-				attributes1.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintTextKey)
-				attributes1.TagsAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.TagsAttribute.Label = types.StringValue(attributesItem.TagsAttribute.Label)
-			attributes1.TagsAttribute.Layout = types.StringPointerValue(attributesItem.TagsAttribute.Layout)
-			attributes1.TagsAttribute.Name = types.StringValue(attributesItem.TagsAttribute.Name)
-			attributes1.TagsAttribute.Options = nil
-			for _, v := range attributesItem.TagsAttribute.Options {
-				attributes1.TagsAttribute.Options = append(attributes1.TagsAttribute.Options, types.StringValue(v))
-			}
-			attributes1.TagsAttribute.Order = types.Int64PointerValue(attributesItem.TagsAttribute.Order)
-			attributes1.TagsAttribute.Placeholder = types.StringPointerValue(attributesItem.TagsAttribute.Placeholder)
-			attributes1.TagsAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.TagsAttribute.PreviewValueFormatter)
-			attributes1.TagsAttribute.Protected = types.BoolPointerValue(attributesItem.TagsAttribute.Protected)
-			attributes1.TagsAttribute.Readonly = types.BoolPointerValue(attributesItem.TagsAttribute.Readonly)
-			attributes1.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem.TagsAttribute.RenderCondition)
-			attributes1.TagsAttribute.Required = types.BoolPointerValue(attributesItem.TagsAttribute.Required)
-			for settingsFlagCount26, settingsFlagItem26 := range attributesItem.TagsAttribute.SettingsFlag {
-				var settingsFlag53 SettingFlag
-				settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-				settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-				if settingsFlagCount26+1 > len(attributes1.TagsAttribute.SettingsFlag) {
-					attributes1.TagsAttribute.SettingsFlag = append(attributes1.TagsAttribute.SettingsFlag, settingsFlag53)
-				} else {
-					attributes1.TagsAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-					attributes1.TagsAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
-				}
-			}
-			attributes1.TagsAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TagsAttribute.ShowInTable)
-			attributes1.TagsAttribute.Sortable = types.BoolPointerValue(attributesItem.TagsAttribute.Sortable)
-			attributes1.TagsAttribute.Suggestions = nil
-			for _, v := range attributesItem.TagsAttribute.Suggestions {
-				attributes1.TagsAttribute.Suggestions = append(attributes1.TagsAttribute.Suggestions, types.StringValue(v))
-			}
-			if attributesItem.TagsAttribute.Type != nil {
-				attributes1.TagsAttribute.Type = types.StringValue(string(*attributesItem.TagsAttribute.Type))
-			} else {
-				attributes1.TagsAttribute.Type = types.StringNull()
-			}
-			attributes1.TagsAttribute.ValueFormatter = types.StringPointerValue(attributesItem.TagsAttribute.ValueFormatter)
-		}
-		if attributesItem.TextAttribute != nil {
-			attributes1.TextAttribute = &TextAttribute{}
-			attributes1.TextAttribute.Purpose = nil
-			for _, v := range attributesItem.TextAttribute.Purpose {
-				attributes1.TextAttribute.Purpose = append(attributes1.TextAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.TextAttribute.Constraints == nil {
-				attributes1.TextAttribute.Constraints = nil
-			} else {
-				attributes1.TextAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.TextAttribute.DefaultValue == nil {
-				attributes1.TextAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult26, _ := json.Marshal(attributesItem.TextAttribute.DefaultValue)
-				attributes1.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
-			}
-			attributes1.TextAttribute.Deprecated = types.BoolPointerValue(attributesItem.TextAttribute.Deprecated)
-			attributes1.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TextAttribute.EntityBuilderDisableEdit)
-			attributes1.TextAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TextAttribute.FeatureFlag)
-			attributes1.TextAttribute.Group = types.StringPointerValue(attributesItem.TextAttribute.Group)
-			attributes1.TextAttribute.Hidden = types.BoolPointerValue(attributesItem.TextAttribute.Hidden)
-			attributes1.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem.TextAttribute.HideLabel)
-			attributes1.TextAttribute.Icon = types.StringPointerValue(attributesItem.TextAttribute.Icon)
-			if attributesItem.TextAttribute.InfoHelpers == nil {
-				attributes1.TextAttribute.InfoHelpers = nil
-			} else {
-				attributes1.TextAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintText)
-				attributes1.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintTextKey)
-				attributes1.TextAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.TextAttribute.Label = types.StringValue(attributesItem.TextAttribute.Label)
-			attributes1.TextAttribute.Layout = types.StringPointerValue(attributesItem.TextAttribute.Layout)
-			attributes1.TextAttribute.Multiline = types.BoolPointerValue(attributesItem.TextAttribute.Multiline)
-			attributes1.TextAttribute.Name = types.StringValue(attributesItem.TextAttribute.Name)
-			attributes1.TextAttribute.Order = types.Int64PointerValue(attributesItem.TextAttribute.Order)
-			attributes1.TextAttribute.Placeholder = types.StringPointerValue(attributesItem.TextAttribute.Placeholder)
-			attributes1.TextAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.TextAttribute.PreviewValueFormatter)
-			attributes1.TextAttribute.Protected = types.BoolPointerValue(attributesItem.TextAttribute.Protected)
-			attributes1.TextAttribute.Readonly = types.BoolPointerValue(attributesItem.TextAttribute.Readonly)
-			attributes1.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem.TextAttribute.RenderCondition)
-			attributes1.TextAttribute.Required = types.BoolPointerValue(attributesItem.TextAttribute.Required)
-			for settingsFlagCount27, settingsFlagItem27 := range attributesItem.TextAttribute.SettingsFlag {
-				var settingsFlag55 SettingFlag
-				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
-				if settingsFlagCount27+1 > len(attributes1.TextAttribute.SettingsFlag) {
-					attributes1.TextAttribute.SettingsFlag = append(attributes1.TextAttribute.SettingsFlag, settingsFlag55)
-				} else {
-					attributes1.TextAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-					attributes1.TextAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
-				}
-			}
-			attributes1.TextAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TextAttribute.ShowInTable)
-			attributes1.TextAttribute.Sortable = types.BoolPointerValue(attributesItem.TextAttribute.Sortable)
-			if attributesItem.TextAttribute.Type != nil {
-				attributes1.TextAttribute.Type = types.StringValue(string(*attributesItem.TextAttribute.Type))
-			} else {
-				attributes1.TextAttribute.Type = types.StringNull()
-			}
-			attributes1.TextAttribute.ValueFormatter = types.StringPointerValue(attributesItem.TextAttribute.ValueFormatter)
-		}
-		if attributesItem.UserRelationAttribute != nil {
-			attributes1.UserRelationAttribute = &UserRelationAttribute{}
-			attributes1.UserRelationAttribute.Purpose = nil
-			for _, v := range attributesItem.UserRelationAttribute.Purpose {
-				attributes1.UserRelationAttribute.Purpose = append(attributes1.UserRelationAttribute.Purpose, types.StringValue(v))
-			}
-			if attributesItem.UserRelationAttribute.Constraints == nil {
-				attributes1.UserRelationAttribute.Constraints = nil
-			} else {
-				attributes1.UserRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-			}
-			if attributesItem.UserRelationAttribute.DefaultValue == nil {
-				attributes1.UserRelationAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult27, _ := json.Marshal(attributesItem.UserRelationAttribute.DefaultValue)
-				attributes1.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
-			}
-			attributes1.UserRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.UserRelationAttribute.Deprecated)
-			attributes1.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.UserRelationAttribute.EntityBuilderDisableEdit)
-			attributes1.UserRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.UserRelationAttribute.FeatureFlag)
-			attributes1.UserRelationAttribute.Group = types.StringPointerValue(attributesItem.UserRelationAttribute.Group)
-			attributes1.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.UserRelationAttribute.Hidden)
-			attributes1.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.UserRelationAttribute.HideLabel)
-			attributes1.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem.UserRelationAttribute.Icon)
-			if attributesItem.UserRelationAttribute.InfoHelpers == nil {
-				attributes1.UserRelationAttribute.InfoHelpers = nil
-			} else {
-				attributes1.UserRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-				attributes1.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintCustomComponent)
-				attributes1.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintText)
-				attributes1.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintTextKey)
-				attributes1.UserRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			attributes1.UserRelationAttribute.Label = types.StringValue(attributesItem.UserRelationAttribute.Label)
-			attributes1.UserRelationAttribute.Layout = types.StringPointerValue(attributesItem.UserRelationAttribute.Layout)
-			attributes1.UserRelationAttribute.Multiple = types.BoolPointerValue(attributesItem.UserRelationAttribute.Multiple)
-			attributes1.UserRelationAttribute.Name = types.StringValue(attributesItem.UserRelationAttribute.Name)
-			attributes1.UserRelationAttribute.Order = types.Int64PointerValue(attributesItem.UserRelationAttribute.Order)
-			attributes1.UserRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.UserRelationAttribute.Placeholder)
-			attributes1.UserRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.UserRelationAttribute.PreviewValueFormatter)
-			attributes1.UserRelationAttribute.Protected = types.BoolPointerValue(attributesItem.UserRelationAttribute.Protected)
-			attributes1.UserRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.UserRelationAttribute.Readonly)
-			attributes1.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.UserRelationAttribute.RenderCondition)
-			attributes1.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem.UserRelationAttribute.Required)
-			for settingsFlagCount28, settingsFlagItem28 := range attributesItem.UserRelationAttribute.SettingsFlag {
-				var settingsFlag57 SettingFlag
-				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
-				if settingsFlagCount28+1 > len(attributes1.UserRelationAttribute.SettingsFlag) {
-					attributes1.UserRelationAttribute.SettingsFlag = append(attributes1.UserRelationAttribute.SettingsFlag, settingsFlag57)
-				} else {
-					attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-					attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
-				}
-			}
-			attributes1.UserRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.UserRelationAttribute.ShowInTable)
-			attributes1.UserRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.UserRelationAttribute.Sortable)
-			if attributesItem.UserRelationAttribute.Type != nil {
-				attributes1.UserRelationAttribute.Type = types.StringValue(string(*attributesItem.UserRelationAttribute.Type))
-			} else {
-				attributes1.UserRelationAttribute.Type = types.StringNull()
-			}
-			attributes1.UserRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.UserRelationAttribute.ValueFormatter)
-		}
-		if attributesCount+1 > len(r.Attributes) {
-			r.Attributes = append(r.Attributes, attributes1)
-		} else {
-		}
-	}
-	r.Blueprint = types.StringPointerValue(resp.Blueprint)
-	if len(r.Capabilities) > len(resp.Capabilities) {
-		r.Capabilities = r.Capabilities[:len(resp.Capabilities)]
-	}
-	for capabilitiesCount, capabilitiesItem := range resp.Capabilities {
-		var capabilities1 EntityCapability
-		capabilities1.Purpose = nil
-		for _, v := range capabilitiesItem.Purpose {
-			capabilities1.Purpose = append(capabilities1.Purpose, types.StringValue(v))
-		}
-		for attributesCount1, attributesItem1 := range capabilitiesItem.Attributes {
-			var attributes3 Attribute
-			if attributesItem1.AddressRelationAttribute != nil {
-				attributes3.AddressRelationAttribute = &AddressRelationAttribute{}
-				attributes3.AddressRelationAttribute.Purpose = nil
-				for _, v := range attributesItem1.AddressRelationAttribute.Purpose {
-					attributes3.AddressRelationAttribute.Purpose = append(attributes3.AddressRelationAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.AddressRelationAttribute.Constraints == nil {
-					attributes3.AddressRelationAttribute.Constraints = nil
-				} else {
-					attributes3.AddressRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.AddressRelationAttribute.DefaultValue == nil {
-					attributes3.AddressRelationAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult28, _ := json.Marshal(attributesItem1.AddressRelationAttribute.DefaultValue)
-					attributes3.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
-				}
-				attributes3.AddressRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Deprecated)
-				attributes3.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.EntityBuilderDisableEdit)
-				attributes3.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.AddressRelationAttribute.FeatureFlag)
-				attributes3.AddressRelationAttribute.Group = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Group)
-				attributes3.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HasPrimary)
-				attributes3.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Hidden)
-				attributes3.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HideLabel)
-				attributes3.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Icon)
-				if attributesItem1.AddressRelationAttribute.InfoHelpers == nil {
-					attributes3.AddressRelationAttribute.InfoHelpers = nil
-				} else {
-					attributes3.AddressRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintText)
-					attributes3.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintTextKey)
-					attributes3.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.AddressRelationAttribute.Label = types.StringValue(attributesItem1.AddressRelationAttribute.Label)
-				attributes3.AddressRelationAttribute.Layout = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Layout)
-				attributes3.AddressRelationAttribute.Name = types.StringValue(attributesItem1.AddressRelationAttribute.Name)
-				attributes3.AddressRelationAttribute.Order = types.Int64PointerValue(attributesItem1.AddressRelationAttribute.Order)
-				attributes3.AddressRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Placeholder)
-				attributes3.AddressRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.AddressRelationAttribute.PreviewValueFormatter)
-				attributes3.AddressRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Protected)
-				attributes3.AddressRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Readonly)
-				attributes3.AddressRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.AddressRelationAttribute.RenderCondition)
-				attributes3.AddressRelationAttribute.Required = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Required)
-				for settingsFlagCount29, settingsFlagItem29 := range attributesItem1.AddressRelationAttribute.SettingsFlag {
-					var settingsFlag59 SettingFlag
-					settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-					settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
-					if settingsFlagCount29+1 > len(attributes3.AddressRelationAttribute.SettingsFlag) {
-						attributes3.AddressRelationAttribute.SettingsFlag = append(attributes3.AddressRelationAttribute.SettingsFlag, settingsFlag59)
-					} else {
-						attributes3.AddressRelationAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-						attributes3.AddressRelationAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
-					}
-				}
-				attributes3.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.ShowInTable)
-				attributes3.AddressRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Sortable)
-				if attributesItem1.AddressRelationAttribute.Type != nil {
-					attributes3.AddressRelationAttribute.Type = types.StringValue(string(*attributesItem1.AddressRelationAttribute.Type))
-				} else {
-					attributes3.AddressRelationAttribute.Type = types.StringNull()
-				}
-				attributes3.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.AddressRelationAttribute.ValueFormatter)
-			}
-			if attributesItem1.AutomationAttribute != nil {
-				attributes3.AutomationAttribute = &AutomationAttribute{}
-				attributes3.AutomationAttribute.Purpose = nil
-				for _, v := range attributesItem1.AutomationAttribute.Purpose {
-					attributes3.AutomationAttribute.Purpose = append(attributes3.AutomationAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.AutomationAttribute.Constraints == nil {
-					attributes3.AutomationAttribute.Constraints = nil
-				} else {
-					attributes3.AutomationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.AutomationAttribute.DefaultValue == nil {
-					attributes3.AutomationAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult29, _ := json.Marshal(attributesItem1.AutomationAttribute.DefaultValue)
-					attributes3.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
-				}
-				attributes3.AutomationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.AutomationAttribute.Deprecated)
-				attributes3.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.AutomationAttribute.EntityBuilderDisableEdit)
-				attributes3.AutomationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.AutomationAttribute.FeatureFlag)
-				attributes3.AutomationAttribute.Group = types.StringPointerValue(attributesItem1.AutomationAttribute.Group)
-				attributes3.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AutomationAttribute.Hidden)
-				attributes3.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AutomationAttribute.HideLabel)
-				attributes3.AutomationAttribute.Icon = types.StringPointerValue(attributesItem1.AutomationAttribute.Icon)
-				if attributesItem1.AutomationAttribute.InfoHelpers == nil {
-					attributes3.AutomationAttribute.InfoHelpers = nil
-				} else {
-					attributes3.AutomationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintText)
-					attributes3.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintTextKey)
-					attributes3.AutomationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.AutomationAttribute.Label = types.StringValue(attributesItem1.AutomationAttribute.Label)
-				attributes3.AutomationAttribute.Layout = types.StringPointerValue(attributesItem1.AutomationAttribute.Layout)
-				attributes3.AutomationAttribute.Name = types.StringValue(attributesItem1.AutomationAttribute.Name)
-				attributes3.AutomationAttribute.Order = types.Int64PointerValue(attributesItem1.AutomationAttribute.Order)
-				attributes3.AutomationAttribute.Placeholder = types.StringPointerValue(attributesItem1.AutomationAttribute.Placeholder)
-				attributes3.AutomationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.AutomationAttribute.PreviewValueFormatter)
-				attributes3.AutomationAttribute.Protected = types.BoolPointerValue(attributesItem1.AutomationAttribute.Protected)
-				attributes3.AutomationAttribute.Readonly = types.BoolPointerValue(attributesItem1.AutomationAttribute.Readonly)
-				attributes3.AutomationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.AutomationAttribute.RenderCondition)
-				attributes3.AutomationAttribute.Required = types.BoolPointerValue(attributesItem1.AutomationAttribute.Required)
-				for settingsFlagCount30, settingsFlagItem30 := range attributesItem1.AutomationAttribute.SettingsFlag {
-					var settingsFlag61 SettingFlag
-					settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-					settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
-					if settingsFlagCount30+1 > len(attributes3.AutomationAttribute.SettingsFlag) {
-						attributes3.AutomationAttribute.SettingsFlag = append(attributes3.AutomationAttribute.SettingsFlag, settingsFlag61)
-					} else {
-						attributes3.AutomationAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-						attributes3.AutomationAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
-					}
-				}
-				attributes3.AutomationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.AutomationAttribute.ShowInTable)
-				attributes3.AutomationAttribute.Sortable = types.BoolPointerValue(attributesItem1.AutomationAttribute.Sortable)
-				if attributesItem1.AutomationAttribute.Type != nil {
-					attributes3.AutomationAttribute.Type = types.StringValue(string(*attributesItem1.AutomationAttribute.Type))
-				} else {
-					attributes3.AutomationAttribute.Type = types.StringNull()
-				}
-				attributes3.AutomationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.AutomationAttribute.ValueFormatter)
-			}
-			if attributesItem1.BooleanAttribute != nil {
-				attributes3.BooleanAttribute = &BooleanAttribute{}
-				attributes3.BooleanAttribute.Purpose = nil
-				for _, v := range attributesItem1.BooleanAttribute.Purpose {
-					attributes3.BooleanAttribute.Purpose = append(attributes3.BooleanAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.BooleanAttribute.Constraints == nil {
-					attributes3.BooleanAttribute.Constraints = nil
-				} else {
-					attributes3.BooleanAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.BooleanAttribute.DefaultValue == nil {
-					attributes3.BooleanAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult30, _ := json.Marshal(attributesItem1.BooleanAttribute.DefaultValue)
-					attributes3.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult30))
-				}
-				attributes3.BooleanAttribute.Deprecated = types.BoolPointerValue(attributesItem1.BooleanAttribute.Deprecated)
-				attributes3.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.BooleanAttribute.EntityBuilderDisableEdit)
-				attributes3.BooleanAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.BooleanAttribute.FeatureFlag)
-				attributes3.BooleanAttribute.Group = types.StringPointerValue(attributesItem1.BooleanAttribute.Group)
-				attributes3.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem1.BooleanAttribute.Hidden)
-				attributes3.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem1.BooleanAttribute.HideLabel)
-				attributes3.BooleanAttribute.Icon = types.StringPointerValue(attributesItem1.BooleanAttribute.Icon)
-				if attributesItem1.BooleanAttribute.InfoHelpers == nil {
-					attributes3.BooleanAttribute.InfoHelpers = nil
-				} else {
-					attributes3.BooleanAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintText)
-					attributes3.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintTextKey)
-					attributes3.BooleanAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.BooleanAttribute.Label = types.StringValue(attributesItem1.BooleanAttribute.Label)
-				attributes3.BooleanAttribute.Layout = types.StringPointerValue(attributesItem1.BooleanAttribute.Layout)
-				attributes3.BooleanAttribute.Name = types.StringValue(attributesItem1.BooleanAttribute.Name)
-				attributes3.BooleanAttribute.Order = types.Int64PointerValue(attributesItem1.BooleanAttribute.Order)
-				attributes3.BooleanAttribute.Placeholder = types.StringPointerValue(attributesItem1.BooleanAttribute.Placeholder)
-				attributes3.BooleanAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.BooleanAttribute.PreviewValueFormatter)
-				attributes3.BooleanAttribute.Protected = types.BoolPointerValue(attributesItem1.BooleanAttribute.Protected)
-				attributes3.BooleanAttribute.Readonly = types.BoolPointerValue(attributesItem1.BooleanAttribute.Readonly)
-				attributes3.BooleanAttribute.RenderCondition = types.StringPointerValue(attributesItem1.BooleanAttribute.RenderCondition)
-				attributes3.BooleanAttribute.Required = types.BoolPointerValue(attributesItem1.BooleanAttribute.Required)
-				for settingsFlagCount31, settingsFlagItem31 := range attributesItem1.BooleanAttribute.SettingsFlag {
-					var settingsFlag63 SettingFlag
-					settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
-					settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
-					if settingsFlagCount31+1 > len(attributes3.BooleanAttribute.SettingsFlag) {
-						attributes3.BooleanAttribute.SettingsFlag = append(attributes3.BooleanAttribute.SettingsFlag, settingsFlag63)
-					} else {
-						attributes3.BooleanAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
-						attributes3.BooleanAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
-					}
-				}
-				attributes3.BooleanAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.BooleanAttribute.ShowInTable)
-				attributes3.BooleanAttribute.Sortable = types.BoolPointerValue(attributesItem1.BooleanAttribute.Sortable)
-				if attributesItem1.BooleanAttribute.Type != nil {
-					attributes3.BooleanAttribute.Type = types.StringValue(string(*attributesItem1.BooleanAttribute.Type))
-				} else {
-					attributes3.BooleanAttribute.Type = types.StringNull()
-				}
-				attributes3.BooleanAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.BooleanAttribute.ValueFormatter)
-			}
-			if attributesItem1.ComputedAttribute != nil {
-				attributes3.ComputedAttribute = &ComputedAttribute{}
-				attributes3.ComputedAttribute.Purpose = nil
-				for _, v := range attributesItem1.ComputedAttribute.Purpose {
-					attributes3.ComputedAttribute.Purpose = append(attributes3.ComputedAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.ComputedAttribute.Constraints == nil {
-					attributes3.ComputedAttribute.Constraints = nil
-				} else {
-					attributes3.ComputedAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.ComputedAttribute.DefaultValue == nil {
-					attributes3.ComputedAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult31, _ := json.Marshal(attributesItem1.ComputedAttribute.DefaultValue)
-					attributes3.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult31))
-				}
-				attributes3.ComputedAttribute.Deprecated = types.BoolPointerValue(attributesItem1.ComputedAttribute.Deprecated)
-				attributes3.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.ComputedAttribute.EntityBuilderDisableEdit)
-				attributes3.ComputedAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.ComputedAttribute.FeatureFlag)
-				attributes3.ComputedAttribute.Group = types.StringPointerValue(attributesItem1.ComputedAttribute.Group)
-				attributes3.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem1.ComputedAttribute.Hidden)
-				attributes3.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ComputedAttribute.HideLabel)
-				attributes3.ComputedAttribute.Icon = types.StringPointerValue(attributesItem1.ComputedAttribute.Icon)
-				if attributesItem1.ComputedAttribute.InfoHelpers == nil {
-					attributes3.ComputedAttribute.InfoHelpers = nil
-				} else {
-					attributes3.ComputedAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintText)
-					attributes3.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintTextKey)
-					attributes3.ComputedAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.ComputedAttribute.Label = types.StringValue(attributesItem1.ComputedAttribute.Label)
-				attributes3.ComputedAttribute.Layout = types.StringPointerValue(attributesItem1.ComputedAttribute.Layout)
-				attributes3.ComputedAttribute.Name = types.StringValue(attributesItem1.ComputedAttribute.Name)
-				attributes3.ComputedAttribute.Order = types.Int64PointerValue(attributesItem1.ComputedAttribute.Order)
-				attributes3.ComputedAttribute.Placeholder = types.StringPointerValue(attributesItem1.ComputedAttribute.Placeholder)
-				attributes3.ComputedAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.ComputedAttribute.PreviewValueFormatter)
-				attributes3.ComputedAttribute.Protected = types.BoolPointerValue(attributesItem1.ComputedAttribute.Protected)
-				attributes3.ComputedAttribute.Readonly = types.BoolPointerValue(attributesItem1.ComputedAttribute.Readonly)
-				attributes3.ComputedAttribute.RenderCondition = types.StringPointerValue(attributesItem1.ComputedAttribute.RenderCondition)
-				attributes3.ComputedAttribute.Required = types.BoolPointerValue(attributesItem1.ComputedAttribute.Required)
-				for settingsFlagCount32, settingsFlagItem32 := range attributesItem1.ComputedAttribute.SettingsFlag {
-					var settingsFlag65 SettingFlag
-					settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
-					settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
-					if settingsFlagCount32+1 > len(attributes3.ComputedAttribute.SettingsFlag) {
-						attributes3.ComputedAttribute.SettingsFlag = append(attributes3.ComputedAttribute.SettingsFlag, settingsFlag65)
-					} else {
-						attributes3.ComputedAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
-						attributes3.ComputedAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
-					}
-				}
-				attributes3.ComputedAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.ComputedAttribute.ShowInTable)
-				attributes3.ComputedAttribute.Sortable = types.BoolPointerValue(attributesItem1.ComputedAttribute.Sortable)
-				if attributesItem1.ComputedAttribute.Type != nil {
-					attributes3.ComputedAttribute.Type = types.StringValue(string(*attributesItem1.ComputedAttribute.Type))
-				} else {
-					attributes3.ComputedAttribute.Type = types.StringNull()
-				}
-				attributes3.ComputedAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.ComputedAttribute.ValueFormatter)
-			}
-			if attributesItem1.ConsentAttribute != nil {
-				attributes3.ConsentAttribute = &ConsentAttribute{}
-				attributes3.ConsentAttribute.Purpose = nil
-				for _, v := range attributesItem1.ConsentAttribute.Purpose {
-					attributes3.ConsentAttribute.Purpose = append(attributes3.ConsentAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.ConsentAttribute.Constraints == nil {
-					attributes3.ConsentAttribute.Constraints = nil
-				} else {
-					attributes3.ConsentAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.ConsentAttribute.DefaultValue == nil {
-					attributes3.ConsentAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult32, _ := json.Marshal(attributesItem1.ConsentAttribute.DefaultValue)
-					attributes3.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult32))
-				}
-				attributes3.ConsentAttribute.Deprecated = types.BoolPointerValue(attributesItem1.ConsentAttribute.Deprecated)
-				attributes3.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.ConsentAttribute.EntityBuilderDisableEdit)
-				attributes3.ConsentAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.ConsentAttribute.FeatureFlag)
-				attributes3.ConsentAttribute.Group = types.StringPointerValue(attributesItem1.ConsentAttribute.Group)
-				attributes3.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem1.ConsentAttribute.Hidden)
-				attributes3.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ConsentAttribute.HideLabel)
-				attributes3.ConsentAttribute.Icon = types.StringPointerValue(attributesItem1.ConsentAttribute.Icon)
-				attributes3.ConsentAttribute.Identifiers = nil
-				for _, v := range attributesItem1.ConsentAttribute.Identifiers {
-					attributes3.ConsentAttribute.Identifiers = append(attributes3.ConsentAttribute.Identifiers, types.StringValue(v))
-				}
-				if attributesItem1.ConsentAttribute.InfoHelpers == nil {
-					attributes3.ConsentAttribute.InfoHelpers = nil
-				} else {
-					attributes3.ConsentAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintText)
-					attributes3.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintTextKey)
-					attributes3.ConsentAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.ConsentAttribute.Label = types.StringValue(attributesItem1.ConsentAttribute.Label)
-				attributes3.ConsentAttribute.Layout = types.StringPointerValue(attributesItem1.ConsentAttribute.Layout)
-				attributes3.ConsentAttribute.Name = types.StringValue(attributesItem1.ConsentAttribute.Name)
-				attributes3.ConsentAttribute.Order = types.Int64PointerValue(attributesItem1.ConsentAttribute.Order)
-				attributes3.ConsentAttribute.Placeholder = types.StringPointerValue(attributesItem1.ConsentAttribute.Placeholder)
-				attributes3.ConsentAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.ConsentAttribute.PreviewValueFormatter)
-				attributes3.ConsentAttribute.Protected = types.BoolPointerValue(attributesItem1.ConsentAttribute.Protected)
-				attributes3.ConsentAttribute.Readonly = types.BoolPointerValue(attributesItem1.ConsentAttribute.Readonly)
-				attributes3.ConsentAttribute.RenderCondition = types.StringPointerValue(attributesItem1.ConsentAttribute.RenderCondition)
-				attributes3.ConsentAttribute.Required = types.BoolPointerValue(attributesItem1.ConsentAttribute.Required)
-				for settingsFlagCount33, settingsFlagItem33 := range attributesItem1.ConsentAttribute.SettingsFlag {
-					var settingsFlag67 SettingFlag
-					settingsFlag67.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
-					settingsFlag67.Name = types.StringPointerValue(settingsFlagItem33.Name)
-					if settingsFlagCount33+1 > len(attributes3.ConsentAttribute.SettingsFlag) {
-						attributes3.ConsentAttribute.SettingsFlag = append(attributes3.ConsentAttribute.SettingsFlag, settingsFlag67)
-					} else {
-						attributes3.ConsentAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag67.Enabled
-						attributes3.ConsentAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag67.Name
-					}
-				}
-				attributes3.ConsentAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.ConsentAttribute.ShowInTable)
-				attributes3.ConsentAttribute.Sortable = types.BoolPointerValue(attributesItem1.ConsentAttribute.Sortable)
-				attributes3.ConsentAttribute.Topic = types.StringValue(attributesItem1.ConsentAttribute.Topic)
-				attributes3.ConsentAttribute.Type = types.StringValue(string(attributesItem1.ConsentAttribute.Type))
-				attributes3.ConsentAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.ConsentAttribute.ValueFormatter)
-			}
-			if attributesItem1.CountryAttribute != nil {
-				attributes3.CountryAttribute = &CountryAttribute{}
-				attributes3.CountryAttribute.Purpose = nil
-				for _, v := range attributesItem1.CountryAttribute.Purpose {
-					attributes3.CountryAttribute.Purpose = append(attributes3.CountryAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.CountryAttribute.Constraints == nil {
-					attributes3.CountryAttribute.Constraints = nil
-				} else {
-					attributes3.CountryAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.CountryAttribute.DefaultValue == nil {
-					attributes3.CountryAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult33, _ := json.Marshal(attributesItem1.CountryAttribute.DefaultValue)
-					attributes3.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult33))
-				}
-				attributes3.CountryAttribute.Deprecated = types.BoolPointerValue(attributesItem1.CountryAttribute.Deprecated)
-				attributes3.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.CountryAttribute.EntityBuilderDisableEdit)
-				attributes3.CountryAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.CountryAttribute.FeatureFlag)
-				attributes3.CountryAttribute.Group = types.StringPointerValue(attributesItem1.CountryAttribute.Group)
-				attributes3.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem1.CountryAttribute.Hidden)
-				attributes3.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CountryAttribute.HideLabel)
-				attributes3.CountryAttribute.Icon = types.StringPointerValue(attributesItem1.CountryAttribute.Icon)
-				if attributesItem1.CountryAttribute.InfoHelpers == nil {
-					attributes3.CountryAttribute.InfoHelpers = nil
-				} else {
-					attributes3.CountryAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintText)
-					attributes3.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintTextKey)
-					attributes3.CountryAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.CountryAttribute.Label = types.StringValue(attributesItem1.CountryAttribute.Label)
-				attributes3.CountryAttribute.Layout = types.StringPointerValue(attributesItem1.CountryAttribute.Layout)
-				attributes3.CountryAttribute.Name = types.StringValue(attributesItem1.CountryAttribute.Name)
-				attributes3.CountryAttribute.Order = types.Int64PointerValue(attributesItem1.CountryAttribute.Order)
-				attributes3.CountryAttribute.Placeholder = types.StringPointerValue(attributesItem1.CountryAttribute.Placeholder)
-				attributes3.CountryAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.CountryAttribute.PreviewValueFormatter)
-				attributes3.CountryAttribute.Protected = types.BoolPointerValue(attributesItem1.CountryAttribute.Protected)
-				attributes3.CountryAttribute.Readonly = types.BoolPointerValue(attributesItem1.CountryAttribute.Readonly)
-				attributes3.CountryAttribute.RenderCondition = types.StringPointerValue(attributesItem1.CountryAttribute.RenderCondition)
-				attributes3.CountryAttribute.Required = types.BoolPointerValue(attributesItem1.CountryAttribute.Required)
-				for settingsFlagCount34, settingsFlagItem34 := range attributesItem1.CountryAttribute.SettingsFlag {
-					var settingsFlag69 SettingFlag
-					settingsFlag69.Enabled = types.BoolPointerValue(settingsFlagItem34.Enabled)
-					settingsFlag69.Name = types.StringPointerValue(settingsFlagItem34.Name)
-					if settingsFlagCount34+1 > len(attributes3.CountryAttribute.SettingsFlag) {
-						attributes3.CountryAttribute.SettingsFlag = append(attributes3.CountryAttribute.SettingsFlag, settingsFlag69)
-					} else {
-						attributes3.CountryAttribute.SettingsFlag[settingsFlagCount34].Enabled = settingsFlag69.Enabled
-						attributes3.CountryAttribute.SettingsFlag[settingsFlagCount34].Name = settingsFlag69.Name
-					}
-				}
-				attributes3.CountryAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.CountryAttribute.ShowInTable)
-				attributes3.CountryAttribute.Sortable = types.BoolPointerValue(attributesItem1.CountryAttribute.Sortable)
-				if attributesItem1.CountryAttribute.Type != nil {
-					attributes3.CountryAttribute.Type = types.StringValue(string(*attributesItem1.CountryAttribute.Type))
-				} else {
-					attributes3.CountryAttribute.Type = types.StringNull()
-				}
-				attributes3.CountryAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.CountryAttribute.ValueFormatter)
-			}
-			if attributesItem1.CurrencyAttribute != nil {
-				attributes3.CurrencyAttribute = &CurrencyAttribute{}
-				attributes3.CurrencyAttribute.Purpose = nil
-				for _, v := range attributesItem1.CurrencyAttribute.Purpose {
-					attributes3.CurrencyAttribute.Purpose = append(attributes3.CurrencyAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.CurrencyAttribute.Constraints == nil {
-					attributes3.CurrencyAttribute.Constraints = nil
-				} else {
-					attributes3.CurrencyAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				for currencyCount1, currencyItem1 := range attributesItem1.CurrencyAttribute.Currency {
-					var currency3 Currency
-					if currencyItem1.Currency1 != nil {
-						currency3.One = &Currency1{}
-						currency3.One.Code = types.StringValue(currencyItem1.Currency1.Code)
-						currency3.One.Description = types.StringValue(currencyItem1.Currency1.Description)
-						currency3.One.Flag = types.StringPointerValue(currencyItem1.Currency1.Flag)
-						currency3.One.Symbol = types.StringValue(currencyItem1.Currency1.Symbol)
-					}
-					if currencyCount1+1 > len(attributes3.CurrencyAttribute.Currency) {
-						attributes3.CurrencyAttribute.Currency = append(attributes3.CurrencyAttribute.Currency, currency3)
-					} else {
-					}
-				}
-				attributes3.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(attributesItem1.CurrencyAttribute.CurrencySelectorOnly)
-				if attributesItem1.CurrencyAttribute.DefaultValue == nil {
-					attributes3.CurrencyAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult34, _ := json.Marshal(attributesItem1.CurrencyAttribute.DefaultValue)
-					attributes3.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult34))
-				}
-				attributes3.CurrencyAttribute.Deprecated = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Deprecated)
-				attributes3.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.CurrencyAttribute.EntityBuilderDisableEdit)
-				attributes3.CurrencyAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.CurrencyAttribute.FeatureFlag)
-				attributes3.CurrencyAttribute.Group = types.StringPointerValue(attributesItem1.CurrencyAttribute.Group)
-				attributes3.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Hidden)
-				attributes3.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CurrencyAttribute.HideLabel)
-				attributes3.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem1.CurrencyAttribute.Icon)
-				if attributesItem1.CurrencyAttribute.InfoHelpers == nil {
-					attributes3.CurrencyAttribute.InfoHelpers = nil
-				} else {
-					attributes3.CurrencyAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintText)
-					attributes3.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintTextKey)
-					attributes3.CurrencyAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.CurrencyAttribute.Label = types.StringValue(attributesItem1.CurrencyAttribute.Label)
-				attributes3.CurrencyAttribute.Layout = types.StringPointerValue(attributesItem1.CurrencyAttribute.Layout)
-				attributes3.CurrencyAttribute.Name = types.StringValue(attributesItem1.CurrencyAttribute.Name)
-				attributes3.CurrencyAttribute.Order = types.Int64PointerValue(attributesItem1.CurrencyAttribute.Order)
-				attributes3.CurrencyAttribute.Placeholder = types.StringPointerValue(attributesItem1.CurrencyAttribute.Placeholder)
-				attributes3.CurrencyAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.CurrencyAttribute.PreviewValueFormatter)
-				attributes3.CurrencyAttribute.Protected = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Protected)
-				attributes3.CurrencyAttribute.Readonly = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Readonly)
-				attributes3.CurrencyAttribute.RenderCondition = types.StringPointerValue(attributesItem1.CurrencyAttribute.RenderCondition)
-				attributes3.CurrencyAttribute.Required = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Required)
-				for settingsFlagCount35, settingsFlagItem35 := range attributesItem1.CurrencyAttribute.SettingsFlag {
-					var settingsFlag71 SettingFlag
-					settingsFlag71.Enabled = types.BoolPointerValue(settingsFlagItem35.Enabled)
-					settingsFlag71.Name = types.StringPointerValue(settingsFlagItem35.Name)
-					if settingsFlagCount35+1 > len(attributes3.CurrencyAttribute.SettingsFlag) {
-						attributes3.CurrencyAttribute.SettingsFlag = append(attributes3.CurrencyAttribute.SettingsFlag, settingsFlag71)
-					} else {
-						attributes3.CurrencyAttribute.SettingsFlag[settingsFlagCount35].Enabled = settingsFlag71.Enabled
-						attributes3.CurrencyAttribute.SettingsFlag[settingsFlagCount35].Name = settingsFlag71.Name
-					}
-				}
-				attributes3.CurrencyAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.CurrencyAttribute.ShowInTable)
-				attributes3.CurrencyAttribute.Sortable = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Sortable)
-				attributes3.CurrencyAttribute.Type = types.StringValue(string(attributesItem1.CurrencyAttribute.Type))
-				attributes3.CurrencyAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.CurrencyAttribute.ValueFormatter)
-			}
-			if attributesItem1.DateAttribute != nil {
-				attributes3.DateAttribute = &DateAttribute{}
-				attributes3.DateAttribute.Purpose = nil
-				for _, v := range attributesItem1.DateAttribute.Purpose {
-					attributes3.DateAttribute.Purpose = append(attributes3.DateAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.DateAttribute.Constraints == nil {
-					attributes3.DateAttribute.Constraints = nil
-				} else {
-					attributes3.DateAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.DateAttribute.DefaultValue == nil {
-					attributes3.DateAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult35, _ := json.Marshal(attributesItem1.DateAttribute.DefaultValue)
-					attributes3.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult35))
-				}
-				attributes3.DateAttribute.Deprecated = types.BoolPointerValue(attributesItem1.DateAttribute.Deprecated)
-				attributes3.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.DateAttribute.EntityBuilderDisableEdit)
-				attributes3.DateAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.DateAttribute.FeatureFlag)
-				attributes3.DateAttribute.Group = types.StringPointerValue(attributesItem1.DateAttribute.Group)
-				attributes3.DateAttribute.Hidden = types.BoolPointerValue(attributesItem1.DateAttribute.Hidden)
-				attributes3.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem1.DateAttribute.HideLabel)
-				attributes3.DateAttribute.Icon = types.StringPointerValue(attributesItem1.DateAttribute.Icon)
-				if attributesItem1.DateAttribute.InfoHelpers == nil {
-					attributes3.DateAttribute.InfoHelpers = nil
-				} else {
-					attributes3.DateAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintText)
-					attributes3.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintTextKey)
-					attributes3.DateAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.DateAttribute.Label = types.StringValue(attributesItem1.DateAttribute.Label)
-				attributes3.DateAttribute.Layout = types.StringPointerValue(attributesItem1.DateAttribute.Layout)
-				attributes3.DateAttribute.Name = types.StringValue(attributesItem1.DateAttribute.Name)
-				attributes3.DateAttribute.Order = types.Int64PointerValue(attributesItem1.DateAttribute.Order)
-				attributes3.DateAttribute.Placeholder = types.StringPointerValue(attributesItem1.DateAttribute.Placeholder)
-				attributes3.DateAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.DateAttribute.PreviewValueFormatter)
-				attributes3.DateAttribute.Protected = types.BoolPointerValue(attributesItem1.DateAttribute.Protected)
-				attributes3.DateAttribute.Readonly = types.BoolPointerValue(attributesItem1.DateAttribute.Readonly)
-				attributes3.DateAttribute.RenderCondition = types.StringPointerValue(attributesItem1.DateAttribute.RenderCondition)
-				attributes3.DateAttribute.Required = types.BoolPointerValue(attributesItem1.DateAttribute.Required)
-				for settingsFlagCount36, settingsFlagItem36 := range attributesItem1.DateAttribute.SettingsFlag {
-					var settingsFlag73 SettingFlag
-					settingsFlag73.Enabled = types.BoolPointerValue(settingsFlagItem36.Enabled)
-					settingsFlag73.Name = types.StringPointerValue(settingsFlagItem36.Name)
-					if settingsFlagCount36+1 > len(attributes3.DateAttribute.SettingsFlag) {
-						attributes3.DateAttribute.SettingsFlag = append(attributes3.DateAttribute.SettingsFlag, settingsFlag73)
-					} else {
-						attributes3.DateAttribute.SettingsFlag[settingsFlagCount36].Enabled = settingsFlag73.Enabled
-						attributes3.DateAttribute.SettingsFlag[settingsFlagCount36].Name = settingsFlag73.Name
-					}
-				}
-				attributes3.DateAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.DateAttribute.ShowInTable)
-				attributes3.DateAttribute.Sortable = types.BoolPointerValue(attributesItem1.DateAttribute.Sortable)
-				if attributesItem1.DateAttribute.Type != nil {
-					attributes3.DateAttribute.Type = types.StringValue(string(*attributesItem1.DateAttribute.Type))
-				} else {
-					attributes3.DateAttribute.Type = types.StringNull()
-				}
-				attributes3.DateAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.DateAttribute.ValueFormatter)
-			}
-			if attributesItem1.FileAttribute != nil {
-				attributes3.FileAttribute = &FileAttribute{}
-				attributes3.FileAttribute.Purpose = nil
-				for _, v := range attributesItem1.FileAttribute.Purpose {
-					attributes3.FileAttribute.Purpose = append(attributes3.FileAttribute.Purpose, types.StringValue(v))
-				}
-				attributes3.FileAttribute.AllowedExtensions = nil
-				for _, v := range attributesItem1.FileAttribute.AllowedExtensions {
-					attributes3.FileAttribute.AllowedExtensions = append(attributes3.FileAttribute.AllowedExtensions, types.StringValue(v))
-				}
-				if attributesItem1.FileAttribute.Constraints == nil {
-					attributes3.FileAttribute.Constraints = nil
-				} else {
-					attributes3.FileAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.FileAttribute.DefaultAccessControl != nil {
-					attributes3.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem1.FileAttribute.DefaultAccessControl))
-				} else {
-					attributes3.FileAttribute.DefaultAccessControl = types.StringNull()
-				}
-				if attributesItem1.FileAttribute.DefaultValue == nil {
-					attributes3.FileAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult36, _ := json.Marshal(attributesItem1.FileAttribute.DefaultValue)
-					attributes3.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult36))
-				}
-				attributes3.FileAttribute.Deprecated = types.BoolPointerValue(attributesItem1.FileAttribute.Deprecated)
-				attributes3.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(attributesItem1.FileAttribute.DisplayImagesLandscaped)
-				attributes3.FileAttribute.EnableDescription = types.BoolPointerValue(attributesItem1.FileAttribute.EnableDescription)
-				attributes3.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.FileAttribute.EntityBuilderDisableEdit)
-				attributes3.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.FileAttribute.FeatureFlag)
-				attributes3.FileAttribute.Group = types.StringPointerValue(attributesItem1.FileAttribute.Group)
-				attributes3.FileAttribute.Hidden = types.BoolPointerValue(attributesItem1.FileAttribute.Hidden)
-				attributes3.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem1.FileAttribute.HideLabel)
-				attributes3.FileAttribute.Icon = types.StringPointerValue(attributesItem1.FileAttribute.Icon)
-				if attributesItem1.FileAttribute.InfoHelpers == nil {
-					attributes3.FileAttribute.InfoHelpers = nil
-				} else {
-					attributes3.FileAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintText)
-					attributes3.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintTextKey)
-					attributes3.FileAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.FileAttribute.Label = types.StringValue(attributesItem1.FileAttribute.Label)
-				attributes3.FileAttribute.Layout = types.StringPointerValue(attributesItem1.FileAttribute.Layout)
-				attributes3.FileAttribute.Multiple = types.BoolPointerValue(attributesItem1.FileAttribute.Multiple)
-				attributes3.FileAttribute.Name = types.StringValue(attributesItem1.FileAttribute.Name)
-				attributes3.FileAttribute.Order = types.Int64PointerValue(attributesItem1.FileAttribute.Order)
-				attributes3.FileAttribute.Placeholder = types.StringPointerValue(attributesItem1.FileAttribute.Placeholder)
-				attributes3.FileAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.FileAttribute.PreviewValueFormatter)
-				attributes3.FileAttribute.Protected = types.BoolPointerValue(attributesItem1.FileAttribute.Protected)
-				attributes3.FileAttribute.Readonly = types.BoolPointerValue(attributesItem1.FileAttribute.Readonly)
-				attributes3.FileAttribute.RenderCondition = types.StringPointerValue(attributesItem1.FileAttribute.RenderCondition)
-				attributes3.FileAttribute.Required = types.BoolPointerValue(attributesItem1.FileAttribute.Required)
-				for settingsFlagCount37, settingsFlagItem37 := range attributesItem1.FileAttribute.SettingsFlag {
-					var settingsFlag75 SettingFlag
-					settingsFlag75.Enabled = types.BoolPointerValue(settingsFlagItem37.Enabled)
-					settingsFlag75.Name = types.StringPointerValue(settingsFlagItem37.Name)
-					if settingsFlagCount37+1 > len(attributes3.FileAttribute.SettingsFlag) {
-						attributes3.FileAttribute.SettingsFlag = append(attributes3.FileAttribute.SettingsFlag, settingsFlag75)
-					} else {
-						attributes3.FileAttribute.SettingsFlag[settingsFlagCount37].Enabled = settingsFlag75.Enabled
-						attributes3.FileAttribute.SettingsFlag[settingsFlagCount37].Name = settingsFlag75.Name
-					}
-				}
-				attributes3.FileAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.FileAttribute.ShowInTable)
-				attributes3.FileAttribute.Sortable = types.BoolPointerValue(attributesItem1.FileAttribute.Sortable)
-				attributes3.FileAttribute.Type = types.StringValue(string(attributesItem1.FileAttribute.Type))
-				attributes3.FileAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.FileAttribute.ValueFormatter)
-			}
-			if attributesItem1.InternalAttribute != nil {
-				attributes3.InternalAttribute = &InternalAttribute{}
-				attributes3.InternalAttribute.Purpose = nil
-				for _, v := range attributesItem1.InternalAttribute.Purpose {
-					attributes3.InternalAttribute.Purpose = append(attributes3.InternalAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.InternalAttribute.Constraints == nil {
-					attributes3.InternalAttribute.Constraints = nil
-				} else {
-					attributes3.InternalAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.InternalAttribute.DefaultValue == nil {
-					attributes3.InternalAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult37, _ := json.Marshal(attributesItem1.InternalAttribute.DefaultValue)
-					attributes3.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult37))
-				}
-				attributes3.InternalAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InternalAttribute.Deprecated)
-				attributes3.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InternalAttribute.EntityBuilderDisableEdit)
-				attributes3.InternalAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InternalAttribute.FeatureFlag)
-				attributes3.InternalAttribute.Group = types.StringPointerValue(attributesItem1.InternalAttribute.Group)
-				attributes3.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalAttribute.Hidden)
-				attributes3.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalAttribute.HideLabel)
-				attributes3.InternalAttribute.Icon = types.StringPointerValue(attributesItem1.InternalAttribute.Icon)
-				if attributesItem1.InternalAttribute.InfoHelpers == nil {
-					attributes3.InternalAttribute.InfoHelpers = nil
-				} else {
-					attributes3.InternalAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintText)
-					attributes3.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintTextKey)
-					attributes3.InternalAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.InternalAttribute.Label = types.StringValue(attributesItem1.InternalAttribute.Label)
-				attributes3.InternalAttribute.Layout = types.StringPointerValue(attributesItem1.InternalAttribute.Layout)
-				attributes3.InternalAttribute.Name = types.StringValue(attributesItem1.InternalAttribute.Name)
-				attributes3.InternalAttribute.Order = types.Int64PointerValue(attributesItem1.InternalAttribute.Order)
-				attributes3.InternalAttribute.Placeholder = types.StringPointerValue(attributesItem1.InternalAttribute.Placeholder)
-				attributes3.InternalAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InternalAttribute.PreviewValueFormatter)
-				attributes3.InternalAttribute.Protected = types.BoolPointerValue(attributesItem1.InternalAttribute.Protected)
-				attributes3.InternalAttribute.Readonly = types.BoolPointerValue(attributesItem1.InternalAttribute.Readonly)
-				attributes3.InternalAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InternalAttribute.RenderCondition)
-				attributes3.InternalAttribute.Required = types.BoolPointerValue(attributesItem1.InternalAttribute.Required)
-				for settingsFlagCount38, settingsFlagItem38 := range attributesItem1.InternalAttribute.SettingsFlag {
-					var settingsFlag77 SettingFlag
-					settingsFlag77.Enabled = types.BoolPointerValue(settingsFlagItem38.Enabled)
-					settingsFlag77.Name = types.StringPointerValue(settingsFlagItem38.Name)
-					if settingsFlagCount38+1 > len(attributes3.InternalAttribute.SettingsFlag) {
-						attributes3.InternalAttribute.SettingsFlag = append(attributes3.InternalAttribute.SettingsFlag, settingsFlag77)
-					} else {
-						attributes3.InternalAttribute.SettingsFlag[settingsFlagCount38].Enabled = settingsFlag77.Enabled
-						attributes3.InternalAttribute.SettingsFlag[settingsFlagCount38].Name = settingsFlag77.Name
-					}
-				}
-				attributes3.InternalAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InternalAttribute.ShowInTable)
-				attributes3.InternalAttribute.Sortable = types.BoolPointerValue(attributesItem1.InternalAttribute.Sortable)
-				if attributesItem1.InternalAttribute.Type != nil {
-					attributes3.InternalAttribute.Type = types.StringValue(string(*attributesItem1.InternalAttribute.Type))
-				} else {
-					attributes3.InternalAttribute.Type = types.StringNull()
-				}
-				attributes3.InternalAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InternalAttribute.ValueFormatter)
-			}
-			if attributesItem1.InternalUserAttribute != nil {
-				attributes3.InternalUserAttribute = &InternalUserAttribute{}
-				attributes3.InternalUserAttribute.Purpose = nil
-				for _, v := range attributesItem1.InternalUserAttribute.Purpose {
-					attributes3.InternalUserAttribute.Purpose = append(attributes3.InternalUserAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.InternalUserAttribute.Constraints == nil {
-					attributes3.InternalUserAttribute.Constraints = nil
-				} else {
-					attributes3.InternalUserAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.InternalUserAttribute.DefaultValue == nil {
-					attributes3.InternalUserAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult38, _ := json.Marshal(attributesItem1.InternalUserAttribute.DefaultValue)
-					attributes3.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult38))
-				}
-				attributes3.InternalUserAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Deprecated)
-				attributes3.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InternalUserAttribute.EntityBuilderDisableEdit)
-				attributes3.InternalUserAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InternalUserAttribute.FeatureFlag)
-				attributes3.InternalUserAttribute.Group = types.StringPointerValue(attributesItem1.InternalUserAttribute.Group)
-				attributes3.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Hidden)
-				attributes3.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalUserAttribute.HideLabel)
-				attributes3.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem1.InternalUserAttribute.Icon)
-				if attributesItem1.InternalUserAttribute.InfoHelpers == nil {
-					attributes3.InternalUserAttribute.InfoHelpers = nil
-				} else {
-					attributes3.InternalUserAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintText)
-					attributes3.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintTextKey)
-					attributes3.InternalUserAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.InternalUserAttribute.Label = types.StringValue(attributesItem1.InternalUserAttribute.Label)
-				attributes3.InternalUserAttribute.Layout = types.StringPointerValue(attributesItem1.InternalUserAttribute.Layout)
-				attributes3.InternalUserAttribute.Name = types.StringValue(attributesItem1.InternalUserAttribute.Name)
-				attributes3.InternalUserAttribute.Order = types.Int64PointerValue(attributesItem1.InternalUserAttribute.Order)
-				attributes3.InternalUserAttribute.Placeholder = types.StringPointerValue(attributesItem1.InternalUserAttribute.Placeholder)
-				attributes3.InternalUserAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InternalUserAttribute.PreviewValueFormatter)
-				attributes3.InternalUserAttribute.Protected = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Protected)
-				attributes3.InternalUserAttribute.Readonly = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Readonly)
-				attributes3.InternalUserAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InternalUserAttribute.RenderCondition)
-				attributes3.InternalUserAttribute.Required = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Required)
-				for settingsFlagCount39, settingsFlagItem39 := range attributesItem1.InternalUserAttribute.SettingsFlag {
-					var settingsFlag79 SettingFlag
-					settingsFlag79.Enabled = types.BoolPointerValue(settingsFlagItem39.Enabled)
-					settingsFlag79.Name = types.StringPointerValue(settingsFlagItem39.Name)
-					if settingsFlagCount39+1 > len(attributes3.InternalUserAttribute.SettingsFlag) {
-						attributes3.InternalUserAttribute.SettingsFlag = append(attributes3.InternalUserAttribute.SettingsFlag, settingsFlag79)
-					} else {
-						attributes3.InternalUserAttribute.SettingsFlag[settingsFlagCount39].Enabled = settingsFlag79.Enabled
-						attributes3.InternalUserAttribute.SettingsFlag[settingsFlagCount39].Name = settingsFlag79.Name
-					}
-				}
-				attributes3.InternalUserAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InternalUserAttribute.ShowInTable)
-				attributes3.InternalUserAttribute.Sortable = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Sortable)
-				if attributesItem1.InternalUserAttribute.Type != nil {
-					attributes3.InternalUserAttribute.Type = types.StringValue(string(*attributesItem1.InternalUserAttribute.Type))
-				} else {
-					attributes3.InternalUserAttribute.Type = types.StringNull()
-				}
-				attributes3.InternalUserAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InternalUserAttribute.ValueFormatter)
-			}
-			if attributesItem1.InvitationEmailAttribute != nil {
-				attributes3.InvitationEmailAttribute = &InvitationEmailAttribute{}
-				attributes3.InvitationEmailAttribute.Purpose = nil
-				for _, v := range attributesItem1.InvitationEmailAttribute.Purpose {
-					attributes3.InvitationEmailAttribute.Purpose = append(attributes3.InvitationEmailAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.InvitationEmailAttribute.Constraints == nil {
-					attributes3.InvitationEmailAttribute.Constraints = nil
-				} else {
-					attributes3.InvitationEmailAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.InvitationEmailAttribute.DefaultValue == nil {
-					attributes3.InvitationEmailAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult39, _ := json.Marshal(attributesItem1.InvitationEmailAttribute.DefaultValue)
-					attributes3.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult39))
-				}
-				attributes3.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Deprecated)
-				attributes3.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.EntityBuilderDisableEdit)
-				attributes3.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.FeatureFlag)
-				attributes3.InvitationEmailAttribute.Group = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Group)
-				attributes3.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Hidden)
-				attributes3.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.HideLabel)
-				attributes3.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Icon)
-				if attributesItem1.InvitationEmailAttribute.InfoHelpers == nil {
-					attributes3.InvitationEmailAttribute.InfoHelpers = nil
-				} else {
-					attributes3.InvitationEmailAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintText)
-					attributes3.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintTextKey)
-					attributes3.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.InvitationEmailAttribute.Label = types.StringValue(attributesItem1.InvitationEmailAttribute.Label)
-				attributes3.InvitationEmailAttribute.Layout = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Layout)
-				attributes3.InvitationEmailAttribute.Name = types.StringValue(attributesItem1.InvitationEmailAttribute.Name)
-				attributes3.InvitationEmailAttribute.Order = types.Int64PointerValue(attributesItem1.InvitationEmailAttribute.Order)
-				attributes3.InvitationEmailAttribute.Placeholder = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Placeholder)
-				attributes3.InvitationEmailAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.PreviewValueFormatter)
-				attributes3.InvitationEmailAttribute.Protected = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Protected)
-				attributes3.InvitationEmailAttribute.Readonly = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Readonly)
-				attributes3.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.RenderCondition)
-				attributes3.InvitationEmailAttribute.Required = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Required)
-				for settingsFlagCount40, settingsFlagItem40 := range attributesItem1.InvitationEmailAttribute.SettingsFlag {
-					var settingsFlag81 SettingFlag
-					settingsFlag81.Enabled = types.BoolPointerValue(settingsFlagItem40.Enabled)
-					settingsFlag81.Name = types.StringPointerValue(settingsFlagItem40.Name)
-					if settingsFlagCount40+1 > len(attributes3.InvitationEmailAttribute.SettingsFlag) {
-						attributes3.InvitationEmailAttribute.SettingsFlag = append(attributes3.InvitationEmailAttribute.SettingsFlag, settingsFlag81)
-					} else {
-						attributes3.InvitationEmailAttribute.SettingsFlag[settingsFlagCount40].Enabled = settingsFlag81.Enabled
-						attributes3.InvitationEmailAttribute.SettingsFlag[settingsFlagCount40].Name = settingsFlag81.Name
-					}
-				}
-				attributes3.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.ShowInTable)
-				attributes3.InvitationEmailAttribute.Sortable = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Sortable)
-				if attributesItem1.InvitationEmailAttribute.Type != nil {
-					attributes3.InvitationEmailAttribute.Type = types.StringValue(string(*attributesItem1.InvitationEmailAttribute.Type))
-				} else {
-					attributes3.InvitationEmailAttribute.Type = types.StringNull()
-				}
-				attributes3.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.ValueFormatter)
-			}
-			if attributesItem1.LinkAttribute != nil {
-				attributes3.LinkAttribute = &LinkAttribute{}
-				attributes3.LinkAttribute.Purpose = nil
-				for _, v := range attributesItem1.LinkAttribute.Purpose {
-					attributes3.LinkAttribute.Purpose = append(attributes3.LinkAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.LinkAttribute.Constraints == nil {
-					attributes3.LinkAttribute.Constraints = nil
-				} else {
-					attributes3.LinkAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.LinkAttribute.DefaultValue == nil {
-					attributes3.LinkAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult40, _ := json.Marshal(attributesItem1.LinkAttribute.DefaultValue)
-					attributes3.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult40))
-				}
-				attributes3.LinkAttribute.Deprecated = types.BoolPointerValue(attributesItem1.LinkAttribute.Deprecated)
-				attributes3.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.LinkAttribute.EntityBuilderDisableEdit)
-				attributes3.LinkAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.LinkAttribute.FeatureFlag)
-				attributes3.LinkAttribute.Group = types.StringPointerValue(attributesItem1.LinkAttribute.Group)
-				attributes3.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem1.LinkAttribute.Hidden)
-				attributes3.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem1.LinkAttribute.HideLabel)
-				attributes3.LinkAttribute.Icon = types.StringPointerValue(attributesItem1.LinkAttribute.Icon)
-				if attributesItem1.LinkAttribute.InfoHelpers == nil {
-					attributes3.LinkAttribute.InfoHelpers = nil
-				} else {
-					attributes3.LinkAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintText)
-					attributes3.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintTextKey)
-					attributes3.LinkAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.LinkAttribute.Label = types.StringValue(attributesItem1.LinkAttribute.Label)
-				attributes3.LinkAttribute.Layout = types.StringPointerValue(attributesItem1.LinkAttribute.Layout)
-				attributes3.LinkAttribute.Name = types.StringValue(attributesItem1.LinkAttribute.Name)
-				attributes3.LinkAttribute.Order = types.Int64PointerValue(attributesItem1.LinkAttribute.Order)
-				attributes3.LinkAttribute.Placeholder = types.StringPointerValue(attributesItem1.LinkAttribute.Placeholder)
-				attributes3.LinkAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.LinkAttribute.PreviewValueFormatter)
-				attributes3.LinkAttribute.Protected = types.BoolPointerValue(attributesItem1.LinkAttribute.Protected)
-				attributes3.LinkAttribute.Readonly = types.BoolPointerValue(attributesItem1.LinkAttribute.Readonly)
-				attributes3.LinkAttribute.RenderCondition = types.StringPointerValue(attributesItem1.LinkAttribute.RenderCondition)
-				attributes3.LinkAttribute.Required = types.BoolPointerValue(attributesItem1.LinkAttribute.Required)
-				for settingsFlagCount41, settingsFlagItem41 := range attributesItem1.LinkAttribute.SettingsFlag {
-					var settingsFlag83 SettingFlag
-					settingsFlag83.Enabled = types.BoolPointerValue(settingsFlagItem41.Enabled)
-					settingsFlag83.Name = types.StringPointerValue(settingsFlagItem41.Name)
-					if settingsFlagCount41+1 > len(attributes3.LinkAttribute.SettingsFlag) {
-						attributes3.LinkAttribute.SettingsFlag = append(attributes3.LinkAttribute.SettingsFlag, settingsFlag83)
-					} else {
-						attributes3.LinkAttribute.SettingsFlag[settingsFlagCount41].Enabled = settingsFlag83.Enabled
-						attributes3.LinkAttribute.SettingsFlag[settingsFlagCount41].Name = settingsFlag83.Name
-					}
-				}
-				attributes3.LinkAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.LinkAttribute.ShowInTable)
-				attributes3.LinkAttribute.Sortable = types.BoolPointerValue(attributesItem1.LinkAttribute.Sortable)
-				if attributesItem1.LinkAttribute.Type != nil {
-					attributes3.LinkAttribute.Type = types.StringValue(string(*attributesItem1.LinkAttribute.Type))
-				} else {
-					attributes3.LinkAttribute.Type = types.StringNull()
-				}
-				attributes3.LinkAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.LinkAttribute.ValueFormatter)
-			}
-			if attributesItem1.MultiSelectAttribute != nil {
-				attributes3.MultiSelectAttribute = &MultiSelectAttribute{}
-				attributes3.MultiSelectAttribute.Purpose = nil
-				for _, v := range attributesItem1.MultiSelectAttribute.Purpose {
-					attributes3.MultiSelectAttribute.Purpose = append(attributes3.MultiSelectAttribute.Purpose, types.StringValue(v))
-				}
-				attributes3.MultiSelectAttribute.AllowAny = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.AllowAny)
-				attributes3.MultiSelectAttribute.AllowExtraOptions = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.AllowExtraOptions)
-				if attributesItem1.MultiSelectAttribute.Constraints == nil {
-					attributes3.MultiSelectAttribute.Constraints = nil
-				} else {
-					attributes3.MultiSelectAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.MultiSelectAttribute.DefaultValue == nil {
-					attributes3.MultiSelectAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult41, _ := json.Marshal(attributesItem1.MultiSelectAttribute.DefaultValue)
-					attributes3.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult41))
-				}
-				attributes3.MultiSelectAttribute.Deprecated = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Deprecated)
-				attributes3.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.DisableCaseSensitive)
-				attributes3.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.EntityBuilderDisableEdit)
-				attributes3.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.MultiSelectAttribute.FeatureFlag)
-				attributes3.MultiSelectAttribute.Group = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Group)
-				attributes3.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Hidden)
-				attributes3.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.HideLabel)
-				attributes3.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Icon)
-				if attributesItem1.MultiSelectAttribute.InfoHelpers == nil {
-					attributes3.MultiSelectAttribute.InfoHelpers = nil
-				} else {
-					attributes3.MultiSelectAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintText)
-					attributes3.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintTextKey)
-					attributes3.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.MultiSelectAttribute.Label = types.StringValue(attributesItem1.MultiSelectAttribute.Label)
-				attributes3.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Layout)
-				attributes3.MultiSelectAttribute.Name = types.StringValue(attributesItem1.MultiSelectAttribute.Name)
-				for optionsCount3, optionsItem3 := range attributesItem1.MultiSelectAttribute.Options {
-					var options8 MultiSelectAttributeOptions
-					if optionsItem3.Str != nil {
-						options8.Str = types.StringPointerValue(optionsItem3.Str)
-					}
-					if optionsItem3.Two != nil {
-						options8.Two = &Two{}
-						options8.Two.Title = types.StringPointerValue(optionsItem3.Two.Title)
-						options8.Two.Value = types.StringValue(optionsItem3.Two.Value)
-					}
-					if optionsCount3+1 > len(attributes3.MultiSelectAttribute.Options) {
-						attributes3.MultiSelectAttribute.Options = append(attributes3.MultiSelectAttribute.Options, options8)
-					} else {
-					}
-				}
-				attributes3.MultiSelectAttribute.Order = types.Int64PointerValue(attributesItem1.MultiSelectAttribute.Order)
-				attributes3.MultiSelectAttribute.Placeholder = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Placeholder)
-				attributes3.MultiSelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.MultiSelectAttribute.PreviewValueFormatter)
-				attributes3.MultiSelectAttribute.Protected = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Protected)
-				attributes3.MultiSelectAttribute.Readonly = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Readonly)
-				attributes3.MultiSelectAttribute.RenderCondition = types.StringPointerValue(attributesItem1.MultiSelectAttribute.RenderCondition)
-				attributes3.MultiSelectAttribute.Required = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Required)
-				for settingsFlagCount42, settingsFlagItem42 := range attributesItem1.MultiSelectAttribute.SettingsFlag {
-					var settingsFlag85 SettingFlag
-					settingsFlag85.Enabled = types.BoolPointerValue(settingsFlagItem42.Enabled)
-					settingsFlag85.Name = types.StringPointerValue(settingsFlagItem42.Name)
-					if settingsFlagCount42+1 > len(attributes3.MultiSelectAttribute.SettingsFlag) {
-						attributes3.MultiSelectAttribute.SettingsFlag = append(attributes3.MultiSelectAttribute.SettingsFlag, settingsFlag85)
-					} else {
-						attributes3.MultiSelectAttribute.SettingsFlag[settingsFlagCount42].Enabled = settingsFlag85.Enabled
-						attributes3.MultiSelectAttribute.SettingsFlag[settingsFlagCount42].Name = settingsFlag85.Name
-					}
-				}
-				attributes3.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.ShowInTable)
-				attributes3.MultiSelectAttribute.Sortable = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Sortable)
-				if attributesItem1.MultiSelectAttribute.Type != nil {
-					attributes3.MultiSelectAttribute.Type = types.StringValue(string(*attributesItem1.MultiSelectAttribute.Type))
-				} else {
-					attributes3.MultiSelectAttribute.Type = types.StringNull()
-				}
-				attributes3.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.MultiSelectAttribute.ValueFormatter)
-			}
-			if attributesItem1.NumberAttribute != nil {
-				attributes3.NumberAttribute = &NumberAttribute{}
-				attributes3.NumberAttribute.Purpose = nil
-				for _, v := range attributesItem1.NumberAttribute.Purpose {
-					attributes3.NumberAttribute.Purpose = append(attributes3.NumberAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.NumberAttribute.Constraints == nil {
-					attributes3.NumberAttribute.Constraints = nil
-				} else {
-					attributes3.NumberAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.NumberAttribute.DefaultValue == nil {
-					attributes3.NumberAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult42, _ := json.Marshal(attributesItem1.NumberAttribute.DefaultValue)
-					attributes3.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult42))
-				}
-				attributes3.NumberAttribute.Deprecated = types.BoolPointerValue(attributesItem1.NumberAttribute.Deprecated)
-				attributes3.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.NumberAttribute.EntityBuilderDisableEdit)
-				attributes3.NumberAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.NumberAttribute.FeatureFlag)
-				attributes3.NumberAttribute.Format = types.StringPointerValue(attributesItem1.NumberAttribute.Format)
-				attributes3.NumberAttribute.Group = types.StringPointerValue(attributesItem1.NumberAttribute.Group)
-				attributes3.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem1.NumberAttribute.Hidden)
-				attributes3.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem1.NumberAttribute.HideLabel)
-				attributes3.NumberAttribute.Icon = types.StringPointerValue(attributesItem1.NumberAttribute.Icon)
-				if attributesItem1.NumberAttribute.InfoHelpers == nil {
-					attributes3.NumberAttribute.InfoHelpers = nil
-				} else {
-					attributes3.NumberAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintText)
-					attributes3.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintTextKey)
-					attributes3.NumberAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.NumberAttribute.Label = types.StringValue(attributesItem1.NumberAttribute.Label)
-				attributes3.NumberAttribute.Layout = types.StringPointerValue(attributesItem1.NumberAttribute.Layout)
-				attributes3.NumberAttribute.Name = types.StringValue(attributesItem1.NumberAttribute.Name)
-				attributes3.NumberAttribute.Order = types.Int64PointerValue(attributesItem1.NumberAttribute.Order)
-				attributes3.NumberAttribute.Placeholder = types.StringPointerValue(attributesItem1.NumberAttribute.Placeholder)
-				attributes3.NumberAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.NumberAttribute.PreviewValueFormatter)
-				attributes3.NumberAttribute.Protected = types.BoolPointerValue(attributesItem1.NumberAttribute.Protected)
-				attributes3.NumberAttribute.Readonly = types.BoolPointerValue(attributesItem1.NumberAttribute.Readonly)
-				attributes3.NumberAttribute.RenderCondition = types.StringPointerValue(attributesItem1.NumberAttribute.RenderCondition)
-				attributes3.NumberAttribute.Required = types.BoolPointerValue(attributesItem1.NumberAttribute.Required)
-				for settingsFlagCount43, settingsFlagItem43 := range attributesItem1.NumberAttribute.SettingsFlag {
-					var settingsFlag87 SettingFlag
-					settingsFlag87.Enabled = types.BoolPointerValue(settingsFlagItem43.Enabled)
-					settingsFlag87.Name = types.StringPointerValue(settingsFlagItem43.Name)
-					if settingsFlagCount43+1 > len(attributes3.NumberAttribute.SettingsFlag) {
-						attributes3.NumberAttribute.SettingsFlag = append(attributes3.NumberAttribute.SettingsFlag, settingsFlag87)
-					} else {
-						attributes3.NumberAttribute.SettingsFlag[settingsFlagCount43].Enabled = settingsFlag87.Enabled
-						attributes3.NumberAttribute.SettingsFlag[settingsFlagCount43].Name = settingsFlag87.Name
-					}
-				}
-				attributes3.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowInTable)
-				attributes3.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem1.NumberAttribute.Sortable)
-				if attributesItem1.NumberAttribute.Type != nil {
-					attributes3.NumberAttribute.Type = types.StringValue(string(*attributesItem1.NumberAttribute.Type))
-				} else {
-					attributes3.NumberAttribute.Type = types.StringNull()
-				}
-				attributes3.NumberAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.NumberAttribute.ValueFormatter)
-			}
-			if attributesItem1.OrderedListAttribute != nil {
-				attributes3.OrderedListAttribute = &OrderedListAttribute{}
-				attributes3.OrderedListAttribute.Purpose = nil
-				for _, v := range attributesItem1.OrderedListAttribute.Purpose {
-					attributes3.OrderedListAttribute.Purpose = append(attributes3.OrderedListAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.OrderedListAttribute.Constraints == nil {
-					attributes3.OrderedListAttribute.Constraints = nil
-				} else {
-					attributes3.OrderedListAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.OrderedListAttribute.DefaultValue == nil {
-					attributes3.OrderedListAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult43, _ := json.Marshal(attributesItem1.OrderedListAttribute.DefaultValue)
-					attributes3.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult43))
-				}
-				attributes3.OrderedListAttribute.Deprecated = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Deprecated)
-				attributes3.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.OrderedListAttribute.EntityBuilderDisableEdit)
-				attributes3.OrderedListAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.OrderedListAttribute.FeatureFlag)
-				attributes3.OrderedListAttribute.Group = types.StringPointerValue(attributesItem1.OrderedListAttribute.Group)
-				attributes3.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Hidden)
-				attributes3.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem1.OrderedListAttribute.HideLabel)
-				attributes3.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem1.OrderedListAttribute.Icon)
-				if attributesItem1.OrderedListAttribute.InfoHelpers == nil {
-					attributes3.OrderedListAttribute.InfoHelpers = nil
-				} else {
-					attributes3.OrderedListAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintText)
-					attributes3.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintTextKey)
-					attributes3.OrderedListAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.OrderedListAttribute.Label = types.StringValue(attributesItem1.OrderedListAttribute.Label)
-				attributes3.OrderedListAttribute.Layout = types.StringPointerValue(attributesItem1.OrderedListAttribute.Layout)
-				attributes3.OrderedListAttribute.Name = types.StringValue(attributesItem1.OrderedListAttribute.Name)
-				attributes3.OrderedListAttribute.Order = types.Int64PointerValue(attributesItem1.OrderedListAttribute.Order)
-				attributes3.OrderedListAttribute.Placeholder = types.StringPointerValue(attributesItem1.OrderedListAttribute.Placeholder)
-				attributes3.OrderedListAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.OrderedListAttribute.PreviewValueFormatter)
-				attributes3.OrderedListAttribute.Protected = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Protected)
-				attributes3.OrderedListAttribute.Readonly = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Readonly)
-				attributes3.OrderedListAttribute.RenderCondition = types.StringPointerValue(attributesItem1.OrderedListAttribute.RenderCondition)
-				attributes3.OrderedListAttribute.Required = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Required)
-				for settingsFlagCount44, settingsFlagItem44 := range attributesItem1.OrderedListAttribute.SettingsFlag {
-					var settingsFlag89 SettingFlag
-					settingsFlag89.Enabled = types.BoolPointerValue(settingsFlagItem44.Enabled)
-					settingsFlag89.Name = types.StringPointerValue(settingsFlagItem44.Name)
-					if settingsFlagCount44+1 > len(attributes3.OrderedListAttribute.SettingsFlag) {
-						attributes3.OrderedListAttribute.SettingsFlag = append(attributes3.OrderedListAttribute.SettingsFlag, settingsFlag89)
-					} else {
-						attributes3.OrderedListAttribute.SettingsFlag[settingsFlagCount44].Enabled = settingsFlag89.Enabled
-						attributes3.OrderedListAttribute.SettingsFlag[settingsFlagCount44].Name = settingsFlag89.Name
-					}
-				}
-				attributes3.OrderedListAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.OrderedListAttribute.ShowInTable)
-				attributes3.OrderedListAttribute.Sortable = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Sortable)
-				if attributesItem1.OrderedListAttribute.Type != nil {
-					attributes3.OrderedListAttribute.Type = types.StringValue(string(*attributesItem1.OrderedListAttribute.Type))
-				} else {
-					attributes3.OrderedListAttribute.Type = types.StringNull()
-				}
-				attributes3.OrderedListAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.OrderedListAttribute.ValueFormatter)
-			}
-			if attributesItem1.PartnerOrganisationAttribute != nil {
-				attributes3.PartnerOrganisationAttribute = &PartnerOrganisationAttribute{}
-				attributes3.PartnerOrganisationAttribute.Purpose = nil
-				for _, v := range attributesItem1.PartnerOrganisationAttribute.Purpose {
-					attributes3.PartnerOrganisationAttribute.Purpose = append(attributes3.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.PartnerOrganisationAttribute.Constraints == nil {
-					attributes3.PartnerOrganisationAttribute.Constraints = nil
-				} else {
-					attributes3.PartnerOrganisationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.PartnerOrganisationAttribute.DefaultValue == nil {
-					attributes3.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult44, _ := json.Marshal(attributesItem1.PartnerOrganisationAttribute.DefaultValue)
-					attributes3.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult44))
-				}
-				attributes3.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Deprecated)
-				attributes3.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.EntityBuilderDisableEdit)
-				attributes3.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.FeatureFlag)
-				attributes3.PartnerOrganisationAttribute.Group = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Group)
-				attributes3.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Hidden)
-				attributes3.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.HideLabel)
-				attributes3.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Icon)
-				if attributesItem1.PartnerOrganisationAttribute.InfoHelpers == nil {
-					attributes3.PartnerOrganisationAttribute.InfoHelpers = nil
-				} else {
-					attributes3.PartnerOrganisationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintText)
-					attributes3.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintTextKey)
-					attributes3.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.PartnerOrganisationAttribute.Label = types.StringValue(attributesItem1.PartnerOrganisationAttribute.Label)
-				attributes3.PartnerOrganisationAttribute.Layout = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Layout)
-				attributes3.PartnerOrganisationAttribute.Name = types.StringValue(attributesItem1.PartnerOrganisationAttribute.Name)
-				attributes3.PartnerOrganisationAttribute.Order = types.Int64PointerValue(attributesItem1.PartnerOrganisationAttribute.Order)
-				attributes3.PartnerOrganisationAttribute.Placeholder = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Placeholder)
-				attributes3.PartnerOrganisationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.PreviewValueFormatter)
-				attributes3.PartnerOrganisationAttribute.Protected = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Protected)
-				attributes3.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Readonly)
-				attributes3.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.RenderCondition)
-				attributes3.PartnerOrganisationAttribute.Required = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Required)
-				for settingsFlagCount45, settingsFlagItem45 := range attributesItem1.PartnerOrganisationAttribute.SettingsFlag {
-					var settingsFlag91 SettingFlag
-					settingsFlag91.Enabled = types.BoolPointerValue(settingsFlagItem45.Enabled)
-					settingsFlag91.Name = types.StringPointerValue(settingsFlagItem45.Name)
-					if settingsFlagCount45+1 > len(attributes3.PartnerOrganisationAttribute.SettingsFlag) {
-						attributes3.PartnerOrganisationAttribute.SettingsFlag = append(attributes3.PartnerOrganisationAttribute.SettingsFlag, settingsFlag91)
-					} else {
-						attributes3.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount45].Enabled = settingsFlag91.Enabled
-						attributes3.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount45].Name = settingsFlag91.Name
-					}
-				}
-				attributes3.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.ShowInTable)
-				attributes3.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Sortable)
-				if attributesItem1.PartnerOrganisationAttribute.Type != nil {
-					attributes3.PartnerOrganisationAttribute.Type = types.StringValue(string(*attributesItem1.PartnerOrganisationAttribute.Type))
-				} else {
-					attributes3.PartnerOrganisationAttribute.Type = types.StringNull()
-				}
-				attributes3.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.ValueFormatter)
-			}
-			if attributesItem1.PartnerStatusAttribute != nil {
-				attributes3.PartnerStatusAttribute = &PartnerStatusAttribute{}
-				attributes3.PartnerStatusAttribute.Purpose = nil
-				for _, v := range attributesItem1.PartnerStatusAttribute.Purpose {
-					attributes3.PartnerStatusAttribute.Purpose = append(attributes3.PartnerStatusAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.PartnerStatusAttribute.Constraints == nil {
-					attributes3.PartnerStatusAttribute.Constraints = nil
-				} else {
-					attributes3.PartnerStatusAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.PartnerStatusAttribute.DefaultValue == nil {
-					attributes3.PartnerStatusAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult45, _ := json.Marshal(attributesItem1.PartnerStatusAttribute.DefaultValue)
-					attributes3.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult45))
-				}
-				attributes3.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Deprecated)
-				attributes3.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.EntityBuilderDisableEdit)
-				attributes3.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.FeatureFlag)
-				attributes3.PartnerStatusAttribute.Group = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Group)
-				attributes3.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Hidden)
-				attributes3.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.HideLabel)
-				attributes3.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Icon)
-				if attributesItem1.PartnerStatusAttribute.InfoHelpers == nil {
-					attributes3.PartnerStatusAttribute.InfoHelpers = nil
-				} else {
-					attributes3.PartnerStatusAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintText)
-					attributes3.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintTextKey)
-					attributes3.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.PartnerStatusAttribute.Label = types.StringValue(attributesItem1.PartnerStatusAttribute.Label)
-				attributes3.PartnerStatusAttribute.Layout = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Layout)
-				attributes3.PartnerStatusAttribute.Name = types.StringValue(attributesItem1.PartnerStatusAttribute.Name)
-				attributes3.PartnerStatusAttribute.Order = types.Int64PointerValue(attributesItem1.PartnerStatusAttribute.Order)
-				attributes3.PartnerStatusAttribute.Placeholder = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Placeholder)
-				attributes3.PartnerStatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.PreviewValueFormatter)
-				attributes3.PartnerStatusAttribute.Protected = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Protected)
-				attributes3.PartnerStatusAttribute.Readonly = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Readonly)
-				attributes3.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.RenderCondition)
-				attributes3.PartnerStatusAttribute.Required = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Required)
-				for settingsFlagCount46, settingsFlagItem46 := range attributesItem1.PartnerStatusAttribute.SettingsFlag {
-					var settingsFlag93 SettingFlag
-					settingsFlag93.Enabled = types.BoolPointerValue(settingsFlagItem46.Enabled)
-					settingsFlag93.Name = types.StringPointerValue(settingsFlagItem46.Name)
-					if settingsFlagCount46+1 > len(attributes3.PartnerStatusAttribute.SettingsFlag) {
-						attributes3.PartnerStatusAttribute.SettingsFlag = append(attributes3.PartnerStatusAttribute.SettingsFlag, settingsFlag93)
-					} else {
-						attributes3.PartnerStatusAttribute.SettingsFlag[settingsFlagCount46].Enabled = settingsFlag93.Enabled
-						attributes3.PartnerStatusAttribute.SettingsFlag[settingsFlagCount46].Name = settingsFlag93.Name
-					}
-				}
-				attributes3.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.ShowInTable)
-				attributes3.PartnerStatusAttribute.Sortable = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Sortable)
-				if attributesItem1.PartnerStatusAttribute.Type != nil {
-					attributes3.PartnerStatusAttribute.Type = types.StringValue(string(*attributesItem1.PartnerStatusAttribute.Type))
-				} else {
-					attributes3.PartnerStatusAttribute.Type = types.StringNull()
-				}
-				attributes3.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.ValueFormatter)
-			}
-			if attributesItem1.PaymentMethodRelationAttribute != nil {
-				attributes3.PaymentMethodRelationAttribute = &PaymentMethodRelationAttribute{}
-				attributes3.PaymentMethodRelationAttribute.Purpose = nil
-				for _, v := range attributesItem1.PaymentMethodRelationAttribute.Purpose {
-					attributes3.PaymentMethodRelationAttribute.Purpose = append(attributes3.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.PaymentMethodRelationAttribute.Constraints == nil {
-					attributes3.PaymentMethodRelationAttribute.Constraints = nil
-				} else {
-					attributes3.PaymentMethodRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.PaymentMethodRelationAttribute.DefaultValue == nil {
-					attributes3.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult46, _ := json.Marshal(attributesItem1.PaymentMethodRelationAttribute.DefaultValue)
-					attributes3.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult46))
-				}
-				attributes3.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Deprecated)
-				attributes3.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.EntityBuilderDisableEdit)
-				attributes3.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.FeatureFlag)
-				attributes3.PaymentMethodRelationAttribute.Group = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Group)
-				attributes3.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HasPrimary)
-				attributes3.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Hidden)
-				attributes3.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HideLabel)
-				attributes3.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Icon)
-				if attributesItem1.PaymentMethodRelationAttribute.InfoHelpers == nil {
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers = nil
-				} else {
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintText)
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
-					attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.PaymentMethodRelationAttribute.Label = types.StringValue(attributesItem1.PaymentMethodRelationAttribute.Label)
-				attributes3.PaymentMethodRelationAttribute.Layout = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Layout)
-				attributes3.PaymentMethodRelationAttribute.Name = types.StringValue(attributesItem1.PaymentMethodRelationAttribute.Name)
-				attributes3.PaymentMethodRelationAttribute.Order = types.Int64PointerValue(attributesItem1.PaymentMethodRelationAttribute.Order)
-				attributes3.PaymentMethodRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Placeholder)
-				attributes3.PaymentMethodRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.PreviewValueFormatter)
-				attributes3.PaymentMethodRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Protected)
-				attributes3.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Readonly)
-				attributes3.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.RenderCondition)
-				attributes3.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Required)
-				for settingsFlagCount47, settingsFlagItem47 := range attributesItem1.PaymentMethodRelationAttribute.SettingsFlag {
-					var settingsFlag95 SettingFlag
-					settingsFlag95.Enabled = types.BoolPointerValue(settingsFlagItem47.Enabled)
-					settingsFlag95.Name = types.StringPointerValue(settingsFlagItem47.Name)
-					if settingsFlagCount47+1 > len(attributes3.PaymentMethodRelationAttribute.SettingsFlag) {
-						attributes3.PaymentMethodRelationAttribute.SettingsFlag = append(attributes3.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag95)
-					} else {
-						attributes3.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount47].Enabled = settingsFlag95.Enabled
-						attributes3.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount47].Name = settingsFlag95.Name
-					}
-				}
-				attributes3.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.ShowInTable)
-				attributes3.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Sortable)
-				if attributesItem1.PaymentMethodRelationAttribute.Type != nil {
-					attributes3.PaymentMethodRelationAttribute.Type = types.StringValue(string(*attributesItem1.PaymentMethodRelationAttribute.Type))
-				} else {
-					attributes3.PaymentMethodRelationAttribute.Type = types.StringNull()
-				}
-				attributes3.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.ValueFormatter)
-			}
-			if attributesItem1.PurposeAttribute != nil {
-				attributes3.PurposeAttribute = &PurposeAttribute{}
-				attributes3.PurposeAttribute.Purpose = nil
-				for _, v := range attributesItem1.PurposeAttribute.Purpose {
-					attributes3.PurposeAttribute.Purpose = append(attributes3.PurposeAttribute.Purpose, types.StringValue(v))
-				}
-				if attributesItem1.PurposeAttribute.Constraints == nil {
-					attributes3.PurposeAttribute.Constraints = nil
-				} else {
-					attributes3.PurposeAttribute.Constraints = &AddressRelationAttributeConstraints{}
-				}
-				if attributesItem1.PurposeAttribute.CreatedAt != nil {
-					attributes3.PurposeAttribute.CreatedAt = types.StringValue(attributesItem1.PurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
-				} else {
-					attributes3.PurposeAttribute.CreatedAt = types.StringNull()
-				}
-				if attributesItem1.PurposeAttribute.DefaultValue == nil {
-					attributes3.PurposeAttribute.DefaultValue = types.StringNull()
-				} else {
-					defaultValueResult47, _ := json.Marshal(attributesItem1.PurposeAttribute.DefaultValue)
-					attributes3.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult47))
-				}
-				attributes3.PurposeAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PurposeAttribute.Deprecated)
-				attributes3.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PurposeAttribute.EntityBuilderDisableEdit)
-				attributes3.PurposeAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PurposeAttribute.FeatureFlag)
-				attributes3.PurposeAttribute.Group = types.StringPointerValue(attributesItem1.PurposeAttribute.Group)
-				attributes3.PurposeAttribute.Hidden = types.BoolPointerValue(attributesItem1.PurposeAttribute.Hidden)
-				attributes3.PurposeAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PurposeAttribute.HideLabel)
-				attributes3.PurposeAttribute.Icon = types.StringPointerValue(attributesItem1.PurposeAttribute.Icon)
-				attributes3.PurposeAttribute.ID = types.StringPointerValue(attributesItem1.PurposeAttribute.ID)
-				if attributesItem1.PurposeAttribute.InfoHelpers == nil {
-					attributes3.PurposeAttribute.InfoHelpers = nil
-				} else {
-					attributes3.PurposeAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintText)
-					attributes3.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintTextKey)
-					attributes3.PurposeAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintTooltipPlacement)
-				}
-				attributes3.PurposeAttribute.Label = types.StringValue(attributesItem1.PurposeAttribute.Label)
-				attributes3.PurposeAttribute.Layout = types.StringPointerValue(attributesItem1.PurposeAttribute.Layout)
-				attributes3.PurposeAttribute.Name = types.StringValue(attributesItem1.PurposeAttribute.Name)
-				attributes3.PurposeAttribute.Order = types.Int64PointerValue(attributesItem1.PurposeAttribute.Order)
-				attributes3.PurposeAttribute.Parents = nil
-				for _, v := range attributesItem1.PurposeAttribute.Parents {
-					attributes3.PurposeAttribute.Parents = append(attributes3.PurposeAttribute.Parents, types.StringValue(v))
-				}
-				attributes3.PurposeAttribute.Placeholder = types.StringPointerValue(attributesItem1.PurposeAttribute.Placeholder)
-				attributes3.PurposeAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PurposeAttribute.PreviewValueFormatter)
-				attributes3.PurposeAttribute.Protected = types.BoolPointerValue(attributesItem1.PurposeAttribute.Protected)
-				attributes3.PurposeAttribute.Readonly = types.BoolPointerValue(attributesItem1.PurposeAttribute.Readonly)
-				attributes3.PurposeAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PurposeAttribute.RenderCondition)
-				attributes3.PurposeAttribute.Required = types.BoolPointerValue(attributesItem1.PurposeAttribute.Required)
-				for settingsFlagCount48, settingsFlagItem48 := range attributesItem1.PurposeAttribute.SettingsFlag {
-					var settingsFlag97 SettingFlag
-					settingsFlag97.Enabled = types.BoolPointerValue(settingsFlagItem48.Enabled)
-					settingsFlag97.Name = types.StringPointerValue(settingsFlagItem48.Name)
-					if settingsFlagCount48+1 > len(attributes3.PurposeAttribute.SettingsFlag) {
-						attributes3.PurposeAttribute.SettingsFlag = append(attributes3.PurposeAttribute.SettingsFlag, settingsFlag97)
-					} else {
-						attributes3.PurposeAttribute.SettingsFlag[settingsFlagCount48].Enabled = settingsFlag97.Enabled
-						attributes3.PurposeAttribute.SettingsFlag[settingsFlagCount48].Name = settingsFlag97.Name
-					}
-				}
-				attributes3.PurposeAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PurposeAttribute.ShowInTable)
-				attributes3.PurposeAttribute.Slug = types.StringPointerValue(attributesItem1.PurposeAttribute.Slug)
-				attributes3.PurposeAttribute.Sortable = types.BoolPointerValue(attributesItem1.PurposeAttribute.Sortable)
-				if attributesItem1.PurposeAttribute.Type != nil {
-					attributes3.PurposeAttribute.Type = types.StringValue(string(*attributesItem1.PurposeAttribute.Type))
-				} else {
-					attributes3.PurposeAttribute.Type = types.StringNull()
-				}
-				if attributesItem1.PurposeAttribute.UpdatedAt != nil {
-					attributes3.PurposeAttribute.UpdatedAt = types.StringValue(attributesItem1.PurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
-				} else {
-					attributes3.PurposeAttribute.UpdatedAt = types.StringNull()
-				}
-				attributes3.PurposeAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PurposeAttribute.ValueFormatter)
-			}
-			if attributesItem1.RelationAttribute != nil {
-				attributes3.RelationAttribute = &RelationAttribute{}
-				attributes3.RelationAttribute.Purpose = nil
-				for _, v := range attributesItem1.RelationAttribute.Purpose {
-					attributes3.RelationAttribute.Purpose = append(attributes3.RelationAttribute.Purpose, types.StringValue(v))
-				}
-				for actionsCount1, actionsItem1 := range attributesItem1.RelationAttribute.Actions {
-					var actions3 Actions
-					if actionsItem1.ActionType != nil {
-						actions3.ActionType = types.StringValue(string(*actionsItem1.ActionType))
-					} else {
-						actions3.ActionType = types.StringNull()
-					}
-					actions3.Default = types.BoolPointerValue(actionsItem1.Default)
-					actions3.FeatureFlag = types.StringPointerValue(actionsItem1.FeatureFlag)
-					actions3.Label = types.StringPointerValue(actionsItem1.Label)
-					if actionsItem1.NewEntityItem == nil {
-						actions3.NewEntityItem = nil
-					} else {
-						actions3.NewEntityItem = &NewEntityItem{}
-						if actionsItem1.NewEntityItem.ACL == nil {
-							actions3.NewEntityItem.ACL = nil
-						} else {
-							actions3.NewEntityItem.ACL = &EntityACL{}
-							if actionsItem1.NewEntityItem.ACL.AdditionalProperties == nil {
-								actions3.NewEntityItem.ACL.AdditionalProperties = types.StringNull()
+							actions1.NewEntityItem.ACL = &tfTypes.EntityACL{}
+							if actionsItem.NewEntityItem.ACL.AdditionalProperties == nil {
+								actions1.NewEntityItem.ACL.AdditionalProperties = types.StringNull()
 							} else {
-								additionalPropertiesResult2, _ := json.Marshal(actionsItem1.NewEntityItem.ACL.AdditionalProperties)
-								actions3.NewEntityItem.ACL.AdditionalProperties = types.StringValue(string(additionalPropertiesResult2))
+								additionalPropertiesResult, _ := json.Marshal(actionsItem.NewEntityItem.ACL.AdditionalProperties)
+								actions1.NewEntityItem.ACL.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
 							}
-							actions3.NewEntityItem.ACL.Delete = nil
-							for _, v := range actionsItem1.NewEntityItem.ACL.Delete {
-								actions3.NewEntityItem.ACL.Delete = append(actions3.NewEntityItem.ACL.Delete, types.StringValue(v))
+							actions1.NewEntityItem.ACL.Delete = []types.String{}
+							for _, v := range actionsItem.NewEntityItem.ACL.Delete {
+								actions1.NewEntityItem.ACL.Delete = append(actions1.NewEntityItem.ACL.Delete, types.StringValue(v))
 							}
-							actions3.NewEntityItem.ACL.Edit = nil
-							for _, v := range actionsItem1.NewEntityItem.ACL.Edit {
-								actions3.NewEntityItem.ACL.Edit = append(actions3.NewEntityItem.ACL.Edit, types.StringValue(v))
+							actions1.NewEntityItem.ACL.Edit = []types.String{}
+							for _, v := range actionsItem.NewEntityItem.ACL.Edit {
+								actions1.NewEntityItem.ACL.Edit = append(actions1.NewEntityItem.ACL.Edit, types.StringValue(v))
 							}
-							actions3.NewEntityItem.ACL.View = nil
-							for _, v := range actionsItem1.NewEntityItem.ACL.View {
-								actions3.NewEntityItem.ACL.View = append(actions3.NewEntityItem.ACL.View, types.StringValue(v))
+							actions1.NewEntityItem.ACL.View = []types.String{}
+							for _, v := range actionsItem.NewEntityItem.ACL.View {
+								actions1.NewEntityItem.ACL.View = append(actions1.NewEntityItem.ACL.View, types.StringValue(v))
 							}
 						}
-						if actionsItem1.NewEntityItem.CreatedAt != nil {
-							actions3.NewEntityItem.CreatedAt = types.StringValue(actionsItem1.NewEntityItem.CreatedAt.Format(time.RFC3339Nano))
+						if actionsItem.NewEntityItem.CreatedAt != nil {
+							actions1.NewEntityItem.CreatedAt = types.StringValue(actionsItem.NewEntityItem.CreatedAt.Format(time.RFC3339Nano))
 						} else {
-							actions3.NewEntityItem.CreatedAt = types.StringNull()
+							actions1.NewEntityItem.CreatedAt = types.StringNull()
 						}
-						actions3.NewEntityItem.ID = types.StringValue(actionsItem1.NewEntityItem.ID)
-						actions3.NewEntityItem.Org = types.StringValue(actionsItem1.NewEntityItem.Org)
-						for ownersCount1, ownersItem1 := range actionsItem1.NewEntityItem.Owners {
-							var owners3 EntityOwner
-							owners3.OrgID = types.StringValue(ownersItem1.OrgID)
-							owners3.UserID = types.StringPointerValue(ownersItem1.UserID)
-							if ownersCount1+1 > len(actions3.NewEntityItem.Owners) {
-								actions3.NewEntityItem.Owners = append(actions3.NewEntityItem.Owners, owners3)
+						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
+						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
+							var owners1 tfTypes.EntityOwner
+							owners1.OrgID = types.StringValue(ownersItem.OrgID)
+							owners1.UserID = types.StringPointerValue(ownersItem.UserID)
+							if ownersCount+1 > len(actions1.NewEntityItem.Owners) {
+								actions1.NewEntityItem.Owners = append(actions1.NewEntityItem.Owners, owners1)
 							} else {
-								actions3.NewEntityItem.Owners[ownersCount1].OrgID = owners3.OrgID
-								actions3.NewEntityItem.Owners[ownersCount1].UserID = owners3.UserID
+								actions1.NewEntityItem.Owners[ownersCount].OrgID = owners1.OrgID
+								actions1.NewEntityItem.Owners[ownersCount].UserID = owners1.UserID
 							}
 						}
-						actions3.NewEntityItem.Schema = types.StringValue(actionsItem1.NewEntityItem.Schema)
-						actions3.NewEntityItem.Tags = nil
-						for _, v := range actionsItem1.NewEntityItem.Tags {
-							actions3.NewEntityItem.Tags = append(actions3.NewEntityItem.Tags, types.StringValue(v))
+						actions1.NewEntityItem.Schema = types.StringValue(actionsItem.NewEntityItem.Schema)
+						actions1.NewEntityItem.Tags = []types.String{}
+						for _, v := range actionsItem.NewEntityItem.Tags {
+							actions1.NewEntityItem.Tags = append(actions1.NewEntityItem.Tags, types.StringValue(v))
 						}
-						actions3.NewEntityItem.Title = types.StringPointerValue(actionsItem1.NewEntityItem.Title)
-						if actionsItem1.NewEntityItem.UpdatedAt != nil {
-							actions3.NewEntityItem.UpdatedAt = types.StringValue(actionsItem1.NewEntityItem.UpdatedAt.Format(time.RFC3339Nano))
+						actions1.NewEntityItem.Title = types.StringPointerValue(actionsItem.NewEntityItem.Title)
+						if actionsItem.NewEntityItem.UpdatedAt != nil {
+							actions1.NewEntityItem.UpdatedAt = types.StringValue(actionsItem.NewEntityItem.UpdatedAt.Format(time.RFC3339Nano))
 						} else {
-							actions3.NewEntityItem.UpdatedAt = types.StringNull()
+							actions1.NewEntityItem.UpdatedAt = types.StringNull()
 						}
-						if actionsItem1.NewEntityItem.AdditionalProperties == nil {
-							actions3.NewEntityItem.AdditionalProperties = types.StringNull()
+						if actionsItem.NewEntityItem.AdditionalProperties == nil {
+							actions1.NewEntityItem.AdditionalProperties = types.StringNull()
 						} else {
-							additionalPropertiesResult3, _ := json.Marshal(actionsItem1.NewEntityItem.AdditionalProperties)
-							actions3.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult3))
+							additionalPropertiesResult1, _ := json.Marshal(actionsItem.NewEntityItem.AdditionalProperties)
+							actions1.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
 						}
 					}
-					for settingsFlagCount49, settingsFlagItem49 := range actionsItem1.SettingsFlag {
-						var settingsFlag99 SettingFlag
-						settingsFlag99.Enabled = types.BoolPointerValue(settingsFlagItem49.Enabled)
-						settingsFlag99.Name = types.StringPointerValue(settingsFlagItem49.Name)
-						if settingsFlagCount49+1 > len(actions3.SettingsFlag) {
-							actions3.SettingsFlag = append(actions3.SettingsFlag, settingsFlag99)
+					for settingsFlagCount20, settingsFlagItem20 := range actionsItem.SettingsFlag {
+						var settingsFlag41 tfTypes.SettingFlag
+						settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
+						settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
+						if settingsFlagCount20+1 > len(actions1.SettingsFlag) {
+							actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag41)
 						} else {
-							actions3.SettingsFlag[settingsFlagCount49].Enabled = settingsFlag99.Enabled
-							actions3.SettingsFlag[settingsFlagCount49].Name = settingsFlag99.Name
+							actions1.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
+							actions1.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
 						}
 					}
-					if actionsCount1+1 > len(attributes3.RelationAttribute.Actions) {
-						attributes3.RelationAttribute.Actions = append(attributes3.RelationAttribute.Actions, actions3)
+					if actionsCount+1 > len(attributes1.RelationAttribute.Actions) {
+						attributes1.RelationAttribute.Actions = append(attributes1.RelationAttribute.Actions, actions1)
 					} else {
-						attributes3.RelationAttribute.Actions[actionsCount1].ActionType = actions3.ActionType
-						attributes3.RelationAttribute.Actions[actionsCount1].Default = actions3.Default
-						attributes3.RelationAttribute.Actions[actionsCount1].FeatureFlag = actions3.FeatureFlag
-						attributes3.RelationAttribute.Actions[actionsCount1].Label = actions3.Label
-						attributes3.RelationAttribute.Actions[actionsCount1].NewEntityItem = actions3.NewEntityItem
-						attributes3.RelationAttribute.Actions[actionsCount1].SettingsFlag = actions3.SettingsFlag
+						attributes1.RelationAttribute.Actions[actionsCount].ActionType = actions1.ActionType
+						attributes1.RelationAttribute.Actions[actionsCount].Default = actions1.Default
+						attributes1.RelationAttribute.Actions[actionsCount].FeatureFlag = actions1.FeatureFlag
+						attributes1.RelationAttribute.Actions[actionsCount].Label = actions1.Label
+						attributes1.RelationAttribute.Actions[actionsCount].NewEntityItem = actions1.NewEntityItem
+						attributes1.RelationAttribute.Actions[actionsCount].SettingsFlag = actions1.SettingsFlag
 					}
 				}
-				attributes3.RelationAttribute.AddButtonLabel = types.StringPointerValue(attributesItem1.RelationAttribute.AddButtonLabel)
-				attributes3.RelationAttribute.AllowedSchemas = nil
-				for _, v := range attributesItem1.RelationAttribute.AllowedSchemas {
-					attributes3.RelationAttribute.AllowedSchemas = append(attributes3.RelationAttribute.AllowedSchemas, types.StringValue(v))
+				attributes1.RelationAttribute.AddButtonLabel = types.StringPointerValue(attributesItem.RelationAttribute.AddButtonLabel)
+				attributes1.RelationAttribute.AllowedSchemas = []types.String{}
+				for _, v := range attributesItem.RelationAttribute.AllowedSchemas {
+					attributes1.RelationAttribute.AllowedSchemas = append(attributes1.RelationAttribute.AllowedSchemas, types.StringValue(v))
 				}
-				if attributesItem1.RelationAttribute.Constraints == nil {
-					attributes3.RelationAttribute.Constraints = nil
+				if attributesItem.RelationAttribute.Constraints == nil {
+					attributes1.RelationAttribute.Constraints = nil
 				} else {
-					attributes3.RelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.RelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.RelationAttribute.DefaultValue == nil {
-					attributes3.RelationAttribute.DefaultValue = types.StringNull()
+				if attributesItem.RelationAttribute.DefaultValue == nil {
+					attributes1.RelationAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult48, _ := json.Marshal(attributesItem1.RelationAttribute.DefaultValue)
-					attributes3.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult48))
+					defaultValueResult20, _ := json.Marshal(attributesItem.RelationAttribute.DefaultValue)
+					attributes1.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
 				}
-				attributes3.RelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.RelationAttribute.Deprecated)
-				attributes3.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(attributesItem1.RelationAttribute.DetailsViewModeEnabled)
-				if attributesItem1.RelationAttribute.DrawerSize != nil {
-					attributes3.RelationAttribute.DrawerSize = types.StringValue(string(*attributesItem1.RelationAttribute.DrawerSize))
+				attributes1.RelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.RelationAttribute.Deprecated)
+				attributes1.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(attributesItem.RelationAttribute.DetailsViewModeEnabled)
+				if attributesItem.RelationAttribute.DrawerSize != nil {
+					attributes1.RelationAttribute.DrawerSize = types.StringValue(string(*attributesItem.RelationAttribute.DrawerSize))
 				} else {
-					attributes3.RelationAttribute.DrawerSize = types.StringNull()
+					attributes1.RelationAttribute.DrawerSize = types.StringNull()
 				}
-				if attributesItem1.RelationAttribute.EditMode != nil {
-					attributes3.RelationAttribute.EditMode = types.StringValue(string(*attributesItem1.RelationAttribute.EditMode))
+				if attributesItem.RelationAttribute.EditMode != nil {
+					attributes1.RelationAttribute.EditMode = types.StringValue(string(*attributesItem.RelationAttribute.EditMode))
 				} else {
-					attributes3.RelationAttribute.EditMode = types.StringNull()
+					attributes1.RelationAttribute.EditMode = types.StringNull()
 				}
-				attributes3.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem1.RelationAttribute.EnableRelationPicker)
-				attributes3.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem1.RelationAttribute.EnableRelationTags)
-				attributes3.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.RelationAttribute.EntityBuilderDisableEdit)
-				attributes3.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.RelationAttribute.FeatureFlag)
-				attributes3.RelationAttribute.Group = types.StringPointerValue(attributesItem1.RelationAttribute.Group)
-				attributes3.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.RelationAttribute.HasPrimary)
-				attributes3.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.RelationAttribute.Hidden)
-				attributes3.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RelationAttribute.HideLabel)
-				attributes3.RelationAttribute.Icon = types.StringPointerValue(attributesItem1.RelationAttribute.Icon)
-				if attributesItem1.RelationAttribute.InfoHelpers == nil {
-					attributes3.RelationAttribute.InfoHelpers = nil
+				attributes1.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationPicker)
+				attributes1.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationTags)
+				attributes1.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RelationAttribute.EntityBuilderDisableEdit)
+				attributes1.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RelationAttribute.FeatureFlag)
+				attributes1.RelationAttribute.Group = types.StringPointerValue(attributesItem.RelationAttribute.Group)
+				attributes1.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RelationAttribute.HasPrimary)
+				attributes1.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem.RelationAttribute.Hidden)
+				attributes1.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.RelationAttribute.HideLabel)
+				attributes1.RelationAttribute.Icon = types.StringPointerValue(attributesItem.RelationAttribute.Icon)
+				if attributesItem.RelationAttribute.InfoHelpers == nil {
+					attributes1.RelationAttribute.InfoHelpers = nil
 				} else {
-					attributes3.RelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintText)
-					attributes3.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintTextKey)
-					attributes3.RelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.RelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintText)
+					attributes1.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintTextKey)
+					attributes1.RelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.RelationAttribute.Label = types.StringValue(attributesItem1.RelationAttribute.Label)
-				attributes3.RelationAttribute.Layout = types.StringPointerValue(attributesItem1.RelationAttribute.Layout)
-				attributes3.RelationAttribute.Name = types.StringValue(attributesItem1.RelationAttribute.Name)
-				attributes3.RelationAttribute.Order = types.Int64PointerValue(attributesItem1.RelationAttribute.Order)
-				attributes3.RelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.RelationAttribute.Placeholder)
-				attributes3.RelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.RelationAttribute.PreviewValueFormatter)
-				attributes3.RelationAttribute.Protected = types.BoolPointerValue(attributesItem1.RelationAttribute.Protected)
-				attributes3.RelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.RelationAttribute.Readonly)
-				if attributesItem1.RelationAttribute.RelationAffinityMode != nil {
-					attributes3.RelationAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem1.RelationAttribute.RelationAffinityMode))
+				attributes1.RelationAttribute.Label = types.StringValue(attributesItem.RelationAttribute.Label)
+				attributes1.RelationAttribute.Layout = types.StringPointerValue(attributesItem.RelationAttribute.Layout)
+				attributes1.RelationAttribute.Name = types.StringValue(attributesItem.RelationAttribute.Name)
+				attributes1.RelationAttribute.Order = types.Int64PointerValue(attributesItem.RelationAttribute.Order)
+				attributes1.RelationAttribute.Placeholder = types.StringPointerValue(attributesItem.RelationAttribute.Placeholder)
+				attributes1.RelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.PreviewValueFormatter)
+				attributes1.RelationAttribute.Protected = types.BoolPointerValue(attributesItem.RelationAttribute.Protected)
+				attributes1.RelationAttribute.Readonly = types.BoolPointerValue(attributesItem.RelationAttribute.Readonly)
+				if attributesItem.RelationAttribute.RelationAffinityMode != nil {
+					attributes1.RelationAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RelationAttribute.RelationAffinityMode))
 				} else {
-					attributes3.RelationAttribute.RelationAffinityMode = types.StringNull()
+					attributes1.RelationAttribute.RelationAffinityMode = types.StringNull()
 				}
-				if attributesItem1.RelationAttribute.RelationType != nil {
-					attributes3.RelationAttribute.RelationType = types.StringValue(string(*attributesItem1.RelationAttribute.RelationType))
+				if attributesItem.RelationAttribute.RelationType != nil {
+					attributes1.RelationAttribute.RelationType = types.StringValue(string(*attributesItem.RelationAttribute.RelationType))
 				} else {
-					attributes3.RelationAttribute.RelationType = types.StringNull()
+					attributes1.RelationAttribute.RelationType = types.StringNull()
 				}
-				attributes3.RelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.RelationAttribute.RenderCondition)
-				attributes3.RelationAttribute.Required = types.BoolPointerValue(attributesItem1.RelationAttribute.Required)
-				if len(attributesItem1.RelationAttribute.ReverseAttributes) > 0 {
-					attributes3.RelationAttribute.ReverseAttributes = make(map[string]types.String)
-					for key1, value5 := range attributesItem1.RelationAttribute.ReverseAttributes {
-						attributes3.RelationAttribute.ReverseAttributes[key1] = types.StringValue(value5)
+				attributes1.RelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.RelationAttribute.RenderCondition)
+				attributes1.RelationAttribute.Required = types.BoolPointerValue(attributesItem.RelationAttribute.Required)
+				if len(attributesItem.RelationAttribute.ReverseAttributes) > 0 {
+					attributes1.RelationAttribute.ReverseAttributes = make(map[string]types.String)
+					for key, value1 := range attributesItem.RelationAttribute.ReverseAttributes {
+						attributes1.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
 					}
 				}
-				attributes3.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem1.RelationAttribute.SearchPlaceholder)
-				for settingsFlagCount50, settingsFlagItem50 := range attributesItem1.RelationAttribute.SettingsFlag {
-					var settingsFlag101 SettingFlag
-					settingsFlag101.Enabled = types.BoolPointerValue(settingsFlagItem50.Enabled)
-					settingsFlag101.Name = types.StringPointerValue(settingsFlagItem50.Name)
-					if settingsFlagCount50+1 > len(attributes3.RelationAttribute.SettingsFlag) {
-						attributes3.RelationAttribute.SettingsFlag = append(attributes3.RelationAttribute.SettingsFlag, settingsFlag101)
+				attributes1.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem.RelationAttribute.SearchPlaceholder)
+				for settingsFlagCount21, settingsFlagItem21 := range attributesItem.RelationAttribute.SettingsFlag {
+					var settingsFlag43 tfTypes.SettingFlag
+					settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
+					settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
+					if settingsFlagCount21+1 > len(attributes1.RelationAttribute.SettingsFlag) {
+						attributes1.RelationAttribute.SettingsFlag = append(attributes1.RelationAttribute.SettingsFlag, settingsFlag43)
 					} else {
-						attributes3.RelationAttribute.SettingsFlag[settingsFlagCount50].Enabled = settingsFlag101.Enabled
-						attributes3.RelationAttribute.SettingsFlag[settingsFlagCount50].Name = settingsFlag101.Name
+						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
+						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
 					}
 				}
-				attributes3.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.RelationAttribute.ShowInTable)
-				attributes3.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.RelationAttribute.Sortable)
-				for summaryFieldsCount1, summaryFieldsItem1 := range attributesItem1.RelationAttribute.SummaryFields {
-					var summaryFields3 SummaryFields
-					if summaryFieldsItem1.Str != nil {
-						summaryFields3.Str = types.StringPointerValue(summaryFieldsItem1.Str)
+				attributes1.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RelationAttribute.ShowInTable)
+				attributes1.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem.RelationAttribute.Sortable)
+				for summaryFieldsCount, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
+					var summaryFields1 tfTypes.SummaryFields
+					if summaryFieldsItem.Str != nil {
+						summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
 					}
-					if summaryFieldsItem1.SummaryField != nil {
-						summaryFields3.SummaryField = &SummaryField{}
-						summaryFields3.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem1.SummaryField.DisplayAs)
-						summaryFields3.SummaryField.Field = types.StringPointerValue(summaryFieldsItem1.SummaryField.Field)
+					if summaryFieldsItem.SummaryField != nil {
+						summaryFields1.SummaryField = &tfTypes.SummaryField{}
+						summaryFields1.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
+						summaryFields1.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
 					}
-					if summaryFieldsCount1+1 > len(attributes3.RelationAttribute.SummaryFields) {
-						attributes3.RelationAttribute.SummaryFields = append(attributes3.RelationAttribute.SummaryFields, summaryFields3)
+					if summaryFieldsCount+1 > len(attributes1.RelationAttribute.SummaryFields) {
+						attributes1.RelationAttribute.SummaryFields = append(attributes1.RelationAttribute.SummaryFields, summaryFields1)
 					} else {
+						attributes1.RelationAttribute.SummaryFields[summaryFieldsCount].Str = summaryFields1.Str
+						attributes1.RelationAttribute.SummaryFields[summaryFieldsCount].SummaryField = summaryFields1.SummaryField
 					}
 				}
-				if attributesItem1.RelationAttribute.Type != nil {
-					attributes3.RelationAttribute.Type = types.StringValue(string(*attributesItem1.RelationAttribute.Type))
+				if attributesItem.RelationAttribute.Type != nil {
+					attributes1.RelationAttribute.Type = types.StringValue(string(*attributesItem.RelationAttribute.Type))
 				} else {
-					attributes3.RelationAttribute.Type = types.StringNull()
+					attributes1.RelationAttribute.Type = types.StringNull()
 				}
-				attributes3.RelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.RelationAttribute.ValueFormatter)
+				attributes1.RelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.ValueFormatter)
 			}
-			if attributesItem1.RepeatableAttribute != nil {
-				attributes3.RepeatableAttribute = &RepeatableAttribute{}
-				attributes3.RepeatableAttribute.Purpose = nil
-				for _, v := range attributesItem1.RepeatableAttribute.Purpose {
-					attributes3.RepeatableAttribute.Purpose = append(attributes3.RepeatableAttribute.Purpose, types.StringValue(v))
+			if attributesItem.RepeatableAttribute != nil {
+				attributes1.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+				attributes1.RepeatableAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.RepeatableAttribute.Purpose {
+					attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.RepeatableAttribute.Constraints == nil {
-					attributes3.RepeatableAttribute.Constraints = nil
+				if attributesItem.RepeatableAttribute.Constraints == nil {
+					attributes1.RepeatableAttribute.Constraints = nil
 				} else {
-					attributes3.RepeatableAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.RepeatableAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.RepeatableAttribute.DefaultValue == nil {
-					attributes3.RepeatableAttribute.DefaultValue = types.StringNull()
+				if attributesItem.RepeatableAttribute.DefaultValue == nil {
+					attributes1.RepeatableAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult49, _ := json.Marshal(attributesItem1.RepeatableAttribute.DefaultValue)
-					attributes3.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult49))
+					defaultValueResult21, _ := json.Marshal(attributesItem.RepeatableAttribute.DefaultValue)
+					attributes1.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
 				}
-				attributes3.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Deprecated)
-				attributes3.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem1.RepeatableAttribute.EnableRelationPicker)
-				attributes3.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.RepeatableAttribute.EntityBuilderDisableEdit)
-				attributes3.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.RepeatableAttribute.FeatureFlag)
-				attributes3.RepeatableAttribute.Group = types.StringPointerValue(attributesItem1.RepeatableAttribute.Group)
-				attributes3.RepeatableAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HasPrimary)
-				attributes3.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Hidden)
-				attributes3.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HideLabel)
-				attributes3.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem1.RepeatableAttribute.Icon)
-				if attributesItem1.RepeatableAttribute.InfoHelpers == nil {
-					attributes3.RepeatableAttribute.InfoHelpers = nil
+				attributes1.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem.RepeatableAttribute.Deprecated)
+				attributes1.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RepeatableAttribute.EnableRelationPicker)
+				attributes1.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RepeatableAttribute.EntityBuilderDisableEdit)
+				attributes1.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RepeatableAttribute.FeatureFlag)
+				attributes1.RepeatableAttribute.Group = types.StringPointerValue(attributesItem.RepeatableAttribute.Group)
+				attributes1.RepeatableAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RepeatableAttribute.HasPrimary)
+				attributes1.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem.RepeatableAttribute.Hidden)
+				attributes1.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem.RepeatableAttribute.HideLabel)
+				attributes1.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem.RepeatableAttribute.Icon)
+				if attributesItem.RepeatableAttribute.InfoHelpers == nil {
+					attributes1.RepeatableAttribute.InfoHelpers = nil
 				} else {
-					attributes3.RepeatableAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintText)
-					attributes3.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintTextKey)
-					attributes3.RepeatableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.RepeatableAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintText)
+					attributes1.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintTextKey)
+					attributes1.RepeatableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.RepeatableAttribute.Label = types.StringValue(attributesItem1.RepeatableAttribute.Label)
-				attributes3.RepeatableAttribute.Layout = types.StringPointerValue(attributesItem1.RepeatableAttribute.Layout)
-				attributes3.RepeatableAttribute.Name = types.StringValue(attributesItem1.RepeatableAttribute.Name)
-				attributes3.RepeatableAttribute.Order = types.Int64PointerValue(attributesItem1.RepeatableAttribute.Order)
-				attributes3.RepeatableAttribute.Placeholder = types.StringPointerValue(attributesItem1.RepeatableAttribute.Placeholder)
-				attributes3.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.RepeatableAttribute.PreviewValueFormatter)
-				attributes3.RepeatableAttribute.Protected = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Protected)
-				attributes3.RepeatableAttribute.Readonly = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Readonly)
-				if attributesItem1.RepeatableAttribute.RelationAffinityMode != nil {
-					attributes3.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem1.RepeatableAttribute.RelationAffinityMode))
+				attributes1.RepeatableAttribute.Label = types.StringValue(attributesItem.RepeatableAttribute.Label)
+				attributes1.RepeatableAttribute.Layout = types.StringPointerValue(attributesItem.RepeatableAttribute.Layout)
+				attributes1.RepeatableAttribute.Name = types.StringValue(attributesItem.RepeatableAttribute.Name)
+				attributes1.RepeatableAttribute.Order = types.Int64PointerValue(attributesItem.RepeatableAttribute.Order)
+				attributes1.RepeatableAttribute.Placeholder = types.StringPointerValue(attributesItem.RepeatableAttribute.Placeholder)
+				attributes1.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.PreviewValueFormatter)
+				attributes1.RepeatableAttribute.Protected = types.BoolPointerValue(attributesItem.RepeatableAttribute.Protected)
+				attributes1.RepeatableAttribute.Readonly = types.BoolPointerValue(attributesItem.RepeatableAttribute.Readonly)
+				if attributesItem.RepeatableAttribute.RelationAffinityMode != nil {
+					attributes1.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RepeatableAttribute.RelationAffinityMode))
 				} else {
-					attributes3.RepeatableAttribute.RelationAffinityMode = types.StringNull()
+					attributes1.RepeatableAttribute.RelationAffinityMode = types.StringNull()
 				}
-				attributes3.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem1.RepeatableAttribute.RenderCondition)
-				attributes3.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Repeatable)
-				attributes3.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Required)
-				for settingsFlagCount51, settingsFlagItem51 := range attributesItem1.RepeatableAttribute.SettingsFlag {
-					var settingsFlag103 SettingFlag
-					settingsFlag103.Enabled = types.BoolPointerValue(settingsFlagItem51.Enabled)
-					settingsFlag103.Name = types.StringPointerValue(settingsFlagItem51.Name)
-					if settingsFlagCount51+1 > len(attributes3.RepeatableAttribute.SettingsFlag) {
-						attributes3.RepeatableAttribute.SettingsFlag = append(attributes3.RepeatableAttribute.SettingsFlag, settingsFlag103)
+				attributes1.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem.RepeatableAttribute.RenderCondition)
+				attributes1.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Repeatable)
+				attributes1.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem.RepeatableAttribute.Required)
+				for settingsFlagCount22, settingsFlagItem22 := range attributesItem.RepeatableAttribute.SettingsFlag {
+					var settingsFlag45 tfTypes.SettingFlag
+					settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+					settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
+					if settingsFlagCount22+1 > len(attributes1.RepeatableAttribute.SettingsFlag) {
+						attributes1.RepeatableAttribute.SettingsFlag = append(attributes1.RepeatableAttribute.SettingsFlag, settingsFlag45)
 					} else {
-						attributes3.RepeatableAttribute.SettingsFlag[settingsFlagCount51].Enabled = settingsFlag103.Enabled
-						attributes3.RepeatableAttribute.SettingsFlag[settingsFlagCount51].Name = settingsFlag103.Name
+						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
+						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
 					}
 				}
-				attributes3.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.ShowInTable)
-				attributes3.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Sortable)
-				if attributesItem1.RepeatableAttribute.Type != nil {
-					attributes3.RepeatableAttribute.Type = types.StringValue(string(*attributesItem1.RepeatableAttribute.Type))
+				attributes1.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RepeatableAttribute.ShowInTable)
+				attributes1.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Sortable)
+				if attributesItem.RepeatableAttribute.Type != nil {
+					attributes1.RepeatableAttribute.Type = types.StringValue(string(*attributesItem.RepeatableAttribute.Type))
 				} else {
-					attributes3.RepeatableAttribute.Type = types.StringNull()
+					attributes1.RepeatableAttribute.Type = types.StringNull()
 				}
-				attributes3.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.RepeatableAttribute.ValueFormatter)
+				attributes1.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.ValueFormatter)
 			}
-			if attributesItem1.SelectAttribute != nil {
-				attributes3.SelectAttribute = &SelectAttribute{}
-				attributes3.SelectAttribute.Purpose = nil
-				for _, v := range attributesItem1.SelectAttribute.Purpose {
-					attributes3.SelectAttribute.Purpose = append(attributes3.SelectAttribute.Purpose, types.StringValue(v))
+			if attributesItem.SelectAttribute != nil {
+				attributes1.SelectAttribute = &tfTypes.SelectAttribute{}
+				attributes1.SelectAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.SelectAttribute.Purpose {
+					attributes1.SelectAttribute.Purpose = append(attributes1.SelectAttribute.Purpose, types.StringValue(v))
 				}
-				attributes3.SelectAttribute.AllowAny = types.BoolPointerValue(attributesItem1.SelectAttribute.AllowAny)
-				if attributesItem1.SelectAttribute.Constraints == nil {
-					attributes3.SelectAttribute.Constraints = nil
+				attributes1.SelectAttribute.AllowAny = types.BoolPointerValue(attributesItem.SelectAttribute.AllowAny)
+				if attributesItem.SelectAttribute.Constraints == nil {
+					attributes1.SelectAttribute.Constraints = nil
 				} else {
-					attributes3.SelectAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.SelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.SelectAttribute.DefaultValue == nil {
-					attributes3.SelectAttribute.DefaultValue = types.StringNull()
+				if attributesItem.SelectAttribute.DefaultValue == nil {
+					attributes1.SelectAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult50, _ := json.Marshal(attributesItem1.SelectAttribute.DefaultValue)
-					attributes3.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult50))
+					defaultValueResult22, _ := json.Marshal(attributesItem.SelectAttribute.DefaultValue)
+					attributes1.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
 				}
-				attributes3.SelectAttribute.Deprecated = types.BoolPointerValue(attributesItem1.SelectAttribute.Deprecated)
-				attributes3.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.SelectAttribute.EntityBuilderDisableEdit)
-				attributes3.SelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.SelectAttribute.FeatureFlag)
-				attributes3.SelectAttribute.Group = types.StringPointerValue(attributesItem1.SelectAttribute.Group)
-				attributes3.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.SelectAttribute.Hidden)
-				attributes3.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SelectAttribute.HideLabel)
-				attributes3.SelectAttribute.Icon = types.StringPointerValue(attributesItem1.SelectAttribute.Icon)
-				if attributesItem1.SelectAttribute.InfoHelpers == nil {
-					attributes3.SelectAttribute.InfoHelpers = nil
+				attributes1.SelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.SelectAttribute.Deprecated)
+				attributes1.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SelectAttribute.EntityBuilderDisableEdit)
+				attributes1.SelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SelectAttribute.FeatureFlag)
+				attributes1.SelectAttribute.Group = types.StringPointerValue(attributesItem.SelectAttribute.Group)
+				attributes1.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem.SelectAttribute.Hidden)
+				attributes1.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.SelectAttribute.HideLabel)
+				attributes1.SelectAttribute.Icon = types.StringPointerValue(attributesItem.SelectAttribute.Icon)
+				if attributesItem.SelectAttribute.InfoHelpers == nil {
+					attributes1.SelectAttribute.InfoHelpers = nil
 				} else {
-					attributes3.SelectAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintText)
-					attributes3.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintTextKey)
-					attributes3.SelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.SelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintText)
+					attributes1.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintTextKey)
+					attributes1.SelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.SelectAttribute.Label = types.StringValue(attributesItem1.SelectAttribute.Label)
-				attributes3.SelectAttribute.Layout = types.StringPointerValue(attributesItem1.SelectAttribute.Layout)
-				attributes3.SelectAttribute.Name = types.StringValue(attributesItem1.SelectAttribute.Name)
-				for optionsCount4, optionsItem4 := range attributesItem1.SelectAttribute.Options {
-					var options10 Options
-					if optionsItem4.Str != nil {
-						options10.Str = types.StringPointerValue(optionsItem4.Str)
+				attributes1.SelectAttribute.Label = types.StringValue(attributesItem.SelectAttribute.Label)
+				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
+				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
+				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
+					var options3 tfTypes.Options
+					if optionsItem1.Str != nil {
+						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
-					if optionsItem4.One != nil {
-						options10.One = &Two{}
-						options10.One.Title = types.StringPointerValue(optionsItem4.One.Title)
-						options10.One.Value = types.StringValue(optionsItem4.One.Value)
+					if optionsItem1.One != nil {
+						options3.One = &tfTypes.Two{}
+						options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
+						options3.One.Value = types.StringValue(optionsItem1.One.Value)
 					}
-					if optionsCount4+1 > len(attributes3.SelectAttribute.Options) {
-						attributes3.SelectAttribute.Options = append(attributes3.SelectAttribute.Options, options10)
+					if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
+						attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)
 					} else {
+						attributes1.SelectAttribute.Options[optionsCount1].Str = options3.Str
+						attributes1.SelectAttribute.Options[optionsCount1].One = options3.One
 					}
 				}
-				attributes3.SelectAttribute.Order = types.Int64PointerValue(attributesItem1.SelectAttribute.Order)
-				attributes3.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem1.SelectAttribute.Placeholder)
-				attributes3.SelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.SelectAttribute.PreviewValueFormatter)
-				attributes3.SelectAttribute.Protected = types.BoolPointerValue(attributesItem1.SelectAttribute.Protected)
-				attributes3.SelectAttribute.Readonly = types.BoolPointerValue(attributesItem1.SelectAttribute.Readonly)
-				attributes3.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem1.SelectAttribute.RenderCondition)
-				attributes3.SelectAttribute.Required = types.BoolPointerValue(attributesItem1.SelectAttribute.Required)
-				for settingsFlagCount52, settingsFlagItem52 := range attributesItem1.SelectAttribute.SettingsFlag {
-					var settingsFlag105 SettingFlag
-					settingsFlag105.Enabled = types.BoolPointerValue(settingsFlagItem52.Enabled)
-					settingsFlag105.Name = types.StringPointerValue(settingsFlagItem52.Name)
-					if settingsFlagCount52+1 > len(attributes3.SelectAttribute.SettingsFlag) {
-						attributes3.SelectAttribute.SettingsFlag = append(attributes3.SelectAttribute.SettingsFlag, settingsFlag105)
+				attributes1.SelectAttribute.Order = types.Int64PointerValue(attributesItem.SelectAttribute.Order)
+				attributes1.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem.SelectAttribute.Placeholder)
+				attributes1.SelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.SelectAttribute.PreviewValueFormatter)
+				attributes1.SelectAttribute.Protected = types.BoolPointerValue(attributesItem.SelectAttribute.Protected)
+				attributes1.SelectAttribute.Readonly = types.BoolPointerValue(attributesItem.SelectAttribute.Readonly)
+				attributes1.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.SelectAttribute.RenderCondition)
+				attributes1.SelectAttribute.Required = types.BoolPointerValue(attributesItem.SelectAttribute.Required)
+				for settingsFlagCount23, settingsFlagItem23 := range attributesItem.SelectAttribute.SettingsFlag {
+					var settingsFlag47 tfTypes.SettingFlag
+					settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+					settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
+					if settingsFlagCount23+1 > len(attributes1.SelectAttribute.SettingsFlag) {
+						attributes1.SelectAttribute.SettingsFlag = append(attributes1.SelectAttribute.SettingsFlag, settingsFlag47)
 					} else {
-						attributes3.SelectAttribute.SettingsFlag[settingsFlagCount52].Enabled = settingsFlag105.Enabled
-						attributes3.SelectAttribute.SettingsFlag[settingsFlagCount52].Name = settingsFlag105.Name
+						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
+						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
 					}
 				}
-				attributes3.SelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.SelectAttribute.ShowInTable)
-				attributes3.SelectAttribute.Sortable = types.BoolPointerValue(attributesItem1.SelectAttribute.Sortable)
-				if attributesItem1.SelectAttribute.Type != nil {
-					attributes3.SelectAttribute.Type = types.StringValue(string(*attributesItem1.SelectAttribute.Type))
+				attributes1.SelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SelectAttribute.ShowInTable)
+				attributes1.SelectAttribute.Sortable = types.BoolPointerValue(attributesItem.SelectAttribute.Sortable)
+				if attributesItem.SelectAttribute.Type != nil {
+					attributes1.SelectAttribute.Type = types.StringValue(string(*attributesItem.SelectAttribute.Type))
 				} else {
-					attributes3.SelectAttribute.Type = types.StringNull()
+					attributes1.SelectAttribute.Type = types.StringNull()
 				}
-				attributes3.SelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.SelectAttribute.ValueFormatter)
+				attributes1.SelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem.SelectAttribute.ValueFormatter)
 			}
-			if attributesItem1.SequenceAttribute != nil {
-				attributes3.SequenceAttribute = &SequenceAttribute{}
-				attributes3.SequenceAttribute.Purpose = nil
-				for _, v := range attributesItem1.SequenceAttribute.Purpose {
-					attributes3.SequenceAttribute.Purpose = append(attributes3.SequenceAttribute.Purpose, types.StringValue(v))
+			if attributesItem.SequenceAttribute != nil {
+				attributes1.SequenceAttribute = &tfTypes.SequenceAttribute{}
+				attributes1.SequenceAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.SequenceAttribute.Purpose {
+					attributes1.SequenceAttribute.Purpose = append(attributes1.SequenceAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.SequenceAttribute.Constraints == nil {
-					attributes3.SequenceAttribute.Constraints = nil
+				if attributesItem.SequenceAttribute.Constraints == nil {
+					attributes1.SequenceAttribute.Constraints = nil
 				} else {
-					attributes3.SequenceAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.SequenceAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.SequenceAttribute.DefaultValue == nil {
-					attributes3.SequenceAttribute.DefaultValue = types.StringNull()
+				if attributesItem.SequenceAttribute.DefaultValue == nil {
+					attributes1.SequenceAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult51, _ := json.Marshal(attributesItem1.SequenceAttribute.DefaultValue)
-					attributes3.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult51))
+					defaultValueResult23, _ := json.Marshal(attributesItem.SequenceAttribute.DefaultValue)
+					attributes1.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
 				}
-				attributes3.SequenceAttribute.Deprecated = types.BoolPointerValue(attributesItem1.SequenceAttribute.Deprecated)
-				attributes3.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.SequenceAttribute.EntityBuilderDisableEdit)
-				attributes3.SequenceAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.SequenceAttribute.FeatureFlag)
-				attributes3.SequenceAttribute.Group = types.StringPointerValue(attributesItem1.SequenceAttribute.Group)
-				attributes3.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem1.SequenceAttribute.Hidden)
-				attributes3.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SequenceAttribute.HideLabel)
-				attributes3.SequenceAttribute.Icon = types.StringPointerValue(attributesItem1.SequenceAttribute.Icon)
-				if attributesItem1.SequenceAttribute.InfoHelpers == nil {
-					attributes3.SequenceAttribute.InfoHelpers = nil
+				attributes1.SequenceAttribute.Deprecated = types.BoolPointerValue(attributesItem.SequenceAttribute.Deprecated)
+				attributes1.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SequenceAttribute.EntityBuilderDisableEdit)
+				attributes1.SequenceAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SequenceAttribute.FeatureFlag)
+				attributes1.SequenceAttribute.Group = types.StringPointerValue(attributesItem.SequenceAttribute.Group)
+				attributes1.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem.SequenceAttribute.Hidden)
+				attributes1.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem.SequenceAttribute.HideLabel)
+				attributes1.SequenceAttribute.Icon = types.StringPointerValue(attributesItem.SequenceAttribute.Icon)
+				if attributesItem.SequenceAttribute.InfoHelpers == nil {
+					attributes1.SequenceAttribute.InfoHelpers = nil
 				} else {
-					attributes3.SequenceAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintText)
-					attributes3.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintTextKey)
-					attributes3.SequenceAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.SequenceAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintText)
+					attributes1.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintTextKey)
+					attributes1.SequenceAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.SequenceAttribute.Label = types.StringValue(attributesItem1.SequenceAttribute.Label)
-				attributes3.SequenceAttribute.Layout = types.StringPointerValue(attributesItem1.SequenceAttribute.Layout)
-				attributes3.SequenceAttribute.Name = types.StringValue(attributesItem1.SequenceAttribute.Name)
-				attributes3.SequenceAttribute.Order = types.Int64PointerValue(attributesItem1.SequenceAttribute.Order)
-				attributes3.SequenceAttribute.Placeholder = types.StringPointerValue(attributesItem1.SequenceAttribute.Placeholder)
-				attributes3.SequenceAttribute.Prefix = types.StringPointerValue(attributesItem1.SequenceAttribute.Prefix)
-				attributes3.SequenceAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.SequenceAttribute.PreviewValueFormatter)
-				attributes3.SequenceAttribute.Protected = types.BoolPointerValue(attributesItem1.SequenceAttribute.Protected)
-				attributes3.SequenceAttribute.Readonly = types.BoolPointerValue(attributesItem1.SequenceAttribute.Readonly)
-				attributes3.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem1.SequenceAttribute.RenderCondition)
-				attributes3.SequenceAttribute.Required = types.BoolPointerValue(attributesItem1.SequenceAttribute.Required)
-				for settingsFlagCount53, settingsFlagItem53 := range attributesItem1.SequenceAttribute.SettingsFlag {
-					var settingsFlag107 SettingFlag
-					settingsFlag107.Enabled = types.BoolPointerValue(settingsFlagItem53.Enabled)
-					settingsFlag107.Name = types.StringPointerValue(settingsFlagItem53.Name)
-					if settingsFlagCount53+1 > len(attributes3.SequenceAttribute.SettingsFlag) {
-						attributes3.SequenceAttribute.SettingsFlag = append(attributes3.SequenceAttribute.SettingsFlag, settingsFlag107)
+				attributes1.SequenceAttribute.Label = types.StringValue(attributesItem.SequenceAttribute.Label)
+				attributes1.SequenceAttribute.Layout = types.StringPointerValue(attributesItem.SequenceAttribute.Layout)
+				attributes1.SequenceAttribute.Name = types.StringValue(attributesItem.SequenceAttribute.Name)
+				attributes1.SequenceAttribute.Order = types.Int64PointerValue(attributesItem.SequenceAttribute.Order)
+				attributes1.SequenceAttribute.Placeholder = types.StringPointerValue(attributesItem.SequenceAttribute.Placeholder)
+				attributes1.SequenceAttribute.Prefix = types.StringPointerValue(attributesItem.SequenceAttribute.Prefix)
+				attributes1.SequenceAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.SequenceAttribute.PreviewValueFormatter)
+				attributes1.SequenceAttribute.Protected = types.BoolPointerValue(attributesItem.SequenceAttribute.Protected)
+				attributes1.SequenceAttribute.Readonly = types.BoolPointerValue(attributesItem.SequenceAttribute.Readonly)
+				attributes1.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem.SequenceAttribute.RenderCondition)
+				attributes1.SequenceAttribute.Required = types.BoolPointerValue(attributesItem.SequenceAttribute.Required)
+				for settingsFlagCount24, settingsFlagItem24 := range attributesItem.SequenceAttribute.SettingsFlag {
+					var settingsFlag49 tfTypes.SettingFlag
+					settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+					settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
+					if settingsFlagCount24+1 > len(attributes1.SequenceAttribute.SettingsFlag) {
+						attributes1.SequenceAttribute.SettingsFlag = append(attributes1.SequenceAttribute.SettingsFlag, settingsFlag49)
 					} else {
-						attributes3.SequenceAttribute.SettingsFlag[settingsFlagCount53].Enabled = settingsFlag107.Enabled
-						attributes3.SequenceAttribute.SettingsFlag[settingsFlagCount53].Name = settingsFlag107.Name
+						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
+						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
 					}
 				}
-				attributes3.SequenceAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.SequenceAttribute.ShowInTable)
-				attributes3.SequenceAttribute.Sortable = types.BoolPointerValue(attributesItem1.SequenceAttribute.Sortable)
-				attributes3.SequenceAttribute.StartNumber = types.Int64PointerValue(attributesItem1.SequenceAttribute.StartNumber)
-				if attributesItem1.SequenceAttribute.Type != nil {
-					attributes3.SequenceAttribute.Type = types.StringValue(string(*attributesItem1.SequenceAttribute.Type))
+				attributes1.SequenceAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SequenceAttribute.ShowInTable)
+				attributes1.SequenceAttribute.Sortable = types.BoolPointerValue(attributesItem.SequenceAttribute.Sortable)
+				attributes1.SequenceAttribute.StartNumber = types.Int64PointerValue(attributesItem.SequenceAttribute.StartNumber)
+				if attributesItem.SequenceAttribute.Type != nil {
+					attributes1.SequenceAttribute.Type = types.StringValue(string(*attributesItem.SequenceAttribute.Type))
 				} else {
-					attributes3.SequenceAttribute.Type = types.StringNull()
+					attributes1.SequenceAttribute.Type = types.StringNull()
 				}
-				attributes3.SequenceAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.SequenceAttribute.ValueFormatter)
+				attributes1.SequenceAttribute.ValueFormatter = types.StringPointerValue(attributesItem.SequenceAttribute.ValueFormatter)
 			}
-			if attributesItem1.StatusAttribute != nil {
-				attributes3.StatusAttribute = &StatusAttribute{}
-				attributes3.StatusAttribute.Purpose = nil
-				for _, v := range attributesItem1.StatusAttribute.Purpose {
-					attributes3.StatusAttribute.Purpose = append(attributes3.StatusAttribute.Purpose, types.StringValue(v))
+			if attributesItem.StatusAttribute != nil {
+				attributes1.StatusAttribute = &tfTypes.StatusAttribute{}
+				attributes1.StatusAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.StatusAttribute.Purpose {
+					attributes1.StatusAttribute.Purpose = append(attributes1.StatusAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.StatusAttribute.Constraints == nil {
-					attributes3.StatusAttribute.Constraints = nil
+				if attributesItem.StatusAttribute.Constraints == nil {
+					attributes1.StatusAttribute.Constraints = nil
 				} else {
-					attributes3.StatusAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.StatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.StatusAttribute.DefaultValue == nil {
-					attributes3.StatusAttribute.DefaultValue = types.StringNull()
+				if attributesItem.StatusAttribute.DefaultValue == nil {
+					attributes1.StatusAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult52, _ := json.Marshal(attributesItem1.StatusAttribute.DefaultValue)
-					attributes3.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult52))
+					defaultValueResult24, _ := json.Marshal(attributesItem.StatusAttribute.DefaultValue)
+					attributes1.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
 				}
-				attributes3.StatusAttribute.Deprecated = types.BoolPointerValue(attributesItem1.StatusAttribute.Deprecated)
-				attributes3.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.StatusAttribute.EntityBuilderDisableEdit)
-				attributes3.StatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.StatusAttribute.FeatureFlag)
-				attributes3.StatusAttribute.Group = types.StringPointerValue(attributesItem1.StatusAttribute.Group)
-				attributes3.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.StatusAttribute.Hidden)
-				attributes3.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.StatusAttribute.HideLabel)
-				attributes3.StatusAttribute.Icon = types.StringPointerValue(attributesItem1.StatusAttribute.Icon)
-				if attributesItem1.StatusAttribute.InfoHelpers == nil {
-					attributes3.StatusAttribute.InfoHelpers = nil
+				attributes1.StatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.StatusAttribute.Deprecated)
+				attributes1.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.StatusAttribute.EntityBuilderDisableEdit)
+				attributes1.StatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.StatusAttribute.FeatureFlag)
+				attributes1.StatusAttribute.Group = types.StringPointerValue(attributesItem.StatusAttribute.Group)
+				attributes1.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem.StatusAttribute.Hidden)
+				attributes1.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.StatusAttribute.HideLabel)
+				attributes1.StatusAttribute.Icon = types.StringPointerValue(attributesItem.StatusAttribute.Icon)
+				if attributesItem.StatusAttribute.InfoHelpers == nil {
+					attributes1.StatusAttribute.InfoHelpers = nil
 				} else {
-					attributes3.StatusAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintText)
-					attributes3.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintTextKey)
-					attributes3.StatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.StatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintText)
+					attributes1.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintTextKey)
+					attributes1.StatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.StatusAttribute.Label = types.StringValue(attributesItem1.StatusAttribute.Label)
-				attributes3.StatusAttribute.Layout = types.StringPointerValue(attributesItem1.StatusAttribute.Layout)
-				attributes3.StatusAttribute.Name = types.StringValue(attributesItem1.StatusAttribute.Name)
-				for optionsCount5, optionsItem5 := range attributesItem1.StatusAttribute.Options {
-					var options12 MultiSelectAttributeOptions
-					if optionsItem5.Str != nil {
-						options12.Str = types.StringPointerValue(optionsItem5.Str)
+				attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
+				attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
+				attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
+				for optionsCount2, optionsItem2 := range attributesItem.StatusAttribute.Options {
+					var options5 tfTypes.MultiSelectAttributeOptions
+					if optionsItem2.Str != nil {
+						options5.Str = types.StringPointerValue(optionsItem2.Str)
 					}
-					if optionsItem5.Options2 != nil {
-						options12.Two = &Two{}
-						options12.Two.Title = types.StringPointerValue(optionsItem5.Options2.Title)
-						options12.Two.Value = types.StringValue(optionsItem5.Options2.Value)
+					if optionsItem2.Options2 != nil {
+						options5.Two = &tfTypes.Two{}
+						options5.Two.Title = types.StringPointerValue(optionsItem2.Options2.Title)
+						options5.Two.Value = types.StringValue(optionsItem2.Options2.Value)
 					}
-					if optionsCount5+1 > len(attributes3.StatusAttribute.Options) {
-						attributes3.StatusAttribute.Options = append(attributes3.StatusAttribute.Options, options12)
+					if optionsCount2+1 > len(attributes1.StatusAttribute.Options) {
+						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options5)
 					} else {
+						attributes1.StatusAttribute.Options[optionsCount2].Str = options5.Str
+						attributes1.StatusAttribute.Options[optionsCount2].Two = options5.Two
 					}
 				}
-				attributes3.StatusAttribute.Order = types.Int64PointerValue(attributesItem1.StatusAttribute.Order)
-				attributes3.StatusAttribute.Placeholder = types.StringPointerValue(attributesItem1.StatusAttribute.Placeholder)
-				attributes3.StatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.StatusAttribute.PreviewValueFormatter)
-				attributes3.StatusAttribute.Protected = types.BoolPointerValue(attributesItem1.StatusAttribute.Protected)
-				attributes3.StatusAttribute.Readonly = types.BoolPointerValue(attributesItem1.StatusAttribute.Readonly)
-				attributes3.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem1.StatusAttribute.RenderCondition)
-				attributes3.StatusAttribute.Required = types.BoolPointerValue(attributesItem1.StatusAttribute.Required)
-				for settingsFlagCount54, settingsFlagItem54 := range attributesItem1.StatusAttribute.SettingsFlag {
-					var settingsFlag109 SettingFlag
-					settingsFlag109.Enabled = types.BoolPointerValue(settingsFlagItem54.Enabled)
-					settingsFlag109.Name = types.StringPointerValue(settingsFlagItem54.Name)
-					if settingsFlagCount54+1 > len(attributes3.StatusAttribute.SettingsFlag) {
-						attributes3.StatusAttribute.SettingsFlag = append(attributes3.StatusAttribute.SettingsFlag, settingsFlag109)
+				attributes1.StatusAttribute.Order = types.Int64PointerValue(attributesItem.StatusAttribute.Order)
+				attributes1.StatusAttribute.Placeholder = types.StringPointerValue(attributesItem.StatusAttribute.Placeholder)
+				attributes1.StatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.StatusAttribute.PreviewValueFormatter)
+				attributes1.StatusAttribute.Protected = types.BoolPointerValue(attributesItem.StatusAttribute.Protected)
+				attributes1.StatusAttribute.Readonly = types.BoolPointerValue(attributesItem.StatusAttribute.Readonly)
+				attributes1.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.StatusAttribute.RenderCondition)
+				attributes1.StatusAttribute.Required = types.BoolPointerValue(attributesItem.StatusAttribute.Required)
+				for settingsFlagCount25, settingsFlagItem25 := range attributesItem.StatusAttribute.SettingsFlag {
+					var settingsFlag51 tfTypes.SettingFlag
+					settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+					settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
+					if settingsFlagCount25+1 > len(attributes1.StatusAttribute.SettingsFlag) {
+						attributes1.StatusAttribute.SettingsFlag = append(attributes1.StatusAttribute.SettingsFlag, settingsFlag51)
 					} else {
-						attributes3.StatusAttribute.SettingsFlag[settingsFlagCount54].Enabled = settingsFlag109.Enabled
-						attributes3.StatusAttribute.SettingsFlag[settingsFlagCount54].Name = settingsFlag109.Name
+						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
+						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
 					}
 				}
-				attributes3.StatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.StatusAttribute.ShowInTable)
-				attributes3.StatusAttribute.Sortable = types.BoolPointerValue(attributesItem1.StatusAttribute.Sortable)
-				if attributesItem1.StatusAttribute.Type != nil {
-					attributes3.StatusAttribute.Type = types.StringValue(string(*attributesItem1.StatusAttribute.Type))
+				attributes1.StatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem.StatusAttribute.ShowInTable)
+				attributes1.StatusAttribute.Sortable = types.BoolPointerValue(attributesItem.StatusAttribute.Sortable)
+				if attributesItem.StatusAttribute.Type != nil {
+					attributes1.StatusAttribute.Type = types.StringValue(string(*attributesItem.StatusAttribute.Type))
 				} else {
-					attributes3.StatusAttribute.Type = types.StringNull()
+					attributes1.StatusAttribute.Type = types.StringNull()
 				}
-				attributes3.StatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.StatusAttribute.ValueFormatter)
+				attributes1.StatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem.StatusAttribute.ValueFormatter)
 			}
-			if attributesItem1.TagsAttribute != nil {
-				attributes3.TagsAttribute = &TagsAttribute{}
-				attributes3.TagsAttribute.Purpose = nil
-				for _, v := range attributesItem1.TagsAttribute.Purpose {
-					attributes3.TagsAttribute.Purpose = append(attributes3.TagsAttribute.Purpose, types.StringValue(v))
+			if attributesItem.TagsAttribute != nil {
+				attributes1.TagsAttribute = &tfTypes.TagsAttribute{}
+				attributes1.TagsAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Purpose {
+					attributes1.TagsAttribute.Purpose = append(attributes1.TagsAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.TagsAttribute.Constraints == nil {
-					attributes3.TagsAttribute.Constraints = nil
+				if attributesItem.TagsAttribute.Constraints == nil {
+					attributes1.TagsAttribute.Constraints = nil
 				} else {
-					attributes3.TagsAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.TagsAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.TagsAttribute.DefaultValue == nil {
-					attributes3.TagsAttribute.DefaultValue = types.StringNull()
+				if attributesItem.TagsAttribute.DefaultValue == nil {
+					attributes1.TagsAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult53, _ := json.Marshal(attributesItem1.TagsAttribute.DefaultValue)
-					attributes3.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult53))
+					defaultValueResult25, _ := json.Marshal(attributesItem.TagsAttribute.DefaultValue)
+					attributes1.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
 				}
-				attributes3.TagsAttribute.Deprecated = types.BoolPointerValue(attributesItem1.TagsAttribute.Deprecated)
-				attributes3.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.TagsAttribute.EntityBuilderDisableEdit)
-				attributes3.TagsAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.TagsAttribute.FeatureFlag)
-				attributes3.TagsAttribute.Group = types.StringPointerValue(attributesItem1.TagsAttribute.Group)
-				attributes3.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem1.TagsAttribute.Hidden)
-				attributes3.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TagsAttribute.HideLabel)
-				attributes3.TagsAttribute.Icon = types.StringPointerValue(attributesItem1.TagsAttribute.Icon)
-				if attributesItem1.TagsAttribute.InfoHelpers == nil {
-					attributes3.TagsAttribute.InfoHelpers = nil
+				attributes1.TagsAttribute.Deprecated = types.BoolPointerValue(attributesItem.TagsAttribute.Deprecated)
+				attributes1.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TagsAttribute.EntityBuilderDisableEdit)
+				attributes1.TagsAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TagsAttribute.FeatureFlag)
+				attributes1.TagsAttribute.Group = types.StringPointerValue(attributesItem.TagsAttribute.Group)
+				attributes1.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem.TagsAttribute.Hidden)
+				attributes1.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem.TagsAttribute.HideLabel)
+				attributes1.TagsAttribute.Icon = types.StringPointerValue(attributesItem.TagsAttribute.Icon)
+				if attributesItem.TagsAttribute.InfoHelpers == nil {
+					attributes1.TagsAttribute.InfoHelpers = nil
 				} else {
-					attributes3.TagsAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintText)
-					attributes3.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintTextKey)
-					attributes3.TagsAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.TagsAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintText)
+					attributes1.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintTextKey)
+					attributes1.TagsAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.TagsAttribute.Label = types.StringValue(attributesItem1.TagsAttribute.Label)
-				attributes3.TagsAttribute.Layout = types.StringPointerValue(attributesItem1.TagsAttribute.Layout)
-				attributes3.TagsAttribute.Name = types.StringValue(attributesItem1.TagsAttribute.Name)
-				attributes3.TagsAttribute.Options = nil
-				for _, v := range attributesItem1.TagsAttribute.Options {
-					attributes3.TagsAttribute.Options = append(attributes3.TagsAttribute.Options, types.StringValue(v))
+				attributes1.TagsAttribute.Label = types.StringValue(attributesItem.TagsAttribute.Label)
+				attributes1.TagsAttribute.Layout = types.StringPointerValue(attributesItem.TagsAttribute.Layout)
+				attributes1.TagsAttribute.Name = types.StringValue(attributesItem.TagsAttribute.Name)
+				attributes1.TagsAttribute.Options = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Options {
+					attributes1.TagsAttribute.Options = append(attributes1.TagsAttribute.Options, types.StringValue(v))
 				}
-				attributes3.TagsAttribute.Order = types.Int64PointerValue(attributesItem1.TagsAttribute.Order)
-				attributes3.TagsAttribute.Placeholder = types.StringPointerValue(attributesItem1.TagsAttribute.Placeholder)
-				attributes3.TagsAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.TagsAttribute.PreviewValueFormatter)
-				attributes3.TagsAttribute.Protected = types.BoolPointerValue(attributesItem1.TagsAttribute.Protected)
-				attributes3.TagsAttribute.Readonly = types.BoolPointerValue(attributesItem1.TagsAttribute.Readonly)
-				attributes3.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem1.TagsAttribute.RenderCondition)
-				attributes3.TagsAttribute.Required = types.BoolPointerValue(attributesItem1.TagsAttribute.Required)
-				for settingsFlagCount55, settingsFlagItem55 := range attributesItem1.TagsAttribute.SettingsFlag {
-					var settingsFlag111 SettingFlag
-					settingsFlag111.Enabled = types.BoolPointerValue(settingsFlagItem55.Enabled)
-					settingsFlag111.Name = types.StringPointerValue(settingsFlagItem55.Name)
-					if settingsFlagCount55+1 > len(attributes3.TagsAttribute.SettingsFlag) {
-						attributes3.TagsAttribute.SettingsFlag = append(attributes3.TagsAttribute.SettingsFlag, settingsFlag111)
+				attributes1.TagsAttribute.Order = types.Int64PointerValue(attributesItem.TagsAttribute.Order)
+				attributes1.TagsAttribute.Placeholder = types.StringPointerValue(attributesItem.TagsAttribute.Placeholder)
+				attributes1.TagsAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.TagsAttribute.PreviewValueFormatter)
+				attributes1.TagsAttribute.Protected = types.BoolPointerValue(attributesItem.TagsAttribute.Protected)
+				attributes1.TagsAttribute.Readonly = types.BoolPointerValue(attributesItem.TagsAttribute.Readonly)
+				attributes1.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem.TagsAttribute.RenderCondition)
+				attributes1.TagsAttribute.Required = types.BoolPointerValue(attributesItem.TagsAttribute.Required)
+				for settingsFlagCount26, settingsFlagItem26 := range attributesItem.TagsAttribute.SettingsFlag {
+					var settingsFlag53 tfTypes.SettingFlag
+					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
+					if settingsFlagCount26+1 > len(attributes1.TagsAttribute.SettingsFlag) {
+						attributes1.TagsAttribute.SettingsFlag = append(attributes1.TagsAttribute.SettingsFlag, settingsFlag53)
 					} else {
-						attributes3.TagsAttribute.SettingsFlag[settingsFlagCount55].Enabled = settingsFlag111.Enabled
-						attributes3.TagsAttribute.SettingsFlag[settingsFlagCount55].Name = settingsFlag111.Name
+						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
+						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
 					}
 				}
-				attributes3.TagsAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.TagsAttribute.ShowInTable)
-				attributes3.TagsAttribute.Sortable = types.BoolPointerValue(attributesItem1.TagsAttribute.Sortable)
-				attributes3.TagsAttribute.Suggestions = nil
-				for _, v := range attributesItem1.TagsAttribute.Suggestions {
-					attributes3.TagsAttribute.Suggestions = append(attributes3.TagsAttribute.Suggestions, types.StringValue(v))
+				attributes1.TagsAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TagsAttribute.ShowInTable)
+				attributes1.TagsAttribute.Sortable = types.BoolPointerValue(attributesItem.TagsAttribute.Sortable)
+				attributes1.TagsAttribute.Suggestions = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Suggestions {
+					attributes1.TagsAttribute.Suggestions = append(attributes1.TagsAttribute.Suggestions, types.StringValue(v))
 				}
-				if attributesItem1.TagsAttribute.Type != nil {
-					attributes3.TagsAttribute.Type = types.StringValue(string(*attributesItem1.TagsAttribute.Type))
+				if attributesItem.TagsAttribute.Type != nil {
+					attributes1.TagsAttribute.Type = types.StringValue(string(*attributesItem.TagsAttribute.Type))
 				} else {
-					attributes3.TagsAttribute.Type = types.StringNull()
+					attributes1.TagsAttribute.Type = types.StringNull()
 				}
-				attributes3.TagsAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.TagsAttribute.ValueFormatter)
+				attributes1.TagsAttribute.ValueFormatter = types.StringPointerValue(attributesItem.TagsAttribute.ValueFormatter)
 			}
-			if attributesItem1.TextAttribute != nil {
-				attributes3.TextAttribute = &TextAttribute{}
-				attributes3.TextAttribute.Purpose = nil
-				for _, v := range attributesItem1.TextAttribute.Purpose {
-					attributes3.TextAttribute.Purpose = append(attributes3.TextAttribute.Purpose, types.StringValue(v))
+			if attributesItem.TextAttribute != nil {
+				attributes1.TextAttribute = &tfTypes.TextAttribute{}
+				attributes1.TextAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.TextAttribute.Purpose {
+					attributes1.TextAttribute.Purpose = append(attributes1.TextAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.TextAttribute.Constraints == nil {
-					attributes3.TextAttribute.Constraints = nil
+				if attributesItem.TextAttribute.Constraints == nil {
+					attributes1.TextAttribute.Constraints = nil
 				} else {
-					attributes3.TextAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.TextAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.TextAttribute.DefaultValue == nil {
-					attributes3.TextAttribute.DefaultValue = types.StringNull()
+				if attributesItem.TextAttribute.DefaultValue == nil {
+					attributes1.TextAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult54, _ := json.Marshal(attributesItem1.TextAttribute.DefaultValue)
-					attributes3.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult54))
+					defaultValueResult26, _ := json.Marshal(attributesItem.TextAttribute.DefaultValue)
+					attributes1.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
 				}
-				attributes3.TextAttribute.Deprecated = types.BoolPointerValue(attributesItem1.TextAttribute.Deprecated)
-				attributes3.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.TextAttribute.EntityBuilderDisableEdit)
-				attributes3.TextAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.TextAttribute.FeatureFlag)
-				attributes3.TextAttribute.Group = types.StringPointerValue(attributesItem1.TextAttribute.Group)
-				attributes3.TextAttribute.Hidden = types.BoolPointerValue(attributesItem1.TextAttribute.Hidden)
-				attributes3.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TextAttribute.HideLabel)
-				attributes3.TextAttribute.Icon = types.StringPointerValue(attributesItem1.TextAttribute.Icon)
-				if attributesItem1.TextAttribute.InfoHelpers == nil {
-					attributes3.TextAttribute.InfoHelpers = nil
+				attributes1.TextAttribute.Deprecated = types.BoolPointerValue(attributesItem.TextAttribute.Deprecated)
+				attributes1.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TextAttribute.EntityBuilderDisableEdit)
+				attributes1.TextAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TextAttribute.FeatureFlag)
+				attributes1.TextAttribute.Group = types.StringPointerValue(attributesItem.TextAttribute.Group)
+				attributes1.TextAttribute.Hidden = types.BoolPointerValue(attributesItem.TextAttribute.Hidden)
+				attributes1.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem.TextAttribute.HideLabel)
+				attributes1.TextAttribute.Icon = types.StringPointerValue(attributesItem.TextAttribute.Icon)
+				if attributesItem.TextAttribute.InfoHelpers == nil {
+					attributes1.TextAttribute.InfoHelpers = nil
 				} else {
-					attributes3.TextAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintText)
-					attributes3.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintTextKey)
-					attributes3.TextAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.TextAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintText)
+					attributes1.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintTextKey)
+					attributes1.TextAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.TextAttribute.Label = types.StringValue(attributesItem1.TextAttribute.Label)
-				attributes3.TextAttribute.Layout = types.StringPointerValue(attributesItem1.TextAttribute.Layout)
-				attributes3.TextAttribute.Multiline = types.BoolPointerValue(attributesItem1.TextAttribute.Multiline)
-				attributes3.TextAttribute.Name = types.StringValue(attributesItem1.TextAttribute.Name)
-				attributes3.TextAttribute.Order = types.Int64PointerValue(attributesItem1.TextAttribute.Order)
-				attributes3.TextAttribute.Placeholder = types.StringPointerValue(attributesItem1.TextAttribute.Placeholder)
-				attributes3.TextAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.TextAttribute.PreviewValueFormatter)
-				attributes3.TextAttribute.Protected = types.BoolPointerValue(attributesItem1.TextAttribute.Protected)
-				attributes3.TextAttribute.Readonly = types.BoolPointerValue(attributesItem1.TextAttribute.Readonly)
-				attributes3.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem1.TextAttribute.RenderCondition)
-				attributes3.TextAttribute.Required = types.BoolPointerValue(attributesItem1.TextAttribute.Required)
-				for settingsFlagCount56, settingsFlagItem56 := range attributesItem1.TextAttribute.SettingsFlag {
-					var settingsFlag113 SettingFlag
-					settingsFlag113.Enabled = types.BoolPointerValue(settingsFlagItem56.Enabled)
-					settingsFlag113.Name = types.StringPointerValue(settingsFlagItem56.Name)
-					if settingsFlagCount56+1 > len(attributes3.TextAttribute.SettingsFlag) {
-						attributes3.TextAttribute.SettingsFlag = append(attributes3.TextAttribute.SettingsFlag, settingsFlag113)
+				attributes1.TextAttribute.Label = types.StringValue(attributesItem.TextAttribute.Label)
+				attributes1.TextAttribute.Layout = types.StringPointerValue(attributesItem.TextAttribute.Layout)
+				attributes1.TextAttribute.Multiline = types.BoolPointerValue(attributesItem.TextAttribute.Multiline)
+				attributes1.TextAttribute.Name = types.StringValue(attributesItem.TextAttribute.Name)
+				attributes1.TextAttribute.Order = types.Int64PointerValue(attributesItem.TextAttribute.Order)
+				attributes1.TextAttribute.Placeholder = types.StringPointerValue(attributesItem.TextAttribute.Placeholder)
+				attributes1.TextAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.TextAttribute.PreviewValueFormatter)
+				attributes1.TextAttribute.Protected = types.BoolPointerValue(attributesItem.TextAttribute.Protected)
+				attributes1.TextAttribute.Readonly = types.BoolPointerValue(attributesItem.TextAttribute.Readonly)
+				attributes1.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem.TextAttribute.RenderCondition)
+				attributes1.TextAttribute.Required = types.BoolPointerValue(attributesItem.TextAttribute.Required)
+				for settingsFlagCount27, settingsFlagItem27 := range attributesItem.TextAttribute.SettingsFlag {
+					var settingsFlag55 tfTypes.SettingFlag
+					settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+					settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
+					if settingsFlagCount27+1 > len(attributes1.TextAttribute.SettingsFlag) {
+						attributes1.TextAttribute.SettingsFlag = append(attributes1.TextAttribute.SettingsFlag, settingsFlag55)
 					} else {
-						attributes3.TextAttribute.SettingsFlag[settingsFlagCount56].Enabled = settingsFlag113.Enabled
-						attributes3.TextAttribute.SettingsFlag[settingsFlagCount56].Name = settingsFlag113.Name
+						attributes1.TextAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
+						attributes1.TextAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
 					}
 				}
-				attributes3.TextAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.TextAttribute.ShowInTable)
-				attributes3.TextAttribute.Sortable = types.BoolPointerValue(attributesItem1.TextAttribute.Sortable)
-				if attributesItem1.TextAttribute.Type != nil {
-					attributes3.TextAttribute.Type = types.StringValue(string(*attributesItem1.TextAttribute.Type))
+				attributes1.TextAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TextAttribute.ShowInTable)
+				attributes1.TextAttribute.Sortable = types.BoolPointerValue(attributesItem.TextAttribute.Sortable)
+				if attributesItem.TextAttribute.Type != nil {
+					attributes1.TextAttribute.Type = types.StringValue(string(*attributesItem.TextAttribute.Type))
 				} else {
-					attributes3.TextAttribute.Type = types.StringNull()
+					attributes1.TextAttribute.Type = types.StringNull()
 				}
-				attributes3.TextAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.TextAttribute.ValueFormatter)
+				attributes1.TextAttribute.ValueFormatter = types.StringPointerValue(attributesItem.TextAttribute.ValueFormatter)
 			}
-			if attributesItem1.UserRelationAttribute != nil {
-				attributes3.UserRelationAttribute = &UserRelationAttribute{}
-				attributes3.UserRelationAttribute.Purpose = nil
-				for _, v := range attributesItem1.UserRelationAttribute.Purpose {
-					attributes3.UserRelationAttribute.Purpose = append(attributes3.UserRelationAttribute.Purpose, types.StringValue(v))
+			if attributesItem.UserRelationAttribute != nil {
+				attributes1.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+				attributes1.UserRelationAttribute.Purpose = []types.String{}
+				for _, v := range attributesItem.UserRelationAttribute.Purpose {
+					attributes1.UserRelationAttribute.Purpose = append(attributes1.UserRelationAttribute.Purpose, types.StringValue(v))
 				}
-				if attributesItem1.UserRelationAttribute.Constraints == nil {
-					attributes3.UserRelationAttribute.Constraints = nil
+				if attributesItem.UserRelationAttribute.Constraints == nil {
+					attributes1.UserRelationAttribute.Constraints = nil
 				} else {
-					attributes3.UserRelationAttribute.Constraints = &AddressRelationAttributeConstraints{}
+					attributes1.UserRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
-				if attributesItem1.UserRelationAttribute.DefaultValue == nil {
-					attributes3.UserRelationAttribute.DefaultValue = types.StringNull()
+				if attributesItem.UserRelationAttribute.DefaultValue == nil {
+					attributes1.UserRelationAttribute.DefaultValue = types.StringNull()
 				} else {
-					defaultValueResult55, _ := json.Marshal(attributesItem1.UserRelationAttribute.DefaultValue)
-					attributes3.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult55))
+					defaultValueResult27, _ := json.Marshal(attributesItem.UserRelationAttribute.DefaultValue)
+					attributes1.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
 				}
-				attributes3.UserRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Deprecated)
-				attributes3.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.UserRelationAttribute.EntityBuilderDisableEdit)
-				attributes3.UserRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.UserRelationAttribute.FeatureFlag)
-				attributes3.UserRelationAttribute.Group = types.StringPointerValue(attributesItem1.UserRelationAttribute.Group)
-				attributes3.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Hidden)
-				attributes3.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.UserRelationAttribute.HideLabel)
-				attributes3.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem1.UserRelationAttribute.Icon)
-				if attributesItem1.UserRelationAttribute.InfoHelpers == nil {
-					attributes3.UserRelationAttribute.InfoHelpers = nil
+				attributes1.UserRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.UserRelationAttribute.Deprecated)
+				attributes1.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.UserRelationAttribute.EntityBuilderDisableEdit)
+				attributes1.UserRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.UserRelationAttribute.FeatureFlag)
+				attributes1.UserRelationAttribute.Group = types.StringPointerValue(attributesItem.UserRelationAttribute.Group)
+				attributes1.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.UserRelationAttribute.Hidden)
+				attributes1.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.UserRelationAttribute.HideLabel)
+				attributes1.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem.UserRelationAttribute.Icon)
+				if attributesItem.UserRelationAttribute.InfoHelpers == nil {
+					attributes1.UserRelationAttribute.InfoHelpers = nil
 				} else {
-					attributes3.UserRelationAttribute.InfoHelpers = &AddressRelationAttributeInfoHelpers{}
-					attributes3.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintCustomComponent)
-					attributes3.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintText)
-					attributes3.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintTextKey)
-					attributes3.UserRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintTooltipPlacement)
+					attributes1.UserRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintCustomComponent)
+					attributes1.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintText)
+					attributes1.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintTextKey)
+					attributes1.UserRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintTooltipPlacement)
 				}
-				attributes3.UserRelationAttribute.Label = types.StringValue(attributesItem1.UserRelationAttribute.Label)
-				attributes3.UserRelationAttribute.Layout = types.StringPointerValue(attributesItem1.UserRelationAttribute.Layout)
-				attributes3.UserRelationAttribute.Multiple = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Multiple)
-				attributes3.UserRelationAttribute.Name = types.StringValue(attributesItem1.UserRelationAttribute.Name)
-				attributes3.UserRelationAttribute.Order = types.Int64PointerValue(attributesItem1.UserRelationAttribute.Order)
-				attributes3.UserRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.UserRelationAttribute.Placeholder)
-				attributes3.UserRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.UserRelationAttribute.PreviewValueFormatter)
-				attributes3.UserRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Protected)
-				attributes3.UserRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Readonly)
-				attributes3.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.UserRelationAttribute.RenderCondition)
-				attributes3.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Required)
-				for settingsFlagCount57, settingsFlagItem57 := range attributesItem1.UserRelationAttribute.SettingsFlag {
-					var settingsFlag115 SettingFlag
-					settingsFlag115.Enabled = types.BoolPointerValue(settingsFlagItem57.Enabled)
-					settingsFlag115.Name = types.StringPointerValue(settingsFlagItem57.Name)
-					if settingsFlagCount57+1 > len(attributes3.UserRelationAttribute.SettingsFlag) {
-						attributes3.UserRelationAttribute.SettingsFlag = append(attributes3.UserRelationAttribute.SettingsFlag, settingsFlag115)
+				attributes1.UserRelationAttribute.Label = types.StringValue(attributesItem.UserRelationAttribute.Label)
+				attributes1.UserRelationAttribute.Layout = types.StringPointerValue(attributesItem.UserRelationAttribute.Layout)
+				attributes1.UserRelationAttribute.Multiple = types.BoolPointerValue(attributesItem.UserRelationAttribute.Multiple)
+				attributes1.UserRelationAttribute.Name = types.StringValue(attributesItem.UserRelationAttribute.Name)
+				attributes1.UserRelationAttribute.Order = types.Int64PointerValue(attributesItem.UserRelationAttribute.Order)
+				attributes1.UserRelationAttribute.Placeholder = types.StringPointerValue(attributesItem.UserRelationAttribute.Placeholder)
+				attributes1.UserRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.UserRelationAttribute.PreviewValueFormatter)
+				attributes1.UserRelationAttribute.Protected = types.BoolPointerValue(attributesItem.UserRelationAttribute.Protected)
+				attributes1.UserRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.UserRelationAttribute.Readonly)
+				attributes1.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.UserRelationAttribute.RenderCondition)
+				attributes1.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem.UserRelationAttribute.Required)
+				for settingsFlagCount28, settingsFlagItem28 := range attributesItem.UserRelationAttribute.SettingsFlag {
+					var settingsFlag57 tfTypes.SettingFlag
+					settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
+					settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
+					if settingsFlagCount28+1 > len(attributes1.UserRelationAttribute.SettingsFlag) {
+						attributes1.UserRelationAttribute.SettingsFlag = append(attributes1.UserRelationAttribute.SettingsFlag, settingsFlag57)
 					} else {
-						attributes3.UserRelationAttribute.SettingsFlag[settingsFlagCount57].Enabled = settingsFlag115.Enabled
-						attributes3.UserRelationAttribute.SettingsFlag[settingsFlagCount57].Name = settingsFlag115.Name
+						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
+						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
 					}
 				}
-				attributes3.UserRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.UserRelationAttribute.ShowInTable)
-				attributes3.UserRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Sortable)
-				if attributesItem1.UserRelationAttribute.Type != nil {
-					attributes3.UserRelationAttribute.Type = types.StringValue(string(*attributesItem1.UserRelationAttribute.Type))
+				attributes1.UserRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.UserRelationAttribute.ShowInTable)
+				attributes1.UserRelationAttribute.Sortable = types.BoolPointerValue(attributesItem.UserRelationAttribute.Sortable)
+				if attributesItem.UserRelationAttribute.Type != nil {
+					attributes1.UserRelationAttribute.Type = types.StringValue(string(*attributesItem.UserRelationAttribute.Type))
 				} else {
-					attributes3.UserRelationAttribute.Type = types.StringNull()
+					attributes1.UserRelationAttribute.Type = types.StringNull()
 				}
-				attributes3.UserRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.UserRelationAttribute.ValueFormatter)
+				attributes1.UserRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.UserRelationAttribute.ValueFormatter)
 			}
-			if attributesCount1+1 > len(capabilities1.Attributes) {
-				capabilities1.Attributes = append(capabilities1.Attributes, attributes3)
+			if attributesCount+1 > len(r.Attributes) {
+				r.Attributes = append(r.Attributes, attributes1)
 			} else {
+				r.Attributes[attributesCount].AddressRelationAttribute = attributes1.AddressRelationAttribute
+				r.Attributes[attributesCount].AutomationAttribute = attributes1.AutomationAttribute
+				r.Attributes[attributesCount].BooleanAttribute = attributes1.BooleanAttribute
+				r.Attributes[attributesCount].ComputedAttribute = attributes1.ComputedAttribute
+				r.Attributes[attributesCount].ConsentAttribute = attributes1.ConsentAttribute
+				r.Attributes[attributesCount].CountryAttribute = attributes1.CountryAttribute
+				r.Attributes[attributesCount].CurrencyAttribute = attributes1.CurrencyAttribute
+				r.Attributes[attributesCount].DateAttribute = attributes1.DateAttribute
+				r.Attributes[attributesCount].FileAttribute = attributes1.FileAttribute
+				r.Attributes[attributesCount].InternalAttribute = attributes1.InternalAttribute
+				r.Attributes[attributesCount].InternalUserAttribute = attributes1.InternalUserAttribute
+				r.Attributes[attributesCount].InvitationEmailAttribute = attributes1.InvitationEmailAttribute
+				r.Attributes[attributesCount].LinkAttribute = attributes1.LinkAttribute
+				r.Attributes[attributesCount].MultiSelectAttribute = attributes1.MultiSelectAttribute
+				r.Attributes[attributesCount].NumberAttribute = attributes1.NumberAttribute
+				r.Attributes[attributesCount].OrderedListAttribute = attributes1.OrderedListAttribute
+				r.Attributes[attributesCount].PartnerOrganisationAttribute = attributes1.PartnerOrganisationAttribute
+				r.Attributes[attributesCount].PartnerStatusAttribute = attributes1.PartnerStatusAttribute
+				r.Attributes[attributesCount].PaymentMethodRelationAttribute = attributes1.PaymentMethodRelationAttribute
+				r.Attributes[attributesCount].PurposeAttribute = attributes1.PurposeAttribute
+				r.Attributes[attributesCount].RelationAttribute = attributes1.RelationAttribute
+				r.Attributes[attributesCount].RepeatableAttribute = attributes1.RepeatableAttribute
+				r.Attributes[attributesCount].SelectAttribute = attributes1.SelectAttribute
+				r.Attributes[attributesCount].SequenceAttribute = attributes1.SequenceAttribute
+				r.Attributes[attributesCount].StatusAttribute = attributes1.StatusAttribute
+				r.Attributes[attributesCount].TagsAttribute = attributes1.TagsAttribute
+				r.Attributes[attributesCount].TextAttribute = attributes1.TextAttribute
+				r.Attributes[attributesCount].UserRelationAttribute = attributes1.UserRelationAttribute
 			}
 		}
-		capabilities1.FeatureFlag = types.StringPointerValue(capabilitiesItem.FeatureFlag)
-		capabilities1.Name = types.StringValue(capabilitiesItem.Name)
-		for settingsFlagCount58, settingsFlagItem58 := range capabilitiesItem.SettingsFlag {
-			var settingsFlag117 SettingFlag
-			settingsFlag117.Enabled = types.BoolPointerValue(settingsFlagItem58.Enabled)
-			settingsFlag117.Name = types.StringPointerValue(settingsFlagItem58.Name)
-			if settingsFlagCount58+1 > len(capabilities1.SettingsFlag) {
-				capabilities1.SettingsFlag = append(capabilities1.SettingsFlag, settingsFlag117)
-			} else {
-				capabilities1.SettingsFlag[settingsFlagCount58].Enabled = settingsFlag117.Enabled
-				capabilities1.SettingsFlag[settingsFlagCount58].Name = settingsFlag117.Name
+		r.Blueprint = types.StringPointerValue(resp.Blueprint)
+		if len(r.Capabilities) > len(resp.Capabilities) {
+			r.Capabilities = r.Capabilities[:len(resp.Capabilities)]
+		}
+		for capabilitiesCount, capabilitiesItem := range resp.Capabilities {
+			var capabilities1 tfTypes.EntityCapability
+			capabilities1.Purpose = []types.String{}
+			for _, v := range capabilitiesItem.Purpose {
+				capabilities1.Purpose = append(capabilities1.Purpose, types.StringValue(v))
 			}
-		}
-		capabilities1.Title = types.StringPointerValue(capabilitiesItem.Title)
-		for uiHooksCount, uiHooksItem := range capabilitiesItem.UIHooks {
-			var uiHooks1 UIHooks
-			if uiHooksItem.AdditionalProperties == nil {
-				uiHooks1.AdditionalProperties = types.StringNull()
-			} else {
-				additionalPropertiesResult4, _ := json.Marshal(uiHooksItem.AdditionalProperties)
-				uiHooks1.AdditionalProperties = types.StringValue(string(additionalPropertiesResult4))
-			}
-			uiHooks1.Component = types.StringPointerValue(uiHooksItem.Component)
-			uiHooks1.Disabled = types.BoolPointerValue(uiHooksItem.Disabled)
-			uiHooks1.GroupExpanded = types.BoolPointerValue(uiHooksItem.GroupExpanded)
-			uiHooks1.Header = types.BoolPointerValue(uiHooksItem.Header)
-			uiHooks1.Hook = types.StringValue(uiHooksItem.Hook)
-			uiHooks1.Icon = types.StringPointerValue(uiHooksItem.Icon)
-			uiHooks1.Import = types.StringPointerValue(uiHooksItem.Import)
-			uiHooks1.Order = types.Int64PointerValue(uiHooksItem.Order)
-			uiHooks1.RenderCondition = types.StringPointerValue(uiHooksItem.RenderCondition)
-			if uiHooksItem.RequiredPermission == nil {
-				uiHooks1.RequiredPermission = nil
-			} else {
-				uiHooks1.RequiredPermission = &RequiredPermission{}
-				uiHooks1.RequiredPermission.Action = types.StringValue(uiHooksItem.RequiredPermission.Action)
-				uiHooks1.RequiredPermission.Resource = types.StringPointerValue(uiHooksItem.RequiredPermission.Resource)
-			}
-			uiHooks1.Route = types.StringPointerValue(uiHooksItem.Route)
-			uiHooks1.Title = types.StringPointerValue(uiHooksItem.Title)
-			if uiHooksCount+1 > len(capabilities1.UIHooks) {
-				capabilities1.UIHooks = append(capabilities1.UIHooks, uiHooks1)
-			} else {
-				capabilities1.UIHooks[uiHooksCount].AdditionalProperties = uiHooks1.AdditionalProperties
-				capabilities1.UIHooks[uiHooksCount].Component = uiHooks1.Component
-				capabilities1.UIHooks[uiHooksCount].Disabled = uiHooks1.Disabled
-				capabilities1.UIHooks[uiHooksCount].GroupExpanded = uiHooks1.GroupExpanded
-				capabilities1.UIHooks[uiHooksCount].Header = uiHooks1.Header
-				capabilities1.UIHooks[uiHooksCount].Hook = uiHooks1.Hook
-				capabilities1.UIHooks[uiHooksCount].Icon = uiHooks1.Icon
-				capabilities1.UIHooks[uiHooksCount].Import = uiHooks1.Import
-				capabilities1.UIHooks[uiHooksCount].Order = uiHooks1.Order
-				capabilities1.UIHooks[uiHooksCount].RenderCondition = uiHooks1.RenderCondition
-				capabilities1.UIHooks[uiHooksCount].RequiredPermission = uiHooks1.RequiredPermission
-				capabilities1.UIHooks[uiHooksCount].Route = uiHooks1.Route
-				capabilities1.UIHooks[uiHooksCount].Title = uiHooks1.Title
-			}
-		}
-		if capabilitiesCount+1 > len(r.Capabilities) {
-			r.Capabilities = append(r.Capabilities, capabilities1)
-		} else {
-			r.Capabilities[capabilitiesCount].Purpose = capabilities1.Purpose
-			r.Capabilities[capabilitiesCount].Attributes = capabilities1.Attributes
-			r.Capabilities[capabilitiesCount].FeatureFlag = capabilities1.FeatureFlag
-			r.Capabilities[capabilitiesCount].Name = capabilities1.Name
-			r.Capabilities[capabilitiesCount].SettingsFlag = capabilities1.SettingsFlag
-			r.Capabilities[capabilitiesCount].Title = capabilities1.Title
-			r.Capabilities[capabilitiesCount].UIHooks = capabilities1.UIHooks
-		}
-	}
-	r.Comment = types.StringPointerValue(resp.Comment)
-	r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
-	if len(resp.DialogConfig) > 0 {
-		r.DialogConfig = make(map[string]types.String)
-		for key2, value8 := range resp.DialogConfig {
-			result, _ := json.Marshal(value8)
-			r.DialogConfig[key2] = types.StringValue(string(result))
-		}
-	}
-	r.Draft = types.BoolPointerValue(resp.Draft)
-	r.EnableSetting = nil
-	for _, v := range resp.EnableSetting {
-		r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
-	}
-	if len(resp.ExplicitSearchMappings) > 0 {
-		r.ExplicitSearchMappings = make(map[string]SearchMappings)
-		for searchMappingsKey, searchMappingsValue := range resp.ExplicitSearchMappings {
-			var searchMappingsResult SearchMappings
-			if len(searchMappingsValue.Fields) > 0 {
-				searchMappingsResult.Fields = make(map[string]types.String)
-				for key3, value9 := range searchMappingsValue.Fields {
-					result1, _ := json.Marshal(value9)
-					searchMappingsResult.Fields[key3] = types.StringValue(string(result1))
-				}
-			}
-			searchMappingsResult.Index = types.BoolPointerValue(searchMappingsValue.Index)
-			if searchMappingsValue.Type != nil {
-				searchMappingsResult.Type = types.StringValue(string(*searchMappingsValue.Type))
-			} else {
-				searchMappingsResult.Type = types.StringNull()
-			}
-			r.ExplicitSearchMappings[searchMappingsKey] = searchMappingsResult
-		}
-	}
-	r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
-	if len(r.GroupSettings) > len(resp.GroupSettings) {
-		r.GroupSettings = r.GroupSettings[:len(resp.GroupSettings)]
-	}
-	for groupSettingsCount, groupSettingsItem := range resp.GroupSettings {
-		var groupSettings1 GroupSettings
-		groupSettings1.Purpose = nil
-		for _, v := range groupSettingsItem.Purpose {
-			groupSettings1.Purpose = append(groupSettings1.Purpose, types.StringValue(v))
-		}
-		groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
-		groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-		groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
-		if groupSettingsItem.InfoTooltipTitle == nil {
-			groupSettings1.InfoTooltipTitle = nil
-		} else {
-			groupSettings1.InfoTooltipTitle = &EntitySchemaInfoTooltipTitle{}
-			groupSettings1.InfoTooltipTitle.Default = types.StringPointerValue(groupSettingsItem.InfoTooltipTitle.Default)
-			groupSettings1.InfoTooltipTitle.Key = types.StringPointerValue(groupSettingsItem.InfoTooltipTitle.Key)
-		}
-		groupSettings1.Label = types.StringValue(groupSettingsItem.Label)
-		groupSettings1.Order = types.Int64PointerValue(groupSettingsItem.Order)
-		groupSettings1.RenderCondition = types.StringPointerValue(groupSettingsItem.RenderCondition)
-		for settingsFlagCount59, settingsFlagItem59 := range groupSettingsItem.SettingsFlag {
-			var settingsFlag119 SettingFlag
-			settingsFlag119.Enabled = types.BoolPointerValue(settingsFlagItem59.Enabled)
-			settingsFlag119.Name = types.StringPointerValue(settingsFlagItem59.Name)
-			if settingsFlagCount59+1 > len(groupSettings1.SettingsFlag) {
-				groupSettings1.SettingsFlag = append(groupSettings1.SettingsFlag, settingsFlag119)
-			} else {
-				groupSettings1.SettingsFlag[settingsFlagCount59].Enabled = settingsFlag119.Enabled
-				groupSettings1.SettingsFlag[settingsFlagCount59].Name = settingsFlag119.Name
-			}
-		}
-		if groupSettingsCount+1 > len(r.GroupSettings) {
-			r.GroupSettings = append(r.GroupSettings, groupSettings1)
-		} else {
-			r.GroupSettings[groupSettingsCount].Purpose = groupSettings1.Purpose
-			r.GroupSettings[groupSettingsCount].Expanded = groupSettings1.Expanded
-			r.GroupSettings[groupSettingsCount].FeatureFlag = groupSettings1.FeatureFlag
-			r.GroupSettings[groupSettingsCount].ID = groupSettings1.ID
-			r.GroupSettings[groupSettingsCount].InfoTooltipTitle = groupSettings1.InfoTooltipTitle
-			r.GroupSettings[groupSettingsCount].Label = groupSettings1.Label
-			r.GroupSettings[groupSettingsCount].Order = groupSettings1.Order
-			r.GroupSettings[groupSettingsCount].RenderCondition = groupSettings1.RenderCondition
-			r.GroupSettings[groupSettingsCount].SettingsFlag = groupSettings1.SettingsFlag
-		}
-	}
-	r.Icon = types.StringPointerValue(resp.Icon)
-	r.ID = types.StringPointerValue(resp.ID)
-	if resp.LayoutSettings == nil {
-		r.LayoutSettings = nil
-	} else {
-		r.LayoutSettings = &EntitySchemaLayoutSettings{}
-		if resp.LayoutSettings.AdditionalProperties == nil {
-			r.LayoutSettings.AdditionalProperties = types.StringNull()
-		} else {
-			additionalPropertiesResult5, _ := json.Marshal(resp.LayoutSettings.AdditionalProperties)
-			r.LayoutSettings.AdditionalProperties = types.StringValue(string(additionalPropertiesResult5))
-		}
-		r.LayoutSettings.GridGap = types.StringPointerValue(resp.LayoutSettings.GridGap)
-		r.LayoutSettings.GridTemplateColumns = types.StringPointerValue(resp.LayoutSettings.GridTemplateColumns)
-	}
-	r.Name = types.StringValue(resp.Name)
-	r.Plural = types.StringValue(resp.Plural)
-	r.Published = types.BoolPointerValue(resp.Published)
-	r.Slug = types.StringValue(resp.Slug)
-	if resp.Source == nil {
-		r.Source = nil
-	} else {
-		r.Source = &Source{}
-		r.Source.ID = types.StringPointerValue(resp.Source.ID)
-		r.Source.Type = types.StringPointerValue(resp.Source.Type)
-	}
-	r.TitleTemplate = types.StringPointerValue(resp.TitleTemplate)
-	if resp.UIConfig == nil {
-		r.UIConfig = nil
-	} else {
-		r.UIConfig = &EntitySchemaUIConfig{}
-		if resp.UIConfig.CreateView == nil {
-			r.UIConfig.CreateView = nil
-		} else {
-			r.UIConfig.CreateView = &EntitySchemaCreateView{}
-			if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
-				r.UIConfig.CreateView.EntityDefaultCreate = &EntityDefaultCreate{}
-				if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
-					r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String)
-					for key5, value10 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key5] = types.StringValue(value10)
+			for attributesCount1, attributesItem1 := range capabilitiesItem.Attributes {
+				var attributes3 tfTypes.Attribute
+				if attributesItem1.AddressRelationAttribute != nil {
+					attributes3.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+					attributes3.AddressRelationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.AddressRelationAttribute.Purpose {
+						attributes3.AddressRelationAttribute.Purpose = append(attributes3.AddressRelationAttribute.Purpose, types.StringValue(v))
 					}
-				}
-				if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
-					r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
-				} else {
-					r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.CreateView.EntityViewDisabled != nil {
-				r.UIConfig.CreateView.EntityViewDisabled = &EntityViewDisabled{}
-				if resp.UIConfig.CreateView.EntityViewDisabled.ViewType != nil {
-					r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
-				} else {
-					r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.CreateView.RedirectEntityView != nil {
-				r.UIConfig.CreateView.RedirectEntityView = &RedirectEntityView{}
-				r.UIConfig.CreateView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
-				if resp.UIConfig.CreateView.RedirectEntityView.ViewType != nil {
-					r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
-				} else {
-					r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringNull()
-				}
-			}
-		}
-		if resp.UIConfig.EditView == nil {
-			r.UIConfig.EditView = nil
-		} else {
-			r.UIConfig.EditView = &EntitySchemaEditView{}
-			if resp.UIConfig.EditView.EntityDefaultEdit != nil {
-				r.UIConfig.EditView.EntityDefaultEdit = &EntityDefaultEdit{}
-				if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
-					r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
-					for key6, value11 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-						r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key6] = types.StringValue(value11)
+					if attributesItem1.AddressRelationAttribute.Constraints == nil {
+						attributes3.AddressRelationAttribute.Constraints = nil
+					} else {
+						attributes3.AddressRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 					}
-				}
-				r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = nil
-				for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
-				}
-				if resp.UIConfig.EditView.EntityDefaultEdit.ViewType != nil {
-					r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
-				} else {
-					r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.EditView.EntityViewDisabled != nil {
-				r.UIConfig.EditView.EntityViewDisabled = &EntityViewDisabled{}
-				if resp.UIConfig.EditView.EntityViewDisabled.ViewType != nil {
-					r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
-				} else {
-					r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.EditView.RedirectEntityView != nil {
-				r.UIConfig.EditView.RedirectEntityView = &RedirectEntityView{}
-				r.UIConfig.EditView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
-				if resp.UIConfig.EditView.RedirectEntityView.ViewType != nil {
-					r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
-				} else {
-					r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringNull()
-				}
-			}
-		}
-		if resp.UIConfig.ListItem == nil {
-			r.UIConfig.ListItem = nil
-		} else {
-			r.UIConfig.ListItem = &EntitySchemaListItem{}
-			if len(r.UIConfig.ListItem.QuickActions) > len(resp.UIConfig.ListItem.QuickActions) {
-				r.UIConfig.ListItem.QuickActions = r.UIConfig.ListItem.QuickActions[:len(resp.UIConfig.ListItem.QuickActions)]
-			}
-			for quickActionsCount, quickActionsItem := range resp.UIConfig.ListItem.QuickActions {
-				var quickActions1 EntityAction
-				quickActions1.Action = types.StringValue(quickActionsItem.Action)
-				quickActions1.Icon = types.StringPointerValue(quickActionsItem.Icon)
-				quickActions1.Label = types.StringValue(quickActionsItem.Label)
-				quickActions1.Permission = types.StringPointerValue(quickActionsItem.Permission)
-				if quickActionsCount+1 > len(r.UIConfig.ListItem.QuickActions) {
-					r.UIConfig.ListItem.QuickActions = append(r.UIConfig.ListItem.QuickActions, quickActions1)
-				} else {
-					r.UIConfig.ListItem.QuickActions[quickActionsCount].Action = quickActions1.Action
-					r.UIConfig.ListItem.QuickActions[quickActionsCount].Icon = quickActions1.Icon
-					r.UIConfig.ListItem.QuickActions[quickActionsCount].Label = quickActions1.Label
-					r.UIConfig.ListItem.QuickActions[quickActionsCount].Permission = quickActions1.Permission
-				}
-			}
-			if len(r.UIConfig.ListItem.SummaryAttributes) > len(resp.UIConfig.ListItem.SummaryAttributes) {
-				r.UIConfig.ListItem.SummaryAttributes = r.UIConfig.ListItem.SummaryAttributes[:len(resp.UIConfig.ListItem.SummaryAttributes)]
-			}
-			for summaryAttributesCount, summaryAttributesItem := range resp.UIConfig.ListItem.SummaryAttributes {
-				var summaryAttributes2 SummaryAttributes
-				if summaryAttributesItem.Str != nil {
-					summaryAttributes2.Str = types.StringPointerValue(summaryAttributesItem.Str)
-				}
-				if summaryAttributesItem.SummaryAttribute != nil {
-					summaryAttributes2.SummaryAttribute = &SummaryAttribute{}
-					summaryAttributes2.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
-					summaryAttributes2.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
-					summaryAttributes2.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
-					for settingsFlagCount60, settingsFlagItem60 := range summaryAttributesItem.SummaryAttribute.SettingsFlag {
-						var settingsFlag121 SettingFlag
-						settingsFlag121.Enabled = types.BoolPointerValue(settingsFlagItem60.Enabled)
-						settingsFlag121.Name = types.StringPointerValue(settingsFlagItem60.Name)
-						if settingsFlagCount60+1 > len(summaryAttributes2.SummaryAttribute.SettingsFlag) {
-							summaryAttributes2.SummaryAttribute.SettingsFlag = append(summaryAttributes2.SummaryAttribute.SettingsFlag, settingsFlag121)
+					if attributesItem1.AddressRelationAttribute.DefaultValue == nil {
+						attributes3.AddressRelationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult28, _ := json.Marshal(attributesItem1.AddressRelationAttribute.DefaultValue)
+						attributes3.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
+					}
+					attributes3.AddressRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Deprecated)
+					attributes3.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.EntityBuilderDisableEdit)
+					attributes3.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.AddressRelationAttribute.FeatureFlag)
+					attributes3.AddressRelationAttribute.Group = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Group)
+					attributes3.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HasPrimary)
+					attributes3.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Hidden)
+					attributes3.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HideLabel)
+					attributes3.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Icon)
+					if attributesItem1.AddressRelationAttribute.InfoHelpers == nil {
+						attributes3.AddressRelationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintText)
+						attributes3.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintTextKey)
+						attributes3.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.AddressRelationAttribute.Label = types.StringValue(attributesItem1.AddressRelationAttribute.Label)
+					attributes3.AddressRelationAttribute.Layout = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Layout)
+					attributes3.AddressRelationAttribute.Name = types.StringValue(attributesItem1.AddressRelationAttribute.Name)
+					attributes3.AddressRelationAttribute.Order = types.Int64PointerValue(attributesItem1.AddressRelationAttribute.Order)
+					attributes3.AddressRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Placeholder)
+					attributes3.AddressRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.AddressRelationAttribute.PreviewValueFormatter)
+					attributes3.AddressRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Protected)
+					attributes3.AddressRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Readonly)
+					attributes3.AddressRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.AddressRelationAttribute.RenderCondition)
+					attributes3.AddressRelationAttribute.Required = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Required)
+					for settingsFlagCount29, settingsFlagItem29 := range attributesItem1.AddressRelationAttribute.SettingsFlag {
+						var settingsFlag59 tfTypes.SettingFlag
+						settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
+						settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
+						if settingsFlagCount29+1 > len(attributes3.AddressRelationAttribute.SettingsFlag) {
+							attributes3.AddressRelationAttribute.SettingsFlag = append(attributes3.AddressRelationAttribute.SettingsFlag, settingsFlag59)
 						} else {
-							summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount60].Enabled = settingsFlag121.Enabled
-							summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount60].Name = settingsFlag121.Name
+							attributes3.AddressRelationAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
+							attributes3.AddressRelationAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
 						}
 					}
-					summaryAttributes2.SummaryAttribute.ShowAsTag = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.ShowAsTag)
-					summaryAttributes2.SummaryAttribute.TagColor = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.TagColor)
-					summaryAttributes2.SummaryAttribute.Value = types.StringValue(summaryAttributesItem.SummaryAttribute.Value)
-				}
-				if summaryAttributesCount+1 > len(r.UIConfig.ListItem.SummaryAttributes) {
-					r.UIConfig.ListItem.SummaryAttributes = append(r.UIConfig.ListItem.SummaryAttributes, summaryAttributes2)
-				} else {
-				}
-			}
-		}
-		if resp.UIConfig.Sharing == nil {
-			r.UIConfig.Sharing = nil
-		} else {
-			r.UIConfig.Sharing = &EntitySchemaSharing{}
-			r.UIConfig.Sharing.ShowSharingButton = types.BoolPointerValue(resp.UIConfig.Sharing.ShowSharingButton)
-		}
-		if resp.UIConfig.SingleView == nil {
-			r.UIConfig.SingleView = nil
-		} else {
-			r.UIConfig.SingleView = &EntitySchemaEditView{}
-			if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
-				r.UIConfig.SingleView.EntityDefaultEdit = &EntityDefaultEdit{}
-				if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
-					r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
-					for key7, value13 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key7] = types.StringValue(value13)
-					}
-				}
-				r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = nil
-				for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
-				}
-				if resp.UIConfig.SingleView.EntityDefaultEdit.ViewType != nil {
-					r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
-				} else {
-					r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.SingleView.EntityViewDisabled != nil {
-				r.UIConfig.SingleView.EntityViewDisabled = &EntityViewDisabled{}
-				if resp.UIConfig.SingleView.EntityViewDisabled.ViewType != nil {
-					r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
-				} else {
-					r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringNull()
-				}
-			}
-			if resp.UIConfig.SingleView.RedirectEntityView != nil {
-				r.UIConfig.SingleView.RedirectEntityView = &RedirectEntityView{}
-				r.UIConfig.SingleView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
-				if resp.UIConfig.SingleView.RedirectEntityView.ViewType != nil {
-					r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
-				} else {
-					r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringNull()
-				}
-			}
-		}
-		if resp.UIConfig.TableView == nil {
-			r.UIConfig.TableView = nil
-		} else {
-			r.UIConfig.TableView = &EntitySchemaTableView{}
-			if resp.UIConfig.TableView.EntityDefaultTable != nil {
-				r.UIConfig.TableView.EntityDefaultTable = &EntityDefaultTable{}
-				if len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-					r.UIConfig.TableView.EntityDefaultTable.BulkActions = r.UIConfig.TableView.EntityDefaultTable.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
-				}
-				for bulkActionsCount, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
-					var bulkActions1 BulkActions
-					if bulkActionsItem.Str != nil {
-						bulkActions1.Str = types.StringPointerValue(bulkActionsItem.Str)
-					}
-					if bulkActionsItem.EntityAction != nil {
-						bulkActions1.EntityAction = &EntityAction{}
-						bulkActions1.EntityAction.Action = types.StringValue(bulkActionsItem.EntityAction.Action)
-						bulkActions1.EntityAction.Icon = types.StringPointerValue(bulkActionsItem.EntityAction.Icon)
-						bulkActions1.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
-						bulkActions1.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
-					}
-					if bulkActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-						r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions1)
+					attributes3.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.ShowInTable)
+					attributes3.AddressRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Sortable)
+					if attributesItem1.AddressRelationAttribute.Type != nil {
+						attributes3.AddressRelationAttribute.Type = types.StringValue(string(*attributesItem1.AddressRelationAttribute.Type))
 					} else {
+						attributes3.AddressRelationAttribute.Type = types.StringNull()
 					}
+					attributes3.AddressRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.AddressRelationAttribute.ValueFormatter)
 				}
-				r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
-				if len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-					r.UIConfig.TableView.EntityDefaultTable.NavbarActions = r.UIConfig.TableView.EntityDefaultTable.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
-				}
-				for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
-					var navbarActions1 NavbarActions
-					for optionsCount6, optionsItem6 := range navbarActionsItem.Options {
-						var options15 EntityDefaultTableOptions
-						options15.Label = types.StringValue(optionsItem6.Label)
-						if optionsItem6.Params == nil {
-							options15.Params = nil
+				if attributesItem1.AutomationAttribute != nil {
+					attributes3.AutomationAttribute = &tfTypes.AutomationAttribute{}
+					attributes3.AutomationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.AutomationAttribute.Purpose {
+						attributes3.AutomationAttribute.Purpose = append(attributes3.AutomationAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.AutomationAttribute.Constraints == nil {
+						attributes3.AutomationAttribute.Constraints = nil
+					} else {
+						attributes3.AutomationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.AutomationAttribute.DefaultValue == nil {
+						attributes3.AutomationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult29, _ := json.Marshal(attributesItem1.AutomationAttribute.DefaultValue)
+						attributes3.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
+					}
+					attributes3.AutomationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.AutomationAttribute.Deprecated)
+					attributes3.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.AutomationAttribute.EntityBuilderDisableEdit)
+					attributes3.AutomationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.AutomationAttribute.FeatureFlag)
+					attributes3.AutomationAttribute.Group = types.StringPointerValue(attributesItem1.AutomationAttribute.Group)
+					attributes3.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AutomationAttribute.Hidden)
+					attributes3.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AutomationAttribute.HideLabel)
+					attributes3.AutomationAttribute.Icon = types.StringPointerValue(attributesItem1.AutomationAttribute.Icon)
+					if attributesItem1.AutomationAttribute.InfoHelpers == nil {
+						attributes3.AutomationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.AutomationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintText)
+						attributes3.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintTextKey)
+						attributes3.AutomationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.AutomationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.AutomationAttribute.Label = types.StringValue(attributesItem1.AutomationAttribute.Label)
+					attributes3.AutomationAttribute.Layout = types.StringPointerValue(attributesItem1.AutomationAttribute.Layout)
+					attributes3.AutomationAttribute.Name = types.StringValue(attributesItem1.AutomationAttribute.Name)
+					attributes3.AutomationAttribute.Order = types.Int64PointerValue(attributesItem1.AutomationAttribute.Order)
+					attributes3.AutomationAttribute.Placeholder = types.StringPointerValue(attributesItem1.AutomationAttribute.Placeholder)
+					attributes3.AutomationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.AutomationAttribute.PreviewValueFormatter)
+					attributes3.AutomationAttribute.Protected = types.BoolPointerValue(attributesItem1.AutomationAttribute.Protected)
+					attributes3.AutomationAttribute.Readonly = types.BoolPointerValue(attributesItem1.AutomationAttribute.Readonly)
+					attributes3.AutomationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.AutomationAttribute.RenderCondition)
+					attributes3.AutomationAttribute.Required = types.BoolPointerValue(attributesItem1.AutomationAttribute.Required)
+					for settingsFlagCount30, settingsFlagItem30 := range attributesItem1.AutomationAttribute.SettingsFlag {
+						var settingsFlag61 tfTypes.SettingFlag
+						settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
+						settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
+						if settingsFlagCount30+1 > len(attributes3.AutomationAttribute.SettingsFlag) {
+							attributes3.AutomationAttribute.SettingsFlag = append(attributes3.AutomationAttribute.SettingsFlag, settingsFlag61)
 						} else {
-							options15.Params = &AddressRelationAttributeConstraints{}
+							attributes3.AutomationAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
+							attributes3.AutomationAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
 						}
-						if optionsCount6+1 > len(navbarActions1.Options) {
-							navbarActions1.Options = append(navbarActions1.Options, options15)
+					}
+					attributes3.AutomationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.AutomationAttribute.ShowInTable)
+					attributes3.AutomationAttribute.Sortable = types.BoolPointerValue(attributesItem1.AutomationAttribute.Sortable)
+					if attributesItem1.AutomationAttribute.Type != nil {
+						attributes3.AutomationAttribute.Type = types.StringValue(string(*attributesItem1.AutomationAttribute.Type))
+					} else {
+						attributes3.AutomationAttribute.Type = types.StringNull()
+					}
+					attributes3.AutomationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.AutomationAttribute.ValueFormatter)
+				}
+				if attributesItem1.BooleanAttribute != nil {
+					attributes3.BooleanAttribute = &tfTypes.BooleanAttribute{}
+					attributes3.BooleanAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.BooleanAttribute.Purpose {
+						attributes3.BooleanAttribute.Purpose = append(attributes3.BooleanAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.BooleanAttribute.Constraints == nil {
+						attributes3.BooleanAttribute.Constraints = nil
+					} else {
+						attributes3.BooleanAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.BooleanAttribute.DefaultValue == nil {
+						attributes3.BooleanAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult30, _ := json.Marshal(attributesItem1.BooleanAttribute.DefaultValue)
+						attributes3.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult30))
+					}
+					attributes3.BooleanAttribute.Deprecated = types.BoolPointerValue(attributesItem1.BooleanAttribute.Deprecated)
+					attributes3.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.BooleanAttribute.EntityBuilderDisableEdit)
+					attributes3.BooleanAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.BooleanAttribute.FeatureFlag)
+					attributes3.BooleanAttribute.Group = types.StringPointerValue(attributesItem1.BooleanAttribute.Group)
+					attributes3.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem1.BooleanAttribute.Hidden)
+					attributes3.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem1.BooleanAttribute.HideLabel)
+					attributes3.BooleanAttribute.Icon = types.StringPointerValue(attributesItem1.BooleanAttribute.Icon)
+					if attributesItem1.BooleanAttribute.InfoHelpers == nil {
+						attributes3.BooleanAttribute.InfoHelpers = nil
+					} else {
+						attributes3.BooleanAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintText)
+						attributes3.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintTextKey)
+						attributes3.BooleanAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.BooleanAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.BooleanAttribute.Label = types.StringValue(attributesItem1.BooleanAttribute.Label)
+					attributes3.BooleanAttribute.Layout = types.StringPointerValue(attributesItem1.BooleanAttribute.Layout)
+					attributes3.BooleanAttribute.Name = types.StringValue(attributesItem1.BooleanAttribute.Name)
+					attributes3.BooleanAttribute.Order = types.Int64PointerValue(attributesItem1.BooleanAttribute.Order)
+					attributes3.BooleanAttribute.Placeholder = types.StringPointerValue(attributesItem1.BooleanAttribute.Placeholder)
+					attributes3.BooleanAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.BooleanAttribute.PreviewValueFormatter)
+					attributes3.BooleanAttribute.Protected = types.BoolPointerValue(attributesItem1.BooleanAttribute.Protected)
+					attributes3.BooleanAttribute.Readonly = types.BoolPointerValue(attributesItem1.BooleanAttribute.Readonly)
+					attributes3.BooleanAttribute.RenderCondition = types.StringPointerValue(attributesItem1.BooleanAttribute.RenderCondition)
+					attributes3.BooleanAttribute.Required = types.BoolPointerValue(attributesItem1.BooleanAttribute.Required)
+					for settingsFlagCount31, settingsFlagItem31 := range attributesItem1.BooleanAttribute.SettingsFlag {
+						var settingsFlag63 tfTypes.SettingFlag
+						settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
+						settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
+						if settingsFlagCount31+1 > len(attributes3.BooleanAttribute.SettingsFlag) {
+							attributes3.BooleanAttribute.SettingsFlag = append(attributes3.BooleanAttribute.SettingsFlag, settingsFlag63)
 						} else {
-							navbarActions1.Options[optionsCount6].Label = options15.Label
-							navbarActions1.Options[optionsCount6].Params = options15.Params
+							attributes3.BooleanAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
+							attributes3.BooleanAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
 						}
 					}
-					navbarActions1.Type = types.StringValue(navbarActionsItem.Type)
-					if navbarActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions1)
+					attributes3.BooleanAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.BooleanAttribute.ShowInTable)
+					attributes3.BooleanAttribute.Sortable = types.BoolPointerValue(attributesItem1.BooleanAttribute.Sortable)
+					if attributesItem1.BooleanAttribute.Type != nil {
+						attributes3.BooleanAttribute.Type = types.StringValue(string(*attributesItem1.BooleanAttribute.Type))
 					} else {
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
+						attributes3.BooleanAttribute.Type = types.StringNull()
 					}
+					attributes3.BooleanAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.BooleanAttribute.ValueFormatter)
 				}
-				if len(r.UIConfig.TableView.EntityDefaultTable.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
-					r.UIConfig.TableView.EntityDefaultTable.RowActions = r.UIConfig.TableView.EntityDefaultTable.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
-				}
-				for rowActionsCount, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
-					var rowActions1 BulkActions
-					if rowActionsItem.Str != nil {
-						rowActions1.Str = types.StringPointerValue(rowActionsItem.Str)
+				if attributesItem1.ComputedAttribute != nil {
+					attributes3.ComputedAttribute = &tfTypes.ComputedAttribute{}
+					attributes3.ComputedAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.ComputedAttribute.Purpose {
+						attributes3.ComputedAttribute.Purpose = append(attributes3.ComputedAttribute.Purpose, types.StringValue(v))
 					}
-					if rowActionsItem.EntityAction != nil {
-						rowActions1.EntityAction = &EntityAction{}
-						rowActions1.EntityAction.Action = types.StringValue(rowActionsItem.EntityAction.Action)
-						rowActions1.EntityAction.Icon = types.StringPointerValue(rowActionsItem.EntityAction.Icon)
-						rowActions1.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
-						rowActions1.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
-					}
-					if rowActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.RowActions) {
-						r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions1)
+					if attributesItem1.ComputedAttribute.Constraints == nil {
+						attributes3.ComputedAttribute.Constraints = nil
 					} else {
+						attributes3.ComputedAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 					}
+					if attributesItem1.ComputedAttribute.DefaultValue == nil {
+						attributes3.ComputedAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult31, _ := json.Marshal(attributesItem1.ComputedAttribute.DefaultValue)
+						attributes3.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult31))
+					}
+					attributes3.ComputedAttribute.Deprecated = types.BoolPointerValue(attributesItem1.ComputedAttribute.Deprecated)
+					attributes3.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.ComputedAttribute.EntityBuilderDisableEdit)
+					attributes3.ComputedAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.ComputedAttribute.FeatureFlag)
+					attributes3.ComputedAttribute.Group = types.StringPointerValue(attributesItem1.ComputedAttribute.Group)
+					attributes3.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem1.ComputedAttribute.Hidden)
+					attributes3.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ComputedAttribute.HideLabel)
+					attributes3.ComputedAttribute.Icon = types.StringPointerValue(attributesItem1.ComputedAttribute.Icon)
+					if attributesItem1.ComputedAttribute.InfoHelpers == nil {
+						attributes3.ComputedAttribute.InfoHelpers = nil
+					} else {
+						attributes3.ComputedAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintText)
+						attributes3.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintTextKey)
+						attributes3.ComputedAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.ComputedAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.ComputedAttribute.Label = types.StringValue(attributesItem1.ComputedAttribute.Label)
+					attributes3.ComputedAttribute.Layout = types.StringPointerValue(attributesItem1.ComputedAttribute.Layout)
+					attributes3.ComputedAttribute.Name = types.StringValue(attributesItem1.ComputedAttribute.Name)
+					attributes3.ComputedAttribute.Order = types.Int64PointerValue(attributesItem1.ComputedAttribute.Order)
+					attributes3.ComputedAttribute.Placeholder = types.StringPointerValue(attributesItem1.ComputedAttribute.Placeholder)
+					attributes3.ComputedAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.ComputedAttribute.PreviewValueFormatter)
+					attributes3.ComputedAttribute.Protected = types.BoolPointerValue(attributesItem1.ComputedAttribute.Protected)
+					attributes3.ComputedAttribute.Readonly = types.BoolPointerValue(attributesItem1.ComputedAttribute.Readonly)
+					attributes3.ComputedAttribute.RenderCondition = types.StringPointerValue(attributesItem1.ComputedAttribute.RenderCondition)
+					attributes3.ComputedAttribute.Required = types.BoolPointerValue(attributesItem1.ComputedAttribute.Required)
+					for settingsFlagCount32, settingsFlagItem32 := range attributesItem1.ComputedAttribute.SettingsFlag {
+						var settingsFlag65 tfTypes.SettingFlag
+						settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
+						settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
+						if settingsFlagCount32+1 > len(attributes3.ComputedAttribute.SettingsFlag) {
+							attributes3.ComputedAttribute.SettingsFlag = append(attributes3.ComputedAttribute.SettingsFlag, settingsFlag65)
+						} else {
+							attributes3.ComputedAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
+							attributes3.ComputedAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
+						}
+					}
+					attributes3.ComputedAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.ComputedAttribute.ShowInTable)
+					attributes3.ComputedAttribute.Sortable = types.BoolPointerValue(attributesItem1.ComputedAttribute.Sortable)
+					if attributesItem1.ComputedAttribute.Type != nil {
+						attributes3.ComputedAttribute.Type = types.StringValue(string(*attributesItem1.ComputedAttribute.Type))
+					} else {
+						attributes3.ComputedAttribute.Type = types.StringNull()
+					}
+					attributes3.ComputedAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.ComputedAttribute.ValueFormatter)
 				}
-				if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
-					r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
+				if attributesItem1.ConsentAttribute != nil {
+					attributes3.ConsentAttribute = &tfTypes.ConsentAttribute{}
+					attributes3.ConsentAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.ConsentAttribute.Purpose {
+						attributes3.ConsentAttribute.Purpose = append(attributes3.ConsentAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.ConsentAttribute.Constraints == nil {
+						attributes3.ConsentAttribute.Constraints = nil
+					} else {
+						attributes3.ConsentAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.ConsentAttribute.DefaultValue == nil {
+						attributes3.ConsentAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult32, _ := json.Marshal(attributesItem1.ConsentAttribute.DefaultValue)
+						attributes3.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult32))
+					}
+					attributes3.ConsentAttribute.Deprecated = types.BoolPointerValue(attributesItem1.ConsentAttribute.Deprecated)
+					attributes3.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.ConsentAttribute.EntityBuilderDisableEdit)
+					attributes3.ConsentAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.ConsentAttribute.FeatureFlag)
+					attributes3.ConsentAttribute.Group = types.StringPointerValue(attributesItem1.ConsentAttribute.Group)
+					attributes3.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem1.ConsentAttribute.Hidden)
+					attributes3.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ConsentAttribute.HideLabel)
+					attributes3.ConsentAttribute.Icon = types.StringPointerValue(attributesItem1.ConsentAttribute.Icon)
+					attributes3.ConsentAttribute.Identifiers = []types.String{}
+					for _, v := range attributesItem1.ConsentAttribute.Identifiers {
+						attributes3.ConsentAttribute.Identifiers = append(attributes3.ConsentAttribute.Identifiers, types.StringValue(v))
+					}
+					if attributesItem1.ConsentAttribute.InfoHelpers == nil {
+						attributes3.ConsentAttribute.InfoHelpers = nil
+					} else {
+						attributes3.ConsentAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintText)
+						attributes3.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintTextKey)
+						attributes3.ConsentAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.ConsentAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.ConsentAttribute.Label = types.StringValue(attributesItem1.ConsentAttribute.Label)
+					attributes3.ConsentAttribute.Layout = types.StringPointerValue(attributesItem1.ConsentAttribute.Layout)
+					attributes3.ConsentAttribute.Name = types.StringValue(attributesItem1.ConsentAttribute.Name)
+					attributes3.ConsentAttribute.Order = types.Int64PointerValue(attributesItem1.ConsentAttribute.Order)
+					attributes3.ConsentAttribute.Placeholder = types.StringPointerValue(attributesItem1.ConsentAttribute.Placeholder)
+					attributes3.ConsentAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.ConsentAttribute.PreviewValueFormatter)
+					attributes3.ConsentAttribute.Protected = types.BoolPointerValue(attributesItem1.ConsentAttribute.Protected)
+					attributes3.ConsentAttribute.Readonly = types.BoolPointerValue(attributesItem1.ConsentAttribute.Readonly)
+					attributes3.ConsentAttribute.RenderCondition = types.StringPointerValue(attributesItem1.ConsentAttribute.RenderCondition)
+					attributes3.ConsentAttribute.Required = types.BoolPointerValue(attributesItem1.ConsentAttribute.Required)
+					for settingsFlagCount33, settingsFlagItem33 := range attributesItem1.ConsentAttribute.SettingsFlag {
+						var settingsFlag67 tfTypes.SettingFlag
+						settingsFlag67.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
+						settingsFlag67.Name = types.StringPointerValue(settingsFlagItem33.Name)
+						if settingsFlagCount33+1 > len(attributes3.ConsentAttribute.SettingsFlag) {
+							attributes3.ConsentAttribute.SettingsFlag = append(attributes3.ConsentAttribute.SettingsFlag, settingsFlag67)
+						} else {
+							attributes3.ConsentAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag67.Enabled
+							attributes3.ConsentAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag67.Name
+						}
+					}
+					attributes3.ConsentAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.ConsentAttribute.ShowInTable)
+					attributes3.ConsentAttribute.Sortable = types.BoolPointerValue(attributesItem1.ConsentAttribute.Sortable)
+					attributes3.ConsentAttribute.Topic = types.StringValue(attributesItem1.ConsentAttribute.Topic)
+					attributes3.ConsentAttribute.Type = types.StringValue(string(attributesItem1.ConsentAttribute.Type))
+					attributes3.ConsentAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.ConsentAttribute.ValueFormatter)
+				}
+				if attributesItem1.CountryAttribute != nil {
+					attributes3.CountryAttribute = &tfTypes.CountryAttribute{}
+					attributes3.CountryAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.CountryAttribute.Purpose {
+						attributes3.CountryAttribute.Purpose = append(attributes3.CountryAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.CountryAttribute.Constraints == nil {
+						attributes3.CountryAttribute.Constraints = nil
+					} else {
+						attributes3.CountryAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.CountryAttribute.DefaultValue == nil {
+						attributes3.CountryAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult33, _ := json.Marshal(attributesItem1.CountryAttribute.DefaultValue)
+						attributes3.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult33))
+					}
+					attributes3.CountryAttribute.Deprecated = types.BoolPointerValue(attributesItem1.CountryAttribute.Deprecated)
+					attributes3.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.CountryAttribute.EntityBuilderDisableEdit)
+					attributes3.CountryAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.CountryAttribute.FeatureFlag)
+					attributes3.CountryAttribute.Group = types.StringPointerValue(attributesItem1.CountryAttribute.Group)
+					attributes3.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem1.CountryAttribute.Hidden)
+					attributes3.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CountryAttribute.HideLabel)
+					attributes3.CountryAttribute.Icon = types.StringPointerValue(attributesItem1.CountryAttribute.Icon)
+					if attributesItem1.CountryAttribute.InfoHelpers == nil {
+						attributes3.CountryAttribute.InfoHelpers = nil
+					} else {
+						attributes3.CountryAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintText)
+						attributes3.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintTextKey)
+						attributes3.CountryAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.CountryAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.CountryAttribute.Label = types.StringValue(attributesItem1.CountryAttribute.Label)
+					attributes3.CountryAttribute.Layout = types.StringPointerValue(attributesItem1.CountryAttribute.Layout)
+					attributes3.CountryAttribute.Name = types.StringValue(attributesItem1.CountryAttribute.Name)
+					attributes3.CountryAttribute.Order = types.Int64PointerValue(attributesItem1.CountryAttribute.Order)
+					attributes3.CountryAttribute.Placeholder = types.StringPointerValue(attributesItem1.CountryAttribute.Placeholder)
+					attributes3.CountryAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.CountryAttribute.PreviewValueFormatter)
+					attributes3.CountryAttribute.Protected = types.BoolPointerValue(attributesItem1.CountryAttribute.Protected)
+					attributes3.CountryAttribute.Readonly = types.BoolPointerValue(attributesItem1.CountryAttribute.Readonly)
+					attributes3.CountryAttribute.RenderCondition = types.StringPointerValue(attributesItem1.CountryAttribute.RenderCondition)
+					attributes3.CountryAttribute.Required = types.BoolPointerValue(attributesItem1.CountryAttribute.Required)
+					for settingsFlagCount34, settingsFlagItem34 := range attributesItem1.CountryAttribute.SettingsFlag {
+						var settingsFlag69 tfTypes.SettingFlag
+						settingsFlag69.Enabled = types.BoolPointerValue(settingsFlagItem34.Enabled)
+						settingsFlag69.Name = types.StringPointerValue(settingsFlagItem34.Name)
+						if settingsFlagCount34+1 > len(attributes3.CountryAttribute.SettingsFlag) {
+							attributes3.CountryAttribute.SettingsFlag = append(attributes3.CountryAttribute.SettingsFlag, settingsFlag69)
+						} else {
+							attributes3.CountryAttribute.SettingsFlag[settingsFlagCount34].Enabled = settingsFlag69.Enabled
+							attributes3.CountryAttribute.SettingsFlag[settingsFlagCount34].Name = settingsFlag69.Name
+						}
+					}
+					attributes3.CountryAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.CountryAttribute.ShowInTable)
+					attributes3.CountryAttribute.Sortable = types.BoolPointerValue(attributesItem1.CountryAttribute.Sortable)
+					if attributesItem1.CountryAttribute.Type != nil {
+						attributes3.CountryAttribute.Type = types.StringValue(string(*attributesItem1.CountryAttribute.Type))
+					} else {
+						attributes3.CountryAttribute.Type = types.StringNull()
+					}
+					attributes3.CountryAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.CountryAttribute.ValueFormatter)
+				}
+				if attributesItem1.CurrencyAttribute != nil {
+					attributes3.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+					attributes3.CurrencyAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.CurrencyAttribute.Purpose {
+						attributes3.CurrencyAttribute.Purpose = append(attributes3.CurrencyAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.CurrencyAttribute.Constraints == nil {
+						attributes3.CurrencyAttribute.Constraints = nil
+					} else {
+						attributes3.CurrencyAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					for currencyCount1, currencyItem1 := range attributesItem1.CurrencyAttribute.Currency {
+						var currency3 tfTypes.Currency
+						if currencyItem1.Currency1 != nil {
+							currency3.One = &tfTypes.Currency1{}
+							currency3.One.Code = types.StringValue(currencyItem1.Currency1.Code)
+							currency3.One.Description = types.StringValue(currencyItem1.Currency1.Description)
+							currency3.One.Flag = types.StringPointerValue(currencyItem1.Currency1.Flag)
+							currency3.One.Symbol = types.StringValue(currencyItem1.Currency1.Symbol)
+						}
+						if currencyCount1+1 > len(attributes3.CurrencyAttribute.Currency) {
+							attributes3.CurrencyAttribute.Currency = append(attributes3.CurrencyAttribute.Currency, currency3)
+						} else {
+							attributes3.CurrencyAttribute.Currency[currencyCount1].One = currency3.One
+						}
+					}
+					attributes3.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(attributesItem1.CurrencyAttribute.CurrencySelectorOnly)
+					if attributesItem1.CurrencyAttribute.DefaultValue == nil {
+						attributes3.CurrencyAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult34, _ := json.Marshal(attributesItem1.CurrencyAttribute.DefaultValue)
+						attributes3.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult34))
+					}
+					attributes3.CurrencyAttribute.Deprecated = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Deprecated)
+					attributes3.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.CurrencyAttribute.EntityBuilderDisableEdit)
+					attributes3.CurrencyAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.CurrencyAttribute.FeatureFlag)
+					attributes3.CurrencyAttribute.Group = types.StringPointerValue(attributesItem1.CurrencyAttribute.Group)
+					attributes3.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Hidden)
+					attributes3.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CurrencyAttribute.HideLabel)
+					attributes3.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem1.CurrencyAttribute.Icon)
+					if attributesItem1.CurrencyAttribute.InfoHelpers == nil {
+						attributes3.CurrencyAttribute.InfoHelpers = nil
+					} else {
+						attributes3.CurrencyAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintText)
+						attributes3.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintTextKey)
+						attributes3.CurrencyAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.CurrencyAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.CurrencyAttribute.Label = types.StringValue(attributesItem1.CurrencyAttribute.Label)
+					attributes3.CurrencyAttribute.Layout = types.StringPointerValue(attributesItem1.CurrencyAttribute.Layout)
+					attributes3.CurrencyAttribute.Name = types.StringValue(attributesItem1.CurrencyAttribute.Name)
+					attributes3.CurrencyAttribute.Order = types.Int64PointerValue(attributesItem1.CurrencyAttribute.Order)
+					attributes3.CurrencyAttribute.Placeholder = types.StringPointerValue(attributesItem1.CurrencyAttribute.Placeholder)
+					attributes3.CurrencyAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.CurrencyAttribute.PreviewValueFormatter)
+					attributes3.CurrencyAttribute.Protected = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Protected)
+					attributes3.CurrencyAttribute.Readonly = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Readonly)
+					attributes3.CurrencyAttribute.RenderCondition = types.StringPointerValue(attributesItem1.CurrencyAttribute.RenderCondition)
+					attributes3.CurrencyAttribute.Required = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Required)
+					for settingsFlagCount35, settingsFlagItem35 := range attributesItem1.CurrencyAttribute.SettingsFlag {
+						var settingsFlag71 tfTypes.SettingFlag
+						settingsFlag71.Enabled = types.BoolPointerValue(settingsFlagItem35.Enabled)
+						settingsFlag71.Name = types.StringPointerValue(settingsFlagItem35.Name)
+						if settingsFlagCount35+1 > len(attributes3.CurrencyAttribute.SettingsFlag) {
+							attributes3.CurrencyAttribute.SettingsFlag = append(attributes3.CurrencyAttribute.SettingsFlag, settingsFlag71)
+						} else {
+							attributes3.CurrencyAttribute.SettingsFlag[settingsFlagCount35].Enabled = settingsFlag71.Enabled
+							attributes3.CurrencyAttribute.SettingsFlag[settingsFlagCount35].Name = settingsFlag71.Name
+						}
+					}
+					attributes3.CurrencyAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.CurrencyAttribute.ShowInTable)
+					attributes3.CurrencyAttribute.Sortable = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Sortable)
+					attributes3.CurrencyAttribute.Type = types.StringValue(string(attributesItem1.CurrencyAttribute.Type))
+					attributes3.CurrencyAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.CurrencyAttribute.ValueFormatter)
+				}
+				if attributesItem1.DateAttribute != nil {
+					attributes3.DateAttribute = &tfTypes.DateAttribute{}
+					attributes3.DateAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.DateAttribute.Purpose {
+						attributes3.DateAttribute.Purpose = append(attributes3.DateAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.DateAttribute.Constraints == nil {
+						attributes3.DateAttribute.Constraints = nil
+					} else {
+						attributes3.DateAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.DateAttribute.DefaultValue == nil {
+						attributes3.DateAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult35, _ := json.Marshal(attributesItem1.DateAttribute.DefaultValue)
+						attributes3.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult35))
+					}
+					attributes3.DateAttribute.Deprecated = types.BoolPointerValue(attributesItem1.DateAttribute.Deprecated)
+					attributes3.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.DateAttribute.EntityBuilderDisableEdit)
+					attributes3.DateAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.DateAttribute.FeatureFlag)
+					attributes3.DateAttribute.Group = types.StringPointerValue(attributesItem1.DateAttribute.Group)
+					attributes3.DateAttribute.Hidden = types.BoolPointerValue(attributesItem1.DateAttribute.Hidden)
+					attributes3.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem1.DateAttribute.HideLabel)
+					attributes3.DateAttribute.Icon = types.StringPointerValue(attributesItem1.DateAttribute.Icon)
+					if attributesItem1.DateAttribute.InfoHelpers == nil {
+						attributes3.DateAttribute.InfoHelpers = nil
+					} else {
+						attributes3.DateAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintText)
+						attributes3.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintTextKey)
+						attributes3.DateAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.DateAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.DateAttribute.Label = types.StringValue(attributesItem1.DateAttribute.Label)
+					attributes3.DateAttribute.Layout = types.StringPointerValue(attributesItem1.DateAttribute.Layout)
+					attributes3.DateAttribute.Name = types.StringValue(attributesItem1.DateAttribute.Name)
+					attributes3.DateAttribute.Order = types.Int64PointerValue(attributesItem1.DateAttribute.Order)
+					attributes3.DateAttribute.Placeholder = types.StringPointerValue(attributesItem1.DateAttribute.Placeholder)
+					attributes3.DateAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.DateAttribute.PreviewValueFormatter)
+					attributes3.DateAttribute.Protected = types.BoolPointerValue(attributesItem1.DateAttribute.Protected)
+					attributes3.DateAttribute.Readonly = types.BoolPointerValue(attributesItem1.DateAttribute.Readonly)
+					attributes3.DateAttribute.RenderCondition = types.StringPointerValue(attributesItem1.DateAttribute.RenderCondition)
+					attributes3.DateAttribute.Required = types.BoolPointerValue(attributesItem1.DateAttribute.Required)
+					for settingsFlagCount36, settingsFlagItem36 := range attributesItem1.DateAttribute.SettingsFlag {
+						var settingsFlag73 tfTypes.SettingFlag
+						settingsFlag73.Enabled = types.BoolPointerValue(settingsFlagItem36.Enabled)
+						settingsFlag73.Name = types.StringPointerValue(settingsFlagItem36.Name)
+						if settingsFlagCount36+1 > len(attributes3.DateAttribute.SettingsFlag) {
+							attributes3.DateAttribute.SettingsFlag = append(attributes3.DateAttribute.SettingsFlag, settingsFlag73)
+						} else {
+							attributes3.DateAttribute.SettingsFlag[settingsFlagCount36].Enabled = settingsFlag73.Enabled
+							attributes3.DateAttribute.SettingsFlag[settingsFlagCount36].Name = settingsFlag73.Name
+						}
+					}
+					attributes3.DateAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.DateAttribute.ShowInTable)
+					attributes3.DateAttribute.Sortable = types.BoolPointerValue(attributesItem1.DateAttribute.Sortable)
+					if attributesItem1.DateAttribute.Type != nil {
+						attributes3.DateAttribute.Type = types.StringValue(string(*attributesItem1.DateAttribute.Type))
+					} else {
+						attributes3.DateAttribute.Type = types.StringNull()
+					}
+					attributes3.DateAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.DateAttribute.ValueFormatter)
+				}
+				if attributesItem1.FileAttribute != nil {
+					attributes3.FileAttribute = &tfTypes.FileAttribute{}
+					attributes3.FileAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.FileAttribute.Purpose {
+						attributes3.FileAttribute.Purpose = append(attributes3.FileAttribute.Purpose, types.StringValue(v))
+					}
+					attributes3.FileAttribute.AllowedExtensions = []types.String{}
+					for _, v := range attributesItem1.FileAttribute.AllowedExtensions {
+						attributes3.FileAttribute.AllowedExtensions = append(attributes3.FileAttribute.AllowedExtensions, types.StringValue(v))
+					}
+					if attributesItem1.FileAttribute.Constraints == nil {
+						attributes3.FileAttribute.Constraints = nil
+					} else {
+						attributes3.FileAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.FileAttribute.DefaultAccessControl != nil {
+						attributes3.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem1.FileAttribute.DefaultAccessControl))
+					} else {
+						attributes3.FileAttribute.DefaultAccessControl = types.StringNull()
+					}
+					if attributesItem1.FileAttribute.DefaultValue == nil {
+						attributes3.FileAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult36, _ := json.Marshal(attributesItem1.FileAttribute.DefaultValue)
+						attributes3.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult36))
+					}
+					attributes3.FileAttribute.Deprecated = types.BoolPointerValue(attributesItem1.FileAttribute.Deprecated)
+					attributes3.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(attributesItem1.FileAttribute.DisplayImagesLandscaped)
+					attributes3.FileAttribute.EnableDescription = types.BoolPointerValue(attributesItem1.FileAttribute.EnableDescription)
+					attributes3.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.FileAttribute.EntityBuilderDisableEdit)
+					attributes3.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.FileAttribute.FeatureFlag)
+					attributes3.FileAttribute.Group = types.StringPointerValue(attributesItem1.FileAttribute.Group)
+					attributes3.FileAttribute.Hidden = types.BoolPointerValue(attributesItem1.FileAttribute.Hidden)
+					attributes3.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem1.FileAttribute.HideLabel)
+					attributes3.FileAttribute.Icon = types.StringPointerValue(attributesItem1.FileAttribute.Icon)
+					if attributesItem1.FileAttribute.InfoHelpers == nil {
+						attributes3.FileAttribute.InfoHelpers = nil
+					} else {
+						attributes3.FileAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintText)
+						attributes3.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintTextKey)
+						attributes3.FileAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.FileAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.FileAttribute.Label = types.StringValue(attributesItem1.FileAttribute.Label)
+					attributes3.FileAttribute.Layout = types.StringPointerValue(attributesItem1.FileAttribute.Layout)
+					attributes3.FileAttribute.Multiple = types.BoolPointerValue(attributesItem1.FileAttribute.Multiple)
+					attributes3.FileAttribute.Name = types.StringValue(attributesItem1.FileAttribute.Name)
+					attributes3.FileAttribute.Order = types.Int64PointerValue(attributesItem1.FileAttribute.Order)
+					attributes3.FileAttribute.Placeholder = types.StringPointerValue(attributesItem1.FileAttribute.Placeholder)
+					attributes3.FileAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.FileAttribute.PreviewValueFormatter)
+					attributes3.FileAttribute.Protected = types.BoolPointerValue(attributesItem1.FileAttribute.Protected)
+					attributes3.FileAttribute.Readonly = types.BoolPointerValue(attributesItem1.FileAttribute.Readonly)
+					attributes3.FileAttribute.RenderCondition = types.StringPointerValue(attributesItem1.FileAttribute.RenderCondition)
+					attributes3.FileAttribute.Required = types.BoolPointerValue(attributesItem1.FileAttribute.Required)
+					for settingsFlagCount37, settingsFlagItem37 := range attributesItem1.FileAttribute.SettingsFlag {
+						var settingsFlag75 tfTypes.SettingFlag
+						settingsFlag75.Enabled = types.BoolPointerValue(settingsFlagItem37.Enabled)
+						settingsFlag75.Name = types.StringPointerValue(settingsFlagItem37.Name)
+						if settingsFlagCount37+1 > len(attributes3.FileAttribute.SettingsFlag) {
+							attributes3.FileAttribute.SettingsFlag = append(attributes3.FileAttribute.SettingsFlag, settingsFlag75)
+						} else {
+							attributes3.FileAttribute.SettingsFlag[settingsFlagCount37].Enabled = settingsFlag75.Enabled
+							attributes3.FileAttribute.SettingsFlag[settingsFlagCount37].Name = settingsFlag75.Name
+						}
+					}
+					attributes3.FileAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.FileAttribute.ShowInTable)
+					attributes3.FileAttribute.Sortable = types.BoolPointerValue(attributesItem1.FileAttribute.Sortable)
+					attributes3.FileAttribute.Type = types.StringValue(string(attributesItem1.FileAttribute.Type))
+					attributes3.FileAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.FileAttribute.ValueFormatter)
+				}
+				if attributesItem1.InternalAttribute != nil {
+					attributes3.InternalAttribute = &tfTypes.InternalAttribute{}
+					attributes3.InternalAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.InternalAttribute.Purpose {
+						attributes3.InternalAttribute.Purpose = append(attributes3.InternalAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.InternalAttribute.Constraints == nil {
+						attributes3.InternalAttribute.Constraints = nil
+					} else {
+						attributes3.InternalAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.InternalAttribute.DefaultValue == nil {
+						attributes3.InternalAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult37, _ := json.Marshal(attributesItem1.InternalAttribute.DefaultValue)
+						attributes3.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult37))
+					}
+					attributes3.InternalAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InternalAttribute.Deprecated)
+					attributes3.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InternalAttribute.EntityBuilderDisableEdit)
+					attributes3.InternalAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InternalAttribute.FeatureFlag)
+					attributes3.InternalAttribute.Group = types.StringPointerValue(attributesItem1.InternalAttribute.Group)
+					attributes3.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalAttribute.Hidden)
+					attributes3.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalAttribute.HideLabel)
+					attributes3.InternalAttribute.Icon = types.StringPointerValue(attributesItem1.InternalAttribute.Icon)
+					if attributesItem1.InternalAttribute.InfoHelpers == nil {
+						attributes3.InternalAttribute.InfoHelpers = nil
+					} else {
+						attributes3.InternalAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintText)
+						attributes3.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintTextKey)
+						attributes3.InternalAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InternalAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.InternalAttribute.Label = types.StringValue(attributesItem1.InternalAttribute.Label)
+					attributes3.InternalAttribute.Layout = types.StringPointerValue(attributesItem1.InternalAttribute.Layout)
+					attributes3.InternalAttribute.Name = types.StringValue(attributesItem1.InternalAttribute.Name)
+					attributes3.InternalAttribute.Order = types.Int64PointerValue(attributesItem1.InternalAttribute.Order)
+					attributes3.InternalAttribute.Placeholder = types.StringPointerValue(attributesItem1.InternalAttribute.Placeholder)
+					attributes3.InternalAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InternalAttribute.PreviewValueFormatter)
+					attributes3.InternalAttribute.Protected = types.BoolPointerValue(attributesItem1.InternalAttribute.Protected)
+					attributes3.InternalAttribute.Readonly = types.BoolPointerValue(attributesItem1.InternalAttribute.Readonly)
+					attributes3.InternalAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InternalAttribute.RenderCondition)
+					attributes3.InternalAttribute.Required = types.BoolPointerValue(attributesItem1.InternalAttribute.Required)
+					for settingsFlagCount38, settingsFlagItem38 := range attributesItem1.InternalAttribute.SettingsFlag {
+						var settingsFlag77 tfTypes.SettingFlag
+						settingsFlag77.Enabled = types.BoolPointerValue(settingsFlagItem38.Enabled)
+						settingsFlag77.Name = types.StringPointerValue(settingsFlagItem38.Name)
+						if settingsFlagCount38+1 > len(attributes3.InternalAttribute.SettingsFlag) {
+							attributes3.InternalAttribute.SettingsFlag = append(attributes3.InternalAttribute.SettingsFlag, settingsFlag77)
+						} else {
+							attributes3.InternalAttribute.SettingsFlag[settingsFlagCount38].Enabled = settingsFlag77.Enabled
+							attributes3.InternalAttribute.SettingsFlag[settingsFlagCount38].Name = settingsFlag77.Name
+						}
+					}
+					attributes3.InternalAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InternalAttribute.ShowInTable)
+					attributes3.InternalAttribute.Sortable = types.BoolPointerValue(attributesItem1.InternalAttribute.Sortable)
+					if attributesItem1.InternalAttribute.Type != nil {
+						attributes3.InternalAttribute.Type = types.StringValue(string(*attributesItem1.InternalAttribute.Type))
+					} else {
+						attributes3.InternalAttribute.Type = types.StringNull()
+					}
+					attributes3.InternalAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InternalAttribute.ValueFormatter)
+				}
+				if attributesItem1.InternalUserAttribute != nil {
+					attributes3.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+					attributes3.InternalUserAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.InternalUserAttribute.Purpose {
+						attributes3.InternalUserAttribute.Purpose = append(attributes3.InternalUserAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.InternalUserAttribute.Constraints == nil {
+						attributes3.InternalUserAttribute.Constraints = nil
+					} else {
+						attributes3.InternalUserAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.InternalUserAttribute.DefaultValue == nil {
+						attributes3.InternalUserAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult38, _ := json.Marshal(attributesItem1.InternalUserAttribute.DefaultValue)
+						attributes3.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult38))
+					}
+					attributes3.InternalUserAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Deprecated)
+					attributes3.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InternalUserAttribute.EntityBuilderDisableEdit)
+					attributes3.InternalUserAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InternalUserAttribute.FeatureFlag)
+					attributes3.InternalUserAttribute.Group = types.StringPointerValue(attributesItem1.InternalUserAttribute.Group)
+					attributes3.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Hidden)
+					attributes3.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalUserAttribute.HideLabel)
+					attributes3.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem1.InternalUserAttribute.Icon)
+					if attributesItem1.InternalUserAttribute.InfoHelpers == nil {
+						attributes3.InternalUserAttribute.InfoHelpers = nil
+					} else {
+						attributes3.InternalUserAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintText)
+						attributes3.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintTextKey)
+						attributes3.InternalUserAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InternalUserAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.InternalUserAttribute.Label = types.StringValue(attributesItem1.InternalUserAttribute.Label)
+					attributes3.InternalUserAttribute.Layout = types.StringPointerValue(attributesItem1.InternalUserAttribute.Layout)
+					attributes3.InternalUserAttribute.Name = types.StringValue(attributesItem1.InternalUserAttribute.Name)
+					attributes3.InternalUserAttribute.Order = types.Int64PointerValue(attributesItem1.InternalUserAttribute.Order)
+					attributes3.InternalUserAttribute.Placeholder = types.StringPointerValue(attributesItem1.InternalUserAttribute.Placeholder)
+					attributes3.InternalUserAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InternalUserAttribute.PreviewValueFormatter)
+					attributes3.InternalUserAttribute.Protected = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Protected)
+					attributes3.InternalUserAttribute.Readonly = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Readonly)
+					attributes3.InternalUserAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InternalUserAttribute.RenderCondition)
+					attributes3.InternalUserAttribute.Required = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Required)
+					for settingsFlagCount39, settingsFlagItem39 := range attributesItem1.InternalUserAttribute.SettingsFlag {
+						var settingsFlag79 tfTypes.SettingFlag
+						settingsFlag79.Enabled = types.BoolPointerValue(settingsFlagItem39.Enabled)
+						settingsFlag79.Name = types.StringPointerValue(settingsFlagItem39.Name)
+						if settingsFlagCount39+1 > len(attributes3.InternalUserAttribute.SettingsFlag) {
+							attributes3.InternalUserAttribute.SettingsFlag = append(attributes3.InternalUserAttribute.SettingsFlag, settingsFlag79)
+						} else {
+							attributes3.InternalUserAttribute.SettingsFlag[settingsFlagCount39].Enabled = settingsFlag79.Enabled
+							attributes3.InternalUserAttribute.SettingsFlag[settingsFlagCount39].Name = settingsFlag79.Name
+						}
+					}
+					attributes3.InternalUserAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InternalUserAttribute.ShowInTable)
+					attributes3.InternalUserAttribute.Sortable = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Sortable)
+					if attributesItem1.InternalUserAttribute.Type != nil {
+						attributes3.InternalUserAttribute.Type = types.StringValue(string(*attributesItem1.InternalUserAttribute.Type))
+					} else {
+						attributes3.InternalUserAttribute.Type = types.StringNull()
+					}
+					attributes3.InternalUserAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InternalUserAttribute.ValueFormatter)
+				}
+				if attributesItem1.InvitationEmailAttribute != nil {
+					attributes3.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+					attributes3.InvitationEmailAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.InvitationEmailAttribute.Purpose {
+						attributes3.InvitationEmailAttribute.Purpose = append(attributes3.InvitationEmailAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.InvitationEmailAttribute.Constraints == nil {
+						attributes3.InvitationEmailAttribute.Constraints = nil
+					} else {
+						attributes3.InvitationEmailAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.InvitationEmailAttribute.DefaultValue == nil {
+						attributes3.InvitationEmailAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult39, _ := json.Marshal(attributesItem1.InvitationEmailAttribute.DefaultValue)
+						attributes3.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult39))
+					}
+					attributes3.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Deprecated)
+					attributes3.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.EntityBuilderDisableEdit)
+					attributes3.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.FeatureFlag)
+					attributes3.InvitationEmailAttribute.Group = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Group)
+					attributes3.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Hidden)
+					attributes3.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.HideLabel)
+					attributes3.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Icon)
+					if attributesItem1.InvitationEmailAttribute.InfoHelpers == nil {
+						attributes3.InvitationEmailAttribute.InfoHelpers = nil
+					} else {
+						attributes3.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintText)
+						attributes3.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintTextKey)
+						attributes3.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.InvitationEmailAttribute.Label = types.StringValue(attributesItem1.InvitationEmailAttribute.Label)
+					attributes3.InvitationEmailAttribute.Layout = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Layout)
+					attributes3.InvitationEmailAttribute.Name = types.StringValue(attributesItem1.InvitationEmailAttribute.Name)
+					attributes3.InvitationEmailAttribute.Order = types.Int64PointerValue(attributesItem1.InvitationEmailAttribute.Order)
+					attributes3.InvitationEmailAttribute.Placeholder = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Placeholder)
+					attributes3.InvitationEmailAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.PreviewValueFormatter)
+					attributes3.InvitationEmailAttribute.Protected = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Protected)
+					attributes3.InvitationEmailAttribute.Readonly = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Readonly)
+					attributes3.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.RenderCondition)
+					attributes3.InvitationEmailAttribute.Required = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Required)
+					for settingsFlagCount40, settingsFlagItem40 := range attributesItem1.InvitationEmailAttribute.SettingsFlag {
+						var settingsFlag81 tfTypes.SettingFlag
+						settingsFlag81.Enabled = types.BoolPointerValue(settingsFlagItem40.Enabled)
+						settingsFlag81.Name = types.StringPointerValue(settingsFlagItem40.Name)
+						if settingsFlagCount40+1 > len(attributes3.InvitationEmailAttribute.SettingsFlag) {
+							attributes3.InvitationEmailAttribute.SettingsFlag = append(attributes3.InvitationEmailAttribute.SettingsFlag, settingsFlag81)
+						} else {
+							attributes3.InvitationEmailAttribute.SettingsFlag[settingsFlagCount40].Enabled = settingsFlag81.Enabled
+							attributes3.InvitationEmailAttribute.SettingsFlag[settingsFlagCount40].Name = settingsFlag81.Name
+						}
+					}
+					attributes3.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.ShowInTable)
+					attributes3.InvitationEmailAttribute.Sortable = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Sortable)
+					if attributesItem1.InvitationEmailAttribute.Type != nil {
+						attributes3.InvitationEmailAttribute.Type = types.StringValue(string(*attributesItem1.InvitationEmailAttribute.Type))
+					} else {
+						attributes3.InvitationEmailAttribute.Type = types.StringNull()
+					}
+					attributes3.InvitationEmailAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.ValueFormatter)
+				}
+				if attributesItem1.LinkAttribute != nil {
+					attributes3.LinkAttribute = &tfTypes.LinkAttribute{}
+					attributes3.LinkAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.LinkAttribute.Purpose {
+						attributes3.LinkAttribute.Purpose = append(attributes3.LinkAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.LinkAttribute.Constraints == nil {
+						attributes3.LinkAttribute.Constraints = nil
+					} else {
+						attributes3.LinkAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.LinkAttribute.DefaultValue == nil {
+						attributes3.LinkAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult40, _ := json.Marshal(attributesItem1.LinkAttribute.DefaultValue)
+						attributes3.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult40))
+					}
+					attributes3.LinkAttribute.Deprecated = types.BoolPointerValue(attributesItem1.LinkAttribute.Deprecated)
+					attributes3.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.LinkAttribute.EntityBuilderDisableEdit)
+					attributes3.LinkAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.LinkAttribute.FeatureFlag)
+					attributes3.LinkAttribute.Group = types.StringPointerValue(attributesItem1.LinkAttribute.Group)
+					attributes3.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem1.LinkAttribute.Hidden)
+					attributes3.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem1.LinkAttribute.HideLabel)
+					attributes3.LinkAttribute.Icon = types.StringPointerValue(attributesItem1.LinkAttribute.Icon)
+					if attributesItem1.LinkAttribute.InfoHelpers == nil {
+						attributes3.LinkAttribute.InfoHelpers = nil
+					} else {
+						attributes3.LinkAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintText)
+						attributes3.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintTextKey)
+						attributes3.LinkAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.LinkAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.LinkAttribute.Label = types.StringValue(attributesItem1.LinkAttribute.Label)
+					attributes3.LinkAttribute.Layout = types.StringPointerValue(attributesItem1.LinkAttribute.Layout)
+					attributes3.LinkAttribute.Name = types.StringValue(attributesItem1.LinkAttribute.Name)
+					attributes3.LinkAttribute.Order = types.Int64PointerValue(attributesItem1.LinkAttribute.Order)
+					attributes3.LinkAttribute.Placeholder = types.StringPointerValue(attributesItem1.LinkAttribute.Placeholder)
+					attributes3.LinkAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.LinkAttribute.PreviewValueFormatter)
+					attributes3.LinkAttribute.Protected = types.BoolPointerValue(attributesItem1.LinkAttribute.Protected)
+					attributes3.LinkAttribute.Readonly = types.BoolPointerValue(attributesItem1.LinkAttribute.Readonly)
+					attributes3.LinkAttribute.RenderCondition = types.StringPointerValue(attributesItem1.LinkAttribute.RenderCondition)
+					attributes3.LinkAttribute.Required = types.BoolPointerValue(attributesItem1.LinkAttribute.Required)
+					for settingsFlagCount41, settingsFlagItem41 := range attributesItem1.LinkAttribute.SettingsFlag {
+						var settingsFlag83 tfTypes.SettingFlag
+						settingsFlag83.Enabled = types.BoolPointerValue(settingsFlagItem41.Enabled)
+						settingsFlag83.Name = types.StringPointerValue(settingsFlagItem41.Name)
+						if settingsFlagCount41+1 > len(attributes3.LinkAttribute.SettingsFlag) {
+							attributes3.LinkAttribute.SettingsFlag = append(attributes3.LinkAttribute.SettingsFlag, settingsFlag83)
+						} else {
+							attributes3.LinkAttribute.SettingsFlag[settingsFlagCount41].Enabled = settingsFlag83.Enabled
+							attributes3.LinkAttribute.SettingsFlag[settingsFlagCount41].Name = settingsFlag83.Name
+						}
+					}
+					attributes3.LinkAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.LinkAttribute.ShowInTable)
+					attributes3.LinkAttribute.Sortable = types.BoolPointerValue(attributesItem1.LinkAttribute.Sortable)
+					if attributesItem1.LinkAttribute.Type != nil {
+						attributes3.LinkAttribute.Type = types.StringValue(string(*attributesItem1.LinkAttribute.Type))
+					} else {
+						attributes3.LinkAttribute.Type = types.StringNull()
+					}
+					attributes3.LinkAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.LinkAttribute.ValueFormatter)
+				}
+				if attributesItem1.MultiSelectAttribute != nil {
+					attributes3.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+					attributes3.MultiSelectAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.MultiSelectAttribute.Purpose {
+						attributes3.MultiSelectAttribute.Purpose = append(attributes3.MultiSelectAttribute.Purpose, types.StringValue(v))
+					}
+					attributes3.MultiSelectAttribute.AllowAny = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.AllowAny)
+					attributes3.MultiSelectAttribute.AllowExtraOptions = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.AllowExtraOptions)
+					if attributesItem1.MultiSelectAttribute.Constraints == nil {
+						attributes3.MultiSelectAttribute.Constraints = nil
+					} else {
+						attributes3.MultiSelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.MultiSelectAttribute.DefaultValue == nil {
+						attributes3.MultiSelectAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult41, _ := json.Marshal(attributesItem1.MultiSelectAttribute.DefaultValue)
+						attributes3.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult41))
+					}
+					attributes3.MultiSelectAttribute.Deprecated = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Deprecated)
+					attributes3.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.DisableCaseSensitive)
+					attributes3.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.EntityBuilderDisableEdit)
+					attributes3.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.MultiSelectAttribute.FeatureFlag)
+					attributes3.MultiSelectAttribute.Group = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Group)
+					attributes3.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Hidden)
+					attributes3.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.HideLabel)
+					attributes3.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Icon)
+					if attributesItem1.MultiSelectAttribute.InfoHelpers == nil {
+						attributes3.MultiSelectAttribute.InfoHelpers = nil
+					} else {
+						attributes3.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintText)
+						attributes3.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintTextKey)
+						attributes3.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.MultiSelectAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.MultiSelectAttribute.Label = types.StringValue(attributesItem1.MultiSelectAttribute.Label)
+					attributes3.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Layout)
+					attributes3.MultiSelectAttribute.Name = types.StringValue(attributesItem1.MultiSelectAttribute.Name)
+					for optionsCount3, optionsItem3 := range attributesItem1.MultiSelectAttribute.Options {
+						var options8 tfTypes.MultiSelectAttributeOptions
+						if optionsItem3.Str != nil {
+							options8.Str = types.StringPointerValue(optionsItem3.Str)
+						}
+						if optionsItem3.Two != nil {
+							options8.Two = &tfTypes.Two{}
+							options8.Two.Title = types.StringPointerValue(optionsItem3.Two.Title)
+							options8.Two.Value = types.StringValue(optionsItem3.Two.Value)
+						}
+						if optionsCount3+1 > len(attributes3.MultiSelectAttribute.Options) {
+							attributes3.MultiSelectAttribute.Options = append(attributes3.MultiSelectAttribute.Options, options8)
+						} else {
+							attributes3.MultiSelectAttribute.Options[optionsCount3].Str = options8.Str
+							attributes3.MultiSelectAttribute.Options[optionsCount3].Two = options8.Two
+						}
+					}
+					attributes3.MultiSelectAttribute.Order = types.Int64PointerValue(attributesItem1.MultiSelectAttribute.Order)
+					attributes3.MultiSelectAttribute.Placeholder = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Placeholder)
+					attributes3.MultiSelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.MultiSelectAttribute.PreviewValueFormatter)
+					attributes3.MultiSelectAttribute.Protected = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Protected)
+					attributes3.MultiSelectAttribute.Readonly = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Readonly)
+					attributes3.MultiSelectAttribute.RenderCondition = types.StringPointerValue(attributesItem1.MultiSelectAttribute.RenderCondition)
+					attributes3.MultiSelectAttribute.Required = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Required)
+					for settingsFlagCount42, settingsFlagItem42 := range attributesItem1.MultiSelectAttribute.SettingsFlag {
+						var settingsFlag85 tfTypes.SettingFlag
+						settingsFlag85.Enabled = types.BoolPointerValue(settingsFlagItem42.Enabled)
+						settingsFlag85.Name = types.StringPointerValue(settingsFlagItem42.Name)
+						if settingsFlagCount42+1 > len(attributes3.MultiSelectAttribute.SettingsFlag) {
+							attributes3.MultiSelectAttribute.SettingsFlag = append(attributes3.MultiSelectAttribute.SettingsFlag, settingsFlag85)
+						} else {
+							attributes3.MultiSelectAttribute.SettingsFlag[settingsFlagCount42].Enabled = settingsFlag85.Enabled
+							attributes3.MultiSelectAttribute.SettingsFlag[settingsFlagCount42].Name = settingsFlag85.Name
+						}
+					}
+					attributes3.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.ShowInTable)
+					attributes3.MultiSelectAttribute.Sortable = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Sortable)
+					if attributesItem1.MultiSelectAttribute.Type != nil {
+						attributes3.MultiSelectAttribute.Type = types.StringValue(string(*attributesItem1.MultiSelectAttribute.Type))
+					} else {
+						attributes3.MultiSelectAttribute.Type = types.StringNull()
+					}
+					attributes3.MultiSelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.MultiSelectAttribute.ValueFormatter)
+				}
+				if attributesItem1.NumberAttribute != nil {
+					attributes3.NumberAttribute = &tfTypes.NumberAttribute{}
+					attributes3.NumberAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.NumberAttribute.Purpose {
+						attributes3.NumberAttribute.Purpose = append(attributes3.NumberAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.NumberAttribute.Constraints == nil {
+						attributes3.NumberAttribute.Constraints = nil
+					} else {
+						attributes3.NumberAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.NumberAttribute.DefaultValue == nil {
+						attributes3.NumberAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult42, _ := json.Marshal(attributesItem1.NumberAttribute.DefaultValue)
+						attributes3.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult42))
+					}
+					attributes3.NumberAttribute.Deprecated = types.BoolPointerValue(attributesItem1.NumberAttribute.Deprecated)
+					attributes3.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.NumberAttribute.EntityBuilderDisableEdit)
+					attributes3.NumberAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.NumberAttribute.FeatureFlag)
+					attributes3.NumberAttribute.Format = types.StringPointerValue(attributesItem1.NumberAttribute.Format)
+					attributes3.NumberAttribute.Group = types.StringPointerValue(attributesItem1.NumberAttribute.Group)
+					attributes3.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem1.NumberAttribute.Hidden)
+					attributes3.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem1.NumberAttribute.HideLabel)
+					attributes3.NumberAttribute.Icon = types.StringPointerValue(attributesItem1.NumberAttribute.Icon)
+					if attributesItem1.NumberAttribute.InfoHelpers == nil {
+						attributes3.NumberAttribute.InfoHelpers = nil
+					} else {
+						attributes3.NumberAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintText)
+						attributes3.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintTextKey)
+						attributes3.NumberAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.NumberAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.NumberAttribute.Label = types.StringValue(attributesItem1.NumberAttribute.Label)
+					attributes3.NumberAttribute.Layout = types.StringPointerValue(attributesItem1.NumberAttribute.Layout)
+					attributes3.NumberAttribute.Name = types.StringValue(attributesItem1.NumberAttribute.Name)
+					attributes3.NumberAttribute.Order = types.Int64PointerValue(attributesItem1.NumberAttribute.Order)
+					attributes3.NumberAttribute.Placeholder = types.StringPointerValue(attributesItem1.NumberAttribute.Placeholder)
+					attributes3.NumberAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.NumberAttribute.PreviewValueFormatter)
+					attributes3.NumberAttribute.Protected = types.BoolPointerValue(attributesItem1.NumberAttribute.Protected)
+					attributes3.NumberAttribute.Readonly = types.BoolPointerValue(attributesItem1.NumberAttribute.Readonly)
+					attributes3.NumberAttribute.RenderCondition = types.StringPointerValue(attributesItem1.NumberAttribute.RenderCondition)
+					attributes3.NumberAttribute.Required = types.BoolPointerValue(attributesItem1.NumberAttribute.Required)
+					for settingsFlagCount43, settingsFlagItem43 := range attributesItem1.NumberAttribute.SettingsFlag {
+						var settingsFlag87 tfTypes.SettingFlag
+						settingsFlag87.Enabled = types.BoolPointerValue(settingsFlagItem43.Enabled)
+						settingsFlag87.Name = types.StringPointerValue(settingsFlagItem43.Name)
+						if settingsFlagCount43+1 > len(attributes3.NumberAttribute.SettingsFlag) {
+							attributes3.NumberAttribute.SettingsFlag = append(attributes3.NumberAttribute.SettingsFlag, settingsFlag87)
+						} else {
+							attributes3.NumberAttribute.SettingsFlag[settingsFlagCount43].Enabled = settingsFlag87.Enabled
+							attributes3.NumberAttribute.SettingsFlag[settingsFlagCount43].Name = settingsFlag87.Name
+						}
+					}
+					attributes3.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowInTable)
+					attributes3.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem1.NumberAttribute.Sortable)
+					if attributesItem1.NumberAttribute.Type != nil {
+						attributes3.NumberAttribute.Type = types.StringValue(string(*attributesItem1.NumberAttribute.Type))
+					} else {
+						attributes3.NumberAttribute.Type = types.StringNull()
+					}
+					attributes3.NumberAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.NumberAttribute.ValueFormatter)
+				}
+				if attributesItem1.OrderedListAttribute != nil {
+					attributes3.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+					attributes3.OrderedListAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.OrderedListAttribute.Purpose {
+						attributes3.OrderedListAttribute.Purpose = append(attributes3.OrderedListAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.OrderedListAttribute.Constraints == nil {
+						attributes3.OrderedListAttribute.Constraints = nil
+					} else {
+						attributes3.OrderedListAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.OrderedListAttribute.DefaultValue == nil {
+						attributes3.OrderedListAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult43, _ := json.Marshal(attributesItem1.OrderedListAttribute.DefaultValue)
+						attributes3.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult43))
+					}
+					attributes3.OrderedListAttribute.Deprecated = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Deprecated)
+					attributes3.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.OrderedListAttribute.EntityBuilderDisableEdit)
+					attributes3.OrderedListAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.OrderedListAttribute.FeatureFlag)
+					attributes3.OrderedListAttribute.Group = types.StringPointerValue(attributesItem1.OrderedListAttribute.Group)
+					attributes3.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Hidden)
+					attributes3.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem1.OrderedListAttribute.HideLabel)
+					attributes3.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem1.OrderedListAttribute.Icon)
+					if attributesItem1.OrderedListAttribute.InfoHelpers == nil {
+						attributes3.OrderedListAttribute.InfoHelpers = nil
+					} else {
+						attributes3.OrderedListAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintText)
+						attributes3.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintTextKey)
+						attributes3.OrderedListAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.OrderedListAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.OrderedListAttribute.Label = types.StringValue(attributesItem1.OrderedListAttribute.Label)
+					attributes3.OrderedListAttribute.Layout = types.StringPointerValue(attributesItem1.OrderedListAttribute.Layout)
+					attributes3.OrderedListAttribute.Name = types.StringValue(attributesItem1.OrderedListAttribute.Name)
+					attributes3.OrderedListAttribute.Order = types.Int64PointerValue(attributesItem1.OrderedListAttribute.Order)
+					attributes3.OrderedListAttribute.Placeholder = types.StringPointerValue(attributesItem1.OrderedListAttribute.Placeholder)
+					attributes3.OrderedListAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.OrderedListAttribute.PreviewValueFormatter)
+					attributes3.OrderedListAttribute.Protected = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Protected)
+					attributes3.OrderedListAttribute.Readonly = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Readonly)
+					attributes3.OrderedListAttribute.RenderCondition = types.StringPointerValue(attributesItem1.OrderedListAttribute.RenderCondition)
+					attributes3.OrderedListAttribute.Required = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Required)
+					for settingsFlagCount44, settingsFlagItem44 := range attributesItem1.OrderedListAttribute.SettingsFlag {
+						var settingsFlag89 tfTypes.SettingFlag
+						settingsFlag89.Enabled = types.BoolPointerValue(settingsFlagItem44.Enabled)
+						settingsFlag89.Name = types.StringPointerValue(settingsFlagItem44.Name)
+						if settingsFlagCount44+1 > len(attributes3.OrderedListAttribute.SettingsFlag) {
+							attributes3.OrderedListAttribute.SettingsFlag = append(attributes3.OrderedListAttribute.SettingsFlag, settingsFlag89)
+						} else {
+							attributes3.OrderedListAttribute.SettingsFlag[settingsFlagCount44].Enabled = settingsFlag89.Enabled
+							attributes3.OrderedListAttribute.SettingsFlag[settingsFlagCount44].Name = settingsFlag89.Name
+						}
+					}
+					attributes3.OrderedListAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.OrderedListAttribute.ShowInTable)
+					attributes3.OrderedListAttribute.Sortable = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Sortable)
+					if attributesItem1.OrderedListAttribute.Type != nil {
+						attributes3.OrderedListAttribute.Type = types.StringValue(string(*attributesItem1.OrderedListAttribute.Type))
+					} else {
+						attributes3.OrderedListAttribute.Type = types.StringNull()
+					}
+					attributes3.OrderedListAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.OrderedListAttribute.ValueFormatter)
+				}
+				if attributesItem1.PartnerOrganisationAttribute != nil {
+					attributes3.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+					attributes3.PartnerOrganisationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.PartnerOrganisationAttribute.Purpose {
+						attributes3.PartnerOrganisationAttribute.Purpose = append(attributes3.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.PartnerOrganisationAttribute.Constraints == nil {
+						attributes3.PartnerOrganisationAttribute.Constraints = nil
+					} else {
+						attributes3.PartnerOrganisationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.PartnerOrganisationAttribute.DefaultValue == nil {
+						attributes3.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult44, _ := json.Marshal(attributesItem1.PartnerOrganisationAttribute.DefaultValue)
+						attributes3.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult44))
+					}
+					attributes3.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Deprecated)
+					attributes3.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.EntityBuilderDisableEdit)
+					attributes3.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.FeatureFlag)
+					attributes3.PartnerOrganisationAttribute.Group = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Group)
+					attributes3.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Hidden)
+					attributes3.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.HideLabel)
+					attributes3.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Icon)
+					if attributesItem1.PartnerOrganisationAttribute.InfoHelpers == nil {
+						attributes3.PartnerOrganisationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintText)
+						attributes3.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintTextKey)
+						attributes3.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.PartnerOrganisationAttribute.Label = types.StringValue(attributesItem1.PartnerOrganisationAttribute.Label)
+					attributes3.PartnerOrganisationAttribute.Layout = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Layout)
+					attributes3.PartnerOrganisationAttribute.Name = types.StringValue(attributesItem1.PartnerOrganisationAttribute.Name)
+					attributes3.PartnerOrganisationAttribute.Order = types.Int64PointerValue(attributesItem1.PartnerOrganisationAttribute.Order)
+					attributes3.PartnerOrganisationAttribute.Placeholder = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Placeholder)
+					attributes3.PartnerOrganisationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.PreviewValueFormatter)
+					attributes3.PartnerOrganisationAttribute.Protected = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Protected)
+					attributes3.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Readonly)
+					attributes3.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.RenderCondition)
+					attributes3.PartnerOrganisationAttribute.Required = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Required)
+					for settingsFlagCount45, settingsFlagItem45 := range attributesItem1.PartnerOrganisationAttribute.SettingsFlag {
+						var settingsFlag91 tfTypes.SettingFlag
+						settingsFlag91.Enabled = types.BoolPointerValue(settingsFlagItem45.Enabled)
+						settingsFlag91.Name = types.StringPointerValue(settingsFlagItem45.Name)
+						if settingsFlagCount45+1 > len(attributes3.PartnerOrganisationAttribute.SettingsFlag) {
+							attributes3.PartnerOrganisationAttribute.SettingsFlag = append(attributes3.PartnerOrganisationAttribute.SettingsFlag, settingsFlag91)
+						} else {
+							attributes3.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount45].Enabled = settingsFlag91.Enabled
+							attributes3.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount45].Name = settingsFlag91.Name
+						}
+					}
+					attributes3.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.ShowInTable)
+					attributes3.PartnerOrganisationAttribute.Sortable = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Sortable)
+					if attributesItem1.PartnerOrganisationAttribute.Type != nil {
+						attributes3.PartnerOrganisationAttribute.Type = types.StringValue(string(*attributesItem1.PartnerOrganisationAttribute.Type))
+					} else {
+						attributes3.PartnerOrganisationAttribute.Type = types.StringNull()
+					}
+					attributes3.PartnerOrganisationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.ValueFormatter)
+				}
+				if attributesItem1.PartnerStatusAttribute != nil {
+					attributes3.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+					attributes3.PartnerStatusAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.PartnerStatusAttribute.Purpose {
+						attributes3.PartnerStatusAttribute.Purpose = append(attributes3.PartnerStatusAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.PartnerStatusAttribute.Constraints == nil {
+						attributes3.PartnerStatusAttribute.Constraints = nil
+					} else {
+						attributes3.PartnerStatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.PartnerStatusAttribute.DefaultValue == nil {
+						attributes3.PartnerStatusAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult45, _ := json.Marshal(attributesItem1.PartnerStatusAttribute.DefaultValue)
+						attributes3.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult45))
+					}
+					attributes3.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Deprecated)
+					attributes3.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.EntityBuilderDisableEdit)
+					attributes3.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.FeatureFlag)
+					attributes3.PartnerStatusAttribute.Group = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Group)
+					attributes3.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Hidden)
+					attributes3.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.HideLabel)
+					attributes3.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Icon)
+					if attributesItem1.PartnerStatusAttribute.InfoHelpers == nil {
+						attributes3.PartnerStatusAttribute.InfoHelpers = nil
+					} else {
+						attributes3.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintText)
+						attributes3.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintTextKey)
+						attributes3.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.PartnerStatusAttribute.Label = types.StringValue(attributesItem1.PartnerStatusAttribute.Label)
+					attributes3.PartnerStatusAttribute.Layout = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Layout)
+					attributes3.PartnerStatusAttribute.Name = types.StringValue(attributesItem1.PartnerStatusAttribute.Name)
+					attributes3.PartnerStatusAttribute.Order = types.Int64PointerValue(attributesItem1.PartnerStatusAttribute.Order)
+					attributes3.PartnerStatusAttribute.Placeholder = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Placeholder)
+					attributes3.PartnerStatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.PreviewValueFormatter)
+					attributes3.PartnerStatusAttribute.Protected = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Protected)
+					attributes3.PartnerStatusAttribute.Readonly = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Readonly)
+					attributes3.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.RenderCondition)
+					attributes3.PartnerStatusAttribute.Required = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Required)
+					for settingsFlagCount46, settingsFlagItem46 := range attributesItem1.PartnerStatusAttribute.SettingsFlag {
+						var settingsFlag93 tfTypes.SettingFlag
+						settingsFlag93.Enabled = types.BoolPointerValue(settingsFlagItem46.Enabled)
+						settingsFlag93.Name = types.StringPointerValue(settingsFlagItem46.Name)
+						if settingsFlagCount46+1 > len(attributes3.PartnerStatusAttribute.SettingsFlag) {
+							attributes3.PartnerStatusAttribute.SettingsFlag = append(attributes3.PartnerStatusAttribute.SettingsFlag, settingsFlag93)
+						} else {
+							attributes3.PartnerStatusAttribute.SettingsFlag[settingsFlagCount46].Enabled = settingsFlag93.Enabled
+							attributes3.PartnerStatusAttribute.SettingsFlag[settingsFlagCount46].Name = settingsFlag93.Name
+						}
+					}
+					attributes3.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.ShowInTable)
+					attributes3.PartnerStatusAttribute.Sortable = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Sortable)
+					if attributesItem1.PartnerStatusAttribute.Type != nil {
+						attributes3.PartnerStatusAttribute.Type = types.StringValue(string(*attributesItem1.PartnerStatusAttribute.Type))
+					} else {
+						attributes3.PartnerStatusAttribute.Type = types.StringNull()
+					}
+					attributes3.PartnerStatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.ValueFormatter)
+				}
+				if attributesItem1.PaymentMethodRelationAttribute != nil {
+					attributes3.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+					attributes3.PaymentMethodRelationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.PaymentMethodRelationAttribute.Purpose {
+						attributes3.PaymentMethodRelationAttribute.Purpose = append(attributes3.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.PaymentMethodRelationAttribute.Constraints == nil {
+						attributes3.PaymentMethodRelationAttribute.Constraints = nil
+					} else {
+						attributes3.PaymentMethodRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.PaymentMethodRelationAttribute.DefaultValue == nil {
+						attributes3.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult46, _ := json.Marshal(attributesItem1.PaymentMethodRelationAttribute.DefaultValue)
+						attributes3.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult46))
+					}
+					attributes3.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Deprecated)
+					attributes3.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.EntityBuilderDisableEdit)
+					attributes3.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.FeatureFlag)
+					attributes3.PaymentMethodRelationAttribute.Group = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Group)
+					attributes3.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HasPrimary)
+					attributes3.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Hidden)
+					attributes3.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HideLabel)
+					attributes3.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Icon)
+					if attributesItem1.PaymentMethodRelationAttribute.InfoHelpers == nil {
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintText)
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
+						attributes3.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.PaymentMethodRelationAttribute.Label = types.StringValue(attributesItem1.PaymentMethodRelationAttribute.Label)
+					attributes3.PaymentMethodRelationAttribute.Layout = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Layout)
+					attributes3.PaymentMethodRelationAttribute.Name = types.StringValue(attributesItem1.PaymentMethodRelationAttribute.Name)
+					attributes3.PaymentMethodRelationAttribute.Order = types.Int64PointerValue(attributesItem1.PaymentMethodRelationAttribute.Order)
+					attributes3.PaymentMethodRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Placeholder)
+					attributes3.PaymentMethodRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.PreviewValueFormatter)
+					attributes3.PaymentMethodRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Protected)
+					attributes3.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Readonly)
+					attributes3.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.RenderCondition)
+					attributes3.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Required)
+					for settingsFlagCount47, settingsFlagItem47 := range attributesItem1.PaymentMethodRelationAttribute.SettingsFlag {
+						var settingsFlag95 tfTypes.SettingFlag
+						settingsFlag95.Enabled = types.BoolPointerValue(settingsFlagItem47.Enabled)
+						settingsFlag95.Name = types.StringPointerValue(settingsFlagItem47.Name)
+						if settingsFlagCount47+1 > len(attributes3.PaymentMethodRelationAttribute.SettingsFlag) {
+							attributes3.PaymentMethodRelationAttribute.SettingsFlag = append(attributes3.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag95)
+						} else {
+							attributes3.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount47].Enabled = settingsFlag95.Enabled
+							attributes3.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount47].Name = settingsFlag95.Name
+						}
+					}
+					attributes3.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.ShowInTable)
+					attributes3.PaymentMethodRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Sortable)
+					if attributesItem1.PaymentMethodRelationAttribute.Type != nil {
+						attributes3.PaymentMethodRelationAttribute.Type = types.StringValue(string(*attributesItem1.PaymentMethodRelationAttribute.Type))
+					} else {
+						attributes3.PaymentMethodRelationAttribute.Type = types.StringNull()
+					}
+					attributes3.PaymentMethodRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.ValueFormatter)
+				}
+				if attributesItem1.PurposeAttribute != nil {
+					attributes3.PurposeAttribute = &tfTypes.PurposeAttribute{}
+					attributes3.PurposeAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.PurposeAttribute.Purpose {
+						attributes3.PurposeAttribute.Purpose = append(attributes3.PurposeAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.PurposeAttribute.Constraints == nil {
+						attributes3.PurposeAttribute.Constraints = nil
+					} else {
+						attributes3.PurposeAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.PurposeAttribute.CreatedAt != nil {
+						attributes3.PurposeAttribute.CreatedAt = types.StringValue(attributesItem1.PurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
+					} else {
+						attributes3.PurposeAttribute.CreatedAt = types.StringNull()
+					}
+					if attributesItem1.PurposeAttribute.DefaultValue == nil {
+						attributes3.PurposeAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult47, _ := json.Marshal(attributesItem1.PurposeAttribute.DefaultValue)
+						attributes3.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult47))
+					}
+					attributes3.PurposeAttribute.Deprecated = types.BoolPointerValue(attributesItem1.PurposeAttribute.Deprecated)
+					attributes3.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.PurposeAttribute.EntityBuilderDisableEdit)
+					attributes3.PurposeAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.PurposeAttribute.FeatureFlag)
+					attributes3.PurposeAttribute.Group = types.StringPointerValue(attributesItem1.PurposeAttribute.Group)
+					attributes3.PurposeAttribute.Hidden = types.BoolPointerValue(attributesItem1.PurposeAttribute.Hidden)
+					attributes3.PurposeAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PurposeAttribute.HideLabel)
+					attributes3.PurposeAttribute.Icon = types.StringPointerValue(attributesItem1.PurposeAttribute.Icon)
+					attributes3.PurposeAttribute.ID = types.StringPointerValue(attributesItem1.PurposeAttribute.ID)
+					if attributesItem1.PurposeAttribute.InfoHelpers == nil {
+						attributes3.PurposeAttribute.InfoHelpers = nil
+					} else {
+						attributes3.PurposeAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintText)
+						attributes3.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintTextKey)
+						attributes3.PurposeAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.PurposeAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.PurposeAttribute.Label = types.StringValue(attributesItem1.PurposeAttribute.Label)
+					attributes3.PurposeAttribute.Layout = types.StringPointerValue(attributesItem1.PurposeAttribute.Layout)
+					attributes3.PurposeAttribute.Name = types.StringValue(attributesItem1.PurposeAttribute.Name)
+					attributes3.PurposeAttribute.Order = types.Int64PointerValue(attributesItem1.PurposeAttribute.Order)
+					attributes3.PurposeAttribute.Parents = []types.String{}
+					for _, v := range attributesItem1.PurposeAttribute.Parents {
+						attributes3.PurposeAttribute.Parents = append(attributes3.PurposeAttribute.Parents, types.StringValue(v))
+					}
+					attributes3.PurposeAttribute.Placeholder = types.StringPointerValue(attributesItem1.PurposeAttribute.Placeholder)
+					attributes3.PurposeAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.PurposeAttribute.PreviewValueFormatter)
+					attributes3.PurposeAttribute.Protected = types.BoolPointerValue(attributesItem1.PurposeAttribute.Protected)
+					attributes3.PurposeAttribute.Readonly = types.BoolPointerValue(attributesItem1.PurposeAttribute.Readonly)
+					attributes3.PurposeAttribute.RenderCondition = types.StringPointerValue(attributesItem1.PurposeAttribute.RenderCondition)
+					attributes3.PurposeAttribute.Required = types.BoolPointerValue(attributesItem1.PurposeAttribute.Required)
+					for settingsFlagCount48, settingsFlagItem48 := range attributesItem1.PurposeAttribute.SettingsFlag {
+						var settingsFlag97 tfTypes.SettingFlag
+						settingsFlag97.Enabled = types.BoolPointerValue(settingsFlagItem48.Enabled)
+						settingsFlag97.Name = types.StringPointerValue(settingsFlagItem48.Name)
+						if settingsFlagCount48+1 > len(attributes3.PurposeAttribute.SettingsFlag) {
+							attributes3.PurposeAttribute.SettingsFlag = append(attributes3.PurposeAttribute.SettingsFlag, settingsFlag97)
+						} else {
+							attributes3.PurposeAttribute.SettingsFlag[settingsFlagCount48].Enabled = settingsFlag97.Enabled
+							attributes3.PurposeAttribute.SettingsFlag[settingsFlagCount48].Name = settingsFlag97.Name
+						}
+					}
+					attributes3.PurposeAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.PurposeAttribute.ShowInTable)
+					attributes3.PurposeAttribute.Slug = types.StringPointerValue(attributesItem1.PurposeAttribute.Slug)
+					attributes3.PurposeAttribute.Sortable = types.BoolPointerValue(attributesItem1.PurposeAttribute.Sortable)
+					if attributesItem1.PurposeAttribute.Type != nil {
+						attributes3.PurposeAttribute.Type = types.StringValue(string(*attributesItem1.PurposeAttribute.Type))
+					} else {
+						attributes3.PurposeAttribute.Type = types.StringNull()
+					}
+					if attributesItem1.PurposeAttribute.UpdatedAt != nil {
+						attributes3.PurposeAttribute.UpdatedAt = types.StringValue(attributesItem1.PurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
+					} else {
+						attributes3.PurposeAttribute.UpdatedAt = types.StringNull()
+					}
+					attributes3.PurposeAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.PurposeAttribute.ValueFormatter)
+				}
+				if attributesItem1.RelationAttribute != nil {
+					attributes3.RelationAttribute = &tfTypes.RelationAttribute{}
+					attributes3.RelationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.RelationAttribute.Purpose {
+						attributes3.RelationAttribute.Purpose = append(attributes3.RelationAttribute.Purpose, types.StringValue(v))
+					}
+					for actionsCount1, actionsItem1 := range attributesItem1.RelationAttribute.Actions {
+						var actions3 tfTypes.Actions
+						if actionsItem1.ActionType != nil {
+							actions3.ActionType = types.StringValue(string(*actionsItem1.ActionType))
+						} else {
+							actions3.ActionType = types.StringNull()
+						}
+						actions3.Default = types.BoolPointerValue(actionsItem1.Default)
+						actions3.FeatureFlag = types.StringPointerValue(actionsItem1.FeatureFlag)
+						actions3.Label = types.StringPointerValue(actionsItem1.Label)
+						if actionsItem1.NewEntityItem == nil {
+							actions3.NewEntityItem = nil
+						} else {
+							actions3.NewEntityItem = &tfTypes.NewEntityItem{}
+							if actionsItem1.NewEntityItem.ACL == nil {
+								actions3.NewEntityItem.ACL = nil
+							} else {
+								actions3.NewEntityItem.ACL = &tfTypes.EntityACL{}
+								if actionsItem1.NewEntityItem.ACL.AdditionalProperties == nil {
+									actions3.NewEntityItem.ACL.AdditionalProperties = types.StringNull()
+								} else {
+									additionalPropertiesResult2, _ := json.Marshal(actionsItem1.NewEntityItem.ACL.AdditionalProperties)
+									actions3.NewEntityItem.ACL.AdditionalProperties = types.StringValue(string(additionalPropertiesResult2))
+								}
+								actions3.NewEntityItem.ACL.Delete = []types.String{}
+								for _, v := range actionsItem1.NewEntityItem.ACL.Delete {
+									actions3.NewEntityItem.ACL.Delete = append(actions3.NewEntityItem.ACL.Delete, types.StringValue(v))
+								}
+								actions3.NewEntityItem.ACL.Edit = []types.String{}
+								for _, v := range actionsItem1.NewEntityItem.ACL.Edit {
+									actions3.NewEntityItem.ACL.Edit = append(actions3.NewEntityItem.ACL.Edit, types.StringValue(v))
+								}
+								actions3.NewEntityItem.ACL.View = []types.String{}
+								for _, v := range actionsItem1.NewEntityItem.ACL.View {
+									actions3.NewEntityItem.ACL.View = append(actions3.NewEntityItem.ACL.View, types.StringValue(v))
+								}
+							}
+							if actionsItem1.NewEntityItem.CreatedAt != nil {
+								actions3.NewEntityItem.CreatedAt = types.StringValue(actionsItem1.NewEntityItem.CreatedAt.Format(time.RFC3339Nano))
+							} else {
+								actions3.NewEntityItem.CreatedAt = types.StringNull()
+							}
+							actions3.NewEntityItem.ID = types.StringValue(actionsItem1.NewEntityItem.ID)
+							actions3.NewEntityItem.Org = types.StringValue(actionsItem1.NewEntityItem.Org)
+							for ownersCount1, ownersItem1 := range actionsItem1.NewEntityItem.Owners {
+								var owners3 tfTypes.EntityOwner
+								owners3.OrgID = types.StringValue(ownersItem1.OrgID)
+								owners3.UserID = types.StringPointerValue(ownersItem1.UserID)
+								if ownersCount1+1 > len(actions3.NewEntityItem.Owners) {
+									actions3.NewEntityItem.Owners = append(actions3.NewEntityItem.Owners, owners3)
+								} else {
+									actions3.NewEntityItem.Owners[ownersCount1].OrgID = owners3.OrgID
+									actions3.NewEntityItem.Owners[ownersCount1].UserID = owners3.UserID
+								}
+							}
+							actions3.NewEntityItem.Schema = types.StringValue(actionsItem1.NewEntityItem.Schema)
+							actions3.NewEntityItem.Tags = []types.String{}
+							for _, v := range actionsItem1.NewEntityItem.Tags {
+								actions3.NewEntityItem.Tags = append(actions3.NewEntityItem.Tags, types.StringValue(v))
+							}
+							actions3.NewEntityItem.Title = types.StringPointerValue(actionsItem1.NewEntityItem.Title)
+							if actionsItem1.NewEntityItem.UpdatedAt != nil {
+								actions3.NewEntityItem.UpdatedAt = types.StringValue(actionsItem1.NewEntityItem.UpdatedAt.Format(time.RFC3339Nano))
+							} else {
+								actions3.NewEntityItem.UpdatedAt = types.StringNull()
+							}
+							if actionsItem1.NewEntityItem.AdditionalProperties == nil {
+								actions3.NewEntityItem.AdditionalProperties = types.StringNull()
+							} else {
+								additionalPropertiesResult3, _ := json.Marshal(actionsItem1.NewEntityItem.AdditionalProperties)
+								actions3.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult3))
+							}
+						}
+						for settingsFlagCount49, settingsFlagItem49 := range actionsItem1.SettingsFlag {
+							var settingsFlag99 tfTypes.SettingFlag
+							settingsFlag99.Enabled = types.BoolPointerValue(settingsFlagItem49.Enabled)
+							settingsFlag99.Name = types.StringPointerValue(settingsFlagItem49.Name)
+							if settingsFlagCount49+1 > len(actions3.SettingsFlag) {
+								actions3.SettingsFlag = append(actions3.SettingsFlag, settingsFlag99)
+							} else {
+								actions3.SettingsFlag[settingsFlagCount49].Enabled = settingsFlag99.Enabled
+								actions3.SettingsFlag[settingsFlagCount49].Name = settingsFlag99.Name
+							}
+						}
+						if actionsCount1+1 > len(attributes3.RelationAttribute.Actions) {
+							attributes3.RelationAttribute.Actions = append(attributes3.RelationAttribute.Actions, actions3)
+						} else {
+							attributes3.RelationAttribute.Actions[actionsCount1].ActionType = actions3.ActionType
+							attributes3.RelationAttribute.Actions[actionsCount1].Default = actions3.Default
+							attributes3.RelationAttribute.Actions[actionsCount1].FeatureFlag = actions3.FeatureFlag
+							attributes3.RelationAttribute.Actions[actionsCount1].Label = actions3.Label
+							attributes3.RelationAttribute.Actions[actionsCount1].NewEntityItem = actions3.NewEntityItem
+							attributes3.RelationAttribute.Actions[actionsCount1].SettingsFlag = actions3.SettingsFlag
+						}
+					}
+					attributes3.RelationAttribute.AddButtonLabel = types.StringPointerValue(attributesItem1.RelationAttribute.AddButtonLabel)
+					attributes3.RelationAttribute.AllowedSchemas = []types.String{}
+					for _, v := range attributesItem1.RelationAttribute.AllowedSchemas {
+						attributes3.RelationAttribute.AllowedSchemas = append(attributes3.RelationAttribute.AllowedSchemas, types.StringValue(v))
+					}
+					if attributesItem1.RelationAttribute.Constraints == nil {
+						attributes3.RelationAttribute.Constraints = nil
+					} else {
+						attributes3.RelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.RelationAttribute.DefaultValue == nil {
+						attributes3.RelationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult48, _ := json.Marshal(attributesItem1.RelationAttribute.DefaultValue)
+						attributes3.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult48))
+					}
+					attributes3.RelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.RelationAttribute.Deprecated)
+					attributes3.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(attributesItem1.RelationAttribute.DetailsViewModeEnabled)
+					if attributesItem1.RelationAttribute.DrawerSize != nil {
+						attributes3.RelationAttribute.DrawerSize = types.StringValue(string(*attributesItem1.RelationAttribute.DrawerSize))
+					} else {
+						attributes3.RelationAttribute.DrawerSize = types.StringNull()
+					}
+					if attributesItem1.RelationAttribute.EditMode != nil {
+						attributes3.RelationAttribute.EditMode = types.StringValue(string(*attributesItem1.RelationAttribute.EditMode))
+					} else {
+						attributes3.RelationAttribute.EditMode = types.StringNull()
+					}
+					attributes3.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem1.RelationAttribute.EnableRelationPicker)
+					attributes3.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem1.RelationAttribute.EnableRelationTags)
+					attributes3.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.RelationAttribute.EntityBuilderDisableEdit)
+					attributes3.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.RelationAttribute.FeatureFlag)
+					attributes3.RelationAttribute.Group = types.StringPointerValue(attributesItem1.RelationAttribute.Group)
+					attributes3.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.RelationAttribute.HasPrimary)
+					attributes3.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.RelationAttribute.Hidden)
+					attributes3.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RelationAttribute.HideLabel)
+					attributes3.RelationAttribute.Icon = types.StringPointerValue(attributesItem1.RelationAttribute.Icon)
+					if attributesItem1.RelationAttribute.InfoHelpers == nil {
+						attributes3.RelationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.RelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintText)
+						attributes3.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintTextKey)
+						attributes3.RelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.RelationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.RelationAttribute.Label = types.StringValue(attributesItem1.RelationAttribute.Label)
+					attributes3.RelationAttribute.Layout = types.StringPointerValue(attributesItem1.RelationAttribute.Layout)
+					attributes3.RelationAttribute.Name = types.StringValue(attributesItem1.RelationAttribute.Name)
+					attributes3.RelationAttribute.Order = types.Int64PointerValue(attributesItem1.RelationAttribute.Order)
+					attributes3.RelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.RelationAttribute.Placeholder)
+					attributes3.RelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.RelationAttribute.PreviewValueFormatter)
+					attributes3.RelationAttribute.Protected = types.BoolPointerValue(attributesItem1.RelationAttribute.Protected)
+					attributes3.RelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.RelationAttribute.Readonly)
+					if attributesItem1.RelationAttribute.RelationAffinityMode != nil {
+						attributes3.RelationAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem1.RelationAttribute.RelationAffinityMode))
+					} else {
+						attributes3.RelationAttribute.RelationAffinityMode = types.StringNull()
+					}
+					if attributesItem1.RelationAttribute.RelationType != nil {
+						attributes3.RelationAttribute.RelationType = types.StringValue(string(*attributesItem1.RelationAttribute.RelationType))
+					} else {
+						attributes3.RelationAttribute.RelationType = types.StringNull()
+					}
+					attributes3.RelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.RelationAttribute.RenderCondition)
+					attributes3.RelationAttribute.Required = types.BoolPointerValue(attributesItem1.RelationAttribute.Required)
+					if len(attributesItem1.RelationAttribute.ReverseAttributes) > 0 {
+						attributes3.RelationAttribute.ReverseAttributes = make(map[string]types.String)
+						for key1, value5 := range attributesItem1.RelationAttribute.ReverseAttributes {
+							attributes3.RelationAttribute.ReverseAttributes[key1] = types.StringValue(value5)
+						}
+					}
+					attributes3.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem1.RelationAttribute.SearchPlaceholder)
+					for settingsFlagCount50, settingsFlagItem50 := range attributesItem1.RelationAttribute.SettingsFlag {
+						var settingsFlag101 tfTypes.SettingFlag
+						settingsFlag101.Enabled = types.BoolPointerValue(settingsFlagItem50.Enabled)
+						settingsFlag101.Name = types.StringPointerValue(settingsFlagItem50.Name)
+						if settingsFlagCount50+1 > len(attributes3.RelationAttribute.SettingsFlag) {
+							attributes3.RelationAttribute.SettingsFlag = append(attributes3.RelationAttribute.SettingsFlag, settingsFlag101)
+						} else {
+							attributes3.RelationAttribute.SettingsFlag[settingsFlagCount50].Enabled = settingsFlag101.Enabled
+							attributes3.RelationAttribute.SettingsFlag[settingsFlagCount50].Name = settingsFlag101.Name
+						}
+					}
+					attributes3.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.RelationAttribute.ShowInTable)
+					attributes3.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.RelationAttribute.Sortable)
+					for summaryFieldsCount1, summaryFieldsItem1 := range attributesItem1.RelationAttribute.SummaryFields {
+						var summaryFields3 tfTypes.SummaryFields
+						if summaryFieldsItem1.Str != nil {
+							summaryFields3.Str = types.StringPointerValue(summaryFieldsItem1.Str)
+						}
+						if summaryFieldsItem1.SummaryField != nil {
+							summaryFields3.SummaryField = &tfTypes.SummaryField{}
+							summaryFields3.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem1.SummaryField.DisplayAs)
+							summaryFields3.SummaryField.Field = types.StringPointerValue(summaryFieldsItem1.SummaryField.Field)
+						}
+						if summaryFieldsCount1+1 > len(attributes3.RelationAttribute.SummaryFields) {
+							attributes3.RelationAttribute.SummaryFields = append(attributes3.RelationAttribute.SummaryFields, summaryFields3)
+						} else {
+							attributes3.RelationAttribute.SummaryFields[summaryFieldsCount1].Str = summaryFields3.Str
+							attributes3.RelationAttribute.SummaryFields[summaryFieldsCount1].SummaryField = summaryFields3.SummaryField
+						}
+					}
+					if attributesItem1.RelationAttribute.Type != nil {
+						attributes3.RelationAttribute.Type = types.StringValue(string(*attributesItem1.RelationAttribute.Type))
+					} else {
+						attributes3.RelationAttribute.Type = types.StringNull()
+					}
+					attributes3.RelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.RelationAttribute.ValueFormatter)
+				}
+				if attributesItem1.RepeatableAttribute != nil {
+					attributes3.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+					attributes3.RepeatableAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.RepeatableAttribute.Purpose {
+						attributes3.RepeatableAttribute.Purpose = append(attributes3.RepeatableAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.RepeatableAttribute.Constraints == nil {
+						attributes3.RepeatableAttribute.Constraints = nil
+					} else {
+						attributes3.RepeatableAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.RepeatableAttribute.DefaultValue == nil {
+						attributes3.RepeatableAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult49, _ := json.Marshal(attributesItem1.RepeatableAttribute.DefaultValue)
+						attributes3.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult49))
+					}
+					attributes3.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Deprecated)
+					attributes3.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem1.RepeatableAttribute.EnableRelationPicker)
+					attributes3.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.RepeatableAttribute.EntityBuilderDisableEdit)
+					attributes3.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.RepeatableAttribute.FeatureFlag)
+					attributes3.RepeatableAttribute.Group = types.StringPointerValue(attributesItem1.RepeatableAttribute.Group)
+					attributes3.RepeatableAttribute.HasPrimary = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HasPrimary)
+					attributes3.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Hidden)
+					attributes3.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HideLabel)
+					attributes3.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem1.RepeatableAttribute.Icon)
+					if attributesItem1.RepeatableAttribute.InfoHelpers == nil {
+						attributes3.RepeatableAttribute.InfoHelpers = nil
+					} else {
+						attributes3.RepeatableAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintText)
+						attributes3.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintTextKey)
+						attributes3.RepeatableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.RepeatableAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.RepeatableAttribute.Label = types.StringValue(attributesItem1.RepeatableAttribute.Label)
+					attributes3.RepeatableAttribute.Layout = types.StringPointerValue(attributesItem1.RepeatableAttribute.Layout)
+					attributes3.RepeatableAttribute.Name = types.StringValue(attributesItem1.RepeatableAttribute.Name)
+					attributes3.RepeatableAttribute.Order = types.Int64PointerValue(attributesItem1.RepeatableAttribute.Order)
+					attributes3.RepeatableAttribute.Placeholder = types.StringPointerValue(attributesItem1.RepeatableAttribute.Placeholder)
+					attributes3.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.RepeatableAttribute.PreviewValueFormatter)
+					attributes3.RepeatableAttribute.Protected = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Protected)
+					attributes3.RepeatableAttribute.Readonly = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Readonly)
+					if attributesItem1.RepeatableAttribute.RelationAffinityMode != nil {
+						attributes3.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem1.RepeatableAttribute.RelationAffinityMode))
+					} else {
+						attributes3.RepeatableAttribute.RelationAffinityMode = types.StringNull()
+					}
+					attributes3.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem1.RepeatableAttribute.RenderCondition)
+					attributes3.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Repeatable)
+					attributes3.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Required)
+					for settingsFlagCount51, settingsFlagItem51 := range attributesItem1.RepeatableAttribute.SettingsFlag {
+						var settingsFlag103 tfTypes.SettingFlag
+						settingsFlag103.Enabled = types.BoolPointerValue(settingsFlagItem51.Enabled)
+						settingsFlag103.Name = types.StringPointerValue(settingsFlagItem51.Name)
+						if settingsFlagCount51+1 > len(attributes3.RepeatableAttribute.SettingsFlag) {
+							attributes3.RepeatableAttribute.SettingsFlag = append(attributes3.RepeatableAttribute.SettingsFlag, settingsFlag103)
+						} else {
+							attributes3.RepeatableAttribute.SettingsFlag[settingsFlagCount51].Enabled = settingsFlag103.Enabled
+							attributes3.RepeatableAttribute.SettingsFlag[settingsFlagCount51].Name = settingsFlag103.Name
+						}
+					}
+					attributes3.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.ShowInTable)
+					attributes3.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Sortable)
+					if attributesItem1.RepeatableAttribute.Type != nil {
+						attributes3.RepeatableAttribute.Type = types.StringValue(string(*attributesItem1.RepeatableAttribute.Type))
+					} else {
+						attributes3.RepeatableAttribute.Type = types.StringNull()
+					}
+					attributes3.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.RepeatableAttribute.ValueFormatter)
+				}
+				if attributesItem1.SelectAttribute != nil {
+					attributes3.SelectAttribute = &tfTypes.SelectAttribute{}
+					attributes3.SelectAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.SelectAttribute.Purpose {
+						attributes3.SelectAttribute.Purpose = append(attributes3.SelectAttribute.Purpose, types.StringValue(v))
+					}
+					attributes3.SelectAttribute.AllowAny = types.BoolPointerValue(attributesItem1.SelectAttribute.AllowAny)
+					if attributesItem1.SelectAttribute.Constraints == nil {
+						attributes3.SelectAttribute.Constraints = nil
+					} else {
+						attributes3.SelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.SelectAttribute.DefaultValue == nil {
+						attributes3.SelectAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult50, _ := json.Marshal(attributesItem1.SelectAttribute.DefaultValue)
+						attributes3.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult50))
+					}
+					attributes3.SelectAttribute.Deprecated = types.BoolPointerValue(attributesItem1.SelectAttribute.Deprecated)
+					attributes3.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.SelectAttribute.EntityBuilderDisableEdit)
+					attributes3.SelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.SelectAttribute.FeatureFlag)
+					attributes3.SelectAttribute.Group = types.StringPointerValue(attributesItem1.SelectAttribute.Group)
+					attributes3.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.SelectAttribute.Hidden)
+					attributes3.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SelectAttribute.HideLabel)
+					attributes3.SelectAttribute.Icon = types.StringPointerValue(attributesItem1.SelectAttribute.Icon)
+					if attributesItem1.SelectAttribute.InfoHelpers == nil {
+						attributes3.SelectAttribute.InfoHelpers = nil
+					} else {
+						attributes3.SelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintText)
+						attributes3.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintTextKey)
+						attributes3.SelectAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.SelectAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.SelectAttribute.Label = types.StringValue(attributesItem1.SelectAttribute.Label)
+					attributes3.SelectAttribute.Layout = types.StringPointerValue(attributesItem1.SelectAttribute.Layout)
+					attributes3.SelectAttribute.Name = types.StringValue(attributesItem1.SelectAttribute.Name)
+					for optionsCount4, optionsItem4 := range attributesItem1.SelectAttribute.Options {
+						var options10 tfTypes.Options
+						if optionsItem4.Str != nil {
+							options10.Str = types.StringPointerValue(optionsItem4.Str)
+						}
+						if optionsItem4.One != nil {
+							options10.One = &tfTypes.Two{}
+							options10.One.Title = types.StringPointerValue(optionsItem4.One.Title)
+							options10.One.Value = types.StringValue(optionsItem4.One.Value)
+						}
+						if optionsCount4+1 > len(attributes3.SelectAttribute.Options) {
+							attributes3.SelectAttribute.Options = append(attributes3.SelectAttribute.Options, options10)
+						} else {
+							attributes3.SelectAttribute.Options[optionsCount4].Str = options10.Str
+							attributes3.SelectAttribute.Options[optionsCount4].One = options10.One
+						}
+					}
+					attributes3.SelectAttribute.Order = types.Int64PointerValue(attributesItem1.SelectAttribute.Order)
+					attributes3.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem1.SelectAttribute.Placeholder)
+					attributes3.SelectAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.SelectAttribute.PreviewValueFormatter)
+					attributes3.SelectAttribute.Protected = types.BoolPointerValue(attributesItem1.SelectAttribute.Protected)
+					attributes3.SelectAttribute.Readonly = types.BoolPointerValue(attributesItem1.SelectAttribute.Readonly)
+					attributes3.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem1.SelectAttribute.RenderCondition)
+					attributes3.SelectAttribute.Required = types.BoolPointerValue(attributesItem1.SelectAttribute.Required)
+					for settingsFlagCount52, settingsFlagItem52 := range attributesItem1.SelectAttribute.SettingsFlag {
+						var settingsFlag105 tfTypes.SettingFlag
+						settingsFlag105.Enabled = types.BoolPointerValue(settingsFlagItem52.Enabled)
+						settingsFlag105.Name = types.StringPointerValue(settingsFlagItem52.Name)
+						if settingsFlagCount52+1 > len(attributes3.SelectAttribute.SettingsFlag) {
+							attributes3.SelectAttribute.SettingsFlag = append(attributes3.SelectAttribute.SettingsFlag, settingsFlag105)
+						} else {
+							attributes3.SelectAttribute.SettingsFlag[settingsFlagCount52].Enabled = settingsFlag105.Enabled
+							attributes3.SelectAttribute.SettingsFlag[settingsFlagCount52].Name = settingsFlag105.Name
+						}
+					}
+					attributes3.SelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.SelectAttribute.ShowInTable)
+					attributes3.SelectAttribute.Sortable = types.BoolPointerValue(attributesItem1.SelectAttribute.Sortable)
+					if attributesItem1.SelectAttribute.Type != nil {
+						attributes3.SelectAttribute.Type = types.StringValue(string(*attributesItem1.SelectAttribute.Type))
+					} else {
+						attributes3.SelectAttribute.Type = types.StringNull()
+					}
+					attributes3.SelectAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.SelectAttribute.ValueFormatter)
+				}
+				if attributesItem1.SequenceAttribute != nil {
+					attributes3.SequenceAttribute = &tfTypes.SequenceAttribute{}
+					attributes3.SequenceAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.SequenceAttribute.Purpose {
+						attributes3.SequenceAttribute.Purpose = append(attributes3.SequenceAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.SequenceAttribute.Constraints == nil {
+						attributes3.SequenceAttribute.Constraints = nil
+					} else {
+						attributes3.SequenceAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.SequenceAttribute.DefaultValue == nil {
+						attributes3.SequenceAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult51, _ := json.Marshal(attributesItem1.SequenceAttribute.DefaultValue)
+						attributes3.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult51))
+					}
+					attributes3.SequenceAttribute.Deprecated = types.BoolPointerValue(attributesItem1.SequenceAttribute.Deprecated)
+					attributes3.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.SequenceAttribute.EntityBuilderDisableEdit)
+					attributes3.SequenceAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.SequenceAttribute.FeatureFlag)
+					attributes3.SequenceAttribute.Group = types.StringPointerValue(attributesItem1.SequenceAttribute.Group)
+					attributes3.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem1.SequenceAttribute.Hidden)
+					attributes3.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SequenceAttribute.HideLabel)
+					attributes3.SequenceAttribute.Icon = types.StringPointerValue(attributesItem1.SequenceAttribute.Icon)
+					if attributesItem1.SequenceAttribute.InfoHelpers == nil {
+						attributes3.SequenceAttribute.InfoHelpers = nil
+					} else {
+						attributes3.SequenceAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintText)
+						attributes3.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintTextKey)
+						attributes3.SequenceAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.SequenceAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.SequenceAttribute.Label = types.StringValue(attributesItem1.SequenceAttribute.Label)
+					attributes3.SequenceAttribute.Layout = types.StringPointerValue(attributesItem1.SequenceAttribute.Layout)
+					attributes3.SequenceAttribute.Name = types.StringValue(attributesItem1.SequenceAttribute.Name)
+					attributes3.SequenceAttribute.Order = types.Int64PointerValue(attributesItem1.SequenceAttribute.Order)
+					attributes3.SequenceAttribute.Placeholder = types.StringPointerValue(attributesItem1.SequenceAttribute.Placeholder)
+					attributes3.SequenceAttribute.Prefix = types.StringPointerValue(attributesItem1.SequenceAttribute.Prefix)
+					attributes3.SequenceAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.SequenceAttribute.PreviewValueFormatter)
+					attributes3.SequenceAttribute.Protected = types.BoolPointerValue(attributesItem1.SequenceAttribute.Protected)
+					attributes3.SequenceAttribute.Readonly = types.BoolPointerValue(attributesItem1.SequenceAttribute.Readonly)
+					attributes3.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem1.SequenceAttribute.RenderCondition)
+					attributes3.SequenceAttribute.Required = types.BoolPointerValue(attributesItem1.SequenceAttribute.Required)
+					for settingsFlagCount53, settingsFlagItem53 := range attributesItem1.SequenceAttribute.SettingsFlag {
+						var settingsFlag107 tfTypes.SettingFlag
+						settingsFlag107.Enabled = types.BoolPointerValue(settingsFlagItem53.Enabled)
+						settingsFlag107.Name = types.StringPointerValue(settingsFlagItem53.Name)
+						if settingsFlagCount53+1 > len(attributes3.SequenceAttribute.SettingsFlag) {
+							attributes3.SequenceAttribute.SettingsFlag = append(attributes3.SequenceAttribute.SettingsFlag, settingsFlag107)
+						} else {
+							attributes3.SequenceAttribute.SettingsFlag[settingsFlagCount53].Enabled = settingsFlag107.Enabled
+							attributes3.SequenceAttribute.SettingsFlag[settingsFlagCount53].Name = settingsFlag107.Name
+						}
+					}
+					attributes3.SequenceAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.SequenceAttribute.ShowInTable)
+					attributes3.SequenceAttribute.Sortable = types.BoolPointerValue(attributesItem1.SequenceAttribute.Sortable)
+					attributes3.SequenceAttribute.StartNumber = types.Int64PointerValue(attributesItem1.SequenceAttribute.StartNumber)
+					if attributesItem1.SequenceAttribute.Type != nil {
+						attributes3.SequenceAttribute.Type = types.StringValue(string(*attributesItem1.SequenceAttribute.Type))
+					} else {
+						attributes3.SequenceAttribute.Type = types.StringNull()
+					}
+					attributes3.SequenceAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.SequenceAttribute.ValueFormatter)
+				}
+				if attributesItem1.StatusAttribute != nil {
+					attributes3.StatusAttribute = &tfTypes.StatusAttribute{}
+					attributes3.StatusAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.StatusAttribute.Purpose {
+						attributes3.StatusAttribute.Purpose = append(attributes3.StatusAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.StatusAttribute.Constraints == nil {
+						attributes3.StatusAttribute.Constraints = nil
+					} else {
+						attributes3.StatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.StatusAttribute.DefaultValue == nil {
+						attributes3.StatusAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult52, _ := json.Marshal(attributesItem1.StatusAttribute.DefaultValue)
+						attributes3.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult52))
+					}
+					attributes3.StatusAttribute.Deprecated = types.BoolPointerValue(attributesItem1.StatusAttribute.Deprecated)
+					attributes3.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.StatusAttribute.EntityBuilderDisableEdit)
+					attributes3.StatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.StatusAttribute.FeatureFlag)
+					attributes3.StatusAttribute.Group = types.StringPointerValue(attributesItem1.StatusAttribute.Group)
+					attributes3.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.StatusAttribute.Hidden)
+					attributes3.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.StatusAttribute.HideLabel)
+					attributes3.StatusAttribute.Icon = types.StringPointerValue(attributesItem1.StatusAttribute.Icon)
+					if attributesItem1.StatusAttribute.InfoHelpers == nil {
+						attributes3.StatusAttribute.InfoHelpers = nil
+					} else {
+						attributes3.StatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintText)
+						attributes3.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintTextKey)
+						attributes3.StatusAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.StatusAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.StatusAttribute.Label = types.StringValue(attributesItem1.StatusAttribute.Label)
+					attributes3.StatusAttribute.Layout = types.StringPointerValue(attributesItem1.StatusAttribute.Layout)
+					attributes3.StatusAttribute.Name = types.StringValue(attributesItem1.StatusAttribute.Name)
+					for optionsCount5, optionsItem5 := range attributesItem1.StatusAttribute.Options {
+						var options12 tfTypes.MultiSelectAttributeOptions
+						if optionsItem5.Str != nil {
+							options12.Str = types.StringPointerValue(optionsItem5.Str)
+						}
+						if optionsItem5.Options2 != nil {
+							options12.Two = &tfTypes.Two{}
+							options12.Two.Title = types.StringPointerValue(optionsItem5.Options2.Title)
+							options12.Two.Value = types.StringValue(optionsItem5.Options2.Value)
+						}
+						if optionsCount5+1 > len(attributes3.StatusAttribute.Options) {
+							attributes3.StatusAttribute.Options = append(attributes3.StatusAttribute.Options, options12)
+						} else {
+							attributes3.StatusAttribute.Options[optionsCount5].Str = options12.Str
+							attributes3.StatusAttribute.Options[optionsCount5].Two = options12.Two
+						}
+					}
+					attributes3.StatusAttribute.Order = types.Int64PointerValue(attributesItem1.StatusAttribute.Order)
+					attributes3.StatusAttribute.Placeholder = types.StringPointerValue(attributesItem1.StatusAttribute.Placeholder)
+					attributes3.StatusAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.StatusAttribute.PreviewValueFormatter)
+					attributes3.StatusAttribute.Protected = types.BoolPointerValue(attributesItem1.StatusAttribute.Protected)
+					attributes3.StatusAttribute.Readonly = types.BoolPointerValue(attributesItem1.StatusAttribute.Readonly)
+					attributes3.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem1.StatusAttribute.RenderCondition)
+					attributes3.StatusAttribute.Required = types.BoolPointerValue(attributesItem1.StatusAttribute.Required)
+					for settingsFlagCount54, settingsFlagItem54 := range attributesItem1.StatusAttribute.SettingsFlag {
+						var settingsFlag109 tfTypes.SettingFlag
+						settingsFlag109.Enabled = types.BoolPointerValue(settingsFlagItem54.Enabled)
+						settingsFlag109.Name = types.StringPointerValue(settingsFlagItem54.Name)
+						if settingsFlagCount54+1 > len(attributes3.StatusAttribute.SettingsFlag) {
+							attributes3.StatusAttribute.SettingsFlag = append(attributes3.StatusAttribute.SettingsFlag, settingsFlag109)
+						} else {
+							attributes3.StatusAttribute.SettingsFlag[settingsFlagCount54].Enabled = settingsFlag109.Enabled
+							attributes3.StatusAttribute.SettingsFlag[settingsFlagCount54].Name = settingsFlag109.Name
+						}
+					}
+					attributes3.StatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.StatusAttribute.ShowInTable)
+					attributes3.StatusAttribute.Sortable = types.BoolPointerValue(attributesItem1.StatusAttribute.Sortable)
+					if attributesItem1.StatusAttribute.Type != nil {
+						attributes3.StatusAttribute.Type = types.StringValue(string(*attributesItem1.StatusAttribute.Type))
+					} else {
+						attributes3.StatusAttribute.Type = types.StringNull()
+					}
+					attributes3.StatusAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.StatusAttribute.ValueFormatter)
+				}
+				if attributesItem1.TagsAttribute != nil {
+					attributes3.TagsAttribute = &tfTypes.TagsAttribute{}
+					attributes3.TagsAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.TagsAttribute.Purpose {
+						attributes3.TagsAttribute.Purpose = append(attributes3.TagsAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.TagsAttribute.Constraints == nil {
+						attributes3.TagsAttribute.Constraints = nil
+					} else {
+						attributes3.TagsAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.TagsAttribute.DefaultValue == nil {
+						attributes3.TagsAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult53, _ := json.Marshal(attributesItem1.TagsAttribute.DefaultValue)
+						attributes3.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult53))
+					}
+					attributes3.TagsAttribute.Deprecated = types.BoolPointerValue(attributesItem1.TagsAttribute.Deprecated)
+					attributes3.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.TagsAttribute.EntityBuilderDisableEdit)
+					attributes3.TagsAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.TagsAttribute.FeatureFlag)
+					attributes3.TagsAttribute.Group = types.StringPointerValue(attributesItem1.TagsAttribute.Group)
+					attributes3.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem1.TagsAttribute.Hidden)
+					attributes3.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TagsAttribute.HideLabel)
+					attributes3.TagsAttribute.Icon = types.StringPointerValue(attributesItem1.TagsAttribute.Icon)
+					if attributesItem1.TagsAttribute.InfoHelpers == nil {
+						attributes3.TagsAttribute.InfoHelpers = nil
+					} else {
+						attributes3.TagsAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintText)
+						attributes3.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintTextKey)
+						attributes3.TagsAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.TagsAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.TagsAttribute.Label = types.StringValue(attributesItem1.TagsAttribute.Label)
+					attributes3.TagsAttribute.Layout = types.StringPointerValue(attributesItem1.TagsAttribute.Layout)
+					attributes3.TagsAttribute.Name = types.StringValue(attributesItem1.TagsAttribute.Name)
+					attributes3.TagsAttribute.Options = []types.String{}
+					for _, v := range attributesItem1.TagsAttribute.Options {
+						attributes3.TagsAttribute.Options = append(attributes3.TagsAttribute.Options, types.StringValue(v))
+					}
+					attributes3.TagsAttribute.Order = types.Int64PointerValue(attributesItem1.TagsAttribute.Order)
+					attributes3.TagsAttribute.Placeholder = types.StringPointerValue(attributesItem1.TagsAttribute.Placeholder)
+					attributes3.TagsAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.TagsAttribute.PreviewValueFormatter)
+					attributes3.TagsAttribute.Protected = types.BoolPointerValue(attributesItem1.TagsAttribute.Protected)
+					attributes3.TagsAttribute.Readonly = types.BoolPointerValue(attributesItem1.TagsAttribute.Readonly)
+					attributes3.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem1.TagsAttribute.RenderCondition)
+					attributes3.TagsAttribute.Required = types.BoolPointerValue(attributesItem1.TagsAttribute.Required)
+					for settingsFlagCount55, settingsFlagItem55 := range attributesItem1.TagsAttribute.SettingsFlag {
+						var settingsFlag111 tfTypes.SettingFlag
+						settingsFlag111.Enabled = types.BoolPointerValue(settingsFlagItem55.Enabled)
+						settingsFlag111.Name = types.StringPointerValue(settingsFlagItem55.Name)
+						if settingsFlagCount55+1 > len(attributes3.TagsAttribute.SettingsFlag) {
+							attributes3.TagsAttribute.SettingsFlag = append(attributes3.TagsAttribute.SettingsFlag, settingsFlag111)
+						} else {
+							attributes3.TagsAttribute.SettingsFlag[settingsFlagCount55].Enabled = settingsFlag111.Enabled
+							attributes3.TagsAttribute.SettingsFlag[settingsFlagCount55].Name = settingsFlag111.Name
+						}
+					}
+					attributes3.TagsAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.TagsAttribute.ShowInTable)
+					attributes3.TagsAttribute.Sortable = types.BoolPointerValue(attributesItem1.TagsAttribute.Sortable)
+					attributes3.TagsAttribute.Suggestions = []types.String{}
+					for _, v := range attributesItem1.TagsAttribute.Suggestions {
+						attributes3.TagsAttribute.Suggestions = append(attributes3.TagsAttribute.Suggestions, types.StringValue(v))
+					}
+					if attributesItem1.TagsAttribute.Type != nil {
+						attributes3.TagsAttribute.Type = types.StringValue(string(*attributesItem1.TagsAttribute.Type))
+					} else {
+						attributes3.TagsAttribute.Type = types.StringNull()
+					}
+					attributes3.TagsAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.TagsAttribute.ValueFormatter)
+				}
+				if attributesItem1.TextAttribute != nil {
+					attributes3.TextAttribute = &tfTypes.TextAttribute{}
+					attributes3.TextAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.TextAttribute.Purpose {
+						attributes3.TextAttribute.Purpose = append(attributes3.TextAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.TextAttribute.Constraints == nil {
+						attributes3.TextAttribute.Constraints = nil
+					} else {
+						attributes3.TextAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.TextAttribute.DefaultValue == nil {
+						attributes3.TextAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult54, _ := json.Marshal(attributesItem1.TextAttribute.DefaultValue)
+						attributes3.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult54))
+					}
+					attributes3.TextAttribute.Deprecated = types.BoolPointerValue(attributesItem1.TextAttribute.Deprecated)
+					attributes3.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.TextAttribute.EntityBuilderDisableEdit)
+					attributes3.TextAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.TextAttribute.FeatureFlag)
+					attributes3.TextAttribute.Group = types.StringPointerValue(attributesItem1.TextAttribute.Group)
+					attributes3.TextAttribute.Hidden = types.BoolPointerValue(attributesItem1.TextAttribute.Hidden)
+					attributes3.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TextAttribute.HideLabel)
+					attributes3.TextAttribute.Icon = types.StringPointerValue(attributesItem1.TextAttribute.Icon)
+					if attributesItem1.TextAttribute.InfoHelpers == nil {
+						attributes3.TextAttribute.InfoHelpers = nil
+					} else {
+						attributes3.TextAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintText)
+						attributes3.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintTextKey)
+						attributes3.TextAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.TextAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.TextAttribute.Label = types.StringValue(attributesItem1.TextAttribute.Label)
+					attributes3.TextAttribute.Layout = types.StringPointerValue(attributesItem1.TextAttribute.Layout)
+					attributes3.TextAttribute.Multiline = types.BoolPointerValue(attributesItem1.TextAttribute.Multiline)
+					attributes3.TextAttribute.Name = types.StringValue(attributesItem1.TextAttribute.Name)
+					attributes3.TextAttribute.Order = types.Int64PointerValue(attributesItem1.TextAttribute.Order)
+					attributes3.TextAttribute.Placeholder = types.StringPointerValue(attributesItem1.TextAttribute.Placeholder)
+					attributes3.TextAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.TextAttribute.PreviewValueFormatter)
+					attributes3.TextAttribute.Protected = types.BoolPointerValue(attributesItem1.TextAttribute.Protected)
+					attributes3.TextAttribute.Readonly = types.BoolPointerValue(attributesItem1.TextAttribute.Readonly)
+					attributes3.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem1.TextAttribute.RenderCondition)
+					attributes3.TextAttribute.Required = types.BoolPointerValue(attributesItem1.TextAttribute.Required)
+					for settingsFlagCount56, settingsFlagItem56 := range attributesItem1.TextAttribute.SettingsFlag {
+						var settingsFlag113 tfTypes.SettingFlag
+						settingsFlag113.Enabled = types.BoolPointerValue(settingsFlagItem56.Enabled)
+						settingsFlag113.Name = types.StringPointerValue(settingsFlagItem56.Name)
+						if settingsFlagCount56+1 > len(attributes3.TextAttribute.SettingsFlag) {
+							attributes3.TextAttribute.SettingsFlag = append(attributes3.TextAttribute.SettingsFlag, settingsFlag113)
+						} else {
+							attributes3.TextAttribute.SettingsFlag[settingsFlagCount56].Enabled = settingsFlag113.Enabled
+							attributes3.TextAttribute.SettingsFlag[settingsFlagCount56].Name = settingsFlag113.Name
+						}
+					}
+					attributes3.TextAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.TextAttribute.ShowInTable)
+					attributes3.TextAttribute.Sortable = types.BoolPointerValue(attributesItem1.TextAttribute.Sortable)
+					if attributesItem1.TextAttribute.Type != nil {
+						attributes3.TextAttribute.Type = types.StringValue(string(*attributesItem1.TextAttribute.Type))
+					} else {
+						attributes3.TextAttribute.Type = types.StringNull()
+					}
+					attributes3.TextAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.TextAttribute.ValueFormatter)
+				}
+				if attributesItem1.UserRelationAttribute != nil {
+					attributes3.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+					attributes3.UserRelationAttribute.Purpose = []types.String{}
+					for _, v := range attributesItem1.UserRelationAttribute.Purpose {
+						attributes3.UserRelationAttribute.Purpose = append(attributes3.UserRelationAttribute.Purpose, types.StringValue(v))
+					}
+					if attributesItem1.UserRelationAttribute.Constraints == nil {
+						attributes3.UserRelationAttribute.Constraints = nil
+					} else {
+						attributes3.UserRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					}
+					if attributesItem1.UserRelationAttribute.DefaultValue == nil {
+						attributes3.UserRelationAttribute.DefaultValue = types.StringNull()
+					} else {
+						defaultValueResult55, _ := json.Marshal(attributesItem1.UserRelationAttribute.DefaultValue)
+						attributes3.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult55))
+					}
+					attributes3.UserRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Deprecated)
+					attributes3.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem1.UserRelationAttribute.EntityBuilderDisableEdit)
+					attributes3.UserRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem1.UserRelationAttribute.FeatureFlag)
+					attributes3.UserRelationAttribute.Group = types.StringPointerValue(attributesItem1.UserRelationAttribute.Group)
+					attributes3.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Hidden)
+					attributes3.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.UserRelationAttribute.HideLabel)
+					attributes3.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem1.UserRelationAttribute.Icon)
+					if attributesItem1.UserRelationAttribute.InfoHelpers == nil {
+						attributes3.UserRelationAttribute.InfoHelpers = nil
+					} else {
+						attributes3.UserRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+						attributes3.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintCustomComponent)
+						attributes3.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintText)
+						attributes3.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintTextKey)
+						attributes3.UserRelationAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(attributesItem1.UserRelationAttribute.InfoHelpers.HintTooltipPlacement)
+					}
+					attributes3.UserRelationAttribute.Label = types.StringValue(attributesItem1.UserRelationAttribute.Label)
+					attributes3.UserRelationAttribute.Layout = types.StringPointerValue(attributesItem1.UserRelationAttribute.Layout)
+					attributes3.UserRelationAttribute.Multiple = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Multiple)
+					attributes3.UserRelationAttribute.Name = types.StringValue(attributesItem1.UserRelationAttribute.Name)
+					attributes3.UserRelationAttribute.Order = types.Int64PointerValue(attributesItem1.UserRelationAttribute.Order)
+					attributes3.UserRelationAttribute.Placeholder = types.StringPointerValue(attributesItem1.UserRelationAttribute.Placeholder)
+					attributes3.UserRelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem1.UserRelationAttribute.PreviewValueFormatter)
+					attributes3.UserRelationAttribute.Protected = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Protected)
+					attributes3.UserRelationAttribute.Readonly = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Readonly)
+					attributes3.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem1.UserRelationAttribute.RenderCondition)
+					attributes3.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Required)
+					for settingsFlagCount57, settingsFlagItem57 := range attributesItem1.UserRelationAttribute.SettingsFlag {
+						var settingsFlag115 tfTypes.SettingFlag
+						settingsFlag115.Enabled = types.BoolPointerValue(settingsFlagItem57.Enabled)
+						settingsFlag115.Name = types.StringPointerValue(settingsFlagItem57.Name)
+						if settingsFlagCount57+1 > len(attributes3.UserRelationAttribute.SettingsFlag) {
+							attributes3.UserRelationAttribute.SettingsFlag = append(attributes3.UserRelationAttribute.SettingsFlag, settingsFlag115)
+						} else {
+							attributes3.UserRelationAttribute.SettingsFlag[settingsFlagCount57].Enabled = settingsFlag115.Enabled
+							attributes3.UserRelationAttribute.SettingsFlag[settingsFlagCount57].Name = settingsFlag115.Name
+						}
+					}
+					attributes3.UserRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.UserRelationAttribute.ShowInTable)
+					attributes3.UserRelationAttribute.Sortable = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Sortable)
+					if attributesItem1.UserRelationAttribute.Type != nil {
+						attributes3.UserRelationAttribute.Type = types.StringValue(string(*attributesItem1.UserRelationAttribute.Type))
+					} else {
+						attributes3.UserRelationAttribute.Type = types.StringNull()
+					}
+					attributes3.UserRelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem1.UserRelationAttribute.ValueFormatter)
+				}
+				if attributesCount1+1 > len(capabilities1.Attributes) {
+					capabilities1.Attributes = append(capabilities1.Attributes, attributes3)
 				} else {
-					r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringNull()
+					capabilities1.Attributes[attributesCount1].AddressRelationAttribute = attributes3.AddressRelationAttribute
+					capabilities1.Attributes[attributesCount1].AutomationAttribute = attributes3.AutomationAttribute
+					capabilities1.Attributes[attributesCount1].BooleanAttribute = attributes3.BooleanAttribute
+					capabilities1.Attributes[attributesCount1].ComputedAttribute = attributes3.ComputedAttribute
+					capabilities1.Attributes[attributesCount1].ConsentAttribute = attributes3.ConsentAttribute
+					capabilities1.Attributes[attributesCount1].CountryAttribute = attributes3.CountryAttribute
+					capabilities1.Attributes[attributesCount1].CurrencyAttribute = attributes3.CurrencyAttribute
+					capabilities1.Attributes[attributesCount1].DateAttribute = attributes3.DateAttribute
+					capabilities1.Attributes[attributesCount1].FileAttribute = attributes3.FileAttribute
+					capabilities1.Attributes[attributesCount1].InternalAttribute = attributes3.InternalAttribute
+					capabilities1.Attributes[attributesCount1].InternalUserAttribute = attributes3.InternalUserAttribute
+					capabilities1.Attributes[attributesCount1].InvitationEmailAttribute = attributes3.InvitationEmailAttribute
+					capabilities1.Attributes[attributesCount1].LinkAttribute = attributes3.LinkAttribute
+					capabilities1.Attributes[attributesCount1].MultiSelectAttribute = attributes3.MultiSelectAttribute
+					capabilities1.Attributes[attributesCount1].NumberAttribute = attributes3.NumberAttribute
+					capabilities1.Attributes[attributesCount1].OrderedListAttribute = attributes3.OrderedListAttribute
+					capabilities1.Attributes[attributesCount1].PartnerOrganisationAttribute = attributes3.PartnerOrganisationAttribute
+					capabilities1.Attributes[attributesCount1].PartnerStatusAttribute = attributes3.PartnerStatusAttribute
+					capabilities1.Attributes[attributesCount1].PaymentMethodRelationAttribute = attributes3.PaymentMethodRelationAttribute
+					capabilities1.Attributes[attributesCount1].PurposeAttribute = attributes3.PurposeAttribute
+					capabilities1.Attributes[attributesCount1].RelationAttribute = attributes3.RelationAttribute
+					capabilities1.Attributes[attributesCount1].RepeatableAttribute = attributes3.RepeatableAttribute
+					capabilities1.Attributes[attributesCount1].SelectAttribute = attributes3.SelectAttribute
+					capabilities1.Attributes[attributesCount1].SequenceAttribute = attributes3.SequenceAttribute
+					capabilities1.Attributes[attributesCount1].StatusAttribute = attributes3.StatusAttribute
+					capabilities1.Attributes[attributesCount1].TagsAttribute = attributes3.TagsAttribute
+					capabilities1.Attributes[attributesCount1].TextAttribute = attributes3.TextAttribute
+					capabilities1.Attributes[attributesCount1].UserRelationAttribute = attributes3.UserRelationAttribute
 				}
 			}
-			if resp.UIConfig.TableView.EntityViewDisabled != nil {
-				r.UIConfig.TableView.EntityViewDisabled = &EntityViewDisabled{}
-				if resp.UIConfig.TableView.EntityViewDisabled.ViewType != nil {
-					r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
+			capabilities1.FeatureFlag = types.StringPointerValue(capabilitiesItem.FeatureFlag)
+			capabilities1.Name = types.StringValue(capabilitiesItem.Name)
+			for settingsFlagCount58, settingsFlagItem58 := range capabilitiesItem.SettingsFlag {
+				var settingsFlag117 tfTypes.SettingFlag
+				settingsFlag117.Enabled = types.BoolPointerValue(settingsFlagItem58.Enabled)
+				settingsFlag117.Name = types.StringPointerValue(settingsFlagItem58.Name)
+				if settingsFlagCount58+1 > len(capabilities1.SettingsFlag) {
+					capabilities1.SettingsFlag = append(capabilities1.SettingsFlag, settingsFlag117)
 				} else {
-					r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringNull()
+					capabilities1.SettingsFlag[settingsFlagCount58].Enabled = settingsFlag117.Enabled
+					capabilities1.SettingsFlag[settingsFlagCount58].Name = settingsFlag117.Name
 				}
 			}
-			if resp.UIConfig.TableView.RedirectEntityView != nil {
-				r.UIConfig.TableView.RedirectEntityView = &RedirectEntityView{}
-				r.UIConfig.TableView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
-				if resp.UIConfig.TableView.RedirectEntityView.ViewType != nil {
-					r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
+			capabilities1.Title = types.StringPointerValue(capabilitiesItem.Title)
+			for uiHooksCount, uiHooksItem := range capabilitiesItem.UIHooks {
+				var uiHooks1 tfTypes.UIHooks
+				if uiHooksItem.AdditionalProperties == nil {
+					uiHooks1.AdditionalProperties = types.StringNull()
 				} else {
-					r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringNull()
+					additionalPropertiesResult4, _ := json.Marshal(uiHooksItem.AdditionalProperties)
+					uiHooks1.AdditionalProperties = types.StringValue(string(additionalPropertiesResult4))
+				}
+				uiHooks1.Component = types.StringPointerValue(uiHooksItem.Component)
+				uiHooks1.Disabled = types.BoolPointerValue(uiHooksItem.Disabled)
+				uiHooks1.GroupExpanded = types.BoolPointerValue(uiHooksItem.GroupExpanded)
+				uiHooks1.Header = types.BoolPointerValue(uiHooksItem.Header)
+				uiHooks1.Hook = types.StringValue(uiHooksItem.Hook)
+				uiHooks1.Icon = types.StringPointerValue(uiHooksItem.Icon)
+				uiHooks1.Import = types.StringPointerValue(uiHooksItem.Import)
+				uiHooks1.Order = types.Int64PointerValue(uiHooksItem.Order)
+				uiHooks1.RenderCondition = types.StringPointerValue(uiHooksItem.RenderCondition)
+				if uiHooksItem.RequiredPermission == nil {
+					uiHooks1.RequiredPermission = nil
+				} else {
+					uiHooks1.RequiredPermission = &tfTypes.RequiredPermission{}
+					uiHooks1.RequiredPermission.Action = types.StringValue(uiHooksItem.RequiredPermission.Action)
+					uiHooks1.RequiredPermission.Resource = types.StringPointerValue(uiHooksItem.RequiredPermission.Resource)
+				}
+				uiHooks1.Route = types.StringPointerValue(uiHooksItem.Route)
+				uiHooks1.Title = types.StringPointerValue(uiHooksItem.Title)
+				if uiHooksCount+1 > len(capabilities1.UIHooks) {
+					capabilities1.UIHooks = append(capabilities1.UIHooks, uiHooks1)
+				} else {
+					capabilities1.UIHooks[uiHooksCount].AdditionalProperties = uiHooks1.AdditionalProperties
+					capabilities1.UIHooks[uiHooksCount].Component = uiHooks1.Component
+					capabilities1.UIHooks[uiHooksCount].Disabled = uiHooks1.Disabled
+					capabilities1.UIHooks[uiHooksCount].GroupExpanded = uiHooks1.GroupExpanded
+					capabilities1.UIHooks[uiHooksCount].Header = uiHooks1.Header
+					capabilities1.UIHooks[uiHooksCount].Hook = uiHooks1.Hook
+					capabilities1.UIHooks[uiHooksCount].Icon = uiHooks1.Icon
+					capabilities1.UIHooks[uiHooksCount].Import = uiHooks1.Import
+					capabilities1.UIHooks[uiHooksCount].Order = uiHooks1.Order
+					capabilities1.UIHooks[uiHooksCount].RenderCondition = uiHooks1.RenderCondition
+					capabilities1.UIHooks[uiHooksCount].RequiredPermission = uiHooks1.RequiredPermission
+					capabilities1.UIHooks[uiHooksCount].Route = uiHooks1.Route
+					capabilities1.UIHooks[uiHooksCount].Title = uiHooks1.Title
+				}
+			}
+			if capabilitiesCount+1 > len(r.Capabilities) {
+				r.Capabilities = append(r.Capabilities, capabilities1)
+			} else {
+				r.Capabilities[capabilitiesCount].Purpose = capabilities1.Purpose
+				r.Capabilities[capabilitiesCount].Attributes = capabilities1.Attributes
+				r.Capabilities[capabilitiesCount].FeatureFlag = capabilities1.FeatureFlag
+				r.Capabilities[capabilitiesCount].Name = capabilities1.Name
+				r.Capabilities[capabilitiesCount].SettingsFlag = capabilities1.SettingsFlag
+				r.Capabilities[capabilitiesCount].Title = capabilities1.Title
+				r.Capabilities[capabilitiesCount].UIHooks = capabilities1.UIHooks
+			}
+		}
+		r.Comment = types.StringPointerValue(resp.Comment)
+		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
+		if len(resp.DialogConfig) > 0 {
+			r.DialogConfig = make(map[string]types.String)
+			for key2, value8 := range resp.DialogConfig {
+				result, _ := json.Marshal(value8)
+				r.DialogConfig[key2] = types.StringValue(string(result))
+			}
+		}
+		r.Draft = types.BoolPointerValue(resp.Draft)
+		r.EnableSetting = []types.String{}
+		for _, v := range resp.EnableSetting {
+			r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
+		}
+		if len(resp.ExplicitSearchMappings) > 0 {
+			r.ExplicitSearchMappings = make(map[string]tfTypes.SearchMappings)
+			for searchMappingsKey, searchMappingsValue := range resp.ExplicitSearchMappings {
+				var searchMappingsResult tfTypes.SearchMappings
+				if len(searchMappingsValue.Fields) > 0 {
+					searchMappingsResult.Fields = make(map[string]types.String)
+					for key3, value9 := range searchMappingsValue.Fields {
+						result1, _ := json.Marshal(value9)
+						searchMappingsResult.Fields[key3] = types.StringValue(string(result1))
+					}
+				}
+				searchMappingsResult.Index = types.BoolPointerValue(searchMappingsValue.Index)
+				if searchMappingsValue.Type != nil {
+					searchMappingsResult.Type = types.StringValue(string(*searchMappingsValue.Type))
+				} else {
+					searchMappingsResult.Type = types.StringNull()
+				}
+				r.ExplicitSearchMappings[searchMappingsKey] = searchMappingsResult
+			}
+		}
+		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
+		if len(r.GroupSettings) > len(resp.GroupSettings) {
+			r.GroupSettings = r.GroupSettings[:len(resp.GroupSettings)]
+		}
+		for groupSettingsCount, groupSettingsItem := range resp.GroupSettings {
+			var groupSettings1 tfTypes.GroupSettings
+			groupSettings1.Purpose = []types.String{}
+			for _, v := range groupSettingsItem.Purpose {
+				groupSettings1.Purpose = append(groupSettings1.Purpose, types.StringValue(v))
+			}
+			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
+			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
+			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
+			if groupSettingsItem.InfoTooltipTitle == nil {
+				groupSettings1.InfoTooltipTitle = nil
+			} else {
+				groupSettings1.InfoTooltipTitle = &tfTypes.EntitySchemaInfoTooltipTitle{}
+				groupSettings1.InfoTooltipTitle.Default = types.StringPointerValue(groupSettingsItem.InfoTooltipTitle.Default)
+				groupSettings1.InfoTooltipTitle.Key = types.StringPointerValue(groupSettingsItem.InfoTooltipTitle.Key)
+			}
+			groupSettings1.Label = types.StringValue(groupSettingsItem.Label)
+			groupSettings1.Order = types.Int64PointerValue(groupSettingsItem.Order)
+			groupSettings1.RenderCondition = types.StringPointerValue(groupSettingsItem.RenderCondition)
+			for settingsFlagCount59, settingsFlagItem59 := range groupSettingsItem.SettingsFlag {
+				var settingsFlag119 tfTypes.SettingFlag
+				settingsFlag119.Enabled = types.BoolPointerValue(settingsFlagItem59.Enabled)
+				settingsFlag119.Name = types.StringPointerValue(settingsFlagItem59.Name)
+				if settingsFlagCount59+1 > len(groupSettings1.SettingsFlag) {
+					groupSettings1.SettingsFlag = append(groupSettings1.SettingsFlag, settingsFlag119)
+				} else {
+					groupSettings1.SettingsFlag[settingsFlagCount59].Enabled = settingsFlag119.Enabled
+					groupSettings1.SettingsFlag[settingsFlagCount59].Name = settingsFlag119.Name
+				}
+			}
+			if groupSettingsCount+1 > len(r.GroupSettings) {
+				r.GroupSettings = append(r.GroupSettings, groupSettings1)
+			} else {
+				r.GroupSettings[groupSettingsCount].Purpose = groupSettings1.Purpose
+				r.GroupSettings[groupSettingsCount].Expanded = groupSettings1.Expanded
+				r.GroupSettings[groupSettingsCount].FeatureFlag = groupSettings1.FeatureFlag
+				r.GroupSettings[groupSettingsCount].ID = groupSettings1.ID
+				r.GroupSettings[groupSettingsCount].InfoTooltipTitle = groupSettings1.InfoTooltipTitle
+				r.GroupSettings[groupSettingsCount].Label = groupSettings1.Label
+				r.GroupSettings[groupSettingsCount].Order = groupSettings1.Order
+				r.GroupSettings[groupSettingsCount].RenderCondition = groupSettings1.RenderCondition
+				r.GroupSettings[groupSettingsCount].SettingsFlag = groupSettings1.SettingsFlag
+			}
+		}
+		r.Icon = types.StringPointerValue(resp.Icon)
+		r.ID = types.StringPointerValue(resp.ID)
+		if resp.LayoutSettings == nil {
+			r.LayoutSettings = nil
+		} else {
+			r.LayoutSettings = &tfTypes.EntitySchemaLayoutSettings{}
+			if resp.LayoutSettings.AdditionalProperties == nil {
+				r.LayoutSettings.AdditionalProperties = types.StringNull()
+			} else {
+				additionalPropertiesResult5, _ := json.Marshal(resp.LayoutSettings.AdditionalProperties)
+				r.LayoutSettings.AdditionalProperties = types.StringValue(string(additionalPropertiesResult5))
+			}
+			r.LayoutSettings.GridGap = types.StringPointerValue(resp.LayoutSettings.GridGap)
+			r.LayoutSettings.GridTemplateColumns = types.StringPointerValue(resp.LayoutSettings.GridTemplateColumns)
+		}
+		r.Name = types.StringValue(resp.Name)
+		r.Plural = types.StringValue(resp.Plural)
+		r.Published = types.BoolPointerValue(resp.Published)
+		r.Slug = types.StringValue(resp.Slug)
+		if resp.Source == nil {
+			r.Source = nil
+		} else {
+			r.Source = &tfTypes.Source{}
+			r.Source.ID = types.StringPointerValue(resp.Source.ID)
+			r.Source.Type = types.StringPointerValue(resp.Source.Type)
+		}
+		r.TitleTemplate = types.StringPointerValue(resp.TitleTemplate)
+		if resp.UIConfig == nil {
+			r.UIConfig = nil
+		} else {
+			r.UIConfig = &tfTypes.EntitySchemaUIConfig{}
+			if resp.UIConfig.CreateView == nil {
+				r.UIConfig.CreateView = nil
+			} else {
+				r.UIConfig.CreateView = &tfTypes.EntitySchemaCreateView{}
+				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
+					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
+					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
+						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String)
+						for key5, value10 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
+							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key5] = types.StringValue(value10)
+						}
+					}
+					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
+						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
+					} else {
+						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.CreateView.EntityViewDisabled != nil {
+					r.UIConfig.CreateView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					if resp.UIConfig.CreateView.EntityViewDisabled.ViewType != nil {
+						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
+					} else {
+						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.CreateView.RedirectEntityView != nil {
+					r.UIConfig.CreateView.RedirectEntityView = &tfTypes.RedirectEntityView{}
+					r.UIConfig.CreateView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
+					if resp.UIConfig.CreateView.RedirectEntityView.ViewType != nil {
+						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
+					} else {
+						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringNull()
+					}
+				}
+			}
+			if resp.UIConfig.EditView == nil {
+				r.UIConfig.EditView = nil
+			} else {
+				r.UIConfig.EditView = &tfTypes.EntitySchemaEditView{}
+				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
+					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
+						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						for key6, value11 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key6] = types.StringValue(value11)
+						}
+					}
+					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
+						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+					}
+					if resp.UIConfig.EditView.EntityDefaultEdit.ViewType != nil {
+						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
+					} else {
+						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.EditView.EntityViewDisabled != nil {
+					r.UIConfig.EditView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					if resp.UIConfig.EditView.EntityViewDisabled.ViewType != nil {
+						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
+					} else {
+						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.EditView.RedirectEntityView != nil {
+					r.UIConfig.EditView.RedirectEntityView = &tfTypes.RedirectEntityView{}
+					r.UIConfig.EditView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
+					if resp.UIConfig.EditView.RedirectEntityView.ViewType != nil {
+						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
+					} else {
+						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringNull()
+					}
+				}
+			}
+			if resp.UIConfig.ListItem == nil {
+				r.UIConfig.ListItem = nil
+			} else {
+				r.UIConfig.ListItem = &tfTypes.EntitySchemaListItem{}
+				if len(r.UIConfig.ListItem.QuickActions) > len(resp.UIConfig.ListItem.QuickActions) {
+					r.UIConfig.ListItem.QuickActions = r.UIConfig.ListItem.QuickActions[:len(resp.UIConfig.ListItem.QuickActions)]
+				}
+				for quickActionsCount, quickActionsItem := range resp.UIConfig.ListItem.QuickActions {
+					var quickActions1 tfTypes.EntityAction
+					quickActions1.Action = types.StringValue(quickActionsItem.Action)
+					quickActions1.Icon = types.StringPointerValue(quickActionsItem.Icon)
+					quickActions1.Label = types.StringValue(quickActionsItem.Label)
+					quickActions1.Permission = types.StringPointerValue(quickActionsItem.Permission)
+					if quickActionsCount+1 > len(r.UIConfig.ListItem.QuickActions) {
+						r.UIConfig.ListItem.QuickActions = append(r.UIConfig.ListItem.QuickActions, quickActions1)
+					} else {
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Action = quickActions1.Action
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Icon = quickActions1.Icon
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Label = quickActions1.Label
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Permission = quickActions1.Permission
+					}
+				}
+				if len(r.UIConfig.ListItem.SummaryAttributes) > len(resp.UIConfig.ListItem.SummaryAttributes) {
+					r.UIConfig.ListItem.SummaryAttributes = r.UIConfig.ListItem.SummaryAttributes[:len(resp.UIConfig.ListItem.SummaryAttributes)]
+				}
+				for summaryAttributesCount, summaryAttributesItem := range resp.UIConfig.ListItem.SummaryAttributes {
+					var summaryAttributes2 tfTypes.SummaryAttributes
+					if summaryAttributesItem.Str != nil {
+						summaryAttributes2.Str = types.StringPointerValue(summaryAttributesItem.Str)
+					}
+					if summaryAttributesItem.SummaryAttribute != nil {
+						summaryAttributes2.SummaryAttribute = &tfTypes.SummaryAttribute{}
+						summaryAttributes2.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
+						summaryAttributes2.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
+						summaryAttributes2.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
+						for settingsFlagCount60, settingsFlagItem60 := range summaryAttributesItem.SummaryAttribute.SettingsFlag {
+							var settingsFlag121 tfTypes.SettingFlag
+							settingsFlag121.Enabled = types.BoolPointerValue(settingsFlagItem60.Enabled)
+							settingsFlag121.Name = types.StringPointerValue(settingsFlagItem60.Name)
+							if settingsFlagCount60+1 > len(summaryAttributes2.SummaryAttribute.SettingsFlag) {
+								summaryAttributes2.SummaryAttribute.SettingsFlag = append(summaryAttributes2.SummaryAttribute.SettingsFlag, settingsFlag121)
+							} else {
+								summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount60].Enabled = settingsFlag121.Enabled
+								summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount60].Name = settingsFlag121.Name
+							}
+						}
+						summaryAttributes2.SummaryAttribute.ShowAsTag = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.ShowAsTag)
+						summaryAttributes2.SummaryAttribute.TagColor = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.TagColor)
+						summaryAttributes2.SummaryAttribute.Value = types.StringValue(summaryAttributesItem.SummaryAttribute.Value)
+					}
+					if summaryAttributesCount+1 > len(r.UIConfig.ListItem.SummaryAttributes) {
+						r.UIConfig.ListItem.SummaryAttributes = append(r.UIConfig.ListItem.SummaryAttributes, summaryAttributes2)
+					} else {
+						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].Str = summaryAttributes2.Str
+						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].SummaryAttribute = summaryAttributes2.SummaryAttribute
+					}
+				}
+			}
+			if resp.UIConfig.Sharing == nil {
+				r.UIConfig.Sharing = nil
+			} else {
+				r.UIConfig.Sharing = &tfTypes.EntitySchemaSharing{}
+				r.UIConfig.Sharing.ShowSharingButton = types.BoolPointerValue(resp.UIConfig.Sharing.ShowSharingButton)
+			}
+			if resp.UIConfig.SingleView == nil {
+				r.UIConfig.SingleView = nil
+			} else {
+				r.UIConfig.SingleView = &tfTypes.EntitySchemaEditView{}
+				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
+					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
+						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						for key7, value13 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key7] = types.StringValue(value13)
+						}
+					}
+					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
+						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+					}
+					if resp.UIConfig.SingleView.EntityDefaultEdit.ViewType != nil {
+						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
+					} else {
+						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.SingleView.EntityViewDisabled != nil {
+					r.UIConfig.SingleView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					if resp.UIConfig.SingleView.EntityViewDisabled.ViewType != nil {
+						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
+					} else {
+						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.SingleView.RedirectEntityView != nil {
+					r.UIConfig.SingleView.RedirectEntityView = &tfTypes.RedirectEntityView{}
+					r.UIConfig.SingleView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
+					if resp.UIConfig.SingleView.RedirectEntityView.ViewType != nil {
+						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
+					} else {
+						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringNull()
+					}
+				}
+			}
+			if resp.UIConfig.TableView == nil {
+				r.UIConfig.TableView = nil
+			} else {
+				r.UIConfig.TableView = &tfTypes.EntitySchemaTableView{}
+				if resp.UIConfig.TableView.EntityDefaultTable != nil {
+					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
+					if len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
+						r.UIConfig.TableView.EntityDefaultTable.BulkActions = r.UIConfig.TableView.EntityDefaultTable.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
+					}
+					for bulkActionsCount, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
+						var bulkActions1 tfTypes.BulkActions
+						if bulkActionsItem.Str != nil {
+							bulkActions1.Str = types.StringPointerValue(bulkActionsItem.Str)
+						}
+						if bulkActionsItem.EntityAction != nil {
+							bulkActions1.EntityAction = &tfTypes.EntityAction{}
+							bulkActions1.EntityAction.Action = types.StringValue(bulkActionsItem.EntityAction.Action)
+							bulkActions1.EntityAction.Icon = types.StringPointerValue(bulkActionsItem.EntityAction.Icon)
+							bulkActions1.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
+							bulkActions1.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
+						}
+						if bulkActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) {
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions1)
+						} else {
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].Str = bulkActions1.Str
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
+						}
+					}
+					r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
+					if len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
+						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = r.UIConfig.TableView.EntityDefaultTable.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
+					}
+					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
+						var navbarActions1 tfTypes.NavbarActions
+						for optionsCount6, optionsItem6 := range navbarActionsItem.Options {
+							var options15 tfTypes.EntityDefaultTableOptions
+							options15.Label = types.StringValue(optionsItem6.Label)
+							if optionsItem6.Params == nil {
+								options15.Params = nil
+							} else {
+								options15.Params = &tfTypes.AddressRelationAttributeConstraints{}
+							}
+							if optionsCount6+1 > len(navbarActions1.Options) {
+								navbarActions1.Options = append(navbarActions1.Options, options15)
+							} else {
+								navbarActions1.Options[optionsCount6].Label = options15.Label
+								navbarActions1.Options[optionsCount6].Params = options15.Params
+							}
+						}
+						navbarActions1.Type = types.StringValue(navbarActionsItem.Type)
+						if navbarActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions1)
+						} else {
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
+						}
+					}
+					if len(r.UIConfig.TableView.EntityDefaultTable.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
+						r.UIConfig.TableView.EntityDefaultTable.RowActions = r.UIConfig.TableView.EntityDefaultTable.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
+					}
+					for rowActionsCount, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
+						var rowActions1 tfTypes.BulkActions
+						if rowActionsItem.Str != nil {
+							rowActions1.Str = types.StringPointerValue(rowActionsItem.Str)
+						}
+						if rowActionsItem.EntityAction != nil {
+							rowActions1.EntityAction = &tfTypes.EntityAction{}
+							rowActions1.EntityAction.Action = types.StringValue(rowActionsItem.EntityAction.Action)
+							rowActions1.EntityAction.Icon = types.StringPointerValue(rowActionsItem.EntityAction.Icon)
+							rowActions1.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
+							rowActions1.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
+						}
+						if rowActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.RowActions) {
+							r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions1)
+						} else {
+							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].Str = rowActions1.Str
+							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
+						}
+					}
+					if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
+						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
+					} else {
+						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.TableView.EntityViewDisabled != nil {
+					r.UIConfig.TableView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					if resp.UIConfig.TableView.EntityViewDisabled.ViewType != nil {
+						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
+					} else {
+						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringNull()
+					}
+				}
+				if resp.UIConfig.TableView.RedirectEntityView != nil {
+					r.UIConfig.TableView.RedirectEntityView = &tfTypes.RedirectEntityView{}
+					r.UIConfig.TableView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
+					if resp.UIConfig.TableView.RedirectEntityView.ViewType != nil {
+						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
+					} else {
+						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringNull()
+					}
 				}
 			}
 		}
+		r.UpdatedAt = types.StringPointerValue(resp.UpdatedAt)
+		r.Version = types.Int64PointerValue(resp.Version)
 	}
-	r.UpdatedAt = types.StringPointerValue(resp.UpdatedAt)
-	r.Version = types.Int64PointerValue(resp.Version)
 }

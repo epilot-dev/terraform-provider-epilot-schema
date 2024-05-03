@@ -100,170 +100,170 @@ paths:
 
   # Terraform Schema API - CRUDable schema attributes and capabilities
   # Attributes
-  # /v1/entity/schemas/attributes/{composite_id}:
-  #   get:
-  #     operationId: getSchemaAttribute
-  #     summary: getSchemaAttribute
-  #     description: Get a schema attribute from given attribute ID
-  #     x-speakeasy-entity-operation: SchemaAttribute#get
-  #     x-internal: true
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/AttributeWithCompositeID"
-  #   put:
-  #     operationId: putSchemaAttribute
-  #     summary: putSchemaAttribute
-  #     description: Adds or updates an attribute in the schema
-  #     x-speakeasy-entity-operation: SchemaAttribute#update
-  #     x-internal: true
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/AttributeWithCompositeID"
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/AttributeWithCompositeID"
-  #   delete:
-  #     operationId: deleteSchemaAttribute
-  #     summary: deleteSchemaAttribute
-  #     description: Deletes an attribute from a schema
-  #     x-speakeasy-entity-operation: SchemaAttribute#delete
-  #     x-internal: true      
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/AttributeWithCompositeID"
+  /v1/entity/schemas/attributes/{composite_id}:
+    get:
+      operationId: getSchemaAttribute
+      summary: getSchemaAttribute
+      description: Get a schema attribute from given attribute ID
+      x-speakeasy-entity-operation: SchemaAttribute#get
+      x-internal: true
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AttributeWithCompositeID"
+    put:
+      operationId: putSchemaAttribute
+      summary: putSchemaAttribute
+      description: Adds or updates an attribute in the schema
+      x-speakeasy-entity-operation: SchemaAttribute#create,update
+      x-internal: true
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AttributeWithCompositeID"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AttributeWithCompositeID"
+    delete:
+      operationId: deleteSchemaAttribute
+      summary: deleteSchemaAttribute
+      description: Deletes an attribute from a schema
+      x-speakeasy-entity-operation: SchemaAttribute#delete
+      x-internal: true      
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AttributeWithCompositeID"
 
-  # # Capabilities
-  # /v1/entity/schemas/capabilities/{composite_id}:
-  #   get:
-  #     operationId: getSchemaCapability
-  #     summary: getSchemaCapability
-  #     description: Get a schema capability from given capability ID
-  #     x-speakeasy-entity-operation: SchemaCapability#get
-  #     x-internal: true
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-  #   put:
-  #     operationId: putSchemaCapability
-  #     summary: putSchemaCapability
-  #     description: Adds or updates an capability in the schema
-  #     x-speakeasy-entity-operation: SchemaCapability#update   
-  #     x-internal: true      
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-  #   delete:
-  #     operationId: deleteSchemaCapability
-  #     summary: deleteSchemaCapability
-  #     description: Deletes a Capability from a schema
-  #     x-speakeasy-entity-operation: SchemaCapability#delete
-  #     x-internal: true
-  #     tags:
-  #       - Schemas
-  #     parameters:
-  #       - name: composite_id
-  #         description: Schema Slug and the Attribute ID
-  #         x-speakeasy-match: composite_id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #           pattern: ^.+:.+$
-  #           example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-  #     responses:
-  #       "200":
-  #         description: Success
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+  # Capabilities
+  /v1/entity/schemas/capabilities/{composite_id}:
+    get:
+      operationId: getSchemaCapability
+      summary: getSchemaCapability
+      description: Get a schema capability from given capability ID
+      x-speakeasy-entity-operation: SchemaCapability#get
+      x-internal: true
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+    put:
+      operationId: putSchemaCapability
+      summary: putSchemaCapability
+      description: Adds or updates an capability in the schema
+      x-speakeasy-entity-operation: SchemaCapability#create,update   
+      x-internal: true      
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+    delete:
+      operationId: deleteSchemaCapability
+      summary: deleteSchemaCapability
+      description: Deletes a Capability from a schema
+      x-speakeasy-entity-operation: SchemaCapability#delete
+      x-internal: true
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Attribute ID
+          x-speakeasy-match: composite_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
   
 components:
   securitySchemes:
@@ -548,6 +548,7 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
+      x-speakeasy-entity: SchemaAttribute
       allOf:
         - $ref: "#/components/schemas/Attribute"
         - type: object
@@ -557,7 +558,6 @@ components:
               type: string
               readOnly: true
               example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-      x-speakeasy-entity: SchemaAttribute
 
     BaseAttribute:
       type: object

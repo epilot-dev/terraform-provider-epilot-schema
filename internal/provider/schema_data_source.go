@@ -9,8 +9,9 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/models/operations"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/operations"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -28,29 +29,29 @@ type SchemaDataSource struct {
 
 // SchemaDataSourceModel describes the data model.
 type SchemaDataSourceModel struct {
-	Attributes             []Attribute                 `tfsdk:"attributes"`
-	Blueprint              types.String                `tfsdk:"blueprint"`
-	Capabilities           []EntityCapability          `tfsdk:"capabilities"`
-	Comment                types.String                `tfsdk:"comment"`
-	CreatedAt              types.String                `tfsdk:"created_at"`
-	DialogConfig           map[string]types.String     `tfsdk:"dialog_config"`
-	Draft                  types.Bool                  `tfsdk:"draft"`
-	EnableSetting          []types.String              `tfsdk:"enable_setting"`
-	ExplicitSearchMappings map[string]SearchMappings   `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                `tfsdk:"feature_flag"`
-	GroupSettings          []GroupSettings             `tfsdk:"group_settings"`
-	Icon                   types.String                `tfsdk:"icon"`
-	ID                     types.String                `tfsdk:"id"`
-	LayoutSettings         *EntitySchemaLayoutSettings `tfsdk:"layout_settings"`
-	Name                   types.String                `tfsdk:"name"`
-	Plural                 types.String                `tfsdk:"plural"`
-	Published              types.Bool                  `tfsdk:"published"`
-	Slug                   types.String                `tfsdk:"slug"`
-	Source                 *Source                     `tfsdk:"source"`
-	TitleTemplate          types.String                `tfsdk:"title_template"`
-	UIConfig               *EntitySchemaUIConfig       `tfsdk:"ui_config"`
-	UpdatedAt              types.String                `tfsdk:"updated_at"`
-	Version                types.Int64                 `tfsdk:"version"`
+	Attributes             []tfTypes.Attribute                 `tfsdk:"attributes"`
+	Blueprint              types.String                        `tfsdk:"blueprint"`
+	Capabilities           []tfTypes.EntityCapability          `tfsdk:"capabilities"`
+	Comment                types.String                        `tfsdk:"comment"`
+	CreatedAt              types.String                        `tfsdk:"created_at"`
+	DialogConfig           map[string]types.String             `tfsdk:"dialog_config"`
+	Draft                  types.Bool                          `tfsdk:"draft"`
+	EnableSetting          []types.String                      `tfsdk:"enable_setting"`
+	ExplicitSearchMappings map[string]tfTypes.SearchMappings   `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String                        `tfsdk:"feature_flag"`
+	GroupSettings          []tfTypes.GroupSettings             `tfsdk:"group_settings"`
+	Icon                   types.String                        `tfsdk:"icon"`
+	ID                     types.String                        `tfsdk:"id"`
+	LayoutSettings         *tfTypes.EntitySchemaLayoutSettings `tfsdk:"layout_settings"`
+	Name                   types.String                        `tfsdk:"name"`
+	Plural                 types.String                        `tfsdk:"plural"`
+	Published              types.Bool                          `tfsdk:"published"`
+	Slug                   types.String                        `tfsdk:"slug"`
+	Source                 *tfTypes.Source                     `tfsdk:"source"`
+	TitleTemplate          types.String                        `tfsdk:"title_template"`
+	UIConfig               *tfTypes.EntitySchemaUIConfig       `tfsdk:"ui_config"`
+	UpdatedAt              types.String                        `tfsdk:"updated_at"`
+	Version                types.Int64                         `tfsdk:"version"`
 }
 
 // Metadata returns the data source type name.
@@ -87,12 +88,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -107,7 +107,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -171,11 +171,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -185,8 +184,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -210,7 +208,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -241,12 +239,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -258,7 +255,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -322,11 +319,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -336,8 +332,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -361,7 +356,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -392,12 +387,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -409,7 +403,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -473,11 +467,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -487,8 +480,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -512,7 +504,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -543,12 +535,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -560,7 +551,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -624,11 +615,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -638,8 +628,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -663,7 +652,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -694,12 +683,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -711,7 +699,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -779,11 +767,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -793,8 +780,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -818,7 +804,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"topic": schema.StringAttribute{
 									Computed: true,
@@ -852,12 +838,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -869,7 +854,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -933,11 +918,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -947,8 +931,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -972,7 +955,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1002,7 +985,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Computed: true,
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
-											"currency_1": schema.SingleNestedAttribute{
+											"one": schema.SingleNestedAttribute{
 												Computed: true,
 												Attributes: map[string]schema.Attribute{
 													"code": schema.StringAttribute{
@@ -1025,20 +1008,18 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `An array of currency configurations with a country code (ISO-4217)`,
 								},
 								"currency_selector_only": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1050,7 +1031,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1114,11 +1095,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1128,8 +1108,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1153,7 +1132,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1184,12 +1163,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1201,7 +1179,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1265,11 +1243,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1279,8 +1256,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1304,7 +1280,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1344,8 +1320,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"display_images_landscaped": schema.BoolAttribute{
 									Computed:    true,
@@ -1359,7 +1334,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1371,7 +1346,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1438,11 +1413,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1452,8 +1426,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1477,7 +1450,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1508,12 +1481,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1525,7 +1497,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1589,11 +1561,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1603,8 +1574,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1628,7 +1598,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1659,12 +1629,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1676,7 +1645,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1740,11 +1709,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1754,8 +1722,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1779,7 +1746,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1810,12 +1777,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1827,7 +1793,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -1891,11 +1857,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -1905,8 +1870,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -1930,7 +1894,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -1961,12 +1925,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -1978,7 +1941,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2042,11 +2005,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2056,8 +2018,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2081,7 +2042,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2120,8 +2081,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"disable_case_sensitive": schema.BoolAttribute{
 									Computed:    true,
@@ -2129,7 +2089,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2141,7 +2101,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2226,11 +2186,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2240,8 +2199,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2265,7 +2223,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2296,12 +2254,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2316,7 +2273,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2380,11 +2337,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2394,8 +2350,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2419,7 +2374,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2450,12 +2405,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2467,7 +2421,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2531,11 +2485,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2545,8 +2498,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2570,7 +2522,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2601,12 +2553,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2618,7 +2569,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2682,11 +2633,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2696,8 +2646,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2721,7 +2670,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2752,12 +2701,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2769,7 +2717,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2833,11 +2781,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -2847,8 +2794,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -2872,7 +2818,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -2903,12 +2849,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -2923,7 +2868,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -2987,11 +2932,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -3001,8 +2945,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -3026,7 +2969,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -3060,12 +3003,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3077,7 +3019,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -3148,11 +3090,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -3162,8 +3103,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -3191,7 +3131,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -3349,12 +3289,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"details_view_mode_enabled": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode. Default: false`,
+									Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
 								},
 								"drawer_size": schema.StringAttribute{
 									Computed:    true,
@@ -3366,15 +3305,15 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"enable_relation_picker": schema.BoolAttribute{
 									Computed:    true,
-									Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
+									Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
 								},
 								"enable_relation_tags": schema.BoolAttribute{
 									Computed:    true,
-									Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true`,
+									Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.`,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3389,7 +3328,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -3450,11 +3389,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"relation_affinity_mode": schema.StringAttribute{
 									Computed:    true,
@@ -3472,8 +3410,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"reverse_attributes": schema.MapAttribute{
 									Computed:    true,
@@ -3506,7 +3443,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"summary_fields": schema.ListNestedAttribute{
 									Computed: true,
@@ -3561,16 +3498,15 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"enable_relation_picker": schema.BoolAttribute{
 									Computed:    true,
-									Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
+									Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3585,7 +3521,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -3649,11 +3585,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"relation_affinity_mode": schema.StringAttribute{
 									Computed:    true,
@@ -3670,8 +3605,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Computed: true,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -3695,7 +3629,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -3730,12 +3664,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3747,7 +3680,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -3832,11 +3765,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -3846,8 +3778,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -3871,7 +3802,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -3902,12 +3833,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -3919,7 +3849,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -3987,11 +3917,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -4001,8 +3930,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -4026,7 +3954,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"start_number": schema.Int64Attribute{
 									Computed: true,
@@ -4060,12 +3988,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4077,7 +4004,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -4136,7 +4063,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"str": schema.StringAttribute{
 												Computed: true,
 											},
-											"options_2": schema.SingleNestedAttribute{
+											"two": schema.SingleNestedAttribute{
 												Computed: true,
 												Attributes: map[string]schema.Attribute{
 													"title": schema.StringAttribute{
@@ -4164,11 +4091,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -4178,8 +4104,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -4203,7 +4128,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -4234,12 +4159,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4251,7 +4175,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -4319,11 +4243,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -4333,8 +4256,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -4358,7 +4280,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"suggestions": schema.ListAttribute{
 									Computed:    true,
@@ -4393,12 +4315,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4410,7 +4331,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -4477,11 +4398,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -4491,8 +4411,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -4516,7 +4435,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -4547,12 +4466,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Description: `Parsed as JSON.`,
 								},
 								"deprecated": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 								},
 								"feature_flag": schema.StringAttribute{
 									Computed:    true,
@@ -4564,7 +4482,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Do not render attribute in entity views. Default: false`,
+									Description: `Do not render attribute in entity views`,
 								},
 								"hide_label": schema.BoolAttribute{
 									Computed:    true,
@@ -4614,8 +4532,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Computed: true,
 								},
 								"multiple": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -4632,11 +4549,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"protected": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
 								"readonly": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
@@ -4646,8 +4562,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"required": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Default: false`,
+									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -4671,7 +4586,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
-									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
 									Computed:    true,
@@ -4722,12 +4637,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -4742,7 +4656,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -4806,11 +4720,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -4820,8 +4733,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -4845,7 +4757,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -4876,12 +4788,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -4893,7 +4804,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -4957,11 +4868,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -4971,8 +4881,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -4996,7 +4905,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5027,12 +4936,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5044,7 +4952,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5108,11 +5016,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5122,8 +5029,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5147,7 +5053,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5178,12 +5084,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5195,7 +5100,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5259,11 +5164,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5273,8 +5177,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5298,7 +5201,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5329,12 +5232,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5346,7 +5248,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5414,11 +5316,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5428,8 +5329,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5453,7 +5353,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"topic": schema.StringAttribute{
 												Computed: true,
@@ -5487,12 +5387,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5504,7 +5403,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5568,11 +5467,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5582,8 +5480,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5607,7 +5504,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5637,7 +5534,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Computed: true,
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
-														"currency_1": schema.SingleNestedAttribute{
+														"one": schema.SingleNestedAttribute{
 															Computed: true,
 															Attributes: map[string]schema.Attribute{
 																"code": schema.StringAttribute{
@@ -5660,20 +5557,18 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `An array of currency configurations with a country code (ISO-4217)`,
 											},
 											"currency_selector_only": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"default_value": schema.StringAttribute{
 												Computed:    true,
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5685,7 +5580,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5749,11 +5644,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5763,8 +5657,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5788,7 +5681,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5819,12 +5712,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -5836,7 +5728,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -5900,11 +5792,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -5914,8 +5805,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -5939,7 +5829,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -5979,8 +5869,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"display_images_landscaped": schema.BoolAttribute{
 												Computed:    true,
@@ -5994,7 +5883,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6006,7 +5895,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6073,11 +5962,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6087,8 +5975,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6112,7 +5999,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6143,12 +6030,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6160,7 +6046,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6224,11 +6110,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6238,8 +6123,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6263,7 +6147,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6294,12 +6178,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6311,7 +6194,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6375,11 +6258,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6389,8 +6271,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6414,7 +6295,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6445,12 +6326,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6462,7 +6342,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6526,11 +6406,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6540,8 +6419,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6565,7 +6443,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6596,12 +6474,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6613,7 +6490,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6677,11 +6554,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6691,8 +6567,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6716,7 +6591,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6755,8 +6630,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"disable_case_sensitive": schema.BoolAttribute{
 												Computed:    true,
@@ -6764,7 +6638,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6776,7 +6650,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -6861,11 +6735,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -6875,8 +6748,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -6900,7 +6772,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -6931,12 +6803,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -6951,7 +6822,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7015,11 +6886,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7029,8 +6899,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7054,7 +6923,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7085,12 +6954,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -7102,7 +6970,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7166,11 +7034,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7180,8 +7047,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7205,7 +7071,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7236,12 +7102,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -7253,7 +7118,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7317,11 +7182,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7331,8 +7195,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7356,7 +7219,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7387,12 +7250,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -7404,7 +7266,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7468,11 +7330,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7482,8 +7343,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7507,7 +7367,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7538,12 +7398,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -7558,7 +7417,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7622,11 +7481,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7636,8 +7494,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7661,7 +7518,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7695,12 +7552,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -7712,7 +7568,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -7783,11 +7639,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -7797,8 +7652,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7826,7 +7680,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -7984,12 +7838,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"details_view_mode_enabled": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode. Default: false`,
+												Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
 											},
 											"drawer_size": schema.StringAttribute{
 												Computed:    true,
@@ -8001,15 +7854,15 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"enable_relation_picker": schema.BoolAttribute{
 												Computed:    true,
-												Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
+												Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
 											},
 											"enable_relation_tags": schema.BoolAttribute{
 												Computed:    true,
-												Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true`,
+												Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.`,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8024,7 +7877,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8085,11 +7938,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"relation_affinity_mode": schema.StringAttribute{
 												Computed:    true,
@@ -8107,8 +7959,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"reverse_attributes": schema.MapAttribute{
 												Computed:    true,
@@ -8141,7 +7992,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"summary_fields": schema.ListNestedAttribute{
 												Computed: true,
@@ -8196,16 +8047,15 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"enable_relation_picker": schema.BoolAttribute{
 												Computed:    true,
-												Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
+												Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8220,7 +8070,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8284,11 +8134,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"relation_affinity_mode": schema.StringAttribute{
 												Computed:    true,
@@ -8305,8 +8154,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Computed: true,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -8330,7 +8178,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -8365,12 +8213,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8382,7 +8229,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8467,11 +8314,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -8481,8 +8327,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -8506,7 +8351,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -8537,12 +8382,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8554,7 +8398,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8622,11 +8466,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -8636,8 +8479,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -8661,7 +8503,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"start_number": schema.Int64Attribute{
 												Computed: true,
@@ -8695,12 +8537,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8712,7 +8553,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8771,7 +8612,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														"str": schema.StringAttribute{
 															Computed: true,
 														},
-														"options_2": schema.SingleNestedAttribute{
+														"two": schema.SingleNestedAttribute{
 															Computed: true,
 															Attributes: map[string]schema.Attribute{
 																"title": schema.StringAttribute{
@@ -8799,11 +8640,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -8813,8 +8653,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -8838,7 +8677,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -8869,12 +8708,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -8886,7 +8724,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -8954,11 +8792,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -8968,8 +8805,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -8993,7 +8829,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"suggestions": schema.ListAttribute{
 												Computed:    true,
@@ -9028,12 +8864,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -9045,7 +8880,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -9112,11 +8947,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -9126,8 +8960,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -9151,7 +8984,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -9182,12 +9015,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Description: `Parsed as JSON.`,
 											},
 											"deprecated": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"entity_builder_disable_edit": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 											},
 											"feature_flag": schema.StringAttribute{
 												Computed:    true,
@@ -9199,7 +9031,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"hidden": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Do not render attribute in entity views. Default: false`,
+												Description: `Do not render attribute in entity views`,
 											},
 											"hide_label": schema.BoolAttribute{
 												Computed:    true,
@@ -9249,8 +9081,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Computed: true,
 											},
 											"multiple": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"name": schema.StringAttribute{
 												Computed: true,
@@ -9267,11 +9098,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"protected": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted. Default: true`,
+												Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 											},
 											"readonly": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"render_condition": schema.StringAttribute{
 												Computed: true,
@@ -9281,8 +9111,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"required": schema.BoolAttribute{
-												Computed:    true,
-												Description: `Default: false`,
+												Computed: true,
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -9306,7 +9135,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
-												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
@@ -9444,8 +9273,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							ElementType: types.StringType,
 						},
 						"index": schema.BoolAttribute{
-							Computed:    true,
-							Description: `Default: true`,
+							Computed: true,
 						},
 						"type": schema.StringAttribute{
 							Computed:    true,
@@ -9494,7 +9322,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						},
 						"order": schema.Int64Attribute{
 							Computed:    true,
-							Description: `Render order of the group. Default: 0`,
+							Description: `Render order of the group`,
 						},
 						"render_condition": schema.StringAttribute{
 							Computed: true,
@@ -9853,7 +9681,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									},
 									"enable_thumbnails": schema.BoolAttribute{
 										Computed:    true,
-										Description: `Enable the thumbnail column. Default: false`,
+										Description: `Enable the thumbnail column`,
 									},
 									"navbar_actions": schema.ListNestedAttribute{
 										Computed: true,
@@ -10011,6 +9839,10 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 	}
 	if res == nil {
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
 		return
 	}
 	if res.StatusCode != 200 {

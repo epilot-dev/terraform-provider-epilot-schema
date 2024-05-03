@@ -10,7 +10,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/pkg/models/shared"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"net/http"
 )
 
 var _ provider.Provider = &EpilotSchemaProvider{}
@@ -95,6 +96,7 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 	opts := []sdk.SDKOption{
 		sdk.WithServerURL(ServerURL),
 		sdk.WithSecurity(security),
+		sdk.WithClient(http.DefaultClient),
 	}
 	client := sdk.New(opts...)
 
@@ -105,12 +107,16 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 func (p *EpilotSchemaProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewSchemaResource,
+		NewSchemaAttributeResource,
+		NewSchemaCapabilityResource,
 	}
 }
 
 func (p *EpilotSchemaProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewSchemaDataSource,
+		NewSchemaAttributeDataSource,
+		NewSchemaCapabilityDataSource,
 	}
 }
 

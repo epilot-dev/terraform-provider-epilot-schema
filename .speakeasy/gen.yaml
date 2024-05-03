@@ -7,8 +7,12 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
 terraform:
-  version: 0.2.0
+  version: 0.3.0
   author: speakeasy
   imports:
     option: openapi
