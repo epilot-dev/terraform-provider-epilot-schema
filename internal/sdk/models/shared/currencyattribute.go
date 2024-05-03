@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/internal/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // CurrencyAttributeConstraints - A set of constraints applicable to the attribute.

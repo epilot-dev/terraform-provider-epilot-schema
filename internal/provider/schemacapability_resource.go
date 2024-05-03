@@ -14,12 +14,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	tfTypes "github.com/speakeasy/terraform-provider-terraform/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/models/operations"
-	"github.com/speakeasy/terraform-provider-terraform/internal/validators"
-	speakeasy_listvalidators "github.com/speakeasy/terraform-provider-terraform/internal/validators/listvalidators"
-	speakeasy_stringvalidators "github.com/speakeasy/terraform-provider-terraform/internal/validators/stringvalidators"
+	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/operations"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/validators"
+	speakeasy_listvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/listvalidators"
+	speakeasy_stringvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.

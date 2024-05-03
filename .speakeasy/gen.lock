@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.278.0
   generationVersion: 2.322.4
-  releaseVersion: 0.0.1
-  configChecksum: 7b35859397d760ed189a428d0d84f8f9
+  releaseVersion: 0.0.2
+  configChecksum: e2c76699f277136b00275e6b49a5f875
 features:
   terraform:
     additionalProperties: 0.1.2
@@ -238,25 +238,25 @@ generatedFiles:
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
-  - examples/resources/terraform_schema/import.sh
+  - examples/resources/epilot_schema_schema/import.sh
   - internal/provider/schema_resource.go
   - internal/provider/schema_resource_sdk.go
-  - examples/resources/terraform_schema/resource.tf
-  - examples/resources/terraform_schema_attribute/import.sh
+  - examples/resources/epilot-schema_schema/resource.tf
+  - examples/resources/epilot_schema_schema_attribute/import.sh
   - internal/provider/schemaattribute_resource.go
   - internal/provider/schemaattribute_resource_sdk.go
-  - examples/resources/terraform_schema_attribute/resource.tf
-  - examples/resources/terraform_schema_capability/import.sh
+  - examples/resources/epilot-schema_schema_attribute/resource.tf
+  - examples/resources/epilot_schema_schema_capability/import.sh
   - internal/provider/schemacapability_resource.go
   - internal/provider/schemacapability_resource_sdk.go
-  - examples/resources/terraform_schema_capability/resource.tf
+  - examples/resources/epilot-schema_schema_capability/resource.tf
   - internal/provider/schema_data_source.go
   - internal/provider/schema_data_source_sdk.go
-  - examples/data-sources/terraform_schema/data-source.tf
+  - examples/data-sources/epilot-schema_schema/data-source.tf
   - internal/provider/schemaattribute_data_source.go
   - internal/provider/schemaattribute_data_source_sdk.go
-  - examples/data-sources/terraform_schema_attribute/data-source.tf
+  - examples/data-sources/epilot-schema_schema_attribute/data-source.tf
   - internal/provider/schemacapability_data_source.go
   - internal/provider/schemacapability_data_source_sdk.go
-  - examples/data-sources/terraform_schema_capability/data-source.tf
+  - examples/data-sources/epilot-schema_schema_capability/data-source.tf
   - .gitattributes

@@ -1,4 +1,4 @@
-module github.com/speakeasy/terraform-provider-terraform
+module github.com/speakeasy/terraform-provider-epilot-schema
 
 go 1.20
 

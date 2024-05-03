@@ -3,7 +3,7 @@
 package provider
 
 import (
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/models/shared"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 )
 
 func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithCompositeID(resp *shared.AttributeWithCompositeID) {

@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/models/shared"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 

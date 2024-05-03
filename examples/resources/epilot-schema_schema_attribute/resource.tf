@@ -1,4 +1,4 @@
-resource "terraform_schema_attribute" "my_schemaattribute" {
+resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   attribute_with_composite_id = {
     address_relation_attribute = {
       purpose = [

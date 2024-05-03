@@ -1,4 +1,4 @@
-resource "terraform_schema" "my_schema" {
+resource "epilot-schema_schema" "my_schema" {
   attributes = [
     {
       address_relation_attribute = {

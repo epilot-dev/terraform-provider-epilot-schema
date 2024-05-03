@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/internal/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // EntityACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.

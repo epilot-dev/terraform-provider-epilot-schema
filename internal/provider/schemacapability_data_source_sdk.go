@@ -5,8 +5,8 @@ package provider
 import (
 	"encoding/json"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	tfTypes "github.com/speakeasy/terraform-provider-terraform/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/models/shared"
+	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"time"
 )
 

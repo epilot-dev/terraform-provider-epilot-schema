@@ -4,7 +4,7 @@ package shared
 
 import (
 	"errors"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/internal/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type AttributeType string

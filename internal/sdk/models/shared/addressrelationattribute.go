@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/internal/utils"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // AddressRelationAttributeConstraints - A set of constraints applicable to the attribute.

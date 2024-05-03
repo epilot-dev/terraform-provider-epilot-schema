@@ -9,33 +9,33 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk"
-	"github.com/speakeasy/terraform-provider-terraform/internal/sdk/models/shared"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
+	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
-var _ provider.Provider = &TerraformProvider{}
+var _ provider.Provider = &EpilotSchemaProvider{}
 
-type TerraformProvider struct {
+type EpilotSchemaProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
 }
 
-// TerraformProviderModel describes the provider data model.
-type TerraformProviderModel struct {
+// EpilotSchemaProviderModel describes the provider data model.
+type EpilotSchemaProviderModel struct {
 	ServerURL  types.String `tfsdk:"server_url"`
 	EpilotAuth types.String `tfsdk:"epilot_auth"`
 	EpilotOrg  types.String `tfsdk:"epilot_org"`
 }
 
-func (p *TerraformProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "terraform"
+func (p *EpilotSchemaProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "epilot-schema"
 	resp.Version = p.version
 }
 
-func (p *TerraformProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *EpilotSchemaProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: `Entity API: Flexible data layer for epilot Entities.` + "\n" +
 			`` + "\n" +
@@ -61,8 +61,8 @@ func (p *TerraformProvider) Schema(ctx context.Context, req provider.SchemaReque
 	}
 }
 
-func (p *TerraformProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data TerraformProviderModel
+func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data EpilotSchemaProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 
@@ -104,7 +104,7 @@ func (p *TerraformProvider) Configure(ctx context.Context, req provider.Configur
 	resp.ResourceData = client
 }
 
-func (p *TerraformProvider) Resources(ctx context.Context) []func() resource.Resource {
+func (p *EpilotSchemaProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewSchemaResource,
 		NewSchemaAttributeResource,
@@ -112,7 +112,7 @@ func (p *TerraformProvider) Resources(ctx context.Context) []func() resource.Res
 	}
 }
 
-func (p *TerraformProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
+func (p *EpilotSchemaProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewSchemaDataSource,
 		NewSchemaAttributeDataSource,
@@ -122,7 +122,7 @@ func (p *TerraformProvider) DataSources(ctx context.Context) []func() datasource
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &TerraformProvider{
+		return &EpilotSchemaProvider{
 			version: version,
 		}
 	}

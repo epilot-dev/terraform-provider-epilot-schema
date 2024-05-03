@@ -1,12 +1,12 @@
 terraform {
   required_providers {
-    terraform = {
-      source  = "speakeasy/terraform"
-      version = "0.0.1"
+    epilot-schema = {
+      source  = "speakeasy/epilot-schema"
+      version = "0.0.2"
     }
   }
 }
 
-provider "terraform" {
+provider "epilot-schema" {
   # Configuration options
 }
