@@ -1,24 +1,13 @@
 lockVersion: 2.0.0
-id: 5a857039-7f4b-42d5-86fd-449767242ed2
+id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
   docChecksum: e9ca3a0a1edd9eb78d846e1d0d3addaa
   docVersion: 1.0.0
   speakeasyVersion: 1.278.0
   generationVersion: 2.322.4
-  releaseVersion: 0.3.0
-  configChecksum: b63fadb5c41997e740be55f4adc97d9b
-  repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
-  repoSubDirectory: .
-  published: true
+  releaseVersion: 0.0.1
+  configChecksum: 7b35859397d760ed189a428d0d84f8f9
 features:
-  go:
-    additionalProperties: 0.1.1
-    constsAndDefaults: 0.1.1
-    core: 3.1.4
-    flattening: 2.81.1
-    globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
-    unions: 2.85.0
   terraform:
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
@@ -249,25 +238,25 @@ generatedFiles:
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
-  - examples/resources/epilot_schema_schema/import.sh
+  - examples/resources/terraform_schema/import.sh
   - internal/provider/schema_resource.go
   - internal/provider/schema_resource_sdk.go
-  - examples/resources/epilot-schema_schema/resource.tf
-  - examples/resources/epilot_schema_schema_attribute/import.sh
+  - examples/resources/terraform_schema/resource.tf
+  - examples/resources/terraform_schema_attribute/import.sh
   - internal/provider/schemaattribute_resource.go
   - internal/provider/schemaattribute_resource_sdk.go
-  - examples/resources/epilot-schema_schema_attribute/resource.tf
-  - examples/resources/epilot_schema_schema_capability/import.sh
+  - examples/resources/terraform_schema_attribute/resource.tf
+  - examples/resources/terraform_schema_capability/import.sh
   - internal/provider/schemacapability_resource.go
   - internal/provider/schemacapability_resource_sdk.go
-  - examples/resources/epilot-schema_schema_capability/resource.tf
+  - examples/resources/terraform_schema_capability/resource.tf
   - internal/provider/schema_data_source.go
   - internal/provider/schema_data_source_sdk.go
-  - examples/data-sources/epilot-schema_schema/data-source.tf
+  - examples/data-sources/terraform_schema/data-source.tf
   - internal/provider/schemaattribute_data_source.go
   - internal/provider/schemaattribute_data_source_sdk.go
-  - examples/data-sources/epilot-schema_schema_attribute/data-source.tf
+  - examples/data-sources/terraform_schema_attribute/data-source.tf
   - internal/provider/schemacapability_data_source.go
   - internal/provider/schemacapability_data_source_sdk.go
-  - examples/data-sources/epilot-schema_schema_capability/data-source.tf
+  - examples/data-sources/terraform_schema_capability/data-source.tf
   - .gitattributes
