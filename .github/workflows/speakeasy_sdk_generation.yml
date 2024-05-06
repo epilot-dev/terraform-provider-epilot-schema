@@ -16,7 +16,7 @@ jobs:
     with:
       speakeasy_version: latest
       openapi_docs: |
-        - https://docs.api.epilot.io/schema.yaml
+        - schema.yaml
       languages: |
         - terraform
       mode: pr
