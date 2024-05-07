@@ -10,9 +10,9 @@ import (
 
 type PutSchemaRequest struct {
 	// Entity Type
-	Slug         string               `pathParam:"style=simple,explode=false,name=slug"`
-	Draft        *bool                `default:"false" queryParam:"style=form,explode=true,name=draft"`
-	EntitySchema *shared.EntitySchema `request:"mediaType=application/json"`
+	Slug             string                   `pathParam:"style=simple,explode=false,name=slug"`
+	Draft            *bool                    `default:"false" queryParam:"style=form,explode=true,name=draft"`
+	EntitySchemaItem *shared.EntitySchemaItem `request:"mediaType=application/json"`
 }
 
 func (p PutSchemaRequest) MarshalJSON() ([]byte, error) {
@@ -40,11 +40,11 @@ func (o *PutSchemaRequest) GetDraft() *bool {
 	return o.Draft
 }
 
-func (o *PutSchemaRequest) GetEntitySchema() *shared.EntitySchema {
+func (o *PutSchemaRequest) GetEntitySchemaItem() *shared.EntitySchemaItem {
 	if o == nil {
 		return nil
 	}
-	return o.EntitySchema
+	return o.EntitySchemaItem
 }
 
 type PutSchemaResponse struct {
@@ -55,7 +55,7 @@ type PutSchemaResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	EntitySchema *shared.EntitySchema
+	EntitySchemaItem *shared.EntitySchemaItem
 }
 
 func (o *PutSchemaResponse) GetContentType() string {
@@ -79,9 +79,9 @@ func (o *PutSchemaResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *PutSchemaResponse) GetEntitySchema() *shared.EntitySchema {
+func (o *PutSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
 	if o == nil {
 		return nil
 	}
-	return o.EntitySchema
+	return o.EntitySchemaItem
 }

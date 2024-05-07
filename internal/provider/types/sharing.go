@@ -4,6 +4,6 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type EntitySchemaSharing struct {
+type Sharing struct {
 	ShowSharingButton types.Bool `tfsdk:"show_sharing_button"`
 }

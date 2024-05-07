@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type EntitySchemaInfoTooltipTitle struct {
+type InfoTooltipTitle struct {
 	Default types.String `tfsdk:"default"`
 	Key     types.String `tfsdk:"key"`
 }

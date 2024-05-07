@@ -1,4 +1,4 @@
 data "epilot-schema_schema" "my_schema" {
-  id   = "4c5d658b-093f-4118-abb4-2016edf4b44b"
+  id   = "2e38995b-35ee-4606-80c0-a1102ca744a6"
   slug = "contact"
 }

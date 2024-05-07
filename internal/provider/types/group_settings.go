@@ -5,13 +5,13 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type GroupSettings struct {
-	Purpose          []types.String                `tfsdk:"purpose"`
-	Expanded         types.Bool                    `tfsdk:"expanded"`
-	FeatureFlag      types.String                  `tfsdk:"feature_flag"`
-	ID               types.String                  `tfsdk:"id"`
-	InfoTooltipTitle *EntitySchemaInfoTooltipTitle `tfsdk:"info_tooltip_title"`
-	Label            types.String                  `tfsdk:"label"`
-	Order            types.Int64                   `tfsdk:"order"`
-	RenderCondition  types.String                  `tfsdk:"render_condition"`
-	SettingsFlag     []SettingFlag                 `tfsdk:"settings_flag"`
+	Purpose          []types.String    `tfsdk:"purpose"`
+	Expanded         types.Bool        `tfsdk:"expanded"`
+	FeatureFlag      types.String      `tfsdk:"feature_flag"`
+	ID               types.String      `tfsdk:"id"`
+	InfoTooltipTitle *InfoTooltipTitle `tfsdk:"info_tooltip_title"`
+	Label            types.String      `tfsdk:"label"`
+	Order            types.Int64       `tfsdk:"order"`
+	RenderCondition  types.String      `tfsdk:"render_condition"`
+	SettingsFlag     []SettingFlag     `tfsdk:"settings_flag"`
 }

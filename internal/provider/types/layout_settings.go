@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type EntitySchemaLayoutSettings struct {
+type LayoutSettings struct {
 	AdditionalProperties types.String `tfsdk:"additional_properties"`
 	GridGap              types.String `tfsdk:"grid_gap"`
 	GridTemplateColumns  types.String `tfsdk:"grid_template_columns"`

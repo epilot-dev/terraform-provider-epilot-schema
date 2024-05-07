@@ -2,7 +2,7 @@
 
 package types
 
-type EntitySchemaEditView struct {
+type EditView struct {
 	EntityDefaultEdit  *EntityDefaultEdit  `tfsdk:"entity_default_edit" tfPlanOnly:"true"`
 	EntityViewDisabled *EntityViewDisabled `tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
 	RedirectEntityView *RedirectEntityView `tfsdk:"redirect_entity_view" tfPlanOnly:"true"`

@@ -31,8 +31,6 @@ data "epilot-schema_schema" "my_schema" {
 - `attributes` (Attributes List) An ordered list of attributes the entity contains (see [below for nested schema](#nestedatt--attributes))
 - `blueprint` (String) Reference to blueprint
 - `capabilities` (Attributes List) (see [below for nested schema](#nestedatt--capabilities))
-- `comment` (String)
-- `created_at` (String)
 - `dialog_config` (Map of String)
 - `draft` (Boolean)
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
@@ -47,10 +45,8 @@ data "epilot-schema_schema" "my_schema" {
 - `name` (String) User-friendly identifier for the entity schema
 - `plural` (String)
 - `published` (Boolean)
-- `source` (Attributes) (see [below for nested schema](#nestedatt--source))
 - `title_template` (String) Template for rendering the title field. Uses handlebars
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
-- `updated_at` (String)
 - `version` (Number)
 
 <a id="nestedatt--attributes"></a>
@@ -4335,15 +4331,6 @@ Read-Only:
 - `additional_properties` (String) Parsed as JSON.
 - `grid_gap` (String) Defines the grid gap for the mounting node of the attribute.
 - `grid_template_columns` (String) Defines the grid column template for the mounting node of the attribute.
-
-
-<a id="nestedatt--source"></a>
-### Nested Schema for `source`
-
-Read-Only:
-
-- `id` (String)
-- `type` (String)
 
 
 <a id="nestedatt--ui_config"></a>
