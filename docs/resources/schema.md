@@ -45,14 +45,6 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--layo
 - `ui_config` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config))
 - `version` (Number) Requires replacement if changed.
 
-### Read-Only
-
-- `comment` (String)
-- `created_at` (String)
-- `id` (String) Generated uuid for schema
-- `source` (Attributes) (see [below for nested schema](#nestedatt--source))
-- `updated_at` (String)
-
 <a id="nestedatt--attributes"></a>
 ### Nested Schema for `attributes`
 
@@ -5426,16 +5418,5 @@ Optional:
 
 - `route` (String) Requires replacement if changed.
 - `view_type` (String) Requires replacement if changed. ; must be one of ["redirect"]
-
-
-
-
-<a id="nestedatt--source"></a>
-### Nested Schema for `source`
-
-Read-Only:
-
-- `id` (String)
-- `type` (String)
 
 
