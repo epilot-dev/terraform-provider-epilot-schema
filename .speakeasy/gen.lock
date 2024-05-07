@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 0d1fdbbc225f0882084cc751c9eb020e
+  docChecksum: 711439f474da49fc27a560fa68a2d394
   docVersion: 1.0.0
   speakeasyVersion: 1.278.0
   generationVersion: 2.322.4
-  releaseVersion: 0.0.6
-  configChecksum: 10a56357a77fcc7672811e1a1c718c06
+  releaseVersion: 0.0.7
+  configChecksum: f9d45ee3fcd8c1019fa903c3dffa8d60
 features:
   terraform:
     additionalProperties: 0.1.2
