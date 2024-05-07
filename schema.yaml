@@ -497,8 +497,8 @@ components:
         - attributes
         - capabilities
     EntitySchemaItem:
-      x-speakeasy-entity: Schema
       allOf:
+        - x-speakeasy-entity: Schema
         - type: object
           properties:
             id:
@@ -549,8 +549,8 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
-      x-speakeasy-entity: SchemaAttribute
       allOf:
+        - x-speakeasy-entity: SchemaAttribute
         - $ref: "#/components/schemas/Attribute"
         - type: object
           description: a readonly computed ID for the attribute including schema slug and the attribute ID
@@ -1419,8 +1419,8 @@ components:
       required:
         - name
     EntityCapabilityWithCompositeID:
-      x-speakeasy-entity: SchemaCapability
       allOf:
+        - x-speakeasy-entity: SchemaCapability
         - $ref: "#/components/schemas/EntityCapability"
         - type: object
           description: a readonly computed ID for the entity capability including schema slug and the capability ID

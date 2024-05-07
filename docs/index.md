@@ -23,7 +23,7 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "speakeasy/epilot-schema"
-      version = "0.0.5"
+      version = "0.0.6"
     }
   }
 }

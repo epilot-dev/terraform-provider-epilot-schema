@@ -141,15 +141,19 @@ resource "epilot-schema_schema" "my_schema" {
       ]
     },
   ]
+  comment        = "...my_comment..."
+  created_at     = "...my_created_at..."
   draft          = false
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
+  id             = "6f279910-5f4f-428c-a590-4a6d458bca6e"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
-  version        = 1
+  updated_at     = "...my_updated_at..."
+  version        = 3
 }
 ```
 
@@ -167,6 +171,8 @@ resource "epilot-schema_schema" "my_schema" {
 ### Optional
 
 - `blueprint` (String) Reference to blueprint. Requires replacement if changed.
+- `comment` (String) Requires replacement if changed.
+- `created_at` (String) Requires replacement if changed.
 - `dialog_config` (Map of String) Requires replacement if changed.
 - `draft` (Boolean) Requires replacement if changed. ; Default: false
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled. Requires replacement if changed.
@@ -176,14 +182,17 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--expl
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled. Requires replacement if changed.
 - `group_settings` (Attributes List) A dictionary of Group Titles and associated settings if present. Requires replacement if changed. (see [below for nested schema](#nestedatt--group_settings))
 - `icon` (String) Requires replacement if changed.
+- `id` (String) Generated uuid for schema. Requires replacement if changed.
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 - Managed Properties: are interpreted and transformed into layout styles
 - Un-managed Properties: are appended as styles into the attribute mounting node
 
 Requires replacement if changed. (see [below for nested schema](#nestedatt--layout_settings))
 - `published` (Boolean) Requires replacement if changed.
+- `source` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--source))
 - `title_template` (String) Template for rendering the title field. Uses handlebars. Requires replacement if changed.
 - `ui_config` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config))
+- `updated_at` (String) Requires replacement if changed.
 - `version` (Number) Requires replacement if changed.
 
 <a id="nestedatt--attributes"></a>
@@ -5252,6 +5261,15 @@ Optional:
 - `additional_properties` (String) Parsed as JSON.
 - `grid_gap` (String) Defines the grid gap for the mounting node of the attribute. Requires replacement if changed.
 - `grid_template_columns` (String) Defines the grid column template for the mounting node of the attribute. Requires replacement if changed.
+
+
+<a id="nestedatt--source"></a>
+### Nested Schema for `source`
+
+Optional:
+
+- `id` (String) Requires replacement if changed.
+- `type` (String) Requires replacement if changed.
 
 
 <a id="nestedatt--ui_config"></a>
