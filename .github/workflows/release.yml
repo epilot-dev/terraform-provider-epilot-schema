@@ -6,7 +6,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 # Releases need permissions to read and write the repository contents.
 # GitHub considers creating releases and uploading assets as writing contents.
@@ -14,6 +14,21 @@ permissions:
   contents: write
 
 jobs:
+  checksum:
+    name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
+    algorithm: sha256
+    signs:
+      - artifacts: checksum
+        args:
+          # if you are using this in a GitHub action or some other automated pipeline, you 
+          # need to pass the batch flag to indicate its not interactive.
+          - "--batch"
+          - "--local-user"
+          - "{{ .Env.GPG_FINGERPRINT }}" # set this environment variable for your signing key
+          - "--output"
+          - "${signature}"
+          - "--detach-sign"
+          - "${artifact}"
   goreleaser:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +38,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-go@4d34df0c2316fe8122ab82dc22947d607c0c91f9 # v4.0.0
         with:
-          go-version-file: "go.mod"
+          go-version-file: 'go.mod'
           cache: true
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@111c56156bcc6918c056dbef52164cfa583dc549 # v5.2.0
