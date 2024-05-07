@@ -497,6 +497,7 @@ components:
         - attributes
         - capabilities
     EntitySchemaItem:
+      x-speakeasy-entity: Schema
       allOf:
         - type: object
           properties:
