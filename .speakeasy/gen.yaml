@@ -12,6 +12,8 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 terraform:
-  version: 0.0.6
+  version: 0.1.0
+  additionalDependencies: {}
   author: speakeasy
+  environmentVariables: []
   packageName: epilot-schema

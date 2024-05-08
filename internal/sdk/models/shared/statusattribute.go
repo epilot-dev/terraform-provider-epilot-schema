@@ -142,14 +142,14 @@ func CreateStatusAttributeOptionsOptions2(options2 Options2) StatusAttributeOpti
 
 func (u *StatusAttributeOptions) UnmarshalJSON(data []byte) error {
 
-	options2 := Options2{}
+	var options2 Options2 = Options2{}
 	if err := utils.UnmarshalJSON(data, &options2, "", true, true); err == nil {
 		u.Options2 = &options2
 		u.Type = StatusAttributeOptionsTypeOptions2
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeOptionsTypeStr

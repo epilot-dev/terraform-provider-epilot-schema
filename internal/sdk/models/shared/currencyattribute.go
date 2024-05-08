@@ -146,7 +146,7 @@ func CreateCurrencyCurrency1(currency1 Currency1) Currency {
 
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
-	currency1 := Currency1{}
+	var currency1 Currency1 = Currency1{}
 	if err := utils.UnmarshalJSON(data, &currency1, "", true, true); err == nil {
 		u.Currency1 = &currency1
 		u.Type = CurrencyTypeCurrency1

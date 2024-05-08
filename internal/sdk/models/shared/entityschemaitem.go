@@ -71,21 +71,21 @@ func CreateTableViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) Ta
 
 func (u *TableView) UnmarshalJSON(data []byte) error {
 
-	entityViewDisabled := EntityViewDisabled{}
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
 	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
 		u.EntityViewDisabled = &entityViewDisabled
 		u.Type = TableViewTypeEntityViewDisabled
 		return nil
 	}
 
-	redirectEntityView := RedirectEntityView{}
+	var redirectEntityView RedirectEntityView = RedirectEntityView{}
 	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = TableViewTypeRedirectEntityView
 		return nil
 	}
 
-	entityDefaultTable := EntityDefaultTable{}
+	var entityDefaultTable EntityDefaultTable = EntityDefaultTable{}
 	if err := utils.UnmarshalJSON(data, &entityDefaultTable, "", true, true); err == nil {
 		u.EntityDefaultTable = &entityDefaultTable
 		u.Type = TableViewTypeEntityDefaultTable
@@ -156,21 +156,21 @@ func CreateCreateViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) C
 
 func (u *CreateView) UnmarshalJSON(data []byte) error {
 
-	entityViewDisabled := EntityViewDisabled{}
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
 	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
 		u.EntityViewDisabled = &entityViewDisabled
 		u.Type = CreateViewTypeEntityViewDisabled
 		return nil
 	}
 
-	entityDefaultCreate := EntityDefaultCreate{}
+	var entityDefaultCreate EntityDefaultCreate = EntityDefaultCreate{}
 	if err := utils.UnmarshalJSON(data, &entityDefaultCreate, "", true, true); err == nil {
 		u.EntityDefaultCreate = &entityDefaultCreate
 		u.Type = CreateViewTypeEntityDefaultCreate
 		return nil
 	}
 
-	redirectEntityView := RedirectEntityView{}
+	var redirectEntityView RedirectEntityView = RedirectEntityView{}
 	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = CreateViewTypeRedirectEntityView
@@ -241,21 +241,21 @@ func CreateEditViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) Edi
 
 func (u *EditView) UnmarshalJSON(data []byte) error {
 
-	entityViewDisabled := EntityViewDisabled{}
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
 	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
 		u.EntityViewDisabled = &entityViewDisabled
 		u.Type = EditViewTypeEntityViewDisabled
 		return nil
 	}
 
-	redirectEntityView := RedirectEntityView{}
+	var redirectEntityView RedirectEntityView = RedirectEntityView{}
 	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = EditViewTypeRedirectEntityView
 		return nil
 	}
 
-	entityDefaultEdit := EntityDefaultEdit{}
+	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
 	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, true); err == nil {
 		u.EntityDefaultEdit = &entityDefaultEdit
 		u.Type = EditViewTypeEntityDefaultEdit
@@ -326,21 +326,21 @@ func CreateSingleViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) S
 
 func (u *SingleView) UnmarshalJSON(data []byte) error {
 
-	entityViewDisabled := EntityViewDisabled{}
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
 	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
 		u.EntityViewDisabled = &entityViewDisabled
 		u.Type = SingleViewTypeEntityViewDisabled
 		return nil
 	}
 
-	redirectEntityView := RedirectEntityView{}
+	var redirectEntityView RedirectEntityView = RedirectEntityView{}
 	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = SingleViewTypeRedirectEntityView
 		return nil
 	}
 
-	entityDefaultEdit := EntityDefaultEdit{}
+	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
 	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, true); err == nil {
 		u.EntityDefaultEdit = &entityDefaultEdit
 		u.Type = SingleViewTypeEntityDefaultEdit
@@ -400,14 +400,14 @@ func CreateSummaryAttributesStr(str string) SummaryAttributes {
 
 func (u *SummaryAttributes) UnmarshalJSON(data []byte) error {
 
-	summaryAttribute := SummaryAttribute{}
+	var summaryAttribute SummaryAttribute = SummaryAttribute{}
 	if err := utils.UnmarshalJSON(data, &summaryAttribute, "", true, true); err == nil {
 		u.SummaryAttribute = &summaryAttribute
 		u.Type = SummaryAttributesTypeSummaryAttribute
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = SummaryAttributesTypeStr
