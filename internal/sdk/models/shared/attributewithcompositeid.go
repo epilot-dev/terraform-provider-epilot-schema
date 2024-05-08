@@ -5006,7 +5006,7 @@ func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttribute
 
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
-	currencyAttributeCurrency1 := CurrencyAttributeCurrency1{}
+	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
 	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, true); err == nil {
 		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
 		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
@@ -6726,14 +6726,14 @@ func CreateRelationAttributeSummaryFieldsSummaryField(summaryField SummaryField)
 
 func (u *RelationAttributeSummaryFields) UnmarshalJSON(data []byte) error {
 
-	summaryField := SummaryField{}
+	var summaryField SummaryField = SummaryField{}
 	if err := utils.UnmarshalJSON(data, &summaryField, "", true, true); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = RelationAttributeSummaryFieldsTypeSummaryField
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = RelationAttributeSummaryFieldsTypeStr
@@ -7603,14 +7603,14 @@ func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptions2
 
 func (u *StatusAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
-	statusAttributeOptions2 := StatusAttributeOptions2{}
+	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
 	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, true); err == nil {
 		u.StatusAttributeOptions2 = &statusAttributeOptions2
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStr
@@ -8026,14 +8026,14 @@ func CreateMultiSelectAttributeAttributeWithCompositeIDOptionsMultiSelectAttribu
 
 func (u *MultiSelectAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
-	multiSelectAttributeOptions2 := MultiSelectAttributeOptions2{}
+	var multiSelectAttributeOptions2 MultiSelectAttributeOptions2 = MultiSelectAttributeOptions2{}
 	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, true); err == nil {
 		u.MultiSelectAttributeOptions2 = &multiSelectAttributeOptions2
 		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeMultiSelectAttributeOptions2
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeStr
@@ -8476,14 +8476,14 @@ func CreateSelectAttributeOptionsStr(str string) SelectAttributeOptions {
 
 func (u *SelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
-	options1 := Options1{}
+	var options1 Options1 = Options1{}
 	if err := utils.UnmarshalJSON(data, &options1, "", true, true); err == nil {
 		u.Options1 = &options1
 		u.Type = SelectAttributeOptionsTypeOptions1
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = SelectAttributeOptionsTypeStr
@@ -10756,196 +10756,196 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 
 func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 
-	attributeWithCompositeIDInternalAttribute := AttributeWithCompositeIDInternalAttribute{}
+	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDLinkAttribute := AttributeWithCompositeIDLinkAttribute{}
+	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDDateAttribute := AttributeWithCompositeIDDateAttribute{}
+	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDCountryAttribute := AttributeWithCompositeIDCountryAttribute{}
+	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDBooleanAttribute := AttributeWithCompositeIDBooleanAttribute{}
+	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDPartnerOrganisationAttribute := AttributeWithCompositeIDPartnerOrganisationAttribute{}
+	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDInternalUserAttribute := AttributeWithCompositeIDInternalUserAttribute{}
+	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDAutomationAttribute := AttributeWithCompositeIDAutomationAttribute{}
+	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDInvitationEmailAttribute := AttributeWithCompositeIDInvitationEmailAttribute{}
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDPartnerStatusAttribute := AttributeWithCompositeIDPartnerStatusAttribute{}
+	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDComputedAttribute := AttributeWithCompositeIDComputedAttribute{}
+	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDOrderedListAttribute := AttributeWithCompositeIDOrderedListAttribute{}
+	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDStatusAttribute := AttributeWithCompositeIDStatusAttribute{}
+	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDAddressRelationAttribute := AttributeWithCompositeIDAddressRelationAttribute{}
+	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDTextAttribute := AttributeWithCompositeIDTextAttribute{}
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDUserRelationAttribute := AttributeWithCompositeIDUserRelationAttribute{}
+	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDNumberAttribute := AttributeWithCompositeIDNumberAttribute{}
+	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDPaymentMethodRelationAttribute := AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDConsentAttribute := AttributeWithCompositeIDConsentAttribute{}
+	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDCurrencyAttribute := AttributeWithCompositeIDCurrencyAttribute{}
+	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDTagsAttribute := AttributeWithCompositeIDTagsAttribute{}
+	var attributeWithCompositeIDTagsAttribute AttributeWithCompositeIDTagsAttribute = AttributeWithCompositeIDTagsAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDTagsAttribute = &attributeWithCompositeIDTagsAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDSequenceAttribute := AttributeWithCompositeIDSequenceAttribute{}
+	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDSelectAttribute := AttributeWithCompositeIDSelectAttribute{}
+	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDRepeatableAttribute := AttributeWithCompositeIDRepeatableAttribute{}
+	var attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute = AttributeWithCompositeIDRepeatableAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDRepeatableAttribute = &attributeWithCompositeIDRepeatableAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDMultiSelectAttribute := AttributeWithCompositeIDMultiSelectAttribute{}
+	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDFileAttribute := AttributeWithCompositeIDFileAttribute{}
+	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDPurposeAttribute := AttributeWithCompositeIDPurposeAttribute{}
+	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
 		return nil
 	}
 
-	attributeWithCompositeIDRelationAttribute := AttributeWithCompositeIDRelationAttribute{}
+	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, true); err == nil {
 		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
@@ -18626,196 +18626,196 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 
 func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 
-	attributeWithCompositeIDInternalAttributeInput := AttributeWithCompositeIDInternalAttributeInput{}
+	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDLinkAttributeInput := AttributeWithCompositeIDLinkAttributeInput{}
+	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDDateAttributeInput := AttributeWithCompositeIDDateAttributeInput{}
+	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDCountryAttributeInput := AttributeWithCompositeIDCountryAttributeInput{}
+	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDBooleanAttributeInput := AttributeWithCompositeIDBooleanAttributeInput{}
+	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDPartnerOrganisationAttributeInput := AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDInternalUserAttributeInput := AttributeWithCompositeIDInternalUserAttributeInput{}
+	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDAutomationAttributeInput := AttributeWithCompositeIDAutomationAttributeInput{}
+	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDInvitationEmailAttributeInput := AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDPartnerStatusAttributeInput := AttributeWithCompositeIDPartnerStatusAttributeInput{}
+	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDComputedAttributeInput := AttributeWithCompositeIDComputedAttributeInput{}
+	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDOrderedListAttributeInput := AttributeWithCompositeIDOrderedListAttributeInput{}
+	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDStatusAttributeInput := AttributeWithCompositeIDStatusAttributeInput{}
+	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDAddressRelationAttributeInput := AttributeWithCompositeIDAddressRelationAttributeInput{}
+	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDTextAttributeInput := AttributeWithCompositeIDTextAttributeInput{}
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDUserRelationAttributeInput := AttributeWithCompositeIDUserRelationAttributeInput{}
+	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDNumberAttributeInput := AttributeWithCompositeIDNumberAttributeInput{}
+	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDPaymentMethodRelationAttributeInput := AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDConsentAttributeInput := AttributeWithCompositeIDConsentAttributeInput{}
+	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDCurrencyAttributeInput := AttributeWithCompositeIDCurrencyAttributeInput{}
+	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDTagsAttributeInput := AttributeWithCompositeIDTagsAttributeInput{}
+	var attributeWithCompositeIDTagsAttributeInput AttributeWithCompositeIDTagsAttributeInput = AttributeWithCompositeIDTagsAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDTagsAttributeInput = &attributeWithCompositeIDTagsAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDSequenceAttributeInput := AttributeWithCompositeIDSequenceAttributeInput{}
+	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDSelectAttributeInput := AttributeWithCompositeIDSelectAttributeInput{}
+	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDRepeatableAttributeInput := AttributeWithCompositeIDRepeatableAttributeInput{}
+	var attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput = AttributeWithCompositeIDRepeatableAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDRepeatableAttributeInput = &attributeWithCompositeIDRepeatableAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDMultiSelectAttributeInput := AttributeWithCompositeIDMultiSelectAttributeInput{}
+	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDFileAttributeInput := AttributeWithCompositeIDFileAttributeInput{}
+	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDPurposeAttributeInput := AttributeWithCompositeIDPurposeAttributeInput{}
+	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
 		return nil
 	}
 
-	attributeWithCompositeIDRelationAttributeInput := AttributeWithCompositeIDRelationAttributeInput{}
+	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, true); err == nil {
 		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput

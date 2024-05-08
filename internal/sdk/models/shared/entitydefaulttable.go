@@ -67,14 +67,14 @@ func CreateRowActionsEntityAction(entityAction EntityAction) RowActions {
 
 func (u *RowActions) UnmarshalJSON(data []byte) error {
 
-	entityAction := EntityAction{}
+	var entityAction EntityAction = EntityAction{}
 	if err := utils.UnmarshalJSON(data, &entityAction, "", true, true); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = RowActionsTypeEntityAction
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = RowActionsTypeStr
@@ -130,14 +130,14 @@ func CreateBulkActionsEntityAction(entityAction EntityAction) BulkActions {
 
 func (u *BulkActions) UnmarshalJSON(data []byte) error {
 
-	entityAction := EntityAction{}
+	var entityAction EntityAction = EntityAction{}
 	if err := utils.UnmarshalJSON(data, &entityAction, "", true, true); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = BulkActionsTypeEntityAction
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = BulkActionsTypeStr

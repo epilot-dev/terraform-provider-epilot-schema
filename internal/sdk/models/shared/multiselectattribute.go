@@ -143,14 +143,14 @@ func CreateMultiSelectAttributeOptionsTwo(two Two) MultiSelectAttributeOptions {
 
 func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
-	two := Two{}
+	var two Two = Two{}
 	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
 		u.Two = &two
 		u.Type = MultiSelectAttributeOptionsTypeTwo
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeOptionsTypeStr
