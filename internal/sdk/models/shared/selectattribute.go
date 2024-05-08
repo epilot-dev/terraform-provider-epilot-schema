@@ -143,14 +143,14 @@ func CreateOptionsStr(str string) Options {
 
 func (u *Options) UnmarshalJSON(data []byte) error {
 
-	one := One{}
+	var one One = One{}
 	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
 		u.One = &one
 		u.Type = OptionsTypeOne
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = OptionsTypeStr

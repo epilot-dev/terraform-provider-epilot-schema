@@ -429,14 +429,14 @@ func CreateSummaryFieldsSummaryField(summaryField SummaryField) SummaryFields {
 
 func (u *SummaryFields) UnmarshalJSON(data []byte) error {
 
-	summaryField := SummaryField{}
+	var summaryField SummaryField = SummaryField{}
 	if err := utils.UnmarshalJSON(data, &summaryField, "", true, true); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = SummaryFieldsTypeSummaryField
 		return nil
 	}
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = SummaryFieldsTypeStr

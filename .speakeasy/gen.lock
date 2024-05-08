@@ -3,15 +3,18 @@ id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
   docChecksum: 0d1fdbbc225f0882084cc751c9eb020e
   docVersion: 1.0.0
-  speakeasyVersion: 1.278.0
-  generationVersion: 2.322.4
-  releaseVersion: 0.0.6
-  configChecksum: 10a56357a77fcc7672811e1a1c718c06
+  speakeasyVersion: 1.283.1
+  generationVersion: 2.324.0
+  releaseVersion: 0.1.0
+  configChecksum: bbbe0eb1f45df88067aec7e4cc85fd2f
+  repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
+  repoSubDirectory: .
+  published: true
 features:
   terraform:
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.19.0
+    core: 3.20.0
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
@@ -237,15 +240,15 @@ generatedFiles:
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
-  - examples/resources/epilot_schema_schema/import.sh
+  - examples/resources/epilot-schema_schema/import.sh
   - internal/provider/schema_resource.go
   - internal/provider/schema_resource_sdk.go
   - examples/resources/epilot-schema_schema/resource.tf
-  - examples/resources/epilot_schema_schema_attribute/import.sh
+  - examples/resources/epilot-schema_schema_attribute/import.sh
   - internal/provider/schemaattribute_resource.go
   - internal/provider/schemaattribute_resource_sdk.go
   - examples/resources/epilot-schema_schema_attribute/resource.tf
-  - examples/resources/epilot_schema_schema_capability/import.sh
+  - examples/resources/epilot-schema_schema_capability/import.sh
   - internal/provider/schemacapability_resource.go
   - internal/provider/schemacapability_resource_sdk.go
   - examples/resources/epilot-schema_schema_capability/resource.tf

@@ -37,22 +37,22 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       }
       label                   = "...my_label..."
       layout                  = "full_width"
-      name                    = "Irma Schinner"
+      name                    = "Kristina Dicki Sr."
       order                   = 0
       placeholder             = "...my_placeholder..."
       preview_value_formatter = "...my_preview_value_formatter..."
-      protected               = true
-      readonly                = false
+      protected               = false
+      readonly                = true
       render_condition        = "...my_render_condition..."
-      required                = true
+      required                = false
       settings_flag = [
         {
-          enabled = false
-          name    = "Eddie Hessel"
+          enabled = true
+          name    = "Sharon Brown"
         },
       ]
-      show_in_table   = true
-      sortable        = true
+      show_in_table   = false
+      sortable        = false
       type            = "relation_address"
       value_formatter = "...my_value_formatter..."
     }
@@ -4481,4 +4481,10 @@ Optional:
 - `enabled` (Boolean) Whether the setting should be enabled or not
 - `name` (String) The name of the organization setting to check
 
+## Import
 
+Import is supported using the following syntax:
+
+```shell
+terraform import epilot-schema_schema_attribute.my_epilot-schema_schema_attribute "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
+```
