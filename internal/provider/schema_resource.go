@@ -52,29 +52,29 @@ type SchemaResource struct {
 
 // SchemaResourceModel describes the resource data model.
 type SchemaResourceModel struct {
-	Attributes             []tfTypes.Attribute                 `tfsdk:"attributes"`
-	Blueprint              types.String                        `tfsdk:"blueprint"`
-	Capabilities           []tfTypes.EntityCapability          `tfsdk:"capabilities"`
-	Comment                types.String                        `tfsdk:"comment"`
-	CreatedAt              types.String                        `tfsdk:"created_at"`
-	DialogConfig           map[string]types.String             `tfsdk:"dialog_config"`
-	Draft                  types.Bool                          `tfsdk:"draft"`
-	EnableSetting          []types.String                      `tfsdk:"enable_setting"`
-	ExplicitSearchMappings map[string]tfTypes.SearchMappings   `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                        `tfsdk:"feature_flag"`
-	GroupSettings          []tfTypes.GroupSettings             `tfsdk:"group_settings"`
-	Icon                   types.String                        `tfsdk:"icon"`
-	ID                     types.String                        `tfsdk:"id"`
-	LayoutSettings         *tfTypes.EntitySchemaLayoutSettings `tfsdk:"layout_settings"`
-	Name                   types.String                        `tfsdk:"name"`
-	Plural                 types.String                        `tfsdk:"plural"`
-	Published              types.Bool                          `tfsdk:"published"`
-	Slug                   types.String                        `tfsdk:"slug"`
-	Source                 *tfTypes.Source                     `tfsdk:"source"`
-	TitleTemplate          types.String                        `tfsdk:"title_template"`
-	UIConfig               *tfTypes.EntitySchemaUIConfig       `tfsdk:"ui_config"`
-	UpdatedAt              types.String                        `tfsdk:"updated_at"`
-	Version                types.Int64                         `tfsdk:"version"`
+	Attributes             []tfTypes.Attribute               `tfsdk:"attributes"`
+	Blueprint              types.String                      `tfsdk:"blueprint"`
+	Capabilities           []tfTypes.EntityCapability        `tfsdk:"capabilities"`
+	Comment                types.String                      `tfsdk:"comment"`
+	CreatedAt              types.String                      `tfsdk:"created_at"`
+	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
+	Draft                  types.Bool                        `tfsdk:"draft"`
+	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
+	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
+	GroupSettings          []tfTypes.GroupSettings           `tfsdk:"group_settings"`
+	Icon                   types.String                      `tfsdk:"icon"`
+	ID                     types.String                      `tfsdk:"id"`
+	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
+	Name                   types.String                      `tfsdk:"name"`
+	Plural                 types.String                      `tfsdk:"plural"`
+	Published              types.Bool                        `tfsdk:"published"`
+	Slug                   types.String                      `tfsdk:"slug"`
+	Source                 *tfTypes.Source                   `tfsdk:"source"`
+	TitleTemplate          types.String                      `tfsdk:"title_template"`
+	UIConfig               *tfTypes.UIConfig                 `tfsdk:"ui_config"`
+	UpdatedAt              types.String                      `tfsdk:"updated_at"`
+	Version                types.Int64                       `tfsdk:"version"`
 }
 
 func (r *SchemaResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -23919,9 +23919,21 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			},
 			"comment": schema.StringAttribute{
 				Computed: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplaceIfConfigured(),
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
+				Optional:    true,
+				Description: `Requires replacement if changed. `,
 			},
 			"created_at": schema.StringAttribute{
 				Computed: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplaceIfConfigured(),
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
+				Optional:    true,
+				Description: `Requires replacement if changed. `,
 			},
 			"dialog_config": schema.MapAttribute{
 				Computed: true,
@@ -24179,8 +24191,13 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Description: `Requires replacement if changed. `,
 			},
 			"id": schema.StringAttribute{
-				Computed:    true,
-				Description: `Generated uuid for schema`,
+				Computed: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplaceIfConfigured(),
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
+				Optional:    true,
+				Description: `Generated uuid for schema. Requires replacement if changed. `,
 			},
 			"layout_settings": schema.SingleNestedAttribute{
 				Computed: true,
@@ -24262,14 +24279,32 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			},
 			"source": schema.SingleNestedAttribute{
 				Computed: true,
+				PlanModifiers: []planmodifier.Object{
+					objectplanmodifier.RequiresReplaceIfConfigured(),
+					speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
+				},
+				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"id": schema.StringAttribute{
 						Computed: true,
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplaceIfConfigured(),
+							speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+						},
+						Optional:    true,
+						Description: `Requires replacement if changed. `,
 					},
 					"type": schema.StringAttribute{
 						Computed: true,
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplaceIfConfigured(),
+							speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+						},
+						Optional:    true,
+						Description: `Requires replacement if changed. `,
 					},
 				},
+				Description: `Requires replacement if changed. `,
 			},
 			"title_template": schema.StringAttribute{
 				Computed: true,
@@ -25301,6 +25336,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			},
 			"updated_at": schema.StringAttribute{
 				Computed: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplaceIfConfigured(),
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
+				Optional:    true,
+				Description: `Requires replacement if changed. `,
 			},
 			"version": schema.Int64Attribute{
 				Computed: true,
@@ -25360,11 +25401,11 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 	} else {
 		draft = nil
 	}
-	entitySchema := data.ToSharedEntitySchema()
+	entitySchemaItem := data.ToSharedEntitySchemaItem()
 	request := operations.PutSchemaRequest{
-		Slug:         slug,
-		Draft:        draft,
-		EntitySchema: entitySchema,
+		Slug:             slug,
+		Draft:            draft,
+		EntitySchemaItem: entitySchemaItem,
 	}
 	res, err := r.client.Schemas.PutSchema(ctx, request)
 	if err != nil {
@@ -25382,11 +25423,11 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}
-	if res.EntitySchema == nil {
+	if res.EntitySchemaItem == nil {
 		resp.Diagnostics.AddError("unexpected response from API. No response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchema(res.EntitySchema)
+	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
 	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state

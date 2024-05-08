@@ -2,7 +2,7 @@
 
 package types
 
-type EntitySchemaCreateView struct {
+type CreateView struct {
 	EntityDefaultCreate *EntityDefaultCreate `tfsdk:"entity_default_create" tfPlanOnly:"true"`
 	EntityViewDisabled  *EntityViewDisabled  `tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
 	RedirectEntityView  *RedirectEntityView  `tfsdk:"redirect_entity_view" tfPlanOnly:"true"`

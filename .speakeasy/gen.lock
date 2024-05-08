@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: e9ca3a0a1edd9eb78d846e1d0d3addaa
+  docChecksum: 0d1fdbbc225f0882084cc751c9eb020e
   docVersion: 1.0.0
   speakeasyVersion: 1.278.0
   generationVersion: 2.322.4
-  releaseVersion: 0.0.2
-  configChecksum: e2c76699f277136b00275e6b49a5f875
+  releaseVersion: 0.0.3
+  configChecksum: 1aaeaa4f80b7baf9dae528bb11bd684d
 features:
   terraform:
     additionalProperties: 0.1.2
@@ -87,7 +87,6 @@ generatedFiles:
   - internal/sdk/models/shared/entityviewdisabled.go
   - internal/sdk/models/shared/entitydefaultcreate.go
   - internal/sdk/models/shared/entitydefaulttable.go
-  - internal/sdk/models/shared/entityschema.go
   - internal/sdk/models/shared/attributewithcompositeid.go
   - internal/sdk/models/shared/entitycapabilitywithcompositeid.go
   - internal/sdk/models/shared/security.go
@@ -186,27 +185,27 @@ generatedFiles:
   - internal/provider/types/ui_hooks.go
   - internal/provider/types/entity_capability.go
   - internal/provider/types/search_mappings.go
-  - internal/provider/types/entity_schema_info_tooltip_title.go
+  - internal/provider/types/info_tooltip_title.go
   - internal/provider/types/group_settings.go
-  - internal/provider/types/entity_schema_layout_settings.go
+  - internal/provider/types/layout_settings.go
   - internal/provider/types/source.go
   - internal/provider/types/entity_default_create.go
   - internal/provider/types/entity_view_disabled.go
   - internal/provider/types/redirect_entity_view.go
-  - internal/provider/types/entity_schema_create_view.go
+  - internal/provider/types/create_view.go
   - internal/provider/types/entity_default_edit.go
-  - internal/provider/types/entity_schema_edit_view.go
+  - internal/provider/types/edit_view.go
   - internal/provider/types/entity_action.go
   - internal/provider/types/summary_attribute.go
   - internal/provider/types/summary_attributes.go
-  - internal/provider/types/entity_schema_list_item.go
-  - internal/provider/types/entity_schema_sharing.go
+  - internal/provider/types/list_item.go
+  - internal/provider/types/sharing.go
   - internal/provider/types/bulk_actions.go
   - internal/provider/types/entity_default_table_options.go
   - internal/provider/types/navbar_actions.go
   - internal/provider/types/entity_default_table.go
-  - internal/provider/types/entity_schema_table_view.go
-  - internal/provider/types/entity_schema_ui_config.go
+  - internal/provider/types/table_view.go
+  - internal/provider/types/ui_config.go
   - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
   - internal/provider/types/attribute_with_composite_id_automation_attribute.go
   - internal/provider/types/attribute_with_composite_id_boolean_attribute.go
