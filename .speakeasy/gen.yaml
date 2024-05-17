@@ -12,9 +12,9 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 terraform:
-  version: 0.1.0
-  allowUnknownFieldsInWeakUnions: true
+  version: 0.2.0
   additionalDependencies: {}
-  author: speakeasy
+  allowUnknownFieldsInWeakUnions: true
+  author: epilot
   environmentVariables: []
   packageName: epilot-schema

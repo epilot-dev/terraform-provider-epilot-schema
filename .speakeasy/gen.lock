@@ -1,23 +1,25 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 0d1fdbbc225f0882084cc751c9eb020e
+  docChecksum: 8a77a49417bb737b194d98d2c57030ff
   docVersion: 1.0.0
-  speakeasyVersion: 1.283.1
-  generationVersion: 2.324.0
-  releaseVersion: 0.1.0
-  configChecksum: bbbe0eb1f45df88067aec7e4cc85fd2f
+  speakeasyVersion: 1.286.0
+  generationVersion: 2.326.3
+  releaseVersion: 0.2.0
+  configChecksum: 0254d0b2753430dc3ff011def5076fb1
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
+    additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
     core: 3.20.0
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
+    nullables: 0.0.0
     unions: 2.81.12
 generatedFiles:
   - internal/sdk/schemas.go
