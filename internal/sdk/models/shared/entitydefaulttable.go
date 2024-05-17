@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type ViewType string
@@ -18,7 +18,6 @@ const (
 func (e ViewType) ToPointer() *ViewType {
 	return &e
 }
-
 func (e *ViewType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -68,20 +67,20 @@ func CreateRowActionsEntityAction(entityAction EntityAction) RowActions {
 func (u *RowActions) UnmarshalJSON(data []byte) error {
 
 	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, false); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = RowActionsTypeEntityAction
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = RowActionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for RowActions", string(data))
 }
 
 func (u RowActions) MarshalJSON() ([]byte, error) {
@@ -93,7 +92,7 @@ func (u RowActions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityAction, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type RowActions: all fields are null")
 }
 
 type BulkActionsType string
@@ -131,20 +130,20 @@ func CreateBulkActionsEntityAction(entityAction EntityAction) BulkActions {
 func (u *BulkActions) UnmarshalJSON(data []byte) error {
 
 	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, false); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = BulkActionsTypeEntityAction
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkActionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for BulkActions", string(data))
 }
 
 func (u BulkActions) MarshalJSON() ([]byte, error) {
@@ -156,7 +155,7 @@ func (u BulkActions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityAction, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type BulkActions: all fields are null")
 }
 
 type Params struct {
@@ -214,7 +213,7 @@ func (e EntityDefaultTable) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityDefaultTable) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil

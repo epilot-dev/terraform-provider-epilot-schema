@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"time"
 )
 
@@ -73,7 +73,6 @@ const (
 func (e RelationAttributeType) ToPointer() *RelationAttributeType {
 	return &e
 }
-
 func (e *RelationAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -98,7 +97,6 @@ const (
 func (e RelationType) ToPointer() *RelationType {
 	return &e
 }
-
 func (e *RelationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -126,7 +124,6 @@ const (
 func (e RelationAffinityMode) ToPointer() *RelationAffinityMode {
 	return &e
 }
-
 func (e *RelationAffinityMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -152,7 +149,6 @@ const (
 func (e EditMode) ToPointer() *EditMode {
 	return &e
 }
-
 func (e *EditMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -185,7 +181,6 @@ const (
 func (e ActionType) ToPointer() *ActionType {
 	return &e
 }
-
 func (e *ActionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -217,8 +212,8 @@ type NewEntityItem struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL  `json:"_acl,omitempty"`
-	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
+	ACL                  *EntityACL `json:"_acl,omitempty"`
+	AdditionalProperties any        `additionalProperties:"true" json:"-"`
 }
 
 func (n NewEntityItem) MarshalJSON() ([]byte, error) {
@@ -295,7 +290,7 @@ func (o *NewEntityItem) GetACL() *EntityACL {
 	return o.ACL
 }
 
-func (o *NewEntityItem) GetAdditionalProperties() interface{} {
+func (o *NewEntityItem) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
@@ -376,7 +371,6 @@ const (
 func (e DrawerSize) ToPointer() *DrawerSize {
 	return &e
 }
-
 func (e *DrawerSize) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -430,20 +424,20 @@ func CreateSummaryFieldsSummaryField(summaryField SummaryField) SummaryFields {
 func (u *SummaryFields) UnmarshalJSON(data []byte) error {
 
 	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = SummaryFieldsTypeSummaryField
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SummaryFieldsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SummaryFields", string(data))
 }
 
 func (u SummaryFields) MarshalJSON() ([]byte, error) {
@@ -455,11 +449,12 @@ func (u SummaryFields) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.SummaryField, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type SummaryFields: all fields are null")
 }
 
 // RelationAttribute - Entity Relationship
 type RelationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -468,11 +463,11 @@ type RelationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -532,10 +527,17 @@ func (r RelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *RelationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *RelationAttribute) GetName() string {
@@ -601,7 +603,7 @@ func (o *RelationAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *RelationAttribute) GetDefaultValue() interface{} {
+func (o *RelationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

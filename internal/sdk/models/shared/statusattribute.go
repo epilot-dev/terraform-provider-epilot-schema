@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // StatusAttributeConstraints - A set of constraints applicable to the attribute.
@@ -72,7 +72,6 @@ const (
 func (e StatusAttributeType) ToPointer() *StatusAttributeType {
 	return &e
 }
-
 func (e *StatusAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -143,20 +142,20 @@ func CreateStatusAttributeOptionsOptions2(options2 Options2) StatusAttributeOpti
 func (u *StatusAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var options2 Options2 = Options2{}
-	if err := utils.UnmarshalJSON(data, &options2, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &options2, "", true, false); err == nil {
 		u.Options2 = &options2
 		u.Type = StatusAttributeOptionsTypeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeOptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for StatusAttributeOptions", string(data))
 }
 
 func (u StatusAttributeOptions) MarshalJSON() ([]byte, error) {
@@ -168,11 +167,12 @@ func (u StatusAttributeOptions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Options2, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type StatusAttributeOptions: all fields are null")
 }
 
 // StatusAttribute - Status select
 type StatusAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -181,11 +181,11 @@ type StatusAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -228,10 +228,17 @@ func (s StatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *StatusAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *StatusAttribute) GetName() string {
@@ -297,7 +304,7 @@ func (o *StatusAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *StatusAttribute) GetDefaultValue() interface{} {
+func (o *StatusAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

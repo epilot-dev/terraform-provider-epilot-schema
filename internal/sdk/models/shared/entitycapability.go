@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // RequiredPermission - Require a permission to display UI hook
@@ -49,7 +49,7 @@ type UIHooks struct {
 	Header *bool `json:"header,omitempty"`
 	// Require a permission to display UI hook
 	RequiredPermission   *RequiredPermission `json:"requiredPermission,omitempty"`
-	AdditionalProperties interface{}         `additionalProperties:"true" json:"-"`
+	AdditionalProperties any                 `additionalProperties:"true" json:"-"`
 }
 
 func (u UIHooks) MarshalJSON() ([]byte, error) {
@@ -147,7 +147,7 @@ func (o *UIHooks) GetRequiredPermission() *RequiredPermission {
 	return o.RequiredPermission
 }
 
-func (o *UIHooks) GetAdditionalProperties() interface{} {
+func (o *UIHooks) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}

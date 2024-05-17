@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // CurrencyAttributeConstraints - A set of constraints applicable to the attribute.
@@ -72,7 +72,6 @@ const (
 func (e CurrencyAttributeType) ToPointer() *CurrencyAttributeType {
 	return &e
 }
-
 func (e *CurrencyAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -147,13 +146,13 @@ func CreateCurrencyCurrency1(currency1 Currency1) Currency {
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
 	var currency1 Currency1 = Currency1{}
-	if err := utils.UnmarshalJSON(data, &currency1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
 		u.Currency1 = &currency1
 		u.Type = CurrencyTypeCurrency1
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Currency", string(data))
 }
 
 func (u Currency) MarshalJSON() ([]byte, error) {
@@ -161,11 +160,12 @@ func (u Currency) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Currency1, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type Currency: all fields are null")
 }
 
 // CurrencyAttribute - Currency input
 type CurrencyAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -174,11 +174,11 @@ type CurrencyAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -223,10 +223,17 @@ func (c CurrencyAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *CurrencyAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *CurrencyAttribute) GetName() string {
@@ -292,7 +299,7 @@ func (o *CurrencyAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *CurrencyAttribute) GetDefaultValue() interface{} {
+func (o *CurrencyAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
