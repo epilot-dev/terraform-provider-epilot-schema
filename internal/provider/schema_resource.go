@@ -5,6 +5,18 @@ package provider
 import (
 	"context"
 	"fmt"
+	speakeasy_boolplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/boolplanmodifier"
+	speakeasy_int64planmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/int64planmodifier"
+	speakeasy_listplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/listplanmodifier"
+	speakeasy_mapplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/mapplanmodifier"
+	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
+	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
+	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
+	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
+	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -23,18 +35,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	speakeasy_boolplanmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/boolplanmodifier"
-	speakeasy_int64planmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/int64planmodifier"
-	speakeasy_listplanmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/listplanmodifier"
-	speakeasy_mapplanmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/mapplanmodifier"
-	speakeasy_objectplanmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
-	speakeasy_stringplanmodifier "github.com/speakeasy/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
-	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/operations"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/validators"
-	speakeasy_listvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/listvalidators"
-	speakeasy_stringvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -213,6 +213,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -596,6 +605,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -977,6 +995,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1360,6 +1387,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -1741,6 +1777,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"identifiers": schema.ListAttribute{
 									Computed: true,
@@ -2146,6 +2191,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2614,6 +2668,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -2996,6 +3059,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3426,6 +3498,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -3819,6 +3900,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -4200,6 +4290,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4583,6 +4682,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -4964,6 +5072,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5373,6 +5490,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5833,6 +5959,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -6214,6 +6349,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6597,6 +6741,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -6978,6 +7131,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7369,6 +7531,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -8560,6 +8731,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									Optional:    true,
 									Description: `Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -9074,6 +9254,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -9495,6 +9684,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -9946,6 +10144,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -10345,6 +10552,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -10795,6 +11011,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -11197,6 +11422,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`` + "\n" +
 										`Requires replacement if changed. `,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									PlanModifiers: []planmodifier.Object{
@@ -11587,6 +11821,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										`` + "\n" +
 										`Requires replacement if changed. `,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+									},
+									Optional:    true,
+									Description: `Requires replacement if changed. `,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -12032,6 +12275,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -12413,6 +12665,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -12796,6 +13057,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -13178,6 +13448,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -13559,6 +13838,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"identifiers": schema.ListAttribute{
 												Computed: true,
@@ -13964,6 +14252,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -14432,6 +14729,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -14814,6 +15120,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -15244,6 +15559,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -15637,6 +15961,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -16018,6 +16351,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -16401,6 +16743,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -16782,6 +17133,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -17191,6 +17551,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -17651,6 +18020,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -18032,6 +18410,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -18415,6 +18802,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -18796,6 +19192,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -19187,6 +19592,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -20378,6 +20792,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 												Optional:    true,
 												Description: `Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -20892,6 +21315,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -21313,6 +21745,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -21764,6 +22205,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -22163,6 +22613,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -22613,6 +23072,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -23015,6 +23483,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`` + "\n" +
 													`Requires replacement if changed. `,
 											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
+											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
 												PlanModifiers: []planmodifier.Object{
@@ -23405,6 +23882,15 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 													`` + "\n" +
 													`Requires replacement if changed. `,
+											},
+											"id": schema.StringAttribute{
+												Computed: true,
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+												},
+												Optional:    true,
+												Description: `Requires replacement if changed. `,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -24081,10 +24567,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
 							},
 							Optional:    true,
-							Description: `Requires replacement if changed. ; Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
+							Description: `Requires replacement if changed. `,
 						},
 						"info_tooltip_title": schema.SingleNestedAttribute{
 							Computed: true,
@@ -24331,7 +24814,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						},
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
-							"entity_default_create": schema.SingleNestedAttribute{
+							"default": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24367,12 +24850,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("disabled"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
+							"disabled": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24398,12 +24881,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_create"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
+							"redirect": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24438,8 +24921,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_create"),
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("disabled"),
 									}...),
 								},
 							},
@@ -24457,7 +24940,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						},
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
-							"entity_default_edit": schema.SingleNestedAttribute{
+							"default": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24503,12 +24986,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("disabled"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
+							"disabled": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24534,12 +25017,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_edit"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
+							"redirect": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24574,8 +25057,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_edit"),
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("disabled"),
 									}...),
 								},
 							},
@@ -24835,7 +25318,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						},
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
-							"entity_default_edit": schema.SingleNestedAttribute{
+							"default": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24881,12 +25364,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("disabled"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
+							"disabled": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24912,12 +25395,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_edit"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
+							"redirect": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -24952,8 +25435,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_edit"),
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("disabled"),
 									}...),
 								},
 							},
@@ -24971,7 +25454,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						},
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
-							"entity_default_table": schema.SingleNestedAttribute{
+							"default": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -25249,12 +25732,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("disabled"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"entity_view_disabled": schema.SingleNestedAttribute{
+							"disabled": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -25280,12 +25763,12 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_table"),
-										path.MatchRelative().AtParent().AtName("redirect_entity_view"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("redirect"),
 									}...),
 								},
 							},
-							"redirect_entity_view": schema.SingleNestedAttribute{
+							"redirect": schema.SingleNestedAttribute{
 								Computed: true,
 								PlanModifiers: []planmodifier.Object{
 									objectplanmodifier.RequiresReplaceIfConfigured(),
@@ -25320,8 +25803,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Description: `Requires replacement if changed. `,
 								Validators: []validator.Object{
 									objectvalidator.ConflictsWith(path.Expressions{
-										path.MatchRelative().AtParent().AtName("entity_default_table"),
-										path.MatchRelative().AtParent().AtName("entity_view_disabled"),
+										path.MatchRelative().AtParent().AtName("default"),
+										path.MatchRelative().AtParent().AtName("disabled"),
 									}...),
 								},
 							},

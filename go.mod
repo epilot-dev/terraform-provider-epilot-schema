@@ -1,8 +1,8 @@
-module github.com/speakeasy/terraform-provider-epilot-schema
+module github.com/epilot/terraform-provider-epilot-schema
 
 go 1.21
 
-toolchain go1.21.9
+toolchain go1.22.2
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.0

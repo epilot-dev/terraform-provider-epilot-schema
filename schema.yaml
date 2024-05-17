@@ -339,21 +339,45 @@ components:
           type: object
           properties:
             table_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultTable"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultTable"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             create_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultCreate"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultCreate"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             edit_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultEdit"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             single_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultEdit"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
@@ -425,7 +449,6 @@ components:
                   $ref: "#/components/schemas/ClassificationId"
             required:
               - label
-              - id
           example:
             - id: Contact Details
               label: Contact Details
@@ -519,6 +542,39 @@ components:
         - $ref: "#/components/schemas/EntitySchema"
 
     Attribute:
+#      discriminator:
+#        propertyName: type
+#        mapping:
+#          string: "#/components/schemas/TextAttribute"
+#          link: "#/components/schemas/LinkAttribute"
+#          date: "#/components/schemas/DateAttribute"
+#          datetime: "#/components/schemas/DateAttribute"
+#          country: "#/components/schemas/CountryAttribute"
+#          boolean: "#/components/schemas/BooleanAttribute"
+#          select: "#/components/schemas/SelectAttribute"
+#          multiselect: "#/components/schemas/MultiSelectAttribute"
+#          status: "#/components/schemas/StatusAttribute"
+#          sequence: "#/components/schemas/SequenceAttribute"
+#          relation: "#/components/schemas/RelationAttribute"
+#          relation_user: "#/components/schemas/UserRelationAttribute"
+#          relation_address: "#/components/schemas/AddressRelationAttribute"
+#          relation_payment_method: "#/components/schemas/PaymentMethodRelationAttribute"
+#          currency: "#/components/schemas/CurrencyAttribute"
+##          Special case -- applied to multiple types
+##          repeatable: "#/components/schemas/RepeatableAttribute"
+#          tags: "#/components/schemas/TagsAttribute"
+#          number: "#/components/schemas/NumberAttribute"
+#          consent: "#/components/schemas/ConsentAttribute"
+#          internal: "#/components/schemas/InternalAttribute"
+#          ordered_list: "#/components/schemas/OrderedListAttribute"
+#          file: "#/components/schemas/FileAttribute"
+#          computed: "#/components/schemas/ComputedAttribute"
+#          partner_status: "#/components/schemas/PartnerStatusAttribute"
+#          invitation_email: "#/components/schemas/InvitationEmailAttribute"
+#          automation: "#/components/schemas/AutomationAttribute"
+#          internal_user: "#/components/schemas/InternalUserAttribute"
+#          purpose: "#/components/schemas/PurposeAttribute"
+#          partner_organisation: "#/components/schemas/PartnerOrganisationAttribute"
       anyOf:
         - $ref: "#/components/schemas/TextAttribute"
         - $ref: "#/components/schemas/LinkAttribute"
@@ -563,6 +619,8 @@ components:
     BaseAttribute:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         label:

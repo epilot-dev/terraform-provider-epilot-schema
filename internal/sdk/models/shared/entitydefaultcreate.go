@@ -16,7 +16,6 @@ const (
 func (e EntityDefaultCreateViewType) ToPointer() *EntityDefaultCreateViewType {
 	return &e
 }
-
 func (e *EntityDefaultCreateViewType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

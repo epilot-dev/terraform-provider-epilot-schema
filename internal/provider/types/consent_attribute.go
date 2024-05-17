@@ -15,6 +15,7 @@ type ConsentAttribute struct {
 	Hidden                   types.Bool                           `tfsdk:"hidden"`
 	HideLabel                types.Bool                           `tfsdk:"hide_label"`
 	Icon                     types.String                         `tfsdk:"icon"`
+	ID                       types.String                         `tfsdk:"id"`
 	Identifiers              []types.String                       `tfsdk:"identifiers"`
 	InfoHelpers              *AddressRelationAttributeInfoHelpers `tfsdk:"info_helpers"`
 	Label                    types.String                         `tfsdk:"label"`

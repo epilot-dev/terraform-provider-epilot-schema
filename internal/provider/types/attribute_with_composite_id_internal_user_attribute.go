@@ -16,6 +16,7 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	Hidden                   types.Bool                           `tfsdk:"hidden"`
 	HideLabel                types.Bool                           `tfsdk:"hide_label"`
 	Icon                     types.String                         `tfsdk:"icon"`
+	ID                       types.String                         `tfsdk:"id"`
 	InfoHelpers              *AddressRelationAttributeInfoHelpers `tfsdk:"info_helpers"`
 	Label                    types.String                         `tfsdk:"label"`
 	Layout                   types.String                         `tfsdk:"layout"`

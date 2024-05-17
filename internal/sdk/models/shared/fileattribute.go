@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // FileAttributeConstraints - A set of constraints applicable to the attribute.
@@ -72,7 +72,6 @@ const (
 func (e FileAttributeType) ToPointer() *FileAttributeType {
 	return &e
 }
-
 func (e *FileAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -99,7 +98,6 @@ const (
 func (e DefaultAccessControl) ToPointer() *DefaultAccessControl {
 	return &e
 }
-
 func (e *DefaultAccessControl) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -118,6 +116,7 @@ func (e *DefaultAccessControl) UnmarshalJSON(data []byte) error {
 
 // FileAttribute - File or Image Attachment
 type FileAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -126,11 +125,11 @@ type FileAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -182,10 +181,17 @@ func (f FileAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *FileAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *FileAttribute) GetName() string {
@@ -251,7 +257,7 @@ func (o *FileAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *FileAttribute) GetDefaultValue() interface{} {
+func (o *FileAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

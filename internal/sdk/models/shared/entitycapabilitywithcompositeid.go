@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // EntityCapabilityWithCompositeIDRequiredPermission - Require a permission to display UI hook
@@ -49,7 +49,7 @@ type EntityCapabilityWithCompositeIDUIHooks struct {
 	Header *bool `json:"header,omitempty"`
 	// Require a permission to display UI hook
 	RequiredPermission   *EntityCapabilityWithCompositeIDRequiredPermission `json:"requiredPermission,omitempty"`
-	AdditionalProperties interface{}                                        `additionalProperties:"true" json:"-"`
+	AdditionalProperties any                                                `additionalProperties:"true" json:"-"`
 }
 
 func (e EntityCapabilityWithCompositeIDUIHooks) MarshalJSON() ([]byte, error) {
@@ -147,7 +147,7 @@ func (o *EntityCapabilityWithCompositeIDUIHooks) GetRequiredPermission() *Entity
 	return o.RequiredPermission
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetAdditionalProperties() interface{} {
+func (o *EntityCapabilityWithCompositeIDUIHooks) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}

@@ -4,9 +4,9 @@ package provider
 
 import (
 	"encoding/json"
+	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"time"
 )
 
@@ -42,6 +42,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Hidden)
 				attributes1.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HideLabel)
 				attributes1.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem.AddressRelationAttribute.Icon)
+				attributes1.AddressRelationAttribute.ID = types.StringPointerValue(attributesItem.AddressRelationAttribute.ID)
 				if attributesItem.AddressRelationAttribute.InfoHelpers == nil {
 					attributes1.AddressRelationAttribute.InfoHelpers = nil
 				} else {
@@ -105,6 +106,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem.AutomationAttribute.Hidden)
 				attributes1.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AutomationAttribute.HideLabel)
 				attributes1.AutomationAttribute.Icon = types.StringPointerValue(attributesItem.AutomationAttribute.Icon)
+				attributes1.AutomationAttribute.ID = types.StringPointerValue(attributesItem.AutomationAttribute.ID)
 				if attributesItem.AutomationAttribute.InfoHelpers == nil {
 					attributes1.AutomationAttribute.InfoHelpers = nil
 				} else {
@@ -168,6 +170,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem.BooleanAttribute.Hidden)
 				attributes1.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem.BooleanAttribute.HideLabel)
 				attributes1.BooleanAttribute.Icon = types.StringPointerValue(attributesItem.BooleanAttribute.Icon)
+				attributes1.BooleanAttribute.ID = types.StringPointerValue(attributesItem.BooleanAttribute.ID)
 				if attributesItem.BooleanAttribute.InfoHelpers == nil {
 					attributes1.BooleanAttribute.InfoHelpers = nil
 				} else {
@@ -231,6 +234,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem.ComputedAttribute.Hidden)
 				attributes1.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem.ComputedAttribute.HideLabel)
 				attributes1.ComputedAttribute.Icon = types.StringPointerValue(attributesItem.ComputedAttribute.Icon)
+				attributes1.ComputedAttribute.ID = types.StringPointerValue(attributesItem.ComputedAttribute.ID)
 				if attributesItem.ComputedAttribute.InfoHelpers == nil {
 					attributes1.ComputedAttribute.InfoHelpers = nil
 				} else {
@@ -294,6 +298,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem.ConsentAttribute.Hidden)
 				attributes1.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem.ConsentAttribute.HideLabel)
 				attributes1.ConsentAttribute.Icon = types.StringPointerValue(attributesItem.ConsentAttribute.Icon)
+				attributes1.ConsentAttribute.ID = types.StringPointerValue(attributesItem.ConsentAttribute.ID)
 				attributes1.ConsentAttribute.Identifiers = []types.String{}
 				for _, v := range attributesItem.ConsentAttribute.Identifiers {
 					attributes1.ConsentAttribute.Identifiers = append(attributes1.ConsentAttribute.Identifiers, types.StringValue(v))
@@ -358,6 +363,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem.CountryAttribute.Hidden)
 				attributes1.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem.CountryAttribute.HideLabel)
 				attributes1.CountryAttribute.Icon = types.StringPointerValue(attributesItem.CountryAttribute.Icon)
+				attributes1.CountryAttribute.ID = types.StringPointerValue(attributesItem.CountryAttribute.ID)
 				if attributesItem.CountryAttribute.InfoHelpers == nil {
 					attributes1.CountryAttribute.InfoHelpers = nil
 				} else {
@@ -437,6 +443,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem.CurrencyAttribute.Hidden)
 				attributes1.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem.CurrencyAttribute.HideLabel)
 				attributes1.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem.CurrencyAttribute.Icon)
+				attributes1.CurrencyAttribute.ID = types.StringPointerValue(attributesItem.CurrencyAttribute.ID)
 				if attributesItem.CurrencyAttribute.InfoHelpers == nil {
 					attributes1.CurrencyAttribute.InfoHelpers = nil
 				} else {
@@ -496,6 +503,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.DateAttribute.Hidden = types.BoolPointerValue(attributesItem.DateAttribute.Hidden)
 				attributes1.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem.DateAttribute.HideLabel)
 				attributes1.DateAttribute.Icon = types.StringPointerValue(attributesItem.DateAttribute.Icon)
+				attributes1.DateAttribute.ID = types.StringPointerValue(attributesItem.DateAttribute.ID)
 				if attributesItem.DateAttribute.InfoHelpers == nil {
 					attributes1.DateAttribute.InfoHelpers = nil
 				} else {
@@ -570,6 +578,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.FileAttribute.Hidden = types.BoolPointerValue(attributesItem.FileAttribute.Hidden)
 				attributes1.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem.FileAttribute.HideLabel)
 				attributes1.FileAttribute.Icon = types.StringPointerValue(attributesItem.FileAttribute.Icon)
+				attributes1.FileAttribute.ID = types.StringPointerValue(attributesItem.FileAttribute.ID)
 				if attributesItem.FileAttribute.InfoHelpers == nil {
 					attributes1.FileAttribute.InfoHelpers = nil
 				} else {
@@ -630,6 +639,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalAttribute.Hidden)
 				attributes1.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalAttribute.HideLabel)
 				attributes1.InternalAttribute.Icon = types.StringPointerValue(attributesItem.InternalAttribute.Icon)
+				attributes1.InternalAttribute.ID = types.StringPointerValue(attributesItem.InternalAttribute.ID)
 				if attributesItem.InternalAttribute.InfoHelpers == nil {
 					attributes1.InternalAttribute.InfoHelpers = nil
 				} else {
@@ -693,6 +703,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalUserAttribute.Hidden)
 				attributes1.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalUserAttribute.HideLabel)
 				attributes1.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem.InternalUserAttribute.Icon)
+				attributes1.InternalUserAttribute.ID = types.StringPointerValue(attributesItem.InternalUserAttribute.ID)
 				if attributesItem.InternalUserAttribute.InfoHelpers == nil {
 					attributes1.InternalUserAttribute.InfoHelpers = nil
 				} else {
@@ -756,6 +767,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Hidden)
 				attributes1.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.HideLabel)
 				attributes1.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Icon)
+				attributes1.InvitationEmailAttribute.ID = types.StringPointerValue(attributesItem.InvitationEmailAttribute.ID)
 				if attributesItem.InvitationEmailAttribute.InfoHelpers == nil {
 					attributes1.InvitationEmailAttribute.InfoHelpers = nil
 				} else {
@@ -819,6 +831,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem.LinkAttribute.Hidden)
 				attributes1.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem.LinkAttribute.HideLabel)
 				attributes1.LinkAttribute.Icon = types.StringPointerValue(attributesItem.LinkAttribute.Icon)
+				attributes1.LinkAttribute.ID = types.StringPointerValue(attributesItem.LinkAttribute.ID)
 				if attributesItem.LinkAttribute.InfoHelpers == nil {
 					attributes1.LinkAttribute.InfoHelpers = nil
 				} else {
@@ -885,6 +898,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Hidden)
 				attributes1.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.MultiSelectAttribute.HideLabel)
 				attributes1.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem.MultiSelectAttribute.Icon)
+				attributes1.MultiSelectAttribute.ID = types.StringPointerValue(attributesItem.MultiSelectAttribute.ID)
 				if attributesItem.MultiSelectAttribute.InfoHelpers == nil {
 					attributes1.MultiSelectAttribute.InfoHelpers = nil
 				} else {
@@ -966,6 +980,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem.NumberAttribute.Hidden)
 				attributes1.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem.NumberAttribute.HideLabel)
 				attributes1.NumberAttribute.Icon = types.StringPointerValue(attributesItem.NumberAttribute.Icon)
+				attributes1.NumberAttribute.ID = types.StringPointerValue(attributesItem.NumberAttribute.ID)
 				if attributesItem.NumberAttribute.InfoHelpers == nil {
 					attributes1.NumberAttribute.InfoHelpers = nil
 				} else {
@@ -1029,6 +1044,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem.OrderedListAttribute.Hidden)
 				attributes1.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem.OrderedListAttribute.HideLabel)
 				attributes1.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem.OrderedListAttribute.Icon)
+				attributes1.OrderedListAttribute.ID = types.StringPointerValue(attributesItem.OrderedListAttribute.ID)
 				if attributesItem.OrderedListAttribute.InfoHelpers == nil {
 					attributes1.OrderedListAttribute.InfoHelpers = nil
 				} else {
@@ -1092,6 +1108,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Hidden)
 				attributes1.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.HideLabel)
 				attributes1.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Icon)
+				attributes1.PartnerOrganisationAttribute.ID = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.ID)
 				if attributesItem.PartnerOrganisationAttribute.InfoHelpers == nil {
 					attributes1.PartnerOrganisationAttribute.InfoHelpers = nil
 				} else {
@@ -1155,6 +1172,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Hidden)
 				attributes1.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.HideLabel)
 				attributes1.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Icon)
+				attributes1.PartnerStatusAttribute.ID = types.StringPointerValue(attributesItem.PartnerStatusAttribute.ID)
 				if attributesItem.PartnerStatusAttribute.InfoHelpers == nil {
 					attributes1.PartnerStatusAttribute.InfoHelpers = nil
 				} else {
@@ -1219,6 +1237,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Hidden)
 				attributes1.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HideLabel)
 				attributes1.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Icon)
+				attributes1.PaymentMethodRelationAttribute.ID = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.ID)
 				if attributesItem.PaymentMethodRelationAttribute.InfoHelpers == nil {
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers = nil
 				} else {
@@ -1475,6 +1494,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem.RelationAttribute.Hidden)
 				attributes1.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.RelationAttribute.HideLabel)
 				attributes1.RelationAttribute.Icon = types.StringPointerValue(attributesItem.RelationAttribute.Icon)
+				attributes1.RelationAttribute.ID = types.StringPointerValue(attributesItem.RelationAttribute.ID)
 				if attributesItem.RelationAttribute.InfoHelpers == nil {
 					attributes1.RelationAttribute.InfoHelpers = nil
 				} else {
@@ -1574,6 +1594,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem.RepeatableAttribute.Hidden)
 				attributes1.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem.RepeatableAttribute.HideLabel)
 				attributes1.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem.RepeatableAttribute.Icon)
+				attributes1.RepeatableAttribute.ID = types.StringPointerValue(attributesItem.RepeatableAttribute.ID)
 				if attributesItem.RepeatableAttribute.InfoHelpers == nil {
 					attributes1.RepeatableAttribute.InfoHelpers = nil
 				} else {
@@ -1644,6 +1665,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem.SelectAttribute.Hidden)
 				attributes1.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.SelectAttribute.HideLabel)
 				attributes1.SelectAttribute.Icon = types.StringPointerValue(attributesItem.SelectAttribute.Icon)
+				attributes1.SelectAttribute.ID = types.StringPointerValue(attributesItem.SelectAttribute.ID)
 				if attributesItem.SelectAttribute.InfoHelpers == nil {
 					attributes1.SelectAttribute.InfoHelpers = nil
 				} else {
@@ -1724,6 +1746,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem.SequenceAttribute.Hidden)
 				attributes1.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem.SequenceAttribute.HideLabel)
 				attributes1.SequenceAttribute.Icon = types.StringPointerValue(attributesItem.SequenceAttribute.Icon)
+				attributes1.SequenceAttribute.ID = types.StringPointerValue(attributesItem.SequenceAttribute.ID)
 				if attributesItem.SequenceAttribute.InfoHelpers == nil {
 					attributes1.SequenceAttribute.InfoHelpers = nil
 				} else {
@@ -1789,6 +1812,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem.StatusAttribute.Hidden)
 				attributes1.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.StatusAttribute.HideLabel)
 				attributes1.StatusAttribute.Icon = types.StringPointerValue(attributesItem.StatusAttribute.Icon)
+				attributes1.StatusAttribute.ID = types.StringPointerValue(attributesItem.StatusAttribute.ID)
 				if attributesItem.StatusAttribute.InfoHelpers == nil {
 					attributes1.StatusAttribute.InfoHelpers = nil
 				} else {
@@ -1869,6 +1893,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem.TagsAttribute.Hidden)
 				attributes1.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem.TagsAttribute.HideLabel)
 				attributes1.TagsAttribute.Icon = types.StringPointerValue(attributesItem.TagsAttribute.Icon)
+				attributes1.TagsAttribute.ID = types.StringPointerValue(attributesItem.TagsAttribute.ID)
 				if attributesItem.TagsAttribute.InfoHelpers == nil {
 					attributes1.TagsAttribute.InfoHelpers = nil
 				} else {
@@ -1940,6 +1965,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.TextAttribute.Hidden = types.BoolPointerValue(attributesItem.TextAttribute.Hidden)
 				attributes1.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem.TextAttribute.HideLabel)
 				attributes1.TextAttribute.Icon = types.StringPointerValue(attributesItem.TextAttribute.Icon)
+				attributes1.TextAttribute.ID = types.StringPointerValue(attributesItem.TextAttribute.ID)
 				if attributesItem.TextAttribute.InfoHelpers == nil {
 					attributes1.TextAttribute.InfoHelpers = nil
 				} else {
@@ -2004,6 +2030,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.UserRelationAttribute.Hidden)
 				attributes1.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.UserRelationAttribute.HideLabel)
 				attributes1.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem.UserRelationAttribute.Icon)
+				attributes1.UserRelationAttribute.ID = types.StringPointerValue(attributesItem.UserRelationAttribute.ID)
 				if attributesItem.UserRelationAttribute.InfoHelpers == nil {
 					attributes1.UserRelationAttribute.InfoHelpers = nil
 				} else {
@@ -2114,6 +2141,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Hidden)
 					attributes3.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HideLabel)
 					attributes3.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Icon)
+					attributes3.AddressRelationAttribute.ID = types.StringPointerValue(attributesItem1.AddressRelationAttribute.ID)
 					if attributesItem1.AddressRelationAttribute.InfoHelpers == nil {
 						attributes3.AddressRelationAttribute.InfoHelpers = nil
 					} else {
@@ -2177,6 +2205,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AutomationAttribute.Hidden)
 					attributes3.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AutomationAttribute.HideLabel)
 					attributes3.AutomationAttribute.Icon = types.StringPointerValue(attributesItem1.AutomationAttribute.Icon)
+					attributes3.AutomationAttribute.ID = types.StringPointerValue(attributesItem1.AutomationAttribute.ID)
 					if attributesItem1.AutomationAttribute.InfoHelpers == nil {
 						attributes3.AutomationAttribute.InfoHelpers = nil
 					} else {
@@ -2240,6 +2269,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem1.BooleanAttribute.Hidden)
 					attributes3.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem1.BooleanAttribute.HideLabel)
 					attributes3.BooleanAttribute.Icon = types.StringPointerValue(attributesItem1.BooleanAttribute.Icon)
+					attributes3.BooleanAttribute.ID = types.StringPointerValue(attributesItem1.BooleanAttribute.ID)
 					if attributesItem1.BooleanAttribute.InfoHelpers == nil {
 						attributes3.BooleanAttribute.InfoHelpers = nil
 					} else {
@@ -2303,6 +2333,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem1.ComputedAttribute.Hidden)
 					attributes3.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ComputedAttribute.HideLabel)
 					attributes3.ComputedAttribute.Icon = types.StringPointerValue(attributesItem1.ComputedAttribute.Icon)
+					attributes3.ComputedAttribute.ID = types.StringPointerValue(attributesItem1.ComputedAttribute.ID)
 					if attributesItem1.ComputedAttribute.InfoHelpers == nil {
 						attributes3.ComputedAttribute.InfoHelpers = nil
 					} else {
@@ -2366,6 +2397,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem1.ConsentAttribute.Hidden)
 					attributes3.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ConsentAttribute.HideLabel)
 					attributes3.ConsentAttribute.Icon = types.StringPointerValue(attributesItem1.ConsentAttribute.Icon)
+					attributes3.ConsentAttribute.ID = types.StringPointerValue(attributesItem1.ConsentAttribute.ID)
 					attributes3.ConsentAttribute.Identifiers = []types.String{}
 					for _, v := range attributesItem1.ConsentAttribute.Identifiers {
 						attributes3.ConsentAttribute.Identifiers = append(attributes3.ConsentAttribute.Identifiers, types.StringValue(v))
@@ -2430,6 +2462,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem1.CountryAttribute.Hidden)
 					attributes3.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CountryAttribute.HideLabel)
 					attributes3.CountryAttribute.Icon = types.StringPointerValue(attributesItem1.CountryAttribute.Icon)
+					attributes3.CountryAttribute.ID = types.StringPointerValue(attributesItem1.CountryAttribute.ID)
 					if attributesItem1.CountryAttribute.InfoHelpers == nil {
 						attributes3.CountryAttribute.InfoHelpers = nil
 					} else {
@@ -2509,6 +2542,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Hidden)
 					attributes3.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CurrencyAttribute.HideLabel)
 					attributes3.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem1.CurrencyAttribute.Icon)
+					attributes3.CurrencyAttribute.ID = types.StringPointerValue(attributesItem1.CurrencyAttribute.ID)
 					if attributesItem1.CurrencyAttribute.InfoHelpers == nil {
 						attributes3.CurrencyAttribute.InfoHelpers = nil
 					} else {
@@ -2568,6 +2602,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.DateAttribute.Hidden = types.BoolPointerValue(attributesItem1.DateAttribute.Hidden)
 					attributes3.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem1.DateAttribute.HideLabel)
 					attributes3.DateAttribute.Icon = types.StringPointerValue(attributesItem1.DateAttribute.Icon)
+					attributes3.DateAttribute.ID = types.StringPointerValue(attributesItem1.DateAttribute.ID)
 					if attributesItem1.DateAttribute.InfoHelpers == nil {
 						attributes3.DateAttribute.InfoHelpers = nil
 					} else {
@@ -2642,6 +2677,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.FileAttribute.Hidden = types.BoolPointerValue(attributesItem1.FileAttribute.Hidden)
 					attributes3.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem1.FileAttribute.HideLabel)
 					attributes3.FileAttribute.Icon = types.StringPointerValue(attributesItem1.FileAttribute.Icon)
+					attributes3.FileAttribute.ID = types.StringPointerValue(attributesItem1.FileAttribute.ID)
 					if attributesItem1.FileAttribute.InfoHelpers == nil {
 						attributes3.FileAttribute.InfoHelpers = nil
 					} else {
@@ -2702,6 +2738,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalAttribute.Hidden)
 					attributes3.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalAttribute.HideLabel)
 					attributes3.InternalAttribute.Icon = types.StringPointerValue(attributesItem1.InternalAttribute.Icon)
+					attributes3.InternalAttribute.ID = types.StringPointerValue(attributesItem1.InternalAttribute.ID)
 					if attributesItem1.InternalAttribute.InfoHelpers == nil {
 						attributes3.InternalAttribute.InfoHelpers = nil
 					} else {
@@ -2765,6 +2802,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Hidden)
 					attributes3.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalUserAttribute.HideLabel)
 					attributes3.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem1.InternalUserAttribute.Icon)
+					attributes3.InternalUserAttribute.ID = types.StringPointerValue(attributesItem1.InternalUserAttribute.ID)
 					if attributesItem1.InternalUserAttribute.InfoHelpers == nil {
 						attributes3.InternalUserAttribute.InfoHelpers = nil
 					} else {
@@ -2828,6 +2866,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Hidden)
 					attributes3.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.HideLabel)
 					attributes3.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Icon)
+					attributes3.InvitationEmailAttribute.ID = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.ID)
 					if attributesItem1.InvitationEmailAttribute.InfoHelpers == nil {
 						attributes3.InvitationEmailAttribute.InfoHelpers = nil
 					} else {
@@ -2891,6 +2930,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem1.LinkAttribute.Hidden)
 					attributes3.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem1.LinkAttribute.HideLabel)
 					attributes3.LinkAttribute.Icon = types.StringPointerValue(attributesItem1.LinkAttribute.Icon)
+					attributes3.LinkAttribute.ID = types.StringPointerValue(attributesItem1.LinkAttribute.ID)
 					if attributesItem1.LinkAttribute.InfoHelpers == nil {
 						attributes3.LinkAttribute.InfoHelpers = nil
 					} else {
@@ -2957,6 +2997,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Hidden)
 					attributes3.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.HideLabel)
 					attributes3.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Icon)
+					attributes3.MultiSelectAttribute.ID = types.StringPointerValue(attributesItem1.MultiSelectAttribute.ID)
 					if attributesItem1.MultiSelectAttribute.InfoHelpers == nil {
 						attributes3.MultiSelectAttribute.InfoHelpers = nil
 					} else {
@@ -3038,6 +3079,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem1.NumberAttribute.Hidden)
 					attributes3.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem1.NumberAttribute.HideLabel)
 					attributes3.NumberAttribute.Icon = types.StringPointerValue(attributesItem1.NumberAttribute.Icon)
+					attributes3.NumberAttribute.ID = types.StringPointerValue(attributesItem1.NumberAttribute.ID)
 					if attributesItem1.NumberAttribute.InfoHelpers == nil {
 						attributes3.NumberAttribute.InfoHelpers = nil
 					} else {
@@ -3101,6 +3143,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Hidden)
 					attributes3.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem1.OrderedListAttribute.HideLabel)
 					attributes3.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem1.OrderedListAttribute.Icon)
+					attributes3.OrderedListAttribute.ID = types.StringPointerValue(attributesItem1.OrderedListAttribute.ID)
 					if attributesItem1.OrderedListAttribute.InfoHelpers == nil {
 						attributes3.OrderedListAttribute.InfoHelpers = nil
 					} else {
@@ -3164,6 +3207,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Hidden)
 					attributes3.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.HideLabel)
 					attributes3.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Icon)
+					attributes3.PartnerOrganisationAttribute.ID = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.ID)
 					if attributesItem1.PartnerOrganisationAttribute.InfoHelpers == nil {
 						attributes3.PartnerOrganisationAttribute.InfoHelpers = nil
 					} else {
@@ -3227,6 +3271,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Hidden)
 					attributes3.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.HideLabel)
 					attributes3.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Icon)
+					attributes3.PartnerStatusAttribute.ID = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.ID)
 					if attributesItem1.PartnerStatusAttribute.InfoHelpers == nil {
 						attributes3.PartnerStatusAttribute.InfoHelpers = nil
 					} else {
@@ -3291,6 +3336,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Hidden)
 					attributes3.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HideLabel)
 					attributes3.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Icon)
+					attributes3.PaymentMethodRelationAttribute.ID = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.ID)
 					if attributesItem1.PaymentMethodRelationAttribute.InfoHelpers == nil {
 						attributes3.PaymentMethodRelationAttribute.InfoHelpers = nil
 					} else {
@@ -3547,6 +3593,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.RelationAttribute.Hidden)
 					attributes3.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RelationAttribute.HideLabel)
 					attributes3.RelationAttribute.Icon = types.StringPointerValue(attributesItem1.RelationAttribute.Icon)
+					attributes3.RelationAttribute.ID = types.StringPointerValue(attributesItem1.RelationAttribute.ID)
 					if attributesItem1.RelationAttribute.InfoHelpers == nil {
 						attributes3.RelationAttribute.InfoHelpers = nil
 					} else {
@@ -3646,6 +3693,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Hidden)
 					attributes3.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HideLabel)
 					attributes3.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem1.RepeatableAttribute.Icon)
+					attributes3.RepeatableAttribute.ID = types.StringPointerValue(attributesItem1.RepeatableAttribute.ID)
 					if attributesItem1.RepeatableAttribute.InfoHelpers == nil {
 						attributes3.RepeatableAttribute.InfoHelpers = nil
 					} else {
@@ -3716,6 +3764,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.SelectAttribute.Hidden)
 					attributes3.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SelectAttribute.HideLabel)
 					attributes3.SelectAttribute.Icon = types.StringPointerValue(attributesItem1.SelectAttribute.Icon)
+					attributes3.SelectAttribute.ID = types.StringPointerValue(attributesItem1.SelectAttribute.ID)
 					if attributesItem1.SelectAttribute.InfoHelpers == nil {
 						attributes3.SelectAttribute.InfoHelpers = nil
 					} else {
@@ -3796,6 +3845,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem1.SequenceAttribute.Hidden)
 					attributes3.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SequenceAttribute.HideLabel)
 					attributes3.SequenceAttribute.Icon = types.StringPointerValue(attributesItem1.SequenceAttribute.Icon)
+					attributes3.SequenceAttribute.ID = types.StringPointerValue(attributesItem1.SequenceAttribute.ID)
 					if attributesItem1.SequenceAttribute.InfoHelpers == nil {
 						attributes3.SequenceAttribute.InfoHelpers = nil
 					} else {
@@ -3861,6 +3911,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.StatusAttribute.Hidden)
 					attributes3.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.StatusAttribute.HideLabel)
 					attributes3.StatusAttribute.Icon = types.StringPointerValue(attributesItem1.StatusAttribute.Icon)
+					attributes3.StatusAttribute.ID = types.StringPointerValue(attributesItem1.StatusAttribute.ID)
 					if attributesItem1.StatusAttribute.InfoHelpers == nil {
 						attributes3.StatusAttribute.InfoHelpers = nil
 					} else {
@@ -3941,6 +3992,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem1.TagsAttribute.Hidden)
 					attributes3.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TagsAttribute.HideLabel)
 					attributes3.TagsAttribute.Icon = types.StringPointerValue(attributesItem1.TagsAttribute.Icon)
+					attributes3.TagsAttribute.ID = types.StringPointerValue(attributesItem1.TagsAttribute.ID)
 					if attributesItem1.TagsAttribute.InfoHelpers == nil {
 						attributes3.TagsAttribute.InfoHelpers = nil
 					} else {
@@ -4012,6 +4064,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.TextAttribute.Hidden = types.BoolPointerValue(attributesItem1.TextAttribute.Hidden)
 					attributes3.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TextAttribute.HideLabel)
 					attributes3.TextAttribute.Icon = types.StringPointerValue(attributesItem1.TextAttribute.Icon)
+					attributes3.TextAttribute.ID = types.StringPointerValue(attributesItem1.TextAttribute.ID)
 					if attributesItem1.TextAttribute.InfoHelpers == nil {
 						attributes3.TextAttribute.InfoHelpers = nil
 					} else {
@@ -4076,6 +4129,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Hidden)
 					attributes3.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.UserRelationAttribute.HideLabel)
 					attributes3.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem1.UserRelationAttribute.Icon)
+					attributes3.UserRelationAttribute.ID = types.StringPointerValue(attributesItem1.UserRelationAttribute.ID)
 					if attributesItem1.UserRelationAttribute.InfoHelpers == nil {
 						attributes3.UserRelationAttribute.InfoHelpers = nil
 					} else {
@@ -4265,7 +4319,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {
@@ -4337,34 +4391,34 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			} else {
 				r.UIConfig.CreateView = &tfTypes.CreateView{}
 				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
-					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
+					r.UIConfig.CreateView.Default = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
-						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String)
+						r.UIConfig.CreateView.Default.SearchParams = make(map[string]types.String)
 						for key5, value10 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key5] = types.StringValue(value10)
+							r.UIConfig.CreateView.Default.SearchParams[key5] = types.StringValue(value10)
 						}
 					}
 					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
+						r.UIConfig.CreateView.Default.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
 					} else {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.CreateView.EntityViewDisabled != nil {
-					r.UIConfig.CreateView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.CreateView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.CreateView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
+						r.UIConfig.CreateView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.CreateView.RedirectEntityView != nil {
-					r.UIConfig.CreateView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.CreateView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
+					r.UIConfig.CreateView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.CreateView.Redirect.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
 					if resp.UIConfig.CreateView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
+						r.UIConfig.CreateView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -4373,38 +4427,38 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			} else {
 				r.UIConfig.EditView = &tfTypes.EditView{}
 				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
-					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					r.UIConfig.EditView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.EditView.Default.SearchParams = make(map[string]types.String)
 						for key6, value11 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key6] = types.StringValue(value11)
+							r.UIConfig.EditView.Default.SearchParams[key6] = types.StringValue(value11)
 						}
 					}
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.EditView.Default.SummaryAttributes = []types.String{}
 					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+						r.UIConfig.EditView.Default.SummaryAttributes = append(r.UIConfig.EditView.Default.SummaryAttributes, types.StringValue(v))
 					}
 					if resp.UIConfig.EditView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
+						r.UIConfig.EditView.Default.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
 					} else {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringNull()
+						r.UIConfig.EditView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.EditView.EntityViewDisabled != nil {
-					r.UIConfig.EditView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.EditView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.EditView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
+						r.UIConfig.EditView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.EditView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.EditView.RedirectEntityView != nil {
-					r.UIConfig.EditView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.EditView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
+					r.UIConfig.EditView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.EditView.Redirect.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
 					if resp.UIConfig.EditView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
+						r.UIConfig.EditView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.EditView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -4477,38 +4531,38 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			} else {
 				r.UIConfig.SingleView = &tfTypes.EditView{}
 				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
-					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					r.UIConfig.SingleView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.SingleView.Default.SearchParams = make(map[string]types.String)
 						for key7, value13 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key7] = types.StringValue(value13)
+							r.UIConfig.SingleView.Default.SearchParams[key7] = types.StringValue(value13)
 						}
 					}
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.SingleView.Default.SummaryAttributes = []types.String{}
 					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+						r.UIConfig.SingleView.Default.SummaryAttributes = append(r.UIConfig.SingleView.Default.SummaryAttributes, types.StringValue(v))
 					}
 					if resp.UIConfig.SingleView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
+						r.UIConfig.SingleView.Default.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
 					} else {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.SingleView.EntityViewDisabled != nil {
-					r.UIConfig.SingleView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.SingleView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.SingleView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
+						r.UIConfig.SingleView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.SingleView.RedirectEntityView != nil {
-					r.UIConfig.SingleView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.SingleView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
+					r.UIConfig.SingleView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.SingleView.Redirect.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
 					if resp.UIConfig.SingleView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
+						r.UIConfig.SingleView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -4517,9 +4571,9 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			} else {
 				r.UIConfig.TableView = &tfTypes.TableView{}
 				if resp.UIConfig.TableView.EntityDefaultTable != nil {
-					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
-					if len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-						r.UIConfig.TableView.EntityDefaultTable.BulkActions = r.UIConfig.TableView.EntityDefaultTable.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
+					r.UIConfig.TableView.Default = &tfTypes.EntityDefaultTable{}
+					if len(r.UIConfig.TableView.Default.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
+						r.UIConfig.TableView.Default.BulkActions = r.UIConfig.TableView.Default.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
 					}
 					for bulkActionsCount, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
 						var bulkActions1 tfTypes.BulkActions
@@ -4533,16 +4587,16 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							bulkActions1.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
 							bulkActions1.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
 						}
-						if bulkActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions1)
+						if bulkActionsCount+1 > len(r.UIConfig.TableView.Default.BulkActions) {
+							r.UIConfig.TableView.Default.BulkActions = append(r.UIConfig.TableView.Default.BulkActions, bulkActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].Str = bulkActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
+							r.UIConfig.TableView.Default.BulkActions[bulkActionsCount].Str = bulkActions1.Str
+							r.UIConfig.TableView.Default.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
 						}
 					}
-					r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
-					if len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = r.UIConfig.TableView.EntityDefaultTable.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
+					r.UIConfig.TableView.Default.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
+					if len(r.UIConfig.TableView.Default.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
+						r.UIConfig.TableView.Default.NavbarActions = r.UIConfig.TableView.Default.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
 					}
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 						var navbarActions1 tfTypes.NavbarActions
@@ -4562,15 +4616,15 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							}
 						}
 						navbarActions1.Type = types.StringValue(navbarActionsItem.Type)
-						if navbarActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions1)
+						if navbarActionsCount+1 > len(r.UIConfig.TableView.Default.NavbarActions) {
+							r.UIConfig.TableView.Default.NavbarActions = append(r.UIConfig.TableView.Default.NavbarActions, navbarActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
+							r.UIConfig.TableView.Default.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
+							r.UIConfig.TableView.Default.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
 						}
 					}
-					if len(r.UIConfig.TableView.EntityDefaultTable.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
-						r.UIConfig.TableView.EntityDefaultTable.RowActions = r.UIConfig.TableView.EntityDefaultTable.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
+					if len(r.UIConfig.TableView.Default.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
+						r.UIConfig.TableView.Default.RowActions = r.UIConfig.TableView.Default.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
 					}
 					for rowActionsCount, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
 						var rowActions1 tfTypes.BulkActions
@@ -4584,34 +4638,34 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							rowActions1.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
 							rowActions1.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
 						}
-						if rowActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.RowActions) {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions1)
+						if rowActionsCount+1 > len(r.UIConfig.TableView.Default.RowActions) {
+							r.UIConfig.TableView.Default.RowActions = append(r.UIConfig.TableView.Default.RowActions, rowActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].Str = rowActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
+							r.UIConfig.TableView.Default.RowActions[rowActionsCount].Str = rowActions1.Str
+							r.UIConfig.TableView.Default.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
 						}
 					}
 					if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
+						r.UIConfig.TableView.Default.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
 					} else {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringNull()
+						r.UIConfig.TableView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.TableView.EntityViewDisabled != nil {
-					r.UIConfig.TableView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.TableView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.TableView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
+						r.UIConfig.TableView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.TableView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.TableView.RedirectEntityView != nil {
-					r.UIConfig.TableView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.TableView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
+					r.UIConfig.TableView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.TableView.Redirect.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
 					if resp.UIConfig.TableView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
+						r.UIConfig.TableView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.TableView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}

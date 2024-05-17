@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // SelectAttributeConstraints - A set of constraints applicable to the attribute.
@@ -73,7 +73,6 @@ const (
 func (e SelectAttributeType) ToPointer() *SelectAttributeType {
 	return &e
 }
-
 func (e *SelectAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -144,20 +143,20 @@ func CreateOptionsStr(str string) Options {
 func (u *Options) UnmarshalJSON(data []byte) error {
 
 	var one One = One{}
-	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
 		u.One = &one
 		u.Type = OptionsTypeOne
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = OptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Options", string(data))
 }
 
 func (u Options) MarshalJSON() ([]byte, error) {
@@ -169,11 +168,12 @@ func (u Options) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type Options: all fields are null")
 }
 
 // SelectAttribute - Dropdown select
 type SelectAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -182,11 +182,11 @@ type SelectAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -231,10 +231,17 @@ func (s SelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *SelectAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *SelectAttribute) GetName() string {
@@ -300,7 +307,7 @@ func (o *SelectAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *SelectAttribute) GetDefaultValue() interface{} {
+func (o *SelectAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
