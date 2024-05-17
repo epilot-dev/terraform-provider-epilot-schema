@@ -339,21 +339,45 @@ components:
           type: object
           properties:
             table_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultTable"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultTable"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             create_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultCreate"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultCreate"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             edit_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultEdit"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             single_view:
+              discriminator:
+                propertyName: view_type
+                mapping:
+                  default: "#/components/schemas/EntityDefaultEdit"
+                  redirect: "#/components/schemas/RedirectEntityView"
+                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
@@ -425,7 +449,6 @@ components:
                   $ref: "#/components/schemas/ClassificationId"
             required:
               - label
-              - id
           example:
             - id: Contact Details
               label: Contact Details
@@ -563,6 +586,8 @@ components:
     BaseAttribute:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         label:
