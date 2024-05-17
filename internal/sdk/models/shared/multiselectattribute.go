@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // MultiSelectAttributeConstraints - A set of constraints applicable to the attribute.
@@ -73,7 +73,6 @@ const (
 func (e MultiSelectAttributeType) ToPointer() *MultiSelectAttributeType {
 	return &e
 }
-
 func (e *MultiSelectAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -144,20 +143,20 @@ func CreateMultiSelectAttributeOptionsTwo(two Two) MultiSelectAttributeOptions {
 func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var two Two = Two{}
-	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
 		u.Two = &two
 		u.Type = MultiSelectAttributeOptionsTypeTwo
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeOptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MultiSelectAttributeOptions", string(data))
 }
 
 func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
@@ -169,11 +168,12 @@ func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Two, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type MultiSelectAttributeOptions: all fields are null")
 }
 
 // MultiSelectAttribute - Multi Choice Selection
 type MultiSelectAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -182,11 +182,11 @@ type MultiSelectAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -235,10 +235,17 @@ func (m MultiSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *MultiSelectAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *MultiSelectAttribute) GetName() string {
@@ -304,7 +311,7 @@ func (o *MultiSelectAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *MultiSelectAttribute) GetDefaultValue() interface{} {
+func (o *MultiSelectAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

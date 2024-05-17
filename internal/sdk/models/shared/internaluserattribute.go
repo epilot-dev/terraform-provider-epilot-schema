@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // InternalUserAttributeConstraints - A set of constraints applicable to the attribute.
@@ -71,7 +71,6 @@ const (
 func (e InternalUserAttributeType) ToPointer() *InternalUserAttributeType {
 	return &e
 }
-
 func (e *InternalUserAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -88,6 +87,7 @@ func (e *InternalUserAttributeType) UnmarshalJSON(data []byte) error {
 
 // InternalUserAttribute - Epilot internal user info
 type InternalUserAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -96,11 +96,11 @@ type InternalUserAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -142,10 +142,17 @@ func (i InternalUserAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InternalUserAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *InternalUserAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *InternalUserAttribute) GetName() string {
@@ -211,7 +218,7 @@ func (o *InternalUserAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *InternalUserAttribute) GetDefaultValue() interface{} {
+func (o *InternalUserAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

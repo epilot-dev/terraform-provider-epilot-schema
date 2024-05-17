@@ -1,8 +1,11 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     schema:
         inputs:
             - location: schema.yaml
+        registry:
+            location: registry.speakeasyapi.dev/epilot/epilot/schema
 targets:
     terraform:
         target: terraform

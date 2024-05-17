@@ -3,15 +3,15 @@
 package shared
 
 import (
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // EntityACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
 type EntityACL struct {
-	View                 []string    `json:"view,omitempty"`
-	Edit                 []string    `json:"edit,omitempty"`
-	Delete               []string    `json:"delete,omitempty"`
-	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
+	View                 []string `json:"view,omitempty"`
+	Edit                 []string `json:"edit,omitempty"`
+	Delete               []string `json:"delete,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (e EntityACL) MarshalJSON() ([]byte, error) {
@@ -46,7 +46,7 @@ func (o *EntityACL) GetDelete() []string {
 	return o.Delete
 }
 
-func (o *EntityACL) GetAdditionalProperties() interface{} {
+func (o *EntityACL) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}

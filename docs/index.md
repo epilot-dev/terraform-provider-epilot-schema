@@ -22,8 +22,8 @@ Use this API configure and access your business objects like Contacts, Opportuni
 terraform {
   required_providers {
     epilot-schema = {
-      source  = "speakeasy/epilot-schema"
-      version = "0.1.0"
+      source  = "epilot/epilot-schema"
+      version = "0.3.0"
     }
   }
 }

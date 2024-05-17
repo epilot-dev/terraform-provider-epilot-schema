@@ -3,8 +3,10 @@
 package shared
 
 import (
+	"encoding/json"
 	"errors"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type Source struct {
@@ -29,9 +31,9 @@ func (o *Source) GetType() *string {
 type TableViewType string
 
 const (
-	TableViewTypeEntityDefaultTable TableViewType = "EntityDefaultTable"
-	TableViewTypeRedirectEntityView TableViewType = "RedirectEntityView"
-	TableViewTypeEntityViewDisabled TableViewType = "EntityViewDisabled"
+	TableViewTypeDefault  TableViewType = "default"
+	TableViewTypeRedirect TableViewType = "redirect"
+	TableViewTypeDisabled TableViewType = "disabled"
 )
 
 type TableView struct {
@@ -42,57 +44,84 @@ type TableView struct {
 	Type TableViewType
 }
 
-func CreateTableViewEntityDefaultTable(entityDefaultTable EntityDefaultTable) TableView {
-	typ := TableViewTypeEntityDefaultTable
+func CreateTableViewDefault(defaultT EntityDefaultTable) TableView {
+	typ := TableViewTypeDefault
+
+	typStr := ViewType(typ)
+	defaultT.ViewType = &typStr
 
 	return TableView{
-		EntityDefaultTable: &entityDefaultTable,
+		EntityDefaultTable: &defaultT,
 		Type:               typ,
 	}
 }
 
-func CreateTableViewRedirectEntityView(redirectEntityView RedirectEntityView) TableView {
-	typ := TableViewTypeRedirectEntityView
+func CreateTableViewRedirect(redirect RedirectEntityView) TableView {
+	typ := TableViewTypeRedirect
+
+	typStr := RedirectEntityViewViewType(typ)
+	redirect.ViewType = &typStr
 
 	return TableView{
-		RedirectEntityView: &redirectEntityView,
+		RedirectEntityView: &redirect,
 		Type:               typ,
 	}
 }
 
-func CreateTableViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) TableView {
-	typ := TableViewTypeEntityViewDisabled
+func CreateTableViewDisabled(disabled EntityViewDisabled) TableView {
+	typ := TableViewTypeDisabled
+
+	typStr := EntityViewDisabledViewType(typ)
+	disabled.ViewType = &typStr
 
 	return TableView{
-		EntityViewDisabled: &entityViewDisabled,
+		EntityViewDisabled: &disabled,
 		Type:               typ,
 	}
 }
 
 func (u *TableView) UnmarshalJSON(data []byte) error {
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = TableViewTypeEntityViewDisabled
+	type discriminator struct {
+		ViewType string `json:"view_type"`
+	}
+
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.ViewType {
+	case "default":
+		entityDefaultTable := new(EntityDefaultTable)
+		if err := utils.UnmarshalJSON(data, &entityDefaultTable, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == default) type EntityDefaultTable within TableView: %w", string(data), err)
+		}
+
+		u.EntityDefaultTable = entityDefaultTable
+		u.Type = TableViewTypeDefault
+		return nil
+	case "redirect":
+		redirectEntityView := new(RedirectEntityView)
+		if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == redirect) type RedirectEntityView within TableView: %w", string(data), err)
+		}
+
+		u.RedirectEntityView = redirectEntityView
+		u.Type = TableViewTypeRedirect
+		return nil
+	case "disabled":
+		entityViewDisabled := new(EntityViewDisabled)
+		if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == disabled) type EntityViewDisabled within TableView: %w", string(data), err)
+		}
+
+		u.EntityViewDisabled = entityViewDisabled
+		u.Type = TableViewTypeDisabled
 		return nil
 	}
 
-	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
-		u.RedirectEntityView = &redirectEntityView
-		u.Type = TableViewTypeRedirectEntityView
-		return nil
-	}
-
-	var entityDefaultTable EntityDefaultTable = EntityDefaultTable{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultTable, "", true, true); err == nil {
-		u.EntityDefaultTable = &entityDefaultTable
-		u.Type = TableViewTypeEntityDefaultTable
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TableView", string(data))
 }
 
 func (u TableView) MarshalJSON() ([]byte, error) {
@@ -108,15 +137,15 @@ func (u TableView) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityViewDisabled, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type TableView: all fields are null")
 }
 
 type CreateViewType string
 
 const (
-	CreateViewTypeEntityDefaultCreate CreateViewType = "EntityDefaultCreate"
-	CreateViewTypeRedirectEntityView  CreateViewType = "RedirectEntityView"
-	CreateViewTypeEntityViewDisabled  CreateViewType = "EntityViewDisabled"
+	CreateViewTypeDefault  CreateViewType = "default"
+	CreateViewTypeRedirect CreateViewType = "redirect"
+	CreateViewTypeDisabled CreateViewType = "disabled"
 )
 
 type CreateView struct {
@@ -127,57 +156,84 @@ type CreateView struct {
 	Type CreateViewType
 }
 
-func CreateCreateViewEntityDefaultCreate(entityDefaultCreate EntityDefaultCreate) CreateView {
-	typ := CreateViewTypeEntityDefaultCreate
+func CreateCreateViewDefault(defaultT EntityDefaultCreate) CreateView {
+	typ := CreateViewTypeDefault
+
+	typStr := EntityDefaultCreateViewType(typ)
+	defaultT.ViewType = &typStr
 
 	return CreateView{
-		EntityDefaultCreate: &entityDefaultCreate,
+		EntityDefaultCreate: &defaultT,
 		Type:                typ,
 	}
 }
 
-func CreateCreateViewRedirectEntityView(redirectEntityView RedirectEntityView) CreateView {
-	typ := CreateViewTypeRedirectEntityView
+func CreateCreateViewRedirect(redirect RedirectEntityView) CreateView {
+	typ := CreateViewTypeRedirect
+
+	typStr := RedirectEntityViewViewType(typ)
+	redirect.ViewType = &typStr
 
 	return CreateView{
-		RedirectEntityView: &redirectEntityView,
+		RedirectEntityView: &redirect,
 		Type:               typ,
 	}
 }
 
-func CreateCreateViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) CreateView {
-	typ := CreateViewTypeEntityViewDisabled
+func CreateCreateViewDisabled(disabled EntityViewDisabled) CreateView {
+	typ := CreateViewTypeDisabled
+
+	typStr := EntityViewDisabledViewType(typ)
+	disabled.ViewType = &typStr
 
 	return CreateView{
-		EntityViewDisabled: &entityViewDisabled,
+		EntityViewDisabled: &disabled,
 		Type:               typ,
 	}
 }
 
 func (u *CreateView) UnmarshalJSON(data []byte) error {
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = CreateViewTypeEntityViewDisabled
+	type discriminator struct {
+		ViewType string `json:"view_type"`
+	}
+
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.ViewType {
+	case "default":
+		entityDefaultCreate := new(EntityDefaultCreate)
+		if err := utils.UnmarshalJSON(data, &entityDefaultCreate, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == default) type EntityDefaultCreate within CreateView: %w", string(data), err)
+		}
+
+		u.EntityDefaultCreate = entityDefaultCreate
+		u.Type = CreateViewTypeDefault
+		return nil
+	case "redirect":
+		redirectEntityView := new(RedirectEntityView)
+		if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == redirect) type RedirectEntityView within CreateView: %w", string(data), err)
+		}
+
+		u.RedirectEntityView = redirectEntityView
+		u.Type = CreateViewTypeRedirect
+		return nil
+	case "disabled":
+		entityViewDisabled := new(EntityViewDisabled)
+		if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == disabled) type EntityViewDisabled within CreateView: %w", string(data), err)
+		}
+
+		u.EntityViewDisabled = entityViewDisabled
+		u.Type = CreateViewTypeDisabled
 		return nil
 	}
 
-	var entityDefaultCreate EntityDefaultCreate = EntityDefaultCreate{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultCreate, "", true, true); err == nil {
-		u.EntityDefaultCreate = &entityDefaultCreate
-		u.Type = CreateViewTypeEntityDefaultCreate
-		return nil
-	}
-
-	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
-		u.RedirectEntityView = &redirectEntityView
-		u.Type = CreateViewTypeRedirectEntityView
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreateView", string(data))
 }
 
 func (u CreateView) MarshalJSON() ([]byte, error) {
@@ -193,15 +249,15 @@ func (u CreateView) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityViewDisabled, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type CreateView: all fields are null")
 }
 
 type EditViewType string
 
 const (
-	EditViewTypeEntityDefaultEdit  EditViewType = "EntityDefaultEdit"
-	EditViewTypeRedirectEntityView EditViewType = "RedirectEntityView"
-	EditViewTypeEntityViewDisabled EditViewType = "EntityViewDisabled"
+	EditViewTypeDefault  EditViewType = "default"
+	EditViewTypeRedirect EditViewType = "redirect"
+	EditViewTypeDisabled EditViewType = "disabled"
 )
 
 type EditView struct {
@@ -212,57 +268,84 @@ type EditView struct {
 	Type EditViewType
 }
 
-func CreateEditViewEntityDefaultEdit(entityDefaultEdit EntityDefaultEdit) EditView {
-	typ := EditViewTypeEntityDefaultEdit
+func CreateEditViewDefault(defaultT EntityDefaultEdit) EditView {
+	typ := EditViewTypeDefault
+
+	typStr := EntityDefaultEditViewType(typ)
+	defaultT.ViewType = &typStr
 
 	return EditView{
-		EntityDefaultEdit: &entityDefaultEdit,
+		EntityDefaultEdit: &defaultT,
 		Type:              typ,
 	}
 }
 
-func CreateEditViewRedirectEntityView(redirectEntityView RedirectEntityView) EditView {
-	typ := EditViewTypeRedirectEntityView
+func CreateEditViewRedirect(redirect RedirectEntityView) EditView {
+	typ := EditViewTypeRedirect
+
+	typStr := RedirectEntityViewViewType(typ)
+	redirect.ViewType = &typStr
 
 	return EditView{
-		RedirectEntityView: &redirectEntityView,
+		RedirectEntityView: &redirect,
 		Type:               typ,
 	}
 }
 
-func CreateEditViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) EditView {
-	typ := EditViewTypeEntityViewDisabled
+func CreateEditViewDisabled(disabled EntityViewDisabled) EditView {
+	typ := EditViewTypeDisabled
+
+	typStr := EntityViewDisabledViewType(typ)
+	disabled.ViewType = &typStr
 
 	return EditView{
-		EntityViewDisabled: &entityViewDisabled,
+		EntityViewDisabled: &disabled,
 		Type:               typ,
 	}
 }
 
 func (u *EditView) UnmarshalJSON(data []byte) error {
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = EditViewTypeEntityViewDisabled
+	type discriminator struct {
+		ViewType string `json:"view_type"`
+	}
+
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.ViewType {
+	case "default":
+		entityDefaultEdit := new(EntityDefaultEdit)
+		if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == default) type EntityDefaultEdit within EditView: %w", string(data), err)
+		}
+
+		u.EntityDefaultEdit = entityDefaultEdit
+		u.Type = EditViewTypeDefault
+		return nil
+	case "redirect":
+		redirectEntityView := new(RedirectEntityView)
+		if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == redirect) type RedirectEntityView within EditView: %w", string(data), err)
+		}
+
+		u.RedirectEntityView = redirectEntityView
+		u.Type = EditViewTypeRedirect
+		return nil
+	case "disabled":
+		entityViewDisabled := new(EntityViewDisabled)
+		if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == disabled) type EntityViewDisabled within EditView: %w", string(data), err)
+		}
+
+		u.EntityViewDisabled = entityViewDisabled
+		u.Type = EditViewTypeDisabled
 		return nil
 	}
 
-	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
-		u.RedirectEntityView = &redirectEntityView
-		u.Type = EditViewTypeRedirectEntityView
-		return nil
-	}
-
-	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, true); err == nil {
-		u.EntityDefaultEdit = &entityDefaultEdit
-		u.Type = EditViewTypeEntityDefaultEdit
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for EditView", string(data))
 }
 
 func (u EditView) MarshalJSON() ([]byte, error) {
@@ -278,15 +361,15 @@ func (u EditView) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityViewDisabled, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type EditView: all fields are null")
 }
 
 type SingleViewType string
 
 const (
-	SingleViewTypeEntityDefaultEdit  SingleViewType = "EntityDefaultEdit"
-	SingleViewTypeRedirectEntityView SingleViewType = "RedirectEntityView"
-	SingleViewTypeEntityViewDisabled SingleViewType = "EntityViewDisabled"
+	SingleViewTypeDefault  SingleViewType = "default"
+	SingleViewTypeRedirect SingleViewType = "redirect"
+	SingleViewTypeDisabled SingleViewType = "disabled"
 )
 
 type SingleView struct {
@@ -297,57 +380,84 @@ type SingleView struct {
 	Type SingleViewType
 }
 
-func CreateSingleViewEntityDefaultEdit(entityDefaultEdit EntityDefaultEdit) SingleView {
-	typ := SingleViewTypeEntityDefaultEdit
+func CreateSingleViewDefault(defaultT EntityDefaultEdit) SingleView {
+	typ := SingleViewTypeDefault
+
+	typStr := EntityDefaultEditViewType(typ)
+	defaultT.ViewType = &typStr
 
 	return SingleView{
-		EntityDefaultEdit: &entityDefaultEdit,
+		EntityDefaultEdit: &defaultT,
 		Type:              typ,
 	}
 }
 
-func CreateSingleViewRedirectEntityView(redirectEntityView RedirectEntityView) SingleView {
-	typ := SingleViewTypeRedirectEntityView
+func CreateSingleViewRedirect(redirect RedirectEntityView) SingleView {
+	typ := SingleViewTypeRedirect
+
+	typStr := RedirectEntityViewViewType(typ)
+	redirect.ViewType = &typStr
 
 	return SingleView{
-		RedirectEntityView: &redirectEntityView,
+		RedirectEntityView: &redirect,
 		Type:               typ,
 	}
 }
 
-func CreateSingleViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) SingleView {
-	typ := SingleViewTypeEntityViewDisabled
+func CreateSingleViewDisabled(disabled EntityViewDisabled) SingleView {
+	typ := SingleViewTypeDisabled
+
+	typStr := EntityViewDisabledViewType(typ)
+	disabled.ViewType = &typStr
 
 	return SingleView{
-		EntityViewDisabled: &entityViewDisabled,
+		EntityViewDisabled: &disabled,
 		Type:               typ,
 	}
 }
 
 func (u *SingleView) UnmarshalJSON(data []byte) error {
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, true); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = SingleViewTypeEntityViewDisabled
+	type discriminator struct {
+		ViewType string `json:"view_type"`
+	}
+
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.ViewType {
+	case "default":
+		entityDefaultEdit := new(EntityDefaultEdit)
+		if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == default) type EntityDefaultEdit within SingleView: %w", string(data), err)
+		}
+
+		u.EntityDefaultEdit = entityDefaultEdit
+		u.Type = SingleViewTypeDefault
+		return nil
+	case "redirect":
+		redirectEntityView := new(RedirectEntityView)
+		if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == redirect) type RedirectEntityView within SingleView: %w", string(data), err)
+		}
+
+		u.RedirectEntityView = redirectEntityView
+		u.Type = SingleViewTypeRedirect
+		return nil
+	case "disabled":
+		entityViewDisabled := new(EntityViewDisabled)
+		if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (ViewType == disabled) type EntityViewDisabled within SingleView: %w", string(data), err)
+		}
+
+		u.EntityViewDisabled = entityViewDisabled
+		u.Type = SingleViewTypeDisabled
 		return nil
 	}
 
-	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, true); err == nil {
-		u.RedirectEntityView = &redirectEntityView
-		u.Type = SingleViewTypeRedirectEntityView
-		return nil
-	}
-
-	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, true); err == nil {
-		u.EntityDefaultEdit = &entityDefaultEdit
-		u.Type = SingleViewTypeEntityDefaultEdit
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SingleView", string(data))
 }
 
 func (u SingleView) MarshalJSON() ([]byte, error) {
@@ -363,7 +473,7 @@ func (u SingleView) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.EntityViewDisabled, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type SingleView: all fields are null")
 }
 
 type SummaryAttributesType string
@@ -401,20 +511,20 @@ func CreateSummaryAttributesStr(str string) SummaryAttributes {
 func (u *SummaryAttributes) UnmarshalJSON(data []byte) error {
 
 	var summaryAttribute SummaryAttribute = SummaryAttribute{}
-	if err := utils.UnmarshalJSON(data, &summaryAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryAttribute, "", true, false); err == nil {
 		u.SummaryAttribute = &summaryAttribute
 		u.Type = SummaryAttributesTypeSummaryAttribute
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SummaryAttributesTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SummaryAttributes", string(data))
 }
 
 func (u SummaryAttributes) MarshalJSON() ([]byte, error) {
@@ -426,7 +536,7 @@ func (u SummaryAttributes) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type SummaryAttributes: all fields are null")
 }
 
 type ListItem struct {
@@ -476,11 +586,53 @@ func (o *UIConfig) GetTableView() *TableView {
 	return o.TableView
 }
 
+func (o *UIConfig) GetTableViewDefault() *EntityDefaultTable {
+	if v := o.GetTableView(); v != nil {
+		return v.EntityDefaultTable
+	}
+	return nil
+}
+
+func (o *UIConfig) GetTableViewRedirect() *RedirectEntityView {
+	if v := o.GetTableView(); v != nil {
+		return v.RedirectEntityView
+	}
+	return nil
+}
+
+func (o *UIConfig) GetTableViewDisabled() *EntityViewDisabled {
+	if v := o.GetTableView(); v != nil {
+		return v.EntityViewDisabled
+	}
+	return nil
+}
+
 func (o *UIConfig) GetCreateView() *CreateView {
 	if o == nil {
 		return nil
 	}
 	return o.CreateView
+}
+
+func (o *UIConfig) GetCreateViewDefault() *EntityDefaultCreate {
+	if v := o.GetCreateView(); v != nil {
+		return v.EntityDefaultCreate
+	}
+	return nil
+}
+
+func (o *UIConfig) GetCreateViewRedirect() *RedirectEntityView {
+	if v := o.GetCreateView(); v != nil {
+		return v.RedirectEntityView
+	}
+	return nil
+}
+
+func (o *UIConfig) GetCreateViewDisabled() *EntityViewDisabled {
+	if v := o.GetCreateView(); v != nil {
+		return v.EntityViewDisabled
+	}
+	return nil
 }
 
 func (o *UIConfig) GetEditView() *EditView {
@@ -490,11 +642,53 @@ func (o *UIConfig) GetEditView() *EditView {
 	return o.EditView
 }
 
+func (o *UIConfig) GetEditViewDefault() *EntityDefaultEdit {
+	if v := o.GetEditView(); v != nil {
+		return v.EntityDefaultEdit
+	}
+	return nil
+}
+
+func (o *UIConfig) GetEditViewRedirect() *RedirectEntityView {
+	if v := o.GetEditView(); v != nil {
+		return v.RedirectEntityView
+	}
+	return nil
+}
+
+func (o *UIConfig) GetEditViewDisabled() *EntityViewDisabled {
+	if v := o.GetEditView(); v != nil {
+		return v.EntityViewDisabled
+	}
+	return nil
+}
+
 func (o *UIConfig) GetSingleView() *SingleView {
 	if o == nil {
 		return nil
 	}
 	return o.SingleView
+}
+
+func (o *UIConfig) GetSingleViewDefault() *EntityDefaultEdit {
+	if v := o.GetSingleView(); v != nil {
+		return v.EntityDefaultEdit
+	}
+	return nil
+}
+
+func (o *UIConfig) GetSingleViewRedirect() *RedirectEntityView {
+	if v := o.GetSingleView(); v != nil {
+		return v.RedirectEntityView
+	}
+	return nil
+}
+
+func (o *UIConfig) GetSingleViewDisabled() *EntityViewDisabled {
+	if v := o.GetSingleView(); v != nil {
+		return v.EntityViewDisabled
+	}
+	return nil
 }
 
 func (o *UIConfig) GetListItem() *ListItem {
@@ -532,7 +726,7 @@ func (o *InfoTooltipTitle) GetDefault() *string {
 
 type GroupSettings struct {
 	Label           string  `json:"label"`
-	ID              string  `json:"id"`
+	ID              *string `json:"id,omitempty"`
 	Expanded        *bool   `json:"expanded,omitempty"`
 	RenderCondition *string `json:"render_condition,omitempty"`
 	// Render order of the group
@@ -563,9 +757,9 @@ func (o *GroupSettings) GetLabel() string {
 	return o.Label
 }
 
-func (o *GroupSettings) GetID() string {
+func (o *GroupSettings) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -626,8 +820,8 @@ type LayoutSettings struct {
 	// Defines the grid gap for the mounting node of the attribute.
 	GridGap *string `json:"grid_gap,omitempty"`
 	// Defines the grid column template for the mounting node of the attribute.
-	GridTemplateColumns  *string     `json:"grid_template_columns,omitempty"`
-	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
+	GridTemplateColumns  *string `json:"grid_template_columns,omitempty"`
+	AdditionalProperties any     `additionalProperties:"true" json:"-"`
 }
 
 func (l LayoutSettings) MarshalJSON() ([]byte, error) {
@@ -655,7 +849,7 @@ func (o *LayoutSettings) GetGridTemplateColumns() *string {
 	return o.GridTemplateColumns
 }
 
-func (o *LayoutSettings) GetAdditionalProperties() interface{} {
+func (o *LayoutSettings) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
@@ -695,8 +889,8 @@ type EntitySchemaItem struct {
 	// - Managed Properties: are interpreted and transformed into layout styles
 	// - Un-managed Properties: are appended as styles into the attribute mounting node
 	//
-	LayoutSettings *LayoutSettings        `json:"layout_settings,omitempty"`
-	DialogConfig   map[string]interface{} `json:"dialog_config,omitempty"`
+	LayoutSettings *LayoutSettings `json:"layout_settings,omitempty"`
+	DialogConfig   map[string]any  `json:"dialog_config,omitempty"`
 	// An ordered list of attributes the entity contains
 	Attributes []Attribute `json:"attributes"`
 	// Advanced: explicit Elasticsearch index mapping definitions for entity data
@@ -844,7 +1038,7 @@ func (o *EntitySchemaItem) GetLayoutSettings() *LayoutSettings {
 	return o.LayoutSettings
 }
 
-func (o *EntitySchemaItem) GetDialogConfig() map[string]interface{} {
+func (o *EntitySchemaItem) GetDialogConfig() map[string]any {
 	if o == nil {
 		return nil
 	}

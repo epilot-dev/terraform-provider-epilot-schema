@@ -4,7 +4,8 @@ package shared
 
 import (
 	"errors"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type AttributeType string
@@ -328,202 +329,202 @@ func CreateAttributePartnerOrganisationAttribute(partnerOrganisationAttribute Pa
 func (u *Attribute) UnmarshalJSON(data []byte) error {
 
 	var internalAttribute InternalAttribute = InternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
 		u.InternalAttribute = &internalAttribute
 		u.Type = AttributeTypeInternalAttribute
 		return nil
 	}
 
 	var linkAttribute LinkAttribute = LinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
 		u.LinkAttribute = &linkAttribute
 		u.Type = AttributeTypeLinkAttribute
 		return nil
 	}
 
 	var dateAttribute DateAttribute = DateAttribute{}
-	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, false); err == nil {
 		u.DateAttribute = &dateAttribute
 		u.Type = AttributeTypeDateAttribute
 		return nil
 	}
 
 	var countryAttribute CountryAttribute = CountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, false); err == nil {
 		u.CountryAttribute = &countryAttribute
 		u.Type = AttributeTypeCountryAttribute
 		return nil
 	}
 
 	var booleanAttribute BooleanAttribute = BooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &booleanAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &booleanAttribute, "", true, false); err == nil {
 		u.BooleanAttribute = &booleanAttribute
 		u.Type = AttributeTypeBooleanAttribute
 		return nil
 	}
 
 	var partnerOrganisationAttribute PartnerOrganisationAttribute = PartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &partnerOrganisationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &partnerOrganisationAttribute, "", true, false); err == nil {
 		u.PartnerOrganisationAttribute = &partnerOrganisationAttribute
 		u.Type = AttributeTypePartnerOrganisationAttribute
 		return nil
 	}
 
 	var internalUserAttribute InternalUserAttribute = InternalUserAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalUserAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &internalUserAttribute, "", true, false); err == nil {
 		u.InternalUserAttribute = &internalUserAttribute
 		u.Type = AttributeTypeInternalUserAttribute
 		return nil
 	}
 
 	var automationAttribute AutomationAttribute = AutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &automationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &automationAttribute, "", true, false); err == nil {
 		u.AutomationAttribute = &automationAttribute
 		u.Type = AttributeTypeAutomationAttribute
 		return nil
 	}
 
 	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
 		u.InvitationEmailAttribute = &invitationEmailAttribute
 		u.Type = AttributeTypeInvitationEmailAttribute
 		return nil
 	}
 
 	var partnerStatusAttribute PartnerStatusAttribute = PartnerStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, false); err == nil {
 		u.PartnerStatusAttribute = &partnerStatusAttribute
 		u.Type = AttributeTypePartnerStatusAttribute
 		return nil
 	}
 
 	var computedAttribute ComputedAttribute = ComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, false); err == nil {
 		u.ComputedAttribute = &computedAttribute
 		u.Type = AttributeTypeComputedAttribute
 		return nil
 	}
 
 	var orderedListAttribute OrderedListAttribute = OrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &orderedListAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &orderedListAttribute, "", true, false); err == nil {
 		u.OrderedListAttribute = &orderedListAttribute
 		u.Type = AttributeTypeOrderedListAttribute
 		return nil
 	}
 
 	var statusAttribute StatusAttribute = StatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
 		u.StatusAttribute = &statusAttribute
 		u.Type = AttributeTypeStatusAttribute
 		return nil
 	}
 
 	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
 		u.AddressRelationAttribute = &addressRelationAttribute
 		u.Type = AttributeTypeAddressRelationAttribute
 		return nil
 	}
 
 	var textAttribute TextAttribute = TextAttribute{}
-	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
 		u.TextAttribute = &textAttribute
 		u.Type = AttributeTypeTextAttribute
 		return nil
 	}
 
 	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
 		u.UserRelationAttribute = &userRelationAttribute
 		u.Type = AttributeTypeUserRelationAttribute
 		return nil
 	}
 
 	var numberAttribute NumberAttribute = NumberAttribute{}
-	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, false); err == nil {
 		u.NumberAttribute = &numberAttribute
 		u.Type = AttributeTypeNumberAttribute
 		return nil
 	}
 
 	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, false); err == nil {
 		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
 		u.Type = AttributeTypePaymentMethodRelationAttribute
 		return nil
 	}
 
 	var consentAttribute ConsentAttribute = ConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, false); err == nil {
 		u.ConsentAttribute = &consentAttribute
 		u.Type = AttributeTypeConsentAttribute
 		return nil
 	}
 
 	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, false); err == nil {
 		u.CurrencyAttribute = &currencyAttribute
 		u.Type = AttributeTypeCurrencyAttribute
 		return nil
 	}
 
 	var tagsAttribute TagsAttribute = TagsAttribute{}
-	if err := utils.UnmarshalJSON(data, &tagsAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &tagsAttribute, "", true, false); err == nil {
 		u.TagsAttribute = &tagsAttribute
 		u.Type = AttributeTypeTagsAttribute
 		return nil
 	}
 
 	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, false); err == nil {
 		u.SequenceAttribute = &sequenceAttribute
 		u.Type = AttributeTypeSequenceAttribute
 		return nil
 	}
 
 	var selectAttribute SelectAttribute = SelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, false); err == nil {
 		u.SelectAttribute = &selectAttribute
 		u.Type = AttributeTypeSelectAttribute
 		return nil
 	}
 
 	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
 		u.RepeatableAttribute = &repeatableAttribute
 		u.Type = AttributeTypeRepeatableAttribute
 		return nil
 	}
 
 	var multiSelectAttribute MultiSelectAttribute = MultiSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &multiSelectAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &multiSelectAttribute, "", true, false); err == nil {
 		u.MultiSelectAttribute = &multiSelectAttribute
 		u.Type = AttributeTypeMultiSelectAttribute
 		return nil
 	}
 
-	var fileAttribute FileAttribute = FileAttribute{}
-	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, true); err == nil {
-		u.FileAttribute = &fileAttribute
-		u.Type = AttributeTypeFileAttribute
-		return nil
-	}
-
 	var purposeAttribute PurposeAttribute = PurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
 		u.PurposeAttribute = &purposeAttribute
 		u.Type = AttributeTypePurposeAttribute
 		return nil
 	}
 
+	var fileAttribute FileAttribute = FileAttribute{}
+	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, false); err == nil {
+		u.FileAttribute = &fileAttribute
+		u.Type = AttributeTypeFileAttribute
+		return nil
+	}
+
 	var relationAttribute RelationAttribute = RelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, false); err == nil {
 		u.RelationAttribute = &relationAttribute
 		u.Type = AttributeTypeRelationAttribute
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Attribute", string(data))
 }
 
 func (u Attribute) MarshalJSON() ([]byte, error) {
@@ -639,5 +640,5 @@ func (u Attribute) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PartnerOrganisationAttribute, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type Attribute: all fields are null")
 }

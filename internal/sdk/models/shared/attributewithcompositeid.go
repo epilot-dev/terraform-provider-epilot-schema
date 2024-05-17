@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"time"
 )
 
@@ -73,7 +73,6 @@ const (
 func (e PartnerOrganisationAttributeAttributeWithCompositeIDType) ToPointer() *PartnerOrganisationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *PartnerOrganisationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -90,6 +89,7 @@ func (e *PartnerOrganisationAttributeAttributeWithCompositeIDType) UnmarshalJSON
 
 // AttributeWithCompositeIDPartnerOrganisationAttribute - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -98,11 +98,11 @@ type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -145,10 +145,17 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttribute) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetName() string {
@@ -214,7 +221,7 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDeprecated() *
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -403,7 +410,6 @@ const (
 func (e PurposeAttributeAttributeWithCompositeIDType) ToPointer() *PurposeAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *PurposeAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -420,6 +426,7 @@ func (e *PurposeAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDPurposeAttribute - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -428,11 +435,11 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -466,7 +473,6 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	Protected *bool `default:"true" json:"protected"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	ID          *string                                              `json:"id,omitempty"`
 	// URL-friendly identifier for the classification
 	Slug        *string                                       `json:"slug,omitempty"`
 	Parents     []string                                      `json:"parents,omitempty"`
@@ -481,10 +487,17 @@ func (a AttributeWithCompositeIDPurposeAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDPurposeAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPurposeAttribute) GetName() string {
@@ -550,7 +563,7 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPurposeAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -662,13 +675,6 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetInfoHelpers() *PurposeAttr
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
 func (o *AttributeWithCompositeIDPurposeAttribute) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -774,7 +780,6 @@ const (
 func (e InternalUserAttributeAttributeWithCompositeIDType) ToPointer() *InternalUserAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *InternalUserAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -791,6 +796,7 @@ func (e *InternalUserAttributeAttributeWithCompositeIDType) UnmarshalJSON(data [
 
 // AttributeWithCompositeIDInternalUserAttribute - Epilot internal user info
 type AttributeWithCompositeIDInternalUserAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -799,11 +805,11 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -846,10 +852,17 @@ func (a AttributeWithCompositeIDInternalUserAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInternalUserAttribute) GetName() string {
@@ -915,7 +928,7 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -1104,7 +1117,6 @@ const (
 func (e AutomationAttributeAttributeWithCompositeIDType) ToPointer() *AutomationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *AutomationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1121,6 +1133,7 @@ func (e *AutomationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []b
 
 // AttributeWithCompositeIDAutomationAttribute - Automation entity
 type AttributeWithCompositeIDAutomationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1129,11 +1142,11 @@ type AttributeWithCompositeIDAutomationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -1176,10 +1189,17 @@ func (a AttributeWithCompositeIDAutomationAttribute) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDAutomationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDAutomationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDAutomationAttribute) GetName() string {
@@ -1245,7 +1265,7 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDAutomationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -1434,7 +1454,6 @@ const (
 func (e InvitationEmailAttributeAttributeWithCompositeIDType) ToPointer() *InvitationEmailAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *InvitationEmailAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1451,6 +1470,7 @@ func (e *InvitationEmailAttributeAttributeWithCompositeIDType) UnmarshalJSON(dat
 
 // AttributeWithCompositeIDInvitationEmailAttribute - Email address for send invitation
 type AttributeWithCompositeIDInvitationEmailAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1459,11 +1479,11 @@ type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -1506,10 +1526,17 @@ func (a AttributeWithCompositeIDInvitationEmailAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetName() string {
@@ -1575,7 +1602,7 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetDeprecated() *bool
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -1764,7 +1791,6 @@ const (
 func (e PartnerStatusAttributeAttributeWithCompositeIDType) ToPointer() *PartnerStatusAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *PartnerStatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1781,6 +1807,7 @@ func (e *PartnerStatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data 
 
 // AttributeWithCompositeIDPartnerStatusAttribute - Partner Status
 type AttributeWithCompositeIDPartnerStatusAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1789,11 +1816,11 @@ type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -1836,10 +1863,17 @@ func (a AttributeWithCompositeIDPartnerStatusAttribute) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetName() string {
@@ -1905,7 +1939,7 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -2094,7 +2128,6 @@ const (
 func (e ComputedAttributeAttributeWithCompositeIDType) ToPointer() *ComputedAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *ComputedAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2111,6 +2144,7 @@ func (e *ComputedAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 
 // AttributeWithCompositeIDComputedAttribute - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type AttributeWithCompositeIDComputedAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2119,11 +2153,11 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -2166,10 +2200,17 @@ func (a AttributeWithCompositeIDComputedAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDComputedAttribute) GetName() string {
@@ -2235,7 +2276,7 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDComputedAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -2425,7 +2466,6 @@ const (
 func (e FileAttributeAttributeWithCompositeIDType) ToPointer() *FileAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *FileAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2452,7 +2492,6 @@ const (
 func (e FileAttributeDefaultAccessControl) ToPointer() *FileAttributeDefaultAccessControl {
 	return &e
 }
-
 func (e *FileAttributeDefaultAccessControl) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2471,6 +2510,7 @@ func (e *FileAttributeDefaultAccessControl) UnmarshalJSON(data []byte) error {
 
 // AttributeWithCompositeIDFileAttribute - File or Image Attachment
 type AttributeWithCompositeIDFileAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2479,11 +2519,11 @@ type AttributeWithCompositeIDFileAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -2536,10 +2576,17 @@ func (a AttributeWithCompositeIDFileAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDFileAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDFileAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDFileAttribute) GetName() string {
@@ -2605,7 +2652,7 @@ func (o *AttributeWithCompositeIDFileAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDFileAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -2829,7 +2876,6 @@ const (
 func (e OrderedListAttributeAttributeWithCompositeIDType) ToPointer() *OrderedListAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *OrderedListAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2846,6 +2892,7 @@ func (e *OrderedListAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []
 
 // AttributeWithCompositeIDOrderedListAttribute - Type of attribute to render N number of ordered fields
 type AttributeWithCompositeIDOrderedListAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2854,11 +2901,11 @@ type AttributeWithCompositeIDOrderedListAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -2901,10 +2948,17 @@ func (a AttributeWithCompositeIDOrderedListAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDOrderedListAttribute) GetName() string {
@@ -2970,7 +3024,7 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -3159,7 +3213,6 @@ const (
 func (e InternalAttributeAttributeWithCompositeIDType) ToPointer() *InternalAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *InternalAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3176,6 +3229,7 @@ func (e *InternalAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 
 // AttributeWithCompositeIDInternalAttribute - No UI representation
 type AttributeWithCompositeIDInternalAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3184,11 +3238,11 @@ type AttributeWithCompositeIDInternalAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -3231,10 +3285,17 @@ func (a AttributeWithCompositeIDInternalAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDInternalAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInternalAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInternalAttribute) GetName() string {
@@ -3300,7 +3361,7 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInternalAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -3489,7 +3550,6 @@ const (
 func (e ConsentAttributeAttributeWithCompositeIDType) ToPointer() *ConsentAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *ConsentAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3506,6 +3566,7 @@ func (e *ConsentAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDConsentAttribute - Consent Management
 type AttributeWithCompositeIDConsentAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3514,11 +3575,11 @@ type AttributeWithCompositeIDConsentAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -3563,10 +3624,17 @@ func (a AttributeWithCompositeIDConsentAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDConsentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDConsentAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDConsentAttribute) GetName() string {
@@ -3632,7 +3700,7 @@ func (o *AttributeWithCompositeIDConsentAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDConsentAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -3835,7 +3903,6 @@ const (
 func (e NumberAttributeAttributeWithCompositeIDType) ToPointer() *NumberAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *NumberAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3852,6 +3919,7 @@ func (e *NumberAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 
 // AttributeWithCompositeIDNumberAttribute - Numeric input
 type AttributeWithCompositeIDNumberAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3860,11 +3928,11 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -3908,10 +3976,17 @@ func (a AttributeWithCompositeIDNumberAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDNumberAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDNumberAttribute) GetName() string {
@@ -3977,7 +4052,7 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDNumberAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -4173,7 +4248,6 @@ const (
 func (e TagsAttributeAttributeWithCompositeIDType) ToPointer() *TagsAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *TagsAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -4190,6 +4264,7 @@ func (e *TagsAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 
 // AttributeWithCompositeIDTagsAttribute - Tags
 type AttributeWithCompositeIDTagsAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -4198,11 +4273,11 @@ type AttributeWithCompositeIDTagsAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -4247,10 +4322,17 @@ func (a AttributeWithCompositeIDTagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDTagsAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDTagsAttribute) GetName() string {
@@ -4316,7 +4398,7 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDTagsAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -4521,7 +4603,6 @@ const (
 func (e RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode {
 	return &e
 }
-
 func (e *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -4554,7 +4635,6 @@ const (
 func (e RepeatableAttributeAttributeWithCompositeIDType) ToPointer() *RepeatableAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *RepeatableAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -4585,6 +4665,7 @@ func (e *RepeatableAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []b
 
 // AttributeWithCompositeIDRepeatableAttribute - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -4593,11 +4674,11 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -4646,10 +4727,17 @@ func (a AttributeWithCompositeIDRepeatableAttribute) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDRepeatableAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDRepeatableAttribute) GetName() string {
@@ -4715,7 +4803,7 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -4932,7 +5020,6 @@ const (
 func (e CurrencyAttributeAttributeWithCompositeIDType) ToPointer() *CurrencyAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *CurrencyAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -5007,13 +5094,13 @@ func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttribute
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
 	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
-	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, false); err == nil {
 		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
 		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CurrencyAttributeCurrency", string(data))
 }
 
 func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
@@ -5021,11 +5108,12 @@ func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.CurrencyAttributeCurrency1, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type CurrencyAttributeCurrency: all fields are null")
 }
 
 // AttributeWithCompositeIDCurrencyAttribute - Currency input
 type AttributeWithCompositeIDCurrencyAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5034,11 +5122,11 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -5084,10 +5172,17 @@ func (a AttributeWithCompositeIDCurrencyAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDCurrencyAttribute) GetName() string {
@@ -5153,7 +5248,7 @@ func (o *AttributeWithCompositeIDCurrencyAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -5356,7 +5451,6 @@ const (
 func (e PaymentMethodRelationAttributeAttributeWithCompositeIDType) ToPointer() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *PaymentMethodRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -5373,6 +5467,7 @@ func (e *PaymentMethodRelationAttributeAttributeWithCompositeIDType) UnmarshalJS
 
 // AttributeWithCompositeIDPaymentMethodRelationAttribute - Reference to a payment method attribute of another entity
 type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5381,11 +5476,11 @@ type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -5429,10 +5524,17 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttribute) MarshalJSON() ([
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetName() string {
@@ -5498,7 +5600,7 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDeprecated()
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -5694,7 +5796,6 @@ const (
 func (e AddressRelationAttributeAttributeWithCompositeIDType) ToPointer() *AddressRelationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *AddressRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -5711,6 +5812,7 @@ func (e *AddressRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(dat
 
 // AttributeWithCompositeIDAddressRelationAttribute - Reference to an address attribute of another entity
 type AttributeWithCompositeIDAddressRelationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5719,11 +5821,11 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -5767,10 +5869,17 @@ func (a AttributeWithCompositeIDAddressRelationAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetName() string {
@@ -5836,7 +5945,7 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDeprecated() *bool
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -6032,7 +6141,6 @@ const (
 func (e UserRelationAttributeAttributeWithCompositeIDType) ToPointer() *UserRelationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *UserRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6049,6 +6157,7 @@ func (e *UserRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data [
 
 // AttributeWithCompositeIDUserRelationAttribute - User Relationship
 type AttributeWithCompositeIDUserRelationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -6057,11 +6166,11 @@ type AttributeWithCompositeIDUserRelationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -6105,10 +6214,17 @@ func (a AttributeWithCompositeIDUserRelationAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDUserRelationAttribute) GetName() string {
@@ -6174,7 +6290,7 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -6370,7 +6486,6 @@ const (
 func (e RelationAttributeAttributeWithCompositeIDType) ToPointer() *RelationAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *RelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6395,7 +6510,6 @@ const (
 func (e RelationAttributeRelationType) ToPointer() *RelationAttributeRelationType {
 	return &e
 }
-
 func (e *RelationAttributeRelationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6423,7 +6537,6 @@ const (
 func (e RelationAttributeRelationAffinityMode) ToPointer() *RelationAttributeRelationAffinityMode {
 	return &e
 }
-
 func (e *RelationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6449,7 +6562,6 @@ const (
 func (e RelationAttributeEditMode) ToPointer() *RelationAttributeEditMode {
 	return &e
 }
-
 func (e *RelationAttributeEditMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6482,7 +6594,6 @@ const (
 func (e RelationAttributeActionType) ToPointer() *RelationAttributeActionType {
 	return &e
 }
-
 func (e *RelationAttributeActionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6514,8 +6625,8 @@ type RelationAttributeNewEntityItem struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL  `json:"_acl,omitempty"`
-	AdditionalProperties interface{} `additionalProperties:"true" json:"-"`
+	ACL                  *EntityACL `json:"_acl,omitempty"`
+	AdditionalProperties any        `additionalProperties:"true" json:"-"`
 }
 
 func (r RelationAttributeNewEntityItem) MarshalJSON() ([]byte, error) {
@@ -6592,7 +6703,7 @@ func (o *RelationAttributeNewEntityItem) GetACL() *EntityACL {
 	return o.ACL
 }
 
-func (o *RelationAttributeNewEntityItem) GetAdditionalProperties() interface{} {
+func (o *RelationAttributeNewEntityItem) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
@@ -6673,7 +6784,6 @@ const (
 func (e RelationAttributeDrawerSize) ToPointer() *RelationAttributeDrawerSize {
 	return &e
 }
-
 func (e *RelationAttributeDrawerSize) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -6727,20 +6837,20 @@ func CreateRelationAttributeSummaryFieldsSummaryField(summaryField SummaryField)
 func (u *RelationAttributeSummaryFields) UnmarshalJSON(data []byte) error {
 
 	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = RelationAttributeSummaryFieldsTypeSummaryField
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = RelationAttributeSummaryFieldsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for RelationAttributeSummaryFields", string(data))
 }
 
 func (u RelationAttributeSummaryFields) MarshalJSON() ([]byte, error) {
@@ -6752,11 +6862,12 @@ func (u RelationAttributeSummaryFields) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.SummaryField, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type RelationAttributeSummaryFields: all fields are null")
 }
 
 // AttributeWithCompositeIDRelationAttribute - Entity Relationship
 type AttributeWithCompositeIDRelationAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -6765,11 +6876,11 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -6830,10 +6941,17 @@ func (a AttributeWithCompositeIDRelationAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDRelationAttribute) GetName() string {
@@ -6899,7 +7017,7 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDRelationAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -7186,7 +7304,6 @@ const (
 func (e SequenceAttributeAttributeWithCompositeIDType) ToPointer() *SequenceAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *SequenceAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -7203,6 +7320,7 @@ func (e *SequenceAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 
 // AttributeWithCompositeIDSequenceAttribute - Sequence of unique identifiers
 type AttributeWithCompositeIDSequenceAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -7211,11 +7329,11 @@ type AttributeWithCompositeIDSequenceAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -7261,10 +7379,17 @@ func (a AttributeWithCompositeIDSequenceAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDSequenceAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDSequenceAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDSequenceAttribute) GetName() string {
@@ -7330,7 +7455,7 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDSequenceAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -7533,7 +7658,6 @@ const (
 func (e StatusAttributeAttributeWithCompositeIDType) ToPointer() *StatusAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *StatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -7604,20 +7728,20 @@ func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptions2
 func (u *StatusAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
 	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
-	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, false); err == nil {
 		u.StatusAttributeOptions2 = &statusAttributeOptions2
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for StatusAttributeAttributeWithCompositeIDOptions", string(data))
 }
 
 func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, error) {
@@ -7629,11 +7753,12 @@ func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, e
 		return utils.MarshalJSON(u.StatusAttributeOptions2, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type StatusAttributeAttributeWithCompositeIDOptions: all fields are null")
 }
 
 // AttributeWithCompositeIDStatusAttribute - Status select
 type AttributeWithCompositeIDStatusAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -7642,11 +7767,11 @@ type AttributeWithCompositeIDStatusAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -7690,10 +7815,17 @@ func (a AttributeWithCompositeIDStatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDStatusAttribute) GetName() string {
@@ -7759,7 +7891,7 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDStatusAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -7956,7 +8088,6 @@ const (
 func (e MultiSelectAttributeAttributeWithCompositeIDType) ToPointer() *MultiSelectAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *MultiSelectAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -8027,20 +8158,20 @@ func CreateMultiSelectAttributeAttributeWithCompositeIDOptionsMultiSelectAttribu
 func (u *MultiSelectAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
 	var multiSelectAttributeOptions2 MultiSelectAttributeOptions2 = MultiSelectAttributeOptions2{}
-	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, false); err == nil {
 		u.MultiSelectAttributeOptions2 = &multiSelectAttributeOptions2
 		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeMultiSelectAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MultiSelectAttributeAttributeWithCompositeIDOptions", string(data))
 }
 
 func (u MultiSelectAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, error) {
@@ -8052,11 +8183,12 @@ func (u MultiSelectAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]by
 		return utils.MarshalJSON(u.MultiSelectAttributeOptions2, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type MultiSelectAttributeAttributeWithCompositeIDOptions: all fields are null")
 }
 
 // AttributeWithCompositeIDMultiSelectAttribute - Multi Choice Selection
 type AttributeWithCompositeIDMultiSelectAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -8065,11 +8197,11 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -8119,10 +8251,17 @@ func (a AttributeWithCompositeIDMultiSelectAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDMultiSelectAttribute) GetName() string {
@@ -8188,7 +8327,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -8406,7 +8545,6 @@ const (
 func (e SelectAttributeAttributeWithCompositeIDType) ToPointer() *SelectAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *SelectAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -8477,20 +8615,20 @@ func CreateSelectAttributeOptionsStr(str string) SelectAttributeOptions {
 func (u *SelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var options1 Options1 = Options1{}
-	if err := utils.UnmarshalJSON(data, &options1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &options1, "", true, false); err == nil {
 		u.Options1 = &options1
 		u.Type = SelectAttributeOptionsTypeOptions1
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SelectAttributeOptionsTypeStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SelectAttributeOptions", string(data))
 }
 
 func (u SelectAttributeOptions) MarshalJSON() ([]byte, error) {
@@ -8502,11 +8640,12 @@ func (u SelectAttributeOptions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type SelectAttributeOptions: all fields are null")
 }
 
 // AttributeWithCompositeIDSelectAttribute - Dropdown select
 type AttributeWithCompositeIDSelectAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -8515,11 +8654,11 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -8565,10 +8704,17 @@ func (a AttributeWithCompositeIDSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDSelectAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDSelectAttribute) GetName() string {
@@ -8634,7 +8780,7 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDSelectAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -8837,7 +8983,6 @@ const (
 func (e BooleanAttributeAttributeWithCompositeIDType) ToPointer() *BooleanAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *BooleanAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -8854,6 +8999,7 @@ func (e *BooleanAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDBooleanAttribute - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -8862,11 +9008,11 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -8909,10 +9055,17 @@ func (a AttributeWithCompositeIDBooleanAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDBooleanAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDBooleanAttribute) GetName() string {
@@ -8978,7 +9131,7 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDBooleanAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -9167,7 +9320,6 @@ const (
 func (e CountryAttributeAttributeWithCompositeIDType) ToPointer() *CountryAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *CountryAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -9184,6 +9336,7 @@ func (e *CountryAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDCountryAttribute - Country picker
 type AttributeWithCompositeIDCountryAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9192,11 +9345,11 @@ type AttributeWithCompositeIDCountryAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -9239,10 +9392,17 @@ func (a AttributeWithCompositeIDCountryAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDCountryAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDCountryAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDCountryAttribute) GetName() string {
@@ -9308,7 +9468,7 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDCountryAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -9498,7 +9658,6 @@ const (
 func (e DateAttributeAttributeWithCompositeIDType) ToPointer() *DateAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *DateAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -9517,6 +9676,7 @@ func (e *DateAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 
 // AttributeWithCompositeIDDateAttribute - Date or Datetime picker
 type AttributeWithCompositeIDDateAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9525,11 +9685,11 @@ type AttributeWithCompositeIDDateAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -9572,10 +9732,17 @@ func (a AttributeWithCompositeIDDateAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDDateAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDDateAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDDateAttribute) GetName() string {
@@ -9641,7 +9808,7 @@ func (o *AttributeWithCompositeIDDateAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDDateAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -9830,7 +9997,6 @@ const (
 func (e LinkAttributeAttributeWithCompositeIDType) ToPointer() *LinkAttributeAttributeWithCompositeIDType {
 	return &e
 }
-
 func (e *LinkAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -9847,6 +10013,7 @@ func (e *LinkAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 
 // AttributeWithCompositeIDLinkAttribute - Link with title and href
 type AttributeWithCompositeIDLinkAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9855,11 +10022,11 @@ type AttributeWithCompositeIDLinkAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -9902,10 +10069,17 @@ func (a AttributeWithCompositeIDLinkAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDLinkAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDLinkAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDLinkAttribute) GetName() string {
@@ -9971,7 +10145,7 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDLinkAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -10160,7 +10334,6 @@ const (
 func (e TextAttributeType) ToPointer() *TextAttributeType {
 	return &e
 }
-
 func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -10177,6 +10350,7 @@ func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
 
 // AttributeWithCompositeIDTextAttribute - Textarea or text input
 type AttributeWithCompositeIDTextAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -10185,11 +10359,11 @@ type AttributeWithCompositeIDTextAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -10233,10 +10407,17 @@ func (a AttributeWithCompositeIDTextAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTextAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDTextAttribute) GetName() string {
@@ -10302,7 +10483,7 @@ func (o *AttributeWithCompositeIDTextAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDTextAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -10757,202 +10938,202 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 
 	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttribute AttributeWithCompositeIDTagsAttribute = AttributeWithCompositeIDTagsAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTagsAttribute = &attributeWithCompositeIDTagsAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute = AttributeWithCompositeIDRepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDRepeatableAttribute = &attributeWithCompositeIDRepeatableAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, true); err == nil {
-		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
 		return nil
 	}
 
+	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AttributeWithCompositeID", string(data))
 }
 
 func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
@@ -11068,11 +11249,12 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttribute, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type AttributeWithCompositeID: all fields are null")
 }
 
 // AttributeWithCompositeIDPartnerOrganisationAttributeInput - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11081,11 +11263,11 @@ type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -11127,10 +11309,17 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttributeInput) MarshalJSON()
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetName() string {
@@ -11196,7 +11385,7 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDeprecate
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -11317,6 +11506,7 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() *P
 
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11325,11 +11515,11 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -11363,7 +11553,6 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	Protected *bool `default:"true" json:"protected"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	ID          *string                                              `json:"id,omitempty"`
 	// URL-friendly identifier for the classification
 	Slug      *string                                       `json:"slug,omitempty"`
 	Parents   []string                                      `json:"parents,omitempty"`
@@ -11377,10 +11566,17 @@ func (a AttributeWithCompositeIDPurposeAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDPurposeAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetName() string {
@@ -11446,7 +11642,7 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -11558,13 +11754,6 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetInfoHelpers() *Purpos
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -11602,6 +11791,7 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttrib
 
 // AttributeWithCompositeIDInternalUserAttributeInput - Epilot internal user info
 type AttributeWithCompositeIDInternalUserAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11610,11 +11800,11 @@ type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -11656,10 +11846,17 @@ func (a AttributeWithCompositeIDInternalUserAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetName() string {
@@ -11725,7 +11922,7 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetDeprecated() *bo
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -11846,6 +12043,7 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() *Internal
 
 // AttributeWithCompositeIDAutomationAttributeInput - Automation entity
 type AttributeWithCompositeIDAutomationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11854,11 +12052,11 @@ type AttributeWithCompositeIDAutomationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -11900,10 +12098,17 @@ func (a AttributeWithCompositeIDAutomationAttributeInput) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAutomationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDAutomationAttributeInput) GetName() string {
@@ -11969,7 +12174,7 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetDeprecated() *bool
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -12090,6 +12295,7 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() *Automation
 
 // AttributeWithCompositeIDInvitationEmailAttributeInput - Email address for send invitation
 type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12098,11 +12304,11 @@ type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -12144,10 +12350,17 @@ func (a AttributeWithCompositeIDInvitationEmailAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetName() string {
@@ -12213,7 +12426,7 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDeprecated() 
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -12334,6 +12547,7 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() *Invit
 
 // AttributeWithCompositeIDPartnerStatusAttributeInput - Partner Status
 type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12342,11 +12556,11 @@ type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -12388,10 +12602,17 @@ func (a AttributeWithCompositeIDPartnerStatusAttributeInput) MarshalJSON() ([]by
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetName() string {
@@ -12457,7 +12678,7 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDeprecated() *b
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -12578,6 +12799,7 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() *Partner
 
 // AttributeWithCompositeIDComputedAttributeInput - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type AttributeWithCompositeIDComputedAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12586,11 +12808,11 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -12632,10 +12854,17 @@ func (a AttributeWithCompositeIDComputedAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDComputedAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDComputedAttributeInput) GetName() string {
@@ -12701,7 +12930,7 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -12822,6 +13051,7 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttr
 
 // AttributeWithCompositeIDFileAttributeInput - File or Image Attachment
 type AttributeWithCompositeIDFileAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12830,11 +13060,11 @@ type AttributeWithCompositeIDFileAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -12886,10 +13116,17 @@ func (a AttributeWithCompositeIDFileAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDFileAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDFileAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDFileAttributeInput) GetName() string {
@@ -12955,7 +13192,7 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -13111,6 +13348,7 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultAccessControl() *
 
 // AttributeWithCompositeIDOrderedListAttributeInput - Type of attribute to render N number of ordered fields
 type AttributeWithCompositeIDOrderedListAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13119,11 +13357,11 @@ type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -13165,10 +13403,17 @@ func (a AttributeWithCompositeIDOrderedListAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetName() string {
@@ -13234,7 +13479,7 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetDeprecated() *boo
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -13355,6 +13600,7 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() *OrderedLi
 
 // AttributeWithCompositeIDInternalAttributeInput - No UI representation
 type AttributeWithCompositeIDInternalAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13363,11 +13609,11 @@ type AttributeWithCompositeIDInternalAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -13409,10 +13655,17 @@ func (a AttributeWithCompositeIDInternalAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDInternalAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDInternalAttributeInput) GetName() string {
@@ -13478,7 +13731,7 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -13599,6 +13852,7 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() *InternalAttr
 
 // AttributeWithCompositeIDConsentAttributeInput - Consent Management
 type AttributeWithCompositeIDConsentAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13607,11 +13861,11 @@ type AttributeWithCompositeIDConsentAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -13655,10 +13909,17 @@ func (a AttributeWithCompositeIDConsentAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDConsentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDConsentAttributeInput) GetName() string {
@@ -13724,7 +13985,7 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -13859,6 +14120,7 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetIdentifiers() []strin
 
 // AttributeWithCompositeIDNumberAttributeInput - Numeric input
 type AttributeWithCompositeIDNumberAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13867,11 +14129,11 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -13914,10 +14176,17 @@ func (a AttributeWithCompositeIDNumberAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDNumberAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDNumberAttributeInput) GetName() string {
@@ -13983,7 +14252,7 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -14111,6 +14380,7 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetFormat() *string {
 
 // AttributeWithCompositeIDTagsAttributeInput - Tags
 type AttributeWithCompositeIDTagsAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14119,11 +14389,11 @@ type AttributeWithCompositeIDTagsAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -14167,10 +14437,17 @@ func (a AttributeWithCompositeIDTagsAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTagsAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDTagsAttributeInput) GetName() string {
@@ -14236,7 +14513,7 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -14371,6 +14648,7 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
 
 // AttributeWithCompositeIDRepeatableAttributeInput - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14379,11 +14657,11 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -14431,10 +14709,17 @@ func (a AttributeWithCompositeIDRepeatableAttributeInput) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDRepeatableAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetName() string {
@@ -14500,7 +14785,7 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetDeprecated() *bool
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -14649,6 +14934,7 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEnableRelationPick
 
 // AttributeWithCompositeIDCurrencyAttributeInput - Currency input
 type AttributeWithCompositeIDCurrencyAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14657,11 +14943,11 @@ type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -14706,10 +14992,17 @@ func (a AttributeWithCompositeIDCurrencyAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetName() string {
@@ -14775,7 +15068,7 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -14910,6 +15203,7 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrency() []Currenc
 
 // AttributeWithCompositeIDPaymentMethodRelationAttributeInput - Reference to a payment method attribute of another entity
 type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14918,11 +15212,11 @@ type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -14965,10 +15259,17 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttributeInput) MarshalJSON
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetName() string {
@@ -15034,7 +15335,7 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDepreca
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -15162,6 +15463,7 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrim
 
 // AttributeWithCompositeIDAddressRelationAttributeInput - Reference to an address attribute of another entity
 type AttributeWithCompositeIDAddressRelationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15170,11 +15472,11 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -15217,10 +15519,17 @@ func (a AttributeWithCompositeIDAddressRelationAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetName() string {
@@ -15286,7 +15595,7 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDeprecated() 
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -15414,6 +15723,7 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() 
 
 // AttributeWithCompositeIDUserRelationAttributeInput - User Relationship
 type AttributeWithCompositeIDUserRelationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15422,11 +15732,11 @@ type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -15469,10 +15779,17 @@ func (a AttributeWithCompositeIDUserRelationAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetName() string {
@@ -15538,7 +15855,7 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetDeprecated() *bo
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -15666,6 +15983,7 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool
 
 // AttributeWithCompositeIDRelationAttributeInput - Entity Relationship
 type AttributeWithCompositeIDRelationAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15674,11 +15992,11 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -15738,10 +16056,17 @@ func (a AttributeWithCompositeIDRelationAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetName() string {
@@ -15807,7 +16132,7 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -16026,6 +16351,7 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetSearchPlaceholder() 
 
 // AttributeWithCompositeIDSequenceAttributeInput - Sequence of unique identifiers
 type AttributeWithCompositeIDSequenceAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16034,11 +16360,11 @@ type AttributeWithCompositeIDSequenceAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -16083,10 +16409,17 @@ func (a AttributeWithCompositeIDSequenceAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDSequenceAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDSequenceAttributeInput) GetName() string {
@@ -16152,7 +16485,7 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -16287,6 +16620,7 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetStartNumber() *int64
 
 // AttributeWithCompositeIDStatusAttributeInput - Status select
 type AttributeWithCompositeIDStatusAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16295,11 +16629,11 @@ type AttributeWithCompositeIDStatusAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -16342,10 +16676,17 @@ func (a AttributeWithCompositeIDStatusAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDStatusAttributeInput) GetName() string {
@@ -16411,7 +16752,7 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -16539,6 +16880,7 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []StatusAttr
 
 // AttributeWithCompositeIDMultiSelectAttributeInput - Multi Choice Selection
 type AttributeWithCompositeIDMultiSelectAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16547,11 +16889,11 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -16600,10 +16942,17 @@ func (a AttributeWithCompositeIDMultiSelectAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetName() string {
@@ -16669,7 +17018,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDeprecated() *boo
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -16818,6 +17167,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowAny() *bool 
 
 // AttributeWithCompositeIDSelectAttributeInput - Dropdown select
 type AttributeWithCompositeIDSelectAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16826,11 +17176,11 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -16875,10 +17225,17 @@ func (a AttributeWithCompositeIDSelectAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDSelectAttributeInput) GetName() string {
@@ -16944,7 +17301,7 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -17079,6 +17436,7 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetAllowAny() *bool {
 
 // AttributeWithCompositeIDBooleanAttributeInput - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17087,11 +17445,11 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -17133,10 +17491,17 @@ func (a AttributeWithCompositeIDBooleanAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDBooleanAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDBooleanAttributeInput) GetName() string {
@@ -17202,7 +17567,7 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -17323,6 +17688,7 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttrib
 
 // AttributeWithCompositeIDCountryAttributeInput - Country picker
 type AttributeWithCompositeIDCountryAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17331,11 +17697,11 @@ type AttributeWithCompositeIDCountryAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -17377,10 +17743,17 @@ func (a AttributeWithCompositeIDCountryAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDCountryAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDCountryAttributeInput) GetName() string {
@@ -17446,7 +17819,7 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -17567,6 +17940,7 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() *CountryAttrib
 
 // AttributeWithCompositeIDDateAttributeInput - Date or Datetime picker
 type AttributeWithCompositeIDDateAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17575,11 +17949,11 @@ type AttributeWithCompositeIDDateAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -17621,10 +17995,17 @@ func (a AttributeWithCompositeIDDateAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDDateAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDDateAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDDateAttributeInput) GetName() string {
@@ -17690,7 +18071,7 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDDateAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -17811,6 +18192,7 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetType() *DateAttributeAtt
 
 // AttributeWithCompositeIDLinkAttributeInput - Link with title and href
 type AttributeWithCompositeIDLinkAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17819,11 +18201,11 @@ type AttributeWithCompositeIDLinkAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -17865,10 +18247,17 @@ func (a AttributeWithCompositeIDLinkAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDLinkAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDLinkAttributeInput) GetName() string {
@@ -17934,7 +18323,7 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -18055,6 +18444,7 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() *LinkAttributeAtt
 
 // AttributeWithCompositeIDTextAttributeInput - Textarea or text input
 type AttributeWithCompositeIDTextAttributeInput struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -18063,11 +18453,11 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -18110,10 +18500,17 @@ func (a AttributeWithCompositeIDTextAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTextAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *AttributeWithCompositeIDTextAttributeInput) GetName() string {
@@ -18179,7 +18576,7 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetDefaultValue() interface{} {
+func (o *AttributeWithCompositeIDTextAttributeInput) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
@@ -18627,202 +19024,202 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 
 	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttributeInput AttributeWithCompositeIDTagsAttributeInput = AttributeWithCompositeIDTagsAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTagsAttributeInput = &attributeWithCompositeIDTagsAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput = AttributeWithCompositeIDRepeatableAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDRepeatableAttributeInput = &attributeWithCompositeIDRepeatableAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, true); err == nil {
-		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
 		return nil
 	}
 
+	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AttributeWithCompositeIDInput", string(data))
 }
 
 func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
@@ -18938,5 +19335,5 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttributeInput, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type AttributeWithCompositeIDInput: all fields are null")
 }

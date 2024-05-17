@@ -4,9 +4,9 @@ package provider
 
 import (
 	"encoding/json"
+	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"time"
 )
 
@@ -108,15 +108,15 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		var tableView *shared.TableView
 		if r.UIConfig.TableView != nil {
 			var entityDefaultTable *shared.EntityDefaultTable
-			if r.UIConfig.TableView.EntityDefaultTable != nil {
+			if r.UIConfig.TableView.Default != nil {
 				viewType := new(shared.ViewType)
-				if !r.UIConfig.TableView.EntityDefaultTable.ViewType.IsUnknown() && !r.UIConfig.TableView.EntityDefaultTable.ViewType.IsNull() {
-					*viewType = shared.ViewType(r.UIConfig.TableView.EntityDefaultTable.ViewType.ValueString())
+				if !r.UIConfig.TableView.Default.ViewType.IsUnknown() && !r.UIConfig.TableView.Default.ViewType.IsNull() {
+					*viewType = shared.ViewType(r.UIConfig.TableView.Default.ViewType.ValueString())
 				} else {
 					viewType = nil
 				}
 				var rowActions []shared.RowActions = []shared.RowActions{}
-				for _, rowActionsItem := range r.UIConfig.TableView.EntityDefaultTable.RowActions {
+				for _, rowActionsItem := range r.UIConfig.TableView.Default.RowActions {
 					if !rowActionsItem.Str.IsUnknown() && !rowActionsItem.Str.IsNull() {
 						str := rowActionsItem.Str.ValueString()
 						rowActions = append(rowActions, shared.RowActions{
@@ -150,7 +150,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 				}
 				var bulkActions []shared.BulkActions = []shared.BulkActions{}
-				for _, bulkActionsItem := range r.UIConfig.TableView.EntityDefaultTable.BulkActions {
+				for _, bulkActionsItem := range r.UIConfig.TableView.Default.BulkActions {
 					if !bulkActionsItem.Str.IsUnknown() && !bulkActionsItem.Str.IsNull() {
 						str1 := bulkActionsItem.Str.ValueString()
 						bulkActions = append(bulkActions, shared.BulkActions{
@@ -184,7 +184,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 				}
 				var navbarActions []shared.NavbarActions = []shared.NavbarActions{}
-				for _, navbarActionsItem := range r.UIConfig.TableView.EntityDefaultTable.NavbarActions {
+				for _, navbarActionsItem := range r.UIConfig.TableView.Default.NavbarActions {
 					type1 := navbarActionsItem.Type.ValueString()
 					var options []shared.EntityDefaultTableOptions = []shared.EntityDefaultTableOptions{}
 					for _, optionsItem := range navbarActionsItem.Options {
@@ -204,8 +204,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					})
 				}
 				enableThumbnails := new(bool)
-				if !r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails.IsUnknown() && !r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails.IsNull() {
-					*enableThumbnails = r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails.ValueBool()
+				if !r.UIConfig.TableView.Default.EnableThumbnails.IsUnknown() && !r.UIConfig.TableView.Default.EnableThumbnails.IsNull() {
+					*enableThumbnails = r.UIConfig.TableView.Default.EnableThumbnails.ValueBool()
 				} else {
 					enableThumbnails = nil
 				}
@@ -223,16 +223,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var redirectEntityView *shared.RedirectEntityView
-			if r.UIConfig.TableView.RedirectEntityView != nil {
+			if r.UIConfig.TableView.Redirect != nil {
 				viewType1 := new(shared.RedirectEntityViewViewType)
-				if !r.UIConfig.TableView.RedirectEntityView.ViewType.IsUnknown() && !r.UIConfig.TableView.RedirectEntityView.ViewType.IsNull() {
-					*viewType1 = shared.RedirectEntityViewViewType(r.UIConfig.TableView.RedirectEntityView.ViewType.ValueString())
+				if !r.UIConfig.TableView.Redirect.ViewType.IsUnknown() && !r.UIConfig.TableView.Redirect.ViewType.IsNull() {
+					*viewType1 = shared.RedirectEntityViewViewType(r.UIConfig.TableView.Redirect.ViewType.ValueString())
 				} else {
 					viewType1 = nil
 				}
 				route := new(string)
-				if !r.UIConfig.TableView.RedirectEntityView.Route.IsUnknown() && !r.UIConfig.TableView.RedirectEntityView.Route.IsNull() {
-					*route = r.UIConfig.TableView.RedirectEntityView.Route.ValueString()
+				if !r.UIConfig.TableView.Redirect.Route.IsUnknown() && !r.UIConfig.TableView.Redirect.Route.IsNull() {
+					*route = r.UIConfig.TableView.Redirect.Route.ValueString()
 				} else {
 					route = nil
 				}
@@ -247,10 +247,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var entityViewDisabled *shared.EntityViewDisabled
-			if r.UIConfig.TableView.EntityViewDisabled != nil {
+			if r.UIConfig.TableView.Disabled != nil {
 				viewType2 := new(shared.EntityViewDisabledViewType)
-				if !r.UIConfig.TableView.EntityViewDisabled.ViewType.IsUnknown() && !r.UIConfig.TableView.EntityViewDisabled.ViewType.IsNull() {
-					*viewType2 = shared.EntityViewDisabledViewType(r.UIConfig.TableView.EntityViewDisabled.ViewType.ValueString())
+				if !r.UIConfig.TableView.Disabled.ViewType.IsUnknown() && !r.UIConfig.TableView.Disabled.ViewType.IsNull() {
+					*viewType2 = shared.EntityViewDisabledViewType(r.UIConfig.TableView.Disabled.ViewType.ValueString())
 				} else {
 					viewType2 = nil
 				}
@@ -267,15 +267,15 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		var createView *shared.CreateView
 		if r.UIConfig.CreateView != nil {
 			var entityDefaultCreate *shared.EntityDefaultCreate
-			if r.UIConfig.CreateView.EntityDefaultCreate != nil {
+			if r.UIConfig.CreateView.Default != nil {
 				viewType3 := new(shared.EntityDefaultCreateViewType)
-				if !r.UIConfig.CreateView.EntityDefaultCreate.ViewType.IsUnknown() && !r.UIConfig.CreateView.EntityDefaultCreate.ViewType.IsNull() {
-					*viewType3 = shared.EntityDefaultCreateViewType(r.UIConfig.CreateView.EntityDefaultCreate.ViewType.ValueString())
+				if !r.UIConfig.CreateView.Default.ViewType.IsUnknown() && !r.UIConfig.CreateView.Default.ViewType.IsNull() {
+					*viewType3 = shared.EntityDefaultCreateViewType(r.UIConfig.CreateView.Default.ViewType.ValueString())
 				} else {
 					viewType3 = nil
 				}
 				searchParams := make(map[string]string)
-				for searchParamsKey, searchParamsValue := range r.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
+				for searchParamsKey, searchParamsValue := range r.UIConfig.CreateView.Default.SearchParams {
 					searchParamsInst := searchParamsValue.ValueString()
 					searchParams[searchParamsKey] = searchParamsInst
 				}
@@ -290,16 +290,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var redirectEntityView1 *shared.RedirectEntityView
-			if r.UIConfig.CreateView.RedirectEntityView != nil {
+			if r.UIConfig.CreateView.Redirect != nil {
 				viewType4 := new(shared.RedirectEntityViewViewType)
-				if !r.UIConfig.CreateView.RedirectEntityView.ViewType.IsUnknown() && !r.UIConfig.CreateView.RedirectEntityView.ViewType.IsNull() {
-					*viewType4 = shared.RedirectEntityViewViewType(r.UIConfig.CreateView.RedirectEntityView.ViewType.ValueString())
+				if !r.UIConfig.CreateView.Redirect.ViewType.IsUnknown() && !r.UIConfig.CreateView.Redirect.ViewType.IsNull() {
+					*viewType4 = shared.RedirectEntityViewViewType(r.UIConfig.CreateView.Redirect.ViewType.ValueString())
 				} else {
 					viewType4 = nil
 				}
 				route1 := new(string)
-				if !r.UIConfig.CreateView.RedirectEntityView.Route.IsUnknown() && !r.UIConfig.CreateView.RedirectEntityView.Route.IsNull() {
-					*route1 = r.UIConfig.CreateView.RedirectEntityView.Route.ValueString()
+				if !r.UIConfig.CreateView.Redirect.Route.IsUnknown() && !r.UIConfig.CreateView.Redirect.Route.IsNull() {
+					*route1 = r.UIConfig.CreateView.Redirect.Route.ValueString()
 				} else {
 					route1 = nil
 				}
@@ -314,10 +314,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var entityViewDisabled1 *shared.EntityViewDisabled
-			if r.UIConfig.CreateView.EntityViewDisabled != nil {
+			if r.UIConfig.CreateView.Disabled != nil {
 				viewType5 := new(shared.EntityViewDisabledViewType)
-				if !r.UIConfig.CreateView.EntityViewDisabled.ViewType.IsUnknown() && !r.UIConfig.CreateView.EntityViewDisabled.ViewType.IsNull() {
-					*viewType5 = shared.EntityViewDisabledViewType(r.UIConfig.CreateView.EntityViewDisabled.ViewType.ValueString())
+				if !r.UIConfig.CreateView.Disabled.ViewType.IsUnknown() && !r.UIConfig.CreateView.Disabled.ViewType.IsNull() {
+					*viewType5 = shared.EntityViewDisabledViewType(r.UIConfig.CreateView.Disabled.ViewType.ValueString())
 				} else {
 					viewType5 = nil
 				}
@@ -334,20 +334,20 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		var editView *shared.EditView
 		if r.UIConfig.EditView != nil {
 			var entityDefaultEdit *shared.EntityDefaultEdit
-			if r.UIConfig.EditView.EntityDefaultEdit != nil {
+			if r.UIConfig.EditView.Default != nil {
 				viewType6 := new(shared.EntityDefaultEditViewType)
-				if !r.UIConfig.EditView.EntityDefaultEdit.ViewType.IsUnknown() && !r.UIConfig.EditView.EntityDefaultEdit.ViewType.IsNull() {
-					*viewType6 = shared.EntityDefaultEditViewType(r.UIConfig.EditView.EntityDefaultEdit.ViewType.ValueString())
+				if !r.UIConfig.EditView.Default.ViewType.IsUnknown() && !r.UIConfig.EditView.Default.ViewType.IsNull() {
+					*viewType6 = shared.EntityDefaultEditViewType(r.UIConfig.EditView.Default.ViewType.ValueString())
 				} else {
 					viewType6 = nil
 				}
 				searchParams1 := make(map[string]string)
-				for searchParamsKey1, searchParamsValue1 := range r.UIConfig.EditView.EntityDefaultEdit.SearchParams {
+				for searchParamsKey1, searchParamsValue1 := range r.UIConfig.EditView.Default.SearchParams {
 					searchParamsInst1 := searchParamsValue1.ValueString()
 					searchParams1[searchParamsKey1] = searchParamsInst1
 				}
 				var summaryAttributes []string = []string{}
-				for _, summaryAttributesItem := range r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
+				for _, summaryAttributesItem := range r.UIConfig.EditView.Default.SummaryAttributes {
 					summaryAttributes = append(summaryAttributes, summaryAttributesItem.ValueString())
 				}
 				entityDefaultEdit = &shared.EntityDefaultEdit{
@@ -362,16 +362,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var redirectEntityView2 *shared.RedirectEntityView
-			if r.UIConfig.EditView.RedirectEntityView != nil {
+			if r.UIConfig.EditView.Redirect != nil {
 				viewType7 := new(shared.RedirectEntityViewViewType)
-				if !r.UIConfig.EditView.RedirectEntityView.ViewType.IsUnknown() && !r.UIConfig.EditView.RedirectEntityView.ViewType.IsNull() {
-					*viewType7 = shared.RedirectEntityViewViewType(r.UIConfig.EditView.RedirectEntityView.ViewType.ValueString())
+				if !r.UIConfig.EditView.Redirect.ViewType.IsUnknown() && !r.UIConfig.EditView.Redirect.ViewType.IsNull() {
+					*viewType7 = shared.RedirectEntityViewViewType(r.UIConfig.EditView.Redirect.ViewType.ValueString())
 				} else {
 					viewType7 = nil
 				}
 				route2 := new(string)
-				if !r.UIConfig.EditView.RedirectEntityView.Route.IsUnknown() && !r.UIConfig.EditView.RedirectEntityView.Route.IsNull() {
-					*route2 = r.UIConfig.EditView.RedirectEntityView.Route.ValueString()
+				if !r.UIConfig.EditView.Redirect.Route.IsUnknown() && !r.UIConfig.EditView.Redirect.Route.IsNull() {
+					*route2 = r.UIConfig.EditView.Redirect.Route.ValueString()
 				} else {
 					route2 = nil
 				}
@@ -386,10 +386,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var entityViewDisabled2 *shared.EntityViewDisabled
-			if r.UIConfig.EditView.EntityViewDisabled != nil {
+			if r.UIConfig.EditView.Disabled != nil {
 				viewType8 := new(shared.EntityViewDisabledViewType)
-				if !r.UIConfig.EditView.EntityViewDisabled.ViewType.IsUnknown() && !r.UIConfig.EditView.EntityViewDisabled.ViewType.IsNull() {
-					*viewType8 = shared.EntityViewDisabledViewType(r.UIConfig.EditView.EntityViewDisabled.ViewType.ValueString())
+				if !r.UIConfig.EditView.Disabled.ViewType.IsUnknown() && !r.UIConfig.EditView.Disabled.ViewType.IsNull() {
+					*viewType8 = shared.EntityViewDisabledViewType(r.UIConfig.EditView.Disabled.ViewType.ValueString())
 				} else {
 					viewType8 = nil
 				}
@@ -406,20 +406,20 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		var singleView *shared.SingleView
 		if r.UIConfig.SingleView != nil {
 			var entityDefaultEdit1 *shared.EntityDefaultEdit
-			if r.UIConfig.SingleView.EntityDefaultEdit != nil {
+			if r.UIConfig.SingleView.Default != nil {
 				viewType9 := new(shared.EntityDefaultEditViewType)
-				if !r.UIConfig.SingleView.EntityDefaultEdit.ViewType.IsUnknown() && !r.UIConfig.SingleView.EntityDefaultEdit.ViewType.IsNull() {
-					*viewType9 = shared.EntityDefaultEditViewType(r.UIConfig.SingleView.EntityDefaultEdit.ViewType.ValueString())
+				if !r.UIConfig.SingleView.Default.ViewType.IsUnknown() && !r.UIConfig.SingleView.Default.ViewType.IsNull() {
+					*viewType9 = shared.EntityDefaultEditViewType(r.UIConfig.SingleView.Default.ViewType.ValueString())
 				} else {
 					viewType9 = nil
 				}
 				searchParams2 := make(map[string]string)
-				for searchParamsKey2, searchParamsValue2 := range r.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
+				for searchParamsKey2, searchParamsValue2 := range r.UIConfig.SingleView.Default.SearchParams {
 					searchParamsInst2 := searchParamsValue2.ValueString()
 					searchParams2[searchParamsKey2] = searchParamsInst2
 				}
 				var summaryAttributes1 []string = []string{}
-				for _, summaryAttributesItem1 := range r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
+				for _, summaryAttributesItem1 := range r.UIConfig.SingleView.Default.SummaryAttributes {
 					summaryAttributes1 = append(summaryAttributes1, summaryAttributesItem1.ValueString())
 				}
 				entityDefaultEdit1 = &shared.EntityDefaultEdit{
@@ -434,16 +434,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var redirectEntityView3 *shared.RedirectEntityView
-			if r.UIConfig.SingleView.RedirectEntityView != nil {
+			if r.UIConfig.SingleView.Redirect != nil {
 				viewType10 := new(shared.RedirectEntityViewViewType)
-				if !r.UIConfig.SingleView.RedirectEntityView.ViewType.IsUnknown() && !r.UIConfig.SingleView.RedirectEntityView.ViewType.IsNull() {
-					*viewType10 = shared.RedirectEntityViewViewType(r.UIConfig.SingleView.RedirectEntityView.ViewType.ValueString())
+				if !r.UIConfig.SingleView.Redirect.ViewType.IsUnknown() && !r.UIConfig.SingleView.Redirect.ViewType.IsNull() {
+					*viewType10 = shared.RedirectEntityViewViewType(r.UIConfig.SingleView.Redirect.ViewType.ValueString())
 				} else {
 					viewType10 = nil
 				}
 				route3 := new(string)
-				if !r.UIConfig.SingleView.RedirectEntityView.Route.IsUnknown() && !r.UIConfig.SingleView.RedirectEntityView.Route.IsNull() {
-					*route3 = r.UIConfig.SingleView.RedirectEntityView.Route.ValueString()
+				if !r.UIConfig.SingleView.Redirect.Route.IsUnknown() && !r.UIConfig.SingleView.Redirect.Route.IsNull() {
+					*route3 = r.UIConfig.SingleView.Redirect.Route.ValueString()
 				} else {
 					route3 = nil
 				}
@@ -458,10 +458,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			var entityViewDisabled3 *shared.EntityViewDisabled
-			if r.UIConfig.SingleView.EntityViewDisabled != nil {
+			if r.UIConfig.SingleView.Disabled != nil {
 				viewType11 := new(shared.EntityViewDisabledViewType)
-				if !r.UIConfig.SingleView.EntityViewDisabled.ViewType.IsUnknown() && !r.UIConfig.SingleView.EntityViewDisabled.ViewType.IsNull() {
-					*viewType11 = shared.EntityViewDisabledViewType(r.UIConfig.SingleView.EntityViewDisabled.ViewType.ValueString())
+				if !r.UIConfig.SingleView.Disabled.ViewType.IsUnknown() && !r.UIConfig.SingleView.Disabled.ViewType.IsNull() {
+					*viewType11 = shared.EntityViewDisabledViewType(r.UIConfig.SingleView.Disabled.ViewType.ValueString())
 				} else {
 					viewType11 = nil
 				}
@@ -606,6 +606,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		var attributes []shared.Attribute = []shared.Attribute{}
 		for _, attributesItem := range capabilitiesItem.Attributes {
 			if attributesItem.TextAttribute != nil {
+				id2 := new(string)
+				if !attributesItem.TextAttribute.ID.IsUnknown() && !attributesItem.TextAttribute.ID.IsNull() {
+					*id2 = attributesItem.TextAttribute.ID.ValueString()
+				} else {
+					id2 = nil
+				}
 				name3 := attributesItem.TextAttribute.Name.ValueString()
 				label5 := attributesItem.TextAttribute.Label.ValueString()
 				placeholder := new(string)
@@ -793,6 +799,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					multiline = nil
 				}
 				textAttribute := shared.TextAttribute{
+					ID:                       id2,
 					Name:                     name3,
 					Label:                    label5,
 					Placeholder:              placeholder,
@@ -826,6 +833,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.LinkAttribute != nil {
+				id3 := new(string)
+				if !attributesItem.LinkAttribute.ID.IsUnknown() && !attributesItem.LinkAttribute.ID.IsNull() {
+					*id3 = attributesItem.LinkAttribute.ID.ValueString()
+				} else {
+					id3 = nil
+				}
 				name5 := attributesItem.LinkAttribute.Name.ValueString()
 				label6 := attributesItem.LinkAttribute.Label.ValueString()
 				placeholder1 := new(string)
@@ -1007,6 +1020,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar2 = nil
 				}
 				linkAttribute := shared.LinkAttribute{
+					ID:                       id3,
 					Name:                     name5,
 					Label:                    label6,
 					Placeholder:              placeholder1,
@@ -1039,6 +1053,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.DateAttribute != nil {
+				id4 := new(string)
+				if !attributesItem.DateAttribute.ID.IsUnknown() && !attributesItem.DateAttribute.ID.IsNull() {
+					*id4 = attributesItem.DateAttribute.ID.ValueString()
+				} else {
+					id4 = nil
+				}
 				name7 := attributesItem.DateAttribute.Name.ValueString()
 				label7 := attributesItem.DateAttribute.Label.ValueString()
 				placeholder2 := new(string)
@@ -1220,6 +1240,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar3 = nil
 				}
 				dateAttribute := shared.DateAttribute{
+					ID:                       id4,
 					Name:                     name7,
 					Label:                    label7,
 					Placeholder:              placeholder2,
@@ -1252,6 +1273,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.CountryAttribute != nil {
+				id5 := new(string)
+				if !attributesItem.CountryAttribute.ID.IsUnknown() && !attributesItem.CountryAttribute.ID.IsNull() {
+					*id5 = attributesItem.CountryAttribute.ID.ValueString()
+				} else {
+					id5 = nil
+				}
 				name9 := attributesItem.CountryAttribute.Name.ValueString()
 				label8 := attributesItem.CountryAttribute.Label.ValueString()
 				placeholder3 := new(string)
@@ -1433,6 +1460,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar4 = nil
 				}
 				countryAttribute := shared.CountryAttribute{
+					ID:                       id5,
 					Name:                     name9,
 					Label:                    label8,
 					Placeholder:              placeholder3,
@@ -1465,6 +1493,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.BooleanAttribute != nil {
+				id6 := new(string)
+				if !attributesItem.BooleanAttribute.ID.IsUnknown() && !attributesItem.BooleanAttribute.ID.IsNull() {
+					*id6 = attributesItem.BooleanAttribute.ID.ValueString()
+				} else {
+					id6 = nil
+				}
 				name11 := attributesItem.BooleanAttribute.Name.ValueString()
 				label9 := attributesItem.BooleanAttribute.Label.ValueString()
 				placeholder4 := new(string)
@@ -1646,6 +1680,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar5 = nil
 				}
 				booleanAttribute := shared.BooleanAttribute{
+					ID:                       id6,
 					Name:                     name11,
 					Label:                    label9,
 					Placeholder:              placeholder4,
@@ -1678,6 +1713,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.SelectAttribute != nil {
+				id7 := new(string)
+				if !attributesItem.SelectAttribute.ID.IsUnknown() && !attributesItem.SelectAttribute.ID.IsNull() {
+					*id7 = attributesItem.SelectAttribute.ID.ValueString()
+				} else {
+					id7 = nil
+				}
 				name13 := attributesItem.SelectAttribute.Name.ValueString()
 				label10 := attributesItem.SelectAttribute.Label.ValueString()
 				placeholder5 := new(string)
@@ -1890,6 +1931,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					allowAny = nil
 				}
 				selectAttribute := shared.SelectAttribute{
+					ID:                       id7,
 					Name:                     name13,
 					Label:                    label10,
 					Placeholder:              placeholder5,
@@ -1924,6 +1966,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.MultiSelectAttribute != nil {
+				id8 := new(string)
+				if !attributesItem.MultiSelectAttribute.ID.IsUnknown() && !attributesItem.MultiSelectAttribute.ID.IsNull() {
+					*id8 = attributesItem.MultiSelectAttribute.ID.ValueString()
+				} else {
+					id8 = nil
+				}
 				name15 := attributesItem.MultiSelectAttribute.Name.ValueString()
 				label11 := attributesItem.MultiSelectAttribute.Label.ValueString()
 				placeholder6 := new(string)
@@ -2148,6 +2196,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					allowAny1 = nil
 				}
 				multiSelectAttribute := shared.MultiSelectAttribute{
+					ID:                       id8,
 					Name:                     name15,
 					Label:                    label11,
 					Placeholder:              placeholder6,
@@ -2184,6 +2233,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.StatusAttribute != nil {
+				id9 := new(string)
+				if !attributesItem.StatusAttribute.ID.IsUnknown() && !attributesItem.StatusAttribute.ID.IsNull() {
+					*id9 = attributesItem.StatusAttribute.ID.ValueString()
+				} else {
+					id9 = nil
+				}
 				name17 := attributesItem.StatusAttribute.Name.ValueString()
 				label12 := attributesItem.StatusAttribute.Label.ValueString()
 				placeholder7 := new(string)
@@ -2390,6 +2445,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 				}
 				statusAttribute := shared.StatusAttribute{
+					ID:                       id9,
 					Name:                     name17,
 					Label:                    label12,
 					Placeholder:              placeholder7,
@@ -2423,6 +2479,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.SequenceAttribute != nil {
+				id10 := new(string)
+				if !attributesItem.SequenceAttribute.ID.IsUnknown() && !attributesItem.SequenceAttribute.ID.IsNull() {
+					*id10 = attributesItem.SequenceAttribute.ID.ValueString()
+				} else {
+					id10 = nil
+				}
 				name19 := attributesItem.SequenceAttribute.Name.ValueString()
 				label13 := attributesItem.SequenceAttribute.Label.ValueString()
 				placeholder8 := new(string)
@@ -2616,6 +2678,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					startNumber = nil
 				}
 				sequenceAttribute := shared.SequenceAttribute{
+					ID:                       id10,
 					Name:                     name19,
 					Label:                    label13,
 					Placeholder:              placeholder8,
@@ -2650,6 +2713,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.RelationAttribute != nil {
+				id11 := new(string)
+				if !attributesItem.RelationAttribute.ID.IsUnknown() && !attributesItem.RelationAttribute.ID.IsNull() {
+					*id11 = attributesItem.RelationAttribute.ID.ValueString()
+				} else {
+					id11 = nil
+				}
 				name21 := attributesItem.RelationAttribute.Name.ValueString()
 				label14 := attributesItem.RelationAttribute.Label.ValueString()
 				placeholder9 := new(string)
@@ -2912,7 +2981,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 					var newEntityItem *shared.NewEntityItem
 					if actionsItem.NewEntityItem != nil {
-						id2 := actionsItem.NewEntityItem.ID.ValueString()
+						id12 := actionsItem.NewEntityItem.ID.ValueString()
 						org := actionsItem.NewEntityItem.Org.ValueString()
 						var owners []shared.EntityOwner = []shared.EntityOwner{}
 						for _, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -2981,7 +3050,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
 						}
 						newEntityItem = &shared.NewEntityItem{
-							ID:                   id2,
+							ID:                   id12,
 							Org:                  org,
 							Owners:               owners,
 							Schema:               schema,
@@ -3067,6 +3136,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					searchPlaceholder = nil
 				}
 				relationAttribute := shared.RelationAttribute{
+					ID:                       id11,
 					Name:                     name21,
 					Label:                    label14,
 					Placeholder:              placeholder9,
@@ -3113,6 +3183,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.UserRelationAttribute != nil {
+				id13 := new(string)
+				if !attributesItem.UserRelationAttribute.ID.IsUnknown() && !attributesItem.UserRelationAttribute.ID.IsNull() {
+					*id13 = attributesItem.UserRelationAttribute.ID.ValueString()
+				} else {
+					id13 = nil
+				}
 				name24 := attributesItem.UserRelationAttribute.Name.ValueString()
 				label16 := attributesItem.UserRelationAttribute.Label.ValueString()
 				placeholder10 := new(string)
@@ -3300,6 +3376,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					multiple = nil
 				}
 				userRelationAttribute := shared.UserRelationAttribute{
+					ID:                       id13,
 					Name:                     name24,
 					Label:                    label16,
 					Placeholder:              placeholder10,
@@ -3333,6 +3410,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.AddressRelationAttribute != nil {
+				id14 := new(string)
+				if !attributesItem.AddressRelationAttribute.ID.IsUnknown() && !attributesItem.AddressRelationAttribute.ID.IsNull() {
+					*id14 = attributesItem.AddressRelationAttribute.ID.ValueString()
+				} else {
+					id14 = nil
+				}
 				name26 := attributesItem.AddressRelationAttribute.Name.ValueString()
 				label17 := attributesItem.AddressRelationAttribute.Label.ValueString()
 				placeholder11 := new(string)
@@ -3520,6 +3603,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					hasPrimary1 = nil
 				}
 				addressRelationAttribute := shared.AddressRelationAttribute{
+					ID:                       id14,
 					Name:                     name26,
 					Label:                    label17,
 					Placeholder:              placeholder11,
@@ -3553,6 +3637,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.PaymentMethodRelationAttribute != nil {
+				id15 := new(string)
+				if !attributesItem.PaymentMethodRelationAttribute.ID.IsUnknown() && !attributesItem.PaymentMethodRelationAttribute.ID.IsNull() {
+					*id15 = attributesItem.PaymentMethodRelationAttribute.ID.ValueString()
+				} else {
+					id15 = nil
+				}
 				name28 := attributesItem.PaymentMethodRelationAttribute.Name.ValueString()
 				label18 := attributesItem.PaymentMethodRelationAttribute.Label.ValueString()
 				placeholder12 := new(string)
@@ -3740,6 +3830,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					hasPrimary2 = nil
 				}
 				paymentMethodRelationAttribute := shared.PaymentMethodRelationAttribute{
+					ID:                       id15,
 					Name:                     name28,
 					Label:                    label18,
 					Placeholder:              placeholder12,
@@ -3773,6 +3864,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.CurrencyAttribute != nil {
+				id16 := new(string)
+				if !attributesItem.CurrencyAttribute.ID.IsUnknown() && !attributesItem.CurrencyAttribute.ID.IsNull() {
+					*id16 = attributesItem.CurrencyAttribute.ID.ValueString()
+				} else {
+					id16 = nil
+				}
 				name30 := attributesItem.CurrencyAttribute.Name.ValueString()
 				label19 := attributesItem.CurrencyAttribute.Label.ValueString()
 				placeholder13 := new(string)
@@ -3978,6 +4075,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 				}
 				currencyAttribute := shared.CurrencyAttribute{
+					ID:                       id16,
 					Name:                     name30,
 					Label:                    label19,
 					Placeholder:              placeholder13,
@@ -4012,6 +4110,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.RepeatableAttribute != nil {
+				id17 := new(string)
+				if !attributesItem.RepeatableAttribute.ID.IsUnknown() && !attributesItem.RepeatableAttribute.ID.IsNull() {
+					*id17 = attributesItem.RepeatableAttribute.ID.ValueString()
+				} else {
+					id17 = nil
+				}
 				name32 := attributesItem.RepeatableAttribute.Name.ValueString()
 				label20 := attributesItem.RepeatableAttribute.Label.ValueString()
 				placeholder14 := new(string)
@@ -4217,6 +4321,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					enableRelationPicker1 = nil
 				}
 				repeatableAttribute := shared.RepeatableAttribute{
+					ID:                       id17,
 					Name:                     name32,
 					Label:                    label20,
 					Placeholder:              placeholder14,
@@ -4253,6 +4358,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.TagsAttribute != nil {
+				id18 := new(string)
+				if !attributesItem.TagsAttribute.ID.IsUnknown() && !attributesItem.TagsAttribute.ID.IsNull() {
+					*id18 = attributesItem.TagsAttribute.ID.ValueString()
+				} else {
+					id18 = nil
+				}
 				name34 := attributesItem.TagsAttribute.Name.ValueString()
 				label21 := attributesItem.TagsAttribute.Label.ValueString()
 				placeholder15 := new(string)
@@ -4442,6 +4553,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					suggestions = append(suggestions, suggestionsItem.ValueString())
 				}
 				tagsAttribute := shared.TagsAttribute{
+					ID:                       id18,
 					Name:                     name34,
 					Label:                    label21,
 					Placeholder:              placeholder15,
@@ -4476,6 +4588,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.NumberAttribute != nil {
+				id19 := new(string)
+				if !attributesItem.NumberAttribute.ID.IsUnknown() && !attributesItem.NumberAttribute.ID.IsNull() {
+					*id19 = attributesItem.NumberAttribute.ID.ValueString()
+				} else {
+					id19 = nil
+				}
 				name36 := attributesItem.NumberAttribute.Name.ValueString()
 				label22 := attributesItem.NumberAttribute.Label.ValueString()
 				placeholder16 := new(string)
@@ -4663,6 +4781,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					format = nil
 				}
 				numberAttribute := shared.NumberAttribute{
+					ID:                       id19,
 					Name:                     name36,
 					Label:                    label22,
 					Placeholder:              placeholder16,
@@ -4696,6 +4815,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.ConsentAttribute != nil {
+				id20 := new(string)
+				if !attributesItem.ConsentAttribute.ID.IsUnknown() && !attributesItem.ConsentAttribute.ID.IsNull() {
+					*id20 = attributesItem.ConsentAttribute.ID.ValueString()
+				} else {
+					id20 = nil
+				}
 				name38 := attributesItem.ConsentAttribute.Name.ValueString()
 				label23 := attributesItem.ConsentAttribute.Label.ValueString()
 				placeholder17 := new(string)
@@ -4877,6 +5002,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					identifiers = append(identifiers, identifiersItem.ValueString())
 				}
 				consentAttribute := shared.ConsentAttribute{
+					ID:                       id20,
 					Name:                     name38,
 					Label:                    label23,
 					Placeholder:              placeholder17,
@@ -4911,6 +5037,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.InternalAttribute != nil {
+				id21 := new(string)
+				if !attributesItem.InternalAttribute.ID.IsUnknown() && !attributesItem.InternalAttribute.ID.IsNull() {
+					*id21 = attributesItem.InternalAttribute.ID.ValueString()
+				} else {
+					id21 = nil
+				}
 				name40 := attributesItem.InternalAttribute.Name.ValueString()
 				label24 := attributesItem.InternalAttribute.Label.ValueString()
 				placeholder18 := new(string)
@@ -5092,6 +5224,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar19 = nil
 				}
 				internalAttribute := shared.InternalAttribute{
+					ID:                       id21,
 					Name:                     name40,
 					Label:                    label24,
 					Placeholder:              placeholder18,
@@ -5124,6 +5257,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.OrderedListAttribute != nil {
+				id22 := new(string)
+				if !attributesItem.OrderedListAttribute.ID.IsUnknown() && !attributesItem.OrderedListAttribute.ID.IsNull() {
+					*id22 = attributesItem.OrderedListAttribute.ID.ValueString()
+				} else {
+					id22 = nil
+				}
 				name42 := attributesItem.OrderedListAttribute.Name.ValueString()
 				label25 := attributesItem.OrderedListAttribute.Label.ValueString()
 				placeholder19 := new(string)
@@ -5305,6 +5444,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar20 = nil
 				}
 				orderedListAttribute := shared.OrderedListAttribute{
+					ID:                       id22,
 					Name:                     name42,
 					Label:                    label25,
 					Placeholder:              placeholder19,
@@ -5337,6 +5477,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.FileAttribute != nil {
+				id23 := new(string)
+				if !attributesItem.FileAttribute.ID.IsUnknown() && !attributesItem.FileAttribute.ID.IsNull() {
+					*id23 = attributesItem.FileAttribute.ID.ValueString()
+				} else {
+					id23 = nil
+				}
 				name44 := attributesItem.FileAttribute.Name.ValueString()
 				label26 := attributesItem.FileAttribute.Label.ValueString()
 				placeholder20 := new(string)
@@ -5541,6 +5687,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					defaultAccessControl = nil
 				}
 				fileAttribute := shared.FileAttribute{
+					ID:                       id23,
 					Name:                     name44,
 					Label:                    label26,
 					Placeholder:              placeholder20,
@@ -5578,6 +5725,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.ComputedAttribute != nil {
+				id24 := new(string)
+				if !attributesItem.ComputedAttribute.ID.IsUnknown() && !attributesItem.ComputedAttribute.ID.IsNull() {
+					*id24 = attributesItem.ComputedAttribute.ID.ValueString()
+				} else {
+					id24 = nil
+				}
 				name46 := attributesItem.ComputedAttribute.Name.ValueString()
 				label27 := attributesItem.ComputedAttribute.Label.ValueString()
 				placeholder21 := new(string)
@@ -5759,6 +5912,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar22 = nil
 				}
 				computedAttribute := shared.ComputedAttribute{
+					ID:                       id24,
 					Name:                     name46,
 					Label:                    label27,
 					Placeholder:              placeholder21,
@@ -5791,6 +5945,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.PartnerStatusAttribute != nil {
+				id25 := new(string)
+				if !attributesItem.PartnerStatusAttribute.ID.IsUnknown() && !attributesItem.PartnerStatusAttribute.ID.IsNull() {
+					*id25 = attributesItem.PartnerStatusAttribute.ID.ValueString()
+				} else {
+					id25 = nil
+				}
 				name48 := attributesItem.PartnerStatusAttribute.Name.ValueString()
 				label28 := attributesItem.PartnerStatusAttribute.Label.ValueString()
 				placeholder22 := new(string)
@@ -5972,6 +6132,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar23 = nil
 				}
 				partnerStatusAttribute := shared.PartnerStatusAttribute{
+					ID:                       id25,
 					Name:                     name48,
 					Label:                    label28,
 					Placeholder:              placeholder22,
@@ -6004,6 +6165,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.InvitationEmailAttribute != nil {
+				id26 := new(string)
+				if !attributesItem.InvitationEmailAttribute.ID.IsUnknown() && !attributesItem.InvitationEmailAttribute.ID.IsNull() {
+					*id26 = attributesItem.InvitationEmailAttribute.ID.ValueString()
+				} else {
+					id26 = nil
+				}
 				name50 := attributesItem.InvitationEmailAttribute.Name.ValueString()
 				label29 := attributesItem.InvitationEmailAttribute.Label.ValueString()
 				placeholder23 := new(string)
@@ -6185,6 +6352,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar24 = nil
 				}
 				invitationEmailAttribute := shared.InvitationEmailAttribute{
+					ID:                       id26,
 					Name:                     name50,
 					Label:                    label29,
 					Placeholder:              placeholder23,
@@ -6217,6 +6385,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.AutomationAttribute != nil {
+				id27 := new(string)
+				if !attributesItem.AutomationAttribute.ID.IsUnknown() && !attributesItem.AutomationAttribute.ID.IsNull() {
+					*id27 = attributesItem.AutomationAttribute.ID.ValueString()
+				} else {
+					id27 = nil
+				}
 				name52 := attributesItem.AutomationAttribute.Name.ValueString()
 				label30 := attributesItem.AutomationAttribute.Label.ValueString()
 				placeholder24 := new(string)
@@ -6398,6 +6572,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar25 = nil
 				}
 				automationAttribute := shared.AutomationAttribute{
+					ID:                       id27,
 					Name:                     name52,
 					Label:                    label30,
 					Placeholder:              placeholder24,
@@ -6430,6 +6605,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.InternalUserAttribute != nil {
+				id28 := new(string)
+				if !attributesItem.InternalUserAttribute.ID.IsUnknown() && !attributesItem.InternalUserAttribute.ID.IsNull() {
+					*id28 = attributesItem.InternalUserAttribute.ID.ValueString()
+				} else {
+					id28 = nil
+				}
 				name54 := attributesItem.InternalUserAttribute.Name.ValueString()
 				label31 := attributesItem.InternalUserAttribute.Label.ValueString()
 				placeholder25 := new(string)
@@ -6611,6 +6792,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar26 = nil
 				}
 				internalUserAttribute := shared.InternalUserAttribute{
+					ID:                       id28,
 					Name:                     name54,
 					Label:                    label31,
 					Placeholder:              placeholder25,
@@ -6643,6 +6825,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.PurposeAttribute != nil {
+				id29 := new(string)
+				if !attributesItem.PurposeAttribute.ID.IsUnknown() && !attributesItem.PurposeAttribute.ID.IsNull() {
+					*id29 = attributesItem.PurposeAttribute.ID.ValueString()
+				} else {
+					id29 = nil
+				}
 				name56 := attributesItem.PurposeAttribute.Name.ValueString()
 				label32 := attributesItem.PurposeAttribute.Label.ValueString()
 				placeholder26 := new(string)
@@ -6817,12 +7005,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						HintTooltipPlacement: hintTooltipPlacement26,
 					}
 				}
-				id3 := new(string)
-				if !attributesItem.PurposeAttribute.ID.IsUnknown() && !attributesItem.PurposeAttribute.ID.IsNull() {
-					*id3 = attributesItem.PurposeAttribute.ID.ValueString()
-				} else {
-					id3 = nil
-				}
 				slug1 := new(string)
 				if !attributesItem.PurposeAttribute.Slug.IsUnknown() && !attributesItem.PurposeAttribute.Slug.IsNull() {
 					*slug1 = attributesItem.PurposeAttribute.Slug.ValueString()
@@ -6852,6 +7034,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar27 = nil
 				}
 				purposeAttribute := shared.PurposeAttribute{
+					ID:                       id29,
 					Name:                     name56,
 					Label:                    label32,
 					Placeholder:              placeholder26,
@@ -6877,7 +7060,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					EntityBuilderDisableEdit: entityBuilderDisableEdit26,
 					Protected:                protected26,
 					InfoHelpers:              infoHelpers26,
-					ID:                       id3,
 					Slug:                     slug1,
 					Parents:                  parents,
 					CreatedAt:                createdAt2,
@@ -6889,6 +7071,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				})
 			}
 			if attributesItem.PartnerOrganisationAttribute != nil {
+				id30 := new(string)
+				if !attributesItem.PartnerOrganisationAttribute.ID.IsUnknown() && !attributesItem.PartnerOrganisationAttribute.ID.IsNull() {
+					*id30 = attributesItem.PartnerOrganisationAttribute.ID.ValueString()
+				} else {
+					id30 = nil
+				}
 				name58 := attributesItem.PartnerOrganisationAttribute.Name.ValueString()
 				label33 := attributesItem.PartnerOrganisationAttribute.Label.ValueString()
 				placeholder27 := new(string)
@@ -7070,6 +7258,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar28 = nil
 				}
 				partnerOrganisationAttribute := shared.PartnerOrganisationAttribute{
+					ID:                       id30,
 					Name:                     name58,
 					Label:                    label33,
 					Placeholder:              placeholder27,
@@ -7241,7 +7430,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 	var groupSettings []shared.GroupSettings = []shared.GroupSettings{}
 	for _, groupSettingsItem := range r.GroupSettings {
 		label34 := groupSettingsItem.Label.ValueString()
-		id4 := groupSettingsItem.ID.ValueString()
+		id31 := new(string)
+		if !groupSettingsItem.ID.IsUnknown() && !groupSettingsItem.ID.IsNull() {
+			*id31 = groupSettingsItem.ID.ValueString()
+		} else {
+			id31 = nil
+		}
 		expanded := new(bool)
 		if !groupSettingsItem.Expanded.IsUnknown() && !groupSettingsItem.Expanded.IsNull() {
 			*expanded = groupSettingsItem.Expanded.ValueBool()
@@ -7310,7 +7504,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		}
 		groupSettings = append(groupSettings, shared.GroupSettings{
 			Label:            label34,
-			ID:               id4,
+			ID:               id31,
 			Expanded:         expanded,
 			RenderCondition:  renderCondition30,
 			Order:            order29,
@@ -7353,6 +7547,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 	var attributes1 []shared.Attribute = []shared.Attribute{}
 	for _, attributesItem1 := range r.Attributes {
 		if attributesItem1.TextAttribute != nil {
+			id32 := new(string)
+			if !attributesItem1.TextAttribute.ID.IsUnknown() && !attributesItem1.TextAttribute.ID.IsNull() {
+				*id32 = attributesItem1.TextAttribute.ID.ValueString()
+			} else {
+				id32 = nil
+			}
 			name62 := attributesItem1.TextAttribute.Name.ValueString()
 			label35 := attributesItem1.TextAttribute.Label.ValueString()
 			placeholder28 := new(string)
@@ -7540,6 +7740,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				multiline1 = nil
 			}
 			textAttribute1 := shared.TextAttribute{
+				ID:                       id32,
 				Name:                     name62,
 				Label:                    label35,
 				Placeholder:              placeholder28,
@@ -7573,6 +7774,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.LinkAttribute != nil {
+			id33 := new(string)
+			if !attributesItem1.LinkAttribute.ID.IsUnknown() && !attributesItem1.LinkAttribute.ID.IsNull() {
+				*id33 = attributesItem1.LinkAttribute.ID.ValueString()
+			} else {
+				id33 = nil
+			}
 			name64 := attributesItem1.LinkAttribute.Name.ValueString()
 			label36 := attributesItem1.LinkAttribute.Label.ValueString()
 			placeholder29 := new(string)
@@ -7754,6 +7961,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar30 = nil
 			}
 			linkAttribute1 := shared.LinkAttribute{
+				ID:                       id33,
 				Name:                     name64,
 				Label:                    label36,
 				Placeholder:              placeholder29,
@@ -7786,6 +7994,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.DateAttribute != nil {
+			id34 := new(string)
+			if !attributesItem1.DateAttribute.ID.IsUnknown() && !attributesItem1.DateAttribute.ID.IsNull() {
+				*id34 = attributesItem1.DateAttribute.ID.ValueString()
+			} else {
+				id34 = nil
+			}
 			name66 := attributesItem1.DateAttribute.Name.ValueString()
 			label37 := attributesItem1.DateAttribute.Label.ValueString()
 			placeholder30 := new(string)
@@ -7967,6 +8181,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar31 = nil
 			}
 			dateAttribute1 := shared.DateAttribute{
+				ID:                       id34,
 				Name:                     name66,
 				Label:                    label37,
 				Placeholder:              placeholder30,
@@ -7999,6 +8214,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.CountryAttribute != nil {
+			id35 := new(string)
+			if !attributesItem1.CountryAttribute.ID.IsUnknown() && !attributesItem1.CountryAttribute.ID.IsNull() {
+				*id35 = attributesItem1.CountryAttribute.ID.ValueString()
+			} else {
+				id35 = nil
+			}
 			name68 := attributesItem1.CountryAttribute.Name.ValueString()
 			label38 := attributesItem1.CountryAttribute.Label.ValueString()
 			placeholder31 := new(string)
@@ -8180,6 +8401,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar32 = nil
 			}
 			countryAttribute1 := shared.CountryAttribute{
+				ID:                       id35,
 				Name:                     name68,
 				Label:                    label38,
 				Placeholder:              placeholder31,
@@ -8212,6 +8434,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.BooleanAttribute != nil {
+			id36 := new(string)
+			if !attributesItem1.BooleanAttribute.ID.IsUnknown() && !attributesItem1.BooleanAttribute.ID.IsNull() {
+				*id36 = attributesItem1.BooleanAttribute.ID.ValueString()
+			} else {
+				id36 = nil
+			}
 			name70 := attributesItem1.BooleanAttribute.Name.ValueString()
 			label39 := attributesItem1.BooleanAttribute.Label.ValueString()
 			placeholder32 := new(string)
@@ -8393,6 +8621,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar33 = nil
 			}
 			booleanAttribute1 := shared.BooleanAttribute{
+				ID:                       id36,
 				Name:                     name70,
 				Label:                    label39,
 				Placeholder:              placeholder32,
@@ -8425,6 +8654,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.SelectAttribute != nil {
+			id37 := new(string)
+			if !attributesItem1.SelectAttribute.ID.IsUnknown() && !attributesItem1.SelectAttribute.ID.IsNull() {
+				*id37 = attributesItem1.SelectAttribute.ID.ValueString()
+			} else {
+				id37 = nil
+			}
 			name72 := attributesItem1.SelectAttribute.Name.ValueString()
 			label40 := attributesItem1.SelectAttribute.Label.ValueString()
 			placeholder33 := new(string)
@@ -8637,6 +8872,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				allowAny2 = nil
 			}
 			selectAttribute1 := shared.SelectAttribute{
+				ID:                       id37,
 				Name:                     name72,
 				Label:                    label40,
 				Placeholder:              placeholder33,
@@ -8671,6 +8907,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.MultiSelectAttribute != nil {
+			id38 := new(string)
+			if !attributesItem1.MultiSelectAttribute.ID.IsUnknown() && !attributesItem1.MultiSelectAttribute.ID.IsNull() {
+				*id38 = attributesItem1.MultiSelectAttribute.ID.ValueString()
+			} else {
+				id38 = nil
+			}
 			name74 := attributesItem1.MultiSelectAttribute.Name.ValueString()
 			label41 := attributesItem1.MultiSelectAttribute.Label.ValueString()
 			placeholder34 := new(string)
@@ -8895,6 +9137,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				allowAny3 = nil
 			}
 			multiSelectAttribute1 := shared.MultiSelectAttribute{
+				ID:                       id38,
 				Name:                     name74,
 				Label:                    label41,
 				Placeholder:              placeholder34,
@@ -8931,6 +9174,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.StatusAttribute != nil {
+			id39 := new(string)
+			if !attributesItem1.StatusAttribute.ID.IsUnknown() && !attributesItem1.StatusAttribute.ID.IsNull() {
+				*id39 = attributesItem1.StatusAttribute.ID.ValueString()
+			} else {
+				id39 = nil
+			}
 			name76 := attributesItem1.StatusAttribute.Name.ValueString()
 			label42 := attributesItem1.StatusAttribute.Label.ValueString()
 			placeholder35 := new(string)
@@ -9137,6 +9386,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			statusAttribute1 := shared.StatusAttribute{
+				ID:                       id39,
 				Name:                     name76,
 				Label:                    label42,
 				Placeholder:              placeholder35,
@@ -9170,6 +9420,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.SequenceAttribute != nil {
+			id40 := new(string)
+			if !attributesItem1.SequenceAttribute.ID.IsUnknown() && !attributesItem1.SequenceAttribute.ID.IsNull() {
+				*id40 = attributesItem1.SequenceAttribute.ID.ValueString()
+			} else {
+				id40 = nil
+			}
 			name78 := attributesItem1.SequenceAttribute.Name.ValueString()
 			label43 := attributesItem1.SequenceAttribute.Label.ValueString()
 			placeholder36 := new(string)
@@ -9363,6 +9619,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				startNumber1 = nil
 			}
 			sequenceAttribute1 := shared.SequenceAttribute{
+				ID:                       id40,
 				Name:                     name78,
 				Label:                    label43,
 				Placeholder:              placeholder36,
@@ -9397,6 +9654,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.RelationAttribute != nil {
+			id41 := new(string)
+			if !attributesItem1.RelationAttribute.ID.IsUnknown() && !attributesItem1.RelationAttribute.ID.IsNull() {
+				*id41 = attributesItem1.RelationAttribute.ID.ValueString()
+			} else {
+				id41 = nil
+			}
 			name80 := attributesItem1.RelationAttribute.Name.ValueString()
 			label44 := attributesItem1.RelationAttribute.Label.ValueString()
 			placeholder37 := new(string)
@@ -9659,7 +9922,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 				var newEntityItem1 *shared.NewEntityItem
 				if actionsItem1.NewEntityItem != nil {
-					id5 := actionsItem1.NewEntityItem.ID.ValueString()
+					id42 := actionsItem1.NewEntityItem.ID.ValueString()
 					org1 := actionsItem1.NewEntityItem.Org.ValueString()
 					var owners1 []shared.EntityOwner = []shared.EntityOwner{}
 					for _, ownersItem1 := range actionsItem1.NewEntityItem.Owners {
@@ -9728,7 +9991,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						_ = json.Unmarshal([]byte(actionsItem1.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties5)
 					}
 					newEntityItem1 = &shared.NewEntityItem{
-						ID:                   id5,
+						ID:                   id42,
 						Org:                  org1,
 						Owners:               owners1,
 						Schema:               schema1,
@@ -9814,6 +10077,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				searchPlaceholder1 = nil
 			}
 			relationAttribute1 := shared.RelationAttribute{
+				ID:                       id41,
 				Name:                     name80,
 				Label:                    label44,
 				Placeholder:              placeholder37,
@@ -9860,6 +10124,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.UserRelationAttribute != nil {
+			id43 := new(string)
+			if !attributesItem1.UserRelationAttribute.ID.IsUnknown() && !attributesItem1.UserRelationAttribute.ID.IsNull() {
+				*id43 = attributesItem1.UserRelationAttribute.ID.ValueString()
+			} else {
+				id43 = nil
+			}
 			name83 := attributesItem1.UserRelationAttribute.Name.ValueString()
 			label46 := attributesItem1.UserRelationAttribute.Label.ValueString()
 			placeholder38 := new(string)
@@ -10047,6 +10317,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				multiple2 = nil
 			}
 			userRelationAttribute1 := shared.UserRelationAttribute{
+				ID:                       id43,
 				Name:                     name83,
 				Label:                    label46,
 				Placeholder:              placeholder38,
@@ -10080,6 +10351,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.AddressRelationAttribute != nil {
+			id44 := new(string)
+			if !attributesItem1.AddressRelationAttribute.ID.IsUnknown() && !attributesItem1.AddressRelationAttribute.ID.IsNull() {
+				*id44 = attributesItem1.AddressRelationAttribute.ID.ValueString()
+			} else {
+				id44 = nil
+			}
 			name85 := attributesItem1.AddressRelationAttribute.Name.ValueString()
 			label47 := attributesItem1.AddressRelationAttribute.Label.ValueString()
 			placeholder39 := new(string)
@@ -10267,6 +10544,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				hasPrimary5 = nil
 			}
 			addressRelationAttribute1 := shared.AddressRelationAttribute{
+				ID:                       id44,
 				Name:                     name85,
 				Label:                    label47,
 				Placeholder:              placeholder39,
@@ -10300,6 +10578,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.PaymentMethodRelationAttribute != nil {
+			id45 := new(string)
+			if !attributesItem1.PaymentMethodRelationAttribute.ID.IsUnknown() && !attributesItem1.PaymentMethodRelationAttribute.ID.IsNull() {
+				*id45 = attributesItem1.PaymentMethodRelationAttribute.ID.ValueString()
+			} else {
+				id45 = nil
+			}
 			name87 := attributesItem1.PaymentMethodRelationAttribute.Name.ValueString()
 			label48 := attributesItem1.PaymentMethodRelationAttribute.Label.ValueString()
 			placeholder40 := new(string)
@@ -10487,6 +10771,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				hasPrimary6 = nil
 			}
 			paymentMethodRelationAttribute1 := shared.PaymentMethodRelationAttribute{
+				ID:                       id45,
 				Name:                     name87,
 				Label:                    label48,
 				Placeholder:              placeholder40,
@@ -10520,6 +10805,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.CurrencyAttribute != nil {
+			id46 := new(string)
+			if !attributesItem1.CurrencyAttribute.ID.IsUnknown() && !attributesItem1.CurrencyAttribute.ID.IsNull() {
+				*id46 = attributesItem1.CurrencyAttribute.ID.ValueString()
+			} else {
+				id46 = nil
+			}
 			name89 := attributesItem1.CurrencyAttribute.Name.ValueString()
 			label49 := attributesItem1.CurrencyAttribute.Label.ValueString()
 			placeholder41 := new(string)
@@ -10725,6 +11016,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				}
 			}
 			currencyAttribute1 := shared.CurrencyAttribute{
+				ID:                       id46,
 				Name:                     name89,
 				Label:                    label49,
 				Placeholder:              placeholder41,
@@ -10759,6 +11051,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.RepeatableAttribute != nil {
+			id47 := new(string)
+			if !attributesItem1.RepeatableAttribute.ID.IsUnknown() && !attributesItem1.RepeatableAttribute.ID.IsNull() {
+				*id47 = attributesItem1.RepeatableAttribute.ID.ValueString()
+			} else {
+				id47 = nil
+			}
 			name91 := attributesItem1.RepeatableAttribute.Name.ValueString()
 			label50 := attributesItem1.RepeatableAttribute.Label.ValueString()
 			placeholder42 := new(string)
@@ -10964,6 +11262,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				enableRelationPicker3 = nil
 			}
 			repeatableAttribute1 := shared.RepeatableAttribute{
+				ID:                       id47,
 				Name:                     name91,
 				Label:                    label50,
 				Placeholder:              placeholder42,
@@ -11000,6 +11299,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.TagsAttribute != nil {
+			id48 := new(string)
+			if !attributesItem1.TagsAttribute.ID.IsUnknown() && !attributesItem1.TagsAttribute.ID.IsNull() {
+				*id48 = attributesItem1.TagsAttribute.ID.ValueString()
+			} else {
+				id48 = nil
+			}
 			name93 := attributesItem1.TagsAttribute.Name.ValueString()
 			label51 := attributesItem1.TagsAttribute.Label.ValueString()
 			placeholder43 := new(string)
@@ -11189,6 +11494,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				suggestions1 = append(suggestions1, suggestionsItem1.ValueString())
 			}
 			tagsAttribute1 := shared.TagsAttribute{
+				ID:                       id48,
 				Name:                     name93,
 				Label:                    label51,
 				Placeholder:              placeholder43,
@@ -11223,6 +11529,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.NumberAttribute != nil {
+			id49 := new(string)
+			if !attributesItem1.NumberAttribute.ID.IsUnknown() && !attributesItem1.NumberAttribute.ID.IsNull() {
+				*id49 = attributesItem1.NumberAttribute.ID.ValueString()
+			} else {
+				id49 = nil
+			}
 			name95 := attributesItem1.NumberAttribute.Name.ValueString()
 			label52 := attributesItem1.NumberAttribute.Label.ValueString()
 			placeholder44 := new(string)
@@ -11410,6 +11722,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				format1 = nil
 			}
 			numberAttribute1 := shared.NumberAttribute{
+				ID:                       id49,
 				Name:                     name95,
 				Label:                    label52,
 				Placeholder:              placeholder44,
@@ -11443,6 +11756,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.ConsentAttribute != nil {
+			id50 := new(string)
+			if !attributesItem1.ConsentAttribute.ID.IsUnknown() && !attributesItem1.ConsentAttribute.ID.IsNull() {
+				*id50 = attributesItem1.ConsentAttribute.ID.ValueString()
+			} else {
+				id50 = nil
+			}
 			name97 := attributesItem1.ConsentAttribute.Name.ValueString()
 			label53 := attributesItem1.ConsentAttribute.Label.ValueString()
 			placeholder45 := new(string)
@@ -11624,6 +11943,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				identifiers1 = append(identifiers1, identifiersItem1.ValueString())
 			}
 			consentAttribute1 := shared.ConsentAttribute{
+				ID:                       id50,
 				Name:                     name97,
 				Label:                    label53,
 				Placeholder:              placeholder45,
@@ -11658,6 +11978,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.InternalAttribute != nil {
+			id51 := new(string)
+			if !attributesItem1.InternalAttribute.ID.IsUnknown() && !attributesItem1.InternalAttribute.ID.IsNull() {
+				*id51 = attributesItem1.InternalAttribute.ID.ValueString()
+			} else {
+				id51 = nil
+			}
 			name99 := attributesItem1.InternalAttribute.Name.ValueString()
 			label54 := attributesItem1.InternalAttribute.Label.ValueString()
 			placeholder46 := new(string)
@@ -11839,6 +12165,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar47 = nil
 			}
 			internalAttribute1 := shared.InternalAttribute{
+				ID:                       id51,
 				Name:                     name99,
 				Label:                    label54,
 				Placeholder:              placeholder46,
@@ -11871,6 +12198,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.OrderedListAttribute != nil {
+			id52 := new(string)
+			if !attributesItem1.OrderedListAttribute.ID.IsUnknown() && !attributesItem1.OrderedListAttribute.ID.IsNull() {
+				*id52 = attributesItem1.OrderedListAttribute.ID.ValueString()
+			} else {
+				id52 = nil
+			}
 			name101 := attributesItem1.OrderedListAttribute.Name.ValueString()
 			label55 := attributesItem1.OrderedListAttribute.Label.ValueString()
 			placeholder47 := new(string)
@@ -12052,6 +12385,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar48 = nil
 			}
 			orderedListAttribute1 := shared.OrderedListAttribute{
+				ID:                       id52,
 				Name:                     name101,
 				Label:                    label55,
 				Placeholder:              placeholder47,
@@ -12084,6 +12418,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.FileAttribute != nil {
+			id53 := new(string)
+			if !attributesItem1.FileAttribute.ID.IsUnknown() && !attributesItem1.FileAttribute.ID.IsNull() {
+				*id53 = attributesItem1.FileAttribute.ID.ValueString()
+			} else {
+				id53 = nil
+			}
 			name103 := attributesItem1.FileAttribute.Name.ValueString()
 			label56 := attributesItem1.FileAttribute.Label.ValueString()
 			placeholder48 := new(string)
@@ -12288,6 +12628,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				defaultAccessControl1 = nil
 			}
 			fileAttribute1 := shared.FileAttribute{
+				ID:                       id53,
 				Name:                     name103,
 				Label:                    label56,
 				Placeholder:              placeholder48,
@@ -12325,6 +12666,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.ComputedAttribute != nil {
+			id54 := new(string)
+			if !attributesItem1.ComputedAttribute.ID.IsUnknown() && !attributesItem1.ComputedAttribute.ID.IsNull() {
+				*id54 = attributesItem1.ComputedAttribute.ID.ValueString()
+			} else {
+				id54 = nil
+			}
 			name105 := attributesItem1.ComputedAttribute.Name.ValueString()
 			label57 := attributesItem1.ComputedAttribute.Label.ValueString()
 			placeholder49 := new(string)
@@ -12506,6 +12853,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar50 = nil
 			}
 			computedAttribute1 := shared.ComputedAttribute{
+				ID:                       id54,
 				Name:                     name105,
 				Label:                    label57,
 				Placeholder:              placeholder49,
@@ -12538,6 +12886,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.PartnerStatusAttribute != nil {
+			id55 := new(string)
+			if !attributesItem1.PartnerStatusAttribute.ID.IsUnknown() && !attributesItem1.PartnerStatusAttribute.ID.IsNull() {
+				*id55 = attributesItem1.PartnerStatusAttribute.ID.ValueString()
+			} else {
+				id55 = nil
+			}
 			name107 := attributesItem1.PartnerStatusAttribute.Name.ValueString()
 			label58 := attributesItem1.PartnerStatusAttribute.Label.ValueString()
 			placeholder50 := new(string)
@@ -12719,6 +13073,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar51 = nil
 			}
 			partnerStatusAttribute1 := shared.PartnerStatusAttribute{
+				ID:                       id55,
 				Name:                     name107,
 				Label:                    label58,
 				Placeholder:              placeholder50,
@@ -12751,6 +13106,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.InvitationEmailAttribute != nil {
+			id56 := new(string)
+			if !attributesItem1.InvitationEmailAttribute.ID.IsUnknown() && !attributesItem1.InvitationEmailAttribute.ID.IsNull() {
+				*id56 = attributesItem1.InvitationEmailAttribute.ID.ValueString()
+			} else {
+				id56 = nil
+			}
 			name109 := attributesItem1.InvitationEmailAttribute.Name.ValueString()
 			label59 := attributesItem1.InvitationEmailAttribute.Label.ValueString()
 			placeholder51 := new(string)
@@ -12932,6 +13293,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar52 = nil
 			}
 			invitationEmailAttribute1 := shared.InvitationEmailAttribute{
+				ID:                       id56,
 				Name:                     name109,
 				Label:                    label59,
 				Placeholder:              placeholder51,
@@ -12964,6 +13326,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.AutomationAttribute != nil {
+			id57 := new(string)
+			if !attributesItem1.AutomationAttribute.ID.IsUnknown() && !attributesItem1.AutomationAttribute.ID.IsNull() {
+				*id57 = attributesItem1.AutomationAttribute.ID.ValueString()
+			} else {
+				id57 = nil
+			}
 			name111 := attributesItem1.AutomationAttribute.Name.ValueString()
 			label60 := attributesItem1.AutomationAttribute.Label.ValueString()
 			placeholder52 := new(string)
@@ -13145,6 +13513,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar53 = nil
 			}
 			automationAttribute1 := shared.AutomationAttribute{
+				ID:                       id57,
 				Name:                     name111,
 				Label:                    label60,
 				Placeholder:              placeholder52,
@@ -13177,6 +13546,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.InternalUserAttribute != nil {
+			id58 := new(string)
+			if !attributesItem1.InternalUserAttribute.ID.IsUnknown() && !attributesItem1.InternalUserAttribute.ID.IsNull() {
+				*id58 = attributesItem1.InternalUserAttribute.ID.ValueString()
+			} else {
+				id58 = nil
+			}
 			name113 := attributesItem1.InternalUserAttribute.Name.ValueString()
 			label61 := attributesItem1.InternalUserAttribute.Label.ValueString()
 			placeholder53 := new(string)
@@ -13358,6 +13733,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar54 = nil
 			}
 			internalUserAttribute1 := shared.InternalUserAttribute{
+				ID:                       id58,
 				Name:                     name113,
 				Label:                    label61,
 				Placeholder:              placeholder53,
@@ -13390,6 +13766,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.PurposeAttribute != nil {
+			id59 := new(string)
+			if !attributesItem1.PurposeAttribute.ID.IsUnknown() && !attributesItem1.PurposeAttribute.ID.IsNull() {
+				*id59 = attributesItem1.PurposeAttribute.ID.ValueString()
+			} else {
+				id59 = nil
+			}
 			name115 := attributesItem1.PurposeAttribute.Name.ValueString()
 			label62 := attributesItem1.PurposeAttribute.Label.ValueString()
 			placeholder54 := new(string)
@@ -13564,12 +13946,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					HintTooltipPlacement: hintTooltipPlacement54,
 				}
 			}
-			id6 := new(string)
-			if !attributesItem1.PurposeAttribute.ID.IsUnknown() && !attributesItem1.PurposeAttribute.ID.IsNull() {
-				*id6 = attributesItem1.PurposeAttribute.ID.ValueString()
-			} else {
-				id6 = nil
-			}
 			slug2 := new(string)
 			if !attributesItem1.PurposeAttribute.Slug.IsUnknown() && !attributesItem1.PurposeAttribute.Slug.IsNull() {
 				*slug2 = attributesItem1.PurposeAttribute.Slug.ValueString()
@@ -13599,6 +13975,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar55 = nil
 			}
 			purposeAttribute1 := shared.PurposeAttribute{
+				ID:                       id59,
 				Name:                     name115,
 				Label:                    label62,
 				Placeholder:              placeholder54,
@@ -13624,7 +14001,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				EntityBuilderDisableEdit: entityBuilderDisableEdit54,
 				Protected:                protected54,
 				InfoHelpers:              infoHelpers54,
-				ID:                       id6,
 				Slug:                     slug2,
 				Parents:                  parents1,
 				CreatedAt:                createdAt4,
@@ -13636,6 +14012,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			})
 		}
 		if attributesItem1.PartnerOrganisationAttribute != nil {
+			id60 := new(string)
+			if !attributesItem1.PartnerOrganisationAttribute.ID.IsUnknown() && !attributesItem1.PartnerOrganisationAttribute.ID.IsNull() {
+				*id60 = attributesItem1.PartnerOrganisationAttribute.ID.ValueString()
+			} else {
+				id60 = nil
+			}
 			name117 := attributesItem1.PartnerOrganisationAttribute.Name.ValueString()
 			label63 := attributesItem1.PartnerOrganisationAttribute.Label.ValueString()
 			placeholder55 := new(string)
@@ -13817,6 +14199,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar56 = nil
 			}
 			partnerOrganisationAttribute1 := shared.PartnerOrganisationAttribute{
+				ID:                       id60,
 				Name:                     name117,
 				Label:                    label63,
 				Placeholder:              placeholder55,
@@ -13936,6 +14319,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Hidden)
 				attributes1.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HideLabel)
 				attributes1.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem.AddressRelationAttribute.Icon)
+				attributes1.AddressRelationAttribute.ID = types.StringPointerValue(attributesItem.AddressRelationAttribute.ID)
 				if attributesItem.AddressRelationAttribute.InfoHelpers == nil {
 					attributes1.AddressRelationAttribute.InfoHelpers = nil
 				} else {
@@ -13999,6 +14383,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem.AutomationAttribute.Hidden)
 				attributes1.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem.AutomationAttribute.HideLabel)
 				attributes1.AutomationAttribute.Icon = types.StringPointerValue(attributesItem.AutomationAttribute.Icon)
+				attributes1.AutomationAttribute.ID = types.StringPointerValue(attributesItem.AutomationAttribute.ID)
 				if attributesItem.AutomationAttribute.InfoHelpers == nil {
 					attributes1.AutomationAttribute.InfoHelpers = nil
 				} else {
@@ -14062,6 +14447,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem.BooleanAttribute.Hidden)
 				attributes1.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem.BooleanAttribute.HideLabel)
 				attributes1.BooleanAttribute.Icon = types.StringPointerValue(attributesItem.BooleanAttribute.Icon)
+				attributes1.BooleanAttribute.ID = types.StringPointerValue(attributesItem.BooleanAttribute.ID)
 				if attributesItem.BooleanAttribute.InfoHelpers == nil {
 					attributes1.BooleanAttribute.InfoHelpers = nil
 				} else {
@@ -14125,6 +14511,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem.ComputedAttribute.Hidden)
 				attributes1.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem.ComputedAttribute.HideLabel)
 				attributes1.ComputedAttribute.Icon = types.StringPointerValue(attributesItem.ComputedAttribute.Icon)
+				attributes1.ComputedAttribute.ID = types.StringPointerValue(attributesItem.ComputedAttribute.ID)
 				if attributesItem.ComputedAttribute.InfoHelpers == nil {
 					attributes1.ComputedAttribute.InfoHelpers = nil
 				} else {
@@ -14188,6 +14575,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem.ConsentAttribute.Hidden)
 				attributes1.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem.ConsentAttribute.HideLabel)
 				attributes1.ConsentAttribute.Icon = types.StringPointerValue(attributesItem.ConsentAttribute.Icon)
+				attributes1.ConsentAttribute.ID = types.StringPointerValue(attributesItem.ConsentAttribute.ID)
 				attributes1.ConsentAttribute.Identifiers = []types.String{}
 				for _, v := range attributesItem.ConsentAttribute.Identifiers {
 					attributes1.ConsentAttribute.Identifiers = append(attributes1.ConsentAttribute.Identifiers, types.StringValue(v))
@@ -14252,6 +14640,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem.CountryAttribute.Hidden)
 				attributes1.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem.CountryAttribute.HideLabel)
 				attributes1.CountryAttribute.Icon = types.StringPointerValue(attributesItem.CountryAttribute.Icon)
+				attributes1.CountryAttribute.ID = types.StringPointerValue(attributesItem.CountryAttribute.ID)
 				if attributesItem.CountryAttribute.InfoHelpers == nil {
 					attributes1.CountryAttribute.InfoHelpers = nil
 				} else {
@@ -14331,6 +14720,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem.CurrencyAttribute.Hidden)
 				attributes1.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem.CurrencyAttribute.HideLabel)
 				attributes1.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem.CurrencyAttribute.Icon)
+				attributes1.CurrencyAttribute.ID = types.StringPointerValue(attributesItem.CurrencyAttribute.ID)
 				if attributesItem.CurrencyAttribute.InfoHelpers == nil {
 					attributes1.CurrencyAttribute.InfoHelpers = nil
 				} else {
@@ -14390,6 +14780,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.DateAttribute.Hidden = types.BoolPointerValue(attributesItem.DateAttribute.Hidden)
 				attributes1.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem.DateAttribute.HideLabel)
 				attributes1.DateAttribute.Icon = types.StringPointerValue(attributesItem.DateAttribute.Icon)
+				attributes1.DateAttribute.ID = types.StringPointerValue(attributesItem.DateAttribute.ID)
 				if attributesItem.DateAttribute.InfoHelpers == nil {
 					attributes1.DateAttribute.InfoHelpers = nil
 				} else {
@@ -14464,6 +14855,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.FileAttribute.Hidden = types.BoolPointerValue(attributesItem.FileAttribute.Hidden)
 				attributes1.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem.FileAttribute.HideLabel)
 				attributes1.FileAttribute.Icon = types.StringPointerValue(attributesItem.FileAttribute.Icon)
+				attributes1.FileAttribute.ID = types.StringPointerValue(attributesItem.FileAttribute.ID)
 				if attributesItem.FileAttribute.InfoHelpers == nil {
 					attributes1.FileAttribute.InfoHelpers = nil
 				} else {
@@ -14524,6 +14916,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalAttribute.Hidden)
 				attributes1.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalAttribute.HideLabel)
 				attributes1.InternalAttribute.Icon = types.StringPointerValue(attributesItem.InternalAttribute.Icon)
+				attributes1.InternalAttribute.ID = types.StringPointerValue(attributesItem.InternalAttribute.ID)
 				if attributesItem.InternalAttribute.InfoHelpers == nil {
 					attributes1.InternalAttribute.InfoHelpers = nil
 				} else {
@@ -14587,6 +14980,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem.InternalUserAttribute.Hidden)
 				attributes1.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem.InternalUserAttribute.HideLabel)
 				attributes1.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem.InternalUserAttribute.Icon)
+				attributes1.InternalUserAttribute.ID = types.StringPointerValue(attributesItem.InternalUserAttribute.ID)
 				if attributesItem.InternalUserAttribute.InfoHelpers == nil {
 					attributes1.InternalUserAttribute.InfoHelpers = nil
 				} else {
@@ -14650,6 +15044,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Hidden)
 				attributes1.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.HideLabel)
 				attributes1.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Icon)
+				attributes1.InvitationEmailAttribute.ID = types.StringPointerValue(attributesItem.InvitationEmailAttribute.ID)
 				if attributesItem.InvitationEmailAttribute.InfoHelpers == nil {
 					attributes1.InvitationEmailAttribute.InfoHelpers = nil
 				} else {
@@ -14713,6 +15108,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem.LinkAttribute.Hidden)
 				attributes1.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem.LinkAttribute.HideLabel)
 				attributes1.LinkAttribute.Icon = types.StringPointerValue(attributesItem.LinkAttribute.Icon)
+				attributes1.LinkAttribute.ID = types.StringPointerValue(attributesItem.LinkAttribute.ID)
 				if attributesItem.LinkAttribute.InfoHelpers == nil {
 					attributes1.LinkAttribute.InfoHelpers = nil
 				} else {
@@ -14779,6 +15175,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Hidden)
 				attributes1.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.MultiSelectAttribute.HideLabel)
 				attributes1.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem.MultiSelectAttribute.Icon)
+				attributes1.MultiSelectAttribute.ID = types.StringPointerValue(attributesItem.MultiSelectAttribute.ID)
 				if attributesItem.MultiSelectAttribute.InfoHelpers == nil {
 					attributes1.MultiSelectAttribute.InfoHelpers = nil
 				} else {
@@ -14860,6 +15257,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem.NumberAttribute.Hidden)
 				attributes1.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem.NumberAttribute.HideLabel)
 				attributes1.NumberAttribute.Icon = types.StringPointerValue(attributesItem.NumberAttribute.Icon)
+				attributes1.NumberAttribute.ID = types.StringPointerValue(attributesItem.NumberAttribute.ID)
 				if attributesItem.NumberAttribute.InfoHelpers == nil {
 					attributes1.NumberAttribute.InfoHelpers = nil
 				} else {
@@ -14923,6 +15321,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem.OrderedListAttribute.Hidden)
 				attributes1.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem.OrderedListAttribute.HideLabel)
 				attributes1.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem.OrderedListAttribute.Icon)
+				attributes1.OrderedListAttribute.ID = types.StringPointerValue(attributesItem.OrderedListAttribute.ID)
 				if attributesItem.OrderedListAttribute.InfoHelpers == nil {
 					attributes1.OrderedListAttribute.InfoHelpers = nil
 				} else {
@@ -14986,6 +15385,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Hidden)
 				attributes1.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.HideLabel)
 				attributes1.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Icon)
+				attributes1.PartnerOrganisationAttribute.ID = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.ID)
 				if attributesItem.PartnerOrganisationAttribute.InfoHelpers == nil {
 					attributes1.PartnerOrganisationAttribute.InfoHelpers = nil
 				} else {
@@ -15049,6 +15449,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Hidden)
 				attributes1.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.HideLabel)
 				attributes1.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Icon)
+				attributes1.PartnerStatusAttribute.ID = types.StringPointerValue(attributesItem.PartnerStatusAttribute.ID)
 				if attributesItem.PartnerStatusAttribute.InfoHelpers == nil {
 					attributes1.PartnerStatusAttribute.InfoHelpers = nil
 				} else {
@@ -15113,6 +15514,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Hidden)
 				attributes1.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HideLabel)
 				attributes1.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Icon)
+				attributes1.PaymentMethodRelationAttribute.ID = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.ID)
 				if attributesItem.PaymentMethodRelationAttribute.InfoHelpers == nil {
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers = nil
 				} else {
@@ -15369,6 +15771,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem.RelationAttribute.Hidden)
 				attributes1.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.RelationAttribute.HideLabel)
 				attributes1.RelationAttribute.Icon = types.StringPointerValue(attributesItem.RelationAttribute.Icon)
+				attributes1.RelationAttribute.ID = types.StringPointerValue(attributesItem.RelationAttribute.ID)
 				if attributesItem.RelationAttribute.InfoHelpers == nil {
 					attributes1.RelationAttribute.InfoHelpers = nil
 				} else {
@@ -15468,6 +15871,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem.RepeatableAttribute.Hidden)
 				attributes1.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem.RepeatableAttribute.HideLabel)
 				attributes1.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem.RepeatableAttribute.Icon)
+				attributes1.RepeatableAttribute.ID = types.StringPointerValue(attributesItem.RepeatableAttribute.ID)
 				if attributesItem.RepeatableAttribute.InfoHelpers == nil {
 					attributes1.RepeatableAttribute.InfoHelpers = nil
 				} else {
@@ -15538,6 +15942,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem.SelectAttribute.Hidden)
 				attributes1.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem.SelectAttribute.HideLabel)
 				attributes1.SelectAttribute.Icon = types.StringPointerValue(attributesItem.SelectAttribute.Icon)
+				attributes1.SelectAttribute.ID = types.StringPointerValue(attributesItem.SelectAttribute.ID)
 				if attributesItem.SelectAttribute.InfoHelpers == nil {
 					attributes1.SelectAttribute.InfoHelpers = nil
 				} else {
@@ -15618,6 +16023,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem.SequenceAttribute.Hidden)
 				attributes1.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem.SequenceAttribute.HideLabel)
 				attributes1.SequenceAttribute.Icon = types.StringPointerValue(attributesItem.SequenceAttribute.Icon)
+				attributes1.SequenceAttribute.ID = types.StringPointerValue(attributesItem.SequenceAttribute.ID)
 				if attributesItem.SequenceAttribute.InfoHelpers == nil {
 					attributes1.SequenceAttribute.InfoHelpers = nil
 				} else {
@@ -15683,6 +16089,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem.StatusAttribute.Hidden)
 				attributes1.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem.StatusAttribute.HideLabel)
 				attributes1.StatusAttribute.Icon = types.StringPointerValue(attributesItem.StatusAttribute.Icon)
+				attributes1.StatusAttribute.ID = types.StringPointerValue(attributesItem.StatusAttribute.ID)
 				if attributesItem.StatusAttribute.InfoHelpers == nil {
 					attributes1.StatusAttribute.InfoHelpers = nil
 				} else {
@@ -15763,6 +16170,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem.TagsAttribute.Hidden)
 				attributes1.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem.TagsAttribute.HideLabel)
 				attributes1.TagsAttribute.Icon = types.StringPointerValue(attributesItem.TagsAttribute.Icon)
+				attributes1.TagsAttribute.ID = types.StringPointerValue(attributesItem.TagsAttribute.ID)
 				if attributesItem.TagsAttribute.InfoHelpers == nil {
 					attributes1.TagsAttribute.InfoHelpers = nil
 				} else {
@@ -15834,6 +16242,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.TextAttribute.Hidden = types.BoolPointerValue(attributesItem.TextAttribute.Hidden)
 				attributes1.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem.TextAttribute.HideLabel)
 				attributes1.TextAttribute.Icon = types.StringPointerValue(attributesItem.TextAttribute.Icon)
+				attributes1.TextAttribute.ID = types.StringPointerValue(attributesItem.TextAttribute.ID)
 				if attributesItem.TextAttribute.InfoHelpers == nil {
 					attributes1.TextAttribute.InfoHelpers = nil
 				} else {
@@ -15898,6 +16307,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem.UserRelationAttribute.Hidden)
 				attributes1.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.UserRelationAttribute.HideLabel)
 				attributes1.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem.UserRelationAttribute.Icon)
+				attributes1.UserRelationAttribute.ID = types.StringPointerValue(attributesItem.UserRelationAttribute.ID)
 				if attributesItem.UserRelationAttribute.InfoHelpers == nil {
 					attributes1.UserRelationAttribute.InfoHelpers = nil
 				} else {
@@ -16008,6 +16418,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.AddressRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.Hidden)
 					attributes3.AddressRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AddressRelationAttribute.HideLabel)
 					attributes3.AddressRelationAttribute.Icon = types.StringPointerValue(attributesItem1.AddressRelationAttribute.Icon)
+					attributes3.AddressRelationAttribute.ID = types.StringPointerValue(attributesItem1.AddressRelationAttribute.ID)
 					if attributesItem1.AddressRelationAttribute.InfoHelpers == nil {
 						attributes3.AddressRelationAttribute.InfoHelpers = nil
 					} else {
@@ -16071,6 +16482,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.AutomationAttribute.Hidden = types.BoolPointerValue(attributesItem1.AutomationAttribute.Hidden)
 					attributes3.AutomationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.AutomationAttribute.HideLabel)
 					attributes3.AutomationAttribute.Icon = types.StringPointerValue(attributesItem1.AutomationAttribute.Icon)
+					attributes3.AutomationAttribute.ID = types.StringPointerValue(attributesItem1.AutomationAttribute.ID)
 					if attributesItem1.AutomationAttribute.InfoHelpers == nil {
 						attributes3.AutomationAttribute.InfoHelpers = nil
 					} else {
@@ -16134,6 +16546,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.BooleanAttribute.Hidden = types.BoolPointerValue(attributesItem1.BooleanAttribute.Hidden)
 					attributes3.BooleanAttribute.HideLabel = types.BoolPointerValue(attributesItem1.BooleanAttribute.HideLabel)
 					attributes3.BooleanAttribute.Icon = types.StringPointerValue(attributesItem1.BooleanAttribute.Icon)
+					attributes3.BooleanAttribute.ID = types.StringPointerValue(attributesItem1.BooleanAttribute.ID)
 					if attributesItem1.BooleanAttribute.InfoHelpers == nil {
 						attributes3.BooleanAttribute.InfoHelpers = nil
 					} else {
@@ -16197,6 +16610,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.ComputedAttribute.Hidden = types.BoolPointerValue(attributesItem1.ComputedAttribute.Hidden)
 					attributes3.ComputedAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ComputedAttribute.HideLabel)
 					attributes3.ComputedAttribute.Icon = types.StringPointerValue(attributesItem1.ComputedAttribute.Icon)
+					attributes3.ComputedAttribute.ID = types.StringPointerValue(attributesItem1.ComputedAttribute.ID)
 					if attributesItem1.ComputedAttribute.InfoHelpers == nil {
 						attributes3.ComputedAttribute.InfoHelpers = nil
 					} else {
@@ -16260,6 +16674,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.ConsentAttribute.Hidden = types.BoolPointerValue(attributesItem1.ConsentAttribute.Hidden)
 					attributes3.ConsentAttribute.HideLabel = types.BoolPointerValue(attributesItem1.ConsentAttribute.HideLabel)
 					attributes3.ConsentAttribute.Icon = types.StringPointerValue(attributesItem1.ConsentAttribute.Icon)
+					attributes3.ConsentAttribute.ID = types.StringPointerValue(attributesItem1.ConsentAttribute.ID)
 					attributes3.ConsentAttribute.Identifiers = []types.String{}
 					for _, v := range attributesItem1.ConsentAttribute.Identifiers {
 						attributes3.ConsentAttribute.Identifiers = append(attributes3.ConsentAttribute.Identifiers, types.StringValue(v))
@@ -16324,6 +16739,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.CountryAttribute.Hidden = types.BoolPointerValue(attributesItem1.CountryAttribute.Hidden)
 					attributes3.CountryAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CountryAttribute.HideLabel)
 					attributes3.CountryAttribute.Icon = types.StringPointerValue(attributesItem1.CountryAttribute.Icon)
+					attributes3.CountryAttribute.ID = types.StringPointerValue(attributesItem1.CountryAttribute.ID)
 					if attributesItem1.CountryAttribute.InfoHelpers == nil {
 						attributes3.CountryAttribute.InfoHelpers = nil
 					} else {
@@ -16403,6 +16819,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.CurrencyAttribute.Hidden = types.BoolPointerValue(attributesItem1.CurrencyAttribute.Hidden)
 					attributes3.CurrencyAttribute.HideLabel = types.BoolPointerValue(attributesItem1.CurrencyAttribute.HideLabel)
 					attributes3.CurrencyAttribute.Icon = types.StringPointerValue(attributesItem1.CurrencyAttribute.Icon)
+					attributes3.CurrencyAttribute.ID = types.StringPointerValue(attributesItem1.CurrencyAttribute.ID)
 					if attributesItem1.CurrencyAttribute.InfoHelpers == nil {
 						attributes3.CurrencyAttribute.InfoHelpers = nil
 					} else {
@@ -16462,6 +16879,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.DateAttribute.Hidden = types.BoolPointerValue(attributesItem1.DateAttribute.Hidden)
 					attributes3.DateAttribute.HideLabel = types.BoolPointerValue(attributesItem1.DateAttribute.HideLabel)
 					attributes3.DateAttribute.Icon = types.StringPointerValue(attributesItem1.DateAttribute.Icon)
+					attributes3.DateAttribute.ID = types.StringPointerValue(attributesItem1.DateAttribute.ID)
 					if attributesItem1.DateAttribute.InfoHelpers == nil {
 						attributes3.DateAttribute.InfoHelpers = nil
 					} else {
@@ -16536,6 +16954,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.FileAttribute.Hidden = types.BoolPointerValue(attributesItem1.FileAttribute.Hidden)
 					attributes3.FileAttribute.HideLabel = types.BoolPointerValue(attributesItem1.FileAttribute.HideLabel)
 					attributes3.FileAttribute.Icon = types.StringPointerValue(attributesItem1.FileAttribute.Icon)
+					attributes3.FileAttribute.ID = types.StringPointerValue(attributesItem1.FileAttribute.ID)
 					if attributesItem1.FileAttribute.InfoHelpers == nil {
 						attributes3.FileAttribute.InfoHelpers = nil
 					} else {
@@ -16596,6 +17015,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.InternalAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalAttribute.Hidden)
 					attributes3.InternalAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalAttribute.HideLabel)
 					attributes3.InternalAttribute.Icon = types.StringPointerValue(attributesItem1.InternalAttribute.Icon)
+					attributes3.InternalAttribute.ID = types.StringPointerValue(attributesItem1.InternalAttribute.ID)
 					if attributesItem1.InternalAttribute.InfoHelpers == nil {
 						attributes3.InternalAttribute.InfoHelpers = nil
 					} else {
@@ -16659,6 +17079,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.InternalUserAttribute.Hidden = types.BoolPointerValue(attributesItem1.InternalUserAttribute.Hidden)
 					attributes3.InternalUserAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InternalUserAttribute.HideLabel)
 					attributes3.InternalUserAttribute.Icon = types.StringPointerValue(attributesItem1.InternalUserAttribute.Icon)
+					attributes3.InternalUserAttribute.ID = types.StringPointerValue(attributesItem1.InternalUserAttribute.ID)
 					if attributesItem1.InternalUserAttribute.InfoHelpers == nil {
 						attributes3.InternalUserAttribute.InfoHelpers = nil
 					} else {
@@ -16722,6 +17143,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.InvitationEmailAttribute.Hidden = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.Hidden)
 					attributes3.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(attributesItem1.InvitationEmailAttribute.HideLabel)
 					attributes3.InvitationEmailAttribute.Icon = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.Icon)
+					attributes3.InvitationEmailAttribute.ID = types.StringPointerValue(attributesItem1.InvitationEmailAttribute.ID)
 					if attributesItem1.InvitationEmailAttribute.InfoHelpers == nil {
 						attributes3.InvitationEmailAttribute.InfoHelpers = nil
 					} else {
@@ -16785,6 +17207,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.LinkAttribute.Hidden = types.BoolPointerValue(attributesItem1.LinkAttribute.Hidden)
 					attributes3.LinkAttribute.HideLabel = types.BoolPointerValue(attributesItem1.LinkAttribute.HideLabel)
 					attributes3.LinkAttribute.Icon = types.StringPointerValue(attributesItem1.LinkAttribute.Icon)
+					attributes3.LinkAttribute.ID = types.StringPointerValue(attributesItem1.LinkAttribute.ID)
 					if attributesItem1.LinkAttribute.InfoHelpers == nil {
 						attributes3.LinkAttribute.InfoHelpers = nil
 					} else {
@@ -16851,6 +17274,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.MultiSelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.Hidden)
 					attributes3.MultiSelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.MultiSelectAttribute.HideLabel)
 					attributes3.MultiSelectAttribute.Icon = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Icon)
+					attributes3.MultiSelectAttribute.ID = types.StringPointerValue(attributesItem1.MultiSelectAttribute.ID)
 					if attributesItem1.MultiSelectAttribute.InfoHelpers == nil {
 						attributes3.MultiSelectAttribute.InfoHelpers = nil
 					} else {
@@ -16932,6 +17356,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.NumberAttribute.Hidden = types.BoolPointerValue(attributesItem1.NumberAttribute.Hidden)
 					attributes3.NumberAttribute.HideLabel = types.BoolPointerValue(attributesItem1.NumberAttribute.HideLabel)
 					attributes3.NumberAttribute.Icon = types.StringPointerValue(attributesItem1.NumberAttribute.Icon)
+					attributes3.NumberAttribute.ID = types.StringPointerValue(attributesItem1.NumberAttribute.ID)
 					if attributesItem1.NumberAttribute.InfoHelpers == nil {
 						attributes3.NumberAttribute.InfoHelpers = nil
 					} else {
@@ -16995,6 +17420,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.OrderedListAttribute.Hidden = types.BoolPointerValue(attributesItem1.OrderedListAttribute.Hidden)
 					attributes3.OrderedListAttribute.HideLabel = types.BoolPointerValue(attributesItem1.OrderedListAttribute.HideLabel)
 					attributes3.OrderedListAttribute.Icon = types.StringPointerValue(attributesItem1.OrderedListAttribute.Icon)
+					attributes3.OrderedListAttribute.ID = types.StringPointerValue(attributesItem1.OrderedListAttribute.ID)
 					if attributesItem1.OrderedListAttribute.InfoHelpers == nil {
 						attributes3.OrderedListAttribute.InfoHelpers = nil
 					} else {
@@ -17058,6 +17484,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.Hidden)
 					attributes3.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerOrganisationAttribute.HideLabel)
 					attributes3.PartnerOrganisationAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.Icon)
+					attributes3.PartnerOrganisationAttribute.ID = types.StringPointerValue(attributesItem1.PartnerOrganisationAttribute.ID)
 					if attributesItem1.PartnerOrganisationAttribute.InfoHelpers == nil {
 						attributes3.PartnerOrganisationAttribute.InfoHelpers = nil
 					} else {
@@ -17121,6 +17548,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.PartnerStatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.Hidden)
 					attributes3.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PartnerStatusAttribute.HideLabel)
 					attributes3.PartnerStatusAttribute.Icon = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.Icon)
+					attributes3.PartnerStatusAttribute.ID = types.StringPointerValue(attributesItem1.PartnerStatusAttribute.ID)
 					if attributesItem1.PartnerStatusAttribute.InfoHelpers == nil {
 						attributes3.PartnerStatusAttribute.InfoHelpers = nil
 					} else {
@@ -17185,6 +17613,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.Hidden)
 					attributes3.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.PaymentMethodRelationAttribute.HideLabel)
 					attributes3.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.Icon)
+					attributes3.PaymentMethodRelationAttribute.ID = types.StringPointerValue(attributesItem1.PaymentMethodRelationAttribute.ID)
 					if attributesItem1.PaymentMethodRelationAttribute.InfoHelpers == nil {
 						attributes3.PaymentMethodRelationAttribute.InfoHelpers = nil
 					} else {
@@ -17441,6 +17870,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.RelationAttribute.Hidden)
 					attributes3.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RelationAttribute.HideLabel)
 					attributes3.RelationAttribute.Icon = types.StringPointerValue(attributesItem1.RelationAttribute.Icon)
+					attributes3.RelationAttribute.ID = types.StringPointerValue(attributesItem1.RelationAttribute.ID)
 					if attributesItem1.RelationAttribute.InfoHelpers == nil {
 						attributes3.RelationAttribute.InfoHelpers = nil
 					} else {
@@ -17540,6 +17970,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem1.RepeatableAttribute.Hidden)
 					attributes3.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem1.RepeatableAttribute.HideLabel)
 					attributes3.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem1.RepeatableAttribute.Icon)
+					attributes3.RepeatableAttribute.ID = types.StringPointerValue(attributesItem1.RepeatableAttribute.ID)
 					if attributesItem1.RepeatableAttribute.InfoHelpers == nil {
 						attributes3.RepeatableAttribute.InfoHelpers = nil
 					} else {
@@ -17610,6 +18041,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.SelectAttribute.Hidden = types.BoolPointerValue(attributesItem1.SelectAttribute.Hidden)
 					attributes3.SelectAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SelectAttribute.HideLabel)
 					attributes3.SelectAttribute.Icon = types.StringPointerValue(attributesItem1.SelectAttribute.Icon)
+					attributes3.SelectAttribute.ID = types.StringPointerValue(attributesItem1.SelectAttribute.ID)
 					if attributesItem1.SelectAttribute.InfoHelpers == nil {
 						attributes3.SelectAttribute.InfoHelpers = nil
 					} else {
@@ -17690,6 +18122,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.SequenceAttribute.Hidden = types.BoolPointerValue(attributesItem1.SequenceAttribute.Hidden)
 					attributes3.SequenceAttribute.HideLabel = types.BoolPointerValue(attributesItem1.SequenceAttribute.HideLabel)
 					attributes3.SequenceAttribute.Icon = types.StringPointerValue(attributesItem1.SequenceAttribute.Icon)
+					attributes3.SequenceAttribute.ID = types.StringPointerValue(attributesItem1.SequenceAttribute.ID)
 					if attributesItem1.SequenceAttribute.InfoHelpers == nil {
 						attributes3.SequenceAttribute.InfoHelpers = nil
 					} else {
@@ -17755,6 +18188,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.StatusAttribute.Hidden = types.BoolPointerValue(attributesItem1.StatusAttribute.Hidden)
 					attributes3.StatusAttribute.HideLabel = types.BoolPointerValue(attributesItem1.StatusAttribute.HideLabel)
 					attributes3.StatusAttribute.Icon = types.StringPointerValue(attributesItem1.StatusAttribute.Icon)
+					attributes3.StatusAttribute.ID = types.StringPointerValue(attributesItem1.StatusAttribute.ID)
 					if attributesItem1.StatusAttribute.InfoHelpers == nil {
 						attributes3.StatusAttribute.InfoHelpers = nil
 					} else {
@@ -17835,6 +18269,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.TagsAttribute.Hidden = types.BoolPointerValue(attributesItem1.TagsAttribute.Hidden)
 					attributes3.TagsAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TagsAttribute.HideLabel)
 					attributes3.TagsAttribute.Icon = types.StringPointerValue(attributesItem1.TagsAttribute.Icon)
+					attributes3.TagsAttribute.ID = types.StringPointerValue(attributesItem1.TagsAttribute.ID)
 					if attributesItem1.TagsAttribute.InfoHelpers == nil {
 						attributes3.TagsAttribute.InfoHelpers = nil
 					} else {
@@ -17906,6 +18341,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.TextAttribute.Hidden = types.BoolPointerValue(attributesItem1.TextAttribute.Hidden)
 					attributes3.TextAttribute.HideLabel = types.BoolPointerValue(attributesItem1.TextAttribute.HideLabel)
 					attributes3.TextAttribute.Icon = types.StringPointerValue(attributesItem1.TextAttribute.Icon)
+					attributes3.TextAttribute.ID = types.StringPointerValue(attributesItem1.TextAttribute.ID)
 					if attributesItem1.TextAttribute.InfoHelpers == nil {
 						attributes3.TextAttribute.InfoHelpers = nil
 					} else {
@@ -17970,6 +18406,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.UserRelationAttribute.Hidden = types.BoolPointerValue(attributesItem1.UserRelationAttribute.Hidden)
 					attributes3.UserRelationAttribute.HideLabel = types.BoolPointerValue(attributesItem1.UserRelationAttribute.HideLabel)
 					attributes3.UserRelationAttribute.Icon = types.StringPointerValue(attributesItem1.UserRelationAttribute.Icon)
+					attributes3.UserRelationAttribute.ID = types.StringPointerValue(attributesItem1.UserRelationAttribute.ID)
 					if attributesItem1.UserRelationAttribute.InfoHelpers == nil {
 						attributes3.UserRelationAttribute.InfoHelpers = nil
 					} else {
@@ -18159,7 +18596,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {
@@ -18231,34 +18668,34 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			} else {
 				r.UIConfig.CreateView = &tfTypes.CreateView{}
 				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
-					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
+					r.UIConfig.CreateView.Default = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
-						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String)
+						r.UIConfig.CreateView.Default.SearchParams = make(map[string]types.String)
 						for key5, value10 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key5] = types.StringValue(value10)
+							r.UIConfig.CreateView.Default.SearchParams[key5] = types.StringValue(value10)
 						}
 					}
 					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
+						r.UIConfig.CreateView.Default.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityDefaultCreate.ViewType))
 					} else {
-						r.UIConfig.CreateView.EntityDefaultCreate.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.CreateView.EntityViewDisabled != nil {
-					r.UIConfig.CreateView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.CreateView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.CreateView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
+						r.UIConfig.CreateView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.CreateView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.CreateView.RedirectEntityView != nil {
-					r.UIConfig.CreateView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.CreateView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
+					r.UIConfig.CreateView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.CreateView.Redirect.Route = types.StringPointerValue(resp.UIConfig.CreateView.RedirectEntityView.Route)
 					if resp.UIConfig.CreateView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
+						r.UIConfig.CreateView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.CreateView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.CreateView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.CreateView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -18267,38 +18704,38 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			} else {
 				r.UIConfig.EditView = &tfTypes.EditView{}
 				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
-					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					r.UIConfig.EditView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.EditView.Default.SearchParams = make(map[string]types.String)
 						for key6, value11 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key6] = types.StringValue(value11)
+							r.UIConfig.EditView.Default.SearchParams[key6] = types.StringValue(value11)
 						}
 					}
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.EditView.Default.SummaryAttributes = []types.String{}
 					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+						r.UIConfig.EditView.Default.SummaryAttributes = append(r.UIConfig.EditView.Default.SummaryAttributes, types.StringValue(v))
 					}
 					if resp.UIConfig.EditView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
+						r.UIConfig.EditView.Default.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityDefaultEdit.ViewType))
 					} else {
-						r.UIConfig.EditView.EntityDefaultEdit.ViewType = types.StringNull()
+						r.UIConfig.EditView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.EditView.EntityViewDisabled != nil {
-					r.UIConfig.EditView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.EditView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.EditView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
+						r.UIConfig.EditView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.EditView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.EditView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.EditView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.EditView.RedirectEntityView != nil {
-					r.UIConfig.EditView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.EditView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
+					r.UIConfig.EditView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.EditView.Redirect.Route = types.StringPointerValue(resp.UIConfig.EditView.RedirectEntityView.Route)
 					if resp.UIConfig.EditView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
+						r.UIConfig.EditView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.EditView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.EditView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.EditView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -18371,38 +18808,38 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			} else {
 				r.UIConfig.SingleView = &tfTypes.EditView{}
 				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
-					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
+					r.UIConfig.SingleView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.SingleView.Default.SearchParams = make(map[string]types.String)
 						for key7, value13 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key7] = types.StringValue(value13)
+							r.UIConfig.SingleView.Default.SearchParams[key7] = types.StringValue(value13)
 						}
 					}
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.SingleView.Default.SummaryAttributes = []types.String{}
 					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
-						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
+						r.UIConfig.SingleView.Default.SummaryAttributes = append(r.UIConfig.SingleView.Default.SummaryAttributes, types.StringValue(v))
 					}
 					if resp.UIConfig.SingleView.EntityDefaultEdit.ViewType != nil {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
+						r.UIConfig.SingleView.Default.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityDefaultEdit.ViewType))
 					} else {
-						r.UIConfig.SingleView.EntityDefaultEdit.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.SingleView.EntityViewDisabled != nil {
-					r.UIConfig.SingleView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.SingleView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.SingleView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
+						r.UIConfig.SingleView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.SingleView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.SingleView.RedirectEntityView != nil {
-					r.UIConfig.SingleView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.SingleView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
+					r.UIConfig.SingleView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.SingleView.Redirect.Route = types.StringPointerValue(resp.UIConfig.SingleView.RedirectEntityView.Route)
 					if resp.UIConfig.SingleView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
+						r.UIConfig.SingleView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.SingleView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.SingleView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.SingleView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}
@@ -18411,9 +18848,9 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			} else {
 				r.UIConfig.TableView = &tfTypes.TableView{}
 				if resp.UIConfig.TableView.EntityDefaultTable != nil {
-					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
-					if len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-						r.UIConfig.TableView.EntityDefaultTable.BulkActions = r.UIConfig.TableView.EntityDefaultTable.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
+					r.UIConfig.TableView.Default = &tfTypes.EntityDefaultTable{}
+					if len(r.UIConfig.TableView.Default.BulkActions) > len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions) {
+						r.UIConfig.TableView.Default.BulkActions = r.UIConfig.TableView.Default.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
 					}
 					for bulkActionsCount, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
 						var bulkActions1 tfTypes.BulkActions
@@ -18427,16 +18864,16 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 							bulkActions1.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
 							bulkActions1.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
 						}
-						if bulkActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions1)
+						if bulkActionsCount+1 > len(r.UIConfig.TableView.Default.BulkActions) {
+							r.UIConfig.TableView.Default.BulkActions = append(r.UIConfig.TableView.Default.BulkActions, bulkActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].Str = bulkActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
+							r.UIConfig.TableView.Default.BulkActions[bulkActionsCount].Str = bulkActions1.Str
+							r.UIConfig.TableView.Default.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
 						}
 					}
-					r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
-					if len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = r.UIConfig.TableView.EntityDefaultTable.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
+					r.UIConfig.TableView.Default.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
+					if len(r.UIConfig.TableView.Default.NavbarActions) > len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
+						r.UIConfig.TableView.Default.NavbarActions = r.UIConfig.TableView.Default.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
 					}
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 						var navbarActions1 tfTypes.NavbarActions
@@ -18456,15 +18893,15 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 							}
 						}
 						navbarActions1.Type = types.StringValue(navbarActionsItem.Type)
-						if navbarActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions1)
+						if navbarActionsCount+1 > len(r.UIConfig.TableView.Default.NavbarActions) {
+							r.UIConfig.TableView.Default.NavbarActions = append(r.UIConfig.TableView.Default.NavbarActions, navbarActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
+							r.UIConfig.TableView.Default.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
+							r.UIConfig.TableView.Default.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
 						}
 					}
-					if len(r.UIConfig.TableView.EntityDefaultTable.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
-						r.UIConfig.TableView.EntityDefaultTable.RowActions = r.UIConfig.TableView.EntityDefaultTable.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
+					if len(r.UIConfig.TableView.Default.RowActions) > len(resp.UIConfig.TableView.EntityDefaultTable.RowActions) {
+						r.UIConfig.TableView.Default.RowActions = r.UIConfig.TableView.Default.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
 					}
 					for rowActionsCount, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
 						var rowActions1 tfTypes.BulkActions
@@ -18478,34 +18915,34 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 							rowActions1.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
 							rowActions1.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
 						}
-						if rowActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.RowActions) {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions1)
+						if rowActionsCount+1 > len(r.UIConfig.TableView.Default.RowActions) {
+							r.UIConfig.TableView.Default.RowActions = append(r.UIConfig.TableView.Default.RowActions, rowActions1)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].Str = rowActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
+							r.UIConfig.TableView.Default.RowActions[rowActionsCount].Str = rowActions1.Str
+							r.UIConfig.TableView.Default.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
 						}
 					}
 					if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
+						r.UIConfig.TableView.Default.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityDefaultTable.ViewType))
 					} else {
-						r.UIConfig.TableView.EntityDefaultTable.ViewType = types.StringNull()
+						r.UIConfig.TableView.Default.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.TableView.EntityViewDisabled != nil {
-					r.UIConfig.TableView.EntityViewDisabled = &tfTypes.EntityViewDisabled{}
+					r.UIConfig.TableView.Disabled = &tfTypes.EntityViewDisabled{}
 					if resp.UIConfig.TableView.EntityViewDisabled.ViewType != nil {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
+						r.UIConfig.TableView.Disabled.ViewType = types.StringValue(string(*resp.UIConfig.TableView.EntityViewDisabled.ViewType))
 					} else {
-						r.UIConfig.TableView.EntityViewDisabled.ViewType = types.StringNull()
+						r.UIConfig.TableView.Disabled.ViewType = types.StringNull()
 					}
 				}
 				if resp.UIConfig.TableView.RedirectEntityView != nil {
-					r.UIConfig.TableView.RedirectEntityView = &tfTypes.RedirectEntityView{}
-					r.UIConfig.TableView.RedirectEntityView.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
+					r.UIConfig.TableView.Redirect = &tfTypes.RedirectEntityView{}
+					r.UIConfig.TableView.Redirect.Route = types.StringPointerValue(resp.UIConfig.TableView.RedirectEntityView.Route)
 					if resp.UIConfig.TableView.RedirectEntityView.ViewType != nil {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
+						r.UIConfig.TableView.Redirect.ViewType = types.StringValue(string(*resp.UIConfig.TableView.RedirectEntityView.ViewType))
 					} else {
-						r.UIConfig.TableView.RedirectEntityView.ViewType = types.StringNull()
+						r.UIConfig.TableView.Redirect.ViewType = types.StringNull()
 					}
 				}
 			}

@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // TagsAttributeConstraints - A set of constraints applicable to the attribute.
@@ -71,7 +71,6 @@ const (
 func (e TagsAttributeType) ToPointer() *TagsAttributeType {
 	return &e
 }
-
 func (e *TagsAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -88,6 +87,7 @@ func (e *TagsAttributeType) UnmarshalJSON(data []byte) error {
 
 // TagsAttribute - Tags
 type TagsAttribute struct {
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -96,11 +96,11 @@ type TagsAttribute struct {
 	// Render as a column in table views. When defined, overrides `hidden`
 	ShowInTable *bool `json:"show_in_table,omitempty"`
 	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool       `default:"true" json:"sortable"`
-	Required     *bool       `default:"false" json:"required"`
-	Readonly     *bool       `default:"false" json:"readonly"`
-	Deprecated   *bool       `default:"false" json:"deprecated"`
-	DefaultValue interface{} `json:"default_value,omitempty"`
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
 	// Which group the attribute should appear in. Accepts group ID or group name
 	Group *string `json:"group,omitempty"`
 	// Attribute sort order (ascending) in group
@@ -144,10 +144,17 @@ func (t TagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (o *TagsAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
 }
 
 func (o *TagsAttribute) GetName() string {
@@ -213,7 +220,7 @@ func (o *TagsAttribute) GetDeprecated() *bool {
 	return o.Deprecated
 }
 
-func (o *TagsAttribute) GetDefaultValue() interface{} {
+func (o *TagsAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}

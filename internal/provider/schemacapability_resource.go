@@ -5,6 +5,12 @@ package provider
 import (
 	"context"
 	"fmt"
+	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
+	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
+	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -14,12 +20,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	tfTypes "github.com/speakeasy/terraform-provider-epilot-schema/internal/provider/types"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/sdk/models/operations"
-	"github.com/speakeasy/terraform-provider-epilot-schema/internal/validators"
-	speakeasy_listvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/listvalidators"
-	speakeasy_stringvalidators "github.com/speakeasy/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -128,6 +128,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -367,6 +371,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -604,6 +612,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -843,6 +855,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -1080,6 +1096,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"identifiers": schema.ListAttribute{
 									Computed:    true,
@@ -1332,6 +1352,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1627,6 +1651,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -1865,6 +1893,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2134,6 +2166,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -2378,6 +2414,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -2615,6 +2655,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2854,6 +2898,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -3091,6 +3139,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3344,6 +3396,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3631,6 +3687,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -3868,6 +3928,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4107,6 +4171,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -4344,6 +4412,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4586,6 +4658,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5323,6 +5399,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -5646,6 +5726,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -5910,6 +5994,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6193,6 +6281,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -6439,6 +6531,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6722,6 +6818,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -6970,6 +7070,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
 								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
@@ -7211,6 +7315,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
 										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
 										``,
+								},
+								"id": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,

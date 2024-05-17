@@ -30,6 +30,7 @@ resource "epilot-schema_schema" "my_schema" {
         hidden                      = false
         hide_label                  = false
         icon                        = "...my_icon..."
+        id                          = "04777212-cdcb-4ca9-ae24-545d526f229e"
         info_helpers = {
           hint_custom_component  = "...my_hint_custom_component..."
           hint_text              = "...my_hint_text..."
@@ -38,7 +39,7 @@ resource "epilot-schema_schema" "my_schema" {
         }
         label                   = "...my_label..."
         layout                  = "full_width"
-        name                    = "Marjorie Kreiger"
+        name                    = "Oscar Walter"
         order                   = 0
         placeholder             = "...my_placeholder..."
         preview_value_formatter = "...my_preview_value_formatter..."
@@ -49,17 +50,17 @@ resource "epilot-schema_schema" "my_schema" {
         settings_flag = [
           {
             enabled = false
-            name    = "Roderick Sawayn"
+            name    = "Kathryn Leffler"
           },
         ]
-        show_in_table   = true
-        sortable        = false
+        show_in_table   = false
+        sortable        = true
         type            = "relation_address"
         value_formatter = "...my_value_formatter..."
       }
     },
   ]
-  blueprint = "24545d52-6f22-49eb-8e44-f5ab032883ac"
+  blueprint = "f4f9e94a-d66b-4cff-bf53-b0a1ef480b7e"
   capabilities = [
     {
       purpose = [
@@ -73,14 +74,15 @@ resource "epilot-schema_schema" "my_schema" {
             ]
             constraints                 = {}
             default_value               = "{ \"see\": \"documentation\" }"
-            deprecated                  = true
-            entity_builder_disable_edit = false
+            deprecated                  = false
+            entity_builder_disable_edit = true
             feature_flag                = "FF_MY_FEATURE_FLAG"
             group                       = "...my_group..."
-            has_primary                 = true
-            hidden                      = true
-            hide_label                  = false
+            has_primary                 = false
+            hidden                      = false
+            hide_label                  = true
             icon                        = "...my_icon..."
+            id                          = "fa856f27-9910-45f4-b28c-25904a6d458b"
             info_helpers = {
               hint_custom_component  = "...my_hint_custom_component..."
               hint_text              = "...my_hint_text..."
@@ -89,22 +91,22 @@ resource "epilot-schema_schema" "my_schema" {
             }
             label                   = "...my_label..."
             layout                  = "full_width"
-            name                    = "Francisco Parker"
+            name                    = "Doug Huels"
             order                   = 0
             placeholder             = "...my_placeholder..."
             preview_value_formatter = "...my_preview_value_formatter..."
             protected               = true
-            readonly                = true
+            readonly                = false
             render_condition        = "...my_render_condition..."
-            required                = false
+            required                = true
             settings_flag = [
               {
                 enabled = true
-                name    = "Toby Hilpert"
+                name    = "Dianna Jast"
               },
             ]
             show_in_table   = true
-            sortable        = false
+            sortable        = true
             type            = "relation_address"
             value_formatter = "...my_value_formatter..."
           }
@@ -115,7 +117,7 @@ resource "epilot-schema_schema" "my_schema" {
       settings_flag = [
         {
           enabled = false
-          name    = "Roland VonRueden"
+          name    = "Kelvin Greenholt Sr."
         },
       ]
       title = "Messaging"
@@ -124,8 +126,8 @@ resource "epilot-schema_schema" "my_schema" {
           additional_properties = "{ \"see\": \"documentation\" }"
           component             = "PricingItems"
           disabled              = false
-          group_expanded        = true
-          header                = true
+          group_expanded        = false
+          header                = false
           hook                  = "EntityDetailsV2:Tab"
           icon                  = "email"
           import                = "@epilot360/notes"
@@ -143,17 +145,17 @@ resource "epilot-schema_schema" "my_schema" {
   ]
   comment        = "...my_comment..."
   created_at     = "...my_created_at..."
-  draft          = false
+  draft          = true
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
-  id             = "6f279910-5f4f-428c-a590-4a6d458bca6e"
+  id             = "4b42e389-95b3-45ee-a060-0c0a1102ca74"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
   updated_at     = "...my_updated_at..."
-  version        = 3
+  version        = 4
 }
 ```
 
@@ -250,6 +252,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -330,6 +333,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--automation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -410,6 +414,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -490,6 +495,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--computed_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -570,6 +576,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `identifiers` (List of String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--consent_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
@@ -652,6 +659,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--country_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -734,6 +742,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -833,6 +842,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--date_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -920,6 +930,7 @@ Requires replacement if changed.
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--file_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1001,6 +1012,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1081,6 +1093,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1161,6 +1174,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1241,6 +1255,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--link_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1324,6 +1339,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1424,6 +1440,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--number_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1504,6 +1521,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1584,6 +1602,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1664,6 +1683,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1745,6 +1765,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -1916,6 +1937,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 - `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
 - `icon` (String) Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2088,6 +2110,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2171,6 +2194,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2270,6 +2294,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2352,6 +2377,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2451,6 +2477,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--tags_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2533,6 +2560,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--text_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2614,6 +2642,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--attr
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2744,6 +2773,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2824,6 +2854,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2904,6 +2935,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -2984,6 +3016,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3064,6 +3097,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `identifiers` (List of String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
@@ -3146,6 +3180,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3228,6 +3263,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3327,6 +3363,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3414,6 +3451,7 @@ Requires replacement if changed.
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3495,6 +3533,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3575,6 +3614,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3655,6 +3695,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3735,6 +3776,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3818,6 +3860,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3918,6 +3961,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -3998,6 +4042,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4078,6 +4123,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4158,6 +4204,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4239,6 +4286,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4410,6 +4458,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 - `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
 - `icon` (String) Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4582,6 +4631,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4665,6 +4715,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4764,6 +4815,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4846,6 +4898,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -4945,6 +4998,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -5027,6 +5081,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -5108,6 +5163,7 @@ Requires replacement if changed. (see [below for nested schema](#nestedatt--capa
 The value must be a valid @epilot/base-elements Icon name
 
 Requires replacement if changed.
+- `id` (String) Requires replacement if changed.
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--info_helpers))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `layout` (String) Requires replacement if changed.
@@ -5226,7 +5282,7 @@ Optional:
 
 - `expanded` (Boolean) Requires replacement if changed.
 - `feature_flag` (String) This group should only be active when the feature flag is enabled. Requires replacement if changed.
-- `id` (String) Requires replacement if changed. ; Not Null
+- `id` (String) Requires replacement if changed.
 - `info_tooltip_title` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--group_settings--info_tooltip_title))
 - `label` (String) Requires replacement if changed. ; Not Null
 - `order` (Number) Render order of the group. Requires replacement if changed. ; Default: 0
@@ -5289,12 +5345,12 @@ Optional:
 
 Optional:
 
-- `entity_default_create` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--entity_default_create))
-- `entity_view_disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--entity_view_disabled))
-- `redirect_entity_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--redirect_entity_view))
+- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--default))
+- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--disabled))
+- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--redirect))
 
-<a id="nestedatt--ui_config--create_view--entity_default_create"></a>
-### Nested Schema for `ui_config.create_view.entity_default_create`
+<a id="nestedatt--ui_config--create_view--default"></a>
+### Nested Schema for `ui_config.create_view.default`
 
 Optional:
 
@@ -5302,16 +5358,16 @@ Optional:
 - `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--create_view--entity_view_disabled"></a>
-### Nested Schema for `ui_config.create_view.entity_view_disabled`
+<a id="nestedatt--ui_config--create_view--disabled"></a>
+### Nested Schema for `ui_config.create_view.disabled`
 
 Optional:
 
 - `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--create_view--redirect_entity_view"></a>
-### Nested Schema for `ui_config.create_view.redirect_entity_view`
+<a id="nestedatt--ui_config--create_view--redirect"></a>
+### Nested Schema for `ui_config.create_view.redirect`
 
 Optional:
 
@@ -5325,12 +5381,12 @@ Optional:
 
 Optional:
 
-- `entity_default_edit` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--entity_default_edit))
-- `entity_view_disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--entity_view_disabled))
-- `redirect_entity_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect_entity_view))
+- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--default))
+- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--disabled))
+- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect))
 
-<a id="nestedatt--ui_config--edit_view--entity_default_edit"></a>
-### Nested Schema for `ui_config.edit_view.entity_default_edit`
+<a id="nestedatt--ui_config--edit_view--default"></a>
+### Nested Schema for `ui_config.edit_view.default`
 
 Optional:
 
@@ -5339,16 +5395,16 @@ Optional:
 - `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--edit_view--entity_view_disabled"></a>
-### Nested Schema for `ui_config.edit_view.entity_view_disabled`
+<a id="nestedatt--ui_config--edit_view--disabled"></a>
+### Nested Schema for `ui_config.edit_view.disabled`
 
 Optional:
 
 - `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--edit_view--redirect_entity_view"></a>
-### Nested Schema for `ui_config.edit_view.redirect_entity_view`
+<a id="nestedatt--ui_config--edit_view--redirect"></a>
+### Nested Schema for `ui_config.edit_view.redirect`
 
 Optional:
 
@@ -5441,12 +5497,12 @@ Optional:
 
 Optional:
 
-- `entity_default_edit` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--entity_default_edit))
-- `entity_view_disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--entity_view_disabled))
-- `redirect_entity_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--redirect_entity_view))
+- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--default))
+- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--disabled))
+- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--redirect))
 
-<a id="nestedatt--ui_config--single_view--entity_default_edit"></a>
-### Nested Schema for `ui_config.single_view.entity_default_edit`
+<a id="nestedatt--ui_config--single_view--default"></a>
+### Nested Schema for `ui_config.single_view.default`
 
 Optional:
 
@@ -5455,16 +5511,16 @@ Optional:
 - `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--single_view--entity_view_disabled"></a>
-### Nested Schema for `ui_config.single_view.entity_view_disabled`
+<a id="nestedatt--ui_config--single_view--disabled"></a>
+### Nested Schema for `ui_config.single_view.disabled`
 
 Optional:
 
 - `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--single_view--redirect_entity_view"></a>
-### Nested Schema for `ui_config.single_view.redirect_entity_view`
+<a id="nestedatt--ui_config--single_view--redirect"></a>
+### Nested Schema for `ui_config.single_view.redirect`
 
 Optional:
 
@@ -5478,31 +5534,31 @@ Optional:
 
 Optional:
 
-- `entity_default_table` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table))
-- `entity_view_disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_view_disabled))
-- `redirect_entity_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--redirect_entity_view))
+- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default))
+- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--disabled))
+- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--redirect))
 
-<a id="nestedatt--ui_config--table_view--entity_default_table"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table`
+<a id="nestedatt--ui_config--table_view--default"></a>
+### Nested Schema for `ui_config.table_view.default`
 
 Optional:
 
-- `bulk_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--bulk_actions))
+- `bulk_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--bulk_actions))
 - `enable_thumbnails` (Boolean) Enable the thumbnail column. Requires replacement if changed. ; Default: false
-- `navbar_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions))
-- `row_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--row_actions))
+- `navbar_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--navbar_actions))
+- `row_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--row_actions))
 - `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--bulk_actions"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type`
+<a id="nestedatt--ui_config--table_view--default--bulk_actions"></a>
+### Nested Schema for `ui_config.table_view.default.view_type`
 
 Optional:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--view_type--entity_action))
+- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
 - `str` (String) Requires replacement if changed.
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--view_type--entity_action"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type.entity_action`
+<a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
+### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
 
 Optional:
 
@@ -5516,38 +5572,38 @@ Requires replacement if changed.
 
 
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--navbar_actions"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type`
+<a id="nestedatt--ui_config--table_view--default--navbar_actions"></a>
+### Nested Schema for `ui_config.table_view.default.view_type`
 
 Optional:
 
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--view_type--options))
+- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options))
 - `type` (String) Requires replacement if changed. ; Not Null
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--view_type--options"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type.options`
+<a id="nestedatt--ui_config--table_view--default--view_type--options"></a>
+### Nested Schema for `ui_config.table_view.default.view_type.options`
 
 Optional:
 
 - `label` (String) Requires replacement if changed. ; Not Null
-- `params` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--view_type--options--params))
+- `params` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options--params))
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--view_type--options--params"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type.options.params`
-
-
+<a id="nestedatt--ui_config--table_view--default--view_type--options--params"></a>
+### Nested Schema for `ui_config.table_view.default.view_type.options.params`
 
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--row_actions"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type`
+
+
+<a id="nestedatt--ui_config--table_view--default--row_actions"></a>
+### Nested Schema for `ui_config.table_view.default.view_type`
 
 Optional:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--view_type--entity_action))
+- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
 - `str` (String) Requires replacement if changed.
 
-<a id="nestedatt--ui_config--table_view--entity_default_table--view_type--entity_action"></a>
-### Nested Schema for `ui_config.table_view.entity_default_table.view_type.entity_action`
+<a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
+### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
 
 Optional:
 
@@ -5562,16 +5618,16 @@ Requires replacement if changed.
 
 
 
-<a id="nestedatt--ui_config--table_view--entity_view_disabled"></a>
-### Nested Schema for `ui_config.table_view.entity_view_disabled`
+<a id="nestedatt--ui_config--table_view--disabled"></a>
+### Nested Schema for `ui_config.table_view.disabled`
 
 Optional:
 
 - `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--table_view--redirect_entity_view"></a>
-### Nested Schema for `ui_config.table_view.redirect_entity_view`
+<a id="nestedatt--ui_config--table_view--redirect"></a>
+### Nested Schema for `ui_config.table_view.redirect`
 
 Optional:
 
