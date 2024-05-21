@@ -32,8 +32,8 @@ security:
   - EpilotOrg: []
 
 servers:
-- url: https://entity.sls.epilot.io
-  description: Entity production
+  - url: https://entity.sls.epilot.io
+    description: Entity production
 
 paths:
   /v1/entity/schemas/{slug}:
@@ -161,7 +161,7 @@ paths:
       summary: deleteSchemaAttribute
       description: Deletes an attribute from a schema
       x-speakeasy-entity-operation: SchemaAttribute#delete
-      x-internal: true      
+      x-internal: true
       tags:
         - Schemas
       parameters:
@@ -213,8 +213,8 @@ paths:
       operationId: putSchemaCapability
       summary: putSchemaCapability
       description: Adds or updates an capability in the schema
-      x-speakeasy-entity-operation: SchemaCapability#create,update   
-      x-internal: true      
+      x-speakeasy-entity-operation: SchemaCapability#create,update
+      x-internal: true
       tags:
         - Schemas
       parameters:
@@ -264,7 +264,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-  
+
 components:
   securitySchemes:
     EpilotAuth:
