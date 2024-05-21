@@ -1,12 +1,12 @@
-resource "epilot-schema_schema_attribute" "my_schemaattribute" {
+resource "epilot-schema_schema_attribute" "my_attribute" {
  
 }
 
 terraform {
   required_providers {
     epilot-schema = {
-      source  = "speakeasy/epilot-schema"
-      version = "0.1.0"
+      source  = "epilot/epilot-schema"
+      version = "0.3.5"
     }
   }
 }
