@@ -572,12 +572,12 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
-      x-speakeasy-entity: SchemaAttribute
-      allOf:
-        - $ref: "#/components/schemas/Attribute"
-        - type: object
+          x-speakeasy-entity: SchemaAttribute
+          type: object
           description: a readonly computed ID for the attribute including schema slug and the attribute ID
           properties:
+            attribute:
+              $ref: "#/components/schemas/Attribute"
             composite_id:
               type: string
               readOnly: true
