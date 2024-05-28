@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: a7faef66cf9c2f0426724eb454fe66d9
+  docChecksum: 0ad0a4bd069cb95a76da06129c6637a3
   docVersion: 1.0.0
-  speakeasyVersion: 1.293.1
-  generationVersion: 2.333.3
-  releaseVersion: 0.3.2
-  configChecksum: b6f79954fed27b43ffbafc7e08339160
+  speakeasyVersion: 1.296.1
+  generationVersion: 2.338.1
+  releaseVersion: 0.3.3
+  configChecksum: dae1b2d8b4ab8bd9eaff68024cc3c73a
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -52,38 +52,10 @@ generatedFiles:
   - internal/sdk/models/shared/entityschemaitem.go
   - internal/sdk/models/shared/searchmappings.go
   - internal/sdk/models/shared/attribute.go
-  - internal/sdk/models/shared/textattribute.go
   - internal/sdk/models/shared/settingflag.go
-  - internal/sdk/models/shared/linkattribute.go
-  - internal/sdk/models/shared/dateattribute.go
-  - internal/sdk/models/shared/countryattribute.go
-  - internal/sdk/models/shared/booleanattribute.go
-  - internal/sdk/models/shared/selectattribute.go
-  - internal/sdk/models/shared/multiselectattribute.go
-  - internal/sdk/models/shared/statusattribute.go
-  - internal/sdk/models/shared/sequenceattribute.go
-  - internal/sdk/models/shared/relationattribute.go
   - internal/sdk/models/shared/summaryfield.go
   - internal/sdk/models/shared/entityacl.go
   - internal/sdk/models/shared/entityowner.go
-  - internal/sdk/models/shared/userrelationattribute.go
-  - internal/sdk/models/shared/addressrelationattribute.go
-  - internal/sdk/models/shared/paymentmethodrelationattribute.go
-  - internal/sdk/models/shared/currencyattribute.go
-  - internal/sdk/models/shared/repeatableattribute.go
-  - internal/sdk/models/shared/tagsattribute.go
-  - internal/sdk/models/shared/numberattribute.go
-  - internal/sdk/models/shared/consentattribute.go
-  - internal/sdk/models/shared/internalattribute.go
-  - internal/sdk/models/shared/orderedlistattribute.go
-  - internal/sdk/models/shared/fileattribute.go
-  - internal/sdk/models/shared/computedattribute.go
-  - internal/sdk/models/shared/partnerstatusattribute.go
-  - internal/sdk/models/shared/invitationemailattribute.go
-  - internal/sdk/models/shared/automationattribute.go
-  - internal/sdk/models/shared/internaluserattribute.go
-  - internal/sdk/models/shared/purposeattribute.go
-  - internal/sdk/models/shared/partnerorganisationattribute.go
   - internal/sdk/models/shared/entitycapability.go
   - internal/sdk/models/shared/entityaction.go
   - internal/sdk/models/shared/summaryattribute.go
@@ -179,7 +151,7 @@ generatedFiles:
   - internal/provider/types/summary_fields.go
   - internal/provider/types/relation_attribute.go
   - internal/provider/types/repeatable_attribute.go
-  - internal/provider/types/options.go
+  - internal/provider/types/select_attribute_options.go
   - internal/provider/types/select_attribute.go
   - internal/provider/types/sequence_attribute.go
   - internal/provider/types/status_attribute.go
@@ -207,7 +179,7 @@ generatedFiles:
   - internal/provider/types/list_item.go
   - internal/provider/types/sharing.go
   - internal/provider/types/bulk_actions.go
-  - internal/provider/types/entity_default_table_options.go
+  - internal/provider/types/options.go
   - internal/provider/types/navbar_actions.go
   - internal/provider/types/entity_default_table.go
   - internal/provider/types/table_view.go

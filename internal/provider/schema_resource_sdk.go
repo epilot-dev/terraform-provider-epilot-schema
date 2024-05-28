@@ -186,14 +186,14 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				var navbarActions []shared.NavbarActions = []shared.NavbarActions{}
 				for _, navbarActionsItem := range r.UIConfig.TableView.Default.NavbarActions {
 					type1 := navbarActionsItem.Type.ValueString()
-					var options []shared.EntityDefaultTableOptions = []shared.EntityDefaultTableOptions{}
+					var options []shared.Options = []shared.Options{}
 					for _, optionsItem := range navbarActionsItem.Options {
 						label2 := optionsItem.Label.ValueString()
 						var params *shared.Params
 						if optionsItem.Params != nil {
 							params = &shared.Params{}
 						}
-						options = append(options, shared.EntityDefaultTableOptions{
+						options = append(options, shared.Options{
 							Label:  label2,
 							Params: params,
 						})
@@ -786,9 +786,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						HintTooltipPlacement: hintTooltipPlacement,
 					}
 				}
-				typeVar1 := new(shared.Type)
+				typeVar1 := new(shared.TextAttributeType)
 				if !attributesItem.TextAttribute.Type.IsUnknown() && !attributesItem.TextAttribute.Type.IsNull() {
-					*typeVar1 = shared.Type(attributesItem.TextAttribute.Type.ValueString())
+					*typeVar1 = shared.TextAttributeType(attributesItem.TextAttribute.Type.ValueString())
 				} else {
 					typeVar1 = nil
 				}
@@ -1899,7 +1899,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					typeVar6 = nil
 				}
-				var options1 []shared.Options = []shared.Options{}
+				var options1 []shared.SelectAttributeOptions = []shared.SelectAttributeOptions{}
 				for _, optionsItem1 := range attributesItem.SelectAttribute.Options {
 					if optionsItem1.One != nil {
 						value1 := optionsItem1.One.Value.ValueString()
@@ -1913,13 +1913,13 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							Value: value1,
 							Title: title1,
 						}
-						options1 = append(options1, shared.Options{
+						options1 = append(options1, shared.SelectAttributeOptions{
 							One: &one,
 						})
 					}
 					if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
 						str3 := optionsItem1.Str.ValueString()
-						options1 = append(options1, shared.Options{
+						options1 = append(options1, shared.SelectAttributeOptions{
 							Str: &str3,
 						})
 					}
@@ -7727,9 +7727,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					HintTooltipPlacement: hintTooltipPlacement28,
 				}
 			}
-			typeVar29 := new(shared.Type)
+			typeVar29 := new(shared.TextAttributeType)
 			if !attributesItem1.TextAttribute.Type.IsUnknown() && !attributesItem1.TextAttribute.Type.IsNull() {
-				*typeVar29 = shared.Type(attributesItem1.TextAttribute.Type.ValueString())
+				*typeVar29 = shared.TextAttributeType(attributesItem1.TextAttribute.Type.ValueString())
 			} else {
 				typeVar29 = nil
 			}
@@ -8840,7 +8840,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				typeVar34 = nil
 			}
-			var options5 []shared.Options = []shared.Options{}
+			var options5 []shared.SelectAttributeOptions = []shared.SelectAttributeOptions{}
 			for _, optionsItem5 := range attributesItem1.SelectAttribute.Options {
 				if optionsItem5.One != nil {
 					value4 := optionsItem5.One.Value.ValueString()
@@ -8854,13 +8854,13 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						Value: value4,
 						Title: title6,
 					}
-					options5 = append(options5, shared.Options{
+					options5 = append(options5, shared.SelectAttributeOptions{
 						One: &eleven,
 					})
 				}
 				if !optionsItem5.Str.IsUnknown() && !optionsItem5.Str.IsNull() {
 					str7 := optionsItem5.Str.ValueString()
-					options5 = append(options5, shared.Options{
+					options5 = append(options5, shared.SelectAttributeOptions{
 						Str: &str7,
 					})
 				}
@@ -14240,9 +14240,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		} else {
 			index = nil
 		}
-		typeVar57 := new(shared.SearchMappingsType)
+		typeVar57 := new(shared.Type)
 		if !explicitSearchMappingsValue.Type.IsUnknown() && !explicitSearchMappingsValue.Type.IsNull() {
-			*typeVar57 = shared.SearchMappingsType(explicitSearchMappingsValue.Type.ValueString())
+			*typeVar57 = shared.Type(explicitSearchMappingsValue.Type.ValueString())
 		} else {
 			typeVar57 = nil
 		}
@@ -15956,7 +15956,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
 				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
+					var options3 tfTypes.SelectAttributeOptions
 					if optionsItem1.Str != nil {
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
@@ -18055,7 +18055,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.SelectAttribute.Layout = types.StringPointerValue(attributesItem1.SelectAttribute.Layout)
 					attributes3.SelectAttribute.Name = types.StringValue(attributesItem1.SelectAttribute.Name)
 					for optionsCount4, optionsItem4 := range attributesItem1.SelectAttribute.Options {
-						var options10 tfTypes.Options
+						var options10 tfTypes.SelectAttributeOptions
 						if optionsItem4.Str != nil {
 							options10.Str = types.StringPointerValue(optionsItem4.Str)
 						}
@@ -18878,7 +18878,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 						var navbarActions1 tfTypes.NavbarActions
 						for optionsCount6, optionsItem6 := range navbarActionsItem.Options {
-							var options15 tfTypes.EntityDefaultTableOptions
+							var options15 tfTypes.Options
 							options15.Label = types.StringValue(optionsItem6.Label)
 							if optionsItem6.Params == nil {
 								options15.Params = nil

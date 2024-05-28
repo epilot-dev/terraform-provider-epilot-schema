@@ -85,7 +85,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -154,7 +153,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -222,7 +220,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -290,7 +287,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -358,7 +354,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -428,7 +423,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -496,7 +490,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--currency_attribute--constraints))
 - `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217) (see [below for nested schema](#nestedatt--currency_attribute--currency))
@@ -585,7 +578,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -654,7 +646,6 @@ Read-Only:
 Read-Only:
 
 - `allowed_extensions` (List of String) List of file extensions (without the dot suffix)
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--file_attribute--constraints))
 - `default_access_control` (String) must be one of ["public-read", "private"]
@@ -727,7 +718,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -795,7 +785,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -863,7 +852,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -931,7 +919,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1001,7 +988,6 @@ Read-Only:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
 - `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--multi_select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1089,7 +1075,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1158,7 +1143,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1226,7 +1210,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1294,7 +1277,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1362,7 +1344,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1431,7 +1412,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
 - `created_at` (String)
@@ -1506,7 +1486,6 @@ Read-Only:
 - `actions` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions))
 - `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
 - `allowed_schemas` (List of String)
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1669,7 +1648,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1742,7 +1720,6 @@ Read-Only:
 Read-Only:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1829,7 +1806,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1899,7 +1875,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1986,7 +1961,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2056,7 +2030,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2125,7 +2098,6 @@ Read-Only:
 
 Read-Only:
 
-- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.

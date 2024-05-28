@@ -542,6 +542,7 @@ components:
         - $ref: "#/components/schemas/EntitySchema"
 
     Attribute:
+      x-speakeasy-entity: SchemaAttribute
       anyOf:
         - $ref: "#/components/schemas/TextAttribute"
         - $ref: "#/components/schemas/LinkAttribute"
@@ -572,7 +573,6 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
-          x-speakeasy-entity: SchemaAttribute
           type: object
           description: a readonly computed ID for the attribute including schema slug and the attribute ID
           properties:

@@ -1683,7 +1683,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
 				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
+					var options3 tfTypes.SelectAttributeOptions
 					if optionsItem1.Str != nil {
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}

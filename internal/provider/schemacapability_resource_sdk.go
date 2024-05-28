@@ -201,9 +201,9 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					HintTooltipPlacement: hintTooltipPlacement,
 				}
 			}
-			typeVar := new(shared.Type)
+			typeVar := new(shared.TextAttributeType)
 			if !attributesItem.TextAttribute.Type.IsUnknown() && !attributesItem.TextAttribute.Type.IsNull() {
-				*typeVar = shared.Type(attributesItem.TextAttribute.Type.ValueString())
+				*typeVar = shared.TextAttributeType(attributesItem.TextAttribute.Type.ValueString())
 			} else {
 				typeVar = nil
 			}
@@ -1314,7 +1314,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			} else {
 				typeVar5 = nil
 			}
-			var options []shared.Options = []shared.Options{}
+			var options []shared.SelectAttributeOptions = []shared.SelectAttributeOptions{}
 			for _, optionsItem := range attributesItem.SelectAttribute.Options {
 				if optionsItem.One != nil {
 					value := optionsItem.One.Value.ValueString()
@@ -1328,13 +1328,13 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 						Value: value,
 						Title: title1,
 					}
-					options = append(options, shared.Options{
+					options = append(options, shared.SelectAttributeOptions{
 						One: &one,
 					})
 				}
 				if !optionsItem.Str.IsUnknown() && !optionsItem.Str.IsNull() {
 					str := optionsItem.Str.ValueString()
-					options = append(options, shared.Options{
+					options = append(options, shared.SelectAttributeOptions{
 						Str: &str,
 					})
 				}
@@ -8513,7 +8513,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
 				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
+					var options3 tfTypes.SelectAttributeOptions
 					if optionsItem1.Str != nil {
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
