@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type Options struct {
-	Label  types.String                         `tfsdk:"label"`
-	Params *AddressRelationAttributeConstraints `tfsdk:"params"`
+	Label  types.String `tfsdk:"label"`
+	Params *Constraints `tfsdk:"params"`
 }

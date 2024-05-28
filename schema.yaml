@@ -543,7 +543,7 @@ components:
 
     Attribute:
       x-speakeasy-entity: SchemaAttribute
-      anyOf:
+      allOf:
         - $ref: "#/components/schemas/TextAttribute"
         - $ref: "#/components/schemas/LinkAttribute"
         - $ref: "#/components/schemas/DateAttribute"
@@ -572,6 +572,49 @@ components:
         - $ref: "#/components/schemas/InternalUserAttribute"
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - address
+                - automation
+                - boolean
+                - checkbox
+                - computed
+                - consent
+                - country
+                - currency
+                - date
+                - datetime
+                - email
+                - file
+                - image
+                - internal
+                - internal_user
+                - invitation_email
+                - link
+                - multiselect
+                - number
+                - ordered_list
+                - partner_organisation
+                - partner_status
+                - payment
+                - phone
+                - price_component
+                - purpose
+                - radio
+                - relation
+                - relation_address
+                - relation_payment_method
+                - relation_user
+                - select
+                - sequence
+                - status
+                - string
+                - tags
+          required:
+            - type
     AttributeWithCompositeID:
           type: object
           description: a readonly computed ID for the attribute including schema slug and the attribute ID
@@ -708,8 +751,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - string
             multiline:
               type: boolean
     LinkAttribute:
@@ -720,8 +761,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - link
     InternalAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -730,8 +769,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - internal
     BooleanAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -740,8 +777,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - boolean
     DateAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -750,9 +785,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - date
-                - datetime
     CountryAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -761,8 +793,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - country
     SelectAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -771,9 +801,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - select
-                - radio
             options:
               type: array
               items:
@@ -799,9 +826,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - multiselect
-                - checkbox
             disable_case_sensitive:
               type: boolean
               nullable: true
@@ -835,8 +859,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - status
             options:
               type: array
               items:
@@ -861,8 +883,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - sequence
             prefix:
               description: Prefix added before the sequence number
               type: string
@@ -879,9 +899,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - image
-                - file
             multiple:
               type: boolean
             allowed_extensions:
@@ -913,8 +930,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - currency
             currency_selector_only:
               type: boolean
               default: false
@@ -945,7 +960,6 @@ components:
                       flag: 🇪🇺
           required:
             - type
-            - currency
     SummaryField:
       type: object
       description: Summary Fields are displayed inside list view as a resume of the relation entity.
@@ -987,8 +1001,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - relation
             relation_type:
               type: string
               enum:
@@ -1112,8 +1124,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - relation_user
             multiple:
               type: boolean
               default: false
@@ -1125,8 +1135,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - partner_organisation
 
     AddressRelationAttribute:
       allOf:
@@ -1136,8 +1144,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - relation_address
             has_primary:
               type: boolean
     PaymentMethodRelationAttribute:
@@ -1148,8 +1154,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - relation_payment_method
             has_primary:
               type: boolean
     InvitationEmailAttribute:
@@ -1160,8 +1164,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - invitation_email
     AutomationAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1170,8 +1172,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - automation
     InternalUserAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1180,8 +1180,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - internal_user
     PurposeAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1191,8 +1189,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - purpose
     RepeatableAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1211,15 +1207,6 @@ components:
                 - strong
             type:
               type: string
-              enum:
-                - string
-                - phone
-                - email
-                - address
-                - relation
-                - payment
-                - price_component
-                - date
             enable_relation_picker:
               type: boolean
               default: true
@@ -1232,8 +1219,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - tags
             options:
               type: array
               items:
@@ -1250,8 +1235,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - number
             format:
               type: string
     ConsentAttribute:
@@ -1262,8 +1245,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - consent
             topic:
               type: string
             identifiers:
@@ -1272,7 +1253,6 @@ components:
                 type: string
           required:
             - type
-            - topic
     OrderedListAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1281,8 +1261,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - ordered_list
     ComputedAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1291,8 +1269,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - computed
     PartnerStatusAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -1301,8 +1277,6 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - partner_status
 
     SummaryAttribute:
       description: |

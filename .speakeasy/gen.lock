@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 0ad0a4bd069cb95a76da06129c6637a3
+  docChecksum: a0b743bb71815c943ccbc49e370d712f
   docVersion: 1.0.0
   speakeasyVersion: 1.296.1
   generationVersion: 2.338.1
-  releaseVersion: 0.3.3
-  configChecksum: dae1b2d8b4ab8bd9eaff68024cc3c73a
+  releaseVersion: 0.3.5
+  configChecksum: aa4a9aa3598b2b9cb47bf7c02e713abd
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -52,10 +52,10 @@ generatedFiles:
   - internal/sdk/models/shared/entityschemaitem.go
   - internal/sdk/models/shared/searchmappings.go
   - internal/sdk/models/shared/attribute.go
-  - internal/sdk/models/shared/settingflag.go
   - internal/sdk/models/shared/summaryfield.go
   - internal/sdk/models/shared/entityacl.go
   - internal/sdk/models/shared/entityowner.go
+  - internal/sdk/models/shared/settingflag.go
   - internal/sdk/models/shared/entitycapability.go
   - internal/sdk/models/shared/entityaction.go
   - internal/sdk/models/shared/summaryattribute.go
@@ -116,48 +116,17 @@ generatedFiles:
   - main.go
   - terraform-registry-manifest.json
   - tools/tools.go
-  - internal/provider/types/address_relation_attribute_constraints.go
-  - internal/provider/types/address_relation_attribute_info_helpers.go
-  - internal/provider/types/setting_flag.go
-  - internal/provider/types/address_relation_attribute.go
-  - internal/provider/types/automation_attribute.go
-  - internal/provider/types/boolean_attribute.go
-  - internal/provider/types/computed_attribute.go
-  - internal/provider/types/consent_attribute.go
-  - internal/provider/types/country_attribute.go
-  - internal/provider/types/currency1.go
-  - internal/provider/types/currency.go
-  - internal/provider/types/currency_attribute.go
-  - internal/provider/types/date_attribute.go
-  - internal/provider/types/file_attribute.go
-  - internal/provider/types/internal_attribute.go
-  - internal/provider/types/internal_user_attribute.go
-  - internal/provider/types/invitation_email_attribute.go
-  - internal/provider/types/link_attribute.go
-  - internal/provider/types/two.go
-  - internal/provider/types/multi_select_attribute_options.go
-  - internal/provider/types/multi_select_attribute.go
-  - internal/provider/types/number_attribute.go
-  - internal/provider/types/ordered_list_attribute.go
-  - internal/provider/types/partner_organisation_attribute.go
-  - internal/provider/types/partner_status_attribute.go
-  - internal/provider/types/payment_method_relation_attribute.go
-  - internal/provider/types/purpose_attribute.go
   - internal/provider/types/entity_acl.go
   - internal/provider/types/entity_owner.go
   - internal/provider/types/new_entity_item.go
+  - internal/provider/types/setting_flag.go
   - internal/provider/types/actions.go
+  - internal/provider/types/constraints.go
+  - internal/provider/types/one.go
+  - internal/provider/types/currency.go
+  - internal/provider/types/info_helpers.go
   - internal/provider/types/summary_field.go
   - internal/provider/types/summary_fields.go
-  - internal/provider/types/relation_attribute.go
-  - internal/provider/types/repeatable_attribute.go
-  - internal/provider/types/select_attribute_options.go
-  - internal/provider/types/select_attribute.go
-  - internal/provider/types/sequence_attribute.go
-  - internal/provider/types/status_attribute.go
-  - internal/provider/types/tags_attribute.go
-  - internal/provider/types/text_attribute.go
-  - internal/provider/types/user_relation_attribute.go
   - internal/provider/types/attribute.go
   - internal/provider/types/required_permission.go
   - internal/provider/types/ui_hooks.go

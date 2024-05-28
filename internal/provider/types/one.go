@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type Currency1 struct {
+type One struct {
 	Code        types.String `tfsdk:"code"`
 	Description types.String `tfsdk:"description"`
 	Flag        types.String `tfsdk:"flag"`
