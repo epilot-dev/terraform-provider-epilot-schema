@@ -161,19 +161,19 @@ func (u BulkActions) MarshalJSON() ([]byte, error) {
 type Params struct {
 }
 
-type EntityDefaultTableOptions struct {
+type Options struct {
 	Label  string  `json:"label"`
 	Params *Params `json:"params,omitempty"`
 }
 
-func (o *EntityDefaultTableOptions) GetLabel() string {
+func (o *Options) GetLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.Label
 }
 
-func (o *EntityDefaultTableOptions) GetParams() *Params {
+func (o *Options) GetParams() *Params {
 	if o == nil {
 		return nil
 	}
@@ -181,8 +181,8 @@ func (o *EntityDefaultTableOptions) GetParams() *Params {
 }
 
 type NavbarActions struct {
-	Type    string                      `json:"type"`
-	Options []EntityDefaultTableOptions `json:"options,omitempty"`
+	Type    string    `json:"type"`
+	Options []Options `json:"options,omitempty"`
 }
 
 func (o *NavbarActions) GetType() string {
@@ -192,7 +192,7 @@ func (o *NavbarActions) GetType() string {
 	return o.Type
 }
 
-func (o *NavbarActions) GetOptions() []EntityDefaultTableOptions {
+func (o *NavbarActions) GetOptions() []Options {
 	if o == nil {
 		return nil
 	}

@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type NavbarActions struct {
-	Options []EntityDefaultTableOptions `tfsdk:"options"`
-	Type    types.String                `tfsdk:"type"`
+	Options []Options    `tfsdk:"options"`
+	Type    types.String `tfsdk:"type"`
 }

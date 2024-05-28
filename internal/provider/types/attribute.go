@@ -2,33 +2,71 @@
 
 package types
 
+import "github.com/hashicorp/terraform-plugin-framework/types"
+
 type Attribute struct {
-	AddressRelationAttribute       *AddressRelationAttribute       `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
-	AutomationAttribute            *AutomationAttribute            `tfsdk:"automation_attribute" tfPlanOnly:"true"`
-	BooleanAttribute               *BooleanAttribute               `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
-	ComputedAttribute              *ComputedAttribute              `tfsdk:"computed_attribute" tfPlanOnly:"true"`
-	ConsentAttribute               *ConsentAttribute               `tfsdk:"consent_attribute" tfPlanOnly:"true"`
-	CountryAttribute               *CountryAttribute               `tfsdk:"country_attribute" tfPlanOnly:"true"`
-	CurrencyAttribute              *CurrencyAttribute              `tfsdk:"currency_attribute" tfPlanOnly:"true"`
-	DateAttribute                  *DateAttribute                  `tfsdk:"date_attribute" tfPlanOnly:"true"`
-	FileAttribute                  *FileAttribute                  `tfsdk:"file_attribute" tfPlanOnly:"true"`
-	InternalAttribute              *InternalAttribute              `tfsdk:"internal_attribute" tfPlanOnly:"true"`
-	InternalUserAttribute          *InternalUserAttribute          `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
-	InvitationEmailAttribute       *InvitationEmailAttribute       `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
-	LinkAttribute                  *LinkAttribute                  `tfsdk:"link_attribute" tfPlanOnly:"true"`
-	MultiSelectAttribute           *MultiSelectAttribute           `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
-	NumberAttribute                *NumberAttribute                `tfsdk:"number_attribute" tfPlanOnly:"true"`
-	OrderedListAttribute           *OrderedListAttribute           `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
-	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
-	PartnerStatusAttribute         *PartnerStatusAttribute         `tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
-	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
-	PurposeAttribute               *PurposeAttribute               `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
-	RelationAttribute              *RelationAttribute              `tfsdk:"relation_attribute" tfPlanOnly:"true"`
-	RepeatableAttribute            *RepeatableAttribute            `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
-	SelectAttribute                *SelectAttribute                `tfsdk:"select_attribute" tfPlanOnly:"true"`
-	SequenceAttribute              *SequenceAttribute              `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
-	StatusAttribute                *StatusAttribute                `tfsdk:"status_attribute" tfPlanOnly:"true"`
-	TagsAttribute                  *TagsAttribute                  `tfsdk:"tags_attribute" tfPlanOnly:"true"`
-	TextAttribute                  *TextAttribute                  `tfsdk:"text_attribute" tfPlanOnly:"true"`
-	UserRelationAttribute          *UserRelationAttribute          `tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	Purpose                  []types.String          `tfsdk:"purpose"`
+	Actions                  []Actions               `tfsdk:"actions"`
+	AddButtonLabel           types.String            `tfsdk:"add_button_label"`
+	AllowAny                 types.Bool              `tfsdk:"allow_any"`
+	AllowExtraOptions        types.Bool              `tfsdk:"allow_extra_options"`
+	AllowedExtensions        []types.String          `tfsdk:"allowed_extensions"`
+	AllowedSchemas           []types.String          `tfsdk:"allowed_schemas"`
+	Constraints              *Constraints            `tfsdk:"constraints"`
+	CreatedAt                types.String            `tfsdk:"created_at"`
+	Currency                 []Currency              `tfsdk:"currency"`
+	CurrencySelectorOnly     types.Bool              `tfsdk:"currency_selector_only"`
+	DefaultAccessControl     types.String            `tfsdk:"default_access_control"`
+	DefaultValue             types.String            `tfsdk:"default_value"`
+	Deprecated               types.Bool              `tfsdk:"deprecated"`
+	DetailsViewModeEnabled   types.Bool              `tfsdk:"details_view_mode_enabled"`
+	DisableCaseSensitive     types.Bool              `tfsdk:"disable_case_sensitive"`
+	DisplayImagesLandscaped  types.Bool              `tfsdk:"display_images_landscaped"`
+	DrawerSize               types.String            `tfsdk:"drawer_size"`
+	EditMode                 types.String            `tfsdk:"edit_mode"`
+	EnableDescription        types.Bool              `tfsdk:"enable_description"`
+	EnableRelationPicker     types.Bool              `tfsdk:"enable_relation_picker"`
+	EnableRelationTags       types.Bool              `tfsdk:"enable_relation_tags"`
+	EntityBuilderDisableEdit types.Bool              `tfsdk:"entity_builder_disable_edit"`
+	FeatureFlag              types.String            `tfsdk:"feature_flag"`
+	Format                   types.String            `tfsdk:"format"`
+	Group                    types.String            `tfsdk:"group"`
+	HasPrimary               types.Bool              `tfsdk:"has_primary"`
+	Hidden                   types.Bool              `tfsdk:"hidden"`
+	HideLabel                types.Bool              `tfsdk:"hide_label"`
+	Icon                     types.String            `tfsdk:"icon"`
+	ID                       types.String            `tfsdk:"id"`
+	Identifiers              []types.String          `tfsdk:"identifiers"`
+	InfoHelpers              *InfoHelpers            `tfsdk:"info_helpers"`
+	Label                    types.String            `tfsdk:"label"`
+	Layout                   types.String            `tfsdk:"layout"`
+	Multiline                types.Bool              `tfsdk:"multiline"`
+	Multiple                 types.Bool              `tfsdk:"multiple"`
+	Name                     types.String            `tfsdk:"name"`
+	Options                  []types.String          `tfsdk:"options"`
+	Order                    types.Int64             `tfsdk:"order"`
+	Parents                  []types.String          `tfsdk:"parents"`
+	Placeholder              types.String            `tfsdk:"placeholder"`
+	Prefix                   types.String            `tfsdk:"prefix"`
+	PreviewValueFormatter    types.String            `tfsdk:"preview_value_formatter"`
+	Protected                types.Bool              `tfsdk:"protected"`
+	Readonly                 types.Bool              `tfsdk:"readonly"`
+	RelationAffinityMode     types.String            `tfsdk:"relation_affinity_mode"`
+	RelationType             types.String            `tfsdk:"relation_type"`
+	RenderCondition          types.String            `tfsdk:"render_condition"`
+	Repeatable               types.Bool              `tfsdk:"repeatable"`
+	Required                 types.Bool              `tfsdk:"required"`
+	ReverseAttributes        map[string]types.String `tfsdk:"reverse_attributes"`
+	SearchPlaceholder        types.String            `tfsdk:"search_placeholder"`
+	SettingsFlag             []SettingFlag           `tfsdk:"settings_flag"`
+	ShowInTable              types.Bool              `tfsdk:"show_in_table"`
+	Slug                     types.String            `tfsdk:"slug"`
+	Sortable                 types.Bool              `tfsdk:"sortable"`
+	StartNumber              types.Int64             `tfsdk:"start_number"`
+	Suggestions              []types.String          `tfsdk:"suggestions"`
+	SummaryFields            []SummaryFields         `tfsdk:"summary_fields"`
+	Topic                    types.String            `tfsdk:"topic"`
+	Type                     types.String            `tfsdk:"type"`
+	UpdatedAt                types.String            `tfsdk:"updated_at"`
+	ValueFormatter           types.String            `tfsdk:"value_formatter"`
 }

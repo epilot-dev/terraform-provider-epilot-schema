@@ -3,5 +3,5 @@
 package types
 
 type Currency struct {
-	One *Currency1 `tfsdk:"one" tfPlanOnly:"true"`
+	One *One `tfsdk:"one" tfPlanOnly:"true"`
 }

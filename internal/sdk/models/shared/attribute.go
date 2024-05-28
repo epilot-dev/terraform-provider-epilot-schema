@@ -3,642 +3,1225 @@
 package shared
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"time"
 )
 
-type AttributeType string
+// Constraints - A set of constraints applicable to the attribute.
+// These constraints should and will be enforced by the attribute renderer.
+type Constraints struct {
+}
+
+// InfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type InfoHelpers struct {
+	// The text to be displayed in the attribute hint helper.
+	// When specified it overrides the `hint_text_key` configuration.
+	//
+	HintText *string `json:"hint_text,omitempty"`
+	// The key of the hint text to be displayed in the attribute hint helper.
+	// The key should be a valid i18n key.
+	//
+	HintTextKey *string `json:"hint_text_key,omitempty"`
+	// The name of the custom component to be used as the hint helper.
+	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
+	//
+	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
+	// The placement of the hint tooltip.
+	// The value should be a valid `@mui/core` tooltip placement.
+	//
+	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o *InfoHelpers) GetHintText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintText
+}
+
+func (o *InfoHelpers) GetHintTextKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTextKey
+}
+
+func (o *InfoHelpers) GetHintCustomComponent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintCustomComponent
+}
+
+func (o *InfoHelpers) GetHintTooltipPlacement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTooltipPlacement
+}
+
+type Type string
 
 const (
-	AttributeTypeTextAttribute                  AttributeType = "TextAttribute"
-	AttributeTypeLinkAttribute                  AttributeType = "LinkAttribute"
-	AttributeTypeDateAttribute                  AttributeType = "DateAttribute"
-	AttributeTypeCountryAttribute               AttributeType = "CountryAttribute"
-	AttributeTypeBooleanAttribute               AttributeType = "BooleanAttribute"
-	AttributeTypeSelectAttribute                AttributeType = "SelectAttribute"
-	AttributeTypeMultiSelectAttribute           AttributeType = "MultiSelectAttribute"
-	AttributeTypeStatusAttribute                AttributeType = "StatusAttribute"
-	AttributeTypeSequenceAttribute              AttributeType = "SequenceAttribute"
-	AttributeTypeRelationAttribute              AttributeType = "RelationAttribute"
-	AttributeTypeUserRelationAttribute          AttributeType = "UserRelationAttribute"
-	AttributeTypeAddressRelationAttribute       AttributeType = "AddressRelationAttribute"
-	AttributeTypePaymentMethodRelationAttribute AttributeType = "PaymentMethodRelationAttribute"
-	AttributeTypeCurrencyAttribute              AttributeType = "CurrencyAttribute"
-	AttributeTypeRepeatableAttribute            AttributeType = "RepeatableAttribute"
-	AttributeTypeTagsAttribute                  AttributeType = "TagsAttribute"
-	AttributeTypeNumberAttribute                AttributeType = "NumberAttribute"
-	AttributeTypeConsentAttribute               AttributeType = "ConsentAttribute"
-	AttributeTypeInternalAttribute              AttributeType = "InternalAttribute"
-	AttributeTypeOrderedListAttribute           AttributeType = "OrderedListAttribute"
-	AttributeTypeFileAttribute                  AttributeType = "FileAttribute"
-	AttributeTypeComputedAttribute              AttributeType = "ComputedAttribute"
-	AttributeTypePartnerStatusAttribute         AttributeType = "PartnerStatusAttribute"
-	AttributeTypeInvitationEmailAttribute       AttributeType = "InvitationEmailAttribute"
-	AttributeTypeAutomationAttribute            AttributeType = "AutomationAttribute"
-	AttributeTypeInternalUserAttribute          AttributeType = "InternalUserAttribute"
-	AttributeTypePurposeAttribute               AttributeType = "PurposeAttribute"
-	AttributeTypePartnerOrganisationAttribute   AttributeType = "PartnerOrganisationAttribute"
+	TypeAddress               Type = "address"
+	TypeAutomation            Type = "automation"
+	TypeBoolean               Type = "boolean"
+	TypeCheckbox              Type = "checkbox"
+	TypeComputed              Type = "computed"
+	TypeConsent               Type = "consent"
+	TypeCountry               Type = "country"
+	TypeCurrency              Type = "currency"
+	TypeDate                  Type = "date"
+	TypeDatetime              Type = "datetime"
+	TypeEmail                 Type = "email"
+	TypeFile                  Type = "file"
+	TypeImage                 Type = "image"
+	TypeInternal              Type = "internal"
+	TypeInternalUser          Type = "internal_user"
+	TypeInvitationEmail       Type = "invitation_email"
+	TypeLink                  Type = "link"
+	TypeMultiselect           Type = "multiselect"
+	TypeNumber                Type = "number"
+	TypeOrderedList           Type = "ordered_list"
+	TypePartnerOrganisation   Type = "partner_organisation"
+	TypePartnerStatus         Type = "partner_status"
+	TypePayment               Type = "payment"
+	TypePhone                 Type = "phone"
+	TypePriceComponent        Type = "price_component"
+	TypePurpose               Type = "purpose"
+	TypeRadio                 Type = "radio"
+	TypeRelation              Type = "relation"
+	TypeRelationAddress       Type = "relation_address"
+	TypeRelationPaymentMethod Type = "relation_payment_method"
+	TypeRelationUser          Type = "relation_user"
+	TypeSelect                Type = "select"
+	TypeSequence              Type = "sequence"
+	TypeStatus                Type = "status"
+	TypeString                Type = "string"
+	TypeTags                  Type = "tags"
 )
 
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "address":
+		fallthrough
+	case "automation":
+		fallthrough
+	case "boolean":
+		fallthrough
+	case "checkbox":
+		fallthrough
+	case "computed":
+		fallthrough
+	case "consent":
+		fallthrough
+	case "country":
+		fallthrough
+	case "currency":
+		fallthrough
+	case "date":
+		fallthrough
+	case "datetime":
+		fallthrough
+	case "email":
+		fallthrough
+	case "file":
+		fallthrough
+	case "image":
+		fallthrough
+	case "internal":
+		fallthrough
+	case "internal_user":
+		fallthrough
+	case "invitation_email":
+		fallthrough
+	case "link":
+		fallthrough
+	case "multiselect":
+		fallthrough
+	case "number":
+		fallthrough
+	case "ordered_list":
+		fallthrough
+	case "partner_organisation":
+		fallthrough
+	case "partner_status":
+		fallthrough
+	case "payment":
+		fallthrough
+	case "phone":
+		fallthrough
+	case "price_component":
+		fallthrough
+	case "purpose":
+		fallthrough
+	case "radio":
+		fallthrough
+	case "relation":
+		fallthrough
+	case "relation_address":
+		fallthrough
+	case "relation_payment_method":
+		fallthrough
+	case "relation_user":
+		fallthrough
+	case "select":
+		fallthrough
+	case "sequence":
+		fallthrough
+	case "status":
+		fallthrough
+	case "string":
+		fallthrough
+	case "tags":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
+type RelationType string
+
+const (
+	RelationTypeHasMany RelationType = "has_many"
+	RelationTypeHasOne  RelationType = "has_one"
+)
+
+func (e RelationType) ToPointer() *RelationType {
+	return &e
+}
+func (e *RelationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "has_many":
+		fallthrough
+	case "has_one":
+		*e = RelationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RelationType: %v", v)
+	}
+}
+
+// RelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type RelationAffinityMode string
+
+const (
+	RelationAffinityModeWeak   RelationAffinityMode = "weak"
+	RelationAffinityModeStrong RelationAffinityMode = "strong"
+)
+
+func (e RelationAffinityMode) ToPointer() *RelationAffinityMode {
+	return &e
+}
+func (e *RelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = RelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RelationAffinityMode: %v", v)
+	}
+}
+
+type EditMode string
+
+const (
+	EditModeListView EditMode = "list-view"
+)
+
+func (e EditMode) ToPointer() *EditMode {
+	return &e
+}
+func (e *EditMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "list-view":
+		*e = EditMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for EditMode: %v", v)
+	}
+}
+
+// ActionType - The action type. Currently supported actions:
+//
+// | action | description |
+// |--------|-------------|
+// | add_existing | Enables the user to pick an existing entity to link as relation |
+// | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
+// | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
+type ActionType string
+
+const (
+	ActionTypeAddExisting        ActionType = "add_existing"
+	ActionTypeCreateNew          ActionType = "create_new"
+	ActionTypeCreateFromExisting ActionType = "create_from_existing"
+)
+
+func (e ActionType) ToPointer() *ActionType {
+	return &e
+}
+func (e *ActionType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "add_existing":
+		fallthrough
+	case "create_new":
+		fallthrough
+	case "create_from_existing":
+		*e = ActionType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ActionType: %v", v)
+	}
+}
+
+type NewEntityItem struct {
+	ID string `json:"_id"`
+	// Organization Id the entity belongs to
+	Org    string        `json:"_org"`
+	Owners []EntityOwner `json:"_owners,omitempty"`
+	// URL-friendly identifier for the entity schema
+	Schema string `json:"_schema"`
+	// Title of entity
+	Title     *string    `json:"_title"`
+	Tags      []string   `json:"_tags,omitempty"`
+	CreatedAt *time.Time `json:"_created_at"`
+	UpdatedAt *time.Time `json:"_updated_at"`
+	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+	ACL                  *EntityACL `json:"_acl,omitempty"`
+	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+}
+
+func (n NewEntityItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NewEntityItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *NewEntityItem) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *NewEntityItem) GetOrg() string {
+	if o == nil {
+		return ""
+	}
+	return o.Org
+}
+
+func (o *NewEntityItem) GetOwners() []EntityOwner {
+	if o == nil {
+		return nil
+	}
+	return o.Owners
+}
+
+func (o *NewEntityItem) GetSchema() string {
+	if o == nil {
+		return ""
+	}
+	return o.Schema
+}
+
+func (o *NewEntityItem) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *NewEntityItem) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *NewEntityItem) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *NewEntityItem) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+func (o *NewEntityItem) GetACL() *EntityACL {
+	if o == nil {
+		return nil
+	}
+	return o.ACL
+}
+
+func (o *NewEntityItem) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type Actions struct {
+	// The action type. Currently supported actions:
+	//
+	// | action | description |
+	// |--------|-------------|
+	// | add_existing | Enables the user to pick an existing entity to link as relation |
+	// | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
+	// | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
+	//
+	ActionType *ActionType `json:"action_type,omitempty"`
+	// The action label or action translation key (i18n)
+	Label *string `json:"label,omitempty"`
+	// Sets the action as the default action, visible as the main action button.
+	Default *bool `json:"default,omitempty"`
+	// Name of the feature flag that enables this action
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This action should only be active when all the settings have the correct value
+	SettingsFlag  []SettingFlag  `json:"settings_flag,omitempty"`
+	NewEntityItem *NewEntityItem `json:"new_entity_item,omitempty"`
+}
+
+func (o *Actions) GetActionType() *ActionType {
+	if o == nil {
+		return nil
+	}
+	return o.ActionType
+}
+
+func (o *Actions) GetLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Label
+}
+
+func (o *Actions) GetDefault() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *Actions) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *Actions) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *Actions) GetNewEntityItem() *NewEntityItem {
+	if o == nil {
+		return nil
+	}
+	return o.NewEntityItem
+}
+
+type DrawerSize string
+
+const (
+	DrawerSizeSmall  DrawerSize = "small"
+	DrawerSizeMedium DrawerSize = "medium"
+	DrawerSizeLarge  DrawerSize = "large"
+)
+
+func (e DrawerSize) ToPointer() *DrawerSize {
+	return &e
+}
+func (e *DrawerSize) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "small":
+		fallthrough
+	case "medium":
+		fallthrough
+	case "large":
+		*e = DrawerSize(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DrawerSize: %v", v)
+	}
+}
+
+type SummaryFieldsType string
+
+const (
+	SummaryFieldsTypeStr          SummaryFieldsType = "str"
+	SummaryFieldsTypeSummaryField SummaryFieldsType = "SummaryField"
+)
+
+type SummaryFields struct {
+	Str          *string
+	SummaryField *SummaryField
+
+	Type SummaryFieldsType
+}
+
+func CreateSummaryFieldsStr(str string) SummaryFields {
+	typ := SummaryFieldsTypeStr
+
+	return SummaryFields{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateSummaryFieldsSummaryField(summaryField SummaryField) SummaryFields {
+	typ := SummaryFieldsTypeSummaryField
+
+	return SummaryFields{
+		SummaryField: &summaryField,
+		Type:         typ,
+	}
+}
+
+func (u *SummaryFields) UnmarshalJSON(data []byte) error {
+
+	var summaryField SummaryField = SummaryField{}
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
+		u.SummaryField = &summaryField
+		u.Type = SummaryFieldsTypeSummaryField
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = SummaryFieldsTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SummaryFields", string(data))
+}
+
+func (u SummaryFields) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.SummaryField != nil {
+		return utils.MarshalJSON(u.SummaryField, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SummaryFields: all fields are null")
+}
+
+// One - A currency configuration
+type One struct {
+	Code        string  `json:"code"`
+	Description string  `json:"description"`
+	Symbol      string  `json:"symbol"`
+	Flag        *string `json:"flag,omitempty"`
+}
+
+func (o *One) GetCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.Code
+}
+
+func (o *One) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *One) GetSymbol() string {
+	if o == nil {
+		return ""
+	}
+	return o.Symbol
+}
+
+func (o *One) GetFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Flag
+}
+
+type CurrencyType string
+
+const (
+	CurrencyTypeOne CurrencyType = "1"
+)
+
+type Currency struct {
+	One *One
+
+	Type CurrencyType
+}
+
+func CreateCurrencyOne(one One) Currency {
+	typ := CurrencyTypeOne
+
+	return Currency{
+		One:  &one,
+		Type: typ,
+	}
+}
+
+func (u *Currency) UnmarshalJSON(data []byte) error {
+
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+		u.One = &one
+		u.Type = CurrencyTypeOne
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Currency", string(data))
+}
+
+func (u Currency) MarshalJSON() ([]byte, error) {
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Currency: all fields are null")
+}
+
+type DefaultAccessControl string
+
+const (
+	DefaultAccessControlPublicRead DefaultAccessControl = "public-read"
+	DefaultAccessControlPrivate    DefaultAccessControl = "private"
+)
+
+func (e DefaultAccessControl) ToPointer() *DefaultAccessControl {
+	return &e
+}
+func (e *DefaultAccessControl) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "public-read":
+		fallthrough
+	case "private":
+		*e = DefaultAccessControl(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DefaultAccessControl: %v", v)
+	}
+}
+
+// Attribute - Shared Partner Organisations
 type Attribute struct {
-	TextAttribute                  *TextAttribute
-	LinkAttribute                  *LinkAttribute
-	DateAttribute                  *DateAttribute
-	CountryAttribute               *CountryAttribute
-	BooleanAttribute               *BooleanAttribute
-	SelectAttribute                *SelectAttribute
-	MultiSelectAttribute           *MultiSelectAttribute
-	StatusAttribute                *StatusAttribute
-	SequenceAttribute              *SequenceAttribute
-	RelationAttribute              *RelationAttribute
-	UserRelationAttribute          *UserRelationAttribute
-	AddressRelationAttribute       *AddressRelationAttribute
-	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute
-	CurrencyAttribute              *CurrencyAttribute
-	RepeatableAttribute            *RepeatableAttribute
-	TagsAttribute                  *TagsAttribute
-	NumberAttribute                *NumberAttribute
-	ConsentAttribute               *ConsentAttribute
-	InternalAttribute              *InternalAttribute
-	OrderedListAttribute           *OrderedListAttribute
-	FileAttribute                  *FileAttribute
-	ComputedAttribute              *ComputedAttribute
-	PartnerStatusAttribute         *PartnerStatusAttribute
-	InvitationEmailAttribute       *InvitationEmailAttribute
-	AutomationAttribute            *AutomationAttribute
-	InternalUserAttribute          *InternalUserAttribute
-	PurposeAttribute               *PurposeAttribute
-	PartnerOrganisationAttribute   *PartnerOrganisationAttribute
-
-	Type AttributeType
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *Constraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when all the settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `default:"true" json:"protected"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *InfoHelpers `json:"info_helpers,omitempty"`
+	Type        Type         `json:"type"`
+	Multiline   *bool        `json:"multiline,omitempty"`
+	Options     []string     `json:"options,omitempty"`
+	// Allow arbitrary input values in addition to provided options
+	AllowAny *bool `json:"allow_any,omitempty"`
+	// controls if the matching of values against the options is case sensitive or not
+	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
+	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
+	AllowExtraOptions *bool `json:"allow_extra_options,omitempty"`
+	// Prefix added before the sequence number
+	Prefix       *string       `json:"prefix,omitempty"`
+	StartNumber  *int64        `json:"start_number,omitempty"`
+	RelationType *RelationType `json:"relation_type,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *RelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool     `default:"true" json:"enable_relation_picker"`
+	EditMode             *EditMode `json:"edit_mode,omitempty"`
+	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
+	DetailsViewModeEnabled *bool           `default:"false" json:"details_view_mode_enabled"`
+	Actions                []Actions       `json:"actions,omitempty"`
+	DrawerSize             *DrawerSize     `json:"drawer_size,omitempty"`
+	SummaryFields          []SummaryFields `json:"summary_fields,omitempty"`
+	HasPrimary             *bool           `json:"has_primary,omitempty"`
+	AllowedSchemas         []string        `json:"allowedSchemas,omitempty"`
+	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
+	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
+	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+	AddButtonLabel *string `json:"add_button_label,omitempty"`
+	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+	SearchPlaceholder    *string `json:"search_placeholder,omitempty"`
+	Multiple             *bool   `json:"multiple,omitempty"`
+	CurrencySelectorOnly *bool   `default:"false" json:"currency_selector_only"`
+	// An array of currency configurations with a country code (ISO-4217)
+	Currency    []Currency `json:"currency,omitempty"`
+	Repeatable  *bool      `json:"repeatable,omitempty"`
+	Suggestions []string   `json:"suggestions,omitempty"`
+	Format      *string    `json:"format,omitempty"`
+	Topic       *string    `json:"topic,omitempty"`
+	Identifiers []string   `json:"identifiers,omitempty"`
+	// List of file extensions (without the dot suffix)
+	AllowedExtensions []string `json:"allowed_extensions,omitempty"`
+	// Controls how the images are presented to the user during upload on the Entity Details view.
+	DisplayImagesLandscaped *bool `json:"display_images_landscaped,omitempty"`
+	// When set to true, an i18n description will be used alongside the attribute label.
+	// This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
+	//
+	EnableDescription    *bool                 `json:"enable_description,omitempty"`
+	DefaultAccessControl *DefaultAccessControl `json:"default_access_control,omitempty"`
+	// URL-friendly identifier for the classification
+	Slug      *string    `json:"slug,omitempty"`
+	Parents   []string   `json:"parents,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
 
-func CreateAttributeTextAttribute(textAttribute TextAttribute) Attribute {
-	typ := AttributeTypeTextAttribute
+func (a Attribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
 
-	return Attribute{
-		TextAttribute: &textAttribute,
-		Type:          typ,
+func (a *Attribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
 	}
+	return nil
 }
 
-func CreateAttributeLinkAttribute(linkAttribute LinkAttribute) Attribute {
-	typ := AttributeTypeLinkAttribute
-
-	return Attribute{
-		LinkAttribute: &linkAttribute,
-		Type:          typ,
-	}
-}
-
-func CreateAttributeDateAttribute(dateAttribute DateAttribute) Attribute {
-	typ := AttributeTypeDateAttribute
-
-	return Attribute{
-		DateAttribute: &dateAttribute,
-		Type:          typ,
-	}
-}
-
-func CreateAttributeCountryAttribute(countryAttribute CountryAttribute) Attribute {
-	typ := AttributeTypeCountryAttribute
-
-	return Attribute{
-		CountryAttribute: &countryAttribute,
-		Type:             typ,
-	}
-}
-
-func CreateAttributeBooleanAttribute(booleanAttribute BooleanAttribute) Attribute {
-	typ := AttributeTypeBooleanAttribute
-
-	return Attribute{
-		BooleanAttribute: &booleanAttribute,
-		Type:             typ,
-	}
-}
-
-func CreateAttributeSelectAttribute(selectAttribute SelectAttribute) Attribute {
-	typ := AttributeTypeSelectAttribute
-
-	return Attribute{
-		SelectAttribute: &selectAttribute,
-		Type:            typ,
-	}
-}
-
-func CreateAttributeMultiSelectAttribute(multiSelectAttribute MultiSelectAttribute) Attribute {
-	typ := AttributeTypeMultiSelectAttribute
-
-	return Attribute{
-		MultiSelectAttribute: &multiSelectAttribute,
-		Type:                 typ,
-	}
-}
-
-func CreateAttributeStatusAttribute(statusAttribute StatusAttribute) Attribute {
-	typ := AttributeTypeStatusAttribute
-
-	return Attribute{
-		StatusAttribute: &statusAttribute,
-		Type:            typ,
-	}
-}
-
-func CreateAttributeSequenceAttribute(sequenceAttribute SequenceAttribute) Attribute {
-	typ := AttributeTypeSequenceAttribute
-
-	return Attribute{
-		SequenceAttribute: &sequenceAttribute,
-		Type:              typ,
-	}
-}
-
-func CreateAttributeRelationAttribute(relationAttribute RelationAttribute) Attribute {
-	typ := AttributeTypeRelationAttribute
-
-	return Attribute{
-		RelationAttribute: &relationAttribute,
-		Type:              typ,
-	}
-}
-
-func CreateAttributeUserRelationAttribute(userRelationAttribute UserRelationAttribute) Attribute {
-	typ := AttributeTypeUserRelationAttribute
-
-	return Attribute{
-		UserRelationAttribute: &userRelationAttribute,
-		Type:                  typ,
-	}
-}
-
-func CreateAttributeAddressRelationAttribute(addressRelationAttribute AddressRelationAttribute) Attribute {
-	typ := AttributeTypeAddressRelationAttribute
-
-	return Attribute{
-		AddressRelationAttribute: &addressRelationAttribute,
-		Type:                     typ,
-	}
-}
-
-func CreateAttributePaymentMethodRelationAttribute(paymentMethodRelationAttribute PaymentMethodRelationAttribute) Attribute {
-	typ := AttributeTypePaymentMethodRelationAttribute
-
-	return Attribute{
-		PaymentMethodRelationAttribute: &paymentMethodRelationAttribute,
-		Type:                           typ,
-	}
-}
-
-func CreateAttributeCurrencyAttribute(currencyAttribute CurrencyAttribute) Attribute {
-	typ := AttributeTypeCurrencyAttribute
-
-	return Attribute{
-		CurrencyAttribute: &currencyAttribute,
-		Type:              typ,
-	}
-}
-
-func CreateAttributeRepeatableAttribute(repeatableAttribute RepeatableAttribute) Attribute {
-	typ := AttributeTypeRepeatableAttribute
-
-	return Attribute{
-		RepeatableAttribute: &repeatableAttribute,
-		Type:                typ,
-	}
-}
-
-func CreateAttributeTagsAttribute(tagsAttribute TagsAttribute) Attribute {
-	typ := AttributeTypeTagsAttribute
-
-	return Attribute{
-		TagsAttribute: &tagsAttribute,
-		Type:          typ,
-	}
-}
-
-func CreateAttributeNumberAttribute(numberAttribute NumberAttribute) Attribute {
-	typ := AttributeTypeNumberAttribute
-
-	return Attribute{
-		NumberAttribute: &numberAttribute,
-		Type:            typ,
-	}
-}
-
-func CreateAttributeConsentAttribute(consentAttribute ConsentAttribute) Attribute {
-	typ := AttributeTypeConsentAttribute
-
-	return Attribute{
-		ConsentAttribute: &consentAttribute,
-		Type:             typ,
-	}
-}
-
-func CreateAttributeInternalAttribute(internalAttribute InternalAttribute) Attribute {
-	typ := AttributeTypeInternalAttribute
-
-	return Attribute{
-		InternalAttribute: &internalAttribute,
-		Type:              typ,
-	}
-}
-
-func CreateAttributeOrderedListAttribute(orderedListAttribute OrderedListAttribute) Attribute {
-	typ := AttributeTypeOrderedListAttribute
-
-	return Attribute{
-		OrderedListAttribute: &orderedListAttribute,
-		Type:                 typ,
-	}
-}
-
-func CreateAttributeFileAttribute(fileAttribute FileAttribute) Attribute {
-	typ := AttributeTypeFileAttribute
-
-	return Attribute{
-		FileAttribute: &fileAttribute,
-		Type:          typ,
-	}
-}
-
-func CreateAttributeComputedAttribute(computedAttribute ComputedAttribute) Attribute {
-	typ := AttributeTypeComputedAttribute
-
-	return Attribute{
-		ComputedAttribute: &computedAttribute,
-		Type:              typ,
-	}
-}
-
-func CreateAttributePartnerStatusAttribute(partnerStatusAttribute PartnerStatusAttribute) Attribute {
-	typ := AttributeTypePartnerStatusAttribute
-
-	return Attribute{
-		PartnerStatusAttribute: &partnerStatusAttribute,
-		Type:                   typ,
-	}
-}
-
-func CreateAttributeInvitationEmailAttribute(invitationEmailAttribute InvitationEmailAttribute) Attribute {
-	typ := AttributeTypeInvitationEmailAttribute
-
-	return Attribute{
-		InvitationEmailAttribute: &invitationEmailAttribute,
-		Type:                     typ,
-	}
-}
-
-func CreateAttributeAutomationAttribute(automationAttribute AutomationAttribute) Attribute {
-	typ := AttributeTypeAutomationAttribute
-
-	return Attribute{
-		AutomationAttribute: &automationAttribute,
-		Type:                typ,
-	}
-}
-
-func CreateAttributeInternalUserAttribute(internalUserAttribute InternalUserAttribute) Attribute {
-	typ := AttributeTypeInternalUserAttribute
-
-	return Attribute{
-		InternalUserAttribute: &internalUserAttribute,
-		Type:                  typ,
-	}
-}
-
-func CreateAttributePurposeAttribute(purposeAttribute PurposeAttribute) Attribute {
-	typ := AttributeTypePurposeAttribute
-
-	return Attribute{
-		PurposeAttribute: &purposeAttribute,
-		Type:             typ,
-	}
-}
-
-func CreateAttributePartnerOrganisationAttribute(partnerOrganisationAttribute PartnerOrganisationAttribute) Attribute {
-	typ := AttributeTypePartnerOrganisationAttribute
-
-	return Attribute{
-		PartnerOrganisationAttribute: &partnerOrganisationAttribute,
-		Type:                         typ,
-	}
-}
-
-func (u *Attribute) UnmarshalJSON(data []byte) error {
-
-	var internalAttribute InternalAttribute = InternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
-		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
+func (o *Attribute) GetID() *string {
+	if o == nil {
 		return nil
 	}
-
-	var linkAttribute LinkAttribute = LinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
-		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
-		return nil
-	}
-
-	var dateAttribute DateAttribute = DateAttribute{}
-	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, false); err == nil {
-		u.DateAttribute = &dateAttribute
-		u.Type = AttributeTypeDateAttribute
-		return nil
-	}
-
-	var countryAttribute CountryAttribute = CountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, false); err == nil {
-		u.CountryAttribute = &countryAttribute
-		u.Type = AttributeTypeCountryAttribute
-		return nil
-	}
-
-	var booleanAttribute BooleanAttribute = BooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &booleanAttribute, "", true, false); err == nil {
-		u.BooleanAttribute = &booleanAttribute
-		u.Type = AttributeTypeBooleanAttribute
-		return nil
-	}
-
-	var partnerOrganisationAttribute PartnerOrganisationAttribute = PartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &partnerOrganisationAttribute, "", true, false); err == nil {
-		u.PartnerOrganisationAttribute = &partnerOrganisationAttribute
-		u.Type = AttributeTypePartnerOrganisationAttribute
-		return nil
-	}
-
-	var internalUserAttribute InternalUserAttribute = InternalUserAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalUserAttribute, "", true, false); err == nil {
-		u.InternalUserAttribute = &internalUserAttribute
-		u.Type = AttributeTypeInternalUserAttribute
-		return nil
-	}
-
-	var automationAttribute AutomationAttribute = AutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &automationAttribute, "", true, false); err == nil {
-		u.AutomationAttribute = &automationAttribute
-		u.Type = AttributeTypeAutomationAttribute
-		return nil
-	}
-
-	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
-		u.InvitationEmailAttribute = &invitationEmailAttribute
-		u.Type = AttributeTypeInvitationEmailAttribute
-		return nil
-	}
-
-	var partnerStatusAttribute PartnerStatusAttribute = PartnerStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, false); err == nil {
-		u.PartnerStatusAttribute = &partnerStatusAttribute
-		u.Type = AttributeTypePartnerStatusAttribute
-		return nil
-	}
-
-	var computedAttribute ComputedAttribute = ComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, false); err == nil {
-		u.ComputedAttribute = &computedAttribute
-		u.Type = AttributeTypeComputedAttribute
-		return nil
-	}
-
-	var orderedListAttribute OrderedListAttribute = OrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &orderedListAttribute, "", true, false); err == nil {
-		u.OrderedListAttribute = &orderedListAttribute
-		u.Type = AttributeTypeOrderedListAttribute
-		return nil
-	}
-
-	var statusAttribute StatusAttribute = StatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
-		u.StatusAttribute = &statusAttribute
-		u.Type = AttributeTypeStatusAttribute
-		return nil
-	}
-
-	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
-		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
-		return nil
-	}
-
-	var textAttribute TextAttribute = TextAttribute{}
-	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
-		u.TextAttribute = &textAttribute
-		u.Type = AttributeTypeTextAttribute
-		return nil
-	}
-
-	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
-		u.UserRelationAttribute = &userRelationAttribute
-		u.Type = AttributeTypeUserRelationAttribute
-		return nil
-	}
-
-	var numberAttribute NumberAttribute = NumberAttribute{}
-	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, false); err == nil {
-		u.NumberAttribute = &numberAttribute
-		u.Type = AttributeTypeNumberAttribute
-		return nil
-	}
-
-	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, false); err == nil {
-		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
-		u.Type = AttributeTypePaymentMethodRelationAttribute
-		return nil
-	}
-
-	var consentAttribute ConsentAttribute = ConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, false); err == nil {
-		u.ConsentAttribute = &consentAttribute
-		u.Type = AttributeTypeConsentAttribute
-		return nil
-	}
-
-	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, false); err == nil {
-		u.CurrencyAttribute = &currencyAttribute
-		u.Type = AttributeTypeCurrencyAttribute
-		return nil
-	}
-
-	var tagsAttribute TagsAttribute = TagsAttribute{}
-	if err := utils.UnmarshalJSON(data, &tagsAttribute, "", true, false); err == nil {
-		u.TagsAttribute = &tagsAttribute
-		u.Type = AttributeTypeTagsAttribute
-		return nil
-	}
-
-	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, false); err == nil {
-		u.SequenceAttribute = &sequenceAttribute
-		u.Type = AttributeTypeSequenceAttribute
-		return nil
-	}
-
-	var selectAttribute SelectAttribute = SelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, false); err == nil {
-		u.SelectAttribute = &selectAttribute
-		u.Type = AttributeTypeSelectAttribute
-		return nil
-	}
-
-	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
-		u.RepeatableAttribute = &repeatableAttribute
-		u.Type = AttributeTypeRepeatableAttribute
-		return nil
-	}
-
-	var multiSelectAttribute MultiSelectAttribute = MultiSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &multiSelectAttribute, "", true, false); err == nil {
-		u.MultiSelectAttribute = &multiSelectAttribute
-		u.Type = AttributeTypeMultiSelectAttribute
-		return nil
-	}
-
-	var purposeAttribute PurposeAttribute = PurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
-		u.PurposeAttribute = &purposeAttribute
-		u.Type = AttributeTypePurposeAttribute
-		return nil
-	}
-
-	var fileAttribute FileAttribute = FileAttribute{}
-	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, false); err == nil {
-		u.FileAttribute = &fileAttribute
-		u.Type = AttributeTypeFileAttribute
-		return nil
-	}
-
-	var relationAttribute RelationAttribute = RelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, false); err == nil {
-		u.RelationAttribute = &relationAttribute
-		u.Type = AttributeTypeRelationAttribute
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Attribute", string(data))
+	return o.ID
 }
 
-func (u Attribute) MarshalJSON() ([]byte, error) {
-	if u.TextAttribute != nil {
-		return utils.MarshalJSON(u.TextAttribute, "", true)
+func (o *Attribute) GetName() string {
+	if o == nil {
+		return ""
 	}
+	return o.Name
+}
 
-	if u.LinkAttribute != nil {
-		return utils.MarshalJSON(u.LinkAttribute, "", true)
+func (o *Attribute) GetLabel() string {
+	if o == nil {
+		return ""
 	}
+	return o.Label
+}
 
-	if u.DateAttribute != nil {
-		return utils.MarshalJSON(u.DateAttribute, "", true)
+func (o *Attribute) GetPlaceholder() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Placeholder
+}
 
-	if u.CountryAttribute != nil {
-		return utils.MarshalJSON(u.CountryAttribute, "", true)
+func (o *Attribute) GetHidden() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Hidden
+}
 
-	if u.BooleanAttribute != nil {
-		return utils.MarshalJSON(u.BooleanAttribute, "", true)
+func (o *Attribute) GetShowInTable() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.ShowInTable
+}
 
-	if u.SelectAttribute != nil {
-		return utils.MarshalJSON(u.SelectAttribute, "", true)
+func (o *Attribute) GetSortable() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Sortable
+}
 
-	if u.MultiSelectAttribute != nil {
-		return utils.MarshalJSON(u.MultiSelectAttribute, "", true)
+func (o *Attribute) GetRequired() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Required
+}
 
-	if u.StatusAttribute != nil {
-		return utils.MarshalJSON(u.StatusAttribute, "", true)
+func (o *Attribute) GetReadonly() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Readonly
+}
 
-	if u.SequenceAttribute != nil {
-		return utils.MarshalJSON(u.SequenceAttribute, "", true)
+func (o *Attribute) GetDeprecated() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Deprecated
+}
 
-	if u.RelationAttribute != nil {
-		return utils.MarshalJSON(u.RelationAttribute, "", true)
+func (o *Attribute) GetDefaultValue() any {
+	if o == nil {
+		return nil
 	}
+	return o.DefaultValue
+}
 
-	if u.UserRelationAttribute != nil {
-		return utils.MarshalJSON(u.UserRelationAttribute, "", true)
+func (o *Attribute) GetGroup() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Group
+}
 
-	if u.AddressRelationAttribute != nil {
-		return utils.MarshalJSON(u.AddressRelationAttribute, "", true)
+func (o *Attribute) GetOrder() *int64 {
+	if o == nil {
+		return nil
 	}
+	return o.Order
+}
 
-	if u.PaymentMethodRelationAttribute != nil {
-		return utils.MarshalJSON(u.PaymentMethodRelationAttribute, "", true)
+func (o *Attribute) GetLayout() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Layout
+}
 
-	if u.CurrencyAttribute != nil {
-		return utils.MarshalJSON(u.CurrencyAttribute, "", true)
+func (o *Attribute) GetHideLabel() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.HideLabel
+}
 
-	if u.RepeatableAttribute != nil {
-		return utils.MarshalJSON(u.RepeatableAttribute, "", true)
+func (o *Attribute) GetIcon() *string {
+	if o == nil {
+		return nil
 	}
+	return o.Icon
+}
 
-	if u.TagsAttribute != nil {
-		return utils.MarshalJSON(u.TagsAttribute, "", true)
+func (o *Attribute) GetRenderCondition() *string {
+	if o == nil {
+		return nil
 	}
+	return o.RenderCondition
+}
 
-	if u.NumberAttribute != nil {
-		return utils.MarshalJSON(u.NumberAttribute, "", true)
+func (o *Attribute) GetPurpose() []string {
+	if o == nil {
+		return nil
 	}
+	return o.Purpose
+}
 
-	if u.ConsentAttribute != nil {
-		return utils.MarshalJSON(u.ConsentAttribute, "", true)
+func (o *Attribute) GetConstraints() *Constraints {
+	if o == nil {
+		return nil
 	}
+	return o.Constraints
+}
 
-	if u.InternalAttribute != nil {
-		return utils.MarshalJSON(u.InternalAttribute, "", true)
+func (o *Attribute) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
 	}
+	return o.FeatureFlag
+}
 
-	if u.OrderedListAttribute != nil {
-		return utils.MarshalJSON(u.OrderedListAttribute, "", true)
+func (o *Attribute) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
 	}
+	return o.SettingsFlag
+}
 
-	if u.FileAttribute != nil {
-		return utils.MarshalJSON(u.FileAttribute, "", true)
+func (o *Attribute) GetValueFormatter() *string {
+	if o == nil {
+		return nil
 	}
+	return o.ValueFormatter
+}
 
-	if u.ComputedAttribute != nil {
-		return utils.MarshalJSON(u.ComputedAttribute, "", true)
+func (o *Attribute) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
 	}
+	return o.PreviewValueFormatter
+}
 
-	if u.PartnerStatusAttribute != nil {
-		return utils.MarshalJSON(u.PartnerStatusAttribute, "", true)
+func (o *Attribute) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.EntityBuilderDisableEdit
+}
 
-	if u.InvitationEmailAttribute != nil {
-		return utils.MarshalJSON(u.InvitationEmailAttribute, "", true)
+func (o *Attribute) GetProtected() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Protected
+}
 
-	if u.AutomationAttribute != nil {
-		return utils.MarshalJSON(u.AutomationAttribute, "", true)
+func (o *Attribute) GetInfoHelpers() *InfoHelpers {
+	if o == nil {
+		return nil
 	}
+	return o.InfoHelpers
+}
 
-	if u.InternalUserAttribute != nil {
-		return utils.MarshalJSON(u.InternalUserAttribute, "", true)
+func (o *Attribute) GetType() Type {
+	if o == nil {
+		return Type("")
 	}
+	return o.Type
+}
 
-	if u.PurposeAttribute != nil {
-		return utils.MarshalJSON(u.PurposeAttribute, "", true)
+func (o *Attribute) GetMultiline() *bool {
+	if o == nil {
+		return nil
 	}
+	return o.Multiline
+}
 
-	if u.PartnerOrganisationAttribute != nil {
-		return utils.MarshalJSON(u.PartnerOrganisationAttribute, "", true)
+func (o *Attribute) GetOptions() []string {
+	if o == nil {
+		return nil
 	}
+	return o.Options
+}
 
-	return nil, errors.New("could not marshal union type Attribute: all fields are null")
+func (o *Attribute) GetAllowAny() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowAny
+}
+
+func (o *Attribute) GetDisableCaseSensitive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DisableCaseSensitive
+}
+
+func (o *Attribute) GetAllowExtraOptions() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowExtraOptions
+}
+
+func (o *Attribute) GetPrefix() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Prefix
+}
+
+func (o *Attribute) GetStartNumber() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StartNumber
+}
+
+func (o *Attribute) GetRelationType() *RelationType {
+	if o == nil {
+		return nil
+	}
+	return o.RelationType
+}
+
+func (o *Attribute) GetReverseAttributes() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReverseAttributes
+}
+
+func (o *Attribute) GetRelationAffinityMode() *RelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *Attribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *Attribute) GetEditMode() *EditMode {
+	if o == nil {
+		return nil
+	}
+	return o.EditMode
+}
+
+func (o *Attribute) GetDetailsViewModeEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DetailsViewModeEnabled
+}
+
+func (o *Attribute) GetActions() []Actions {
+	if o == nil {
+		return nil
+	}
+	return o.Actions
+}
+
+func (o *Attribute) GetDrawerSize() *DrawerSize {
+	if o == nil {
+		return nil
+	}
+	return o.DrawerSize
+}
+
+func (o *Attribute) GetSummaryFields() []SummaryFields {
+	if o == nil {
+		return nil
+	}
+	return o.SummaryFields
+}
+
+func (o *Attribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *Attribute) GetAllowedSchemas() []string {
+	if o == nil {
+		return nil
+	}
+	return o.AllowedSchemas
+}
+
+func (o *Attribute) GetEnableRelationTags() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationTags
+}
+
+func (o *Attribute) GetAddButtonLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AddButtonLabel
+}
+
+func (o *Attribute) GetSearchPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SearchPlaceholder
+}
+
+func (o *Attribute) GetMultiple() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Multiple
+}
+
+func (o *Attribute) GetCurrencySelectorOnly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencySelectorOnly
+}
+
+func (o *Attribute) GetCurrency() []Currency {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
+}
+
+func (o *Attribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *Attribute) GetSuggestions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Suggestions
+}
+
+func (o *Attribute) GetFormat() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Format
+}
+
+func (o *Attribute) GetTopic() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Topic
+}
+
+func (o *Attribute) GetIdentifiers() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifiers
+}
+
+func (o *Attribute) GetAllowedExtensions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.AllowedExtensions
+}
+
+func (o *Attribute) GetDisplayImagesLandscaped() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayImagesLandscaped
+}
+
+func (o *Attribute) GetEnableDescription() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableDescription
+}
+
+func (o *Attribute) GetDefaultAccessControl() *DefaultAccessControl {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAccessControl
+}
+
+func (o *Attribute) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
+func (o *Attribute) GetParents() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Parents
+}
+
+func (o *Attribute) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *Attribute) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
 }
