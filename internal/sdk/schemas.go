@@ -117,6 +117,7 @@ func (s *Schemas) GetSchema(ctx context.Context, request operations.GetSchemaReq
 	}
 
 	return res, nil
+
 }
 
 // PutSchema - putSchema
@@ -216,6 +217,7 @@ func (s *Schemas) PutSchema(ctx context.Context, request operations.PutSchemaReq
 	}
 
 	return res, nil
+
 }
 
 // DeleteSchema - deleteSchema
@@ -294,6 +296,7 @@ func (s *Schemas) DeleteSchema(ctx context.Context, request operations.DeleteSch
 	}
 
 	return res, nil
+
 }
 
 // GetSchemaAttribute - getSchemaAttribute
@@ -383,6 +386,7 @@ func (s *Schemas) GetSchemaAttribute(ctx context.Context, request operations.Get
 	}
 
 	return res, nil
+
 }
 
 // PutSchemaAttribute - putSchemaAttribute
@@ -478,6 +482,7 @@ func (s *Schemas) PutSchemaAttribute(ctx context.Context, request operations.Put
 	}
 
 	return res, nil
+
 }
 
 // DeleteSchemaAttribute - deleteSchemaAttribute
@@ -567,6 +572,7 @@ func (s *Schemas) DeleteSchemaAttribute(ctx context.Context, request operations.
 	}
 
 	return res, nil
+
 }
 
 // GetSchemaCapability - getSchemaCapability
@@ -656,6 +662,7 @@ func (s *Schemas) GetSchemaCapability(ctx context.Context, request operations.Ge
 	}
 
 	return res, nil
+
 }
 
 // PutSchemaCapability - putSchemaCapability
@@ -751,6 +758,7 @@ func (s *Schemas) PutSchemaCapability(ctx context.Context, request operations.Pu
 	}
 
 	return res, nil
+
 }
 
 // DeleteSchemaCapability - deleteSchemaCapability
@@ -840,4 +848,5 @@ func (s *Schemas) DeleteSchemaCapability(ctx context.Context, request operations
 	}
 
 	return res, nil
+
 }

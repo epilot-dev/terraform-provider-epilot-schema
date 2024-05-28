@@ -1679,7 +1679,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
 				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
+					var options3 tfTypes.SelectAttributeOptions
 					if optionsItem1.Str != nil {
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
@@ -3778,7 +3778,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					attributes3.SelectAttribute.Layout = types.StringPointerValue(attributesItem1.SelectAttribute.Layout)
 					attributes3.SelectAttribute.Name = types.StringValue(attributesItem1.SelectAttribute.Name)
 					for optionsCount4, optionsItem4 := range attributesItem1.SelectAttribute.Options {
-						var options10 tfTypes.Options
+						var options10 tfTypes.SelectAttributeOptions
 						if optionsItem4.Str != nil {
 							options10.Str = types.StringPointerValue(optionsItem4.Str)
 						}
@@ -4601,7 +4601,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 						var navbarActions1 tfTypes.NavbarActions
 						for optionsCount6, optionsItem6 := range navbarActionsItem.Options {
-							var options15 tfTypes.EntityDefaultTableOptions
+							var options15 tfTypes.Options
 							options15.Label = types.StringValue(optionsItem6.Label)
 							if optionsItem6.Params == nil {
 								options15.Params = nil

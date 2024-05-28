@@ -8,24 +8,24 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type SearchMappingsType string
+type Type string
 
 const (
-	SearchMappingsTypeKeyword   SearchMappingsType = "keyword"
-	SearchMappingsTypeText      SearchMappingsType = "text"
-	SearchMappingsTypeBoolean   SearchMappingsType = "boolean"
-	SearchMappingsTypeInteger   SearchMappingsType = "integer"
-	SearchMappingsTypeLong      SearchMappingsType = "long"
-	SearchMappingsTypeFloat     SearchMappingsType = "float"
-	SearchMappingsTypeDate      SearchMappingsType = "date"
-	SearchMappingsTypeFlattened SearchMappingsType = "flattened"
-	SearchMappingsTypeNested    SearchMappingsType = "nested"
+	TypeKeyword   Type = "keyword"
+	TypeText      Type = "text"
+	TypeBoolean   Type = "boolean"
+	TypeInteger   Type = "integer"
+	TypeLong      Type = "long"
+	TypeFloat     Type = "float"
+	TypeDate      Type = "date"
+	TypeFlattened Type = "flattened"
+	TypeNested    Type = "nested"
 )
 
-func (e SearchMappingsType) ToPointer() *SearchMappingsType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
-func (e *SearchMappingsType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -48,17 +48,17 @@ func (e *SearchMappingsType) UnmarshalJSON(data []byte) error {
 	case "flattened":
 		fallthrough
 	case "nested":
-		*e = SearchMappingsType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SearchMappingsType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
 type SearchMappings struct {
-	Index  *bool               `default:"true" json:"index"`
-	Type   *SearchMappingsType `json:"type,omitempty"`
-	Fields map[string]any      `json:"fields,omitempty"`
+	Index  *bool          `default:"true" json:"index"`
+	Type   *Type          `json:"type,omitempty"`
+	Fields map[string]any `json:"fields,omitempty"`
 }
 
 func (s SearchMappings) MarshalJSON() ([]byte, error) {
@@ -79,7 +79,7 @@ func (o *SearchMappings) GetIndex() *bool {
 	return o.Index
 }
 
-func (o *SearchMappings) GetType() *SearchMappingsType {
+func (o *SearchMappings) GetType() *Type {
 	if o == nil {
 		return nil
 	}

@@ -121,10 +121,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["relation_address"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--address_relation_attribute--constraints"></a>
 ### Nested Schema for `address_relation_attribute.constraints`
 
@@ -191,10 +187,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["automation"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--automation_attribute--constraints"></a>
 ### Nested Schema for `automation_attribute.constraints`
@@ -263,10 +255,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["boolean"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--boolean_attribute--constraints"></a>
 ### Nested Schema for `boolean_attribute.constraints`
 
@@ -333,10 +321,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["computed"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--computed_attribute--constraints"></a>
 ### Nested Schema for `computed_attribute.constraints`
@@ -407,10 +391,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be one of ["consent"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--consent_attribute--constraints"></a>
 ### Nested Schema for `consent_attribute.constraints`
 
@@ -477,10 +457,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["country"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--country_attribute--constraints"></a>
 ### Nested Schema for `country_attribute.constraints`
@@ -550,10 +526,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be one of ["currency"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--currency_attribute--constraints"></a>
 ### Nested Schema for `currency_attribute.constraints`
@@ -641,10 +613,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["date", "datetime"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--date_attribute--constraints"></a>
 ### Nested Schema for `date_attribute.constraints`
 
@@ -718,10 +686,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be one of ["image", "file"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--file_attribute--constraints"></a>
 ### Nested Schema for `file_attribute.constraints`
 
@@ -788,10 +752,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["internal"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--internal_attribute--constraints"></a>
 ### Nested Schema for `internal_attribute.constraints`
@@ -860,10 +820,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["internal_user"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--internal_user_attribute--constraints"></a>
 ### Nested Schema for `internal_user_attribute.constraints`
 
@@ -931,10 +887,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["invitation_email"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--invitation_email_attribute--constraints"></a>
 ### Nested Schema for `invitation_email_attribute.constraints`
 
@@ -1001,10 +953,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["link"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--link_attribute--constraints"></a>
 ### Nested Schema for `link_attribute.constraints`
@@ -1076,10 +1024,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["multiselect", "checkbox"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--multi_select_attribute--constraints"></a>
 ### Nested Schema for `multi_select_attribute.constraints`
@@ -1167,10 +1111,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--number_attribute--constraints"></a>
 ### Nested Schema for `number_attribute.constraints`
 
@@ -1237,10 +1177,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["ordered_list"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--ordered_list_attribute--constraints"></a>
 ### Nested Schema for `ordered_list_attribute.constraints`
@@ -1309,10 +1245,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["partner_organisation"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--partner_organisation_attribute--constraints"></a>
 ### Nested Schema for `partner_organisation_attribute.constraints`
 
@@ -1379,10 +1311,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["partner_status"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--partner_status_attribute--constraints"></a>
 ### Nested Schema for `partner_status_attribute.constraints`
@@ -1451,10 +1379,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["relation_payment_method"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--payment_method_relation_attribute--constraints"></a>
 ### Nested Schema for `payment_method_relation_attribute.constraints`
@@ -1526,10 +1450,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["purpose"]
 - `updated_at` (String)
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--purpose_attribute--constraints"></a>
 ### Nested Schema for `purpose_attribute.constraints`
@@ -1610,10 +1530,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--summary_fields))
 - `type` (String) must be one of ["relation"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--relation_attribute--actions"></a>
 ### Nested Schema for `relation_attribute.actions`
@@ -1771,10 +1687,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--repeatable_attribute--constraints"></a>
 ### Nested Schema for `repeatable_attribute.constraints`
 
@@ -1843,10 +1755,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["select", "radio"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--select_attribute--constraints"></a>
 ### Nested Schema for `select_attribute.constraints`
@@ -1935,10 +1843,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["sequence"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--sequence_attribute--constraints"></a>
 ### Nested Schema for `sequence_attribute.constraints`
 
@@ -2006,10 +1910,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["status"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--status_attribute--constraints"></a>
 ### Nested Schema for `status_attribute.constraints`
@@ -2098,10 +1998,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["tags"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--tags_attribute--constraints"></a>
 ### Nested Schema for `tags_attribute.constraints`
 
@@ -2170,10 +2066,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) must be one of ["string"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--text_attribute--constraints"></a>
 ### Nested Schema for `text_attribute.constraints`
 
@@ -2241,10 +2133,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["relation_user"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--user_relation_attribute--constraints"></a>
 ### Nested Schema for `user_relation_attribute.constraints`

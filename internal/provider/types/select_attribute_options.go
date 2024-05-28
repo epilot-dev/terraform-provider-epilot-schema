@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type NavbarActions struct {
-	Options []Options    `tfsdk:"options"`
-	Type    types.String `tfsdk:"type"`
+type SelectAttributeOptions struct {
+	Str types.String `tfsdk:"str" tfPlanOnly:"true"`
+	One *Two         `tfsdk:"one" tfPlanOnly:"true"`
 }
