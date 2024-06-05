@@ -120,7 +120,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -271,7 +272,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -422,7 +424,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -573,7 +576,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -724,7 +728,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"identifiers": schema.ListAttribute{
 									Computed:    true,
@@ -882,7 +887,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1062,7 +1068,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1213,7 +1220,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1383,7 +1391,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1537,7 +1546,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1688,7 +1698,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1839,7 +1850,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1990,7 +2002,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2153,7 +2166,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2328,7 +2342,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2479,7 +2494,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2630,7 +2646,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2781,7 +2798,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2935,7 +2953,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3395,7 +3414,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 									Computed: true,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3594,7 +3614,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3756,7 +3777,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3928,7 +3950,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4086,7 +4109,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4260,7 +4284,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4419,7 +4444,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4573,7 +4599,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4750,7 +4777,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -4901,7 +4929,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -5052,7 +5081,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -5203,7 +5233,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -5354,7 +5385,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"identifiers": schema.ListAttribute{
 												Computed:    true,
@@ -5512,7 +5544,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -5692,7 +5725,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -5843,7 +5877,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6013,7 +6048,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6167,7 +6203,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6318,7 +6355,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6469,7 +6507,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6620,7 +6659,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6783,7 +6823,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -6958,7 +6999,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -7109,7 +7151,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -7260,7 +7303,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -7411,7 +7455,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -7565,7 +7610,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8025,7 +8071,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Computed: true,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8224,7 +8271,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8386,7 +8434,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8558,7 +8607,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8716,7 +8766,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -8890,7 +8941,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -9049,7 +9101,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -9203,7 +9256,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													``,
 											},
 											"id": schema.StringAttribute{
-												Computed: true,
+												Computed:    true,
+												Description: `ID for the entity attribute`,
 											},
 											"info_helpers": schema.SingleNestedAttribute{
 												Computed: true,
@@ -9315,6 +9369,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						"feature_flag": schema.StringAttribute{
 							Computed:    true,
 							Description: `This capability should only be active when the feature flag is enabled`,
+						},
+						"id": schema.StringAttribute{
+							Computed:    true,
+							Description: `ID for the entity capability`,
 						},
 						"name": schema.StringAttribute{
 							Computed:    true,

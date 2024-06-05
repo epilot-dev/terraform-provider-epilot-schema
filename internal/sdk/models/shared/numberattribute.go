@@ -87,6 +87,7 @@ func (e *NumberAttributeType) UnmarshalJSON(data []byte) error {
 
 // NumberAttribute - Numeric input
 type NumberAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

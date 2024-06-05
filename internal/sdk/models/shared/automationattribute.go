@@ -87,6 +87,7 @@ func (e *AutomationAttributeType) UnmarshalJSON(data []byte) error {
 
 // AutomationAttribute - Automation entity
 type AutomationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

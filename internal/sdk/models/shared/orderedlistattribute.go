@@ -87,6 +87,7 @@ func (e *OrderedListAttributeType) UnmarshalJSON(data []byte) error {
 
 // OrderedListAttribute - Type of attribute to render N number of ordered fields
 type OrderedListAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

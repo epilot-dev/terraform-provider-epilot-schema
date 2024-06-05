@@ -87,6 +87,7 @@ func (e *UserRelationAttributeType) UnmarshalJSON(data []byte) error {
 
 // UserRelationAttribute - User Relationship
 type UserRelationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

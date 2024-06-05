@@ -87,6 +87,7 @@ func (e *TagsAttributeType) UnmarshalJSON(data []byte) error {
 
 // TagsAttribute - Tags
 type TagsAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

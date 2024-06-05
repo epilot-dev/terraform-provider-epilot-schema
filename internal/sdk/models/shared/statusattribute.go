@@ -172,6 +172,7 @@ func (u StatusAttributeOptions) MarshalJSON() ([]byte, error) {
 
 // StatusAttribute - Status select
 type StatusAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

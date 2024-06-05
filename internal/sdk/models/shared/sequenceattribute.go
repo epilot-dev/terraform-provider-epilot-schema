@@ -87,6 +87,7 @@ func (e *SequenceAttributeType) UnmarshalJSON(data []byte) error {
 
 // SequenceAttribute - Sequence of unique identifiers
 type SequenceAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

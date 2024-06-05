@@ -87,6 +87,7 @@ func (e *PartnerOrganisationAttributeType) UnmarshalJSON(data []byte) error {
 
 // PartnerOrganisationAttribute - Shared Partner Organisations
 type PartnerOrganisationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

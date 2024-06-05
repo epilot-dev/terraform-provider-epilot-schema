@@ -87,6 +87,7 @@ func (e *PaymentMethodRelationAttributeType) UnmarshalJSON(data []byte) error {
 
 // PaymentMethodRelationAttribute - Reference to a payment method attribute of another entity
 type PaymentMethodRelationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

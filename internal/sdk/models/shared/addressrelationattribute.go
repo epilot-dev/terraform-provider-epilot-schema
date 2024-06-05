@@ -87,6 +87,7 @@ func (e *AddressRelationAttributeType) UnmarshalJSON(data []byte) error {
 
 // AddressRelationAttribute - Reference to an address attribute of another entity
 type AddressRelationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

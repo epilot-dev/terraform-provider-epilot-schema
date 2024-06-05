@@ -40,6 +40,7 @@ type SchemaCapabilityResourceModel struct {
 	Attributes   []tfTypes.Attribute   `tfsdk:"attributes"`
 	CompositeID  types.String          `tfsdk:"composite_id"`
 	FeatureFlag  types.String          `tfsdk:"feature_flag"`
+	ID           types.String          `tfsdk:"id"`
 	Name         types.String          `tfsdk:"name"`
 	Purpose      []types.String        `tfsdk:"purpose"`
 	SettingsFlag []tfTypes.SettingFlag `tfsdk:"settings_flag"`
@@ -130,8 +131,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -372,8 +374,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -614,8 +617,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -856,8 +860,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1098,8 +1103,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"identifiers": schema.ListAttribute{
 									Computed:    true,
@@ -1354,8 +1360,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1652,8 +1659,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1895,8 +1903,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2167,8 +2176,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2415,8 +2425,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2657,8 +2668,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2899,8 +2911,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3141,8 +3154,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3398,8 +3412,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3688,8 +3703,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3930,8 +3946,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4172,8 +4189,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4414,8 +4432,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4660,8 +4679,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5400,8 +5420,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional: true,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5727,8 +5748,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5996,8 +6018,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6282,8 +6305,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6533,8 +6557,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6819,8 +6844,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7071,8 +7097,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7317,8 +7344,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7513,6 +7541,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				Computed:    true,
 				Optional:    true,
 				Description: `This capability should only be active when the feature flag is enabled`,
+			},
+			"id": schema.StringAttribute{
+				Required:    true,
+				Description: `ID for the entity capability`,
 			},
 			"name": schema.StringAttribute{
 				Required:    true,

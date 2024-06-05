@@ -87,6 +87,7 @@ func (e *CountryAttributeType) UnmarshalJSON(data []byte) error {
 
 // CountryAttribute - Country picker
 type CountryAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

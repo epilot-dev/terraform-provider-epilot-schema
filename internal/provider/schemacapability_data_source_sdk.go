@@ -2110,6 +2110,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 		}
 		r.CompositeID = types.StringPointerValue(resp.CompositeID)
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
+		r.ID = types.StringValue(resp.ID)
 		r.Name = types.StringValue(resp.Name)
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]

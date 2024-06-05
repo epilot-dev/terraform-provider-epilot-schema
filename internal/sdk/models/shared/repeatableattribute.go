@@ -135,6 +135,7 @@ func (e *RepeatableAttributeType) UnmarshalJSON(data []byte) error {
 
 // RepeatableAttribute - Repeatable (add N number of fields)
 type RepeatableAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

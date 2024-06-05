@@ -87,6 +87,7 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 
 // TextAttribute - Textarea or text input
 type TextAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

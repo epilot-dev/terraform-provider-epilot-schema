@@ -4204,6 +4204,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				}
 			}
 			capabilities1.FeatureFlag = types.StringPointerValue(capabilitiesItem.FeatureFlag)
+			capabilities1.ID = types.StringValue(capabilitiesItem.ID)
 			capabilities1.Name = types.StringValue(capabilitiesItem.Name)
 			for settingsFlagCount58, settingsFlagItem58 := range capabilitiesItem.SettingsFlag {
 				var settingsFlag117 tfTypes.SettingFlag
@@ -4267,6 +4268,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				r.Capabilities[capabilitiesCount].Purpose = capabilities1.Purpose
 				r.Capabilities[capabilitiesCount].Attributes = capabilities1.Attributes
 				r.Capabilities[capabilitiesCount].FeatureFlag = capabilities1.FeatureFlag
+				r.Capabilities[capabilitiesCount].ID = capabilities1.ID
 				r.Capabilities[capabilitiesCount].Name = capabilities1.Name
 				r.Capabilities[capabilitiesCount].SettingsFlag = capabilities1.SettingsFlag
 				r.Capabilities[capabilitiesCount].Title = capabilities1.Title

@@ -87,6 +87,7 @@ func (e *InvitationEmailAttributeType) UnmarshalJSON(data []byte) error {
 
 // InvitationEmailAttribute - Email address for send invitation
 type InvitationEmailAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

@@ -87,6 +87,7 @@ func (e *InternalUserAttributeType) UnmarshalJSON(data []byte) error {
 
 // InternalUserAttribute - Epilot internal user info
 type InternalUserAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

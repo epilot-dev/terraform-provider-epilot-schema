@@ -454,6 +454,7 @@ func (u SummaryFields) MarshalJSON() ([]byte, error) {
 
 // RelationAttribute - Entity Relationship
 type RelationAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`

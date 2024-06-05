@@ -8,6 +8,7 @@ type EntityCapability struct {
 	Purpose      []types.String `tfsdk:"purpose"`
 	Attributes   []Attribute    `tfsdk:"attributes"`
 	FeatureFlag  types.String   `tfsdk:"feature_flag"`
+	ID           types.String   `tfsdk:"id"`
 	Name         types.String   `tfsdk:"name"`
 	SettingsFlag []SettingFlag  `tfsdk:"settings_flag"`
 	Title        types.String   `tfsdk:"title"`

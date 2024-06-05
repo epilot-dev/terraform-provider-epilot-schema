@@ -15,7 +15,7 @@ resource "epilot-schema_schema" "my_schema" {
         hidden                      = false
         hide_label                  = false
         icon                        = "...my_icon..."
-        id                          = "04777212-cdcb-4ca9-ae24-545d526f229e"
+        id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
         info_helpers = {
           hint_custom_component  = "...my_hint_custom_component..."
           hint_text              = "...my_hint_text..."
@@ -67,7 +67,7 @@ resource "epilot-schema_schema" "my_schema" {
             hidden                      = false
             hide_label                  = true
             icon                        = "...my_icon..."
-            id                          = "fa856f27-9910-45f4-b28c-25904a6d458b"
+            id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
             info_helpers = {
               hint_custom_component  = "...my_hint_custom_component..."
               hint_text              = "...my_hint_text..."
@@ -98,11 +98,12 @@ resource "epilot-schema_schema" "my_schema" {
         },
       ]
       feature_flag = "FF_MY_FEATURE_FLAG"
+      id           = "d5839b94-ba20-4225-a78e-76951d352bd6"
       name         = "customer_messaging"
       settings_flag = [
         {
-          enabled = false
-          name    = "Kelvin Greenholt Sr."
+          enabled = true
+          name    = "Barbara Beer MD"
         },
       ]
       title = "Messaging"
@@ -111,7 +112,7 @@ resource "epilot-schema_schema" "my_schema" {
           additional_properties = "{ \"see\": \"documentation\" }"
           component             = "PricingItems"
           disabled              = false
-          group_expanded        = false
+          group_expanded        = true
           header                = false
           hook                  = "EntityDetailsV2:Tab"
           icon                  = "email"
@@ -133,12 +134,12 @@ resource "epilot-schema_schema" "my_schema" {
   draft          = true
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
-  id             = "4b42e389-95b3-45ee-a060-0c0a1102ca74"
+  id             = "44a6df15-83f0-4d87-8453-ae4df3f2b38f"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
   updated_at     = "...my_updated_at..."
-  version        = 4
+  version        = 1
 }
