@@ -2,7 +2,7 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "epilot/epilot-schema"
-      version = "0.3.4"
+      version = "0.3.5"
     }
   }
 }

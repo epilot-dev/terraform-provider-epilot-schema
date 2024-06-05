@@ -6848,6 +6848,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 
 func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCompositeID(resp *shared.EntityCapabilityWithCompositeID) {
 	if resp != nil {
+		r.Attributes = []tfTypes.Attribute{}
 		if len(r.Attributes) > len(resp.Attributes) {
 			r.Attributes = r.Attributes[:len(resp.Attributes)]
 		}
@@ -6898,6 +6899,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.AddressRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Readonly)
 				attributes1.AddressRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AddressRelationAttribute.RenderCondition)
 				attributes1.AddressRelationAttribute.Required = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Required)
+				attributes1.AddressRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount, settingsFlagItem := range attributesItem.AddressRelationAttribute.SettingsFlag {
 					var settingsFlag1 tfTypes.SettingFlag
 					settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
@@ -6962,6 +6964,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.AutomationAttribute.Readonly = types.BoolPointerValue(attributesItem.AutomationAttribute.Readonly)
 				attributes1.AutomationAttribute.RenderCondition = types.StringPointerValue(attributesItem.AutomationAttribute.RenderCondition)
 				attributes1.AutomationAttribute.Required = types.BoolPointerValue(attributesItem.AutomationAttribute.Required)
+				attributes1.AutomationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount1, settingsFlagItem1 := range attributesItem.AutomationAttribute.SettingsFlag {
 					var settingsFlag3 tfTypes.SettingFlag
 					settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
@@ -7026,6 +7029,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.BooleanAttribute.Readonly = types.BoolPointerValue(attributesItem.BooleanAttribute.Readonly)
 				attributes1.BooleanAttribute.RenderCondition = types.StringPointerValue(attributesItem.BooleanAttribute.RenderCondition)
 				attributes1.BooleanAttribute.Required = types.BoolPointerValue(attributesItem.BooleanAttribute.Required)
+				attributes1.BooleanAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount2, settingsFlagItem2 := range attributesItem.BooleanAttribute.SettingsFlag {
 					var settingsFlag5 tfTypes.SettingFlag
 					settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
@@ -7090,6 +7094,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.ComputedAttribute.Readonly = types.BoolPointerValue(attributesItem.ComputedAttribute.Readonly)
 				attributes1.ComputedAttribute.RenderCondition = types.StringPointerValue(attributesItem.ComputedAttribute.RenderCondition)
 				attributes1.ComputedAttribute.Required = types.BoolPointerValue(attributesItem.ComputedAttribute.Required)
+				attributes1.ComputedAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount3, settingsFlagItem3 := range attributesItem.ComputedAttribute.SettingsFlag {
 					var settingsFlag7 tfTypes.SettingFlag
 					settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
@@ -7158,6 +7163,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.ConsentAttribute.Readonly = types.BoolPointerValue(attributesItem.ConsentAttribute.Readonly)
 				attributes1.ConsentAttribute.RenderCondition = types.StringPointerValue(attributesItem.ConsentAttribute.RenderCondition)
 				attributes1.ConsentAttribute.Required = types.BoolPointerValue(attributesItem.ConsentAttribute.Required)
+				attributes1.ConsentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount4, settingsFlagItem4 := range attributesItem.ConsentAttribute.SettingsFlag {
 					var settingsFlag9 tfTypes.SettingFlag
 					settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
@@ -7219,6 +7225,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.CountryAttribute.Readonly = types.BoolPointerValue(attributesItem.CountryAttribute.Readonly)
 				attributes1.CountryAttribute.RenderCondition = types.StringPointerValue(attributesItem.CountryAttribute.RenderCondition)
 				attributes1.CountryAttribute.Required = types.BoolPointerValue(attributesItem.CountryAttribute.Required)
+				attributes1.CountryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount5, settingsFlagItem5 := range attributesItem.CountryAttribute.SettingsFlag {
 					var settingsFlag11 tfTypes.SettingFlag
 					settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
@@ -7250,6 +7257,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				} else {
 					attributes1.CurrencyAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
+				attributes1.CurrencyAttribute.Currency = []tfTypes.Currency{}
 				for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
 					var currency1 tfTypes.Currency
 					if currencyItem.Currency1 != nil {
@@ -7299,6 +7307,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.CurrencyAttribute.Readonly = types.BoolPointerValue(attributesItem.CurrencyAttribute.Readonly)
 				attributes1.CurrencyAttribute.RenderCondition = types.StringPointerValue(attributesItem.CurrencyAttribute.RenderCondition)
 				attributes1.CurrencyAttribute.Required = types.BoolPointerValue(attributesItem.CurrencyAttribute.Required)
+				attributes1.CurrencyAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount6, settingsFlagItem6 := range attributesItem.CurrencyAttribute.SettingsFlag {
 					var settingsFlag13 tfTypes.SettingFlag
 					settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
@@ -7359,6 +7368,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.DateAttribute.Readonly = types.BoolPointerValue(attributesItem.DateAttribute.Readonly)
 				attributes1.DateAttribute.RenderCondition = types.StringPointerValue(attributesItem.DateAttribute.RenderCondition)
 				attributes1.DateAttribute.Required = types.BoolPointerValue(attributesItem.DateAttribute.Required)
+				attributes1.DateAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount7, settingsFlagItem7 := range attributesItem.DateAttribute.SettingsFlag {
 					var settingsFlag15 tfTypes.SettingFlag
 					settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
@@ -7435,6 +7445,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.FileAttribute.Readonly = types.BoolPointerValue(attributesItem.FileAttribute.Readonly)
 				attributes1.FileAttribute.RenderCondition = types.StringPointerValue(attributesItem.FileAttribute.RenderCondition)
 				attributes1.FileAttribute.Required = types.BoolPointerValue(attributesItem.FileAttribute.Required)
+				attributes1.FileAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount8, settingsFlagItem8 := range attributesItem.FileAttribute.SettingsFlag {
 					var settingsFlag17 tfTypes.SettingFlag
 					settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
@@ -7495,6 +7506,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.InternalAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalAttribute.Readonly)
 				attributes1.InternalAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalAttribute.RenderCondition)
 				attributes1.InternalAttribute.Required = types.BoolPointerValue(attributesItem.InternalAttribute.Required)
+				attributes1.InternalAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount9, settingsFlagItem9 := range attributesItem.InternalAttribute.SettingsFlag {
 					var settingsFlag19 tfTypes.SettingFlag
 					settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
@@ -7559,6 +7571,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.InternalUserAttribute.Readonly = types.BoolPointerValue(attributesItem.InternalUserAttribute.Readonly)
 				attributes1.InternalUserAttribute.RenderCondition = types.StringPointerValue(attributesItem.InternalUserAttribute.RenderCondition)
 				attributes1.InternalUserAttribute.Required = types.BoolPointerValue(attributesItem.InternalUserAttribute.Required)
+				attributes1.InternalUserAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount10, settingsFlagItem10 := range attributesItem.InternalUserAttribute.SettingsFlag {
 					var settingsFlag21 tfTypes.SettingFlag
 					settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
@@ -7623,6 +7636,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.InvitationEmailAttribute.Readonly = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Readonly)
 				attributes1.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(attributesItem.InvitationEmailAttribute.RenderCondition)
 				attributes1.InvitationEmailAttribute.Required = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Required)
+				attributes1.InvitationEmailAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount11, settingsFlagItem11 := range attributesItem.InvitationEmailAttribute.SettingsFlag {
 					var settingsFlag23 tfTypes.SettingFlag
 					settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
@@ -7687,6 +7701,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.LinkAttribute.Readonly = types.BoolPointerValue(attributesItem.LinkAttribute.Readonly)
 				attributes1.LinkAttribute.RenderCondition = types.StringPointerValue(attributesItem.LinkAttribute.RenderCondition)
 				attributes1.LinkAttribute.Required = types.BoolPointerValue(attributesItem.LinkAttribute.Required)
+				attributes1.LinkAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount12, settingsFlagItem12 := range attributesItem.LinkAttribute.SettingsFlag {
 					var settingsFlag25 tfTypes.SettingFlag
 					settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
@@ -7747,6 +7762,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
 				attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
 				attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
+				attributes1.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				for optionsCount, optionsItem := range attributesItem.MultiSelectAttribute.Options {
 					var options1 tfTypes.MultiSelectAttributeOptions
 					if optionsItem.Str != nil {
@@ -7771,6 +7787,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.MultiSelectAttribute.Readonly = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Readonly)
 				attributes1.MultiSelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.MultiSelectAttribute.RenderCondition)
 				attributes1.MultiSelectAttribute.Required = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Required)
+				attributes1.MultiSelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount13, settingsFlagItem13 := range attributesItem.MultiSelectAttribute.SettingsFlag {
 					var settingsFlag27 tfTypes.SettingFlag
 					settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
@@ -7836,6 +7853,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.NumberAttribute.Readonly = types.BoolPointerValue(attributesItem.NumberAttribute.Readonly)
 				attributes1.NumberAttribute.RenderCondition = types.StringPointerValue(attributesItem.NumberAttribute.RenderCondition)
 				attributes1.NumberAttribute.Required = types.BoolPointerValue(attributesItem.NumberAttribute.Required)
+				attributes1.NumberAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount14, settingsFlagItem14 := range attributesItem.NumberAttribute.SettingsFlag {
 					var settingsFlag29 tfTypes.SettingFlag
 					settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
@@ -7900,6 +7918,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.OrderedListAttribute.Readonly = types.BoolPointerValue(attributesItem.OrderedListAttribute.Readonly)
 				attributes1.OrderedListAttribute.RenderCondition = types.StringPointerValue(attributesItem.OrderedListAttribute.RenderCondition)
 				attributes1.OrderedListAttribute.Required = types.BoolPointerValue(attributesItem.OrderedListAttribute.Required)
+				attributes1.OrderedListAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount15, settingsFlagItem15 := range attributesItem.OrderedListAttribute.SettingsFlag {
 					var settingsFlag31 tfTypes.SettingFlag
 					settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
@@ -7964,6 +7983,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Readonly)
 				attributes1.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.RenderCondition)
 				attributes1.PartnerOrganisationAttribute.Required = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Required)
+				attributes1.PartnerOrganisationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount16, settingsFlagItem16 := range attributesItem.PartnerOrganisationAttribute.SettingsFlag {
 					var settingsFlag33 tfTypes.SettingFlag
 					settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
@@ -8028,6 +8048,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.PartnerStatusAttribute.Readonly = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Readonly)
 				attributes1.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.PartnerStatusAttribute.RenderCondition)
 				attributes1.PartnerStatusAttribute.Required = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Required)
+				attributes1.PartnerStatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount17, settingsFlagItem17 := range attributesItem.PartnerStatusAttribute.SettingsFlag {
 					var settingsFlag35 tfTypes.SettingFlag
 					settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
@@ -8093,6 +8114,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Readonly)
 				attributes1.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.RenderCondition)
 				attributes1.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Required)
+				attributes1.PaymentMethodRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount18, settingsFlagItem18 := range attributesItem.PaymentMethodRelationAttribute.SettingsFlag {
 					var settingsFlag37 tfTypes.SettingFlag
 					settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
@@ -8166,6 +8188,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.PurposeAttribute.Readonly = types.BoolPointerValue(attributesItem.PurposeAttribute.Readonly)
 				attributes1.PurposeAttribute.RenderCondition = types.StringPointerValue(attributesItem.PurposeAttribute.RenderCondition)
 				attributes1.PurposeAttribute.Required = types.BoolPointerValue(attributesItem.PurposeAttribute.Required)
+				attributes1.PurposeAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount19, settingsFlagItem19 := range attributesItem.PurposeAttribute.SettingsFlag {
 					var settingsFlag39 tfTypes.SettingFlag
 					settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
@@ -8198,6 +8221,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
 				}
+				attributes1.RelationAttribute.Actions = []tfTypes.Actions{}
 				for actionsCount, actionsItem := range attributesItem.RelationAttribute.Actions {
 					var actions1 tfTypes.Actions
 					if actionsItem.ActionType != nil {
@@ -8242,6 +8266,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 						}
 						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
 						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
+						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
 							var owners1 tfTypes.EntityOwner
 							owners1.OrgID = types.StringValue(ownersItem.OrgID)
@@ -8271,6 +8296,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 							actions1.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
 						}
 					}
+					actions1.SettingsFlag = []tfTypes.SettingFlag{}
 					for settingsFlagCount20, settingsFlagItem20 := range actionsItem.SettingsFlag {
 						var settingsFlag41 tfTypes.SettingFlag
 						settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
@@ -8367,6 +8393,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					}
 				}
 				attributes1.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem.RelationAttribute.SearchPlaceholder)
+				attributes1.RelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount21, settingsFlagItem21 := range attributesItem.RelationAttribute.SettingsFlag {
 					var settingsFlag43 tfTypes.SettingFlag
 					settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
@@ -8380,6 +8407,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				}
 				attributes1.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RelationAttribute.ShowInTable)
 				attributes1.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem.RelationAttribute.Sortable)
+				attributes1.RelationAttribute.SummaryFields = []tfTypes.SummaryFields{}
 				for summaryFieldsCount, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
 					var summaryFields1 tfTypes.SummaryFields
 					if summaryFieldsItem.Str != nil {
@@ -8456,6 +8484,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem.RepeatableAttribute.RenderCondition)
 				attributes1.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Repeatable)
 				attributes1.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem.RepeatableAttribute.Required)
+				attributes1.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount22, settingsFlagItem22 := range attributesItem.RepeatableAttribute.SettingsFlag {
 					var settingsFlag45 tfTypes.SettingFlag
 					settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
@@ -8514,6 +8543,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.SelectAttribute.Label = types.StringValue(attributesItem.SelectAttribute.Label)
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
+				attributes1.SelectAttribute.Options = []tfTypes.Options{}
 				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
 					var options3 tfTypes.Options
 					if optionsItem1.Str != nil {
@@ -8538,6 +8568,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.SelectAttribute.Readonly = types.BoolPointerValue(attributesItem.SelectAttribute.Readonly)
 				attributes1.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.SelectAttribute.RenderCondition)
 				attributes1.SelectAttribute.Required = types.BoolPointerValue(attributesItem.SelectAttribute.Required)
+				attributes1.SelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount23, settingsFlagItem23 := range attributesItem.SelectAttribute.SettingsFlag {
 					var settingsFlag47 tfTypes.SettingFlag
 					settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
@@ -8603,6 +8634,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.SequenceAttribute.Readonly = types.BoolPointerValue(attributesItem.SequenceAttribute.Readonly)
 				attributes1.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem.SequenceAttribute.RenderCondition)
 				attributes1.SequenceAttribute.Required = types.BoolPointerValue(attributesItem.SequenceAttribute.Required)
+				attributes1.SequenceAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount24, settingsFlagItem24 := range attributesItem.SequenceAttribute.SettingsFlag {
 					var settingsFlag49 tfTypes.SettingFlag
 					settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
@@ -8661,6 +8693,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
 				attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
 				attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
+				attributes1.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				for optionsCount2, optionsItem2 := range attributesItem.StatusAttribute.Options {
 					var options5 tfTypes.MultiSelectAttributeOptions
 					if optionsItem2.Str != nil {
@@ -8685,6 +8718,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.StatusAttribute.Readonly = types.BoolPointerValue(attributesItem.StatusAttribute.Readonly)
 				attributes1.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.StatusAttribute.RenderCondition)
 				attributes1.StatusAttribute.Required = types.BoolPointerValue(attributesItem.StatusAttribute.Required)
+				attributes1.StatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount25, settingsFlagItem25 := range attributesItem.StatusAttribute.SettingsFlag {
 					var settingsFlag51 tfTypes.SettingFlag
 					settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
@@ -8753,6 +8787,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.TagsAttribute.Readonly = types.BoolPointerValue(attributesItem.TagsAttribute.Readonly)
 				attributes1.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem.TagsAttribute.RenderCondition)
 				attributes1.TagsAttribute.Required = types.BoolPointerValue(attributesItem.TagsAttribute.Required)
+				attributes1.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount26, settingsFlagItem26 := range attributesItem.TagsAttribute.SettingsFlag {
 					var settingsFlag53 tfTypes.SettingFlag
 					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
@@ -8822,6 +8857,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.TextAttribute.Readonly = types.BoolPointerValue(attributesItem.TextAttribute.Readonly)
 				attributes1.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem.TextAttribute.RenderCondition)
 				attributes1.TextAttribute.Required = types.BoolPointerValue(attributesItem.TextAttribute.Required)
+				attributes1.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount27, settingsFlagItem27 := range attributesItem.TextAttribute.SettingsFlag {
 					var settingsFlag55 tfTypes.SettingFlag
 					settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
@@ -8887,6 +8923,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.UserRelationAttribute.Readonly = types.BoolPointerValue(attributesItem.UserRelationAttribute.Readonly)
 				attributes1.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.UserRelationAttribute.RenderCondition)
 				attributes1.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem.UserRelationAttribute.Required)
+				attributes1.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount28, settingsFlagItem28 := range attributesItem.UserRelationAttribute.SettingsFlag {
 					var settingsFlag57 tfTypes.SettingFlag
 					settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
@@ -8948,6 +8985,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
 		}
+		r.SettingsFlag = []tfTypes.SettingFlag{}
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]
 		}
@@ -8963,6 +9001,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 		}
 		r.Title = types.StringPointerValue(resp.Title)
+		r.UIHooks = []tfTypes.UIHooks{}
 		if len(r.UIHooks) > len(resp.UIHooks) {
 			r.UIHooks = r.UIHooks[:len(resp.UIHooks)]
 		}

@@ -29,6 +29,7 @@ data "epilot-schema_schema_capability" "my_schemacapability" {
 
 - `attributes` (Attributes List) (see [below for nested schema](#nestedatt--attributes))
 - `feature_flag` (String) This capability should only be active when the feature flag is enabled
+- `id` (String) ID for the entity capability
 - `name` (String) Unique name for the capability
 - `purpose` (List of String)
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
@@ -86,7 +87,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -153,7 +154,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--automation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -220,7 +221,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -287,7 +288,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--computed_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -354,7 +355,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `identifiers` (List of String)
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--consent_attribute--info_helpers))
 - `label` (String)
@@ -423,7 +424,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--country_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -492,7 +493,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--currency_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -578,7 +579,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--date_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -650,7 +651,7 @@ This description should be set through the platform locales in the form: `file.{
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--file_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -718,7 +719,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -785,7 +786,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -852,7 +853,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -919,7 +920,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--link_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -989,7 +990,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1076,7 +1077,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--number_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1143,7 +1144,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1210,7 +1211,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1277,7 +1278,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1345,7 +1346,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1491,7 +1492,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String)
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1650,7 +1651,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1720,7 +1721,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--select_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1806,7 +1807,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1875,7 +1876,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--status_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -1961,7 +1962,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--tags_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -2030,7 +2031,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--text_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
@@ -2098,7 +2099,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
