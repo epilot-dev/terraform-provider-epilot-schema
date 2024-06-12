@@ -3,10 +3,10 @@ id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
   docChecksum: 37d005c73404593ae6d0c1f630f3eace
   docVersion: 1.0.0
-  speakeasyVersion: 1.299.10
-  generationVersion: 2.338.14
-  releaseVersion: 0.3.5
-  configChecksum: aa4a9aa3598b2b9cb47bf7c02e713abd
+  speakeasyVersion: 1.303.4
+  generationVersion: 2.340.2
+  releaseVersion: 0.3.6
+  configChecksum: a99fe4047228cfc4f25d78c09d4a944b
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.21.2
+    core: 3.21.3
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
