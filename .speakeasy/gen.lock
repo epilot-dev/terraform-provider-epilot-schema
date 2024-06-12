@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 2d2ee3140b3861451d17100bddcccc54
+  docChecksum: 37d005c73404593ae6d0c1f630f3eace
   docVersion: 1.0.0
-  speakeasyVersion: 1.296.1
-  generationVersion: 2.338.1
-  releaseVersion: 0.3.4
-  configChecksum: 24da322f7759694c7691f45f1fbd3c71
+  speakeasyVersion: 1.299.10
+  generationVersion: 2.338.14
+  releaseVersion: 0.3.5
+  configChecksum: aa4a9aa3598b2b9cb47bf7c02e713abd
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.21.0
+    core: 3.21.2
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
@@ -46,11 +46,9 @@ generatedFiles:
   - internal/sdk/models/operations/getschemaattribute.go
   - internal/sdk/models/operations/putschemaattribute.go
   - internal/sdk/models/operations/deleteschemaattribute.go
-  - internal/sdk/models/operations/createschemaattribute.go
   - internal/sdk/models/operations/getschemacapability.go
   - internal/sdk/models/operations/putschemacapability.go
   - internal/sdk/models/operations/deleteschemacapability.go
-  - internal/sdk/models/operations/createschemacapability.go
   - internal/sdk/models/shared/entityschemaitem.go
   - internal/sdk/models/shared/searchmappings.go
   - internal/sdk/models/shared/attribute.go

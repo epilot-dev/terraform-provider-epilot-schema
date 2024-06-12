@@ -61,6 +61,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.AddressRelationAttribute.Readonly = types.BoolPointerValue(resp.Attribute.AddressRelationAttribute.Readonly)
 				r.Attribute.AddressRelationAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.AddressRelationAttribute.RenderCondition)
 				r.Attribute.AddressRelationAttribute.Required = types.BoolPointerValue(resp.Attribute.AddressRelationAttribute.Required)
+				r.Attribute.AddressRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.AddressRelationAttribute.SettingsFlag) > len(resp.Attribute.AddressRelationAttribute.SettingsFlag) {
 					r.Attribute.AddressRelationAttribute.SettingsFlag = r.Attribute.AddressRelationAttribute.SettingsFlag[:len(resp.Attribute.AddressRelationAttribute.SettingsFlag)]
 				}
@@ -128,6 +129,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.AutomationAttribute.Readonly = types.BoolPointerValue(resp.Attribute.AutomationAttribute.Readonly)
 				r.Attribute.AutomationAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.AutomationAttribute.RenderCondition)
 				r.Attribute.AutomationAttribute.Required = types.BoolPointerValue(resp.Attribute.AutomationAttribute.Required)
+				r.Attribute.AutomationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.AutomationAttribute.SettingsFlag) > len(resp.Attribute.AutomationAttribute.SettingsFlag) {
 					r.Attribute.AutomationAttribute.SettingsFlag = r.Attribute.AutomationAttribute.SettingsFlag[:len(resp.Attribute.AutomationAttribute.SettingsFlag)]
 				}
@@ -195,6 +197,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.BooleanAttribute.Readonly = types.BoolPointerValue(resp.Attribute.BooleanAttribute.Readonly)
 				r.Attribute.BooleanAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.BooleanAttribute.RenderCondition)
 				r.Attribute.BooleanAttribute.Required = types.BoolPointerValue(resp.Attribute.BooleanAttribute.Required)
+				r.Attribute.BooleanAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.BooleanAttribute.SettingsFlag) > len(resp.Attribute.BooleanAttribute.SettingsFlag) {
 					r.Attribute.BooleanAttribute.SettingsFlag = r.Attribute.BooleanAttribute.SettingsFlag[:len(resp.Attribute.BooleanAttribute.SettingsFlag)]
 				}
@@ -262,6 +265,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.ComputedAttribute.Readonly = types.BoolPointerValue(resp.Attribute.ComputedAttribute.Readonly)
 				r.Attribute.ComputedAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.ComputedAttribute.RenderCondition)
 				r.Attribute.ComputedAttribute.Required = types.BoolPointerValue(resp.Attribute.ComputedAttribute.Required)
+				r.Attribute.ComputedAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.ComputedAttribute.SettingsFlag) > len(resp.Attribute.ComputedAttribute.SettingsFlag) {
 					r.Attribute.ComputedAttribute.SettingsFlag = r.Attribute.ComputedAttribute.SettingsFlag[:len(resp.Attribute.ComputedAttribute.SettingsFlag)]
 				}
@@ -333,6 +337,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.ConsentAttribute.Readonly = types.BoolPointerValue(resp.Attribute.ConsentAttribute.Readonly)
 				r.Attribute.ConsentAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.ConsentAttribute.RenderCondition)
 				r.Attribute.ConsentAttribute.Required = types.BoolPointerValue(resp.Attribute.ConsentAttribute.Required)
+				r.Attribute.ConsentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.ConsentAttribute.SettingsFlag) > len(resp.Attribute.ConsentAttribute.SettingsFlag) {
 					r.Attribute.ConsentAttribute.SettingsFlag = r.Attribute.ConsentAttribute.SettingsFlag[:len(resp.Attribute.ConsentAttribute.SettingsFlag)]
 				}
@@ -397,6 +402,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.CountryAttribute.Readonly = types.BoolPointerValue(resp.Attribute.CountryAttribute.Readonly)
 				r.Attribute.CountryAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.CountryAttribute.RenderCondition)
 				r.Attribute.CountryAttribute.Required = types.BoolPointerValue(resp.Attribute.CountryAttribute.Required)
+				r.Attribute.CountryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.CountryAttribute.SettingsFlag) > len(resp.Attribute.CountryAttribute.SettingsFlag) {
 					r.Attribute.CountryAttribute.SettingsFlag = r.Attribute.CountryAttribute.SettingsFlag[:len(resp.Attribute.CountryAttribute.SettingsFlag)]
 				}
@@ -431,6 +437,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				} else {
 					r.Attribute.CurrencyAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
 				}
+				r.Attribute.CurrencyAttribute.Currency = []tfTypes.Currency{}
 				if len(r.Attribute.CurrencyAttribute.Currency) > len(resp.Attribute.CurrencyAttribute.Currency) {
 					r.Attribute.CurrencyAttribute.Currency = r.Attribute.CurrencyAttribute.Currency[:len(resp.Attribute.CurrencyAttribute.Currency)]
 				}
@@ -483,6 +490,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.CurrencyAttribute.Readonly = types.BoolPointerValue(resp.Attribute.CurrencyAttribute.Readonly)
 				r.Attribute.CurrencyAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.CurrencyAttribute.RenderCondition)
 				r.Attribute.CurrencyAttribute.Required = types.BoolPointerValue(resp.Attribute.CurrencyAttribute.Required)
+				r.Attribute.CurrencyAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.CurrencyAttribute.SettingsFlag) > len(resp.Attribute.CurrencyAttribute.SettingsFlag) {
 					r.Attribute.CurrencyAttribute.SettingsFlag = r.Attribute.CurrencyAttribute.SettingsFlag[:len(resp.Attribute.CurrencyAttribute.SettingsFlag)]
 				}
@@ -546,6 +554,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.DateAttribute.Readonly = types.BoolPointerValue(resp.Attribute.DateAttribute.Readonly)
 				r.Attribute.DateAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.DateAttribute.RenderCondition)
 				r.Attribute.DateAttribute.Required = types.BoolPointerValue(resp.Attribute.DateAttribute.Required)
+				r.Attribute.DateAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.DateAttribute.SettingsFlag) > len(resp.Attribute.DateAttribute.SettingsFlag) {
 					r.Attribute.DateAttribute.SettingsFlag = r.Attribute.DateAttribute.SettingsFlag[:len(resp.Attribute.DateAttribute.SettingsFlag)]
 				}
@@ -625,6 +634,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.FileAttribute.Readonly = types.BoolPointerValue(resp.Attribute.FileAttribute.Readonly)
 				r.Attribute.FileAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.FileAttribute.RenderCondition)
 				r.Attribute.FileAttribute.Required = types.BoolPointerValue(resp.Attribute.FileAttribute.Required)
+				r.Attribute.FileAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.FileAttribute.SettingsFlag) > len(resp.Attribute.FileAttribute.SettingsFlag) {
 					r.Attribute.FileAttribute.SettingsFlag = r.Attribute.FileAttribute.SettingsFlag[:len(resp.Attribute.FileAttribute.SettingsFlag)]
 				}
@@ -688,6 +698,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.InternalAttribute.Readonly = types.BoolPointerValue(resp.Attribute.InternalAttribute.Readonly)
 				r.Attribute.InternalAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.InternalAttribute.RenderCondition)
 				r.Attribute.InternalAttribute.Required = types.BoolPointerValue(resp.Attribute.InternalAttribute.Required)
+				r.Attribute.InternalAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.InternalAttribute.SettingsFlag) > len(resp.Attribute.InternalAttribute.SettingsFlag) {
 					r.Attribute.InternalAttribute.SettingsFlag = r.Attribute.InternalAttribute.SettingsFlag[:len(resp.Attribute.InternalAttribute.SettingsFlag)]
 				}
@@ -755,6 +766,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.InternalUserAttribute.Readonly = types.BoolPointerValue(resp.Attribute.InternalUserAttribute.Readonly)
 				r.Attribute.InternalUserAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.InternalUserAttribute.RenderCondition)
 				r.Attribute.InternalUserAttribute.Required = types.BoolPointerValue(resp.Attribute.InternalUserAttribute.Required)
+				r.Attribute.InternalUserAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.InternalUserAttribute.SettingsFlag) > len(resp.Attribute.InternalUserAttribute.SettingsFlag) {
 					r.Attribute.InternalUserAttribute.SettingsFlag = r.Attribute.InternalUserAttribute.SettingsFlag[:len(resp.Attribute.InternalUserAttribute.SettingsFlag)]
 				}
@@ -822,6 +834,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.InvitationEmailAttribute.Readonly = types.BoolPointerValue(resp.Attribute.InvitationEmailAttribute.Readonly)
 				r.Attribute.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.InvitationEmailAttribute.RenderCondition)
 				r.Attribute.InvitationEmailAttribute.Required = types.BoolPointerValue(resp.Attribute.InvitationEmailAttribute.Required)
+				r.Attribute.InvitationEmailAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.InvitationEmailAttribute.SettingsFlag) > len(resp.Attribute.InvitationEmailAttribute.SettingsFlag) {
 					r.Attribute.InvitationEmailAttribute.SettingsFlag = r.Attribute.InvitationEmailAttribute.SettingsFlag[:len(resp.Attribute.InvitationEmailAttribute.SettingsFlag)]
 				}
@@ -889,6 +902,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.LinkAttribute.Readonly = types.BoolPointerValue(resp.Attribute.LinkAttribute.Readonly)
 				r.Attribute.LinkAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.LinkAttribute.RenderCondition)
 				r.Attribute.LinkAttribute.Required = types.BoolPointerValue(resp.Attribute.LinkAttribute.Required)
+				r.Attribute.LinkAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.LinkAttribute.SettingsFlag) > len(resp.Attribute.LinkAttribute.SettingsFlag) {
 					r.Attribute.LinkAttribute.SettingsFlag = r.Attribute.LinkAttribute.SettingsFlag[:len(resp.Attribute.LinkAttribute.SettingsFlag)]
 				}
@@ -952,6 +966,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.MultiSelectAttribute.Label = types.StringValue(resp.Attribute.MultiSelectAttribute.Label)
 				r.Attribute.MultiSelectAttribute.Layout = types.StringPointerValue(resp.Attribute.MultiSelectAttribute.Layout)
 				r.Attribute.MultiSelectAttribute.Name = types.StringValue(resp.Attribute.MultiSelectAttribute.Name)
+				r.Attribute.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				if len(r.Attribute.MultiSelectAttribute.Options) > len(resp.Attribute.MultiSelectAttribute.Options) {
 					r.Attribute.MultiSelectAttribute.Options = r.Attribute.MultiSelectAttribute.Options[:len(resp.Attribute.MultiSelectAttribute.Options)]
 				}
@@ -979,6 +994,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.MultiSelectAttribute.Readonly = types.BoolPointerValue(resp.Attribute.MultiSelectAttribute.Readonly)
 				r.Attribute.MultiSelectAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.MultiSelectAttribute.RenderCondition)
 				r.Attribute.MultiSelectAttribute.Required = types.BoolPointerValue(resp.Attribute.MultiSelectAttribute.Required)
+				r.Attribute.MultiSelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.MultiSelectAttribute.SettingsFlag) > len(resp.Attribute.MultiSelectAttribute.SettingsFlag) {
 					r.Attribute.MultiSelectAttribute.SettingsFlag = r.Attribute.MultiSelectAttribute.SettingsFlag[:len(resp.Attribute.MultiSelectAttribute.SettingsFlag)]
 				}
@@ -1047,6 +1063,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.NumberAttribute.Readonly = types.BoolPointerValue(resp.Attribute.NumberAttribute.Readonly)
 				r.Attribute.NumberAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.NumberAttribute.RenderCondition)
 				r.Attribute.NumberAttribute.Required = types.BoolPointerValue(resp.Attribute.NumberAttribute.Required)
+				r.Attribute.NumberAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.NumberAttribute.SettingsFlag) > len(resp.Attribute.NumberAttribute.SettingsFlag) {
 					r.Attribute.NumberAttribute.SettingsFlag = r.Attribute.NumberAttribute.SettingsFlag[:len(resp.Attribute.NumberAttribute.SettingsFlag)]
 				}
@@ -1114,6 +1131,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.OrderedListAttribute.Readonly = types.BoolPointerValue(resp.Attribute.OrderedListAttribute.Readonly)
 				r.Attribute.OrderedListAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.OrderedListAttribute.RenderCondition)
 				r.Attribute.OrderedListAttribute.Required = types.BoolPointerValue(resp.Attribute.OrderedListAttribute.Required)
+				r.Attribute.OrderedListAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.OrderedListAttribute.SettingsFlag) > len(resp.Attribute.OrderedListAttribute.SettingsFlag) {
 					r.Attribute.OrderedListAttribute.SettingsFlag = r.Attribute.OrderedListAttribute.SettingsFlag[:len(resp.Attribute.OrderedListAttribute.SettingsFlag)]
 				}
@@ -1181,6 +1199,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(resp.Attribute.PartnerOrganisationAttribute.Readonly)
 				r.Attribute.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.PartnerOrganisationAttribute.RenderCondition)
 				r.Attribute.PartnerOrganisationAttribute.Required = types.BoolPointerValue(resp.Attribute.PartnerOrganisationAttribute.Required)
+				r.Attribute.PartnerOrganisationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.PartnerOrganisationAttribute.SettingsFlag) > len(resp.Attribute.PartnerOrganisationAttribute.SettingsFlag) {
 					r.Attribute.PartnerOrganisationAttribute.SettingsFlag = r.Attribute.PartnerOrganisationAttribute.SettingsFlag[:len(resp.Attribute.PartnerOrganisationAttribute.SettingsFlag)]
 				}
@@ -1248,6 +1267,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.PartnerStatusAttribute.Readonly = types.BoolPointerValue(resp.Attribute.PartnerStatusAttribute.Readonly)
 				r.Attribute.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.PartnerStatusAttribute.RenderCondition)
 				r.Attribute.PartnerStatusAttribute.Required = types.BoolPointerValue(resp.Attribute.PartnerStatusAttribute.Required)
+				r.Attribute.PartnerStatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.PartnerStatusAttribute.SettingsFlag) > len(resp.Attribute.PartnerStatusAttribute.SettingsFlag) {
 					r.Attribute.PartnerStatusAttribute.SettingsFlag = r.Attribute.PartnerStatusAttribute.SettingsFlag[:len(resp.Attribute.PartnerStatusAttribute.SettingsFlag)]
 				}
@@ -1316,6 +1336,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(resp.Attribute.PaymentMethodRelationAttribute.Readonly)
 				r.Attribute.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.PaymentMethodRelationAttribute.RenderCondition)
 				r.Attribute.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(resp.Attribute.PaymentMethodRelationAttribute.Required)
+				r.Attribute.PaymentMethodRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.PaymentMethodRelationAttribute.SettingsFlag) > len(resp.Attribute.PaymentMethodRelationAttribute.SettingsFlag) {
 					r.Attribute.PaymentMethodRelationAttribute.SettingsFlag = r.Attribute.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.Attribute.PaymentMethodRelationAttribute.SettingsFlag)]
 				}
@@ -1392,6 +1413,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.PurposeAttribute.Readonly = types.BoolPointerValue(resp.Attribute.PurposeAttribute.Readonly)
 				r.Attribute.PurposeAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.PurposeAttribute.RenderCondition)
 				r.Attribute.PurposeAttribute.Required = types.BoolPointerValue(resp.Attribute.PurposeAttribute.Required)
+				r.Attribute.PurposeAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.PurposeAttribute.SettingsFlag) > len(resp.Attribute.PurposeAttribute.SettingsFlag) {
 					r.Attribute.PurposeAttribute.SettingsFlag = r.Attribute.PurposeAttribute.SettingsFlag[:len(resp.Attribute.PurposeAttribute.SettingsFlag)]
 				}
@@ -1427,6 +1449,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				for _, v := range resp.Attribute.RelationAttribute.Purpose {
 					r.Attribute.RelationAttribute.Purpose = append(r.Attribute.RelationAttribute.Purpose, types.StringValue(v))
 				}
+				r.Attribute.RelationAttribute.Actions = []tfTypes.Actions{}
 				if len(r.Attribute.RelationAttribute.Actions) > len(resp.Attribute.RelationAttribute.Actions) {
 					r.Attribute.RelationAttribute.Actions = r.Attribute.RelationAttribute.Actions[:len(resp.Attribute.RelationAttribute.Actions)]
 				}
@@ -1474,6 +1497,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 						}
 						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
 						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
+						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
 							var owners1 tfTypes.EntityOwner
 							owners1.OrgID = types.StringValue(ownersItem.OrgID)
@@ -1503,6 +1527,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 							actions1.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
 						}
 					}
+					actions1.SettingsFlag = []tfTypes.SettingFlag{}
 					for settingsFlagCount20, settingsFlagItem20 := range actionsItem.SettingsFlag {
 						var settingsFlag41 tfTypes.SettingFlag
 						settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
@@ -1599,6 +1624,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 					}
 				}
 				r.Attribute.RelationAttribute.SearchPlaceholder = types.StringPointerValue(resp.Attribute.RelationAttribute.SearchPlaceholder)
+				r.Attribute.RelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.RelationAttribute.SettingsFlag) > len(resp.Attribute.RelationAttribute.SettingsFlag) {
 					r.Attribute.RelationAttribute.SettingsFlag = r.Attribute.RelationAttribute.SettingsFlag[:len(resp.Attribute.RelationAttribute.SettingsFlag)]
 				}
@@ -1615,6 +1641,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				}
 				r.Attribute.RelationAttribute.ShowInTable = types.BoolPointerValue(resp.Attribute.RelationAttribute.ShowInTable)
 				r.Attribute.RelationAttribute.Sortable = types.BoolPointerValue(resp.Attribute.RelationAttribute.Sortable)
+				r.Attribute.RelationAttribute.SummaryFields = []tfTypes.SummaryFields{}
 				if len(r.Attribute.RelationAttribute.SummaryFields) > len(resp.Attribute.RelationAttribute.SummaryFields) {
 					r.Attribute.RelationAttribute.SummaryFields = r.Attribute.RelationAttribute.SummaryFields[:len(resp.Attribute.RelationAttribute.SummaryFields)]
 				}
@@ -1694,6 +1721,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.RepeatableAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.RepeatableAttribute.RenderCondition)
 				r.Attribute.RepeatableAttribute.Repeatable = types.BoolPointerValue(resp.Attribute.RepeatableAttribute.Repeatable)
 				r.Attribute.RepeatableAttribute.Required = types.BoolPointerValue(resp.Attribute.RepeatableAttribute.Required)
+				r.Attribute.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.RepeatableAttribute.SettingsFlag) > len(resp.Attribute.RepeatableAttribute.SettingsFlag) {
 					r.Attribute.RepeatableAttribute.SettingsFlag = r.Attribute.RepeatableAttribute.SettingsFlag[:len(resp.Attribute.RepeatableAttribute.SettingsFlag)]
 				}
@@ -1755,6 +1783,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.SelectAttribute.Label = types.StringValue(resp.Attribute.SelectAttribute.Label)
 				r.Attribute.SelectAttribute.Layout = types.StringPointerValue(resp.Attribute.SelectAttribute.Layout)
 				r.Attribute.SelectAttribute.Name = types.StringValue(resp.Attribute.SelectAttribute.Name)
+				r.Attribute.SelectAttribute.Options = []tfTypes.Options{}
 				if len(r.Attribute.SelectAttribute.Options) > len(resp.Attribute.SelectAttribute.Options) {
 					r.Attribute.SelectAttribute.Options = r.Attribute.SelectAttribute.Options[:len(resp.Attribute.SelectAttribute.Options)]
 				}
@@ -1782,6 +1811,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.SelectAttribute.Readonly = types.BoolPointerValue(resp.Attribute.SelectAttribute.Readonly)
 				r.Attribute.SelectAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.SelectAttribute.RenderCondition)
 				r.Attribute.SelectAttribute.Required = types.BoolPointerValue(resp.Attribute.SelectAttribute.Required)
+				r.Attribute.SelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.SelectAttribute.SettingsFlag) > len(resp.Attribute.SelectAttribute.SettingsFlag) {
 					r.Attribute.SelectAttribute.SettingsFlag = r.Attribute.SelectAttribute.SettingsFlag[:len(resp.Attribute.SelectAttribute.SettingsFlag)]
 				}
@@ -1850,6 +1880,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.SequenceAttribute.Readonly = types.BoolPointerValue(resp.Attribute.SequenceAttribute.Readonly)
 				r.Attribute.SequenceAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.SequenceAttribute.RenderCondition)
 				r.Attribute.SequenceAttribute.Required = types.BoolPointerValue(resp.Attribute.SequenceAttribute.Required)
+				r.Attribute.SequenceAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.SequenceAttribute.SettingsFlag) > len(resp.Attribute.SequenceAttribute.SettingsFlag) {
 					r.Attribute.SequenceAttribute.SettingsFlag = r.Attribute.SequenceAttribute.SettingsFlag[:len(resp.Attribute.SequenceAttribute.SettingsFlag)]
 				}
@@ -1911,6 +1942,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.StatusAttribute.Label = types.StringValue(resp.Attribute.StatusAttribute.Label)
 				r.Attribute.StatusAttribute.Layout = types.StringPointerValue(resp.Attribute.StatusAttribute.Layout)
 				r.Attribute.StatusAttribute.Name = types.StringValue(resp.Attribute.StatusAttribute.Name)
+				r.Attribute.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				if len(r.Attribute.StatusAttribute.Options) > len(resp.Attribute.StatusAttribute.Options) {
 					r.Attribute.StatusAttribute.Options = r.Attribute.StatusAttribute.Options[:len(resp.Attribute.StatusAttribute.Options)]
 				}
@@ -1938,6 +1970,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.StatusAttribute.Readonly = types.BoolPointerValue(resp.Attribute.StatusAttribute.Readonly)
 				r.Attribute.StatusAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.StatusAttribute.RenderCondition)
 				r.Attribute.StatusAttribute.Required = types.BoolPointerValue(resp.Attribute.StatusAttribute.Required)
+				r.Attribute.StatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.StatusAttribute.SettingsFlag) > len(resp.Attribute.StatusAttribute.SettingsFlag) {
 					r.Attribute.StatusAttribute.SettingsFlag = r.Attribute.StatusAttribute.SettingsFlag[:len(resp.Attribute.StatusAttribute.SettingsFlag)]
 				}
@@ -2009,6 +2042,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.TagsAttribute.Readonly = types.BoolPointerValue(resp.Attribute.TagsAttribute.Readonly)
 				r.Attribute.TagsAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.TagsAttribute.RenderCondition)
 				r.Attribute.TagsAttribute.Required = types.BoolPointerValue(resp.Attribute.TagsAttribute.Required)
+				r.Attribute.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.TagsAttribute.SettingsFlag) > len(resp.Attribute.TagsAttribute.SettingsFlag) {
 					r.Attribute.TagsAttribute.SettingsFlag = r.Attribute.TagsAttribute.SettingsFlag[:len(resp.Attribute.TagsAttribute.SettingsFlag)]
 				}
@@ -2081,6 +2115,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.TextAttribute.Readonly = types.BoolPointerValue(resp.Attribute.TextAttribute.Readonly)
 				r.Attribute.TextAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.TextAttribute.RenderCondition)
 				r.Attribute.TextAttribute.Required = types.BoolPointerValue(resp.Attribute.TextAttribute.Required)
+				r.Attribute.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.TextAttribute.SettingsFlag) > len(resp.Attribute.TextAttribute.SettingsFlag) {
 					r.Attribute.TextAttribute.SettingsFlag = r.Attribute.TextAttribute.SettingsFlag[:len(resp.Attribute.TextAttribute.SettingsFlag)]
 				}
@@ -2149,6 +2184,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.Attribute.UserRelationAttribute.Readonly = types.BoolPointerValue(resp.Attribute.UserRelationAttribute.Readonly)
 				r.Attribute.UserRelationAttribute.RenderCondition = types.StringPointerValue(resp.Attribute.UserRelationAttribute.RenderCondition)
 				r.Attribute.UserRelationAttribute.Required = types.BoolPointerValue(resp.Attribute.UserRelationAttribute.Required)
+				r.Attribute.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				if len(r.Attribute.UserRelationAttribute.SettingsFlag) > len(resp.Attribute.UserRelationAttribute.SettingsFlag) {
 					r.Attribute.UserRelationAttribute.SettingsFlag = r.Attribute.UserRelationAttribute.SettingsFlag[:len(resp.Attribute.UserRelationAttribute.SettingsFlag)]
 				}

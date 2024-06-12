@@ -130,7 +130,7 @@ paths:
       operationId: putSchemaAttribute
       summary: putSchemaAttribute
       description: Updates an attribute in the schema
-      x-speakeasy-entity-operation: SchemaAttribute#update
+      x-speakeasy-entity-operation: SchemaAttribute#create,update
       x-internal: true
       tags:
         - Schemas
@@ -174,35 +174,6 @@ paths:
             type: string
             pattern: ^.+:.+$
             example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AttributeWithCompositeID"
-
-  /v1/entity/schemas/attribute/{slug}:
-    post:
-      operationId: createSchemaAttribute
-      summary: createSchemaAttribute
-      description: Adds an attribute to the schema
-      x-speakeasy-entity-operation: SchemaAttribute#create
-      tags:
-        - Schemas
-      parameters:
-        - name: slug
-          description: Schema Slug
-          in: path
-          required: true
-          schema:
-            type: string
-            example: contact
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Attribute"
       responses:
         "200":
           description: Success
@@ -286,33 +257,6 @@ paths:
             type: string
             pattern: ^.+:.+$
             example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-  /v1/entity/schemas/capability/{slug}:
-    post:
-      operationId: createSchemaCapability
-      summary: createSchemaCapability
-      description: Adds a capability to the schema
-      tags:
-        - Schemas
-      parameters:
-        - name: slug
-          description: Schema Slug
-          in: path
-          required: true
-          schema:
-            type: string
-            example: contact
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/EntityCapability"
       responses:
         "200":
           description: Success
@@ -628,16 +572,16 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
-          x-speakeasy-entity: SchemaAttribute
-          type: object
-          description: a readonly computed ID for the attribute including schema slug and the attribute ID
-          properties:
-            attribute:
-              $ref: "#/components/schemas/Attribute"
-            composite_id:
-              type: string
-              readOnly: true
-              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      x-speakeasy-entity: SchemaAttribute
+      type: object
+      description: a readonly computed ID for the attribute including schema slug and the attribute ID
+      properties:
+        attribute:
+          $ref: "#/components/schemas/Attribute"
+        composite_id:
+          type: string
+          readOnly: true
+          example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
 
     BaseAttribute:
       type: object
