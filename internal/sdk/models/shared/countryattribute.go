@@ -88,7 +88,7 @@ func (e *CountryAttributeType) UnmarshalJSON(data []byte) error {
 // CountryAttribute - Country picker
 type CountryAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (c *CountryAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CountryAttribute) GetID() *string {
+func (o *CountryAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

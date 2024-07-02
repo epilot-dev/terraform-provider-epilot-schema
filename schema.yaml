@@ -95,7 +95,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
       responses:
-        "204":
+        "200":
           description: Success
 
   # Terraform Schema API - CRUDable schema attributes and capabilities
@@ -572,16 +572,15 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
-      x-speakeasy-entity: SchemaAttribute
-      type: object
-      description: a readonly computed ID for the attribute including schema slug and the attribute ID
-      properties:
-        attribute:
-          $ref: "#/components/schemas/Attribute"
-        composite_id:
-          type: string
-          readOnly: true
-          example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      allOf:
+        - $ref: "#/components/schemas/Attribute"
+        - type: object
+          description: a readonly computed ID for the attribute including schema slug and the attribute ID
+          properties:
+            composite_id:
+              type: string
+              readOnly: true
+              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
 
     BaseAttribute:
       type: object
@@ -700,6 +699,7 @@ components:
                 The value should be a valid `@mui/core` tooltip placement.
               example: top
       required:
+        - id
         - name
         - label
     TextAttribute:

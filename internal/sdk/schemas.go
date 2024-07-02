@@ -290,7 +290,7 @@ func (s *Schemas) DeleteSchema(ctx context.Context, request operations.DeleteSch
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
-	case httpRes.StatusCode == 204:
+	case httpRes.StatusCode == 200:
 	default:
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}

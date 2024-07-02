@@ -88,7 +88,7 @@ func (e *AutomationAttributeType) UnmarshalJSON(data []byte) error {
 // AutomationAttribute - Automation entity
 type AutomationAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (a *AutomationAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AutomationAttribute) GetID() *string {
+func (o *AutomationAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

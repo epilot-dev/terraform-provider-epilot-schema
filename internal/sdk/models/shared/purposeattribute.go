@@ -88,7 +88,7 @@ func (e *PurposeAttributeType) UnmarshalJSON(data []byte) error {
 
 // PurposeAttribute - Entity Taxonomy
 type PurposeAttribute struct {
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -154,9 +154,9 @@ func (p *PurposeAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PurposeAttribute) GetID() *string {
+func (o *PurposeAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

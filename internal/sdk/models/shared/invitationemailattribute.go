@@ -88,7 +88,7 @@ func (e *InvitationEmailAttributeType) UnmarshalJSON(data []byte) error {
 // InvitationEmailAttribute - Email address for send invitation
 type InvitationEmailAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (i *InvitationEmailAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *InvitationEmailAttribute) GetID() *string {
+func (o *InvitationEmailAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

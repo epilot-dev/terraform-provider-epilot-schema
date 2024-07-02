@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 37d005c73404593ae6d0c1f630f3eace
+  docChecksum: 19ae64cddb4357b795195f9576689ec8
   docVersion: 1.0.0
   speakeasyVersion: 1.303.4
   generationVersion: 2.340.2
-  releaseVersion: 0.3.6
-  configChecksum: a99fe4047228cfc4f25d78c09d4a944b
+  releaseVersion: 0.3.8
+  configChecksum: eb574ad89756395ee8d01fba533c6f87
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -93,7 +93,6 @@ generatedFiles:
   - internal/sdk/models/shared/entitydefaultcreate.go
   - internal/sdk/models/shared/entitydefaulttable.go
   - internal/sdk/models/shared/attributewithcompositeid.go
-  - internal/sdk/models/shared/attributewithcompositeidinput.go
   - internal/sdk/models/shared/entitycapabilitywithcompositeid.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
@@ -212,6 +211,34 @@ generatedFiles:
   - internal/provider/types/entity_default_table.go
   - internal/provider/types/table_view.go
   - internal/provider/types/ui_config.go
+  - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_automation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_boolean_attribute.go
+  - internal/provider/types/attribute_with_composite_id_computed_attribute.go
+  - internal/provider/types/attribute_with_composite_id_consent_attribute.go
+  - internal/provider/types/attribute_with_composite_id_country_attribute.go
+  - internal/provider/types/attribute_with_composite_id_currency_attribute.go
+  - internal/provider/types/attribute_with_composite_id_date_attribute.go
+  - internal/provider/types/attribute_with_composite_id_file_attribute.go
+  - internal/provider/types/attribute_with_composite_id_internal_attribute.go
+  - internal/provider/types/attribute_with_composite_id_internal_user_attribute.go
+  - internal/provider/types/attribute_with_composite_id_invitation_email_attribute.go
+  - internal/provider/types/attribute_with_composite_id_link_attribute.go
+  - internal/provider/types/attribute_with_composite_id_multi_select_attribute.go
+  - internal/provider/types/attribute_with_composite_id_number_attribute.go
+  - internal/provider/types/attribute_with_composite_id_ordered_list_attribute.go
+  - internal/provider/types/attribute_with_composite_id_partner_organisation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_partner_status_attribute.go
+  - internal/provider/types/attribute_with_composite_id_payment_method_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_purpose_attribute.go
+  - internal/provider/types/attribute_with_composite_id_relation_attribute.go
+  - internal/provider/types/attribute_with_composite_id_repeatable_attribute.go
+  - internal/provider/types/attribute_with_composite_id_select_attribute.go
+  - internal/provider/types/attribute_with_composite_id_sequence_attribute.go
+  - internal/provider/types/attribute_with_composite_id_status_attribute.go
+  - internal/provider/types/attribute_with_composite_id_tags_attribute.go
+  - internal/provider/types/attribute_with_composite_id_text_attribute.go
+  - internal/provider/types/attribute_with_composite_id_user_relation_attribute.go
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf

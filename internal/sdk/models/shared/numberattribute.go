@@ -88,7 +88,7 @@ func (e *NumberAttributeType) UnmarshalJSON(data []byte) error {
 // NumberAttribute - Numeric input
 type NumberAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -150,9 +150,9 @@ func (n *NumberAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *NumberAttribute) GetID() *string {
+func (o *NumberAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

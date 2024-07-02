@@ -88,7 +88,7 @@ func (e *PaymentMethodRelationAttributeType) UnmarshalJSON(data []byte) error {
 // PaymentMethodRelationAttribute - Reference to a payment method attribute of another entity
 type PaymentMethodRelationAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -150,9 +150,9 @@ func (p *PaymentMethodRelationAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentMethodRelationAttribute) GetID() *string {
+func (o *PaymentMethodRelationAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

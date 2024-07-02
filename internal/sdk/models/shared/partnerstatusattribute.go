@@ -88,7 +88,7 @@ func (e *PartnerStatusAttributeType) UnmarshalJSON(data []byte) error {
 // PartnerStatusAttribute - Partner Status
 type PartnerStatusAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (p *PartnerStatusAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PartnerStatusAttribute) GetID() *string {
+func (o *PartnerStatusAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

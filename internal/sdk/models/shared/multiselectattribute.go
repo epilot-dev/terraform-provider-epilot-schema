@@ -174,7 +174,7 @@ func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
 // MultiSelectAttribute - Multi Choice Selection
 type MultiSelectAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -242,9 +242,9 @@ func (m *MultiSelectAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MultiSelectAttribute) GetID() *string {
+func (o *MultiSelectAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

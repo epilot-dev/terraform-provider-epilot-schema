@@ -117,7 +117,7 @@ func (e *DefaultAccessControl) UnmarshalJSON(data []byte) error {
 // FileAttribute - File or Image Attachment
 type FileAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -188,9 +188,9 @@ func (f *FileAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *FileAttribute) GetID() *string {
+func (o *FileAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

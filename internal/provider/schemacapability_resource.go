@@ -133,7 +133,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -376,7 +379,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -619,7 +625,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -862,7 +871,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1105,7 +1117,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"identifiers": schema.ListAttribute{
 									Computed:    true,
@@ -1362,7 +1377,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1661,7 +1679,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -1905,7 +1926,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2178,7 +2202,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2427,7 +2454,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2670,7 +2700,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -2913,7 +2946,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3156,7 +3192,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3414,7 +3453,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3705,7 +3747,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -3948,7 +3993,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4191,7 +4239,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4434,7 +4485,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4681,7 +4735,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4929,8 +4986,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										``,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5422,7 +5483,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -5750,7 +5814,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6020,7 +6087,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6307,7 +6377,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6559,7 +6632,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6846,7 +6922,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7099,7 +7178,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -7346,7 +7428,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"id": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `ID for the entity attribute`,
+									Description: `ID for the entity attribute. Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,

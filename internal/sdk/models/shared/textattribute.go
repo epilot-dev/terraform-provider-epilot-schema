@@ -88,7 +88,7 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 // TextAttribute - Textarea or text input
 type TextAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -150,9 +150,9 @@ func (t *TextAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TextAttribute) GetID() *string {
+func (o *TextAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

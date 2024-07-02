@@ -91,7 +91,7 @@ func (e *DateAttributeType) UnmarshalJSON(data []byte) error {
 // DateAttribute - Date or Datetime picker
 type DateAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -152,9 +152,9 @@ func (d *DateAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DateAttribute) GetID() *string {
+func (o *DateAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

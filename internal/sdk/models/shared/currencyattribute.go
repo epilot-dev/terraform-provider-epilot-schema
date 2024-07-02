@@ -166,7 +166,7 @@ func (u Currency) MarshalJSON() ([]byte, error) {
 // CurrencyAttribute - Currency input
 type CurrencyAttribute struct {
 	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -230,9 +230,9 @@ func (c *CurrencyAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CurrencyAttribute) GetID() *string {
+func (o *CurrencyAttribute) GetID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ID
 }

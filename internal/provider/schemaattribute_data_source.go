@@ -29,8 +29,56 @@ type SchemaAttributeDataSource struct {
 
 // SchemaAttributeDataSourceModel describes the data model.
 type SchemaAttributeDataSourceModel struct {
-	Attribute   *tfTypes.Attribute `tfsdk:"attribute"`
-	CompositeID types.String       `tfsdk:"composite_id"`
+	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressRelationAttribute       `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
+	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"automation_attribute" tfPlanOnly:"true"`
+	BooleanAttribute               *tfTypes.AttributeWithCompositeIDBooleanAttribute               `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
+	CompositeID                    types.String                                                    `tfsdk:"composite_id"`
+	ComputedAttribute              *tfTypes.AttributeWithCompositeIDComputedAttribute              `tfsdk:"computed_attribute" tfPlanOnly:"true"`
+	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute               `tfsdk:"consent_attribute" tfPlanOnly:"true"`
+	CountryAttribute               *tfTypes.AttributeWithCompositeIDCountryAttribute               `tfsdk:"country_attribute" tfPlanOnly:"true"`
+	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute              `tfsdk:"currency_attribute" tfPlanOnly:"true"`
+	DateAttribute                  *tfTypes.AttributeWithCompositeIDDateAttribute                  `tfsdk:"date_attribute" tfPlanOnly:"true"`
+	Deprecated                     types.Bool                                                      `tfsdk:"deprecated"`
+	EntityBuilderDisableEdit       types.Bool                                                      `tfsdk:"entity_builder_disable_edit"`
+	FeatureFlag                    types.String                                                    `tfsdk:"feature_flag"`
+	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                  `tfsdk:"file_attribute" tfPlanOnly:"true"`
+	Group                          types.String                                                    `tfsdk:"group"`
+	Hidden                         types.Bool                                                      `tfsdk:"hidden"`
+	HideLabel                      types.Bool                                                      `tfsdk:"hide_label"`
+	Icon                           types.String                                                    `tfsdk:"icon"`
+	ID                             types.String                                                    `tfsdk:"id"`
+	InternalAttribute              *tfTypes.AttributeWithCompositeIDInternalAttribute              `tfsdk:"internal_attribute" tfPlanOnly:"true"`
+	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDInternalUserAttribute          `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
+	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDInvitationEmailAttribute       `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
+	Label                          types.String                                                    `tfsdk:"label"`
+	Layout                         types.String                                                    `tfsdk:"layout"`
+	LinkAttribute                  *tfTypes.AttributeWithCompositeIDLinkAttribute                  `tfsdk:"link_attribute" tfPlanOnly:"true"`
+	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute           `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
+	Name                           types.String                                                    `tfsdk:"name"`
+	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute                `tfsdk:"number_attribute" tfPlanOnly:"true"`
+	Order                          types.Int64                                                     `tfsdk:"order"`
+	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDOrderedListAttribute           `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
+	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDPartnerOrganisationAttribute   `tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
+	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDPartnerStatusAttribute         `tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
+	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
+	Placeholder                    types.String                                                    `tfsdk:"placeholder"`
+	PreviewValueFormatter          types.String                                                    `tfsdk:"preview_value_formatter"`
+	Protected                      types.Bool                                                      `tfsdk:"protected"`
+	PurposeAttribute               *tfTypes.AttributeWithCompositeIDPurposeAttribute               `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
+	Readonly                       types.Bool                                                      `tfsdk:"readonly"`
+	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute              `tfsdk:"relation_attribute" tfPlanOnly:"true"`
+	RenderCondition                types.String                                                    `tfsdk:"render_condition"`
+	RepeatableAttribute            *tfTypes.AttributeWithCompositeIDRepeatableAttribute            `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
+	Required                       types.Bool                                                      `tfsdk:"required"`
+	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute                `tfsdk:"select_attribute" tfPlanOnly:"true"`
+	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute              `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
+	ShowInTable                    types.Bool                                                      `tfsdk:"show_in_table"`
+	Sortable                       types.Bool                                                      `tfsdk:"sortable"`
+	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute                `tfsdk:"status_attribute" tfPlanOnly:"true"`
+	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                  `tfsdk:"tags_attribute" tfPlanOnly:"true"`
+	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                  `tfsdk:"text_attribute" tfPlanOnly:"true"`
+	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute          `tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	ValueFormatter                 types.String                                                    `tfsdk:"value_formatter"`
 }
 
 // Metadata returns the data source type name.
@@ -44,4651 +92,4810 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 		MarkdownDescription: "SchemaAttribute DataSource",
 
 		Attributes: map[string]schema.Attribute{
-			"attribute": schema.SingleNestedAttribute{
+			"address_relation_attribute": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"address_relation_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"has_primary": schema.BoolAttribute{
-								Computed: true,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["relation_address"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Reference to an address attribute of another entity`,
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
 					},
-					"automation_attribute": schema.SingleNestedAttribute{
+					"composite_id": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["automation"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Automation entity`,
 					},
-					"boolean_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["boolean"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Yes / No Toggle`,
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
 					},
-					"computed_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["computed"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)`,
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
 					},
-					"consent_attribute": schema.SingleNestedAttribute{
+					"deprecated": schema.BoolAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"identifiers": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"topic": schema.StringAttribute{
-								Computed: true,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["consent"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Consent Management`,
 					},
-					"country_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["country"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Country picker`,
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 					},
-					"currency_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"currency": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"one": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"code": schema.StringAttribute{
-													Computed: true,
-												},
-												"description": schema.StringAttribute{
-													Computed: true,
-												},
-												"flag": schema.StringAttribute{
-													Computed: true,
-												},
-												"symbol": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-											Description: `A currency configuration`,
-										},
-									},
-								},
-								Description: `An array of currency configurations with a country code (ISO-4217)`,
-							},
-							"currency_selector_only": schema.BoolAttribute{
-								Computed: true,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["currency"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Currency input`,
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
 					},
-					"date_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["date", "datetime"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Date or Datetime picker`,
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
 					},
-					"file_attribute": schema.SingleNestedAttribute{
+					"has_primary": schema.BoolAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"allowed_extensions": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-								Description: `List of file extensions (without the dot suffix)`,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_access_control": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["public-read", "private"]`,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"display_images_landscaped": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Controls how the images are presented to the user during upload on the Entity Details view.`,
-							},
-							"enable_description": schema.BoolAttribute{
-								Computed: true,
-								MarkdownDescription: `When set to true, an i18n description will be used alongside the attribute label.` + "\n" +
-									`This description should be set through the platform locales in the form: ` + "`" + `file.{attribute_name}.description_text` + "`" + `.` + "\n" +
-									``,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"multiple": schema.BoolAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["image", "file"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `File or Image Attachment`,
 					},
-					"internal_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["internal"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `No UI representation`,
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
 					},
-					"internal_user_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["internal_user"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Epilot internal user info`,
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
 					},
-					"invitation_email_attribute": schema.SingleNestedAttribute{
+					"icon": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["invitation_email"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Email address for send invitation`,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
 					},
-					"link_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["link"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Link with title and href`,
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
 					},
-					"multi_select_attribute": schema.SingleNestedAttribute{
+					"info_helpers": schema.SingleNestedAttribute{
 						Computed: true,
 						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"allow_any": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow arbitrary input values in addition to provided options`,
-							},
-							"allow_extra_options": schema.BoolAttribute{
-								Computed:    true,
-								Description: `controls if the 360 ui will allow the user to enter a value which is not defined by the options`,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
 									``,
 							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
+							"hint_text": schema.StringAttribute{
 								Computed: true,
-							},
-							"disable_case_sensitive": schema.BoolAttribute{
-								Computed:    true,
-								Description: `controls if the matching of values against the options is case sensitive or not`,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
 									``,
 							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
+							"hint_text_key": schema.StringAttribute{
 								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"options": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"str": schema.StringAttribute{
-											Computed: true,
-										},
-										"two": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"title": schema.StringAttribute{
-													Computed: true,
-												},
-												"value": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-								},
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
 									``,
 							},
-							"required": schema.BoolAttribute{
+							"hint_tooltip_placement": schema.StringAttribute{
 								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["multiselect", "checkbox"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
 							},
 						},
-						Description: `Multi Choice Selection`,
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
 					},
-					"number_attribute": schema.SingleNestedAttribute{
+					"label": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"format": schema.StringAttribute{
-								Computed: true,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["number"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Numeric input`,
 					},
-					"ordered_list_attribute": schema.SingleNestedAttribute{
+					"layout": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["ordered_list"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Type of attribute to render N number of ordered fields`,
 					},
-					"partner_organisation_attribute": schema.SingleNestedAttribute{
+					"name": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["partner_organisation"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Shared Partner Organisations`,
 					},
-					"partner_status_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["partner_status"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Partner Status`,
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
 					},
-					"payment_method_relation_attribute": schema.SingleNestedAttribute{
+					"placeholder": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"has_primary": schema.BoolAttribute{
-								Computed: true,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["relation_payment_method"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Reference to a payment method attribute of another entity`,
 					},
-					"purpose_attribute": schema.SingleNestedAttribute{
+					"preview_value_formatter": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"created_at": schema.StringAttribute{
-								Computed: true,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed: true,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"parents": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"slug": schema.StringAttribute{
-								Computed:    true,
-								Description: `URL-friendly identifier for the classification`,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["purpose"]`,
-							},
-							"updated_at": schema.StringAttribute{
-								Computed: true,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Entity Taxonomy`,
 					},
-					"relation_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"actions": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"action_type": schema.StringAttribute{
-											Computed: true,
-											MarkdownDescription: `The action type. Currently supported actions:` + "\n" +
-												`` + "\n" +
-												`| action | description |` + "\n" +
-												`|--------|-------------|` + "\n" +
-												`| add_existing | Enables the user to pick an existing entity to link as relation |` + "\n" +
-												`| create_new | Enables the user to create a new entity using the first/main ` + "`" + `allowed_schemas` + "`" + ` schema` + "\n" +
-												`| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |` + "\n" +
-												`` + "\n" +
-												`must be one of ["add_existing", "create_new", "create_from_existing"]`,
-										},
-										"default": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Sets the action as the default action, visible as the main action button.`,
-										},
-										"feature_flag": schema.StringAttribute{
-											Computed:    true,
-											Description: `Name of the feature flag that enables this action`,
-										},
-										"label": schema.StringAttribute{
-											Computed:    true,
-											Description: `The action label or action translation key (i18n)`,
-										},
-										"new_entity_item": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"acl": schema.SingleNestedAttribute{
-													Computed: true,
-													Attributes: map[string]schema.Attribute{
-														"additional_properties": schema.StringAttribute{
-															Computed:    true,
-															Description: `Parsed as JSON.`,
-														},
-														"delete": schema.ListAttribute{
-															Computed:    true,
-															ElementType: types.StringType,
-														},
-														"edit": schema.ListAttribute{
-															Computed:    true,
-															ElementType: types.StringType,
-														},
-														"view": schema.ListAttribute{
-															Computed:    true,
-															ElementType: types.StringType,
-														},
-													},
-													Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
-												},
-												"created_at": schema.StringAttribute{
-													Computed: true,
-												},
-												"id": schema.StringAttribute{
-													Computed: true,
-												},
-												"org": schema.StringAttribute{
-													Computed:    true,
-													Description: `Organization Id the entity belongs to`,
-												},
-												"owners": schema.ListNestedAttribute{
-													Computed: true,
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"org_id": schema.StringAttribute{
-																Computed: true,
-															},
-															"user_id": schema.StringAttribute{
-																Computed: true,
-															},
-														},
-													},
-												},
-												"schema": schema.StringAttribute{
-													Computed:    true,
-													Description: `URL-friendly identifier for the entity schema`,
-												},
-												"tags": schema.ListAttribute{
-													Computed:    true,
-													ElementType: types.StringType,
-												},
-												"title": schema.StringAttribute{
-													Computed:    true,
-													Description: `Title of entity`,
-												},
-												"updated_at": schema.StringAttribute{
-													Computed: true,
-												},
-												"additional_properties": schema.StringAttribute{
-													Computed:    true,
-													Description: `Parsed as JSON.`,
-												},
-											},
-										},
-										"settings_flag": schema.ListNestedAttribute{
-											Computed: true,
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"enabled": schema.BoolAttribute{
-														Computed:    true,
-														Description: `Whether the setting should be enabled or not`,
-													},
-													"name": schema.StringAttribute{
-														Computed:    true,
-														Description: `The name of the organization setting to check`,
-													},
-												},
-											},
-											Description: `This action should only be active when all the settings have the correct value`,
-										},
-									},
-								},
-							},
-							"add_button_label": schema.StringAttribute{
-								Computed:    true,
-								Description: `Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.`,
-							},
-							"allowed_schemas": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"details_view_mode_enabled": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
-							},
-							"drawer_size": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["small", "medium", "large"]`,
-							},
-							"edit_mode": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["list-view"]`,
-							},
-							"enable_relation_picker": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
-							},
-							"enable_relation_tags": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.`,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"has_primary": schema.BoolAttribute{
-								Computed: true,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"relation_affinity_mode": schema.StringAttribute{
-								Computed:    true,
-								Description: `Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
-							},
-							"relation_type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["has_many", "has_one"]`,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"reverse_attributes": schema.MapAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-								Description: `Map of schema slug to target relation attribute`,
-							},
-							"search_placeholder": schema.StringAttribute{
-								Computed:    true,
-								Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"summary_fields": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"str": schema.StringAttribute{
-											Computed: true,
-										},
-										"summary_field": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"display_as": schema.StringAttribute{
-													Computed:    true,
-													Description: `An hint on how to display the summary field`,
-												},
-												"field": schema.StringAttribute{
-													Computed:    true,
-													Description: `The field from the entity attributes to display`,
-												},
-											},
-											Description: `Summary Fields are displayed inside list view as a resume of the relation entity.`,
-										},
-									},
-								},
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["relation"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Entity Relationship`,
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 					},
-					"repeatable_attribute": schema.SingleNestedAttribute{
+					"readonly": schema.BoolAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"enable_relation_picker": schema.BoolAttribute{
-								Computed:    true,
-								Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"has_primary": schema.BoolAttribute{
-								Computed: true,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"relation_affinity_mode": schema.StringAttribute{
-								Computed:    true,
-								Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"repeatable": schema.BoolAttribute{
-								Computed: true,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Repeatable (add N number of fields)`,
 					},
-					"select_attribute": schema.SingleNestedAttribute{
+					"render_condition": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"allow_any": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow arbitrary input values in addition to provided options`,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"options": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"str": schema.StringAttribute{
-											Computed: true,
-										},
-										"one": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"title": schema.StringAttribute{
-													Computed: true,
-												},
-												"value": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-								},
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["select", "radio"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Dropdown select`,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
 					},
-					"sequence_attribute": schema.SingleNestedAttribute{
+					"required": schema.BoolAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"prefix": schema.StringAttribute{
-								Computed:    true,
-								Description: `Prefix added before the sequence number`,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"start_number": schema.Int64Attribute{
-								Computed: true,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["sequence"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Sequence of unique identifiers`,
 					},
-					"status_attribute": schema.SingleNestedAttribute{
+					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
 								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"options": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"str": schema.StringAttribute{
-											Computed: true,
-										},
-										"two": schema.SingleNestedAttribute{
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"title": schema.StringAttribute{
-													Computed:    true,
-													Description: `The displayed title of the option`,
-												},
-												"value": schema.StringAttribute{
-													Computed:    true,
-													Description: `The stored value of the option`,
-												},
-											},
-										},
-									},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
 								},
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["status"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
 							},
 						},
-						Description: `Status select`,
+						Description: `This attribute should only be active when all the settings have the correct value`,
 					},
-					"tags_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"options": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"suggestions": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["tags"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Tags`,
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 					},
-					"text_attribute": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"multiline": schema.BoolAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["string"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `Textarea or text input`,
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 					},
-					"user_relation_attribute": schema.SingleNestedAttribute{
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["relation_address"]`,
+					},
+					"value_formatter": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"purpose": schema.ListAttribute{
-								Computed:    true,
-								ElementType: types.StringType,
-							},
-							"constraints": schema.SingleNestedAttribute{
-								Computed:   true,
-								Attributes: map[string]schema.Attribute{},
-								MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-									`These constraints should and will be enforced by the attribute renderer.` + "\n" +
-									``,
-							},
-							"default_value": schema.StringAttribute{
-								Computed:    true,
-								Description: `Parsed as JSON.`,
-							},
-							"deprecated": schema.BoolAttribute{
-								Computed: true,
-							},
-							"entity_builder_disable_edit": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
-							},
-							"feature_flag": schema.StringAttribute{
-								Computed:    true,
-								Description: `This attribute should only be active when the feature flag is enabled`,
-							},
-							"group": schema.StringAttribute{
-								Computed:    true,
-								Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-							},
-							"hidden": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Do not render attribute in entity views`,
-							},
-							"hide_label": schema.BoolAttribute{
-								Computed:    true,
-								Description: `When set to true, will hide the label of the field.`,
-							},
-							"icon": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-									`The value must be a valid @epilot/base-elements Icon name` + "\n" +
-									``,
-							},
-							"id": schema.StringAttribute{
-								Computed:    true,
-								Description: `ID for the entity attribute`,
-							},
-							"info_helpers": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"hint_custom_component": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-											`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-											`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
-											``,
-									},
-									"hint_text_key": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-											`The key should be a valid i18n key.` + "\n" +
-											``,
-									},
-									"hint_tooltip_placement": schema.StringAttribute{
-										Computed: true,
-										MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-											`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
-											``,
-									},
-								},
-								Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-							},
-							"label": schema.StringAttribute{
-								Computed: true,
-							},
-							"layout": schema.StringAttribute{
-								Computed: true,
-							},
-							"multiple": schema.BoolAttribute{
-								Computed: true,
-							},
-							"name": schema.StringAttribute{
-								Computed: true,
-							},
-							"order": schema.Int64Attribute{
-								Computed:    true,
-								Description: `Attribute sort order (ascending) in group`,
-							},
-							"placeholder": schema.StringAttribute{
-								Computed: true,
-							},
-							"preview_value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-							"protected": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-							},
-							"readonly": schema.BoolAttribute{
-								Computed: true,
-							},
-							"render_condition": schema.StringAttribute{
-								Computed: true,
-								MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-									`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-									`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-									``,
-							},
-							"required": schema.BoolAttribute{
-								Computed: true,
-							},
-							"settings_flag": schema.ListNestedAttribute{
-								Computed: true,
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"enabled": schema.BoolAttribute{
-											Computed:    true,
-											Description: `Whether the setting should be enabled or not`,
-										},
-										"name": schema.StringAttribute{
-											Computed:    true,
-											Description: `The name of the organization setting to check`,
-										},
-									},
-								},
-								Description: `This attribute should only be active when all the settings have the correct value`,
-							},
-							"show_in_table": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-							},
-							"sortable": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
-							},
-							"type": schema.StringAttribute{
-								Computed:    true,
-								Description: `must be one of ["relation_user"]`,
-							},
-							"value_formatter": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-						Description: `User Relationship`,
 					},
 				},
+				Description: `Reference to an address attribute of another entity`,
+			},
+			"automation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["automation"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Automation entity`,
+			},
+			"boolean_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["boolean"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Yes / No Toggle`,
 			},
 			"composite_id": schema.StringAttribute{
 				Required:    true,
 				Description: `Schema Slug and the Attribute ID`,
+			},
+			"computed_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["computed"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)`,
+			},
+			"consent_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"identifiers": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"topic": schema.StringAttribute{
+						Computed: true,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["consent"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Consent Management`,
+			},
+			"country_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["country"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Country picker`,
+			},
+			"currency_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"currency": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"one": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"code": schema.StringAttribute{
+											Computed: true,
+										},
+										"description": schema.StringAttribute{
+											Computed: true,
+										},
+										"flag": schema.StringAttribute{
+											Computed: true,
+										},
+										"symbol": schema.StringAttribute{
+											Computed: true,
+										},
+									},
+									Description: `A currency configuration`,
+								},
+							},
+						},
+						Description: `An array of currency configurations with a country code (ISO-4217)`,
+					},
+					"currency_selector_only": schema.BoolAttribute{
+						Computed: true,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["currency"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Currency input`,
+			},
+			"date_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["date", "datetime"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Date or Datetime picker`,
+			},
+			"deprecated": schema.BoolAttribute{
+				Computed: true,
+			},
+			"entity_builder_disable_edit": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+			},
+			"feature_flag": schema.StringAttribute{
+				Computed:    true,
+				Description: `This attribute should only be active when the feature flag is enabled`,
+			},
+			"file_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"allowed_extensions": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+						Description: `List of file extensions (without the dot suffix)`,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_access_control": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["public-read", "private"]`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"display_images_landscaped": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Controls how the images are presented to the user during upload on the Entity Details view.`,
+					},
+					"enable_description": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, an i18n description will be used alongside the attribute label.` + "\n" +
+							`This description should be set through the platform locales in the form: ` + "`" + `file.{attribute_name}.description_text` + "`" + `.` + "\n" +
+							``,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"multiple": schema.BoolAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["image", "file"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `File or Image Attachment`,
+			},
+			"group": schema.StringAttribute{
+				Computed:    true,
+				Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+			},
+			"hidden": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Do not render attribute in entity views`,
+			},
+			"hide_label": schema.BoolAttribute{
+				Computed:    true,
+				Description: `When set to true, will hide the label of the field.`,
+			},
+			"icon": schema.StringAttribute{
+				Computed: true,
+				MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+					`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+					``,
+			},
+			"id": schema.StringAttribute{
+				Computed:    true,
+				Description: `ID for the entity attribute`,
+			},
+			"internal_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["internal"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `No UI representation`,
+			},
+			"internal_user_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["internal_user"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Epilot internal user info`,
+			},
+			"invitation_email_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["invitation_email"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Email address for send invitation`,
+			},
+			"label": schema.StringAttribute{
+				Computed: true,
+			},
+			"layout": schema.StringAttribute{
+				Computed: true,
+			},
+			"link_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["link"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Link with title and href`,
+			},
+			"multi_select_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"allow_any": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow arbitrary input values in addition to provided options`,
+					},
+					"allow_extra_options": schema.BoolAttribute{
+						Computed:    true,
+						Description: `controls if the 360 ui will allow the user to enter a value which is not defined by the options`,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"disable_case_sensitive": schema.BoolAttribute{
+						Computed:    true,
+						Description: `controls if the matching of values against the options is case sensitive or not`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"options": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"str": schema.StringAttribute{
+									Computed: true,
+								},
+								"two": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"title": schema.StringAttribute{
+											Computed: true,
+										},
+										"value": schema.StringAttribute{
+											Computed: true,
+										},
+									},
+								},
+							},
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["multiselect", "checkbox"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Multi Choice Selection`,
+			},
+			"name": schema.StringAttribute{
+				Computed: true,
+			},
+			"number_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"format": schema.StringAttribute{
+						Computed: true,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["number"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Numeric input`,
+			},
+			"order": schema.Int64Attribute{
+				Computed:    true,
+				Description: `Attribute sort order (ascending) in group`,
+			},
+			"ordered_list_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["ordered_list"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Type of attribute to render N number of ordered fields`,
+			},
+			"partner_organisation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["partner_organisation"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Shared Partner Organisations`,
+			},
+			"partner_status_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["partner_status"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Partner Status`,
+			},
+			"payment_method_relation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["relation_payment_method"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Reference to a payment method attribute of another entity`,
+			},
+			"placeholder": schema.StringAttribute{
+				Computed: true,
+			},
+			"preview_value_formatter": schema.StringAttribute{
+				Computed: true,
+			},
+			"protected": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+			},
+			"purpose_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"created_at": schema.StringAttribute{
+						Computed: true,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed: true,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"parents": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"slug": schema.StringAttribute{
+						Computed:    true,
+						Description: `URL-friendly identifier for the classification`,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["purpose"]`,
+					},
+					"updated_at": schema.StringAttribute{
+						Computed: true,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Entity Taxonomy`,
+			},
+			"readonly": schema.BoolAttribute{
+				Computed: true,
+			},
+			"relation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"actions": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"action_type": schema.StringAttribute{
+									Computed: true,
+									MarkdownDescription: `The action type. Currently supported actions:` + "\n" +
+										`` + "\n" +
+										`| action | description |` + "\n" +
+										`|--------|-------------|` + "\n" +
+										`| add_existing | Enables the user to pick an existing entity to link as relation |` + "\n" +
+										`| create_new | Enables the user to create a new entity using the first/main ` + "`" + `allowed_schemas` + "`" + ` schema` + "\n" +
+										`| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |` + "\n" +
+										`` + "\n" +
+										`must be one of ["add_existing", "create_new", "create_from_existing"]`,
+								},
+								"default": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Sets the action as the default action, visible as the main action button.`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Description: `Name of the feature flag that enables this action`,
+								},
+								"label": schema.StringAttribute{
+									Computed:    true,
+									Description: `The action label or action translation key (i18n)`,
+								},
+								"new_entity_item": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"acl": schema.SingleNestedAttribute{
+											Computed: true,
+											Attributes: map[string]schema.Attribute{
+												"additional_properties": schema.StringAttribute{
+													Computed:    true,
+													Description: `Parsed as JSON.`,
+												},
+												"delete": schema.ListAttribute{
+													Computed:    true,
+													ElementType: types.StringType,
+												},
+												"edit": schema.ListAttribute{
+													Computed:    true,
+													ElementType: types.StringType,
+												},
+												"view": schema.ListAttribute{
+													Computed:    true,
+													ElementType: types.StringType,
+												},
+											},
+											Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
+										},
+										"created_at": schema.StringAttribute{
+											Computed: true,
+										},
+										"id": schema.StringAttribute{
+											Computed: true,
+										},
+										"org": schema.StringAttribute{
+											Computed:    true,
+											Description: `Organization Id the entity belongs to`,
+										},
+										"owners": schema.ListNestedAttribute{
+											Computed: true,
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"org_id": schema.StringAttribute{
+														Computed: true,
+													},
+													"user_id": schema.StringAttribute{
+														Computed: true,
+													},
+												},
+											},
+										},
+										"schema": schema.StringAttribute{
+											Computed:    true,
+											Description: `URL-friendly identifier for the entity schema`,
+										},
+										"tags": schema.ListAttribute{
+											Computed:    true,
+											ElementType: types.StringType,
+										},
+										"title": schema.StringAttribute{
+											Computed:    true,
+											Description: `Title of entity`,
+										},
+										"updated_at": schema.StringAttribute{
+											Computed: true,
+										},
+										"additional_properties": schema.StringAttribute{
+											Computed:    true,
+											Description: `Parsed as JSON.`,
+										},
+									},
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This action should only be active when all the settings have the correct value`,
+								},
+							},
+						},
+					},
+					"add_button_label": schema.StringAttribute{
+						Computed:    true,
+						Description: `Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.`,
+					},
+					"allowed_schemas": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"details_view_mode_enabled": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
+					},
+					"drawer_size": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["small", "medium", "large"]`,
+					},
+					"edit_mode": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["list-view"]`,
+					},
+					"enable_relation_picker": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
+					},
+					"enable_relation_tags": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"relation_affinity_mode": schema.StringAttribute{
+						Computed:    true,
+						Description: `Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
+					},
+					"relation_type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["has_many", "has_one"]`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"reverse_attributes": schema.MapAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+						Description: `Map of schema slug to target relation attribute`,
+					},
+					"search_placeholder": schema.StringAttribute{
+						Computed:    true,
+						Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"summary_fields": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"str": schema.StringAttribute{
+									Computed: true,
+								},
+								"summary_field": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"display_as": schema.StringAttribute{
+											Computed:    true,
+											Description: `An hint on how to display the summary field`,
+										},
+										"field": schema.StringAttribute{
+											Computed:    true,
+											Description: `The field from the entity attributes to display`,
+										},
+									},
+									Description: `Summary Fields are displayed inside list view as a resume of the relation entity.`,
+								},
+							},
+						},
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["relation"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Entity Relationship`,
+			},
+			"render_condition": schema.StringAttribute{
+				Computed: true,
+				MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+					`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+					`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+					``,
+			},
+			"repeatable_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"enable_relation_picker": schema.BoolAttribute{
+						Computed:    true,
+						Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"relation_affinity_mode": schema.StringAttribute{
+						Computed:    true,
+						Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed: true,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Repeatable (add N number of fields)`,
+			},
+			"required": schema.BoolAttribute{
+				Computed: true,
+			},
+			"select_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"allow_any": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow arbitrary input values in addition to provided options`,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"options": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"str": schema.StringAttribute{
+									Computed: true,
+								},
+								"one": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"title": schema.StringAttribute{
+											Computed: true,
+										},
+										"value": schema.StringAttribute{
+											Computed: true,
+										},
+									},
+								},
+							},
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["select", "radio"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Dropdown select`,
+			},
+			"sequence_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"prefix": schema.StringAttribute{
+						Computed:    true,
+						Description: `Prefix added before the sequence number`,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"start_number": schema.Int64Attribute{
+						Computed: true,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["sequence"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Sequence of unique identifiers`,
+			},
+			"show_in_table": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+			},
+			"sortable": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+			},
+			"status_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"options": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"str": schema.StringAttribute{
+									Computed: true,
+								},
+								"two": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"title": schema.StringAttribute{
+											Computed:    true,
+											Description: `The displayed title of the option`,
+										},
+										"value": schema.StringAttribute{
+											Computed:    true,
+											Description: `The stored value of the option`,
+										},
+									},
+								},
+							},
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["status"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Status select`,
+			},
+			"tags_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"options": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"suggestions": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["tags"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Tags`,
+			},
+			"text_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"multiline": schema.BoolAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["string"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `Textarea or text input`,
+			},
+			"user_relation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						ElementType: types.StringType,
+					},
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed:   true,
+						Attributes: map[string]schema.Attribute{},
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+							``,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed: true,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Do not render attribute in entity views`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+							``,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+									``,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.` + "\n" +
+									``,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+									``,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed: true,
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+					},
+					"multiple": schema.BoolAttribute{
+						Computed: true,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed: true,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+							``,
+					},
+					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when all the settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: `must be one of ["relation_user"]`,
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+					},
+				},
+				Description: `User Relationship`,
+			},
+			"value_formatter": schema.StringAttribute{
+				Computed: true,
 			},
 		},
 	}
