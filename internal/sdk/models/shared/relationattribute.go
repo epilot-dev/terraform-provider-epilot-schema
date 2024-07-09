@@ -455,7 +455,7 @@ func (u SummaryFields) MarshalJSON() ([]byte, error) {
 // RelationAttribute - Entity Relationship
 type RelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -534,9 +534,9 @@ func (r *RelationAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RelationAttribute) GetID() string {
+func (o *RelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

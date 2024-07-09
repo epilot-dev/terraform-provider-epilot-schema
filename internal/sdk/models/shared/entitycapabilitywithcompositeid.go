@@ -157,7 +157,7 @@ func (o *EntityCapabilityWithCompositeIDUIHooks) GetAdditionalProperties() any {
 // EntityCapabilityWithCompositeID - a readonly computed ID for the entity capability including schema slug and the capability ID
 type EntityCapabilityWithCompositeID struct {
 	// ID for the entity capability
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
@@ -172,9 +172,9 @@ type EntityCapabilityWithCompositeID struct {
 	CompositeID  *string       `json:"composite_id,omitempty"`
 }
 
-func (o *EntityCapabilityWithCompositeID) GetID() string {
+func (o *EntityCapabilityWithCompositeID) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -238,7 +238,7 @@ func (o *EntityCapabilityWithCompositeID) GetCompositeID() *string {
 // EntityCapabilityWithCompositeIDInput - a readonly computed ID for the entity capability including schema slug and the capability ID
 type EntityCapabilityWithCompositeIDInput struct {
 	// ID for the entity capability
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
@@ -252,9 +252,9 @@ type EntityCapabilityWithCompositeIDInput struct {
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetID() string {
+func (o *EntityCapabilityWithCompositeIDInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

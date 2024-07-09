@@ -174,7 +174,7 @@ func (u Options) MarshalJSON() ([]byte, error) {
 // SelectAttribute - Dropdown select
 type SelectAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -238,9 +238,9 @@ func (s *SelectAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SelectAttribute) GetID() string {
+func (o *SelectAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

@@ -88,7 +88,7 @@ func (e *UserRelationAttributeType) UnmarshalJSON(data []byte) error {
 // UserRelationAttribute - User Relationship
 type UserRelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -150,9 +150,9 @@ func (u *UserRelationAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UserRelationAttribute) GetID() string {
+func (o *UserRelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

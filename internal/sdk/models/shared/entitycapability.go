@@ -157,7 +157,7 @@ func (o *UIHooks) GetAdditionalProperties() any {
 // EntityCapability - Capabilities the Entity has. Turn features on/off for entities.
 type EntityCapability struct {
 	// ID for the entity capability
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
@@ -171,9 +171,9 @@ type EntityCapability struct {
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
 }
 
-func (o *EntityCapability) GetID() string {
+func (o *EntityCapability) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

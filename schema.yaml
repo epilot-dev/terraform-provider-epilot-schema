@@ -112,7 +112,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -137,7 +137,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -167,7 +167,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -195,7 +195,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -220,7 +220,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -250,7 +250,7 @@ paths:
       parameters:
         - name: composite_id
           description: Schema Slug and the Attribute ID
-          x-speakeasy-match: composite_id
+          # x-speakeasy-match: composite_id
           in: path
           required: true
           schema:
@@ -572,6 +572,7 @@ components:
         - $ref: "#/components/schemas/PurposeAttribute"
         - $ref: "#/components/schemas/PartnerOrganisationAttribute"
     AttributeWithCompositeID:
+      x-speakeasy-entity: SchemaAttribute
       allOf:
         - $ref: "#/components/schemas/Attribute"
         - type: object
@@ -699,7 +700,6 @@ components:
                 The value should be a valid `@mui/core` tooltip placement.
               example: top
       required:
-        - id
         - name
         - label
     TextAttribute:
@@ -833,7 +833,7 @@ components:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
         - type: object
-          description: Status select
+          description: Status select 
           properties:
             type:
               type: string
@@ -1448,7 +1448,6 @@ components:
           items:
             $ref: "#/components/schemas/SettingFlag"
       required:
-        - id
         - name
     EntityCapabilityWithCompositeID:
       x-speakeasy-entity: SchemaCapability
@@ -2348,7 +2347,6 @@ components:
     EntitySlugPathParam:
       name: slug
       description: Entity Type
-      x-speakeasy-match: slug
       in: path
       required: true
       schema:

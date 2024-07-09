@@ -88,7 +88,7 @@ func (e *LinkAttributeType) UnmarshalJSON(data []byte) error {
 // LinkAttribute - Link with title and href
 type LinkAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (l *LinkAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LinkAttribute) GetID() string {
+func (o *LinkAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

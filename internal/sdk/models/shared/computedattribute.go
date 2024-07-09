@@ -88,7 +88,7 @@ func (e *ComputedAttributeType) UnmarshalJSON(data []byte) error {
 // ComputedAttribute - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type ComputedAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (c *ComputedAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ComputedAttribute) GetID() string {
+func (o *ComputedAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

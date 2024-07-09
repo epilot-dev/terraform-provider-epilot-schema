@@ -27,49 +27,67 @@ data "epilot-schema_schema_attribute" "my_schemaattribute" {
 
 ### Read-Only
 
-- `attribute` (Attributes) (see [below for nested schema](#nestedatt--attribute))
+- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--address_relation_attribute))
+- `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--automation_attribute))
+- `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--boolean_attribute))
+- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes) (see [below for nested schema](#nestedatt--computed_attribute))
+- `consent_attribute` (Attributes) Consent Management (see [below for nested schema](#nestedatt--consent_attribute))
+- `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--country_attribute))
+- `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--currency_attribute))
+- `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--date_attribute))
+- `deprecated` (Boolean)
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `file_attribute` (Attributes) File or Image Attachment (see [below for nested schema](#nestedatt--file_attribute))
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `internal_attribute` (Attributes) No UI representation (see [below for nested schema](#nestedatt--internal_attribute))
+- `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--internal_user_attribute))
+- `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--invitation_email_attribute))
+- `label` (String)
+- `layout` (String)
+- `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--link_attribute))
+- `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--multi_select_attribute))
+- `name` (String)
+- `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--number_attribute))
+- `order` (Number) Attribute sort order (ascending) in group
+- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--ordered_list_attribute))
+- `partner_organisation_attribute` (Attributes) Shared Partner Organisations (see [below for nested schema](#nestedatt--partner_organisation_attribute))
+- `partner_status_attribute` (Attributes) Partner Status (see [below for nested schema](#nestedatt--partner_status_attribute))
+- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--payment_method_relation_attribute))
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--purpose_attribute))
+- `readonly` (Boolean)
+- `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--relation_attribute))
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--repeatable_attribute))
+- `required` (Boolean)
+- `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--select_attribute))
+- `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--sequence_attribute))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
+- `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--status_attribute))
+- `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--tags_attribute))
+- `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--text_attribute))
+- `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--user_relation_attribute))
+- `value_formatter` (String)
 
-<a id="nestedatt--attribute"></a>
-### Nested Schema for `attribute`
+<a id="nestedatt--address_relation_attribute"></a>
+### Nested Schema for `address_relation_attribute`
 
 Read-Only:
 
-- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--attribute--address_relation_attribute))
-- `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--attribute--automation_attribute))
-- `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--attribute--boolean_attribute))
-- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes) (see [below for nested schema](#nestedatt--attribute--computed_attribute))
-- `consent_attribute` (Attributes) Consent Management (see [below for nested schema](#nestedatt--attribute--consent_attribute))
-- `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--attribute--country_attribute))
-- `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--attribute--currency_attribute))
-- `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--attribute--date_attribute))
-- `file_attribute` (Attributes) File or Image Attachment (see [below for nested schema](#nestedatt--attribute--file_attribute))
-- `internal_attribute` (Attributes) No UI representation (see [below for nested schema](#nestedatt--attribute--internal_attribute))
-- `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--attribute--internal_user_attribute))
-- `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--attribute--invitation_email_attribute))
-- `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--attribute--link_attribute))
-- `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--attribute--multi_select_attribute))
-- `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--attribute--number_attribute))
-- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--attribute--ordered_list_attribute))
-- `partner_organisation_attribute` (Attributes) Shared Partner Organisations (see [below for nested schema](#nestedatt--attribute--partner_organisation_attribute))
-- `partner_status_attribute` (Attributes) Partner Status (see [below for nested schema](#nestedatt--attribute--partner_status_attribute))
-- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--attribute--payment_method_relation_attribute))
-- `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--attribute--purpose_attribute))
-- `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--attribute--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--attribute--repeatable_attribute))
-- `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--attribute--select_attribute))
-- `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--attribute--sequence_attribute))
-- `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--attribute--status_attribute))
-- `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--attribute--tags_attribute))
-- `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--attribute--text_attribute))
-- `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--attribute--user_relation_attribute))
-
-<a id="nestedatt--attribute--address_relation_attribute"></a>
-### Nested Schema for `attribute.address_relation_attribute`
-
-Read-Only:
-
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--address_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -81,7 +99,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--address_relation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--address_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -95,18 +113,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--address_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["relation_address"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--address_relation_attribute--constraints"></a>
-### Nested Schema for `attribute.address_relation_attribute.constraints`
+<a id="nestedatt--address_relation_attribute--constraints"></a>
+### Nested Schema for `address_relation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--address_relation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.address_relation_attribute.info_helpers`
+<a id="nestedatt--address_relation_attribute--info_helpers"></a>
+### Nested Schema for `address_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -121,8 +139,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--address_relation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.address_relation_attribute.settings_flag`
+<a id="nestedatt--address_relation_attribute--settings_flag"></a>
+### Nested Schema for `address_relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -131,13 +149,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--automation_attribute"></a>
-### Nested Schema for `attribute.automation_attribute`
+<a id="nestedatt--automation_attribute"></a>
+### Nested Schema for `automation_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--automation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -148,7 +167,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--automation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--automation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -162,18 +181,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--automation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["automation"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--automation_attribute--constraints"></a>
-### Nested Schema for `attribute.automation_attribute.constraints`
+<a id="nestedatt--automation_attribute--constraints"></a>
+### Nested Schema for `automation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--automation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.automation_attribute.info_helpers`
+<a id="nestedatt--automation_attribute--info_helpers"></a>
+### Nested Schema for `automation_attribute.info_helpers`
 
 Read-Only:
 
@@ -188,8 +207,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--automation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.automation_attribute.settings_flag`
+<a id="nestedatt--automation_attribute--settings_flag"></a>
+### Nested Schema for `automation_attribute.settings_flag`
 
 Read-Only:
 
@@ -198,13 +217,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--boolean_attribute"></a>
-### Nested Schema for `attribute.boolean_attribute`
+<a id="nestedatt--boolean_attribute"></a>
+### Nested Schema for `boolean_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--boolean_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -215,7 +235,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--boolean_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--boolean_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -229,18 +249,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--boolean_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["boolean"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--boolean_attribute--constraints"></a>
-### Nested Schema for `attribute.boolean_attribute.constraints`
+<a id="nestedatt--boolean_attribute--constraints"></a>
+### Nested Schema for `boolean_attribute.constraints`
 
 
-<a id="nestedatt--attribute--boolean_attribute--info_helpers"></a>
-### Nested Schema for `attribute.boolean_attribute.info_helpers`
+<a id="nestedatt--boolean_attribute--info_helpers"></a>
+### Nested Schema for `boolean_attribute.info_helpers`
 
 Read-Only:
 
@@ -255,8 +275,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--boolean_attribute--settings_flag"></a>
-### Nested Schema for `attribute.boolean_attribute.settings_flag`
+<a id="nestedatt--boolean_attribute--settings_flag"></a>
+### Nested Schema for `boolean_attribute.settings_flag`
 
 Read-Only:
 
@@ -265,13 +285,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--computed_attribute"></a>
-### Nested Schema for `attribute.computed_attribute`
+<a id="nestedatt--computed_attribute"></a>
+### Nested Schema for `computed_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--computed_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -282,7 +303,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--computed_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--computed_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -296,18 +317,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--computed_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["computed"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--computed_attribute--constraints"></a>
-### Nested Schema for `attribute.computed_attribute.constraints`
+<a id="nestedatt--computed_attribute--constraints"></a>
+### Nested Schema for `computed_attribute.constraints`
 
 
-<a id="nestedatt--attribute--computed_attribute--info_helpers"></a>
-### Nested Schema for `attribute.computed_attribute.info_helpers`
+<a id="nestedatt--computed_attribute--info_helpers"></a>
+### Nested Schema for `computed_attribute.info_helpers`
 
 Read-Only:
 
@@ -322,8 +343,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--computed_attribute--settings_flag"></a>
-### Nested Schema for `attribute.computed_attribute.settings_flag`
+<a id="nestedatt--computed_attribute--settings_flag"></a>
+### Nested Schema for `computed_attribute.settings_flag`
 
 Read-Only:
 
@@ -332,13 +353,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--consent_attribute"></a>
-### Nested Schema for `attribute.consent_attribute`
+<a id="nestedatt--consent_attribute"></a>
+### Nested Schema for `consent_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--consent_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -350,7 +372,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
 - `identifiers` (List of String)
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--consent_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--consent_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -364,19 +386,19 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--consent_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--consent_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `topic` (String)
 - `type` (String) must be one of ["consent"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--consent_attribute--constraints"></a>
-### Nested Schema for `attribute.consent_attribute.constraints`
+<a id="nestedatt--consent_attribute--constraints"></a>
+### Nested Schema for `consent_attribute.constraints`
 
 
-<a id="nestedatt--attribute--consent_attribute--info_helpers"></a>
-### Nested Schema for `attribute.consent_attribute.info_helpers`
+<a id="nestedatt--consent_attribute--info_helpers"></a>
+### Nested Schema for `consent_attribute.info_helpers`
 
 Read-Only:
 
@@ -391,8 +413,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--consent_attribute--settings_flag"></a>
-### Nested Schema for `attribute.consent_attribute.settings_flag`
+<a id="nestedatt--consent_attribute--settings_flag"></a>
+### Nested Schema for `consent_attribute.settings_flag`
 
 Read-Only:
 
@@ -401,13 +423,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--country_attribute"></a>
-### Nested Schema for `attribute.country_attribute`
+<a id="nestedatt--country_attribute"></a>
+### Nested Schema for `country_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--country_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -418,7 +441,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--country_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--country_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -432,18 +455,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--country_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["country"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--country_attribute--constraints"></a>
-### Nested Schema for `attribute.country_attribute.constraints`
+<a id="nestedatt--country_attribute--constraints"></a>
+### Nested Schema for `country_attribute.constraints`
 
 
-<a id="nestedatt--attribute--country_attribute--info_helpers"></a>
-### Nested Schema for `attribute.country_attribute.info_helpers`
+<a id="nestedatt--country_attribute--info_helpers"></a>
+### Nested Schema for `country_attribute.info_helpers`
 
 Read-Only:
 
@@ -458,8 +481,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--country_attribute--settings_flag"></a>
-### Nested Schema for `attribute.country_attribute.settings_flag`
+<a id="nestedatt--country_attribute--settings_flag"></a>
+### Nested Schema for `country_attribute.settings_flag`
 
 Read-Only:
 
@@ -468,14 +491,15 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--currency_attribute"></a>
-### Nested Schema for `attribute.currency_attribute`
+<a id="nestedatt--currency_attribute"></a>
+### Nested Schema for `currency_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--currency_attribute--constraints))
-- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217) (see [below for nested schema](#nestedatt--attribute--currency_attribute--currency))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--currency_attribute--constraints))
+- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217) (see [below for nested schema](#nestedatt--currency_attribute--currency))
 - `currency_selector_only` (Boolean)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
@@ -487,7 +511,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--currency_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--currency_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -501,25 +525,25 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--currency_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--currency_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["currency"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--currency_attribute--constraints"></a>
-### Nested Schema for `attribute.currency_attribute.constraints`
+<a id="nestedatt--currency_attribute--constraints"></a>
+### Nested Schema for `currency_attribute.constraints`
 
 
-<a id="nestedatt--attribute--currency_attribute--currency"></a>
-### Nested Schema for `attribute.currency_attribute.currency`
+<a id="nestedatt--currency_attribute--currency"></a>
+### Nested Schema for `currency_attribute.currency`
 
 Read-Only:
 
-- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--attribute--currency_attribute--currency--one))
+- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--currency_attribute--currency--one))
 
-<a id="nestedatt--attribute--currency_attribute--currency--one"></a>
-### Nested Schema for `attribute.currency_attribute.currency.one`
+<a id="nestedatt--currency_attribute--currency--one"></a>
+### Nested Schema for `currency_attribute.currency.one`
 
 Read-Only:
 
@@ -530,8 +554,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--currency_attribute--info_helpers"></a>
-### Nested Schema for `attribute.currency_attribute.info_helpers`
+<a id="nestedatt--currency_attribute--info_helpers"></a>
+### Nested Schema for `currency_attribute.info_helpers`
 
 Read-Only:
 
@@ -546,8 +570,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--currency_attribute--settings_flag"></a>
-### Nested Schema for `attribute.currency_attribute.settings_flag`
+<a id="nestedatt--currency_attribute--settings_flag"></a>
+### Nested Schema for `currency_attribute.settings_flag`
 
 Read-Only:
 
@@ -556,13 +580,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--date_attribute"></a>
-### Nested Schema for `attribute.date_attribute`
+<a id="nestedatt--date_attribute"></a>
+### Nested Schema for `date_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--date_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -573,7 +598,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--date_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--date_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -587,18 +612,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--date_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["date", "datetime"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--date_attribute--constraints"></a>
-### Nested Schema for `attribute.date_attribute.constraints`
+<a id="nestedatt--date_attribute--constraints"></a>
+### Nested Schema for `date_attribute.constraints`
 
 
-<a id="nestedatt--attribute--date_attribute--info_helpers"></a>
-### Nested Schema for `attribute.date_attribute.info_helpers`
+<a id="nestedatt--date_attribute--info_helpers"></a>
+### Nested Schema for `date_attribute.info_helpers`
 
 Read-Only:
 
@@ -613,8 +638,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--date_attribute--settings_flag"></a>
-### Nested Schema for `attribute.date_attribute.settings_flag`
+<a id="nestedatt--date_attribute--settings_flag"></a>
+### Nested Schema for `date_attribute.settings_flag`
 
 Read-Only:
 
@@ -623,14 +648,15 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--file_attribute"></a>
-### Nested Schema for `attribute.file_attribute`
+<a id="nestedatt--file_attribute"></a>
+### Nested Schema for `file_attribute`
 
 Read-Only:
 
 - `allowed_extensions` (List of String) List of file extensions (without the dot suffix)
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--file_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--file_attribute--constraints))
 - `default_access_control` (String) must be one of ["public-read", "private"]
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
@@ -645,7 +671,7 @@ This description should be set through the platform locales in the form: `file.{
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--file_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--file_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `multiple` (Boolean)
@@ -660,18 +686,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--file_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--file_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["image", "file"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--file_attribute--constraints"></a>
-### Nested Schema for `attribute.file_attribute.constraints`
+<a id="nestedatt--file_attribute--constraints"></a>
+### Nested Schema for `file_attribute.constraints`
 
 
-<a id="nestedatt--attribute--file_attribute--info_helpers"></a>
-### Nested Schema for `attribute.file_attribute.info_helpers`
+<a id="nestedatt--file_attribute--info_helpers"></a>
+### Nested Schema for `file_attribute.info_helpers`
 
 Read-Only:
 
@@ -686,8 +712,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--file_attribute--settings_flag"></a>
-### Nested Schema for `attribute.file_attribute.settings_flag`
+<a id="nestedatt--file_attribute--settings_flag"></a>
+### Nested Schema for `file_attribute.settings_flag`
 
 Read-Only:
 
@@ -696,13 +722,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--internal_attribute"></a>
-### Nested Schema for `attribute.internal_attribute`
+<a id="nestedatt--internal_attribute"></a>
+### Nested Schema for `internal_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--internal_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -713,7 +740,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--internal_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--internal_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -727,18 +754,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--internal_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["internal"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--internal_attribute--constraints"></a>
-### Nested Schema for `attribute.internal_attribute.constraints`
+<a id="nestedatt--internal_attribute--constraints"></a>
+### Nested Schema for `internal_attribute.constraints`
 
 
-<a id="nestedatt--attribute--internal_attribute--info_helpers"></a>
-### Nested Schema for `attribute.internal_attribute.info_helpers`
+<a id="nestedatt--internal_attribute--info_helpers"></a>
+### Nested Schema for `internal_attribute.info_helpers`
 
 Read-Only:
 
@@ -753,8 +780,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--internal_attribute--settings_flag"></a>
-### Nested Schema for `attribute.internal_attribute.settings_flag`
+<a id="nestedatt--internal_attribute--settings_flag"></a>
+### Nested Schema for `internal_attribute.settings_flag`
 
 Read-Only:
 
@@ -763,13 +790,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--internal_user_attribute"></a>
-### Nested Schema for `attribute.internal_user_attribute`
+<a id="nestedatt--internal_user_attribute"></a>
+### Nested Schema for `internal_user_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--internal_user_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -780,7 +808,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--internal_user_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--internal_user_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -794,18 +822,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--internal_user_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["internal_user"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--internal_user_attribute--constraints"></a>
-### Nested Schema for `attribute.internal_user_attribute.constraints`
+<a id="nestedatt--internal_user_attribute--constraints"></a>
+### Nested Schema for `internal_user_attribute.constraints`
 
 
-<a id="nestedatt--attribute--internal_user_attribute--info_helpers"></a>
-### Nested Schema for `attribute.internal_user_attribute.info_helpers`
+<a id="nestedatt--internal_user_attribute--info_helpers"></a>
+### Nested Schema for `internal_user_attribute.info_helpers`
 
 Read-Only:
 
@@ -820,8 +848,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--internal_user_attribute--settings_flag"></a>
-### Nested Schema for `attribute.internal_user_attribute.settings_flag`
+<a id="nestedatt--internal_user_attribute--settings_flag"></a>
+### Nested Schema for `internal_user_attribute.settings_flag`
 
 Read-Only:
 
@@ -830,13 +858,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--invitation_email_attribute"></a>
-### Nested Schema for `attribute.invitation_email_attribute`
+<a id="nestedatt--invitation_email_attribute"></a>
+### Nested Schema for `invitation_email_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--invitation_email_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -847,7 +876,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--invitation_email_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--invitation_email_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -861,18 +890,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--invitation_email_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["invitation_email"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--invitation_email_attribute--constraints"></a>
-### Nested Schema for `attribute.invitation_email_attribute.constraints`
+<a id="nestedatt--invitation_email_attribute--constraints"></a>
+### Nested Schema for `invitation_email_attribute.constraints`
 
 
-<a id="nestedatt--attribute--invitation_email_attribute--info_helpers"></a>
-### Nested Schema for `attribute.invitation_email_attribute.info_helpers`
+<a id="nestedatt--invitation_email_attribute--info_helpers"></a>
+### Nested Schema for `invitation_email_attribute.info_helpers`
 
 Read-Only:
 
@@ -887,8 +916,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--invitation_email_attribute--settings_flag"></a>
-### Nested Schema for `attribute.invitation_email_attribute.settings_flag`
+<a id="nestedatt--invitation_email_attribute--settings_flag"></a>
+### Nested Schema for `invitation_email_attribute.settings_flag`
 
 Read-Only:
 
@@ -897,13 +926,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--link_attribute"></a>
-### Nested Schema for `attribute.link_attribute`
+<a id="nestedatt--link_attribute"></a>
+### Nested Schema for `link_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--link_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -914,7 +944,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--link_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--link_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -928,18 +958,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--link_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["link"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--link_attribute--constraints"></a>
-### Nested Schema for `attribute.link_attribute.constraints`
+<a id="nestedatt--link_attribute--constraints"></a>
+### Nested Schema for `link_attribute.constraints`
 
 
-<a id="nestedatt--attribute--link_attribute--info_helpers"></a>
-### Nested Schema for `attribute.link_attribute.info_helpers`
+<a id="nestedatt--link_attribute--info_helpers"></a>
+### Nested Schema for `link_attribute.info_helpers`
 
 Read-Only:
 
@@ -954,8 +984,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--link_attribute--settings_flag"></a>
-### Nested Schema for `attribute.link_attribute.settings_flag`
+<a id="nestedatt--link_attribute--settings_flag"></a>
+### Nested Schema for `link_attribute.settings_flag`
 
 Read-Only:
 
@@ -964,15 +994,16 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--multi_select_attribute"></a>
-### Nested Schema for `attribute.multi_select_attribute`
+<a id="nestedatt--multi_select_attribute"></a>
+### Nested Schema for `multi_select_attribute`
 
 Read-Only:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
 - `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--multi_select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--multi_select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
@@ -984,11 +1015,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--multi_select_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--multi_select_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--attribute--multi_select_attribute--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--multi_select_attribute--options))
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -999,18 +1030,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--multi_select_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["multiselect", "checkbox"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--multi_select_attribute--constraints"></a>
-### Nested Schema for `attribute.multi_select_attribute.constraints`
+<a id="nestedatt--multi_select_attribute--constraints"></a>
+### Nested Schema for `multi_select_attribute.constraints`
 
 
-<a id="nestedatt--attribute--multi_select_attribute--info_helpers"></a>
-### Nested Schema for `attribute.multi_select_attribute.info_helpers`
+<a id="nestedatt--multi_select_attribute--info_helpers"></a>
+### Nested Schema for `multi_select_attribute.info_helpers`
 
 Read-Only:
 
@@ -1025,16 +1056,16 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--multi_select_attribute--options"></a>
-### Nested Schema for `attribute.multi_select_attribute.options`
+<a id="nestedatt--multi_select_attribute--options"></a>
+### Nested Schema for `multi_select_attribute.options`
 
 Read-Only:
 
 - `str` (String)
-- `two` (Attributes) (see [below for nested schema](#nestedatt--attribute--multi_select_attribute--options--two))
+- `two` (Attributes) (see [below for nested schema](#nestedatt--multi_select_attribute--options--two))
 
-<a id="nestedatt--attribute--multi_select_attribute--options--two"></a>
-### Nested Schema for `attribute.multi_select_attribute.options.two`
+<a id="nestedatt--multi_select_attribute--options--two"></a>
+### Nested Schema for `multi_select_attribute.options.two`
 
 Read-Only:
 
@@ -1043,8 +1074,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--multi_select_attribute--settings_flag"></a>
-### Nested Schema for `attribute.multi_select_attribute.settings_flag`
+<a id="nestedatt--multi_select_attribute--settings_flag"></a>
+### Nested Schema for `multi_select_attribute.settings_flag`
 
 Read-Only:
 
@@ -1053,13 +1084,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--number_attribute"></a>
-### Nested Schema for `attribute.number_attribute`
+<a id="nestedatt--number_attribute"></a>
+### Nested Schema for `number_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--number_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1071,7 +1103,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--number_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--number_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1085,18 +1117,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--number_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--number_attribute--constraints"></a>
-### Nested Schema for `attribute.number_attribute.constraints`
+<a id="nestedatt--number_attribute--constraints"></a>
+### Nested Schema for `number_attribute.constraints`
 
 
-<a id="nestedatt--attribute--number_attribute--info_helpers"></a>
-### Nested Schema for `attribute.number_attribute.info_helpers`
+<a id="nestedatt--number_attribute--info_helpers"></a>
+### Nested Schema for `number_attribute.info_helpers`
 
 Read-Only:
 
@@ -1111,8 +1143,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--number_attribute--settings_flag"></a>
-### Nested Schema for `attribute.number_attribute.settings_flag`
+<a id="nestedatt--number_attribute--settings_flag"></a>
+### Nested Schema for `number_attribute.settings_flag`
 
 Read-Only:
 
@@ -1121,13 +1153,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--ordered_list_attribute"></a>
-### Nested Schema for `attribute.ordered_list_attribute`
+<a id="nestedatt--ordered_list_attribute"></a>
+### Nested Schema for `ordered_list_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--ordered_list_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1138,7 +1171,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--ordered_list_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--ordered_list_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1152,18 +1185,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--ordered_list_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["ordered_list"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--ordered_list_attribute--constraints"></a>
-### Nested Schema for `attribute.ordered_list_attribute.constraints`
+<a id="nestedatt--ordered_list_attribute--constraints"></a>
+### Nested Schema for `ordered_list_attribute.constraints`
 
 
-<a id="nestedatt--attribute--ordered_list_attribute--info_helpers"></a>
-### Nested Schema for `attribute.ordered_list_attribute.info_helpers`
+<a id="nestedatt--ordered_list_attribute--info_helpers"></a>
+### Nested Schema for `ordered_list_attribute.info_helpers`
 
 Read-Only:
 
@@ -1178,8 +1211,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--ordered_list_attribute--settings_flag"></a>
-### Nested Schema for `attribute.ordered_list_attribute.settings_flag`
+<a id="nestedatt--ordered_list_attribute--settings_flag"></a>
+### Nested Schema for `ordered_list_attribute.settings_flag`
 
 Read-Only:
 
@@ -1188,13 +1221,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--partner_organisation_attribute"></a>
-### Nested Schema for `attribute.partner_organisation_attribute`
+<a id="nestedatt--partner_organisation_attribute"></a>
+### Nested Schema for `partner_organisation_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--partner_organisation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1205,7 +1239,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--partner_organisation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--partner_organisation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1219,18 +1253,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--partner_organisation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["partner_organisation"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--partner_organisation_attribute--constraints"></a>
-### Nested Schema for `attribute.partner_organisation_attribute.constraints`
+<a id="nestedatt--partner_organisation_attribute--constraints"></a>
+### Nested Schema for `partner_organisation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--partner_organisation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.partner_organisation_attribute.info_helpers`
+<a id="nestedatt--partner_organisation_attribute--info_helpers"></a>
+### Nested Schema for `partner_organisation_attribute.info_helpers`
 
 Read-Only:
 
@@ -1245,8 +1279,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--partner_organisation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.partner_organisation_attribute.settings_flag`
+<a id="nestedatt--partner_organisation_attribute--settings_flag"></a>
+### Nested Schema for `partner_organisation_attribute.settings_flag`
 
 Read-Only:
 
@@ -1255,13 +1289,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--partner_status_attribute"></a>
-### Nested Schema for `attribute.partner_status_attribute`
+<a id="nestedatt--partner_status_attribute"></a>
+### Nested Schema for `partner_status_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--partner_status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1272,7 +1307,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--partner_status_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--partner_status_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1286,18 +1321,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--partner_status_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["partner_status"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--partner_status_attribute--constraints"></a>
-### Nested Schema for `attribute.partner_status_attribute.constraints`
+<a id="nestedatt--partner_status_attribute--constraints"></a>
+### Nested Schema for `partner_status_attribute.constraints`
 
 
-<a id="nestedatt--attribute--partner_status_attribute--info_helpers"></a>
-### Nested Schema for `attribute.partner_status_attribute.info_helpers`
+<a id="nestedatt--partner_status_attribute--info_helpers"></a>
+### Nested Schema for `partner_status_attribute.info_helpers`
 
 Read-Only:
 
@@ -1312,8 +1347,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--partner_status_attribute--settings_flag"></a>
-### Nested Schema for `attribute.partner_status_attribute.settings_flag`
+<a id="nestedatt--partner_status_attribute--settings_flag"></a>
+### Nested Schema for `partner_status_attribute.settings_flag`
 
 Read-Only:
 
@@ -1322,13 +1357,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--payment_method_relation_attribute"></a>
-### Nested Schema for `attribute.payment_method_relation_attribute`
+<a id="nestedatt--payment_method_relation_attribute"></a>
+### Nested Schema for `payment_method_relation_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--payment_method_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1340,7 +1376,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--payment_method_relation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--payment_method_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1354,18 +1390,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--payment_method_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["relation_payment_method"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--payment_method_relation_attribute--constraints"></a>
-### Nested Schema for `attribute.payment_method_relation_attribute.constraints`
+<a id="nestedatt--payment_method_relation_attribute--constraints"></a>
+### Nested Schema for `payment_method_relation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--payment_method_relation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.payment_method_relation_attribute.info_helpers`
+<a id="nestedatt--payment_method_relation_attribute--info_helpers"></a>
+### Nested Schema for `payment_method_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -1380,8 +1416,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--payment_method_relation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.payment_method_relation_attribute.settings_flag`
+<a id="nestedatt--payment_method_relation_attribute--settings_flag"></a>
+### Nested Schema for `payment_method_relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -1390,13 +1426,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--purpose_attribute"></a>
-### Nested Schema for `attribute.purpose_attribute`
+<a id="nestedatt--purpose_attribute"></a>
+### Nested Schema for `purpose_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--purpose_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
 - `created_at` (String)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
@@ -1408,7 +1445,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String)
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--purpose_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--purpose_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1423,7 +1460,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--purpose_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `slug` (String) URL-friendly identifier for the classification
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1431,12 +1468,12 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `updated_at` (String)
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--purpose_attribute--constraints"></a>
-### Nested Schema for `attribute.purpose_attribute.constraints`
+<a id="nestedatt--purpose_attribute--constraints"></a>
+### Nested Schema for `purpose_attribute.constraints`
 
 
-<a id="nestedatt--attribute--purpose_attribute--info_helpers"></a>
-### Nested Schema for `attribute.purpose_attribute.info_helpers`
+<a id="nestedatt--purpose_attribute--info_helpers"></a>
+### Nested Schema for `purpose_attribute.info_helpers`
 
 Read-Only:
 
@@ -1451,8 +1488,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--purpose_attribute--settings_flag"></a>
-### Nested Schema for `attribute.purpose_attribute.settings_flag`
+<a id="nestedatt--purpose_attribute--settings_flag"></a>
+### Nested Schema for `purpose_attribute.settings_flag`
 
 Read-Only:
 
@@ -1461,16 +1498,17 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--relation_attribute"></a>
-### Nested Schema for `attribute.relation_attribute`
+<a id="nestedatt--relation_attribute"></a>
+### Nested Schema for `relation_attribute`
 
 Read-Only:
 
-- `actions` (Attributes List) (see [below for nested schema](#nestedatt--attribute--relation_attribute--actions))
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions))
 - `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
 - `allowed_schemas` (List of String)
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode.
@@ -1486,7 +1524,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String)
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--relation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1504,15 +1542,15 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--attribute--relation_attribute--summary_fields))
+- `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--summary_fields))
 - `type` (String) must be one of ["relation"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--relation_attribute--actions"></a>
-### Nested Schema for `attribute.relation_attribute.actions`
+<a id="nestedatt--relation_attribute--actions"></a>
+### Nested Schema for `relation_attribute.actions`
 
 Read-Only:
 
@@ -1528,27 +1566,27 @@ must be one of ["add_existing", "create_new", "create_from_existing"]
 - `default` (Boolean) Sets the action as the default action, visible as the main action button.
 - `feature_flag` (String) Name of the feature flag that enables this action
 - `label` (String) The action label or action translation key (i18n)
-- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--attribute--relation_attribute--actions--new_entity_item))
-- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--relation_attribute--actions--settings_flag))
+- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item))
+- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--relation_attribute--actions--settings_flag))
 
-<a id="nestedatt--attribute--relation_attribute--actions--new_entity_item"></a>
-### Nested Schema for `attribute.relation_attribute.actions.settings_flag`
+<a id="nestedatt--relation_attribute--actions--new_entity_item"></a>
+### Nested Schema for `relation_attribute.actions.new_entity_item`
 
 Read-Only:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attribute--relation_attribute--actions--settings_flag--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `created_at` (String)
 - `id` (String)
 - `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attribute--relation_attribute--actions--settings_flag--owners))
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
 - `schema` (String) URL-friendly identifier for the entity schema
 - `tags` (List of String)
 - `title` (String) Title of entity
 - `updated_at` (String)
 
-<a id="nestedatt--attribute--relation_attribute--actions--settings_flag--acl"></a>
-### Nested Schema for `attribute.relation_attribute.actions.settings_flag.acl`
+<a id="nestedatt--relation_attribute--actions--new_entity_item--acl"></a>
+### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
 
 Read-Only:
 
@@ -1558,8 +1596,8 @@ Read-Only:
 - `view` (List of String)
 
 
-<a id="nestedatt--attribute--relation_attribute--actions--settings_flag--owners"></a>
-### Nested Schema for `attribute.relation_attribute.actions.settings_flag.owners`
+<a id="nestedatt--relation_attribute--actions--new_entity_item--owners"></a>
+### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
 
 Read-Only:
 
@@ -1568,8 +1606,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--relation_attribute--actions--settings_flag"></a>
-### Nested Schema for `attribute.relation_attribute.actions.settings_flag`
+<a id="nestedatt--relation_attribute--actions--settings_flag"></a>
+### Nested Schema for `relation_attribute.actions.settings_flag`
 
 Read-Only:
 
@@ -1578,12 +1616,12 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--relation_attribute--constraints"></a>
-### Nested Schema for `attribute.relation_attribute.constraints`
+<a id="nestedatt--relation_attribute--constraints"></a>
+### Nested Schema for `relation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--relation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.relation_attribute.info_helpers`
+<a id="nestedatt--relation_attribute--info_helpers"></a>
+### Nested Schema for `relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -1598,8 +1636,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--relation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.relation_attribute.settings_flag`
+<a id="nestedatt--relation_attribute--settings_flag"></a>
+### Nested Schema for `relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -1607,16 +1645,16 @@ Read-Only:
 - `name` (String) The name of the organization setting to check
 
 
-<a id="nestedatt--attribute--relation_attribute--summary_fields"></a>
-### Nested Schema for `attribute.relation_attribute.summary_fields`
+<a id="nestedatt--relation_attribute--summary_fields"></a>
+### Nested Schema for `relation_attribute.summary_fields`
 
 Read-Only:
 
 - `str` (String)
-- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--attribute--relation_attribute--summary_fields--summary_field))
+- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--relation_attribute--summary_fields--summary_field))
 
-<a id="nestedatt--attribute--relation_attribute--summary_fields--summary_field"></a>
-### Nested Schema for `attribute.relation_attribute.summary_fields.summary_field`
+<a id="nestedatt--relation_attribute--summary_fields--summary_field"></a>
+### Nested Schema for `relation_attribute.summary_fields.summary_field`
 
 Read-Only:
 
@@ -1626,13 +1664,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--repeatable_attribute"></a>
-### Nested Schema for `attribute.repeatable_attribute`
+<a id="nestedatt--repeatable_attribute"></a>
+### Nested Schema for `repeatable_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--repeatable_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
@@ -1645,7 +1684,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--repeatable_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--repeatable_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1661,18 +1700,18 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean)
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--repeatable_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--repeatable_attribute--constraints"></a>
-### Nested Schema for `attribute.repeatable_attribute.constraints`
+<a id="nestedatt--repeatable_attribute--constraints"></a>
+### Nested Schema for `repeatable_attribute.constraints`
 
 
-<a id="nestedatt--attribute--repeatable_attribute--info_helpers"></a>
-### Nested Schema for `attribute.repeatable_attribute.info_helpers`
+<a id="nestedatt--repeatable_attribute--info_helpers"></a>
+### Nested Schema for `repeatable_attribute.info_helpers`
 
 Read-Only:
 
@@ -1687,8 +1726,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--repeatable_attribute--settings_flag"></a>
-### Nested Schema for `attribute.repeatable_attribute.settings_flag`
+<a id="nestedatt--repeatable_attribute--settings_flag"></a>
+### Nested Schema for `repeatable_attribute.settings_flag`
 
 Read-Only:
 
@@ -1697,14 +1736,15 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--select_attribute"></a>
-### Nested Schema for `attribute.select_attribute`
+<a id="nestedatt--select_attribute"></a>
+### Nested Schema for `select_attribute`
 
 Read-Only:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1715,11 +1755,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--select_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--select_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--attribute--select_attribute--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--select_attribute--options))
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -1730,18 +1770,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--select_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["select", "radio"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--select_attribute--constraints"></a>
-### Nested Schema for `attribute.select_attribute.constraints`
+<a id="nestedatt--select_attribute--constraints"></a>
+### Nested Schema for `select_attribute.constraints`
 
 
-<a id="nestedatt--attribute--select_attribute--info_helpers"></a>
-### Nested Schema for `attribute.select_attribute.info_helpers`
+<a id="nestedatt--select_attribute--info_helpers"></a>
+### Nested Schema for `select_attribute.info_helpers`
 
 Read-Only:
 
@@ -1756,16 +1796,16 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--select_attribute--options"></a>
-### Nested Schema for `attribute.select_attribute.options`
+<a id="nestedatt--select_attribute--options"></a>
+### Nested Schema for `select_attribute.options`
 
 Read-Only:
 
-- `one` (Attributes) (see [below for nested schema](#nestedatt--attribute--select_attribute--options--one))
+- `one` (Attributes) (see [below for nested schema](#nestedatt--select_attribute--options--one))
 - `str` (String)
 
-<a id="nestedatt--attribute--select_attribute--options--one"></a>
-### Nested Schema for `attribute.select_attribute.options.str`
+<a id="nestedatt--select_attribute--options--one"></a>
+### Nested Schema for `select_attribute.options.one`
 
 Read-Only:
 
@@ -1774,8 +1814,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--select_attribute--settings_flag"></a>
-### Nested Schema for `attribute.select_attribute.settings_flag`
+<a id="nestedatt--select_attribute--settings_flag"></a>
+### Nested Schema for `select_attribute.settings_flag`
 
 Read-Only:
 
@@ -1784,13 +1824,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--sequence_attribute"></a>
-### Nested Schema for `attribute.sequence_attribute`
+<a id="nestedatt--sequence_attribute"></a>
+### Nested Schema for `sequence_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--sequence_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1801,7 +1842,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--sequence_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--sequence_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1816,19 +1857,19 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--sequence_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--sequence_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `start_number` (Number)
 - `type` (String) must be one of ["sequence"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--sequence_attribute--constraints"></a>
-### Nested Schema for `attribute.sequence_attribute.constraints`
+<a id="nestedatt--sequence_attribute--constraints"></a>
+### Nested Schema for `sequence_attribute.constraints`
 
 
-<a id="nestedatt--attribute--sequence_attribute--info_helpers"></a>
-### Nested Schema for `attribute.sequence_attribute.info_helpers`
+<a id="nestedatt--sequence_attribute--info_helpers"></a>
+### Nested Schema for `sequence_attribute.info_helpers`
 
 Read-Only:
 
@@ -1843,8 +1884,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--sequence_attribute--settings_flag"></a>
-### Nested Schema for `attribute.sequence_attribute.settings_flag`
+<a id="nestedatt--sequence_attribute--settings_flag"></a>
+### Nested Schema for `sequence_attribute.settings_flag`
 
 Read-Only:
 
@@ -1853,13 +1894,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--status_attribute"></a>
-### Nested Schema for `attribute.status_attribute`
+<a id="nestedatt--status_attribute"></a>
+### Nested Schema for `status_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1870,11 +1912,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--status_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--status_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--attribute--status_attribute--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--status_attribute--options))
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -1885,18 +1927,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--status_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["status"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--status_attribute--constraints"></a>
-### Nested Schema for `attribute.status_attribute.constraints`
+<a id="nestedatt--status_attribute--constraints"></a>
+### Nested Schema for `status_attribute.constraints`
 
 
-<a id="nestedatt--attribute--status_attribute--info_helpers"></a>
-### Nested Schema for `attribute.status_attribute.info_helpers`
+<a id="nestedatt--status_attribute--info_helpers"></a>
+### Nested Schema for `status_attribute.info_helpers`
 
 Read-Only:
 
@@ -1911,16 +1953,16 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--status_attribute--options"></a>
-### Nested Schema for `attribute.status_attribute.options`
+<a id="nestedatt--status_attribute--options"></a>
+### Nested Schema for `status_attribute.options`
 
 Read-Only:
 
 - `str` (String)
-- `two` (Attributes) (see [below for nested schema](#nestedatt--attribute--status_attribute--options--two))
+- `two` (Attributes) (see [below for nested schema](#nestedatt--status_attribute--options--two))
 
-<a id="nestedatt--attribute--status_attribute--options--two"></a>
-### Nested Schema for `attribute.status_attribute.options.two`
+<a id="nestedatt--status_attribute--options--two"></a>
+### Nested Schema for `status_attribute.options.two`
 
 Read-Only:
 
@@ -1929,8 +1971,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--status_attribute--settings_flag"></a>
-### Nested Schema for `attribute.status_attribute.settings_flag`
+<a id="nestedatt--status_attribute--settings_flag"></a>
+### Nested Schema for `status_attribute.settings_flag`
 
 Read-Only:
 
@@ -1939,13 +1981,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--tags_attribute"></a>
-### Nested Schema for `attribute.tags_attribute`
+<a id="nestedatt--tags_attribute"></a>
+### Nested Schema for `tags_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--tags_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -1956,7 +1999,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--tags_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--tags_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `name` (String)
@@ -1971,19 +2014,19 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--tags_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--tags_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `suggestions` (List of String)
 - `type` (String) must be one of ["tags"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--tags_attribute--constraints"></a>
-### Nested Schema for `attribute.tags_attribute.constraints`
+<a id="nestedatt--tags_attribute--constraints"></a>
+### Nested Schema for `tags_attribute.constraints`
 
 
-<a id="nestedatt--attribute--tags_attribute--info_helpers"></a>
-### Nested Schema for `attribute.tags_attribute.info_helpers`
+<a id="nestedatt--tags_attribute--info_helpers"></a>
+### Nested Schema for `tags_attribute.info_helpers`
 
 Read-Only:
 
@@ -1998,8 +2041,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--tags_attribute--settings_flag"></a>
-### Nested Schema for `attribute.tags_attribute.settings_flag`
+<a id="nestedatt--tags_attribute--settings_flag"></a>
+### Nested Schema for `tags_attribute.settings_flag`
 
 Read-Only:
 
@@ -2008,13 +2051,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--text_attribute"></a>
-### Nested Schema for `attribute.text_attribute`
+<a id="nestedatt--text_attribute"></a>
+### Nested Schema for `text_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--text_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -2025,7 +2069,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--text_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--text_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `multiline` (Boolean)
@@ -2040,18 +2084,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--text_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["string"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--text_attribute--constraints"></a>
-### Nested Schema for `attribute.text_attribute.constraints`
+<a id="nestedatt--text_attribute--constraints"></a>
+### Nested Schema for `text_attribute.constraints`
 
 
-<a id="nestedatt--attribute--text_attribute--info_helpers"></a>
-### Nested Schema for `attribute.text_attribute.info_helpers`
+<a id="nestedatt--text_attribute--info_helpers"></a>
+### Nested Schema for `text_attribute.info_helpers`
 
 Read-Only:
 
@@ -2066,8 +2110,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--text_attribute--settings_flag"></a>
-### Nested Schema for `attribute.text_attribute.settings_flag`
+<a id="nestedatt--text_attribute--settings_flag"></a>
+### Nested Schema for `text_attribute.settings_flag`
 
 Read-Only:
 
@@ -2076,13 +2120,14 @@ Read-Only:
 
 
 
-<a id="nestedatt--attribute--user_relation_attribute"></a>
-### Nested Schema for `attribute.user_relation_attribute`
+<a id="nestedatt--user_relation_attribute"></a>
+### Nested Schema for `user_relation_attribute`
 
 Read-Only:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attribute--user_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -2093,7 +2138,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attribute--user_relation_attribute--info_helpers))
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--user_relation_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
 - `multiple` (Boolean)
@@ -2108,18 +2153,18 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attribute--user_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["relation_user"]
 - `value_formatter` (String)
 
-<a id="nestedatt--attribute--user_relation_attribute--constraints"></a>
-### Nested Schema for `attribute.user_relation_attribute.constraints`
+<a id="nestedatt--user_relation_attribute--constraints"></a>
+### Nested Schema for `user_relation_attribute.constraints`
 
 
-<a id="nestedatt--attribute--user_relation_attribute--info_helpers"></a>
-### Nested Schema for `attribute.user_relation_attribute.info_helpers`
+<a id="nestedatt--user_relation_attribute--info_helpers"></a>
+### Nested Schema for `user_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -2134,8 +2179,8 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
-<a id="nestedatt--attribute--user_relation_attribute--settings_flag"></a>
-### Nested Schema for `attribute.user_relation_attribute.settings_flag`
+<a id="nestedatt--user_relation_attribute--settings_flag"></a>
+### Nested Schema for `user_relation_attribute.settings_flag`
 
 Read-Only:
 

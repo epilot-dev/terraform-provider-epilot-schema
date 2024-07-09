@@ -46,7 +46,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.AddressRelationAttribute.HideLabel
 			r.AddressRelationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Icon)
 			r.Icon = r.AddressRelationAttribute.Icon
-			r.AddressRelationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ID)
+			r.AddressRelationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ID)
 			r.ID = r.AddressRelationAttribute.ID
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.InfoHelpers == nil {
 				r.AddressRelationAttribute.InfoHelpers = nil
@@ -137,7 +137,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.AutomationAttribute.HideLabel
 			r.AutomationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Icon)
 			r.Icon = r.AutomationAttribute.Icon
-			r.AutomationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDAutomationAttribute.ID)
+			r.AutomationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ID)
 			r.ID = r.AutomationAttribute.ID
 			if resp.AttributeWithCompositeIDAutomationAttribute.InfoHelpers == nil {
 				r.AutomationAttribute.InfoHelpers = nil
@@ -228,7 +228,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.BooleanAttribute.HideLabel
 			r.BooleanAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Icon)
 			r.Icon = r.BooleanAttribute.Icon
-			r.BooleanAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDBooleanAttribute.ID)
+			r.BooleanAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ID)
 			r.ID = r.BooleanAttribute.ID
 			if resp.AttributeWithCompositeIDBooleanAttribute.InfoHelpers == nil {
 				r.BooleanAttribute.InfoHelpers = nil
@@ -319,7 +319,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.ComputedAttribute.HideLabel
 			r.ComputedAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Icon)
 			r.Icon = r.ComputedAttribute.Icon
-			r.ComputedAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDComputedAttribute.ID)
+			r.ComputedAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ID)
 			r.ID = r.ComputedAttribute.ID
 			if resp.AttributeWithCompositeIDComputedAttribute.InfoHelpers == nil {
 				r.ComputedAttribute.InfoHelpers = nil
@@ -410,7 +410,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.ConsentAttribute.HideLabel
 			r.ConsentAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Icon)
 			r.Icon = r.ConsentAttribute.Icon
-			r.ConsentAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDConsentAttribute.ID)
+			r.ConsentAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ID)
 			r.ID = r.ConsentAttribute.ID
 			r.ConsentAttribute.Identifiers = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Identifiers {
@@ -502,7 +502,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.CountryAttribute.HideLabel
 			r.CountryAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Icon)
 			r.Icon = r.CountryAttribute.Icon
-			r.CountryAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDCountryAttribute.ID)
+			r.CountryAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ID)
 			r.ID = r.CountryAttribute.ID
 			if resp.AttributeWithCompositeIDCountryAttribute.InfoHelpers == nil {
 				r.CountryAttribute.InfoHelpers = nil
@@ -613,7 +613,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.CurrencyAttribute.HideLabel
 			r.CurrencyAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Icon)
 			r.Icon = r.CurrencyAttribute.Icon
-			r.CurrencyAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDCurrencyAttribute.ID)
+			r.CurrencyAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ID)
 			r.ID = r.CurrencyAttribute.ID
 			if resp.AttributeWithCompositeIDCurrencyAttribute.InfoHelpers == nil {
 				r.CurrencyAttribute.InfoHelpers = nil
@@ -700,7 +700,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.DateAttribute.HideLabel
 			r.DateAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Icon)
 			r.Icon = r.DateAttribute.Icon
-			r.DateAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDDateAttribute.ID)
+			r.DateAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.ID)
 			r.ID = r.DateAttribute.ID
 			if resp.AttributeWithCompositeIDDateAttribute.InfoHelpers == nil {
 				r.DateAttribute.InfoHelpers = nil
@@ -802,7 +802,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.FileAttribute.HideLabel
 			r.FileAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Icon)
 			r.Icon = r.FileAttribute.Icon
-			r.FileAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDFileAttribute.ID)
+			r.FileAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.ID)
 			r.ID = r.FileAttribute.ID
 			if resp.AttributeWithCompositeIDFileAttribute.InfoHelpers == nil {
 				r.FileAttribute.InfoHelpers = nil
@@ -890,7 +890,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.InternalAttribute.HideLabel
 			r.InternalAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Icon)
 			r.Icon = r.InternalAttribute.Icon
-			r.InternalAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDInternalAttribute.ID)
+			r.InternalAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ID)
 			r.ID = r.InternalAttribute.ID
 			if resp.AttributeWithCompositeIDInternalAttribute.InfoHelpers == nil {
 				r.InternalAttribute.InfoHelpers = nil
@@ -981,7 +981,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.InternalUserAttribute.HideLabel
 			r.InternalUserAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Icon)
 			r.Icon = r.InternalUserAttribute.Icon
-			r.InternalUserAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDInternalUserAttribute.ID)
+			r.InternalUserAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ID)
 			r.ID = r.InternalUserAttribute.ID
 			if resp.AttributeWithCompositeIDInternalUserAttribute.InfoHelpers == nil {
 				r.InternalUserAttribute.InfoHelpers = nil
@@ -1072,7 +1072,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.InvitationEmailAttribute.HideLabel
 			r.InvitationEmailAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Icon)
 			r.Icon = r.InvitationEmailAttribute.Icon
-			r.InvitationEmailAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ID)
+			r.InvitationEmailAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ID)
 			r.ID = r.InvitationEmailAttribute.ID
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.InfoHelpers == nil {
 				r.InvitationEmailAttribute.InfoHelpers = nil
@@ -1163,7 +1163,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.LinkAttribute.HideLabel
 			r.LinkAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Icon)
 			r.Icon = r.LinkAttribute.Icon
-			r.LinkAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDLinkAttribute.ID)
+			r.LinkAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ID)
 			r.ID = r.LinkAttribute.ID
 			if resp.AttributeWithCompositeIDLinkAttribute.InfoHelpers == nil {
 				r.LinkAttribute.InfoHelpers = nil
@@ -1257,7 +1257,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.MultiSelectAttribute.HideLabel
 			r.MultiSelectAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Icon)
 			r.Icon = r.MultiSelectAttribute.Icon
-			r.MultiSelectAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ID)
+			r.MultiSelectAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ID)
 			r.ID = r.MultiSelectAttribute.ID
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.InfoHelpers == nil {
 				r.MultiSelectAttribute.InfoHelpers = nil
@@ -1370,7 +1370,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.NumberAttribute.HideLabel
 			r.NumberAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Icon)
 			r.Icon = r.NumberAttribute.Icon
-			r.NumberAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDNumberAttribute.ID)
+			r.NumberAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ID)
 			r.ID = r.NumberAttribute.ID
 			if resp.AttributeWithCompositeIDNumberAttribute.InfoHelpers == nil {
 				r.NumberAttribute.InfoHelpers = nil
@@ -1461,7 +1461,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.OrderedListAttribute.HideLabel
 			r.OrderedListAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Icon)
 			r.Icon = r.OrderedListAttribute.Icon
-			r.OrderedListAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDOrderedListAttribute.ID)
+			r.OrderedListAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ID)
 			r.ID = r.OrderedListAttribute.ID
 			if resp.AttributeWithCompositeIDOrderedListAttribute.InfoHelpers == nil {
 				r.OrderedListAttribute.InfoHelpers = nil
@@ -1552,7 +1552,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.PartnerOrganisationAttribute.HideLabel
 			r.PartnerOrganisationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Icon)
 			r.Icon = r.PartnerOrganisationAttribute.Icon
-			r.PartnerOrganisationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ID)
+			r.PartnerOrganisationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ID)
 			r.ID = r.PartnerOrganisationAttribute.ID
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.InfoHelpers == nil {
 				r.PartnerOrganisationAttribute.InfoHelpers = nil
@@ -1643,7 +1643,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.PartnerStatusAttribute.HideLabel
 			r.PartnerStatusAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Icon)
 			r.Icon = r.PartnerStatusAttribute.Icon
-			r.PartnerStatusAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ID)
+			r.PartnerStatusAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ID)
 			r.ID = r.PartnerStatusAttribute.ID
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.InfoHelpers == nil {
 				r.PartnerStatusAttribute.InfoHelpers = nil
@@ -1735,7 +1735,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.PaymentMethodRelationAttribute.HideLabel
 			r.PaymentMethodRelationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Icon)
 			r.Icon = r.PaymentMethodRelationAttribute.Icon
-			r.PaymentMethodRelationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ID)
+			r.PaymentMethodRelationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ID)
 			r.ID = r.PaymentMethodRelationAttribute.ID
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.InfoHelpers == nil {
 				r.PaymentMethodRelationAttribute.InfoHelpers = nil
@@ -1831,7 +1831,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.PurposeAttribute.HideLabel
 			r.PurposeAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Icon)
 			r.Icon = r.PurposeAttribute.Icon
-			r.PurposeAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDPurposeAttribute.ID)
+			r.PurposeAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ID)
 			r.ID = r.PurposeAttribute.ID
 			if resp.AttributeWithCompositeIDPurposeAttribute.InfoHelpers == nil {
 				r.PurposeAttribute.InfoHelpers = nil
@@ -2052,7 +2052,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.RelationAttribute.HideLabel
 			r.RelationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Icon)
 			r.Icon = r.RelationAttribute.Icon
-			r.RelationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDRelationAttribute.ID)
+			r.RelationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ID)
 			r.ID = r.RelationAttribute.ID
 			if resp.AttributeWithCompositeIDRelationAttribute.InfoHelpers == nil {
 				r.RelationAttribute.InfoHelpers = nil
@@ -2183,7 +2183,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.RepeatableAttribute.HideLabel
 			r.RepeatableAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Icon)
 			r.Icon = r.RepeatableAttribute.Icon
-			r.RepeatableAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDRepeatableAttribute.ID)
+			r.RepeatableAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.ID)
 			r.ID = r.RepeatableAttribute.ID
 			if resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers == nil {
 				r.RepeatableAttribute.InfoHelpers = nil
@@ -2281,7 +2281,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.SelectAttribute.HideLabel
 			r.SelectAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Icon)
 			r.Icon = r.SelectAttribute.Icon
-			r.SelectAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDSelectAttribute.ID)
+			r.SelectAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ID)
 			r.ID = r.SelectAttribute.ID
 			if resp.AttributeWithCompositeIDSelectAttribute.InfoHelpers == nil {
 				r.SelectAttribute.InfoHelpers = nil
@@ -2393,7 +2393,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.SequenceAttribute.HideLabel
 			r.SequenceAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Icon)
 			r.Icon = r.SequenceAttribute.Icon
-			r.SequenceAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDSequenceAttribute.ID)
+			r.SequenceAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ID)
 			r.ID = r.SequenceAttribute.ID
 			if resp.AttributeWithCompositeIDSequenceAttribute.InfoHelpers == nil {
 				r.SequenceAttribute.InfoHelpers = nil
@@ -2486,7 +2486,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.StatusAttribute.HideLabel
 			r.StatusAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Icon)
 			r.Icon = r.StatusAttribute.Icon
-			r.StatusAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDStatusAttribute.ID)
+			r.StatusAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ID)
 			r.ID = r.StatusAttribute.ID
 			if resp.AttributeWithCompositeIDStatusAttribute.InfoHelpers == nil {
 				r.StatusAttribute.InfoHelpers = nil
@@ -2598,7 +2598,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.TagsAttribute.HideLabel
 			r.TagsAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Icon)
 			r.Icon = r.TagsAttribute.Icon
-			r.TagsAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDTagsAttribute.ID)
+			r.TagsAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ID)
 			r.ID = r.TagsAttribute.ID
 			if resp.AttributeWithCompositeIDTagsAttribute.InfoHelpers == nil {
 				r.TagsAttribute.InfoHelpers = nil
@@ -2697,7 +2697,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.TextAttribute.HideLabel
 			r.TextAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Icon)
 			r.Icon = r.TextAttribute.Icon
-			r.TextAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDTextAttribute.ID)
+			r.TextAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.ID)
 			r.ID = r.TextAttribute.ID
 			if resp.AttributeWithCompositeIDTextAttribute.InfoHelpers == nil {
 				r.TextAttribute.InfoHelpers = nil
@@ -2789,7 +2789,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.HideLabel = r.UserRelationAttribute.HideLabel
 			r.UserRelationAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Icon)
 			r.Icon = r.UserRelationAttribute.Icon
-			r.UserRelationAttribute.ID = types.StringValue(resp.AttributeWithCompositeIDUserRelationAttribute.ID)
+			r.UserRelationAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ID)
 			r.ID = r.UserRelationAttribute.ID
 			if resp.AttributeWithCompositeIDUserRelationAttribute.InfoHelpers == nil {
 				r.UserRelationAttribute.InfoHelpers = nil

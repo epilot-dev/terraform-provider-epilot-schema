@@ -90,7 +90,7 @@ func (e *PartnerOrganisationAttributeAttributeWithCompositeIDType) UnmarshalJSON
 // AttributeWithCompositeIDPartnerOrganisationAttribute - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -152,9 +152,9 @@ func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) UnmarshalJSON(dat
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -427,7 +427,7 @@ func (e *PurposeAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDPurposeAttribute - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttribute struct {
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -494,9 +494,9 @@ func (a *AttributeWithCompositeIDPurposeAttribute) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetID() string {
+func (o *AttributeWithCompositeIDPurposeAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -798,7 +798,7 @@ func (e *InternalUserAttributeAttributeWithCompositeIDType) UnmarshalJSON(data [
 // AttributeWithCompositeIDInternalUserAttribute - Epilot internal user info
 type AttributeWithCompositeIDInternalUserAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -860,9 +860,9 @@ func (a *AttributeWithCompositeIDInternalUserAttribute) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetID() string {
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -1136,7 +1136,7 @@ func (e *AutomationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []b
 // AttributeWithCompositeIDAutomationAttribute - Automation entity
 type AttributeWithCompositeIDAutomationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1198,9 +1198,9 @@ func (a *AttributeWithCompositeIDAutomationAttribute) UnmarshalJSON(data []byte)
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDAutomationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -1474,7 +1474,7 @@ func (e *InvitationEmailAttributeAttributeWithCompositeIDType) UnmarshalJSON(dat
 // AttributeWithCompositeIDInvitationEmailAttribute - Email address for send invitation
 type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1536,9 +1536,9 @@ func (a *AttributeWithCompositeIDInvitationEmailAttribute) UnmarshalJSON(data []
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetID() string {
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -1812,7 +1812,7 @@ func (e *PartnerStatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data 
 // AttributeWithCompositeIDPartnerStatusAttribute - Partner Status
 type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -1874,9 +1874,9 @@ func (a *AttributeWithCompositeIDPartnerStatusAttribute) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetID() string {
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -2150,7 +2150,7 @@ func (e *ComputedAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 // AttributeWithCompositeIDComputedAttribute - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type AttributeWithCompositeIDComputedAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2212,9 +2212,9 @@ func (a *AttributeWithCompositeIDComputedAttribute) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetID() string {
+func (o *AttributeWithCompositeIDComputedAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -2517,7 +2517,7 @@ func (e *FileAttributeDefaultAccessControl) UnmarshalJSON(data []byte) error {
 // AttributeWithCompositeIDFileAttribute - File or Image Attachment
 type AttributeWithCompositeIDFileAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2589,9 +2589,9 @@ func (a *AttributeWithCompositeIDFileAttribute) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetID() string {
+func (o *AttributeWithCompositeIDFileAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -2900,7 +2900,7 @@ func (e *OrderedListAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []
 // AttributeWithCompositeIDOrderedListAttribute - Type of attribute to render N number of ordered fields
 type AttributeWithCompositeIDOrderedListAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -2962,9 +2962,9 @@ func (a *AttributeWithCompositeIDOrderedListAttribute) UnmarshalJSON(data []byte
 	return nil
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetID() string {
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -3238,7 +3238,7 @@ func (e *InternalAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 // AttributeWithCompositeIDInternalAttribute - No UI representation
 type AttributeWithCompositeIDInternalAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3300,9 +3300,9 @@ func (a *AttributeWithCompositeIDInternalAttribute) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetID() string {
+func (o *AttributeWithCompositeIDInternalAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -3576,7 +3576,7 @@ func (e *ConsentAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 // AttributeWithCompositeIDConsentAttribute - Consent Management
 type AttributeWithCompositeIDConsentAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3640,9 +3640,9 @@ func (a *AttributeWithCompositeIDConsentAttribute) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetID() string {
+func (o *AttributeWithCompositeIDConsentAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -3930,7 +3930,7 @@ func (e *NumberAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 // AttributeWithCompositeIDNumberAttribute - Numeric input
 type AttributeWithCompositeIDNumberAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -3993,9 +3993,9 @@ func (a *AttributeWithCompositeIDNumberAttribute) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetID() string {
+func (o *AttributeWithCompositeIDNumberAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -4276,7 +4276,7 @@ func (e *TagsAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 // AttributeWithCompositeIDTagsAttribute - Tags
 type AttributeWithCompositeIDTagsAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -4340,9 +4340,9 @@ func (a *AttributeWithCompositeIDTagsAttribute) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetID() string {
+func (o *AttributeWithCompositeIDTagsAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -4678,7 +4678,7 @@ func (e *RepeatableAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []b
 // AttributeWithCompositeIDRepeatableAttribute - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -4746,9 +4746,9 @@ func (a *AttributeWithCompositeIDRepeatableAttribute) UnmarshalJSON(data []byte)
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetID() string {
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -5127,7 +5127,7 @@ func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
 // AttributeWithCompositeIDCurrencyAttribute - Currency input
 type AttributeWithCompositeIDCurrencyAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5192,9 +5192,9 @@ func (a *AttributeWithCompositeIDCurrencyAttribute) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetID() string {
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -5482,7 +5482,7 @@ func (e *PaymentMethodRelationAttributeAttributeWithCompositeIDType) UnmarshalJS
 // AttributeWithCompositeIDPaymentMethodRelationAttribute - Reference to a payment method attribute of another entity
 type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5545,9 +5545,9 @@ func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) UnmarshalJSON(d
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -5828,7 +5828,7 @@ func (e *AddressRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(dat
 // AttributeWithCompositeIDAddressRelationAttribute - Reference to an address attribute of another entity
 type AttributeWithCompositeIDAddressRelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -5891,9 +5891,9 @@ func (a *AttributeWithCompositeIDAddressRelationAttribute) UnmarshalJSON(data []
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -6174,7 +6174,7 @@ func (e *UserRelationAttributeAttributeWithCompositeIDType) UnmarshalJSON(data [
 // AttributeWithCompositeIDUserRelationAttribute - User Relationship
 type AttributeWithCompositeIDUserRelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -6237,9 +6237,9 @@ func (a *AttributeWithCompositeIDUserRelationAttribute) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -6885,7 +6885,7 @@ func (u RelationAttributeSummaryFields) MarshalJSON() ([]byte, error) {
 // AttributeWithCompositeIDRelationAttribute - Entity Relationship
 type AttributeWithCompositeIDRelationAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -6965,9 +6965,9 @@ func (a *AttributeWithCompositeIDRelationAttribute) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetID() string {
+func (o *AttributeWithCompositeIDRelationAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -7339,7 +7339,7 @@ func (e *SequenceAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 // AttributeWithCompositeIDSequenceAttribute - Sequence of unique identifiers
 type AttributeWithCompositeIDSequenceAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -7404,9 +7404,9 @@ func (a *AttributeWithCompositeIDSequenceAttribute) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetID() string {
+func (o *AttributeWithCompositeIDSequenceAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -7778,7 +7778,7 @@ func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, e
 // AttributeWithCompositeIDStatusAttribute - Status select
 type AttributeWithCompositeIDStatusAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -7841,9 +7841,9 @@ func (a *AttributeWithCompositeIDStatusAttribute) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetID() string {
+func (o *AttributeWithCompositeIDStatusAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -8209,7 +8209,7 @@ func (u MultiSelectAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]by
 // AttributeWithCompositeIDMultiSelectAttribute - Multi Choice Selection
 type AttributeWithCompositeIDMultiSelectAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -8278,9 +8278,9 @@ func (a *AttributeWithCompositeIDMultiSelectAttribute) UnmarshalJSON(data []byte
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetID() string {
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -8667,7 +8667,7 @@ func (u SelectAttributeOptions) MarshalJSON() ([]byte, error) {
 // AttributeWithCompositeIDSelectAttribute - Dropdown select
 type AttributeWithCompositeIDSelectAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -8732,9 +8732,9 @@ func (a *AttributeWithCompositeIDSelectAttribute) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetID() string {
+func (o *AttributeWithCompositeIDSelectAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -9022,7 +9022,7 @@ func (e *BooleanAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 // AttributeWithCompositeIDBooleanAttribute - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9084,9 +9084,9 @@ func (a *AttributeWithCompositeIDBooleanAttribute) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetID() string {
+func (o *AttributeWithCompositeIDBooleanAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -9360,7 +9360,7 @@ func (e *CountryAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 // AttributeWithCompositeIDCountryAttribute - Country picker
 type AttributeWithCompositeIDCountryAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9422,9 +9422,9 @@ func (a *AttributeWithCompositeIDCountryAttribute) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetID() string {
+func (o *AttributeWithCompositeIDCountryAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -9701,7 +9701,7 @@ func (e *DateAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 // AttributeWithCompositeIDDateAttribute - Date or Datetime picker
 type AttributeWithCompositeIDDateAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -9763,9 +9763,9 @@ func (a *AttributeWithCompositeIDDateAttribute) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetID() string {
+func (o *AttributeWithCompositeIDDateAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -10039,7 +10039,7 @@ func (e *LinkAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 // AttributeWithCompositeIDLinkAttribute - Link with title and href
 type AttributeWithCompositeIDLinkAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -10101,9 +10101,9 @@ func (a *AttributeWithCompositeIDLinkAttribute) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetID() string {
+func (o *AttributeWithCompositeIDLinkAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -10377,7 +10377,7 @@ func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
 // AttributeWithCompositeIDTextAttribute - Textarea or text input
 type AttributeWithCompositeIDTextAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -10440,9 +10440,9 @@ func (a *AttributeWithCompositeIDTextAttribute) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetID() string {
+func (o *AttributeWithCompositeIDTextAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -11282,7 +11282,7 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 // AttributeWithCompositeIDPartnerOrganisationAttributeInput - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11343,9 +11343,9 @@ func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) UnmarshalJSO
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -11534,7 +11534,7 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() *P
 
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11600,9 +11600,9 @@ func (a *AttributeWithCompositeIDPurposeAttributeInput) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -11820,7 +11820,7 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttrib
 // AttributeWithCompositeIDInternalUserAttributeInput - Epilot internal user info
 type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -11881,9 +11881,9 @@ func (a *AttributeWithCompositeIDInternalUserAttributeInput) UnmarshalJSON(data 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -12073,7 +12073,7 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() *Internal
 // AttributeWithCompositeIDAutomationAttributeInput - Automation entity
 type AttributeWithCompositeIDAutomationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12134,9 +12134,9 @@ func (a *AttributeWithCompositeIDAutomationAttributeInput) UnmarshalJSON(data []
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -12326,7 +12326,7 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() *Automation
 // AttributeWithCompositeIDInvitationEmailAttributeInput - Email address for send invitation
 type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12387,9 +12387,9 @@ func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) UnmarshalJSON(da
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -12579,7 +12579,7 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() *Invit
 // AttributeWithCompositeIDPartnerStatusAttributeInput - Partner Status
 type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12640,9 +12640,9 @@ func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) UnmarshalJSON(data
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -12832,7 +12832,7 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() *Partner
 // AttributeWithCompositeIDComputedAttributeInput - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type AttributeWithCompositeIDComputedAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -12893,9 +12893,9 @@ func (a *AttributeWithCompositeIDComputedAttributeInput) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -13085,7 +13085,7 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttr
 // AttributeWithCompositeIDFileAttributeInput - File or Image Attachment
 type AttributeWithCompositeIDFileAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13156,9 +13156,9 @@ func (a *AttributeWithCompositeIDFileAttributeInput) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDFileAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -13383,7 +13383,7 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultAccessControl() *
 // AttributeWithCompositeIDOrderedListAttributeInput - Type of attribute to render N number of ordered fields
 type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13444,9 +13444,9 @@ func (a *AttributeWithCompositeIDOrderedListAttributeInput) UnmarshalJSON(data [
 	return nil
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -13636,7 +13636,7 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() *OrderedLi
 // AttributeWithCompositeIDInternalAttributeInput - No UI representation
 type AttributeWithCompositeIDInternalAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13697,9 +13697,9 @@ func (a *AttributeWithCompositeIDInternalAttributeInput) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -13889,7 +13889,7 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() *InternalAttr
 // AttributeWithCompositeIDConsentAttributeInput - Consent Management
 type AttributeWithCompositeIDConsentAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -13952,9 +13952,9 @@ func (a *AttributeWithCompositeIDConsentAttributeInput) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -14158,7 +14158,7 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetIdentifiers() []strin
 // AttributeWithCompositeIDNumberAttributeInput - Numeric input
 type AttributeWithCompositeIDNumberAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14220,9 +14220,9 @@ func (a *AttributeWithCompositeIDNumberAttributeInput) UnmarshalJSON(data []byte
 	return nil
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -14419,7 +14419,7 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetFormat() *string {
 // AttributeWithCompositeIDTagsAttributeInput - Tags
 type AttributeWithCompositeIDTagsAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14482,9 +14482,9 @@ func (a *AttributeWithCompositeIDTagsAttributeInput) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -14688,7 +14688,7 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
 // AttributeWithCompositeIDRepeatableAttributeInput - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -14755,9 +14755,9 @@ func (a *AttributeWithCompositeIDRepeatableAttributeInput) UnmarshalJSON(data []
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -14975,7 +14975,7 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEnableRelationPick
 // AttributeWithCompositeIDCurrencyAttributeInput - Currency input
 type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15039,9 +15039,9 @@ func (a *AttributeWithCompositeIDCurrencyAttributeInput) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -15245,7 +15245,7 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrency() []Currenc
 // AttributeWithCompositeIDPaymentMethodRelationAttributeInput - Reference to a payment method attribute of another entity
 type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15307,9 +15307,9 @@ func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) UnmarshalJ
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -15506,7 +15506,7 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrim
 // AttributeWithCompositeIDAddressRelationAttributeInput - Reference to an address attribute of another entity
 type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15568,9 +15568,9 @@ func (a *AttributeWithCompositeIDAddressRelationAttributeInput) UnmarshalJSON(da
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -15767,7 +15767,7 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() 
 // AttributeWithCompositeIDUserRelationAttributeInput - User Relationship
 type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15829,9 +15829,9 @@ func (a *AttributeWithCompositeIDUserRelationAttributeInput) UnmarshalJSON(data 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -16028,7 +16028,7 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool
 // AttributeWithCompositeIDRelationAttributeInput - Entity Relationship
 type AttributeWithCompositeIDRelationAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16107,9 +16107,9 @@ func (a *AttributeWithCompositeIDRelationAttributeInput) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -16397,7 +16397,7 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetSearchPlaceholder() 
 // AttributeWithCompositeIDSequenceAttributeInput - Sequence of unique identifiers
 type AttributeWithCompositeIDSequenceAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16461,9 +16461,9 @@ func (a *AttributeWithCompositeIDSequenceAttributeInput) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -16667,7 +16667,7 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetStartNumber() *int64
 // AttributeWithCompositeIDStatusAttributeInput - Status select
 type AttributeWithCompositeIDStatusAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16729,9 +16729,9 @@ func (a *AttributeWithCompositeIDStatusAttributeInput) UnmarshalJSON(data []byte
 	return nil
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -16928,7 +16928,7 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []StatusAttr
 // AttributeWithCompositeIDMultiSelectAttributeInput - Multi Choice Selection
 type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -16996,9 +16996,9 @@ func (a *AttributeWithCompositeIDMultiSelectAttributeInput) UnmarshalJSON(data [
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -17216,7 +17216,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowAny() *bool 
 // AttributeWithCompositeIDSelectAttributeInput - Dropdown select
 type AttributeWithCompositeIDSelectAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17280,9 +17280,9 @@ func (a *AttributeWithCompositeIDSelectAttributeInput) UnmarshalJSON(data []byte
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -17486,7 +17486,7 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetAllowAny() *bool {
 // AttributeWithCompositeIDBooleanAttributeInput - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17547,9 +17547,9 @@ func (a *AttributeWithCompositeIDBooleanAttributeInput) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -17739,7 +17739,7 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttrib
 // AttributeWithCompositeIDCountryAttributeInput - Country picker
 type AttributeWithCompositeIDCountryAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -17800,9 +17800,9 @@ func (a *AttributeWithCompositeIDCountryAttributeInput) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -17992,7 +17992,7 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() *CountryAttrib
 // AttributeWithCompositeIDDateAttributeInput - Date or Datetime picker
 type AttributeWithCompositeIDDateAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -18053,9 +18053,9 @@ func (a *AttributeWithCompositeIDDateAttributeInput) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDDateAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -18245,7 +18245,7 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetType() *DateAttributeAtt
 // AttributeWithCompositeIDLinkAttributeInput - Link with title and href
 type AttributeWithCompositeIDLinkAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -18306,9 +18306,9 @@ func (a *AttributeWithCompositeIDLinkAttributeInput) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -18498,7 +18498,7 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() *LinkAttributeAtt
 // AttributeWithCompositeIDTextAttributeInput - Textarea or text input
 type AttributeWithCompositeIDTextAttributeInput struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -18560,9 +18560,9 @@ func (a *AttributeWithCompositeIDTextAttributeInput) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetID() string {
+func (o *AttributeWithCompositeIDTextAttributeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

@@ -88,7 +88,7 @@ func (e *InternalAttributeType) UnmarshalJSON(data []byte) error {
 // InternalAttribute - No UI representation
 type InternalAttribute struct {
 	// ID for the entity attribute
-	ID          string  `json:"id"`
+	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -149,9 +149,9 @@ func (i *InternalAttribute) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *InternalAttribute) GetID() string {
+func (o *InternalAttribute) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
