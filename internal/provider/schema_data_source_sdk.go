@@ -1714,9 +1714,9 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
 					if optionsItem1.One != nil {
-						options3.One = &tfTypes.Two{}
+						options3.One = &tfTypes.One{}
 						options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
-						options3.One.Value = types.StringValue(optionsItem1.One.Value)
+						options3.One.Value = types.StringPointerValue(optionsItem1.One.Value)
 					}
 					if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
 						attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)
@@ -3851,9 +3851,9 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							options10.Str = types.StringPointerValue(optionsItem4.Str)
 						}
 						if optionsItem4.One != nil {
-							options10.One = &tfTypes.Two{}
+							options10.One = &tfTypes.One{}
 							options10.One.Title = types.StringPointerValue(optionsItem4.One.Title)
-							options10.One.Value = types.StringValue(optionsItem4.One.Value)
+							options10.One.Value = types.StringPointerValue(optionsItem4.One.Value)
 						}
 						if optionsCount4+1 > len(attributes3.SelectAttribute.Options) {
 							attributes3.SelectAttribute.Options = append(attributes3.SelectAttribute.Options, options10)

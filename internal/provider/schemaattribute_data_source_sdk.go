@@ -2308,9 +2308,9 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 					options3.Str = types.StringPointerValue(optionsItem1.Str)
 				}
 				if optionsItem1.Options1 != nil {
-					options3.One = &tfTypes.Two{}
+					options3.One = &tfTypes.One{}
 					options3.One.Title = types.StringPointerValue(optionsItem1.Options1.Title)
-					options3.One.Value = types.StringValue(optionsItem1.Options1.Value)
+					options3.One.Value = types.StringPointerValue(optionsItem1.Options1.Value)
 				}
 				if optionsCount1+1 > len(r.SelectAttribute.Options) {
 					r.SelectAttribute.Options = append(r.SelectAttribute.Options, options3)

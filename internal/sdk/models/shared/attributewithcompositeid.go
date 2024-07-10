@@ -8583,13 +8583,13 @@ func (e *SelectAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 }
 
 type Options1 struct {
-	Value string  `json:"value"`
+	Value *string `json:"value,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *Options1) GetValue() string {
+func (o *Options1) GetValue() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Value
 }

@@ -1325,7 +1325,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var options []shared.SelectAttributeOptions = []shared.SelectAttributeOptions{}
 		for _, optionsItem := range r.SelectAttribute.Options {
 			if optionsItem.One != nil {
-				value := optionsItem.One.Value.ValueString()
+				value := new(string)
+				if !optionsItem.One.Value.IsUnknown() && !optionsItem.One.Value.IsNull() {
+					*value = optionsItem.One.Value.ValueString()
+				} else {
+					value = nil
+				}
 				title := new(string)
 				if !optionsItem.One.Title.IsUnknown() && !optionsItem.One.Title.IsNull() {
 					*title = optionsItem.One.Title.ValueString()
@@ -9082,9 +9087,9 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 					options3.Str = types.StringPointerValue(optionsItem1.Str)
 				}
 				if optionsItem1.Options1 != nil {
-					options3.One = &tfTypes.Two{}
+					options3.One = &tfTypes.One{}
 					options3.One.Title = types.StringPointerValue(optionsItem1.Options1.Title)
-					options3.One.Value = types.StringValue(optionsItem1.Options1.Value)
+					options3.One.Value = types.StringPointerValue(optionsItem1.Options1.Value)
 				}
 				if optionsCount1+1 > len(r.SelectAttribute.Options) {
 					r.SelectAttribute.Options = append(r.SelectAttribute.Options, options3)

@@ -6279,12 +6279,8 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 											Optional: true,
 										},
 										"value": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Not Null`,
-											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
-											},
+											Computed: true,
+											Optional: true,
 										},
 									},
 									Validators: []validator.Object{

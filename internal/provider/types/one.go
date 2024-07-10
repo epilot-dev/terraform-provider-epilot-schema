@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type Options struct {
-	Str types.String `tfsdk:"str" tfPlanOnly:"true"`
-	One *One         `tfsdk:"one" tfPlanOnly:"true"`
+type One struct {
+	Title types.String `tfsdk:"title"`
+	Value types.String `tfsdk:"value"`
 }

@@ -1718,9 +1718,9 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 						options3.Str = types.StringPointerValue(optionsItem1.Str)
 					}
 					if optionsItem1.One != nil {
-						options3.One = &tfTypes.Two{}
+						options3.One = &tfTypes.One{}
 						options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
-						options3.One.Value = types.StringValue(optionsItem1.One.Value)
+						options3.One.Value = types.StringPointerValue(optionsItem1.One.Value)
 					}
 					if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
 						attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)

@@ -90,13 +90,13 @@ func (e *SelectAttributeType) UnmarshalJSON(data []byte) error {
 }
 
 type One struct {
-	Value string  `json:"value"`
+	Value *string `json:"value,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *One) GetValue() string {
+func (o *One) GetValue() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Value
 }
