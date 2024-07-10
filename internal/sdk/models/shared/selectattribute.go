@@ -4,7 +4,6 @@ package shared
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
@@ -89,88 +88,6 @@ func (e *SelectAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type One struct {
-	Value string  `json:"value"`
-	Title *string `json:"title,omitempty"`
-}
-
-func (o *One) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-func (o *One) GetTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Title
-}
-
-type OptionsType string
-
-const (
-	OptionsTypeOne OptionsType = "1"
-	OptionsTypeStr OptionsType = "str"
-)
-
-type Options struct {
-	One *One
-	Str *string
-
-	Type OptionsType
-}
-
-func CreateOptionsOne(one One) Options {
-	typ := OptionsTypeOne
-
-	return Options{
-		One:  &one,
-		Type: typ,
-	}
-}
-
-func CreateOptionsStr(str string) Options {
-	typ := OptionsTypeStr
-
-	return Options{
-		Str:  &str,
-		Type: typ,
-	}
-}
-
-func (u *Options) UnmarshalJSON(data []byte) error {
-
-	var one One = One{}
-	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
-		u.One = &one
-		u.Type = OptionsTypeOne
-		return nil
-	}
-
-	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
-		u.Str = &str
-		u.Type = OptionsTypeStr
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Options", string(data))
-}
-
-func (u Options) MarshalJSON() ([]byte, error) {
-	if u.One != nil {
-		return utils.MarshalJSON(u.One, "", true)
-	}
-
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type Options: all fields are null")
-}
-
 // SelectAttribute - Dropdown select
 type SelectAttribute struct {
 	// ID for the entity attribute
@@ -222,7 +139,7 @@ type SelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *SelectAttributeType        `json:"type,omitempty"`
-	Options     []Options                   `json:"options,omitempty"`
+	Options     any                         `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -427,7 +344,7 @@ func (o *SelectAttribute) GetType() *SelectAttributeType {
 	return o.Type
 }
 
-func (o *SelectAttribute) GetOptions() []Options {
+func (o *SelectAttribute) GetOptions() any {
 	if o == nil {
 		return nil
 	}

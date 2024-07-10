@@ -6,5 +6,5 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type Options struct {
 	Str types.String `tfsdk:"str" tfPlanOnly:"true"`
-	One *Two         `tfsdk:"one" tfPlanOnly:"true"`
+	Two *Two         `tfsdk:"two" tfPlanOnly:"true"`
 }

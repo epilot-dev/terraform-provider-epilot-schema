@@ -86,36 +86,36 @@ func (e *CurrencyAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Currency1 - A currency configuration
-type Currency1 struct {
+// One - A currency configuration
+type One struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *Currency1) GetCode() string {
+func (o *One) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *Currency1) GetDescription() string {
+func (o *One) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *Currency1) GetSymbol() string {
+func (o *One) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *Currency1) GetFlag() *string {
+func (o *One) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -125,30 +125,30 @@ func (o *Currency1) GetFlag() *string {
 type CurrencyType string
 
 const (
-	CurrencyTypeCurrency1 CurrencyType = "currency_1"
+	CurrencyTypeOne CurrencyType = "1"
 )
 
 type Currency struct {
-	Currency1 *Currency1
+	One *One
 
 	Type CurrencyType
 }
 
-func CreateCurrencyCurrency1(currency1 Currency1) Currency {
-	typ := CurrencyTypeCurrency1
+func CreateCurrencyOne(one One) Currency {
+	typ := CurrencyTypeOne
 
 	return Currency{
-		Currency1: &currency1,
-		Type:      typ,
+		One:  &one,
+		Type: typ,
 	}
 }
 
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
-	var currency1 Currency1 = Currency1{}
-	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
-		u.Currency1 = &currency1
-		u.Type = CurrencyTypeCurrency1
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+		u.One = &one
+		u.Type = CurrencyTypeOne
 		return nil
 	}
 
@@ -156,8 +156,8 @@ func (u *Currency) UnmarshalJSON(data []byte) error {
 }
 
 func (u Currency) MarshalJSON() ([]byte, error) {
-	if u.Currency1 != nil {
-		return utils.MarshalJSON(u.Currency1, "", true)
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Currency: all fields are null")

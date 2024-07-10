@@ -24,7 +24,7 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	Label                    types.String                         `tfsdk:"label"`
 	Layout                   types.String                         `tfsdk:"layout"`
 	Name                     types.String                         `tfsdk:"name"`
-	Options                  []MultiSelectAttributeOptions        `tfsdk:"options"`
+	Options                  []Options                            `tfsdk:"options"`
 	Order                    types.Int64                          `tfsdk:"order"`
 	Placeholder              types.String                         `tfsdk:"placeholder"`
 	PreviewValueFormatter    types.String                         `tfsdk:"preview_value_formatter"`

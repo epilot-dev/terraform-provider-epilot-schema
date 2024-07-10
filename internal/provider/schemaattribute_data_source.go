@@ -3985,26 +3985,9 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"name": schema.StringAttribute{
 						Computed: true,
 					},
-					"options": schema.ListNestedAttribute{
-						Computed: true,
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"str": schema.StringAttribute{
-									Computed: true,
-								},
-								"one": schema.SingleNestedAttribute{
-									Computed: true,
-									Attributes: map[string]schema.Attribute{
-										"title": schema.StringAttribute{
-											Computed: true,
-										},
-										"value": schema.StringAttribute{
-											Computed: true,
-										},
-									},
-								},
-							},
-						},
+					"options": schema.StringAttribute{
+						Computed:    true,
+						Description: `Parsed as JSON.`,
 					},
 					"order": schema.Int64Attribute{
 						Computed:    true,

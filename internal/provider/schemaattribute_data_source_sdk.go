@@ -579,12 +579,12 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			for currencyCount, currencyItem := range resp.AttributeWithCompositeIDCurrencyAttribute.Currency {
 				var currency1 tfTypes.Currency
-				if currencyItem.CurrencyAttributeCurrency1 != nil {
-					currency1.One = &tfTypes.Currency1{}
-					currency1.One.Code = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Code)
-					currency1.One.Description = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Description)
-					currency1.One.Flag = types.StringPointerValue(currencyItem.CurrencyAttributeCurrency1.Flag)
-					currency1.One.Symbol = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Symbol)
+				if currencyItem.Currency1 != nil {
+					currency1.One = &tfTypes.One{}
+					currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
+					currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
+					currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
+					currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
 				}
 				if currencyCount+1 > len(r.CurrencyAttribute.Currency) {
 					r.CurrencyAttribute.Currency = append(r.CurrencyAttribute.Currency, currency1)
@@ -1274,12 +1274,12 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Layout = r.MultiSelectAttribute.Layout
 			r.MultiSelectAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Name)
 			r.Name = r.MultiSelectAttribute.Name
-			r.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
+			r.MultiSelectAttribute.Options = []tfTypes.Options{}
 			if len(r.MultiSelectAttribute.Options) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.Options) {
 				r.MultiSelectAttribute.Options = r.MultiSelectAttribute.Options[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.Options)]
 			}
 			for optionsCount, optionsItem := range resp.AttributeWithCompositeIDMultiSelectAttribute.Options {
-				var options1 tfTypes.MultiSelectAttributeOptions
+				var options1 tfTypes.Options
 				if optionsItem.Str != nil {
 					options1.Str = types.StringPointerValue(optionsItem.Str)
 				}
@@ -2298,26 +2298,11 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Layout = r.SelectAttribute.Layout
 			r.SelectAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDSelectAttribute.Name)
 			r.Name = r.SelectAttribute.Name
-			r.SelectAttribute.Options = []tfTypes.Options{}
-			if len(r.SelectAttribute.Options) > len(resp.AttributeWithCompositeIDSelectAttribute.Options) {
-				r.SelectAttribute.Options = r.SelectAttribute.Options[:len(resp.AttributeWithCompositeIDSelectAttribute.Options)]
-			}
-			for optionsCount1, optionsItem1 := range resp.AttributeWithCompositeIDSelectAttribute.Options {
-				var options3 tfTypes.Options
-				if optionsItem1.Str != nil {
-					options3.Str = types.StringPointerValue(optionsItem1.Str)
-				}
-				if optionsItem1.Options1 != nil {
-					options3.One = &tfTypes.Two{}
-					options3.One.Title = types.StringPointerValue(optionsItem1.Options1.Title)
-					options3.One.Value = types.StringValue(optionsItem1.Options1.Value)
-				}
-				if optionsCount1+1 > len(r.SelectAttribute.Options) {
-					r.SelectAttribute.Options = append(r.SelectAttribute.Options, options3)
-				} else {
-					r.SelectAttribute.Options[optionsCount1].Str = options3.Str
-					r.SelectAttribute.Options[optionsCount1].One = options3.One
-				}
+			if resp.AttributeWithCompositeIDSelectAttribute.Options == nil {
+				r.SelectAttribute.Options = types.StringNull()
+			} else {
+				optionsResult, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.Options)
+				r.SelectAttribute.Options = types.StringValue(string(optionsResult))
 			}
 			r.SelectAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDSelectAttribute.Order)
 			r.Order = r.SelectAttribute.Order
@@ -2503,25 +2488,25 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Layout = r.StatusAttribute.Layout
 			r.StatusAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDStatusAttribute.Name)
 			r.Name = r.StatusAttribute.Name
-			r.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
+			r.StatusAttribute.Options = []tfTypes.Options{}
 			if len(r.StatusAttribute.Options) > len(resp.AttributeWithCompositeIDStatusAttribute.Options) {
 				r.StatusAttribute.Options = r.StatusAttribute.Options[:len(resp.AttributeWithCompositeIDStatusAttribute.Options)]
 			}
-			for optionsCount2, optionsItem2 := range resp.AttributeWithCompositeIDStatusAttribute.Options {
-				var options5 tfTypes.MultiSelectAttributeOptions
-				if optionsItem2.Str != nil {
-					options5.Str = types.StringPointerValue(optionsItem2.Str)
+			for optionsCount1, optionsItem1 := range resp.AttributeWithCompositeIDStatusAttribute.Options {
+				var options4 tfTypes.Options
+				if optionsItem1.Str != nil {
+					options4.Str = types.StringPointerValue(optionsItem1.Str)
 				}
-				if optionsItem2.StatusAttributeOptions2 != nil {
-					options5.Two = &tfTypes.Two{}
-					options5.Two.Title = types.StringPointerValue(optionsItem2.StatusAttributeOptions2.Title)
-					options5.Two.Value = types.StringValue(optionsItem2.StatusAttributeOptions2.Value)
+				if optionsItem1.StatusAttributeOptions2 != nil {
+					options4.Two = &tfTypes.Two{}
+					options4.Two.Title = types.StringPointerValue(optionsItem1.StatusAttributeOptions2.Title)
+					options4.Two.Value = types.StringValue(optionsItem1.StatusAttributeOptions2.Value)
 				}
-				if optionsCount2+1 > len(r.StatusAttribute.Options) {
-					r.StatusAttribute.Options = append(r.StatusAttribute.Options, options5)
+				if optionsCount1+1 > len(r.StatusAttribute.Options) {
+					r.StatusAttribute.Options = append(r.StatusAttribute.Options, options4)
 				} else {
-					r.StatusAttribute.Options[optionsCount2].Str = options5.Str
-					r.StatusAttribute.Options[optionsCount2].Two = options5.Two
+					r.StatusAttribute.Options[optionsCount1].Str = options4.Str
+					r.StatusAttribute.Options[optionsCount1].Two = options4.Two
 				}
 			}
 			r.StatusAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDStatusAttribute.Order)

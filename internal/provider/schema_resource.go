@@ -9787,72 +9787,17 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										speakeasy_stringvalidators.NotNull(),
 									},
 								},
-								"options": schema.ListNestedAttribute{
+								"options": schema.StringAttribute{
 									Computed: true,
-									PlanModifiers: []planmodifier.List{
-										listplanmodifier.RequiresReplaceIfConfigured(),
-										speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
+									PlanModifiers: []planmodifier.String{
+										stringplanmodifier.RequiresReplaceIfConfigured(),
+										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
 									},
-									Optional: true,
-									NestedObject: schema.NestedAttributeObject{
-										Attributes: map[string]schema.Attribute{
-											"str": schema.StringAttribute{
-												Computed: true,
-												PlanModifiers: []planmodifier.String{
-													stringplanmodifier.RequiresReplaceIfConfigured(),
-													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-												},
-												Optional:    true,
-												Description: `Requires replacement if changed. `,
-												Validators: []validator.String{
-													stringvalidator.ConflictsWith(path.Expressions{
-														path.MatchRelative().AtParent().AtName("one"),
-													}...),
-												},
-											},
-											"one": schema.SingleNestedAttribute{
-												Computed: true,
-												PlanModifiers: []planmodifier.Object{
-													objectplanmodifier.RequiresReplaceIfConfigured(),
-													speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-												},
-												Optional: true,
-												Attributes: map[string]schema.Attribute{
-													"title": schema.StringAttribute{
-														Computed: true,
-														PlanModifiers: []planmodifier.String{
-															stringplanmodifier.RequiresReplaceIfConfigured(),
-															speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-														},
-														Optional:    true,
-														Description: `Requires replacement if changed. `,
-													},
-													"value": schema.StringAttribute{
-														Computed: true,
-														PlanModifiers: []planmodifier.String{
-															stringplanmodifier.RequiresReplaceIfConfigured(),
-															speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-														},
-														Optional:    true,
-														Description: `Requires replacement if changed. ; Not Null`,
-														Validators: []validator.String{
-															speakeasy_stringvalidators.NotNull(),
-														},
-													},
-												},
-												Description: `Requires replacement if changed. `,
-												Validators: []validator.Object{
-													objectvalidator.ConflictsWith(path.Expressions{
-														path.MatchRelative().AtParent().AtName("str"),
-													}...),
-												},
-											},
-										},
-										Validators: []validator.Object{
-											validators.ExactlyOneChild(),
-										},
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+									Validators: []validator.String{
+										validators.IsValidJSON(),
 									},
-									Description: `Requires replacement if changed. `,
 								},
 								"order": schema.Int64Attribute{
 									Computed: true,
@@ -21848,72 +21793,17 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													speakeasy_stringvalidators.NotNull(),
 												},
 											},
-											"options": schema.ListNestedAttribute{
+											"options": schema.StringAttribute{
 												Computed: true,
-												PlanModifiers: []planmodifier.List{
-													listplanmodifier.RequiresReplaceIfConfigured(),
-													speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
+												PlanModifiers: []planmodifier.String{
+													stringplanmodifier.RequiresReplaceIfConfigured(),
+													speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
 												},
-												Optional: true,
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"str": schema.StringAttribute{
-															Computed: true,
-															PlanModifiers: []planmodifier.String{
-																stringplanmodifier.RequiresReplaceIfConfigured(),
-																speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-															},
-															Optional:    true,
-															Description: `Requires replacement if changed. `,
-															Validators: []validator.String{
-																stringvalidator.ConflictsWith(path.Expressions{
-																	path.MatchRelative().AtParent().AtName("one"),
-																}...),
-															},
-														},
-														"one": schema.SingleNestedAttribute{
-															Computed: true,
-															PlanModifiers: []planmodifier.Object{
-																objectplanmodifier.RequiresReplaceIfConfigured(),
-																speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-															},
-															Optional: true,
-															Attributes: map[string]schema.Attribute{
-																"title": schema.StringAttribute{
-																	Computed: true,
-																	PlanModifiers: []planmodifier.String{
-																		stringplanmodifier.RequiresReplaceIfConfigured(),
-																		speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-																	},
-																	Optional:    true,
-																	Description: `Requires replacement if changed. `,
-																},
-																"value": schema.StringAttribute{
-																	Computed: true,
-																	PlanModifiers: []planmodifier.String{
-																		stringplanmodifier.RequiresReplaceIfConfigured(),
-																		speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-																	},
-																	Optional:    true,
-																	Description: `Requires replacement if changed. ; Not Null`,
-																	Validators: []validator.String{
-																		speakeasy_stringvalidators.NotNull(),
-																	},
-																},
-															},
-															Description: `Requires replacement if changed. `,
-															Validators: []validator.Object{
-																objectvalidator.ConflictsWith(path.Expressions{
-																	path.MatchRelative().AtParent().AtName("str"),
-																}...),
-															},
-														},
-													},
-													Validators: []validator.Object{
-														validators.ExactlyOneChild(),
-													},
+												Optional:    true,
+												Description: `Parsed as JSON.`,
+												Validators: []validator.String{
+													validators.IsValidJSON(),
 												},
-												Description: `Requires replacement if changed. `,
 											},
 											"order": schema.Int64Attribute{
 												Computed: true,

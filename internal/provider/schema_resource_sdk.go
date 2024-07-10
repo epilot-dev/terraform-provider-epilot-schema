@@ -1905,30 +1905,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					typeVar6 = nil
 				}
-				var options1 []shared.Options = []shared.Options{}
-				for _, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					if optionsItem1.One != nil {
-						value1 := optionsItem1.One.Value.ValueString()
-						title1 := new(string)
-						if !optionsItem1.One.Title.IsUnknown() && !optionsItem1.One.Title.IsNull() {
-							*title1 = optionsItem1.One.Title.ValueString()
-						} else {
-							title1 = nil
-						}
-						one := shared.One{
-							Value: value1,
-							Title: title1,
-						}
-						options1 = append(options1, shared.Options{
-							One: &one,
-						})
-					}
-					if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
-						str3 := optionsItem1.Str.ValueString()
-						options1 = append(options1, shared.Options{
-							Str: &str3,
-						})
-					}
+				var options1 interface{}
+				if !attributesItem.SelectAttribute.Options.IsUnknown() && !attributesItem.SelectAttribute.Options.IsNull() {
+					_ = json.Unmarshal([]byte(attributesItem.SelectAttribute.Options.ValueString()), &options1)
 				}
 				allowAny := new(bool)
 				if !attributesItem.SelectAttribute.AllowAny.IsUnknown() && !attributesItem.SelectAttribute.AllowAny.IsNull() {
@@ -2170,27 +2149,27 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					allowExtraOptions = nil
 				}
-				var options2 []shared.MultiSelectAttributeOptions = []shared.MultiSelectAttributeOptions{}
-				for _, optionsItem2 := range attributesItem.MultiSelectAttribute.Options {
-					if !optionsItem2.Str.IsUnknown() && !optionsItem2.Str.IsNull() {
-						str4 := optionsItem2.Str.ValueString()
-						options2 = append(options2, shared.MultiSelectAttributeOptions{
-							Str: &str4,
+				var options2 []shared.Options = []shared.Options{}
+				for _, optionsItem1 := range attributesItem.MultiSelectAttribute.Options {
+					if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
+						str3 := optionsItem1.Str.ValueString()
+						options2 = append(options2, shared.Options{
+							Str: &str3,
 						})
 					}
-					if optionsItem2.Two != nil {
-						value2 := optionsItem2.Two.Value.ValueString()
-						title2 := new(string)
-						if !optionsItem2.Two.Title.IsUnknown() && !optionsItem2.Two.Title.IsNull() {
-							*title2 = optionsItem2.Two.Title.ValueString()
+					if optionsItem1.Two != nil {
+						value1 := optionsItem1.Two.Value.ValueString()
+						title1 := new(string)
+						if !optionsItem1.Two.Title.IsUnknown() && !optionsItem1.Two.Title.IsNull() {
+							*title1 = optionsItem1.Two.Title.ValueString()
 						} else {
-							title2 = nil
+							title1 = nil
 						}
 						two := shared.Two{
-							Value: value2,
-							Title: title2,
+							Value: value1,
+							Title: title1,
 						}
-						options2 = append(options2, shared.MultiSelectAttributeOptions{
+						options2 = append(options2, shared.Options{
 							Two: &two,
 						})
 					}
@@ -2426,24 +2405,24 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar8 = nil
 				}
 				var options3 []shared.StatusAttributeOptions = []shared.StatusAttributeOptions{}
-				for _, optionsItem3 := range attributesItem.StatusAttribute.Options {
-					if !optionsItem3.Str.IsUnknown() && !optionsItem3.Str.IsNull() {
-						str5 := optionsItem3.Str.ValueString()
+				for _, optionsItem2 := range attributesItem.StatusAttribute.Options {
+					if !optionsItem2.Str.IsUnknown() && !optionsItem2.Str.IsNull() {
+						str4 := optionsItem2.Str.ValueString()
 						options3 = append(options3, shared.StatusAttributeOptions{
-							Str: &str5,
+							Str: &str4,
 						})
 					}
-					if optionsItem3.Two != nil {
-						value3 := optionsItem3.Two.Value.ValueString()
-						title3 := new(string)
-						if !optionsItem3.Two.Title.IsUnknown() && !optionsItem3.Two.Title.IsNull() {
-							*title3 = optionsItem3.Two.Title.ValueString()
+					if optionsItem2.Two != nil {
+						value2 := optionsItem2.Two.Value.ValueString()
+						title2 := new(string)
+						if !optionsItem2.Two.Title.IsUnknown() && !optionsItem2.Two.Title.IsNull() {
+							*title2 = optionsItem2.Two.Title.ValueString()
 						} else {
-							title3 = nil
+							title2 = nil
 						}
 						options21 := shared.Options2{
-							Value: value3,
-							Title: title3,
+							Value: value2,
+							Title: title2,
 						}
 						options3 = append(options3, shared.StatusAttributeOptions{
 							Options2: &options21,
@@ -3004,11 +2983,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							})
 						}
 						schema := actionsItem.NewEntityItem.Schema.ValueString()
-						title4 := new(string)
+						title3 := new(string)
 						if !actionsItem.NewEntityItem.Title.IsUnknown() && !actionsItem.NewEntityItem.Title.IsNull() {
-							*title4 = actionsItem.NewEntityItem.Title.ValueString()
+							*title3 = actionsItem.NewEntityItem.Title.ValueString()
 						} else {
-							title4 = nil
+							title3 = nil
 						}
 						var tags []string = []string{}
 						for _, tagsItem := range actionsItem.NewEntityItem.Tags {
@@ -3060,7 +3039,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							Org:                  org,
 							Owners:               owners,
 							Schema:               schema,
-							Title:                title4,
+							Title:                title3,
 							Tags:                 tags,
 							CreatedAt:            createdAt1,
 							UpdatedAt:            updatedAt1,
@@ -3086,9 +3065,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				var summaryFields []shared.SummaryFields = []shared.SummaryFields{}
 				for _, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
 					if !summaryFieldsItem.Str.IsUnknown() && !summaryFieldsItem.Str.IsNull() {
-						str6 := summaryFieldsItem.Str.ValueString()
+						str5 := summaryFieldsItem.Str.ValueString()
 						summaryFields = append(summaryFields, shared.SummaryFields{
-							Str: &str6,
+							Str: &str5,
 						})
 					}
 					if summaryFieldsItem.SummaryField != nil {
@@ -4069,14 +4048,14 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						} else {
 							flag = nil
 						}
-						currency1 := shared.Currency1{
+						one := shared.One{
 							Code:        code,
 							Description: description,
 							Symbol:      symbol,
 							Flag:        flag,
 						}
 						currency = append(currency, shared.Currency{
-							Currency1: &currency1,
+							One: &one,
 						})
 					}
 				}
@@ -4551,8 +4530,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					typeVar16 = nil
 				}
 				var options4 []string = []string{}
-				for _, optionsItem4 := range attributesItem.TagsAttribute.Options {
-					options4 = append(options4, optionsItem4.ValueString())
+				for _, optionsItem3 := range attributesItem.TagsAttribute.Options {
+					options4 = append(options4, optionsItem3.ValueString())
 				}
 				var suggestions []string = []string{}
 				for _, suggestionsItem := range attributesItem.TagsAttribute.Suggestions {
@@ -7316,11 +7295,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				order28 = nil
 			}
-			title5 := new(string)
+			title4 := new(string)
 			if !uiHooksItem.Title.IsUnknown() && !uiHooksItem.Title.IsNull() {
-				*title5 = uiHooksItem.Title.ValueString()
+				*title4 = uiHooksItem.Title.ValueString()
 			} else {
-				title5 = nil
+				title4 = nil
 			}
 			groupExpanded := new(bool)
 			if !uiHooksItem.GroupExpanded.IsUnknown() && !uiHooksItem.GroupExpanded.IsNull() {
@@ -7386,7 +7365,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Hook:                 hook,
 				RenderCondition:      renderCondition29,
 				Order:                order28,
-				Title:                title5,
+				Title:                title4,
 				GroupExpanded:        groupExpanded,
 				Import:               importVar,
 				Component:            component,
@@ -8847,30 +8826,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				typeVar34 = nil
 			}
-			var options5 []shared.Options = []shared.Options{}
-			for _, optionsItem5 := range attributesItem1.SelectAttribute.Options {
-				if optionsItem5.One != nil {
-					value4 := optionsItem5.One.Value.ValueString()
-					title6 := new(string)
-					if !optionsItem5.One.Title.IsUnknown() && !optionsItem5.One.Title.IsNull() {
-						*title6 = optionsItem5.One.Title.ValueString()
-					} else {
-						title6 = nil
-					}
-					eleven := shared.One{
-						Value: value4,
-						Title: title6,
-					}
-					options5 = append(options5, shared.Options{
-						One: &eleven,
-					})
-				}
-				if !optionsItem5.Str.IsUnknown() && !optionsItem5.Str.IsNull() {
-					str7 := optionsItem5.Str.ValueString()
-					options5 = append(options5, shared.Options{
-						Str: &str7,
-					})
-				}
+			var options5 interface{}
+			if !attributesItem1.SelectAttribute.Options.IsUnknown() && !attributesItem1.SelectAttribute.Options.IsNull() {
+				_ = json.Unmarshal([]byte(attributesItem1.SelectAttribute.Options.ValueString()), &options5)
 			}
 			allowAny2 := new(bool)
 			if !attributesItem1.SelectAttribute.AllowAny.IsUnknown() && !attributesItem1.SelectAttribute.AllowAny.IsNull() {
@@ -9112,27 +9070,27 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				allowExtraOptions1 = nil
 			}
-			var options6 []shared.MultiSelectAttributeOptions = []shared.MultiSelectAttributeOptions{}
-			for _, optionsItem6 := range attributesItem1.MultiSelectAttribute.Options {
-				if !optionsItem6.Str.IsUnknown() && !optionsItem6.Str.IsNull() {
-					str8 := optionsItem6.Str.ValueString()
-					options6 = append(options6, shared.MultiSelectAttributeOptions{
-						Str: &str8,
+			var options6 []shared.Options = []shared.Options{}
+			for _, optionsItem4 := range attributesItem1.MultiSelectAttribute.Options {
+				if !optionsItem4.Str.IsUnknown() && !optionsItem4.Str.IsNull() {
+					str6 := optionsItem4.Str.ValueString()
+					options6 = append(options6, shared.Options{
+						Str: &str6,
 					})
 				}
-				if optionsItem6.Two != nil {
-					value5 := optionsItem6.Two.Value.ValueString()
-					title7 := new(string)
-					if !optionsItem6.Two.Title.IsUnknown() && !optionsItem6.Two.Title.IsNull() {
-						*title7 = optionsItem6.Two.Title.ValueString()
+				if optionsItem4.Two != nil {
+					value3 := optionsItem4.Two.Value.ValueString()
+					title5 := new(string)
+					if !optionsItem4.Two.Title.IsUnknown() && !optionsItem4.Two.Title.IsNull() {
+						*title5 = optionsItem4.Two.Title.ValueString()
 					} else {
-						title7 = nil
+						title5 = nil
 					}
 					twentyOne := shared.Two{
-						Value: value5,
-						Title: title7,
+						Value: value3,
+						Title: title5,
 					}
-					options6 = append(options6, shared.MultiSelectAttributeOptions{
+					options6 = append(options6, shared.Options{
 						Two: &twentyOne,
 					})
 				}
@@ -9368,24 +9326,24 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar36 = nil
 			}
 			var options7 []shared.StatusAttributeOptions = []shared.StatusAttributeOptions{}
-			for _, optionsItem7 := range attributesItem1.StatusAttribute.Options {
-				if !optionsItem7.Str.IsUnknown() && !optionsItem7.Str.IsNull() {
-					str9 := optionsItem7.Str.ValueString()
+			for _, optionsItem5 := range attributesItem1.StatusAttribute.Options {
+				if !optionsItem5.Str.IsUnknown() && !optionsItem5.Str.IsNull() {
+					str7 := optionsItem5.Str.ValueString()
 					options7 = append(options7, shared.StatusAttributeOptions{
-						Str: &str9,
+						Str: &str7,
 					})
 				}
-				if optionsItem7.Two != nil {
-					value6 := optionsItem7.Two.Value.ValueString()
-					title8 := new(string)
-					if !optionsItem7.Two.Title.IsUnknown() && !optionsItem7.Two.Title.IsNull() {
-						*title8 = optionsItem7.Two.Title.ValueString()
+				if optionsItem5.Two != nil {
+					value4 := optionsItem5.Two.Value.ValueString()
+					title6 := new(string)
+					if !optionsItem5.Two.Title.IsUnknown() && !optionsItem5.Two.Title.IsNull() {
+						*title6 = optionsItem5.Two.Title.ValueString()
 					} else {
-						title8 = nil
+						title6 = nil
 					}
 					options22 := shared.Options2{
-						Value: value6,
-						Title: title8,
+						Value: value4,
+						Title: title6,
 					}
 					options7 = append(options7, shared.StatusAttributeOptions{
 						Options2: &options22,
@@ -9946,11 +9904,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						})
 					}
 					schema1 := actionsItem1.NewEntityItem.Schema.ValueString()
-					title9 := new(string)
+					title7 := new(string)
 					if !actionsItem1.NewEntityItem.Title.IsUnknown() && !actionsItem1.NewEntityItem.Title.IsNull() {
-						*title9 = actionsItem1.NewEntityItem.Title.ValueString()
+						*title7 = actionsItem1.NewEntityItem.Title.ValueString()
 					} else {
-						title9 = nil
+						title7 = nil
 					}
 					var tags1 []string = []string{}
 					for _, tagsItem1 := range actionsItem1.NewEntityItem.Tags {
@@ -10002,7 +9960,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						Org:                  org1,
 						Owners:               owners1,
 						Schema:               schema1,
-						Title:                title9,
+						Title:                title7,
 						Tags:                 tags1,
 						CreatedAt:            createdAt3,
 						UpdatedAt:            updatedAt3,
@@ -10028,9 +9986,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			var summaryFields1 []shared.SummaryFields = []shared.SummaryFields{}
 			for _, summaryFieldsItem1 := range attributesItem1.RelationAttribute.SummaryFields {
 				if !summaryFieldsItem1.Str.IsUnknown() && !summaryFieldsItem1.Str.IsNull() {
-					str10 := summaryFieldsItem1.Str.ValueString()
+					str8 := summaryFieldsItem1.Str.ValueString()
 					summaryFields1 = append(summaryFields1, shared.SummaryFields{
-						Str: &str10,
+						Str: &str8,
 					})
 				}
 				if summaryFieldsItem1.SummaryField != nil {
@@ -10999,7 +10957,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				currencySelectorOnly1 = nil
 			}
-			var currency2 []shared.Currency = []shared.Currency{}
+			var currency1 []shared.Currency = []shared.Currency{}
 			for _, currencyItem1 := range attributesItem1.CurrencyAttribute.Currency {
 				if currencyItem1.One != nil {
 					code1 := currencyItem1.One.Code.ValueString()
@@ -11011,14 +10969,14 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					} else {
 						flag1 = nil
 					}
-					currency11 := shared.Currency1{
+					eleven := shared.One{
 						Code:        code1,
 						Description: description1,
 						Symbol:      symbol1,
 						Flag:        flag1,
 					}
-					currency2 = append(currency2, shared.Currency{
-						Currency1: &currency11,
+					currency1 = append(currency1, shared.Currency{
+						One: &eleven,
 					})
 				}
 			}
@@ -11051,7 +11009,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers41,
 				Type:                     typeVar42,
 				CurrencySelectorOnly:     currencySelectorOnly1,
-				Currency:                 currency2,
+				Currency:                 currency1,
 			}
 			attributes1 = append(attributes1, shared.Attribute{
 				CurrencyAttribute: &currencyAttribute1,
@@ -11493,8 +11451,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				typeVar44 = nil
 			}
 			var options8 []string = []string{}
-			for _, optionsItem8 := range attributesItem1.TagsAttribute.Options {
-				options8 = append(options8, optionsItem8.ValueString())
+			for _, optionsItem6 := range attributesItem1.TagsAttribute.Options {
+				options8 = append(options8, optionsItem6.ValueString())
 			}
 			var suggestions1 []string = []string{}
 			for _, suggestionsItem1 := range attributesItem1.TagsAttribute.Suggestions {
@@ -14708,12 +14666,12 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.CurrencyAttribute.Currency = []tfTypes.Currency{}
 				for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
 					var currency1 tfTypes.Currency
-					if currencyItem.Currency1 != nil {
-						currency1.One = &tfTypes.Currency1{}
-						currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
-						currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
-						currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
-						currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
+					if currencyItem.One != nil {
+						currency1.One = &tfTypes.One{}
+						currency1.One.Code = types.StringValue(currencyItem.One.Code)
+						currency1.One.Description = types.StringValue(currencyItem.One.Description)
+						currency1.One.Flag = types.StringPointerValue(currencyItem.One.Flag)
+						currency1.One.Symbol = types.StringValue(currencyItem.One.Symbol)
 					}
 					if currencyCount+1 > len(attributes1.CurrencyAttribute.Currency) {
 						attributes1.CurrencyAttribute.Currency = append(attributes1.CurrencyAttribute.Currency, currency1)
@@ -15210,9 +15168,9 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
 				attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
 				attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
-				attributes1.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
+				attributes1.MultiSelectAttribute.Options = []tfTypes.Options{}
 				for optionsCount, optionsItem := range attributesItem.MultiSelectAttribute.Options {
-					var options1 tfTypes.MultiSelectAttributeOptions
+					var options1 tfTypes.Options
 					if optionsItem.Str != nil {
 						options1.Str = types.StringPointerValue(optionsItem.Str)
 					}
@@ -15991,23 +15949,11 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.SelectAttribute.Label = types.StringValue(attributesItem.SelectAttribute.Label)
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
-				attributes1.SelectAttribute.Options = []tfTypes.Options{}
-				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
-					if optionsItem1.Str != nil {
-						options3.Str = types.StringPointerValue(optionsItem1.Str)
-					}
-					if optionsItem1.One != nil {
-						options3.One = &tfTypes.Two{}
-						options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
-						options3.One.Value = types.StringValue(optionsItem1.One.Value)
-					}
-					if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
-						attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)
-					} else {
-						attributes1.SelectAttribute.Options[optionsCount1].Str = options3.Str
-						attributes1.SelectAttribute.Options[optionsCount1].One = options3.One
-					}
+				if attributesItem.SelectAttribute.Options == nil {
+					attributes1.SelectAttribute.Options = types.StringNull()
+				} else {
+					optionsResult, _ := json.Marshal(attributesItem.SelectAttribute.Options)
+					attributes1.SelectAttribute.Options = types.StringValue(string(optionsResult))
 				}
 				attributes1.SelectAttribute.Order = types.Int64PointerValue(attributesItem.SelectAttribute.Order)
 				attributes1.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem.SelectAttribute.Placeholder)
@@ -16141,22 +16087,22 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
 				attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
 				attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
-				attributes1.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-				for optionsCount2, optionsItem2 := range attributesItem.StatusAttribute.Options {
-					var options5 tfTypes.MultiSelectAttributeOptions
-					if optionsItem2.Str != nil {
-						options5.Str = types.StringPointerValue(optionsItem2.Str)
+				attributes1.StatusAttribute.Options = []tfTypes.Options{}
+				for optionsCount1, optionsItem1 := range attributesItem.StatusAttribute.Options {
+					var options4 tfTypes.Options
+					if optionsItem1.Str != nil {
+						options4.Str = types.StringPointerValue(optionsItem1.Str)
 					}
-					if optionsItem2.Options2 != nil {
-						options5.Two = &tfTypes.Two{}
-						options5.Two.Title = types.StringPointerValue(optionsItem2.Options2.Title)
-						options5.Two.Value = types.StringValue(optionsItem2.Options2.Value)
+					if optionsItem1.Options2 != nil {
+						options4.Two = &tfTypes.Two{}
+						options4.Two.Title = types.StringPointerValue(optionsItem1.Options2.Title)
+						options4.Two.Value = types.StringValue(optionsItem1.Options2.Value)
 					}
-					if optionsCount2+1 > len(attributes1.StatusAttribute.Options) {
-						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options5)
+					if optionsCount1+1 > len(attributes1.StatusAttribute.Options) {
+						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options4)
 					} else {
-						attributes1.StatusAttribute.Options[optionsCount2].Str = options5.Str
-						attributes1.StatusAttribute.Options[optionsCount2].Two = options5.Two
+						attributes1.StatusAttribute.Options[optionsCount1].Str = options4.Str
+						attributes1.StatusAttribute.Options[optionsCount1].Two = options4.Two
 					}
 				}
 				attributes1.StatusAttribute.Order = types.Int64PointerValue(attributesItem.StatusAttribute.Order)
@@ -16845,12 +16791,12 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.CurrencyAttribute.Currency = []tfTypes.Currency{}
 					for currencyCount1, currencyItem1 := range attributesItem1.CurrencyAttribute.Currency {
 						var currency3 tfTypes.Currency
-						if currencyItem1.Currency1 != nil {
-							currency3.One = &tfTypes.Currency1{}
-							currency3.One.Code = types.StringValue(currencyItem1.Currency1.Code)
-							currency3.One.Description = types.StringValue(currencyItem1.Currency1.Description)
-							currency3.One.Flag = types.StringPointerValue(currencyItem1.Currency1.Flag)
-							currency3.One.Symbol = types.StringValue(currencyItem1.Currency1.Symbol)
+						if currencyItem1.One != nil {
+							currency3.One = &tfTypes.One{}
+							currency3.One.Code = types.StringValue(currencyItem1.One.Code)
+							currency3.One.Description = types.StringValue(currencyItem1.One.Description)
+							currency3.One.Flag = types.StringPointerValue(currencyItem1.One.Flag)
+							currency3.One.Symbol = types.StringValue(currencyItem1.One.Symbol)
 						}
 						if currencyCount1+1 > len(attributes3.CurrencyAttribute.Currency) {
 							attributes3.CurrencyAttribute.Currency = append(attributes3.CurrencyAttribute.Currency, currency3)
@@ -17347,22 +17293,22 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.MultiSelectAttribute.Label = types.StringValue(attributesItem1.MultiSelectAttribute.Label)
 					attributes3.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem1.MultiSelectAttribute.Layout)
 					attributes3.MultiSelectAttribute.Name = types.StringValue(attributesItem1.MultiSelectAttribute.Name)
-					attributes3.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-					for optionsCount3, optionsItem3 := range attributesItem1.MultiSelectAttribute.Options {
-						var options8 tfTypes.MultiSelectAttributeOptions
-						if optionsItem3.Str != nil {
-							options8.Str = types.StringPointerValue(optionsItem3.Str)
+					attributes3.MultiSelectAttribute.Options = []tfTypes.Options{}
+					for optionsCount2, optionsItem2 := range attributesItem1.MultiSelectAttribute.Options {
+						var options7 tfTypes.Options
+						if optionsItem2.Str != nil {
+							options7.Str = types.StringPointerValue(optionsItem2.Str)
 						}
-						if optionsItem3.Two != nil {
-							options8.Two = &tfTypes.Two{}
-							options8.Two.Title = types.StringPointerValue(optionsItem3.Two.Title)
-							options8.Two.Value = types.StringValue(optionsItem3.Two.Value)
+						if optionsItem2.Two != nil {
+							options7.Two = &tfTypes.Two{}
+							options7.Two.Title = types.StringPointerValue(optionsItem2.Two.Title)
+							options7.Two.Value = types.StringValue(optionsItem2.Two.Value)
 						}
-						if optionsCount3+1 > len(attributes3.MultiSelectAttribute.Options) {
-							attributes3.MultiSelectAttribute.Options = append(attributes3.MultiSelectAttribute.Options, options8)
+						if optionsCount2+1 > len(attributes3.MultiSelectAttribute.Options) {
+							attributes3.MultiSelectAttribute.Options = append(attributes3.MultiSelectAttribute.Options, options7)
 						} else {
-							attributes3.MultiSelectAttribute.Options[optionsCount3].Str = options8.Str
-							attributes3.MultiSelectAttribute.Options[optionsCount3].Two = options8.Two
+							attributes3.MultiSelectAttribute.Options[optionsCount2].Str = options7.Str
+							attributes3.MultiSelectAttribute.Options[optionsCount2].Two = options7.Two
 						}
 					}
 					attributes3.MultiSelectAttribute.Order = types.Int64PointerValue(attributesItem1.MultiSelectAttribute.Order)
@@ -17973,8 +17919,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.RelationAttribute.Required = types.BoolPointerValue(attributesItem1.RelationAttribute.Required)
 					if len(attributesItem1.RelationAttribute.ReverseAttributes) > 0 {
 						attributes3.RelationAttribute.ReverseAttributes = make(map[string]types.String)
-						for key1, value5 := range attributesItem1.RelationAttribute.ReverseAttributes {
-							attributes3.RelationAttribute.ReverseAttributes[key1] = types.StringValue(value5)
+						for key1, value4 := range attributesItem1.RelationAttribute.ReverseAttributes {
+							attributes3.RelationAttribute.ReverseAttributes[key1] = types.StringValue(value4)
 						}
 					}
 					attributes3.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem1.RelationAttribute.SearchPlaceholder)
@@ -18128,23 +18074,11 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.SelectAttribute.Label = types.StringValue(attributesItem1.SelectAttribute.Label)
 					attributes3.SelectAttribute.Layout = types.StringPointerValue(attributesItem1.SelectAttribute.Layout)
 					attributes3.SelectAttribute.Name = types.StringValue(attributesItem1.SelectAttribute.Name)
-					attributes3.SelectAttribute.Options = []tfTypes.Options{}
-					for optionsCount4, optionsItem4 := range attributesItem1.SelectAttribute.Options {
-						var options10 tfTypes.Options
-						if optionsItem4.Str != nil {
-							options10.Str = types.StringPointerValue(optionsItem4.Str)
-						}
-						if optionsItem4.One != nil {
-							options10.One = &tfTypes.Two{}
-							options10.One.Title = types.StringPointerValue(optionsItem4.One.Title)
-							options10.One.Value = types.StringValue(optionsItem4.One.Value)
-						}
-						if optionsCount4+1 > len(attributes3.SelectAttribute.Options) {
-							attributes3.SelectAttribute.Options = append(attributes3.SelectAttribute.Options, options10)
-						} else {
-							attributes3.SelectAttribute.Options[optionsCount4].Str = options10.Str
-							attributes3.SelectAttribute.Options[optionsCount4].One = options10.One
-						}
+					if attributesItem1.SelectAttribute.Options == nil {
+						attributes3.SelectAttribute.Options = types.StringNull()
+					} else {
+						optionsResult1, _ := json.Marshal(attributesItem1.SelectAttribute.Options)
+						attributes3.SelectAttribute.Options = types.StringValue(string(optionsResult1))
 					}
 					attributes3.SelectAttribute.Order = types.Int64PointerValue(attributesItem1.SelectAttribute.Order)
 					attributes3.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem1.SelectAttribute.Placeholder)
@@ -18278,22 +18212,22 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					attributes3.StatusAttribute.Label = types.StringValue(attributesItem1.StatusAttribute.Label)
 					attributes3.StatusAttribute.Layout = types.StringPointerValue(attributesItem1.StatusAttribute.Layout)
 					attributes3.StatusAttribute.Name = types.StringValue(attributesItem1.StatusAttribute.Name)
-					attributes3.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-					for optionsCount5, optionsItem5 := range attributesItem1.StatusAttribute.Options {
-						var options12 tfTypes.MultiSelectAttributeOptions
-						if optionsItem5.Str != nil {
-							options12.Str = types.StringPointerValue(optionsItem5.Str)
+					attributes3.StatusAttribute.Options = []tfTypes.Options{}
+					for optionsCount3, optionsItem3 := range attributesItem1.StatusAttribute.Options {
+						var options10 tfTypes.Options
+						if optionsItem3.Str != nil {
+							options10.Str = types.StringPointerValue(optionsItem3.Str)
 						}
-						if optionsItem5.Options2 != nil {
-							options12.Two = &tfTypes.Two{}
-							options12.Two.Title = types.StringPointerValue(optionsItem5.Options2.Title)
-							options12.Two.Value = types.StringValue(optionsItem5.Options2.Value)
+						if optionsItem3.Options2 != nil {
+							options10.Two = &tfTypes.Two{}
+							options10.Two.Title = types.StringPointerValue(optionsItem3.Options2.Title)
+							options10.Two.Value = types.StringValue(optionsItem3.Options2.Value)
 						}
-						if optionsCount5+1 > len(attributes3.StatusAttribute.Options) {
-							attributes3.StatusAttribute.Options = append(attributes3.StatusAttribute.Options, options12)
+						if optionsCount3+1 > len(attributes3.StatusAttribute.Options) {
+							attributes3.StatusAttribute.Options = append(attributes3.StatusAttribute.Options, options10)
 						} else {
-							attributes3.StatusAttribute.Options[optionsCount5].Str = options12.Str
-							attributes3.StatusAttribute.Options[optionsCount5].Two = options12.Two
+							attributes3.StatusAttribute.Options[optionsCount3].Str = options10.Str
+							attributes3.StatusAttribute.Options[optionsCount3].Two = options10.Two
 						}
 					}
 					attributes3.StatusAttribute.Order = types.Int64PointerValue(attributesItem1.StatusAttribute.Order)
@@ -18640,8 +18574,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		if len(resp.DialogConfig) > 0 {
 			r.DialogConfig = make(map[string]types.String)
-			for key2, value8 := range resp.DialogConfig {
-				result, _ := json.Marshal(value8)
+			for key2, value6 := range resp.DialogConfig {
+				result, _ := json.Marshal(value6)
 				r.DialogConfig[key2] = types.StringValue(string(result))
 			}
 		}
@@ -18656,8 +18590,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				var searchMappingsResult tfTypes.SearchMappings
 				if len(searchMappingsValue.Fields) > 0 {
 					searchMappingsResult.Fields = make(map[string]types.String)
-					for key3, value9 := range searchMappingsValue.Fields {
-						result1, _ := json.Marshal(value9)
+					for key3, value7 := range searchMappingsValue.Fields {
+						result1, _ := json.Marshal(value7)
 						searchMappingsResult.Fields[key3] = types.StringValue(string(result1))
 					}
 				}
@@ -18759,8 +18693,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					r.UIConfig.CreateView.Default = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
 						r.UIConfig.CreateView.Default.SearchParams = make(map[string]types.String)
-						for key5, value10 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
-							r.UIConfig.CreateView.Default.SearchParams[key5] = types.StringValue(value10)
+						for key5, value8 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
+							r.UIConfig.CreateView.Default.SearchParams[key5] = types.StringValue(value8)
 						}
 					}
 					if resp.UIConfig.CreateView.EntityDefaultCreate.ViewType != nil {
@@ -18795,8 +18729,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					r.UIConfig.EditView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
 						r.UIConfig.EditView.Default.SearchParams = make(map[string]types.String)
-						for key6, value11 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.EditView.Default.SearchParams[key6] = types.StringValue(value11)
+						for key6, value9 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.EditView.Default.SearchParams[key6] = types.StringValue(value9)
 						}
 					}
 					r.UIConfig.EditView.Default.SummaryAttributes = []types.String{}
@@ -18902,8 +18836,8 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					r.UIConfig.SingleView.Default = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
 						r.UIConfig.SingleView.Default.SearchParams = make(map[string]types.String)
-						for key7, value13 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.Default.SearchParams[key7] = types.StringValue(value13)
+						for key7, value11 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.SingleView.Default.SearchParams[key7] = types.StringValue(value11)
 						}
 					}
 					r.UIConfig.SingleView.Default.SummaryAttributes = []types.String{}
@@ -18971,19 +18905,19 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 						var navbarActions1 tfTypes.NavbarActions
 						navbarActions1.Options = []tfTypes.EntityDefaultTableOptions{}
-						for optionsCount6, optionsItem6 := range navbarActionsItem.Options {
-							var options15 tfTypes.EntityDefaultTableOptions
-							options15.Label = types.StringValue(optionsItem6.Label)
-							if optionsItem6.Params == nil {
-								options15.Params = nil
+						for optionsCount4, optionsItem4 := range navbarActionsItem.Options {
+							var options13 tfTypes.EntityDefaultTableOptions
+							options13.Label = types.StringValue(optionsItem4.Label)
+							if optionsItem4.Params == nil {
+								options13.Params = nil
 							} else {
-								options15.Params = &tfTypes.AddressRelationAttributeConstraints{}
+								options13.Params = &tfTypes.AddressRelationAttributeConstraints{}
 							}
-							if optionsCount6+1 > len(navbarActions1.Options) {
-								navbarActions1.Options = append(navbarActions1.Options, options15)
+							if optionsCount4+1 > len(navbarActions1.Options) {
+								navbarActions1.Options = append(navbarActions1.Options, options13)
 							} else {
-								navbarActions1.Options[optionsCount6].Label = options15.Label
-								navbarActions1.Options[optionsCount6].Params = options15.Params
+								navbarActions1.Options[optionsCount4].Label = options13.Label
+								navbarActions1.Options[optionsCount4].Params = options13.Params
 							}
 						}
 						navbarActions1.Type = types.StringValue(navbarActionsItem.Type)

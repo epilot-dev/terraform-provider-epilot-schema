@@ -108,58 +108,58 @@ func (o *Two) GetTitle() *string {
 	return o.Title
 }
 
-type MultiSelectAttributeOptionsType string
+type OptionsType string
 
 const (
-	MultiSelectAttributeOptionsTypeStr MultiSelectAttributeOptionsType = "str"
-	MultiSelectAttributeOptionsTypeTwo MultiSelectAttributeOptionsType = "2"
+	OptionsTypeStr OptionsType = "str"
+	OptionsTypeTwo OptionsType = "2"
 )
 
-type MultiSelectAttributeOptions struct {
+type Options struct {
 	Str *string
 	Two *Two
 
-	Type MultiSelectAttributeOptionsType
+	Type OptionsType
 }
 
-func CreateMultiSelectAttributeOptionsStr(str string) MultiSelectAttributeOptions {
-	typ := MultiSelectAttributeOptionsTypeStr
+func CreateOptionsStr(str string) Options {
+	typ := OptionsTypeStr
 
-	return MultiSelectAttributeOptions{
+	return Options{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateMultiSelectAttributeOptionsTwo(two Two) MultiSelectAttributeOptions {
-	typ := MultiSelectAttributeOptionsTypeTwo
+func CreateOptionsTwo(two Two) Options {
+	typ := OptionsTypeTwo
 
-	return MultiSelectAttributeOptions{
+	return Options{
 		Two:  &two,
 		Type: typ,
 	}
 }
 
-func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
+func (u *Options) UnmarshalJSON(data []byte) error {
 
 	var two Two = Two{}
 	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
 		u.Two = &two
-		u.Type = MultiSelectAttributeOptionsTypeTwo
+		u.Type = OptionsTypeTwo
 		return nil
 	}
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
-		u.Type = MultiSelectAttributeOptionsTypeStr
+		u.Type = OptionsTypeStr
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MultiSelectAttributeOptions", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Options", string(data))
 }
 
-func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
+func (u Options) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -168,7 +168,7 @@ func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Two, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type MultiSelectAttributeOptions: all fields are null")
+	return nil, errors.New("could not marshal union type Options: all fields are null")
 }
 
 // MultiSelectAttribute - Multi Choice Selection
@@ -225,8 +225,8 @@ type MultiSelectAttribute struct {
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool                         `json:"allow_extra_options,omitempty"`
-	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
+	AllowExtraOptions *bool     `json:"allow_extra_options,omitempty"`
+	Options           []Options `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -445,7 +445,7 @@ func (o *MultiSelectAttribute) GetAllowExtraOptions() *bool {
 	return o.AllowExtraOptions
 }
 
-func (o *MultiSelectAttribute) GetOptions() []MultiSelectAttributeOptions {
+func (o *MultiSelectAttribute) GetOptions() []Options {
 	if o == nil {
 		return nil
 	}

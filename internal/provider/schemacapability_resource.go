@@ -6078,47 +6078,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										speakeasy_stringvalidators.NotNull(),
 									},
 								},
-								"options": schema.ListNestedAttribute{
-									Computed: true,
-									Optional: true,
-									NestedObject: schema.NestedAttributeObject{
-										Attributes: map[string]schema.Attribute{
-											"str": schema.StringAttribute{
-												Computed: true,
-												Optional: true,
-												Validators: []validator.String{
-													stringvalidator.ConflictsWith(path.Expressions{
-														path.MatchRelative().AtParent().AtName("one"),
-													}...),
-												},
-											},
-											"one": schema.SingleNestedAttribute{
-												Computed: true,
-												Optional: true,
-												Attributes: map[string]schema.Attribute{
-													"title": schema.StringAttribute{
-														Computed: true,
-														Optional: true,
-													},
-													"value": schema.StringAttribute{
-														Computed:    true,
-														Optional:    true,
-														Description: `Not Null`,
-														Validators: []validator.String{
-															speakeasy_stringvalidators.NotNull(),
-														},
-													},
-												},
-												Validators: []validator.Object{
-													objectvalidator.ConflictsWith(path.Expressions{
-														path.MatchRelative().AtParent().AtName("str"),
-													}...),
-												},
-											},
-										},
-										Validators: []validator.Object{
-											validators.ExactlyOneChild(),
-										},
+								"options": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+									Validators: []validator.String{
+										validators.IsValidJSON(),
 									},
 								},
 								"order": schema.Int64Attribute{

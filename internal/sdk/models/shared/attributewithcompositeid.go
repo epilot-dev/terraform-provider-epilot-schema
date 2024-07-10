@@ -5047,36 +5047,36 @@ func (e *CurrencyAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 	}
 }
 
-// CurrencyAttributeCurrency1 - A currency configuration
-type CurrencyAttributeCurrency1 struct {
+// Currency1 - A currency configuration
+type Currency1 struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *CurrencyAttributeCurrency1) GetCode() string {
+func (o *Currency1) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *CurrencyAttributeCurrency1) GetDescription() string {
+func (o *Currency1) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *CurrencyAttributeCurrency1) GetSymbol() string {
+func (o *Currency1) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *CurrencyAttributeCurrency1) GetFlag() *string {
+func (o *Currency1) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -5086,30 +5086,30 @@ func (o *CurrencyAttributeCurrency1) GetFlag() *string {
 type CurrencyAttributeCurrencyType string
 
 const (
-	CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1 CurrencyAttributeCurrencyType = "CurrencyAttribute_currency_1"
+	CurrencyAttributeCurrencyTypeCurrency1 CurrencyAttributeCurrencyType = "currency_1"
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1
+	Currency1 *Currency1
 
 	Type CurrencyAttributeCurrencyType
 }
 
-func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttributeCurrency1 CurrencyAttributeCurrency1) CurrencyAttributeCurrency {
-	typ := CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+func CreateCurrencyAttributeCurrencyCurrency1(currency1 Currency1) CurrencyAttributeCurrency {
+	typ := CurrencyAttributeCurrencyTypeCurrency1
 
 	return CurrencyAttributeCurrency{
-		CurrencyAttributeCurrency1: &currencyAttributeCurrency1,
-		Type:                       typ,
+		Currency1: &currency1,
+		Type:      typ,
 	}
 }
 
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
-	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
-	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, false); err == nil {
-		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
-		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+	var currency1 Currency1 = Currency1{}
+	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
+		u.Currency1 = &currency1
+		u.Type = CurrencyAttributeCurrencyTypeCurrency1
 		return nil
 	}
 
@@ -5117,8 +5117,8 @@ func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 }
 
 func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
-	if u.CurrencyAttributeCurrency1 != nil {
-		return utils.MarshalJSON(u.CurrencyAttributeCurrency1, "", true)
+	if u.Currency1 != nil {
+		return utils.MarshalJSON(u.Currency1, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CurrencyAttributeCurrency: all fields are null")
@@ -8143,58 +8143,58 @@ func (o *MultiSelectAttributeOptions2) GetTitle() *string {
 	return o.Title
 }
 
-type MultiSelectAttributeAttributeWithCompositeIDOptionsType string
+type MultiSelectAttributeOptionsType string
 
 const (
-	MultiSelectAttributeAttributeWithCompositeIDOptionsTypeStr                          MultiSelectAttributeAttributeWithCompositeIDOptionsType = "str"
-	MultiSelectAttributeAttributeWithCompositeIDOptionsTypeMultiSelectAttributeOptions2 MultiSelectAttributeAttributeWithCompositeIDOptionsType = "MultiSelectAttribute_options_2"
+	MultiSelectAttributeOptionsTypeStr                          MultiSelectAttributeOptionsType = "str"
+	MultiSelectAttributeOptionsTypeMultiSelectAttributeOptions2 MultiSelectAttributeOptionsType = "MultiSelectAttribute_options_2"
 )
 
-type MultiSelectAttributeAttributeWithCompositeIDOptions struct {
+type MultiSelectAttributeOptions struct {
 	Str                          *string
 	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2
 
-	Type MultiSelectAttributeAttributeWithCompositeIDOptionsType
+	Type MultiSelectAttributeOptionsType
 }
 
-func CreateMultiSelectAttributeAttributeWithCompositeIDOptionsStr(str string) MultiSelectAttributeAttributeWithCompositeIDOptions {
-	typ := MultiSelectAttributeAttributeWithCompositeIDOptionsTypeStr
+func CreateMultiSelectAttributeOptionsStr(str string) MultiSelectAttributeOptions {
+	typ := MultiSelectAttributeOptionsTypeStr
 
-	return MultiSelectAttributeAttributeWithCompositeIDOptions{
+	return MultiSelectAttributeOptions{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateMultiSelectAttributeAttributeWithCompositeIDOptionsMultiSelectAttributeOptions2(multiSelectAttributeOptions2 MultiSelectAttributeOptions2) MultiSelectAttributeAttributeWithCompositeIDOptions {
-	typ := MultiSelectAttributeAttributeWithCompositeIDOptionsTypeMultiSelectAttributeOptions2
+func CreateMultiSelectAttributeOptionsMultiSelectAttributeOptions2(multiSelectAttributeOptions2 MultiSelectAttributeOptions2) MultiSelectAttributeOptions {
+	typ := MultiSelectAttributeOptionsTypeMultiSelectAttributeOptions2
 
-	return MultiSelectAttributeAttributeWithCompositeIDOptions{
+	return MultiSelectAttributeOptions{
 		MultiSelectAttributeOptions2: &multiSelectAttributeOptions2,
 		Type:                         typ,
 	}
 }
 
-func (u *MultiSelectAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
+func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var multiSelectAttributeOptions2 MultiSelectAttributeOptions2 = MultiSelectAttributeOptions2{}
 	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, false); err == nil {
 		u.MultiSelectAttributeOptions2 = &multiSelectAttributeOptions2
-		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeMultiSelectAttributeOptions2
+		u.Type = MultiSelectAttributeOptionsTypeMultiSelectAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
-		u.Type = MultiSelectAttributeAttributeWithCompositeIDOptionsTypeStr
+		u.Type = MultiSelectAttributeOptionsTypeStr
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MultiSelectAttributeAttributeWithCompositeIDOptions", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MultiSelectAttributeOptions", string(data))
 }
 
-func (u MultiSelectAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, error) {
+func (u MultiSelectAttributeOptions) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -8203,7 +8203,7 @@ func (u MultiSelectAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]by
 		return utils.MarshalJSON(u.MultiSelectAttributeOptions2, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type MultiSelectAttributeAttributeWithCompositeIDOptions: all fields are null")
+	return nil, errors.New("could not marshal union type MultiSelectAttributeOptions: all fields are null")
 }
 
 // AttributeWithCompositeIDMultiSelectAttribute - Multi Choice Selection
@@ -8260,8 +8260,8 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool                                                 `json:"allow_extra_options,omitempty"`
-	Options           []MultiSelectAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
+	AllowExtraOptions *bool                         `json:"allow_extra_options,omitempty"`
+	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
@@ -8481,7 +8481,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetAllowExtraOptions() *b
 	return o.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []MultiSelectAttributeAttributeWithCompositeIDOptions {
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []MultiSelectAttributeOptions {
 	if o == nil {
 		return nil
 	}
@@ -8582,88 +8582,6 @@ func (e *SelectAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 	}
 }
 
-type Options1 struct {
-	Value string  `json:"value"`
-	Title *string `json:"title,omitempty"`
-}
-
-func (o *Options1) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
-}
-
-func (o *Options1) GetTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Title
-}
-
-type SelectAttributeOptionsType string
-
-const (
-	SelectAttributeOptionsTypeOptions1 SelectAttributeOptionsType = "options_1"
-	SelectAttributeOptionsTypeStr      SelectAttributeOptionsType = "str"
-)
-
-type SelectAttributeOptions struct {
-	Options1 *Options1
-	Str      *string
-
-	Type SelectAttributeOptionsType
-}
-
-func CreateSelectAttributeOptionsOptions1(options1 Options1) SelectAttributeOptions {
-	typ := SelectAttributeOptionsTypeOptions1
-
-	return SelectAttributeOptions{
-		Options1: &options1,
-		Type:     typ,
-	}
-}
-
-func CreateSelectAttributeOptionsStr(str string) SelectAttributeOptions {
-	typ := SelectAttributeOptionsTypeStr
-
-	return SelectAttributeOptions{
-		Str:  &str,
-		Type: typ,
-	}
-}
-
-func (u *SelectAttributeOptions) UnmarshalJSON(data []byte) error {
-
-	var options1 Options1 = Options1{}
-	if err := utils.UnmarshalJSON(data, &options1, "", true, false); err == nil {
-		u.Options1 = &options1
-		u.Type = SelectAttributeOptionsTypeOptions1
-		return nil
-	}
-
-	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
-		u.Str = &str
-		u.Type = SelectAttributeOptionsTypeStr
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SelectAttributeOptions", string(data))
-}
-
-func (u SelectAttributeOptions) MarshalJSON() ([]byte, error) {
-	if u.Options1 != nil {
-		return utils.MarshalJSON(u.Options1, "", true)
-	}
-
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type SelectAttributeOptions: all fields are null")
-}
-
 // AttributeWithCompositeIDSelectAttribute - Dropdown select
 type AttributeWithCompositeIDSelectAttribute struct {
 	// ID for the entity attribute
@@ -8715,7 +8633,7 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *SelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []SelectAttributeOptions                            `json:"options,omitempty"`
+	Options     any                                                 `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
@@ -8921,7 +8839,7 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetType() *SelectAttributeAttr
 	return o.Type
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetOptions() []SelectAttributeOptions {
+func (o *AttributeWithCompositeIDSelectAttribute) GetOptions() any {
 	if o == nil {
 		return nil
 	}
@@ -16979,8 +16897,8 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool                                                 `json:"allow_extra_options,omitempty"`
-	Options           []MultiSelectAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
+	AllowExtraOptions *bool                         `json:"allow_extra_options,omitempty"`
+	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -17199,7 +17117,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowExtraOptions
 	return o.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []MultiSelectAttributeAttributeWithCompositeIDOptions {
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []MultiSelectAttributeOptions {
 	if o == nil {
 		return nil
 	}
@@ -17264,7 +17182,7 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *SelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []SelectAttributeOptions                            `json:"options,omitempty"`
+	Options     any                                                 `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -17469,7 +17387,7 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetType() *SelectAttribut
 	return o.Type
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetOptions() []SelectAttributeOptions {
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetOptions() any {
 	if o == nil {
 		return nil
 	}

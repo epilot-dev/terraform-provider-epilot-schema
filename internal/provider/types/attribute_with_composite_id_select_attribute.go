@@ -22,7 +22,7 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	Label                    types.String                         `tfsdk:"label"`
 	Layout                   types.String                         `tfsdk:"layout"`
 	Name                     types.String                         `tfsdk:"name"`
-	Options                  []Options                            `tfsdk:"options"`
+	Options                  types.String                         `tfsdk:"options"`
 	Order                    types.Int64                          `tfsdk:"order"`
 	Placeholder              types.String                         `tfsdk:"placeholder"`
 	PreviewValueFormatter    types.String                         `tfsdk:"preview_value_formatter"`

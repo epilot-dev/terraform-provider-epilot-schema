@@ -428,12 +428,12 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.CurrencyAttribute.Currency = []tfTypes.Currency{}
 				for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
 					var currency1 tfTypes.Currency
-					if currencyItem.Currency1 != nil {
-						currency1.One = &tfTypes.Currency1{}
-						currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
-						currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
-						currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
-						currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
+					if currencyItem.One != nil {
+						currency1.One = &tfTypes.One{}
+						currency1.One.Code = types.StringValue(currencyItem.One.Code)
+						currency1.One.Description = types.StringValue(currencyItem.One.Description)
+						currency1.One.Flag = types.StringPointerValue(currencyItem.One.Flag)
+						currency1.One.Symbol = types.StringValue(currencyItem.One.Symbol)
 					}
 					if currencyCount+1 > len(attributes1.CurrencyAttribute.Currency) {
 						attributes1.CurrencyAttribute.Currency = append(attributes1.CurrencyAttribute.Currency, currency1)
@@ -930,9 +930,9 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
 				attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
 				attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
-				attributes1.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
+				attributes1.MultiSelectAttribute.Options = []tfTypes.Options{}
 				for optionsCount, optionsItem := range attributesItem.MultiSelectAttribute.Options {
-					var options1 tfTypes.MultiSelectAttributeOptions
+					var options1 tfTypes.Options
 					if optionsItem.Str != nil {
 						options1.Str = types.StringPointerValue(optionsItem.Str)
 					}
@@ -1711,23 +1711,11 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.SelectAttribute.Label = types.StringValue(attributesItem.SelectAttribute.Label)
 				attributes1.SelectAttribute.Layout = types.StringPointerValue(attributesItem.SelectAttribute.Layout)
 				attributes1.SelectAttribute.Name = types.StringValue(attributesItem.SelectAttribute.Name)
-				attributes1.SelectAttribute.Options = []tfTypes.Options{}
-				for optionsCount1, optionsItem1 := range attributesItem.SelectAttribute.Options {
-					var options3 tfTypes.Options
-					if optionsItem1.Str != nil {
-						options3.Str = types.StringPointerValue(optionsItem1.Str)
-					}
-					if optionsItem1.One != nil {
-						options3.One = &tfTypes.Two{}
-						options3.One.Title = types.StringPointerValue(optionsItem1.One.Title)
-						options3.One.Value = types.StringValue(optionsItem1.One.Value)
-					}
-					if optionsCount1+1 > len(attributes1.SelectAttribute.Options) {
-						attributes1.SelectAttribute.Options = append(attributes1.SelectAttribute.Options, options3)
-					} else {
-						attributes1.SelectAttribute.Options[optionsCount1].Str = options3.Str
-						attributes1.SelectAttribute.Options[optionsCount1].One = options3.One
-					}
+				if attributesItem.SelectAttribute.Options == nil {
+					attributes1.SelectAttribute.Options = types.StringNull()
+				} else {
+					optionsResult, _ := json.Marshal(attributesItem.SelectAttribute.Options)
+					attributes1.SelectAttribute.Options = types.StringValue(string(optionsResult))
 				}
 				attributes1.SelectAttribute.Order = types.Int64PointerValue(attributesItem.SelectAttribute.Order)
 				attributes1.SelectAttribute.Placeholder = types.StringPointerValue(attributesItem.SelectAttribute.Placeholder)
@@ -1861,22 +1849,22 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
 				attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
 				attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
-				attributes1.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-				for optionsCount2, optionsItem2 := range attributesItem.StatusAttribute.Options {
-					var options5 tfTypes.MultiSelectAttributeOptions
-					if optionsItem2.Str != nil {
-						options5.Str = types.StringPointerValue(optionsItem2.Str)
+				attributes1.StatusAttribute.Options = []tfTypes.Options{}
+				for optionsCount1, optionsItem1 := range attributesItem.StatusAttribute.Options {
+					var options4 tfTypes.Options
+					if optionsItem1.Str != nil {
+						options4.Str = types.StringPointerValue(optionsItem1.Str)
 					}
-					if optionsItem2.Options2 != nil {
-						options5.Two = &tfTypes.Two{}
-						options5.Two.Title = types.StringPointerValue(optionsItem2.Options2.Title)
-						options5.Two.Value = types.StringValue(optionsItem2.Options2.Value)
+					if optionsItem1.Options2 != nil {
+						options4.Two = &tfTypes.Two{}
+						options4.Two.Title = types.StringPointerValue(optionsItem1.Options2.Title)
+						options4.Two.Value = types.StringValue(optionsItem1.Options2.Value)
 					}
-					if optionsCount2+1 > len(attributes1.StatusAttribute.Options) {
-						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options5)
+					if optionsCount1+1 > len(attributes1.StatusAttribute.Options) {
+						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, options4)
 					} else {
-						attributes1.StatusAttribute.Options[optionsCount2].Str = options5.Str
-						attributes1.StatusAttribute.Options[optionsCount2].Two = options5.Two
+						attributes1.StatusAttribute.Options[optionsCount1].Str = options4.Str
+						attributes1.StatusAttribute.Options[optionsCount1].Two = options4.Two
 					}
 				}
 				attributes1.StatusAttribute.Order = types.Int64PointerValue(attributesItem.StatusAttribute.Order)
