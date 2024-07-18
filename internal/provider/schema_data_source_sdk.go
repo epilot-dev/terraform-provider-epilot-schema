@@ -1030,6 +1030,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					}
 				}
 				attributes1.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem.NumberAttribute.ShowInTable)
+				attributes1.NumberAttribute.ShowSeparator = types.BoolPointerValue(attributesItem.NumberAttribute.ShowSeparator)
 				attributes1.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem.NumberAttribute.Sortable)
 				if attributesItem.NumberAttribute.Type != nil {
 					attributes1.NumberAttribute.Type = types.StringValue(string(*attributesItem.NumberAttribute.Type))
@@ -1399,7 +1400,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					if actionsItem.NewEntityItem == nil {
 						actions1.NewEntityItem = nil
 					} else {
-						actions1.NewEntityItem = &tfTypes.NewEntityItem{}
+						actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 						if actionsItem.NewEntityItem.ACL == nil {
 							actions1.NewEntityItem.ACL = nil
 						} else {
@@ -3155,6 +3156,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 						}
 					}
 					attributes3.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowInTable)
+					attributes3.NumberAttribute.ShowSeparator = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowSeparator)
 					attributes3.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem1.NumberAttribute.Sortable)
 					if attributesItem1.NumberAttribute.Type != nil {
 						attributes3.NumberAttribute.Type = types.StringValue(string(*attributesItem1.NumberAttribute.Type))
@@ -3524,7 +3526,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 						if actionsItem1.NewEntityItem == nil {
 							actions3.NewEntityItem = nil
 						} else {
-							actions3.NewEntityItem = &tfTypes.NewEntityItem{}
+							actions3.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 							if actionsItem1.NewEntityItem.ACL == nil {
 								actions3.NewEntityItem.ACL = nil
 							} else {
@@ -4363,19 +4365,19 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			}
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
-		r.GroupSettings = []tfTypes.GroupSettings{}
+		r.GroupSettings = []tfTypes.EntitySchemaGroup{}
 		if len(r.GroupSettings) > len(resp.GroupSettings) {
 			r.GroupSettings = r.GroupSettings[:len(resp.GroupSettings)]
 		}
 		for groupSettingsCount, groupSettingsItem := range resp.GroupSettings {
-			var groupSettings1 tfTypes.GroupSettings
+			var groupSettings1 tfTypes.EntitySchemaGroup
 			groupSettings1.Purpose = []types.String{}
 			for _, v := range groupSettingsItem.Purpose {
 				groupSettings1.Purpose = append(groupSettings1.Purpose, types.StringValue(v))
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {

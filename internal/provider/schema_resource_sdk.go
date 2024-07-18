@@ -10,24 +10,12 @@ import (
 	"time"
 )
 
-func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaItem {
+func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySchemaItemInput {
 	id := new(string)
 	if !r.ID.IsUnknown() && !r.ID.IsNull() {
 		*id = r.ID.ValueString()
 	} else {
 		id = nil
-	}
-	createdAt := new(string)
-	if !r.CreatedAt.IsUnknown() && !r.CreatedAt.IsNull() {
-		*createdAt = r.CreatedAt.ValueString()
-	} else {
-		createdAt = nil
-	}
-	updatedAt := new(string)
-	if !r.UpdatedAt.IsUnknown() && !r.UpdatedAt.IsNull() {
-		*updatedAt = r.UpdatedAt.ValueString()
-	} else {
-		updatedAt = nil
 	}
 	comment := new(string)
 	if !r.Comment.IsUnknown() && !r.Comment.IsNull() {
@@ -189,9 +177,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					var options []shared.EntityDefaultTableOptions = []shared.EntityDefaultTableOptions{}
 					for _, optionsItem := range navbarActionsItem.Options {
 						label2 := optionsItem.Label.ValueString()
-						var params *shared.Params
+						var params *shared.EntityDefaultTableParams
 						if optionsItem.Params != nil {
-							params = &shared.Params{}
+							params = &shared.EntityDefaultTableParams{}
 						}
 						options = append(options, shared.EntityDefaultTableOptions{
 							Label:  label2,
@@ -594,7 +582,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			Sharing:    sharing,
 		}
 	}
-	var capabilities []shared.EntityCapability = []shared.EntityCapability{}
+	var capabilities []shared.EntityCapabilityInput = []shared.EntityCapabilityInput{}
 	for _, capabilitiesItem := range r.Capabilities {
 		id2 := new(string)
 		if !capabilitiesItem.ID.IsUnknown() && !capabilitiesItem.ID.IsNull() {
@@ -609,7 +597,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		} else {
 			title = nil
 		}
-		var attributes []shared.Attribute = []shared.Attribute{}
+		var attributes []shared.AttributeInput = []shared.AttributeInput{}
 		for _, attributesItem := range capabilitiesItem.Attributes {
 			if attributesItem.TextAttribute != nil {
 				id3 := new(string)
@@ -834,7 +822,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar1,
 					Multiline:                multiline,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					TextAttribute: &textAttribute,
 				})
 			}
@@ -1054,7 +1042,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers1,
 					Type:                     typeVar2,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					LinkAttribute: &linkAttribute,
 				})
 			}
@@ -1274,7 +1262,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers2,
 					Type:                     typeVar3,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					DateAttribute: &dateAttribute,
 				})
 			}
@@ -1494,7 +1482,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers3,
 					Type:                     typeVar4,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					CountryAttribute: &countryAttribute,
 				})
 			}
@@ -1714,7 +1702,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers4,
 					Type:                     typeVar5,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					BooleanAttribute: &booleanAttribute,
 				})
 			}
@@ -1946,7 +1934,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Options:                  options1,
 					AllowAny:                 allowAny,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					SelectAttribute: &selectAttribute,
 				})
 			}
@@ -2213,7 +2201,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Options:                  options2,
 					AllowAny:                 allowAny1,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					MultiSelectAttribute: &multiSelectAttribute,
 				})
 			}
@@ -2459,7 +2447,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar8,
 					Options:                  options3,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					StatusAttribute: &statusAttribute,
 				})
 			}
@@ -2693,7 +2681,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Prefix:                   prefix,
 					StartNumber:              startNumber,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					SequenceAttribute: &sequenceAttribute,
 				})
 			}
@@ -2919,7 +2907,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					detailsViewModeEnabled = nil
 				}
-				var actions []shared.Actions = []shared.Actions{}
+				var actions []shared.RelationAttributeActions = []shared.RelationAttributeActions{}
 				for _, actionsItem := range attributesItem.RelationAttribute.Actions {
 					actionType := new(shared.ActionType)
 					if !actionsItem.ActionType.IsUnknown() && !actionsItem.ActionType.IsNull() {
@@ -2964,24 +2952,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							Enabled: enabled11,
 						})
 					}
-					var newEntityItem *shared.NewEntityItem
+					var newEntityItem *shared.RelationAttributeNewEntityItem
 					if actionsItem.NewEntityItem != nil {
 						id13 := actionsItem.NewEntityItem.ID.ValueString()
-						org := actionsItem.NewEntityItem.Org.ValueString()
-						var owners []shared.EntityOwner = []shared.EntityOwner{}
-						for _, ownersItem := range actionsItem.NewEntityItem.Owners {
-							orgID := ownersItem.OrgID.ValueString()
-							userID := new(string)
-							if !ownersItem.UserID.IsUnknown() && !ownersItem.UserID.IsNull() {
-								*userID = ownersItem.UserID.ValueString()
-							} else {
-								userID = nil
-							}
-							owners = append(owners, shared.EntityOwner{
-								OrgID:  orgID,
-								UserID: userID,
-							})
-						}
 						schema := actionsItem.NewEntityItem.Schema.ValueString()
 						title3 := new(string)
 						if !actionsItem.NewEntityItem.Title.IsUnknown() && !actionsItem.NewEntityItem.Title.IsNull() {
@@ -2992,18 +2965,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						var tags []string = []string{}
 						for _, tagsItem := range actionsItem.NewEntityItem.Tags {
 							tags = append(tags, tagsItem.ValueString())
-						}
-						createdAt1 := new(time.Time)
-						if !actionsItem.NewEntityItem.CreatedAt.IsUnknown() && !actionsItem.NewEntityItem.CreatedAt.IsNull() {
-							*createdAt1, _ = time.Parse(time.RFC3339Nano, actionsItem.NewEntityItem.CreatedAt.ValueString())
-						} else {
-							createdAt1 = nil
-						}
-						updatedAt1 := new(time.Time)
-						if !actionsItem.NewEntityItem.UpdatedAt.IsUnknown() && !actionsItem.NewEntityItem.UpdatedAt.IsNull() {
-							*updatedAt1, _ = time.Parse(time.RFC3339Nano, actionsItem.NewEntityItem.UpdatedAt.ValueString())
-						} else {
-							updatedAt1 = nil
 						}
 						var acl *shared.EntityACL
 						if actionsItem.NewEntityItem.ACL != nil {
@@ -3034,20 +2995,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						if !actionsItem.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem.NewEntityItem.AdditionalProperties.IsNull() {
 							_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
 						}
-						newEntityItem = &shared.NewEntityItem{
+						newEntityItem = &shared.RelationAttributeNewEntityItem{
 							ID:                   id13,
-							Org:                  org,
-							Owners:               owners,
 							Schema:               schema,
 							Title:                title3,
 							Tags:                 tags,
-							CreatedAt:            createdAt1,
-							UpdatedAt:            updatedAt1,
 							ACL:                  acl,
 							AdditionalProperties: additionalProperties1,
 						}
 					}
-					actions = append(actions, shared.Actions{
+					actions = append(actions, shared.RelationAttributeActions{
 						ActionType:    actionType,
 						Label:         label15,
 						Default:       defaultVar,
@@ -3120,7 +3077,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					searchPlaceholder = nil
 				}
-				relationAttribute := shared.RelationAttribute{
+				relationAttributeInput := shared.RelationAttributeInput{
 					ID:                       id12,
 					Name:                     name21,
 					Label:                    label14,
@@ -3163,8 +3120,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					AddButtonLabel:           addButtonLabel,
 					SearchPlaceholder:        searchPlaceholder,
 				}
-				attributes = append(attributes, shared.Attribute{
-					RelationAttribute: &relationAttribute,
+				attributes = append(attributes, shared.AttributeInput{
+					RelationAttributeInput: &relationAttributeInput,
 				})
 			}
 			if attributesItem.UserRelationAttribute != nil {
@@ -3390,7 +3347,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar11,
 					Multiple:                 multiple,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					UserRelationAttribute: &userRelationAttribute,
 				})
 			}
@@ -3617,7 +3574,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar12,
 					HasPrimary:               hasPrimary1,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					AddressRelationAttribute: &addressRelationAttribute,
 				})
 			}
@@ -3844,7 +3801,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar13,
 					HasPrimary:               hasPrimary2,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					PaymentMethodRelationAttribute: &paymentMethodRelationAttribute,
 				})
 			}
@@ -4090,7 +4047,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					CurrencySelectorOnly:     currencySelectorOnly,
 					Currency:                 currency,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					CurrencyAttribute: &currencyAttribute,
 				})
 			}
@@ -4338,7 +4295,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Type:                     typeVar15,
 					EnableRelationPicker:     enableRelationPicker1,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					RepeatableAttribute: &repeatableAttribute,
 				})
 			}
@@ -4568,7 +4525,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Options:                  options4,
 					Suggestions:              suggestions,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					TagsAttribute: &tagsAttribute,
 				})
 			}
@@ -4765,6 +4722,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					format = nil
 				}
+				showSeparator := new(bool)
+				if !attributesItem.NumberAttribute.ShowSeparator.IsUnknown() && !attributesItem.NumberAttribute.ShowSeparator.IsNull() {
+					*showSeparator = attributesItem.NumberAttribute.ShowSeparator.ValueBool()
+				} else {
+					showSeparator = nil
+				}
 				numberAttribute := shared.NumberAttribute{
 					ID:                       id20,
 					Name:                     name36,
@@ -4794,8 +4757,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers16,
 					Type:                     typeVar17,
 					Format:                   format,
+					ShowSeparator:            showSeparator,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					NumberAttribute: &numberAttribute,
 				})
 			}
@@ -5017,7 +4981,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Topic:                    topic,
 					Identifiers:              identifiers,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					ConsentAttribute: &consentAttribute,
 				})
 			}
@@ -5237,7 +5201,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers18,
 					Type:                     typeVar19,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					InternalAttribute: &internalAttribute,
 				})
 			}
@@ -5457,7 +5421,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers19,
 					Type:                     typeVar20,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					OrderedListAttribute: &orderedListAttribute,
 				})
 			}
@@ -5705,7 +5669,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					EnableDescription:        enableDescription,
 					DefaultAccessControl:     defaultAccessControl,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					FileAttribute: &fileAttribute,
 				})
 			}
@@ -5925,7 +5889,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers21,
 					Type:                     typeVar22,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					ComputedAttribute: &computedAttribute,
 				})
 			}
@@ -6145,7 +6109,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers22,
 					Type:                     typeVar23,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					PartnerStatusAttribute: &partnerStatusAttribute,
 				})
 			}
@@ -6365,7 +6329,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers23,
 					Type:                     typeVar24,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					InvitationEmailAttribute: &invitationEmailAttribute,
 				})
 			}
@@ -6585,7 +6549,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers24,
 					Type:                     typeVar25,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					AutomationAttribute: &automationAttribute,
 				})
 			}
@@ -6805,7 +6769,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers25,
 					Type:                     typeVar26,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					InternalUserAttribute: &internalUserAttribute,
 				})
 			}
@@ -7000,17 +6964,17 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				for _, parentsItem := range attributesItem.PurposeAttribute.Parents {
 					parents = append(parents, parentsItem.ValueString())
 				}
-				createdAt2 := new(time.Time)
+				createdAt := new(time.Time)
 				if !attributesItem.PurposeAttribute.CreatedAt.IsUnknown() && !attributesItem.PurposeAttribute.CreatedAt.IsNull() {
-					*createdAt2, _ = time.Parse(time.RFC3339Nano, attributesItem.PurposeAttribute.CreatedAt.ValueString())
+					*createdAt, _ = time.Parse(time.RFC3339Nano, attributesItem.PurposeAttribute.CreatedAt.ValueString())
 				} else {
-					createdAt2 = nil
+					createdAt = nil
 				}
-				updatedAt2 := new(time.Time)
+				updatedAt := new(time.Time)
 				if !attributesItem.PurposeAttribute.UpdatedAt.IsUnknown() && !attributesItem.PurposeAttribute.UpdatedAt.IsNull() {
-					*updatedAt2, _ = time.Parse(time.RFC3339Nano, attributesItem.PurposeAttribute.UpdatedAt.ValueString())
+					*updatedAt, _ = time.Parse(time.RFC3339Nano, attributesItem.PurposeAttribute.UpdatedAt.ValueString())
 				} else {
-					updatedAt2 = nil
+					updatedAt = nil
 				}
 				typeVar27 := new(shared.PurposeAttributeType)
 				if !attributesItem.PurposeAttribute.Type.IsUnknown() && !attributesItem.PurposeAttribute.Type.IsNull() {
@@ -7047,11 +7011,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers26,
 					Slug:                     slug1,
 					Parents:                  parents,
-					CreatedAt:                createdAt2,
-					UpdatedAt:                updatedAt2,
+					CreatedAt:                createdAt,
+					UpdatedAt:                updatedAt,
 					Type:                     typeVar27,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					PurposeAttribute: &purposeAttribute,
 				})
 			}
@@ -7271,7 +7235,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					InfoHelpers:              infoHelpers27,
 					Type:                     typeVar28,
 				}
-				attributes = append(attributes, shared.Attribute{
+				attributes = append(attributes, shared.AttributeInput{
 					PartnerOrganisationAttribute: &partnerOrganisationAttribute,
 				})
 			}
@@ -7402,7 +7366,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Enabled: enabled30,
 			})
 		}
-		capabilities = append(capabilities, shared.EntityCapability{
+		capabilities = append(capabilities, shared.EntityCapabilityInput{
 			ID:           id2,
 			Name:         name2,
 			Title:        title,
@@ -7413,14 +7377,15 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			SettingsFlag: settingsFlag30,
 		})
 	}
-	var groupSettings []shared.GroupSettings = []shared.GroupSettings{}
+	var groupSettings []shared.EntitySchemaGroup = []shared.EntitySchemaGroup{}
 	for _, groupSettingsItem := range r.GroupSettings {
 		label34 := groupSettingsItem.Label.ValueString()
-		id32 := new(string)
-		if !groupSettingsItem.ID.IsUnknown() && !groupSettingsItem.ID.IsNull() {
-			*id32 = groupSettingsItem.ID.ValueString()
+		id32 := groupSettingsItem.ID.ValueString()
+		order29 := new(int64)
+		if !groupSettingsItem.Order.IsUnknown() && !groupSettingsItem.Order.IsNull() {
+			*order29 = groupSettingsItem.Order.ValueInt64()
 		} else {
-			id32 = nil
+			order29 = nil
 		}
 		expanded := new(bool)
 		if !groupSettingsItem.Expanded.IsUnknown() && !groupSettingsItem.Expanded.IsNull() {
@@ -7434,11 +7399,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		} else {
 			renderCondition30 = nil
 		}
-		order29 := new(int64)
-		if !groupSettingsItem.Order.IsUnknown() && !groupSettingsItem.Order.IsNull() {
-			*order29 = groupSettingsItem.Order.ValueInt64()
-		} else {
-			order29 = nil
+		var purpose29 []string = []string{}
+		for _, purposeItem29 := range groupSettingsItem.Purpose {
+			purpose29 = append(purpose29, purposeItem29.ValueString())
 		}
 		featureFlag32 := new(string)
 		if !groupSettingsItem.FeatureFlag.IsUnknown() && !groupSettingsItem.FeatureFlag.IsNull() {
@@ -7484,20 +7447,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Default: defaultVar1,
 			}
 		}
-		var purpose29 []string = []string{}
-		for _, purposeItem29 := range groupSettingsItem.Purpose {
-			purpose29 = append(purpose29, purposeItem29.ValueString())
-		}
-		groupSettings = append(groupSettings, shared.GroupSettings{
+		groupSettings = append(groupSettings, shared.EntitySchemaGroup{
 			Label:            label34,
 			ID:               id32,
+			Order:            order29,
 			Expanded:         expanded,
 			RenderCondition:  renderCondition30,
-			Order:            order29,
+			Purpose:          purpose29,
 			FeatureFlag:      featureFlag32,
 			SettingsFlag:     settingsFlag31,
 			InfoTooltipTitle: infoTooltipTitle,
-			Purpose:          purpose29,
 		})
 	}
 	var layoutSettings *shared.LayoutSettings
@@ -7530,7 +7489,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		_ = json.Unmarshal([]byte(dialogConfigValue.ValueString()), &dialogConfigInst)
 		dialogConfig[dialogConfigKey] = dialogConfigInst
 	}
-	var attributes1 []shared.Attribute = []shared.Attribute{}
+	var attributes1 []shared.AttributeInput = []shared.AttributeInput{}
 	for _, attributesItem1 := range r.Attributes {
 		if attributesItem1.TextAttribute != nil {
 			id33 := new(string)
@@ -7755,7 +7714,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar29,
 				Multiline:                multiline1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				TextAttribute: &textAttribute1,
 			})
 		}
@@ -7975,7 +7934,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers29,
 				Type:                     typeVar30,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				LinkAttribute: &linkAttribute1,
 			})
 		}
@@ -8195,7 +8154,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers30,
 				Type:                     typeVar31,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				DateAttribute: &dateAttribute1,
 			})
 		}
@@ -8415,7 +8374,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers31,
 				Type:                     typeVar32,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				CountryAttribute: &countryAttribute1,
 			})
 		}
@@ -8635,7 +8594,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers32,
 				Type:                     typeVar33,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				BooleanAttribute: &booleanAttribute1,
 			})
 		}
@@ -8867,7 +8826,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Options:                  options5,
 				AllowAny:                 allowAny2,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				SelectAttribute: &selectAttribute1,
 			})
 		}
@@ -9134,7 +9093,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Options:                  options6,
 				AllowAny:                 allowAny3,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				MultiSelectAttribute: &multiSelectAttribute1,
 			})
 		}
@@ -9380,7 +9339,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar36,
 				Options:                  options7,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				StatusAttribute: &statusAttribute1,
 			})
 		}
@@ -9614,7 +9573,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Prefix:                   prefix1,
 				StartNumber:              startNumber1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				SequenceAttribute: &sequenceAttribute1,
 			})
 		}
@@ -9840,7 +9799,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				detailsViewModeEnabled1 = nil
 			}
-			var actions1 []shared.Actions = []shared.Actions{}
+			var actions1 []shared.RelationAttributeActions = []shared.RelationAttributeActions{}
 			for _, actionsItem1 := range attributesItem1.RelationAttribute.Actions {
 				actionType1 := new(shared.ActionType)
 				if !actionsItem1.ActionType.IsUnknown() && !actionsItem1.ActionType.IsNull() {
@@ -9885,24 +9844,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						Enabled: enabled42,
 					})
 				}
-				var newEntityItem1 *shared.NewEntityItem
+				var newEntityItem1 *shared.RelationAttributeNewEntityItem
 				if actionsItem1.NewEntityItem != nil {
 					id43 := actionsItem1.NewEntityItem.ID.ValueString()
-					org1 := actionsItem1.NewEntityItem.Org.ValueString()
-					var owners1 []shared.EntityOwner = []shared.EntityOwner{}
-					for _, ownersItem1 := range actionsItem1.NewEntityItem.Owners {
-						orgId1 := ownersItem1.OrgID.ValueString()
-						userId1 := new(string)
-						if !ownersItem1.UserID.IsUnknown() && !ownersItem1.UserID.IsNull() {
-							*userId1 = ownersItem1.UserID.ValueString()
-						} else {
-							userId1 = nil
-						}
-						owners1 = append(owners1, shared.EntityOwner{
-							OrgID:  orgId1,
-							UserID: userId1,
-						})
-					}
 					schema1 := actionsItem1.NewEntityItem.Schema.ValueString()
 					title7 := new(string)
 					if !actionsItem1.NewEntityItem.Title.IsUnknown() && !actionsItem1.NewEntityItem.Title.IsNull() {
@@ -9913,18 +9857,6 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					var tags1 []string = []string{}
 					for _, tagsItem1 := range actionsItem1.NewEntityItem.Tags {
 						tags1 = append(tags1, tagsItem1.ValueString())
-					}
-					createdAt3 := new(time.Time)
-					if !actionsItem1.NewEntityItem.CreatedAt.IsUnknown() && !actionsItem1.NewEntityItem.CreatedAt.IsNull() {
-						*createdAt3, _ = time.Parse(time.RFC3339Nano, actionsItem1.NewEntityItem.CreatedAt.ValueString())
-					} else {
-						createdAt3 = nil
-					}
-					updatedAt3 := new(time.Time)
-					if !actionsItem1.NewEntityItem.UpdatedAt.IsUnknown() && !actionsItem1.NewEntityItem.UpdatedAt.IsNull() {
-						*updatedAt3, _ = time.Parse(time.RFC3339Nano, actionsItem1.NewEntityItem.UpdatedAt.ValueString())
-					} else {
-						updatedAt3 = nil
 					}
 					var acl1 *shared.EntityACL
 					if actionsItem1.NewEntityItem.ACL != nil {
@@ -9955,20 +9887,16 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					if !actionsItem1.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem1.NewEntityItem.AdditionalProperties.IsNull() {
 						_ = json.Unmarshal([]byte(actionsItem1.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties5)
 					}
-					newEntityItem1 = &shared.NewEntityItem{
+					newEntityItem1 = &shared.RelationAttributeNewEntityItem{
 						ID:                   id43,
-						Org:                  org1,
-						Owners:               owners1,
 						Schema:               schema1,
 						Title:                title7,
 						Tags:                 tags1,
-						CreatedAt:            createdAt3,
-						UpdatedAt:            updatedAt3,
 						ACL:                  acl1,
 						AdditionalProperties: additionalProperties5,
 					}
 				}
-				actions1 = append(actions1, shared.Actions{
+				actions1 = append(actions1, shared.RelationAttributeActions{
 					ActionType:    actionType1,
 					Label:         label45,
 					Default:       default1,
@@ -10041,7 +9969,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				searchPlaceholder1 = nil
 			}
-			relationAttribute1 := shared.RelationAttribute{
+			relationAttributeInput1 := shared.RelationAttributeInput{
 				ID:                       id42,
 				Name:                     name80,
 				Label:                    label44,
@@ -10084,8 +10012,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				AddButtonLabel:           addButtonLabel1,
 				SearchPlaceholder:        searchPlaceholder1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
-				RelationAttribute: &relationAttribute1,
+			attributes1 = append(attributes1, shared.AttributeInput{
+				RelationAttributeInput: &relationAttributeInput1,
 			})
 		}
 		if attributesItem1.UserRelationAttribute != nil {
@@ -10311,7 +10239,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar39,
 				Multiple:                 multiple2,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				UserRelationAttribute: &userRelationAttribute1,
 			})
 		}
@@ -10538,7 +10466,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar40,
 				HasPrimary:               hasPrimary5,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				AddressRelationAttribute: &addressRelationAttribute1,
 			})
 		}
@@ -10765,7 +10693,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar41,
 				HasPrimary:               hasPrimary6,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				PaymentMethodRelationAttribute: &paymentMethodRelationAttribute1,
 			})
 		}
@@ -11011,7 +10939,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				CurrencySelectorOnly:     currencySelectorOnly1,
 				Currency:                 currency1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				CurrencyAttribute: &currencyAttribute1,
 			})
 		}
@@ -11259,7 +11187,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Type:                     typeVar43,
 				EnableRelationPicker:     enableRelationPicker3,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				RepeatableAttribute: &repeatableAttribute1,
 			})
 		}
@@ -11489,7 +11417,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Options:                  options8,
 				Suggestions:              suggestions1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				TagsAttribute: &tagsAttribute1,
 			})
 		}
@@ -11686,6 +11614,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			} else {
 				format1 = nil
 			}
+			showSeparator1 := new(bool)
+			if !attributesItem1.NumberAttribute.ShowSeparator.IsUnknown() && !attributesItem1.NumberAttribute.ShowSeparator.IsNull() {
+				*showSeparator1 = attributesItem1.NumberAttribute.ShowSeparator.ValueBool()
+			} else {
+				showSeparator1 = nil
+			}
 			numberAttribute1 := shared.NumberAttribute{
 				ID:                       id50,
 				Name:                     name95,
@@ -11715,8 +11649,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers44,
 				Type:                     typeVar45,
 				Format:                   format1,
+				ShowSeparator:            showSeparator1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				NumberAttribute: &numberAttribute1,
 			})
 		}
@@ -11938,7 +11873,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				Topic:                    topic1,
 				Identifiers:              identifiers1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				ConsentAttribute: &consentAttribute1,
 			})
 		}
@@ -12158,7 +12093,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers46,
 				Type:                     typeVar47,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				InternalAttribute: &internalAttribute1,
 			})
 		}
@@ -12378,7 +12313,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers47,
 				Type:                     typeVar48,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				OrderedListAttribute: &orderedListAttribute1,
 			})
 		}
@@ -12626,7 +12561,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				EnableDescription:        enableDescription1,
 				DefaultAccessControl:     defaultAccessControl1,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				FileAttribute: &fileAttribute1,
 			})
 		}
@@ -12846,7 +12781,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers49,
 				Type:                     typeVar50,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				ComputedAttribute: &computedAttribute1,
 			})
 		}
@@ -13066,7 +13001,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers50,
 				Type:                     typeVar51,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				PartnerStatusAttribute: &partnerStatusAttribute1,
 			})
 		}
@@ -13286,7 +13221,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers51,
 				Type:                     typeVar52,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				InvitationEmailAttribute: &invitationEmailAttribute1,
 			})
 		}
@@ -13506,7 +13441,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers52,
 				Type:                     typeVar53,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				AutomationAttribute: &automationAttribute1,
 			})
 		}
@@ -13726,7 +13661,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers53,
 				Type:                     typeVar54,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				InternalUserAttribute: &internalUserAttribute1,
 			})
 		}
@@ -13921,17 +13856,17 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 			for _, parentsItem1 := range attributesItem1.PurposeAttribute.Parents {
 				parents1 = append(parents1, parentsItem1.ValueString())
 			}
-			createdAt4 := new(time.Time)
+			createdAt1 := new(time.Time)
 			if !attributesItem1.PurposeAttribute.CreatedAt.IsUnknown() && !attributesItem1.PurposeAttribute.CreatedAt.IsNull() {
-				*createdAt4, _ = time.Parse(time.RFC3339Nano, attributesItem1.PurposeAttribute.CreatedAt.ValueString())
+				*createdAt1, _ = time.Parse(time.RFC3339Nano, attributesItem1.PurposeAttribute.CreatedAt.ValueString())
 			} else {
-				createdAt4 = nil
+				createdAt1 = nil
 			}
-			updatedAt4 := new(time.Time)
+			updatedAt1 := new(time.Time)
 			if !attributesItem1.PurposeAttribute.UpdatedAt.IsUnknown() && !attributesItem1.PurposeAttribute.UpdatedAt.IsNull() {
-				*updatedAt4, _ = time.Parse(time.RFC3339Nano, attributesItem1.PurposeAttribute.UpdatedAt.ValueString())
+				*updatedAt1, _ = time.Parse(time.RFC3339Nano, attributesItem1.PurposeAttribute.UpdatedAt.ValueString())
 			} else {
-				updatedAt4 = nil
+				updatedAt1 = nil
 			}
 			typeVar55 := new(shared.PurposeAttributeType)
 			if !attributesItem1.PurposeAttribute.Type.IsUnknown() && !attributesItem1.PurposeAttribute.Type.IsNull() {
@@ -13968,11 +13903,11 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers54,
 				Slug:                     slug2,
 				Parents:                  parents1,
-				CreatedAt:                createdAt4,
-				UpdatedAt:                updatedAt4,
+				CreatedAt:                createdAt1,
+				UpdatedAt:                updatedAt1,
 				Type:                     typeVar55,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				PurposeAttribute: &purposeAttribute1,
 			})
 		}
@@ -14192,7 +14127,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				InfoHelpers:              infoHelpers55,
 				Type:                     typeVar56,
 			}
-			attributes1 = append(attributes1, shared.Attribute{
+			attributes1 = append(attributes1, shared.AttributeInput{
 				PartnerOrganisationAttribute: &partnerOrganisationAttribute1,
 			})
 		}
@@ -14224,10 +14159,8 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		}
 		explicitSearchMappings[explicitSearchMappingsKey] = explicitSearchMappingsInst
 	}
-	out := shared.EntitySchemaItem{
+	out := shared.EntitySchemaItemInput{
 		ID:                     id,
-		CreatedAt:              createdAt,
-		UpdatedAt:              updatedAt,
 		Comment:                comment,
 		Source:                 source,
 		Slug:                   slug,
@@ -15272,6 +15205,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					}
 				}
 				attributes1.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem.NumberAttribute.ShowInTable)
+				attributes1.NumberAttribute.ShowSeparator = types.BoolPointerValue(attributesItem.NumberAttribute.ShowSeparator)
 				attributes1.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem.NumberAttribute.Sortable)
 				if attributesItem.NumberAttribute.Type != nil {
 					attributes1.NumberAttribute.Type = types.StringValue(string(*attributesItem.NumberAttribute.Type))
@@ -15641,7 +15575,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					if actionsItem.NewEntityItem == nil {
 						actions1.NewEntityItem = nil
 					} else {
-						actions1.NewEntityItem = &tfTypes.NewEntityItem{}
+						actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 						if actionsItem.NewEntityItem.ACL == nil {
 							actions1.NewEntityItem.ACL = nil
 						} else {
@@ -17397,6 +17331,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 						}
 					}
 					attributes3.NumberAttribute.ShowInTable = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowInTable)
+					attributes3.NumberAttribute.ShowSeparator = types.BoolPointerValue(attributesItem1.NumberAttribute.ShowSeparator)
 					attributes3.NumberAttribute.Sortable = types.BoolPointerValue(attributesItem1.NumberAttribute.Sortable)
 					if attributesItem1.NumberAttribute.Type != nil {
 						attributes3.NumberAttribute.Type = types.StringValue(string(*attributesItem1.NumberAttribute.Type))
@@ -17766,7 +17701,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 						if actionsItem1.NewEntityItem == nil {
 							actions3.NewEntityItem = nil
 						} else {
-							actions3.NewEntityItem = &tfTypes.NewEntityItem{}
+							actions3.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 							if actionsItem1.NewEntityItem.ACL == nil {
 								actions3.NewEntityItem.ACL = nil
 							} else {
@@ -18605,19 +18540,19 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
-		r.GroupSettings = []tfTypes.GroupSettings{}
+		r.GroupSettings = []tfTypes.EntitySchemaGroup{}
 		if len(r.GroupSettings) > len(resp.GroupSettings) {
 			r.GroupSettings = r.GroupSettings[:len(resp.GroupSettings)]
 		}
 		for groupSettingsCount, groupSettingsItem := range resp.GroupSettings {
-			var groupSettings1 tfTypes.GroupSettings
+			var groupSettings1 tfTypes.EntitySchemaGroup
 			groupSettings1.Purpose = []types.String{}
 			for _, v := range groupSettingsItem.Purpose {
 				groupSettings1.Purpose = append(groupSettings1.Purpose, types.StringValue(v))
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {

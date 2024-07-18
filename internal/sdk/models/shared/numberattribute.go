@@ -137,6 +137,8 @@ type NumberAttribute struct {
 	InfoHelpers *NumberAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *NumberAttributeType        `json:"type,omitempty"`
 	Format      *string                     `json:"format,omitempty"`
+	// Whether or not to show a thousands separator
+	ShowSeparator *bool `default:"true" json:"show_separator"`
 }
 
 func (n NumberAttribute) MarshalJSON() ([]byte, error) {
@@ -344,4 +346,11 @@ func (o *NumberAttribute) GetFormat() *string {
 		return nil
 	}
 	return o.Format
+}
+
+func (o *NumberAttribute) GetShowSeparator() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowSeparator
 }

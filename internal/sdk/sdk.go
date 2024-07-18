@@ -15,7 +15,6 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	// Entity production
 	"https://entity.sls.epilot.io",
 }
 
@@ -72,6 +71,22 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type SDK struct {
 	// Model Entities
 	Schemas *Schemas
+	// CRUD Access for Entities
+	Entities *Entities
+	// Entity Events
+	Activity *Activity
+	// Entity Relationships
+	Relations *Relations
+	// Export and Import entities via files
+	Export       *Export
+	EntityImport *EntityImport
+	// Saved Views for Entities
+	SavedViews *SavedViews
+	// Taxonomies and Classifications
+	Taxonomy *Taxonomy
+	// Elastic Cluster assignment for organizations
+	ElasticClusterAssignment *ElasticClusterAssignment
+	Internal                 *Internal
 
 	sdkConfiguration sdkConfiguration
 }
@@ -165,6 +180,24 @@ func New(opts ...SDKOption) *SDK {
 	}
 
 	sdk.Schemas = newSchemas(sdk.sdkConfiguration)
+
+	sdk.Entities = newEntities(sdk.sdkConfiguration)
+
+	sdk.Activity = newActivity(sdk.sdkConfiguration)
+
+	sdk.Relations = newRelations(sdk.sdkConfiguration)
+
+	sdk.Export = newExport(sdk.sdkConfiguration)
+
+	sdk.EntityImport = newEntityImport(sdk.sdkConfiguration)
+
+	sdk.SavedViews = newSavedViews(sdk.sdkConfiguration)
+
+	sdk.Taxonomy = newTaxonomy(sdk.sdkConfiguration)
+
+	sdk.ElasticClusterAssignment = newElasticClusterAssignment(sdk.sdkConfiguration)
+
+	sdk.Internal = newInternal(sdk.sdkConfiguration)
 
 	return sdk
 }

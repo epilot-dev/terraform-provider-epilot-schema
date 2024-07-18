@@ -226,3 +226,76 @@ func (o *EntityCapability) GetSettingsFlag() []SettingFlag {
 	}
 	return o.SettingsFlag
 }
+
+// EntityCapabilityInput - Capabilities the Entity has. Turn features on/off for entities.
+type EntityCapabilityInput struct {
+	// ID for the entity capability
+	ID *string `json:"id,omitempty"`
+	// Unique name for the capability
+	Name string `json:"name"`
+	// Human readable title of the capability
+	Title      *string          `json:"title,omitempty"`
+	Attributes []AttributeInput `json:"attributes,omitempty"`
+	Purpose    []string         `json:"_purpose,omitempty"`
+	UIHooks    []UIHooks        `json:"ui_hooks,omitempty"`
+	// This capability should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This capability should only be active when all the settings have the correct value
+	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+}
+
+func (o *EntityCapabilityInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *EntityCapabilityInput) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *EntityCapabilityInput) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *EntityCapabilityInput) GetAttributes() []AttributeInput {
+	if o == nil {
+		return nil
+	}
+	return o.Attributes
+}
+
+func (o *EntityCapabilityInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *EntityCapabilityInput) GetUIHooks() []UIHooks {
+	if o == nil {
+		return nil
+	}
+	return o.UIHooks
+}
+
+func (o *EntityCapabilityInput) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *EntityCapabilityInput) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}

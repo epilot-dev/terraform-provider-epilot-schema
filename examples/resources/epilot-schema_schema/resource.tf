@@ -7,13 +7,13 @@ resource "epilot-schema_schema" "my_schema" {
         ]
         constraints                 = {}
         default_value               = "{ \"see\": \"documentation\" }"
-        deprecated                  = false
-        entity_builder_disable_edit = true
+        deprecated                  = true
+        entity_builder_disable_edit = false
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
         has_primary                 = true
-        hidden                      = false
-        hide_label                  = false
+        hidden                      = true
+        hide_label                  = true
         icon                        = "...my_icon..."
         id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
         info_helpers = {
@@ -24,18 +24,18 @@ resource "epilot-schema_schema" "my_schema" {
         }
         label                   = "...my_label..."
         layout                  = "full_width"
-        name                    = "Oscar Walter"
+        name                    = "Carol Cronin"
         order                   = 0
         placeholder             = "...my_placeholder..."
         preview_value_formatter = "...my_preview_value_formatter..."
-        protected               = true
+        protected               = false
         readonly                = false
         render_condition        = "...my_render_condition..."
-        required                = false
+        required                = true
         settings_flag = [
           {
             enabled = false
-            name    = "Kathryn Leffler"
+            name    = "Margaret Rohan"
           },
         ]
         show_in_table   = false
@@ -45,7 +45,7 @@ resource "epilot-schema_schema" "my_schema" {
       }
     },
   ]
-  blueprint = "f4f9e94a-d66b-4cff-bf53-b0a1ef480b7e"
+  blueprint = "7e04c948-e2d5-44b5-b05f-d6573bae023a"
   capabilities = [
     {
       purpose = [
@@ -59,12 +59,12 @@ resource "epilot-schema_schema" "my_schema" {
             ]
             constraints                 = {}
             default_value               = "{ \"see\": \"documentation\" }"
-            deprecated                  = false
-            entity_builder_disable_edit = true
+            deprecated                  = true
+            entity_builder_disable_edit = false
             feature_flag                = "FF_MY_FEATURE_FLAG"
             group                       = "...my_group..."
-            has_primary                 = false
-            hidden                      = false
+            has_primary                 = true
+            hidden                      = true
             hide_label                  = true
             icon                        = "...my_icon..."
             id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
@@ -76,22 +76,22 @@ resource "epilot-schema_schema" "my_schema" {
             }
             label                   = "...my_label..."
             layout                  = "full_width"
-            name                    = "Doug Huels"
+            name                    = "Andy Fahey"
             order                   = 0
             placeholder             = "...my_placeholder..."
             preview_value_formatter = "...my_preview_value_formatter..."
-            protected               = true
+            protected               = false
             readonly                = false
             render_condition        = "...my_render_condition..."
-            required                = true
+            required                = false
             settings_flag = [
               {
-                enabled = true
-                name    = "Dianna Jast"
+                enabled = false
+                name    = "Clark Koelpin"
               },
             ]
-            show_in_table   = true
-            sortable        = true
+            show_in_table   = false
+            sortable        = false
             type            = "relation_address"
             value_formatter = "...my_value_formatter..."
           }
@@ -102,8 +102,8 @@ resource "epilot-schema_schema" "my_schema" {
       name         = "customer_messaging"
       settings_flag = [
         {
-          enabled = true
-          name    = "Barbara Beer MD"
+          enabled = false
+          name    = "Mrs. Lawrence Kris PhD"
         },
       ]
       title = "Messaging"
@@ -113,7 +113,7 @@ resource "epilot-schema_schema" "my_schema" {
           component             = "PricingItems"
           disabled              = false
           group_expanded        = true
-          header                = false
+          header                = true
           hook                  = "EntityDetailsV2:Tab"
           icon                  = "email"
           import                = "@epilot360/notes"
@@ -130,16 +130,14 @@ resource "epilot-schema_schema" "my_schema" {
     },
   ]
   comment        = "...my_comment..."
-  created_at     = "...my_created_at..."
   draft          = true
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
-  id             = "44a6df15-83f0-4d87-8453-ae4df3f2b38f"
+  id             = "75fc6258-415b-4202-a686-fb42fdff5a6a"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
-  updated_at     = "...my_updated_at..."
-  version        = 1
+  version        = 3
 }

@@ -1418,6 +1418,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
 			r.ShowInTable = r.NumberAttribute.ShowInTable
+			r.NumberAttribute.ShowSeparator = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowSeparator)
 			r.NumberAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Sortable)
 			r.Sortable = r.NumberAttribute.Sortable
 			if resp.AttributeWithCompositeIDNumberAttribute.Type != nil {
@@ -1922,7 +1923,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				if actionsItem.NewEntityItem == nil {
 					actions1.NewEntityItem = nil
 				} else {
-					actions1.NewEntityItem = &tfTypes.NewEntityItem{}
+					actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 					if actionsItem.NewEntityItem.ACL == nil {
 						actions1.NewEntityItem.ACL = nil
 					} else {

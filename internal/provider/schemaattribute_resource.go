@@ -3953,6 +3953,12 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 					},
+					"show_separator": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Whether or not to show a thousands separator. Default: true`,
+					},
 					"sortable": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -5365,11 +5371,8 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 											Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
 										},
 										"created_at": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Not Null`,
+											Computed: true,
 											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
 												validators.IsRFC3339(),
 											},
 										},
@@ -5383,28 +5386,17 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 										},
 										"org": schema.StringAttribute{
 											Computed:    true,
-											Optional:    true,
-											Description: `Organization Id the entity belongs to. Not Null`,
-											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
-											},
+											Description: `Organization Id the entity belongs to`,
 										},
 										"owners": schema.ListNestedAttribute{
 											Computed: true,
-											Optional: true,
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"org_id": schema.StringAttribute{
-														Computed:    true,
-														Optional:    true,
-														Description: `Not Null`,
-														Validators: []validator.String{
-															speakeasy_stringvalidators.NotNull(),
-														},
+														Computed: true,
 													},
 													"user_id": schema.StringAttribute{
 														Computed: true,
-														Optional: true,
 													},
 												},
 											},
@@ -5431,11 +5423,8 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 											},
 										},
 										"updated_at": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Not Null`,
+											Computed: true,
 											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
 												validators.IsRFC3339(),
 											},
 										},

@@ -39,7 +39,7 @@ type SchemaDataSourceModel struct {
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
-	GroupSettings          []tfTypes.GroupSettings           `tfsdk:"group_settings"`
+	GroupSettings          []tfTypes.EntitySchemaGroup       `tfsdk:"group_settings"`
 	Icon                   types.String                      `tfsdk:"icon"`
 	ID                     types.String                      `tfsdk:"id"`
 	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
@@ -2431,6 +2431,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"show_separator": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether or not to show a thousands separator`,
 								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
@@ -7072,6 +7076,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												Computed:    true,
 												Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 											},
+											"show_separator": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Whether or not to show a thousands separator`,
+											},
 											"sortable": schema.BoolAttribute{
 												Computed:    true,
 												Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
@@ -9481,9 +9489,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						"purpose": schema.ListAttribute{
 							Computed:    true,
 							ElementType: types.StringType,
+							Description: `Only render group when one of the purposes is enabled`,
 						},
 						"expanded": schema.BoolAttribute{
-							Computed: true,
+							Computed:    true,
+							Description: `Expanded by default`,
 						},
 						"feature_flag": schema.StringAttribute{
 							Computed:    true,
@@ -9496,10 +9506,12 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
 								"default": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `Default string for info tooltip`,
 								},
 								"key": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `Translation key for info tooltip`,
 								},
 							},
 						},
@@ -9511,7 +9523,8 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							Description: `Render order of the group`,
 						},
 						"render_condition": schema.StringAttribute{
-							Computed: true,
+							Computed:    true,
+							Description: `Only render group when render_condition resolves to true`,
 						},
 						"settings_flag": schema.ListNestedAttribute{
 							Computed: true,
@@ -9531,7 +9544,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						},
 					},
 				},
-				Description: `A dictionary of Group Titles and associated settings if present.`,
+				Description: `A list of Group Titles and associated settings if present.`,
 			},
 			"icon": schema.StringAttribute{
 				Computed: true,

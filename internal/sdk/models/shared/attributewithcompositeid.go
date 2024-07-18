@@ -3979,7 +3979,9 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *NumberAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Format      *string                                             `json:"format,omitempty"`
-	CompositeID *string                                             `json:"composite_id,omitempty"`
+	// Whether or not to show a thousands separator
+	ShowSeparator *bool   `default:"true" json:"show_separator"`
+	CompositeID   *string `json:"composite_id,omitempty"`
 }
 
 func (a AttributeWithCompositeIDNumberAttribute) MarshalJSON() ([]byte, error) {
@@ -4187,6 +4189,13 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetFormat() *string {
 		return nil
 	}
 	return o.Format
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetShowSeparator() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowSeparator
 }
 
 func (o *AttributeWithCompositeIDNumberAttribute) GetCompositeID() *string {
@@ -6629,7 +6638,7 @@ func (e *RelationAttributeActionType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type RelationAttributeNewEntityItem struct {
+type RelationAttributeAttributeWithCompositeIDNewEntityItem struct {
 	ID string `json:"_id"`
 	// Organization Id the entity belongs to
 	Org    string        `json:"_org"`
@@ -6646,88 +6655,88 @@ type RelationAttributeNewEntityItem struct {
 	AdditionalProperties any        `additionalProperties:"true" json:"-"`
 }
 
-func (r RelationAttributeNewEntityItem) MarshalJSON() ([]byte, error) {
+func (r RelationAttributeAttributeWithCompositeIDNewEntityItem) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(r, "", false)
 }
 
-func (r *RelationAttributeNewEntityItem) UnmarshalJSON(data []byte) error {
+func (r *RelationAttributeAttributeWithCompositeIDNewEntityItem) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RelationAttributeNewEntityItem) GetID() string {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *RelationAttributeNewEntityItem) GetOrg() string {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetOrg() string {
 	if o == nil {
 		return ""
 	}
 	return o.Org
 }
 
-func (o *RelationAttributeNewEntityItem) GetOwners() []EntityOwner {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetOwners() []EntityOwner {
 	if o == nil {
 		return nil
 	}
 	return o.Owners
 }
 
-func (o *RelationAttributeNewEntityItem) GetSchema() string {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetSchema() string {
 	if o == nil {
 		return ""
 	}
 	return o.Schema
 }
 
-func (o *RelationAttributeNewEntityItem) GetTitle() *string {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *RelationAttributeNewEntityItem) GetTags() []string {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetTags() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *RelationAttributeNewEntityItem) GetCreatedAt() *time.Time {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetCreatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *RelationAttributeNewEntityItem) GetUpdatedAt() *time.Time {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetUpdatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *RelationAttributeNewEntityItem) GetACL() *EntityACL {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetACL() *EntityACL {
 	if o == nil {
 		return nil
 	}
 	return o.ACL
 }
 
-func (o *RelationAttributeNewEntityItem) GetAdditionalProperties() any {
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalProperties
 }
 
-type RelationAttributeActions struct {
+type RelationAttributeAttributeWithCompositeIDActions struct {
 	// The action type. Currently supported actions:
 	//
 	// | action | description |
@@ -6744,46 +6753,46 @@ type RelationAttributeActions struct {
 	// Name of the feature flag that enables this action
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This action should only be active when all the settings have the correct value
-	SettingsFlag  []SettingFlag                   `json:"settings_flag,omitempty"`
-	NewEntityItem *RelationAttributeNewEntityItem `json:"new_entity_item,omitempty"`
+	SettingsFlag  []SettingFlag                                           `json:"settings_flag,omitempty"`
+	NewEntityItem *RelationAttributeAttributeWithCompositeIDNewEntityItem `json:"new_entity_item,omitempty"`
 }
 
-func (o *RelationAttributeActions) GetActionType() *RelationAttributeActionType {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetActionType() *RelationAttributeActionType {
 	if o == nil {
 		return nil
 	}
 	return o.ActionType
 }
 
-func (o *RelationAttributeActions) GetLabel() *string {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetLabel() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Label
 }
 
-func (o *RelationAttributeActions) GetDefault() *bool {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *RelationAttributeActions) GetFeatureFlag() *string {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureFlag
 }
 
-func (o *RelationAttributeActions) GetSettingsFlag() []SettingFlag {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetSettingsFlag() []SettingFlag {
 	if o == nil {
 		return nil
 	}
 	return o.SettingsFlag
 }
 
-func (o *RelationAttributeActions) GetNewEntityItem() *RelationAttributeNewEntityItem {
+func (o *RelationAttributeAttributeWithCompositeIDActions) GetNewEntityItem() *RelationAttributeAttributeWithCompositeIDNewEntityItem {
 	if o == nil {
 		return nil
 	}
@@ -6939,12 +6948,12 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
 	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-	DetailsViewModeEnabled *bool                            `default:"false" json:"details_view_mode_enabled"`
-	Actions                []RelationAttributeActions       `json:"actions,omitempty"`
-	DrawerSize             *RelationAttributeDrawerSize     `json:"drawer_size,omitempty"`
-	SummaryFields          []RelationAttributeSummaryFields `json:"summary_fields,omitempty"`
-	HasPrimary             *bool                            `json:"has_primary,omitempty"`
-	AllowedSchemas         []string                         `json:"allowedSchemas,omitempty"`
+	DetailsViewModeEnabled *bool                                              `default:"false" json:"details_view_mode_enabled"`
+	Actions                []RelationAttributeAttributeWithCompositeIDActions `json:"actions,omitempty"`
+	DrawerSize             *RelationAttributeDrawerSize                       `json:"drawer_size,omitempty"`
+	SummaryFields          []RelationAttributeSummaryFields                   `json:"summary_fields,omitempty"`
+	HasPrimary             *bool                                              `json:"has_primary,omitempty"`
+	AllowedSchemas         []string                                           `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
 	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
@@ -7196,7 +7205,7 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetDetailsViewModeEnabled() 
 	return o.DetailsViewModeEnabled
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetActions() []RelationAttributeActions {
+func (o *AttributeWithCompositeIDRelationAttribute) GetActions() []RelationAttributeAttributeWithCompositeIDActions {
 	if o == nil {
 		return nil
 	}
@@ -10973,10 +10982,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
@@ -10994,17 +11003,17 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
@@ -14125,6 +14134,8 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *NumberAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Format      *string                                             `json:"format,omitempty"`
+	// Whether or not to show a thousands separator
+	ShowSeparator *bool `default:"true" json:"show_separator"`
 }
 
 func (a AttributeWithCompositeIDNumberAttributeInput) MarshalJSON() ([]byte, error) {
@@ -14332,6 +14343,13 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetFormat() *string {
 		return nil
 	}
 	return o.Format
+}
+
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetShowSeparator() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowSeparator
 }
 
 // AttributeWithCompositeIDTagsAttributeInput - Tags
@@ -15943,6 +15961,134 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool
 	return o.Multiple
 }
 
+type RelationAttributeNewEntityItemInput struct {
+	ID string `json:"_id"`
+	// URL-friendly identifier for the entity schema
+	Schema string `json:"_schema"`
+	// Title of entity
+	Title *string  `json:"_title"`
+	Tags  []string `json:"_tags,omitempty"`
+	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+	ACL                  *EntityACL `json:"_acl,omitempty"`
+	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+}
+
+func (r RelationAttributeNewEntityItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeNewEntityItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetSchema() string {
+	if o == nil {
+		return ""
+	}
+	return o.Schema
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetACL() *EntityACL {
+	if o == nil {
+		return nil
+	}
+	return o.ACL
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type RelationAttributeActionsInput struct {
+	// The action type. Currently supported actions:
+	//
+	// | action | description |
+	// |--------|-------------|
+	// | add_existing | Enables the user to pick an existing entity to link as relation |
+	// | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
+	// | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
+	//
+	ActionType *RelationAttributeActionType `json:"action_type,omitempty"`
+	// The action label or action translation key (i18n)
+	Label *string `json:"label,omitempty"`
+	// Sets the action as the default action, visible as the main action button.
+	Default *bool `json:"default,omitempty"`
+	// Name of the feature flag that enables this action
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This action should only be active when all the settings have the correct value
+	SettingsFlag  []SettingFlag                        `json:"settings_flag,omitempty"`
+	NewEntityItem *RelationAttributeNewEntityItemInput `json:"new_entity_item,omitempty"`
+}
+
+func (o *RelationAttributeActionsInput) GetActionType() *RelationAttributeActionType {
+	if o == nil {
+		return nil
+	}
+	return o.ActionType
+}
+
+func (o *RelationAttributeActionsInput) GetLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Label
+}
+
+func (o *RelationAttributeActionsInput) GetDefault() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *RelationAttributeActionsInput) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *RelationAttributeActionsInput) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *RelationAttributeActionsInput) GetNewEntityItem() *RelationAttributeNewEntityItemInput {
+	if o == nil {
+		return nil
+	}
+	return o.NewEntityItem
+}
+
 // AttributeWithCompositeIDRelationAttributeInput - Entity Relationship
 type AttributeWithCompositeIDRelationAttributeInput struct {
 	// ID for the entity attribute
@@ -16001,7 +16147,7 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
 	DetailsViewModeEnabled *bool                            `default:"false" json:"details_view_mode_enabled"`
-	Actions                []RelationAttributeActions       `json:"actions,omitempty"`
+	Actions                []RelationAttributeActionsInput  `json:"actions,omitempty"`
 	DrawerSize             *RelationAttributeDrawerSize     `json:"drawer_size,omitempty"`
 	SummaryFields          []RelationAttributeSummaryFields `json:"summary_fields,omitempty"`
 	HasPrimary             *bool                            `json:"has_primary,omitempty"`
@@ -16256,7 +16402,7 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetDetailsViewModeEnabl
 	return o.DetailsViewModeEnabled
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetActions() []RelationAttributeActions {
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetActions() []RelationAttributeActionsInput {
 	if o == nil {
 		return nil
 	}
@@ -19086,10 +19232,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
@@ -19107,17 +19253,17 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 

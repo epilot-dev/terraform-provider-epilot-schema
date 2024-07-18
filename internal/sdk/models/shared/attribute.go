@@ -419,10 +419,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
-		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
+	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, false); err == nil {
+		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
+		u.Type = AttributeTypePaymentMethodRelationAttribute
 		return nil
 	}
 
@@ -440,17 +440,17 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
+		u.AddressRelationAttribute = &addressRelationAttribute
+		u.Type = AttributeTypeAddressRelationAttribute
+		return nil
+	}
+
 	var numberAttribute NumberAttribute = NumberAttribute{}
 	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, false); err == nil {
 		u.NumberAttribute = &numberAttribute
 		u.Type = AttributeTypeNumberAttribute
-		return nil
-	}
-
-	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, false); err == nil {
-		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
-		u.Type = AttributeTypePaymentMethodRelationAttribute
 		return nil
 	}
 

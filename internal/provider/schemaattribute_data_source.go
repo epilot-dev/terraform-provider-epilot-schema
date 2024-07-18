@@ -2546,6 +2546,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed:    true,
 						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 					},
+					"show_separator": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Whether or not to show a thousands separator`,
+					},
 					"sortable": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,

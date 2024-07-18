@@ -243,7 +243,7 @@ type EntityCapabilityWithCompositeIDInput struct {
 	Name string `json:"name"`
 	// Human readable title of the capability
 	Title      *string                                  `json:"title,omitempty"`
-	Attributes []Attribute                              `json:"attributes,omitempty"`
+	Attributes []AttributeInput                         `json:"attributes,omitempty"`
 	Purpose    []string                                 `json:"_purpose,omitempty"`
 	UIHooks    []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
@@ -273,7 +273,7 @@ func (o *EntityCapabilityWithCompositeIDInput) GetTitle() *string {
 	return o.Title
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetAttributes() []Attribute {
+func (o *EntityCapabilityWithCompositeIDInput) GetAttributes() []AttributeInput {
 	if o == nil {
 		return nil
 	}

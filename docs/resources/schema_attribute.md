@@ -1163,6 +1163,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator. Default: true
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
@@ -1642,14 +1643,17 @@ Optional:
 
 - `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
-- `created_at` (String) Not Null
 - `id` (String) Not Null
-- `org` (String) Organization Id the entity belongs to. Not Null
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
 - `schema` (String) URL-friendly identifier for the entity schema. Not Null
 - `tags` (List of String)
 - `title` (String) Title of entity. Not Null
-- `updated_at` (String) Not Null
+
+Read-Only:
+
+- `created_at` (String)
+- `org` (String) Organization Id the entity belongs to
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
+- `updated_at` (String)
 
 <a id="nestedatt--relation_attribute--actions--new_entity_item--acl"></a>
 ### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
@@ -1665,9 +1669,9 @@ Optional:
 <a id="nestedatt--relation_attribute--actions--new_entity_item--owners"></a>
 ### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
 
-Optional:
+Read-Only:
 
-- `org_id` (String) Not Null
+- `org_id` (String)
 - `user_id` (String)
 
 
@@ -1827,7 +1831,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String) Not Null
 - `layout` (String)
 - `name` (String) Not Null
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--select_attribute--options))
+- `options` (String) Parsed as JSON.
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -1866,24 +1870,6 @@ When specified it overrides the `hint_text_key` configuration.
 The key should be a valid i18n key.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--select_attribute--options"></a>
-### Nested Schema for `select_attribute.options`
-
-Optional:
-
-- `one` (Attributes) (see [below for nested schema](#nestedatt--select_attribute--options--one))
-- `str` (String)
-
-<a id="nestedatt--select_attribute--options--one"></a>
-### Nested Schema for `select_attribute.options.one`
-
-Optional:
-
-- `title` (String)
-- `value` (String)
-
 
 
 <a id="nestedatt--select_attribute--settings_flag"></a>

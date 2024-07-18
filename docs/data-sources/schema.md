@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "8b641105-48d2-494e-96da-625000f6d653"
+  id   = "b6931965-bf3d-4d9e-a83d-a52a6344b4ff"
   slug = "contact"
 }
 ```
@@ -38,7 +38,7 @@ data "epilot-schema_schema" "my_schema" {
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
 - `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled
-- `group_settings` (Attributes List) A dictionary of Group Titles and associated settings if present. (see [below for nested schema](#nestedatt--group_settings))
+- `group_settings` (Attributes List) A list of Group Titles and associated settings if present. (see [below for nested schema](#nestedatt--group_settings))
 - `icon` (String)
 - `id` (String) The ID of this resource.
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
@@ -1111,6 +1111,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
@@ -1743,7 +1744,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--attributes--select_attribute--options))
+- `options` (String) Parsed as JSON.
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -1778,24 +1779,6 @@ When specified it overrides the `hint_text_key` configuration.
 The key should be a valid i18n key.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--attributes--select_attribute--options"></a>
-### Nested Schema for `attributes.select_attribute.options`
-
-Read-Only:
-
-- `one` (Attributes) (see [below for nested schema](#nestedatt--attributes--select_attribute--options--one))
-- `str` (String)
-
-<a id="nestedatt--attributes--select_attribute--options--one"></a>
-### Nested Schema for `attributes.select_attribute.options.str`
-
-Read-Only:
-
-- `title` (String)
-- `value` (String)
-
 
 
 <a id="nestedatt--attributes--select_attribute--settings_flag"></a>
@@ -3241,6 +3224,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
@@ -3873,7 +3857,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--options))
+- `options` (String) Parsed as JSON.
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -3908,24 +3892,6 @@ When specified it overrides the `hint_text_key` configuration.
 The key should be a valid i18n key.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--capabilities--attributes--select_attribute--options"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
-
-Read-Only:
-
-- `one` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--value_formatter--one))
-- `str` (String)
-
-<a id="nestedatt--capabilities--attributes--select_attribute--value_formatter--one"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter.one`
-
-Read-Only:
-
-- `title` (String)
-- `value` (String)
-
 
 
 <a id="nestedatt--capabilities--attributes--select_attribute--settings_flag"></a>
@@ -4353,14 +4319,14 @@ Read-Only:
 
 Read-Only:
 
-- `expanded` (Boolean)
+- `expanded` (Boolean) Expanded by default
 - `feature_flag` (String) This group should only be active when the feature flag is enabled
 - `id` (String)
 - `info_tooltip_title` (Attributes) (see [below for nested schema](#nestedatt--group_settings--info_tooltip_title))
 - `label` (String)
 - `order` (Number) Render order of the group
-- `purpose` (List of String)
-- `render_condition` (String)
+- `purpose` (List of String) Only render group when one of the purposes is enabled
+- `render_condition` (String) Only render group when render_condition resolves to true
 - `settings_flag` (Attributes List) This group should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--group_settings--settings_flag))
 
 <a id="nestedatt--group_settings--info_tooltip_title"></a>
@@ -4368,8 +4334,8 @@ Read-Only:
 
 Read-Only:
 
-- `default` (String)
-- `key` (String)
+- `default` (String) Default string for info tooltip
+- `key` (String) Translation key for info tooltip
 
 
 <a id="nestedatt--group_settings--settings_flag"></a>

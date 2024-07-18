@@ -2348,7 +2348,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			detailsViewModeEnabled = nil
 		}
-		var actions []shared.RelationAttributeActions = []shared.RelationAttributeActions{}
+		var actions []shared.RelationAttributeActionsInput = []shared.RelationAttributeActionsInput{}
 		for _, actionsItem := range r.RelationAttribute.Actions {
 			actionType := new(shared.RelationAttributeActionType)
 			if !actionsItem.ActionType.IsUnknown() && !actionsItem.ActionType.IsNull() {
@@ -2393,24 +2393,9 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 					Enabled: enabled10,
 				})
 			}
-			var newEntityItem *shared.RelationAttributeNewEntityItem
+			var newEntityItem *shared.RelationAttributeNewEntityItemInput
 			if actionsItem.NewEntityItem != nil {
 				id10 := actionsItem.NewEntityItem.ID.ValueString()
-				org := actionsItem.NewEntityItem.Org.ValueString()
-				var owners []shared.EntityOwner = []shared.EntityOwner{}
-				for _, ownersItem := range actionsItem.NewEntityItem.Owners {
-					orgID := ownersItem.OrgID.ValueString()
-					userID := new(string)
-					if !ownersItem.UserID.IsUnknown() && !ownersItem.UserID.IsNull() {
-						*userID = ownersItem.UserID.ValueString()
-					} else {
-						userID = nil
-					}
-					owners = append(owners, shared.EntityOwner{
-						OrgID:  orgID,
-						UserID: userID,
-					})
-				}
 				schema := actionsItem.NewEntityItem.Schema.ValueString()
 				title2 := new(string)
 				if !actionsItem.NewEntityItem.Title.IsUnknown() && !actionsItem.NewEntityItem.Title.IsNull() {
@@ -2421,18 +2406,6 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				var tags []string = []string{}
 				for _, tagsItem := range actionsItem.NewEntityItem.Tags {
 					tags = append(tags, tagsItem.ValueString())
-				}
-				createdAt := new(time.Time)
-				if !actionsItem.NewEntityItem.CreatedAt.IsUnknown() && !actionsItem.NewEntityItem.CreatedAt.IsNull() {
-					*createdAt, _ = time.Parse(time.RFC3339Nano, actionsItem.NewEntityItem.CreatedAt.ValueString())
-				} else {
-					createdAt = nil
-				}
-				updatedAt := new(time.Time)
-				if !actionsItem.NewEntityItem.UpdatedAt.IsUnknown() && !actionsItem.NewEntityItem.UpdatedAt.IsNull() {
-					*updatedAt, _ = time.Parse(time.RFC3339Nano, actionsItem.NewEntityItem.UpdatedAt.ValueString())
-				} else {
-					updatedAt = nil
 				}
 				var acl *shared.EntityACL
 				if actionsItem.NewEntityItem.ACL != nil {
@@ -2463,20 +2436,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				if !actionsItem.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem.NewEntityItem.AdditionalProperties.IsNull() {
 					_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
 				}
-				newEntityItem = &shared.RelationAttributeNewEntityItem{
+				newEntityItem = &shared.RelationAttributeNewEntityItemInput{
 					ID:                   id10,
-					Org:                  org,
-					Owners:               owners,
 					Schema:               schema,
 					Title:                title2,
 					Tags:                 tags,
-					CreatedAt:            createdAt,
-					UpdatedAt:            updatedAt,
 					ACL:                  acl,
 					AdditionalProperties: additionalProperties1,
 				}
 			}
-			actions = append(actions, shared.RelationAttributeActions{
+			actions = append(actions, shared.RelationAttributeActionsInput{
 				ActionType:    actionType,
 				Label:         label10,
 				Default:       defaultVar,
@@ -4215,6 +4184,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			format = nil
 		}
+		showSeparator := new(bool)
+		if !r.NumberAttribute.ShowSeparator.IsUnknown() && !r.NumberAttribute.ShowSeparator.IsNull() {
+			*showSeparator = r.NumberAttribute.ShowSeparator.ValueBool()
+		} else {
+			showSeparator = nil
+		}
 		attributeWithCompositeIDNumberAttributeInput = &shared.AttributeWithCompositeIDNumberAttributeInput{
 			ID:                       id17,
 			Name:                     name33,
@@ -4244,6 +4219,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers16,
 			Type:                     typeVar16,
 			Format:                   format,
+			ShowSeparator:            showSeparator,
 		}
 	}
 	if attributeWithCompositeIDNumberAttributeInput != nil {
@@ -6480,17 +6456,17 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, parentsItem := range r.PurposeAttribute.Parents {
 			parents = append(parents, parentsItem.ValueString())
 		}
-		createdAt1 := new(time.Time)
+		createdAt := new(time.Time)
 		if !r.PurposeAttribute.CreatedAt.IsUnknown() && !r.PurposeAttribute.CreatedAt.IsNull() {
-			*createdAt1, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.CreatedAt.ValueString())
+			*createdAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.CreatedAt.ValueString())
 		} else {
-			createdAt1 = nil
+			createdAt = nil
 		}
-		updatedAt1 := new(time.Time)
+		updatedAt := new(time.Time)
 		if !r.PurposeAttribute.UpdatedAt.IsUnknown() && !r.PurposeAttribute.UpdatedAt.IsNull() {
-			*updatedAt1, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.UpdatedAt.ValueString())
+			*updatedAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.UpdatedAt.ValueString())
 		} else {
-			updatedAt1 = nil
+			updatedAt = nil
 		}
 		typeVar26 := new(shared.PurposeAttributeAttributeWithCompositeIDType)
 		if !r.PurposeAttribute.Type.IsUnknown() && !r.PurposeAttribute.Type.IsNull() {
@@ -6527,8 +6503,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers26,
 			Slug:                     slug,
 			Parents:                  parents,
-			CreatedAt:                createdAt1,
-			UpdatedAt:                updatedAt1,
+			CreatedAt:                createdAt,
+			UpdatedAt:                updatedAt,
 			Type:                     typeVar26,
 		}
 	}
@@ -8171,6 +8147,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
 			r.ShowInTable = r.NumberAttribute.ShowInTable
+			r.NumberAttribute.ShowSeparator = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowSeparator)
 			r.NumberAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Sortable)
 			r.Sortable = r.NumberAttribute.Sortable
 			if resp.AttributeWithCompositeIDNumberAttribute.Type != nil {
@@ -8675,7 +8652,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				if actionsItem.NewEntityItem == nil {
 					actions1.NewEntityItem = nil
 				} else {
-					actions1.NewEntityItem = &tfTypes.NewEntityItem{}
+					actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
 					if actionsItem.NewEntityItem.ACL == nil {
 						actions1.NewEntityItem.ACL = nil
 					} else {

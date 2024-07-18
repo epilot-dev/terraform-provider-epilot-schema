@@ -31,6 +31,7 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	Required                 types.Bool                           `tfsdk:"required"`
 	SettingsFlag             []SettingFlag                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                           `tfsdk:"show_in_table"`
+	ShowSeparator            types.Bool                           `tfsdk:"show_separator"`
 	Sortable                 types.Bool                           `tfsdk:"sortable"`
 	Type                     types.String                         `tfsdk:"type"`
 	ValueFormatter           types.String                         `tfsdk:"value_formatter"`

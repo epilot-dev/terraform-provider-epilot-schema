@@ -19,6 +19,12 @@ provider "epilot-schema" {
 }
 
 # import {
-#   to = epilot-schema_schema_attribute.mymy
-#   id = "contact:c6cd13a6-2898-4901-a9e1-6dd47700b748"
+#   to = epilot-schema_schema_attribute.myattribute
+#   id = "opportunity:69dc8c69-280b-4171-804b-f1b1ede5e0d3"
 # }
+
+
+import {
+  to = epilot-schema_schema_group.mygroup
+  id = "opportunity:Opportunity Details"
+}

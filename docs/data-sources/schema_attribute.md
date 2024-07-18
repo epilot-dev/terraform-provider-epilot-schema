@@ -1119,6 +1119,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String) must be one of ["number"]
 - `value_formatter` (String)
@@ -1759,7 +1760,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `label` (String)
 - `layout` (String)
 - `name` (String)
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--select_attribute--options))
+- `options` (String) Parsed as JSON.
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
@@ -1794,24 +1795,6 @@ When specified it overrides the `hint_text_key` configuration.
 The key should be a valid i18n key.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--select_attribute--options"></a>
-### Nested Schema for `select_attribute.options`
-
-Read-Only:
-
-- `one` (Attributes) (see [below for nested schema](#nestedatt--select_attribute--options--one))
-- `str` (String)
-
-<a id="nestedatt--select_attribute--options--one"></a>
-### Nested Schema for `select_attribute.options.one`
-
-Read-Only:
-
-- `title` (String)
-- `value` (String)
-
 
 
 <a id="nestedatt--select_attribute--settings_flag"></a>

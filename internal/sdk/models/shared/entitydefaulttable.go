@@ -158,12 +158,12 @@ func (u BulkActions) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type BulkActions: all fields are null")
 }
 
-type Params struct {
+type EntityDefaultTableParams struct {
 }
 
 type EntityDefaultTableOptions struct {
-	Label  string  `json:"label"`
-	Params *Params `json:"params,omitempty"`
+	Label  string                    `json:"label"`
+	Params *EntityDefaultTableParams `json:"params,omitempty"`
 }
 
 func (o *EntityDefaultTableOptions) GetLabel() string {
@@ -173,7 +173,7 @@ func (o *EntityDefaultTableOptions) GetLabel() string {
 	return o.Label
 }
 
-func (o *EntityDefaultTableOptions) GetParams() *Params {
+func (o *EntityDefaultTableOptions) GetParams() *EntityDefaultTableParams {
 	if o == nil {
 		return nil
 	}

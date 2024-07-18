@@ -22,13 +22,13 @@ resource "epilot-schema_schema" "my_schema" {
         ]
         constraints                 = {}
         default_value               = "{ \"see\": \"documentation\" }"
-        deprecated                  = false
-        entity_builder_disable_edit = true
+        deprecated                  = true
+        entity_builder_disable_edit = false
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
         has_primary                 = true
-        hidden                      = false
-        hide_label                  = false
+        hidden                      = true
+        hide_label                  = true
         icon                        = "...my_icon..."
         id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
         info_helpers = {
@@ -39,18 +39,18 @@ resource "epilot-schema_schema" "my_schema" {
         }
         label                   = "...my_label..."
         layout                  = "full_width"
-        name                    = "Oscar Walter"
+        name                    = "Carol Cronin"
         order                   = 0
         placeholder             = "...my_placeholder..."
         preview_value_formatter = "...my_preview_value_formatter..."
-        protected               = true
+        protected               = false
         readonly                = false
         render_condition        = "...my_render_condition..."
-        required                = false
+        required                = true
         settings_flag = [
           {
             enabled = false
-            name    = "Kathryn Leffler"
+            name    = "Margaret Rohan"
           },
         ]
         show_in_table   = false
@@ -60,7 +60,7 @@ resource "epilot-schema_schema" "my_schema" {
       }
     },
   ]
-  blueprint = "f4f9e94a-d66b-4cff-bf53-b0a1ef480b7e"
+  blueprint = "7e04c948-e2d5-44b5-b05f-d6573bae023a"
   capabilities = [
     {
       purpose = [
@@ -74,12 +74,12 @@ resource "epilot-schema_schema" "my_schema" {
             ]
             constraints                 = {}
             default_value               = "{ \"see\": \"documentation\" }"
-            deprecated                  = false
-            entity_builder_disable_edit = true
+            deprecated                  = true
+            entity_builder_disable_edit = false
             feature_flag                = "FF_MY_FEATURE_FLAG"
             group                       = "...my_group..."
-            has_primary                 = false
-            hidden                      = false
+            has_primary                 = true
+            hidden                      = true
             hide_label                  = true
             icon                        = "...my_icon..."
             id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
@@ -91,22 +91,22 @@ resource "epilot-schema_schema" "my_schema" {
             }
             label                   = "...my_label..."
             layout                  = "full_width"
-            name                    = "Doug Huels"
+            name                    = "Andy Fahey"
             order                   = 0
             placeholder             = "...my_placeholder..."
             preview_value_formatter = "...my_preview_value_formatter..."
-            protected               = true
+            protected               = false
             readonly                = false
             render_condition        = "...my_render_condition..."
-            required                = true
+            required                = false
             settings_flag = [
               {
-                enabled = true
-                name    = "Dianna Jast"
+                enabled = false
+                name    = "Clark Koelpin"
               },
             ]
-            show_in_table   = true
-            sortable        = true
+            show_in_table   = false
+            sortable        = false
             type            = "relation_address"
             value_formatter = "...my_value_formatter..."
           }
@@ -117,8 +117,8 @@ resource "epilot-schema_schema" "my_schema" {
       name         = "customer_messaging"
       settings_flag = [
         {
-          enabled = true
-          name    = "Barbara Beer MD"
+          enabled = false
+          name    = "Mrs. Lawrence Kris PhD"
         },
       ]
       title = "Messaging"
@@ -128,7 +128,7 @@ resource "epilot-schema_schema" "my_schema" {
           component             = "PricingItems"
           disabled              = false
           group_expanded        = true
-          header                = false
+          header                = true
           hook                  = "EntityDetailsV2:Tab"
           icon                  = "email"
           import                = "@epilot360/notes"
@@ -145,18 +145,16 @@ resource "epilot-schema_schema" "my_schema" {
     },
   ]
   comment        = "...my_comment..."
-  created_at     = "...my_created_at..."
   draft          = true
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
-  id             = "44a6df15-83f0-4d87-8453-ae4df3f2b38f"
+  id             = "75fc6258-415b-4202-a686-fb42fdff5a6a"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
-  updated_at     = "...my_updated_at..."
-  version        = 1
+  version        = 3
 }
 ```
 
@@ -165,72 +163,71 @@ resource "epilot-schema_schema" "my_schema" {
 
 ### Required
 
-- `attributes` (Attributes List) An ordered list of attributes the entity contains. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes))
-- `capabilities` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities))
-- `name` (String) User-friendly identifier for the entity schema. Requires replacement if changed.
-- `plural` (String) Requires replacement if changed.
-- `slug` (String) Entity Type. Requires replacement if changed.
+- `attributes` (Attributes List) An ordered list of attributes the entity contains (see [below for nested schema](#nestedatt--attributes))
+- `capabilities` (Attributes List) (see [below for nested schema](#nestedatt--capabilities))
+- `name` (String) User-friendly identifier for the entity schema
+- `plural` (String)
+- `slug` (String) Entity Type
 
 ### Optional
 
-- `blueprint` (String) Reference to blueprint. Requires replacement if changed.
-- `comment` (String) Requires replacement if changed.
-- `created_at` (String) Requires replacement if changed.
-- `dialog_config` (Map of String) Requires replacement if changed.
-- `draft` (Boolean) Requires replacement if changed. ; Default: false
-- `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled. Requires replacement if changed.
-- `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--explicit_search_mappings))
-- `feature_flag` (String) This schema should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group_settings` (Attributes List) A dictionary of Group Titles and associated settings if present. Requires replacement if changed. (see [below for nested schema](#nestedatt--group_settings))
-- `icon` (String) Requires replacement if changed.
-- `id` (String) Generated uuid for schema. Requires replacement if changed.
+- `blueprint` (String) Reference to blueprint
+- `comment` (String)
+- `dialog_config` (Map of String)
+- `draft` (Boolean) Default: false
+- `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
+- `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))
+- `feature_flag` (String) This schema should only be active when the feature flag is enabled
+- `group_settings` (Attributes List) A list of Group Titles and associated settings if present. (see [below for nested schema](#nestedatt--group_settings))
+- `icon` (String)
+- `id` (String) Generated uuid for schema
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 - Managed Properties: are interpreted and transformed into layout styles
-- Un-managed Properties: are appended as styles into the attribute mounting node
+- Un-managed Properties: are appended as styles into the attribute mounting node (see [below for nested schema](#nestedatt--layout_settings))
+- `published` (Boolean)
+- `source` (Attributes) (see [below for nested schema](#nestedatt--source))
+- `title_template` (String) Template for rendering the title field. Uses handlebars
+- `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
+- `version` (Number)
 
-Requires replacement if changed. (see [below for nested schema](#nestedatt--layout_settings))
-- `published` (Boolean) Requires replacement if changed.
-- `source` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--source))
-- `title_template` (String) Template for rendering the title field. Uses handlebars. Requires replacement if changed.
-- `ui_config` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config))
-- `updated_at` (String) Requires replacement if changed.
-- `version` (Number) Requires replacement if changed.
+### Read-Only
+
+- `created_at` (String)
+- `updated_at` (String)
 
 <a id="nestedatt--attributes"></a>
 ### Nested Schema for `attributes`
 
 Optional:
 
-- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute))
-- `automation_attribute` (Attributes) Automation entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--automation_attribute))
-- `boolean_attribute` (Attributes) Yes / No Toggle. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--boolean_attribute))
-- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes). Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--computed_attribute))
-- `consent_attribute` (Attributes) Consent Management. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--consent_attribute))
-- `country_attribute` (Attributes) Country picker. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--country_attribute))
-- `currency_attribute` (Attributes) Currency input. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute))
-- `date_attribute` (Attributes) Date or Datetime picker. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--date_attribute))
-- `file_attribute` (Attributes) File or Image Attachment. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--file_attribute))
-- `internal_attribute` (Attributes) No UI representation. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_attribute))
-- `internal_user_attribute` (Attributes) Epilot internal user info. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute))
-- `invitation_email_attribute` (Attributes) Email address for send invitation. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute))
-- `link_attribute` (Attributes) Link with title and href. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--link_attribute))
-- `multi_select_attribute` (Attributes) Multi Choice Selection. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute))
-- `number_attribute` (Attributes) Numeric input. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--number_attribute))
-- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute))
-- `partner_organisation_attribute` (Attributes) Shared Partner Organisations. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute))
-- `partner_status_attribute` (Attributes) Partner Status. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute))
-- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute))
-- `purpose_attribute` (Attributes) Entity Taxonomy. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--purpose_attribute))
-- `relation_attribute` (Attributes) Entity Relationship. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields). Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute))
-- `select_attribute` (Attributes) Dropdown select. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute))
-- `sequence_attribute` (Attributes) Sequence of unique identifiers. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--sequence_attribute))
-- `status_attribute` (Attributes) Status select. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute))
-- `tags_attribute` (Attributes) Tags. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--tags_attribute))
-- `text_attribute` (Attributes) Textarea or text input. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--text_attribute))
-- `user_relation_attribute` (Attributes) User Relationship. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute))
+- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--attributes--address_relation_attribute))
+- `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--attributes--automation_attribute))
+- `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--attributes--boolean_attribute))
+- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes) (see [below for nested schema](#nestedatt--attributes--computed_attribute))
+- `consent_attribute` (Attributes) Consent Management (see [below for nested schema](#nestedatt--attributes--consent_attribute))
+- `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--attributes--country_attribute))
+- `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--attributes--currency_attribute))
+- `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--attributes--date_attribute))
+- `file_attribute` (Attributes) File or Image Attachment (see [below for nested schema](#nestedatt--attributes--file_attribute))
+- `internal_attribute` (Attributes) No UI representation (see [below for nested schema](#nestedatt--attributes--internal_attribute))
+- `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--attributes--internal_user_attribute))
+- `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute))
+- `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--attributes--link_attribute))
+- `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--attributes--multi_select_attribute))
+- `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--attributes--number_attribute))
+- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute))
+- `partner_organisation_attribute` (Attributes) Shared Partner Organisations (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute))
+- `partner_status_attribute` (Attributes) Partner Status (see [below for nested schema](#nestedatt--attributes--partner_status_attribute))
+- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute))
+- `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--attributes--purpose_attribute))
+- `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--attributes--relation_attribute))
+- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--attributes--repeatable_attribute))
+- `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--attributes--select_attribute))
+- `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--attributes--sequence_attribute))
+- `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--attributes--status_attribute))
+- `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--attributes--tags_attribute))
+- `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--attributes--text_attribute))
+- `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--attributes--user_relation_attribute))
 
 <a id="nestedatt--attributes--address_relation_attribute"></a>
 ### Nested Schema for `attributes.address_relation_attribute`
@@ -238,43 +235,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_address"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_address"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--address_relation_attribute--constraints"></a>
 ### Nested Schema for `attributes.address_relation_attribute.constraints`
@@ -288,20 +279,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--address_relation_attribute--settings_flag"></a>
@@ -309,8 +292,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -320,42 +303,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--automation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--automation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--automation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["automation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["automation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--automation_attribute--constraints"></a>
 ### Nested Schema for `attributes.automation_attribute.constraints`
@@ -369,20 +346,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--automation_attribute--settings_flag"></a>
@@ -390,8 +359,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -401,42 +370,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["boolean"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["boolean"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--boolean_attribute--constraints"></a>
 ### Nested Schema for `attributes.boolean_attribute.constraints`
@@ -450,20 +413,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--boolean_attribute--settings_flag"></a>
@@ -471,8 +426,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -482,42 +437,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--computed_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--computed_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--computed_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["computed"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["computed"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--computed_attribute--constraints"></a>
 ### Nested Schema for `attributes.computed_attribute.constraints`
@@ -531,20 +480,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--computed_attribute--settings_flag"></a>
@@ -552,8 +493,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -563,44 +504,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--consent_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `identifiers` (List of String) Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--consent_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `identifiers` (List of String)
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--consent_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `topic` (String) Requires replacement if changed. ; Not Null
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["consent"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `topic` (String) Not Null
+- `type` (String) Not Null; must be one of ["consent"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--consent_attribute--constraints"></a>
 ### Nested Schema for `attributes.consent_attribute.constraints`
@@ -614,20 +549,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--consent_attribute--settings_flag"></a>
@@ -635,8 +562,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -646,42 +573,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--country_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--country_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--country_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["country"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["country"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--country_attribute--constraints"></a>
 ### Nested Schema for `attributes.country_attribute.constraints`
@@ -695,20 +616,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--country_attribute--settings_flag"></a>
@@ -716,8 +629,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -727,44 +640,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute--constraints))
-- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217). Requires replacement if changed. ; Not Null (see [below for nested schema](#nestedatt--attributes--currency_attribute--currency))
-- `currency_selector_only` (Boolean) Requires replacement if changed. ; Default: false
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--currency_attribute--constraints))
+- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217). Not Null (see [below for nested schema](#nestedatt--attributes--currency_attribute--currency))
+- `currency_selector_only` (Boolean) Default: false
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--currency_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["currency"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be one of ["currency"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--currency_attribute--constraints"></a>
 ### Nested Schema for `attributes.currency_attribute.constraints`
@@ -775,17 +682,17 @@ Requires replacement if changed.
 
 Optional:
 
-- `one` (Attributes) A currency configuration. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--currency_attribute--currency--one))
+- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--attributes--currency_attribute--currency--one))
 
 <a id="nestedatt--attributes--currency_attribute--currency--one"></a>
 ### Nested Schema for `attributes.currency_attribute.currency.one`
 
 Optional:
 
-- `code` (String) Requires replacement if changed. ; Not Null
-- `description` (String) Requires replacement if changed. ; Not Null
-- `flag` (String) Requires replacement if changed.
-- `symbol` (String) Requires replacement if changed. ; Not Null
+- `code` (String) Not Null
+- `description` (String) Not Null
+- `flag` (String)
+- `symbol` (String) Not Null
 
 
 
@@ -797,20 +704,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--currency_attribute--settings_flag"></a>
@@ -818,8 +717,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -829,42 +728,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--date_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--date_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--date_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["date", "datetime"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["date", "datetime"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--date_attribute--constraints"></a>
 ### Nested Schema for `attributes.date_attribute.constraints`
@@ -878,20 +771,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--date_attribute--settings_flag"></a>
@@ -899,8 +784,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -909,51 +794,43 @@ Optional:
 
 Optional:
 
-- `allowed_extensions` (List of String) List of file extensions (without the dot suffix). Requires replacement if changed.
+- `allowed_extensions` (List of String) List of file extensions (without the dot suffix)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--file_attribute--constraints))
-- `default_access_control` (String) Requires replacement if changed. ; must be one of ["public-read", "private"]
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--file_attribute--constraints))
+- `default_access_control` (String) must be one of ["public-read", "private"]
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view.
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
-
-Requires replacement if changed.
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--file_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiple` (Boolean) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--file_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiple` (Boolean)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["image", "file"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be one of ["image", "file"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--file_attribute--constraints"></a>
 ### Nested Schema for `attributes.file_attribute.constraints`
@@ -967,20 +844,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--file_attribute--settings_flag"></a>
@@ -988,8 +857,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -999,42 +868,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["internal"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["internal"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--internal_attribute--constraints"></a>
 ### Nested Schema for `attributes.internal_attribute.constraints`
@@ -1048,20 +911,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--internal_attribute--settings_flag"></a>
@@ -1069,8 +924,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1080,42 +935,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["internal_user"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["internal_user"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--internal_user_attribute--constraints"></a>
 ### Nested Schema for `attributes.internal_user_attribute.constraints`
@@ -1129,20 +978,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--internal_user_attribute--settings_flag"></a>
@@ -1150,8 +991,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1161,42 +1002,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["invitation_email"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["invitation_email"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--invitation_email_attribute--constraints"></a>
 ### Nested Schema for `attributes.invitation_email_attribute.constraints`
@@ -1210,20 +1045,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--invitation_email_attribute--settings_flag"></a>
@@ -1231,8 +1058,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1242,42 +1069,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--link_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--link_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--link_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["link"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["link"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--link_attribute--constraints"></a>
 ### Nested Schema for `attributes.link_attribute.constraints`
@@ -1291,20 +1112,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--link_attribute--settings_flag"></a>
@@ -1312,8 +1125,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1322,47 +1135,41 @@ Optional:
 
 Optional:
 
-- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options. Requires replacement if changed.
-- `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options. Requires replacement if changed.
+- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
+- `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not. Requires replacement if changed.
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--options))
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["multiselect", "checkbox"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["multiselect", "checkbox"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--multi_select_attribute--constraints"></a>
 ### Nested Schema for `attributes.multi_select_attribute.constraints`
@@ -1376,20 +1183,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--multi_select_attribute--options"></a>
@@ -1397,16 +1196,16 @@ Requires replacement if changed.
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `two` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--options--two))
+- `str` (String)
+- `two` (Attributes) (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--options--two))
 
 <a id="nestedatt--attributes--multi_select_attribute--options--two"></a>
 ### Nested Schema for `attributes.multi_select_attribute.options.two`
 
 Optional:
 
-- `title` (String) Requires replacement if changed.
-- `value` (String) Requires replacement if changed. ; Not Null
+- `title` (String)
+- `value` (String) Not Null
 
 
 
@@ -1415,8 +1214,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1426,43 +1225,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--number_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `format` (String) Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `format` (String)
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--number_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--number_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["number"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator. Default: true
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["number"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--number_attribute--constraints"></a>
 ### Nested Schema for `attributes.number_attribute.constraints`
@@ -1476,20 +1270,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--number_attribute--settings_flag"></a>
@@ -1497,8 +1283,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1508,42 +1294,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["ordered_list"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["ordered_list"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--ordered_list_attribute--constraints"></a>
 ### Nested Schema for `attributes.ordered_list_attribute.constraints`
@@ -1557,20 +1337,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--ordered_list_attribute--settings_flag"></a>
@@ -1578,8 +1350,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1589,42 +1361,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["partner_organisation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["partner_organisation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--partner_organisation_attribute--constraints"></a>
 ### Nested Schema for `attributes.partner_organisation_attribute.constraints`
@@ -1638,20 +1404,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--partner_organisation_attribute--settings_flag"></a>
@@ -1659,8 +1417,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1670,42 +1428,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["partner_status"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["partner_status"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--partner_status_attribute--constraints"></a>
 ### Nested Schema for `attributes.partner_status_attribute.constraints`
@@ -1719,20 +1471,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--partner_status_attribute--settings_flag"></a>
@@ -1740,8 +1484,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1751,43 +1495,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_payment_method"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_payment_method"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--payment_method_relation_attribute--constraints"></a>
 ### Nested Schema for `attributes.payment_method_relation_attribute.constraints`
@@ -1801,20 +1539,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--payment_method_relation_attribute--settings_flag"></a>
@@ -1822,8 +1552,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1833,46 +1563,40 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--constraints))
-- `created_at` (String) Requires replacement if changed.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--constraints))
+- `created_at` (String)
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `parents` (List of String) Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String)
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `parents` (List of String)
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `slug` (String) URL-friendly identifier for the classification. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["purpose"]
-- `updated_at` (String) Requires replacement if changed.
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `slug` (String) URL-friendly identifier for the classification
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["purpose"]
+- `updated_at` (String)
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--purpose_attribute--constraints"></a>
 ### Nested Schema for `attributes.purpose_attribute.constraints`
@@ -1886,20 +1610,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--purpose_attribute--settings_flag"></a>
@@ -1907,8 +1623,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -1917,54 +1633,50 @@ Optional:
 
 Optional:
 
-- `actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions))
-- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is. Requires replacement if changed.
-- `allowed_schemas` (List of String) Requires replacement if changed.
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions))
+- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+- `allowed_schemas` (List of String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode. Requires replacement if changed. ; Default: false
-- `drawer_size` (String) Requires replacement if changed. ; must be one of ["small", "medium", "large"]
-- `edit_mode` (String) Requires replacement if changed. ; must be one of ["list-view"]
-- `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Requires replacement if changed. ; Default: true
-- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Requires replacement if changed. ; Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
-- `icon` (String) Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
-- `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. Requires replacement if changed. ; must be one of ["weak", "strong"]
-- `relation_type` (String) Requires replacement if changed. ; must be one of ["has_many", "has_one"]
+- `deprecated` (Boolean) Default: false
+- `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode. Default: false
+- `drawer_size` (String) must be one of ["small", "medium", "large"]
+- `edit_mode` (String) must be one of ["list-view"]
+- `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
+- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String)
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
+- `relation_type` (String) must be one of ["has_many", "has_one"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute. Requires replacement if changed.
-- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is. Requires replacement if changed.
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `summary_fields` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--summary_fields))
-- `type` (String) Requires replacement if changed. ; must be one of ["relation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
+- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--summary_fields))
+- `type` (String) must be one of ["relation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--relation_attribute--actions"></a>
 ### Nested Schema for `attributes.relation_attribute.actions`
@@ -1979,28 +1691,31 @@ Optional:
 | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
 | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
 
-Requires replacement if changed. ; must be one of ["add_existing", "create_new", "create_from_existing"]
-- `default` (Boolean) Sets the action as the default action, visible as the main action button. Requires replacement if changed.
-- `feature_flag` (String) Name of the feature flag that enables this action. Requires replacement if changed.
-- `label` (String) The action label or action translation key (i18n). Requires replacement if changed.
-- `new_entity_item` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item))
-- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag))
+must be one of ["add_existing", "create_new", "create_from_existing"]
+- `default` (Boolean) Sets the action as the default action, visible as the main action button.
+- `feature_flag` (String) Name of the feature flag that enables this action
+- `label` (String) The action label or action translation key (i18n)
+- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item))
+- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag))
 
 <a id="nestedatt--attributes--relation_attribute--actions--new_entity_item"></a>
 ### Nested Schema for `attributes.relation_attribute.actions.settings_flag`
 
 Optional:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--acl))
 - `additional_properties` (String) Parsed as JSON.
-- `created_at` (String) Requires replacement if changed. ; Not Null
-- `id` (String) Requires replacement if changed. ; Not Null
-- `org` (String) Organization Id the entity belongs to. Requires replacement if changed. ; Not Null
-- `owners` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--owners))
-- `schema` (String) URL-friendly identifier for the entity schema. Requires replacement if changed. ; Not Null
-- `tags` (List of String) Requires replacement if changed.
-- `title` (String) Title of entity. Requires replacement if changed. ; Not Null
-- `updated_at` (String) Requires replacement if changed. ; Not Null
+- `id` (String) Not Null
+- `schema` (String) URL-friendly identifier for the entity schema. Not Null
+- `tags` (List of String)
+- `title` (String) Title of entity. Not Null
+
+Read-Only:
+
+- `created_at` (String)
+- `org` (String) Organization Id the entity belongs to
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--owners))
+- `updated_at` (String)
 
 <a id="nestedatt--attributes--relation_attribute--actions--settings_flag--acl"></a>
 ### Nested Schema for `attributes.relation_attribute.actions.settings_flag.acl`
@@ -2008,18 +1723,18 @@ Optional:
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `delete` (List of String) Requires replacement if changed.
-- `edit` (List of String) Requires replacement if changed.
-- `view` (List of String) Requires replacement if changed.
+- `delete` (List of String)
+- `edit` (List of String)
+- `view` (List of String)
 
 
 <a id="nestedatt--attributes--relation_attribute--actions--settings_flag--owners"></a>
 ### Nested Schema for `attributes.relation_attribute.actions.settings_flag.owners`
 
-Optional:
+Read-Only:
 
-- `org_id` (String) Requires replacement if changed. ; Not Null
-- `user_id` (String) Requires replacement if changed.
+- `org_id` (String)
+- `user_id` (String)
 
 
 
@@ -2028,8 +1743,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2045,20 +1760,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--relation_attribute--settings_flag"></a>
@@ -2066,8 +1773,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 <a id="nestedatt--attributes--relation_attribute--summary_fields"></a>
@@ -2075,16 +1782,16 @@ Optional:
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--relation_attribute--summary_fields--summary_field))
+- `str` (String)
+- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--attributes--relation_attribute--summary_fields--summary_field))
 
 <a id="nestedatt--attributes--relation_attribute--summary_fields--summary_field"></a>
 ### Nested Schema for `attributes.relation_attribute.summary_fields.summary_field`
 
 Optional:
 
-- `display_as` (String) An hint on how to display the summary field. Requires replacement if changed.
-- `field` (String) The field from the entity attributes to display. Requires replacement if changed.
+- `display_as` (String) An hint on how to display the summary field
+- `field` (String) The field from the entity attributes to display
 
 
 
@@ -2095,46 +1802,40 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Requires replacement if changed. ; Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. Requires replacement if changed. ; must be one of ["weak", "strong"]
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `repeatable` (Boolean) Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
-- `value_formatter` (String) Requires replacement if changed.
+- `repeatable` (Boolean)
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--repeatable_attribute--constraints"></a>
 ### Nested Schema for `attributes.repeatable_attribute.constraints`
@@ -2148,20 +1849,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--repeatable_attribute--settings_flag"></a>
@@ -2169,8 +1862,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2179,45 +1872,39 @@ Optional:
 
 Optional:
 
-- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options. Requires replacement if changed.
+- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--select_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (String) Parsed as JSON.
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["select", "radio"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["select", "radio"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--select_attribute--constraints"></a>
 ### Nested Schema for `attributes.select_attribute.constraints`
@@ -2231,38 +1918,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
-
-
-<a id="nestedatt--attributes--select_attribute--options"></a>
-### Nested Schema for `attributes.select_attribute.options`
-
-Optional:
-
-- `one` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--select_attribute--options--one))
-- `str` (String) Requires replacement if changed.
-
-<a id="nestedatt--attributes--select_attribute--options--one"></a>
-### Nested Schema for `attributes.select_attribute.options.str`
-
-Optional:
-
-- `title` (String) Requires replacement if changed.
-- `value` (String) Requires replacement if changed.
-
 
 
 <a id="nestedatt--attributes--select_attribute--settings_flag"></a>
@@ -2270,8 +1931,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2281,44 +1942,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `prefix` (String) Prefix added before the sequence number. Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `prefix` (String) Prefix added before the sequence number
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `start_number` (Number) Requires replacement if changed.
-- `type` (String) Requires replacement if changed. ; must be one of ["sequence"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `start_number` (Number)
+- `type` (String) must be one of ["sequence"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--sequence_attribute--constraints"></a>
 ### Nested Schema for `attributes.sequence_attribute.constraints`
@@ -2332,20 +1987,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--sequence_attribute--settings_flag"></a>
@@ -2353,8 +2000,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2364,43 +2011,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--status_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--attributes--status_attribute--options))
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["status"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["status"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--status_attribute--constraints"></a>
 ### Nested Schema for `attributes.status_attribute.constraints`
@@ -2414,20 +2055,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--status_attribute--options"></a>
@@ -2435,16 +2068,16 @@ Requires replacement if changed.
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `two` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--status_attribute--options--two))
+- `str` (String)
+- `two` (Attributes) (see [below for nested schema](#nestedatt--attributes--status_attribute--options--two))
 
 <a id="nestedatt--attributes--status_attribute--options--two"></a>
 ### Nested Schema for `attributes.status_attribute.options.two`
 
 Optional:
 
-- `title` (String) The displayed title of the option. Requires replacement if changed.
-- `value` (String) The stored value of the option. Requires replacement if changed. ; Not Null
+- `title` (String) The displayed title of the option
+- `value` (String) The stored value of the option. Not Null
 
 
 
@@ -2453,8 +2086,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2464,44 +2097,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--tags_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--tags_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (List of String) Requires replacement if changed.
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--tags_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (List of String)
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `suggestions` (List of String) Requires replacement if changed.
-- `type` (String) Requires replacement if changed. ; must be one of ["tags"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `suggestions` (List of String)
+- `type` (String) must be one of ["tags"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--tags_attribute--constraints"></a>
 ### Nested Schema for `attributes.tags_attribute.constraints`
@@ -2515,20 +2142,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--tags_attribute--settings_flag"></a>
@@ -2536,8 +2155,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2547,43 +2166,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--text_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--text_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiline` (Boolean) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--text_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiline` (Boolean)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["string"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["string"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--text_attribute--constraints"></a>
 ### Nested Schema for `attributes.text_attribute.constraints`
@@ -2597,20 +2210,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--text_attribute--settings_flag"></a>
@@ -2618,8 +2223,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2629,43 +2234,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiple` (Boolean) Requires replacement if changed. ; Default: false
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiple` (Boolean) Default: false
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_user"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_user"]
+- `value_formatter` (String)
 
 <a id="nestedatt--attributes--user_relation_attribute--constraints"></a>
 ### Nested Schema for `attributes.user_relation_attribute.constraints`
@@ -2679,20 +2278,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--attributes--user_relation_attribute--settings_flag"></a>
@@ -2700,8 +2291,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2711,48 +2302,48 @@ Optional:
 
 Optional:
 
-- `attributes` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes))
-- `feature_flag` (String) This capability should only be active when the feature flag is enabled. Requires replacement if changed.
-- `id` (String) ID for the entity capability. Requires replacement if changed.
-- `name` (String) Unique name for the capability. Requires replacement if changed. ; Not Null
-- `purpose` (List of String) Requires replacement if changed.
-- `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--settings_flag))
-- `title` (String) Human readable title of the capability. Requires replacement if changed.
-- `ui_hooks` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--ui_hooks))
+- `attributes` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes))
+- `feature_flag` (String) This capability should only be active when the feature flag is enabled
+- `id` (String) ID for the entity capability
+- `name` (String) Unique name for the capability. Not Null
+- `purpose` (List of String)
+- `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--settings_flag))
+- `title` (String) Human readable title of the capability
+- `ui_hooks` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--ui_hooks))
 
 <a id="nestedatt--capabilities--attributes"></a>
 ### Nested Schema for `capabilities.attributes`
 
 Optional:
 
-- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute))
-- `automation_attribute` (Attributes) Automation entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute))
-- `boolean_attribute` (Attributes) Yes / No Toggle. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute))
-- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes). Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute))
-- `consent_attribute` (Attributes) Consent Management. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute))
-- `country_attribute` (Attributes) Country picker. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute))
-- `currency_attribute` (Attributes) Currency input. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute))
-- `date_attribute` (Attributes) Date or Datetime picker. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute))
-- `file_attribute` (Attributes) File or Image Attachment. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute))
-- `internal_attribute` (Attributes) No UI representation. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute))
-- `internal_user_attribute` (Attributes) Epilot internal user info. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute))
-- `invitation_email_attribute` (Attributes) Email address for send invitation. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute))
-- `link_attribute` (Attributes) Link with title and href. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute))
-- `multi_select_attribute` (Attributes) Multi Choice Selection. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute))
-- `number_attribute` (Attributes) Numeric input. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute))
-- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute))
-- `partner_organisation_attribute` (Attributes) Shared Partner Organisations. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute))
-- `partner_status_attribute` (Attributes) Partner Status. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute))
-- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute))
-- `purpose_attribute` (Attributes) Entity Taxonomy. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute))
-- `relation_attribute` (Attributes) Entity Relationship. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields). Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute))
-- `select_attribute` (Attributes) Dropdown select. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute))
-- `sequence_attribute` (Attributes) Sequence of unique identifiers. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute))
-- `status_attribute` (Attributes) Status select. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute))
-- `tags_attribute` (Attributes) Tags. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute))
-- `text_attribute` (Attributes) Textarea or text input. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute))
-- `user_relation_attribute` (Attributes) User Relationship. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute))
+- `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute))
+- `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute))
+- `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute))
+- `computed_attribute` (Attributes) An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute))
+- `consent_attribute` (Attributes) Consent Management (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute))
+- `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute))
+- `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute))
+- `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute))
+- `file_attribute` (Attributes) File or Image Attachment (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute))
+- `internal_attribute` (Attributes) No UI representation (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute))
+- `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute))
+- `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute))
+- `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute))
+- `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute))
+- `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute))
+- `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute))
+- `partner_organisation_attribute` (Attributes) Shared Partner Organisations (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute))
+- `partner_status_attribute` (Attributes) Partner Status (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute))
+- `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute))
+- `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute))
+- `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute))
+- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute))
+- `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute))
+- `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute))
+- `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute))
+- `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute))
+- `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute))
+- `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute))
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute"></a>
 ### Nested Schema for `capabilities.attributes.address_relation_attribute`
@@ -2760,43 +2351,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_address"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--address_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_address"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.address_relation_attribute.value_formatter`
@@ -2810,20 +2395,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute--settings_flag"></a>
@@ -2831,8 +2408,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2842,42 +2419,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["automation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--automation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["automation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--automation_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.automation_attribute.value_formatter`
@@ -2891,20 +2462,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--automation_attribute--settings_flag"></a>
@@ -2912,8 +2475,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -2923,42 +2486,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["boolean"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--boolean_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["boolean"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--boolean_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.boolean_attribute.value_formatter`
@@ -2972,20 +2529,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--boolean_attribute--settings_flag"></a>
@@ -2993,8 +2542,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3004,42 +2553,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["computed"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--computed_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["computed"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--computed_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.computed_attribute.value_formatter`
@@ -3053,20 +2596,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--computed_attribute--settings_flag"></a>
@@ -3074,8 +2609,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3085,44 +2620,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `identifiers` (List of String) Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `identifiers` (List of String)
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `topic` (String) Requires replacement if changed. ; Not Null
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["consent"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--consent_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `topic` (String) Not Null
+- `type` (String) Not Null; must be one of ["consent"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--consent_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.consent_attribute.value_formatter`
@@ -3136,20 +2665,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--consent_attribute--settings_flag"></a>
@@ -3157,8 +2678,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3168,42 +2689,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["country"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--country_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["country"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--country_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.country_attribute.value_formatter`
@@ -3217,20 +2732,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--country_attribute--settings_flag"></a>
@@ -3238,8 +2745,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3249,44 +2756,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--constraints))
-- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217). Requires replacement if changed. ; Not Null (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--currency))
-- `currency_selector_only` (Boolean) Requires replacement if changed. ; Default: false
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--constraints))
+- `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217). Not Null (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--currency))
+- `currency_selector_only` (Boolean) Default: false
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["currency"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be one of ["currency"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter`
@@ -3297,17 +2798,17 @@ Requires replacement if changed.
 
 Optional:
 
-- `one` (Attributes) A currency configuration. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--value_formatter--one))
+- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--value_formatter--one))
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--value_formatter--one"></a>
 ### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter.one`
 
 Optional:
 
-- `code` (String) Requires replacement if changed. ; Not Null
-- `description` (String) Requires replacement if changed. ; Not Null
-- `flag` (String) Requires replacement if changed.
-- `symbol` (String) Requires replacement if changed. ; Not Null
+- `code` (String) Not Null
+- `description` (String) Not Null
+- `flag` (String)
+- `symbol` (String) Not Null
 
 
 
@@ -3319,20 +2820,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--settings_flag"></a>
@@ -3340,8 +2833,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3351,42 +2844,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["date", "datetime"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--date_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["date", "datetime"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--date_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.date_attribute.value_formatter`
@@ -3400,20 +2887,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--date_attribute--settings_flag"></a>
@@ -3421,8 +2900,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3431,51 +2910,43 @@ Optional:
 
 Optional:
 
-- `allowed_extensions` (List of String) List of file extensions (without the dot suffix). Requires replacement if changed.
+- `allowed_extensions` (List of String) List of file extensions (without the dot suffix)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--constraints))
-- `default_access_control` (String) Requires replacement if changed. ; must be one of ["public-read", "private"]
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--constraints))
+- `default_access_control` (String) must be one of ["public-read", "private"]
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view.
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
-
-Requires replacement if changed.
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiple` (Boolean) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiple` (Boolean)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; Not Null; must be one of ["image", "file"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--file_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be one of ["image", "file"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--file_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.file_attribute.value_formatter`
@@ -3489,20 +2960,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--file_attribute--settings_flag"></a>
@@ -3510,8 +2973,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3521,42 +2984,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["internal"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--internal_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["internal"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--internal_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.internal_attribute.value_formatter`
@@ -3570,20 +3027,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--internal_attribute--settings_flag"></a>
@@ -3591,8 +3040,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3602,42 +3051,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["internal_user"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--internal_user_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["internal_user"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--internal_user_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.internal_user_attribute.value_formatter`
@@ -3651,20 +3094,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--internal_user_attribute--settings_flag"></a>
@@ -3672,8 +3107,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3683,42 +3118,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["invitation_email"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--invitation_email_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["invitation_email"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--invitation_email_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.invitation_email_attribute.value_formatter`
@@ -3732,20 +3161,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--invitation_email_attribute--settings_flag"></a>
@@ -3753,8 +3174,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3764,42 +3185,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["link"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--link_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["link"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--link_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.link_attribute.value_formatter`
@@ -3813,20 +3228,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--link_attribute--settings_flag"></a>
@@ -3834,8 +3241,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3844,47 +3251,41 @@ Optional:
 
 Optional:
 
-- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options. Requires replacement if changed.
-- `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options. Requires replacement if changed.
+- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
+- `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not. Requires replacement if changed.
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--options))
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["multiselect", "checkbox"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["multiselect", "checkbox"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter`
@@ -3898,20 +3299,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--options"></a>
@@ -3919,16 +3312,16 @@ Requires replacement if changed.
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `two` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--value_formatter--two))
+- `str` (String)
+- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--value_formatter--two))
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--value_formatter--two"></a>
 ### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter.two`
 
 Optional:
 
-- `title` (String) Requires replacement if changed.
-- `value` (String) Requires replacement if changed. ; Not Null
+- `title` (String)
+- `value` (String) Not Null
 
 
 
@@ -3937,8 +3330,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -3948,43 +3341,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `format` (String) Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `format` (String)
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["number"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--number_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `show_separator` (Boolean) Whether or not to show a thousands separator. Default: true
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["number"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--number_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.number_attribute.value_formatter`
@@ -3998,20 +3386,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--number_attribute--settings_flag"></a>
@@ -4019,8 +3399,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4030,42 +3410,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["ordered_list"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--ordered_list_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["ordered_list"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--ordered_list_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.ordered_list_attribute.value_formatter`
@@ -4079,20 +3453,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--ordered_list_attribute--settings_flag"></a>
@@ -4100,8 +3466,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4111,42 +3477,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["partner_organisation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--partner_organisation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["partner_organisation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--partner_organisation_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.partner_organisation_attribute.value_formatter`
@@ -4160,20 +3520,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--partner_organisation_attribute--settings_flag"></a>
@@ -4181,8 +3533,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4192,42 +3544,36 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["partner_status"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--partner_status_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["partner_status"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--partner_status_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.partner_status_attribute.value_formatter`
@@ -4241,20 +3587,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--partner_status_attribute--settings_flag"></a>
@@ -4262,8 +3600,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4273,43 +3611,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_payment_method"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--payment_method_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_payment_method"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--payment_method_relation_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.value_formatter`
@@ -4323,20 +3655,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--payment_method_relation_attribute--settings_flag"></a>
@@ -4344,8 +3668,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4355,46 +3679,40 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--constraints))
-- `created_at` (String) Requires replacement if changed.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--constraints))
+- `created_at` (String)
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `parents` (List of String) Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String)
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `parents` (List of String)
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `slug` (String) URL-friendly identifier for the classification. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["purpose"]
-- `updated_at` (String) Requires replacement if changed.
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--purpose_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `slug` (String) URL-friendly identifier for the classification
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["purpose"]
+- `updated_at` (String)
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--purpose_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.purpose_attribute.value_formatter`
@@ -4408,20 +3726,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--purpose_attribute--settings_flag"></a>
@@ -4429,8 +3739,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4439,54 +3749,50 @@ Optional:
 
 Optional:
 
-- `actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions))
-- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is. Requires replacement if changed.
-- `allowed_schemas` (List of String) Requires replacement if changed.
+- `actions` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions))
+- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+- `allowed_schemas` (List of String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode. Requires replacement if changed. ; Default: false
-- `drawer_size` (String) Requires replacement if changed. ; must be one of ["small", "medium", "large"]
-- `edit_mode` (String) Requires replacement if changed. ; must be one of ["list-view"]
-- `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Requires replacement if changed. ; Default: true
-- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Requires replacement if changed. ; Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
-- `icon` (String) Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
-- `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. Requires replacement if changed. ; must be one of ["weak", "strong"]
-- `relation_type` (String) Requires replacement if changed. ; must be one of ["has_many", "has_one"]
+- `deprecated` (Boolean) Default: false
+- `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode. Default: false
+- `drawer_size` (String) must be one of ["small", "medium", "large"]
+- `edit_mode` (String) must be one of ["list-view"]
+- `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
+- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String)
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
+- `relation_type` (String) must be one of ["has_many", "has_one"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute. Requires replacement if changed.
-- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is. Requires replacement if changed.
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `summary_fields` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--summary_fields))
-- `type` (String) Requires replacement if changed. ; must be one of ["relation"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
+- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--summary_fields))
+- `type` (String) must be one of ["relation"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--actions"></a>
 ### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
@@ -4501,28 +3807,31 @@ Optional:
 | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
 | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
 
-Requires replacement if changed. ; must be one of ["add_existing", "create_new", "create_from_existing"]
-- `default` (Boolean) Sets the action as the default action, visible as the main action button. Requires replacement if changed.
-- `feature_flag` (String) Name of the feature flag that enables this action. Requires replacement if changed.
-- `label` (String) The action label or action translation key (i18n). Requires replacement if changed.
-- `new_entity_item` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item))
-- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--settings_flag))
+must be one of ["add_existing", "create_new", "create_from_existing"]
+- `default` (Boolean) Sets the action as the default action, visible as the main action button.
+- `feature_flag` (String) Name of the feature flag that enables this action
+- `label` (String) The action label or action translation key (i18n)
+- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item))
+- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--settings_flag))
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item"></a>
 ### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item`
 
 Optional:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
-- `created_at` (String) Requires replacement if changed. ; Not Null
-- `id` (String) Requires replacement if changed. ; Not Null
-- `org` (String) Organization Id the entity belongs to. Requires replacement if changed. ; Not Null
-- `owners` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--owners))
-- `schema` (String) URL-friendly identifier for the entity schema. Requires replacement if changed. ; Not Null
-- `tags` (List of String) Requires replacement if changed.
-- `title` (String) Title of entity. Requires replacement if changed. ; Not Null
-- `updated_at` (String) Requires replacement if changed. ; Not Null
+- `id` (String) Not Null
+- `schema` (String) URL-friendly identifier for the entity schema. Not Null
+- `tags` (List of String)
+- `title` (String) Title of entity. Not Null
+
+Read-Only:
+
+- `created_at` (String)
+- `org` (String) Organization Id the entity belongs to
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--owners))
+- `updated_at` (String)
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--acl"></a>
 ### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item.updated_at`
@@ -4530,18 +3839,18 @@ Optional:
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `delete` (List of String) Requires replacement if changed.
-- `edit` (List of String) Requires replacement if changed.
-- `view` (List of String) Requires replacement if changed.
+- `delete` (List of String)
+- `edit` (List of String)
+- `view` (List of String)
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--owners"></a>
 ### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item.updated_at`
 
-Optional:
+Read-Only:
 
-- `org_id` (String) Requires replacement if changed. ; Not Null
-- `user_id` (String) Requires replacement if changed.
+- `org_id` (String)
+- `user_id` (String)
 
 
 
@@ -4550,8 +3859,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4567,20 +3876,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--settings_flag"></a>
@@ -4588,8 +3889,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--summary_fields"></a>
@@ -4597,16 +3898,16 @@ Optional:
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--summary_field))
+- `str` (String)
+- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--summary_field))
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--summary_field"></a>
 ### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.summary_field`
 
 Optional:
 
-- `display_as` (String) An hint on how to display the summary field. Requires replacement if changed.
-- `field` (String) The field from the entity attributes to display. Requires replacement if changed.
+- `display_as` (String) An hint on how to display the summary field
+- `field` (String) The field from the entity attributes to display
 
 
 
@@ -4617,46 +3918,40 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Requires replacement if changed. ; Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `has_primary` (Boolean) Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. Requires replacement if changed. ; must be one of ["weak", "strong"]
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `repeatable` (Boolean) Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
-- `value_formatter` (String) Requires replacement if changed.
+- `repeatable` (Boolean)
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--repeatable_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--repeatable_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.repeatable_attribute.value_formatter`
@@ -4670,20 +3965,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--repeatable_attribute--settings_flag"></a>
@@ -4691,8 +3978,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4701,45 +3988,39 @@ Optional:
 
 Optional:
 
-- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options. Requires replacement if changed.
+- `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (String) Parsed as JSON.
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["select", "radio"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["select", "radio"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--select_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
@@ -4753,38 +4034,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
-
-
-<a id="nestedatt--capabilities--attributes--select_attribute--options"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
-
-Optional:
-
-- `one` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--select_attribute--value_formatter--one))
-- `str` (String) Requires replacement if changed.
-
-<a id="nestedatt--capabilities--attributes--select_attribute--value_formatter--one"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter.one`
-
-Optional:
-
-- `title` (String) Requires replacement if changed.
-- `value` (String) Requires replacement if changed.
-
 
 
 <a id="nestedatt--capabilities--attributes--select_attribute--settings_flag"></a>
@@ -4792,8 +4047,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4803,44 +4058,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `prefix` (String) Prefix added before the sequence number. Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `prefix` (String) Prefix added before the sequence number
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `start_number` (Number) Requires replacement if changed.
-- `type` (String) Requires replacement if changed. ; must be one of ["sequence"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--sequence_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `start_number` (Number)
+- `type` (String) must be one of ["sequence"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--sequence_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.sequence_attribute.value_formatter`
@@ -4854,20 +4103,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--sequence_attribute--settings_flag"></a>
@@ -4875,8 +4116,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4886,43 +4127,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--options))
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--options))
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["status"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["status"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--status_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.status_attribute.value_formatter`
@@ -4936,20 +4171,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--status_attribute--options"></a>
@@ -4957,16 +4184,16 @@ Requires replacement if changed.
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
-- `two` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--value_formatter--two))
+- `str` (String)
+- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--value_formatter--two))
 
 <a id="nestedatt--capabilities--attributes--status_attribute--value_formatter--two"></a>
 ### Nested Schema for `capabilities.attributes.status_attribute.value_formatter.two`
 
 Optional:
 
-- `title` (String) The displayed title of the option. Requires replacement if changed.
-- `value` (String) The stored value of the option. Requires replacement if changed. ; Not Null
+- `title` (String) The displayed title of the option
+- `value` (String) The stored value of the option. Not Null
 
 
 
@@ -4975,8 +4202,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -4986,44 +4213,38 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `options` (List of String) Requires replacement if changed.
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `name` (String) Not Null
+- `options` (List of String)
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `suggestions` (List of String) Requires replacement if changed.
-- `type` (String) Requires replacement if changed. ; must be one of ["tags"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--tags_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `suggestions` (List of String)
+- `type` (String) must be one of ["tags"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--tags_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.tags_attribute.value_formatter`
@@ -5037,20 +4258,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--tags_attribute--settings_flag"></a>
@@ -5058,8 +4271,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -5069,43 +4282,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiline` (Boolean) Requires replacement if changed.
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiline` (Boolean)
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["string"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--text_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["string"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--text_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.text_attribute.value_formatter`
@@ -5119,20 +4326,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--text_attribute--settings_flag"></a>
@@ -5140,8 +4339,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -5151,43 +4350,37 @@ Optional:
 Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--constraints))
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Requires replacement if changed. ; Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Requires replacement if changed. ; Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled. Requires replacement if changed.
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name. Requires replacement if changed.
-- `hidden` (Boolean) Do not render attribute in entity views. Requires replacement if changed. ; Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field. Requires replacement if changed.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-
-Requires replacement if changed.
-- `id` (String) ID for the entity attribute. Requires replacement if changed.
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--info_helpers))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `layout` (String) Requires replacement if changed.
-- `multiple` (Boolean) Requires replacement if changed. ; Default: false
-- `name` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Attribute sort order (ascending) in group. Requires replacement if changed.
-- `placeholder` (String) Requires replacement if changed.
-- `preview_value_formatter` (String) Requires replacement if changed.
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Requires replacement if changed. ; Default: true
-- `purpose` (List of String) Requires replacement if changed.
-- `readonly` (Boolean) Requires replacement if changed. ; Default: false
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `multiple` (Boolean) Default: false
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `required` (Boolean) Requires replacement if changed. ; Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`. Requires replacement if changed.
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["relation_user"]
-- `value_formatter` (String) Requires replacement if changed.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--user_relation_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["relation_user"]
+- `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--user_relation_attribute--constraints"></a>
 ### Nested Schema for `capabilities.attributes.user_relation_attribute.value_formatter`
@@ -5201,20 +4394,12 @@ Optional:
 - `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
 The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
 When specified it overrides the `hint_text` or `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text` (String) The text to be displayed in the attribute hint helper.
 When specified it overrides the `hint_text_key` configuration.
-
-Requires replacement if changed.
 - `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
 The key should be a valid i18n key.
-
-Requires replacement if changed.
 - `hint_tooltip_placement` (String) The placement of the hint tooltip.
 The value should be a valid `@mui/core` tooltip placement.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--capabilities--attributes--user_relation_attribute--settings_flag"></a>
@@ -5222,8 +4407,8 @@ Requires replacement if changed.
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -5233,8 +4418,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 <a id="nestedatt--capabilities--ui_hooks"></a>
@@ -5243,26 +4428,26 @@ Optional:
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `component` (String) the component to be dynamically loaded. Requires replacement if changed.
-- `disabled` (Boolean) Whether capability should be disabled. Requires replacement if changed.
-- `group_expanded` (Boolean) Sets the group expand/collapse default state. Requires replacement if changed.
-- `header` (Boolean) Specific to Activity pilot. Requires replacement if changed.
-- `hook` (String) name of the hook to use. Requires replacement if changed. ; Not Null
-- `icon` (String) Preview icon name(As in Base elements) for the capability. Requires replacement if changed.
-- `import` (String) package to be imported. Requires replacement if changed.
-- `order` (Number) render order (ascending). Requires replacement if changed.
-- `render_condition` (String) Requires replacement if changed.
-- `required_permission` (Attributes) Require a permission to display UI hook. Requires replacement if changed. (see [below for nested schema](#nestedatt--capabilities--ui_hooks--required_permission))
-- `route` (String) route for specified capability. Requires replacement if changed.
-- `title` (String) Requires replacement if changed.
+- `component` (String) the component to be dynamically loaded
+- `disabled` (Boolean) Whether capability should be disabled
+- `group_expanded` (Boolean) Sets the group expand/collapse default state
+- `header` (Boolean) Specific to Activity pilot
+- `hook` (String) name of the hook to use. Not Null
+- `icon` (String) Preview icon name(As in Base elements) for the capability
+- `import` (String) package to be imported
+- `order` (Number) render order (ascending)
+- `render_condition` (String)
+- `required_permission` (Attributes) Require a permission to display UI hook (see [below for nested schema](#nestedatt--capabilities--ui_hooks--required_permission))
+- `route` (String) route for specified capability
+- `title` (String)
 
 <a id="nestedatt--capabilities--ui_hooks--required_permission"></a>
 ### Nested Schema for `capabilities.ui_hooks.required_permission`
 
 Optional:
 
-- `action` (String) Requires replacement if changed. ; Not Null
-- `resource` (String) Requires replacement if changed.
+- `action` (String) Not Null
+- `resource` (String)
 
 
 
@@ -5272,9 +4457,9 @@ Optional:
 
 Optional:
 
-- `fields` (Map of String) Requires replacement if changed.
-- `index` (Boolean) Requires replacement if changed. ; Default: true
-- `type` (String) Requires replacement if changed. ; must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]
+- `fields` (Map of String)
+- `index` (Boolean) Default: true
+- `type` (String) must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]
 
 
 <a id="nestedatt--group_settings"></a>
@@ -5282,23 +4467,23 @@ Optional:
 
 Optional:
 
-- `expanded` (Boolean) Requires replacement if changed.
-- `feature_flag` (String) This group should only be active when the feature flag is enabled. Requires replacement if changed.
-- `id` (String) Requires replacement if changed.
-- `info_tooltip_title` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--group_settings--info_tooltip_title))
-- `label` (String) Requires replacement if changed. ; Not Null
-- `order` (Number) Render order of the group. Requires replacement if changed. ; Default: 0
-- `purpose` (List of String) Requires replacement if changed.
-- `render_condition` (String) Requires replacement if changed.
-- `settings_flag` (Attributes List) This group should only be active when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--group_settings--settings_flag))
+- `expanded` (Boolean) Expanded by default. Default: false
+- `feature_flag` (String) This group should only be active when the feature flag is enabled
+- `id` (String) Not Null
+- `info_tooltip_title` (Attributes) (see [below for nested schema](#nestedatt--group_settings--info_tooltip_title))
+- `label` (String) Not Null
+- `order` (Number) Render order of the group. Default: 0
+- `purpose` (List of String) Only render group when one of the purposes is enabled
+- `render_condition` (String) Only render group when render_condition resolves to true
+- `settings_flag` (Attributes List) This group should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--group_settings--settings_flag))
 
 <a id="nestedatt--group_settings--info_tooltip_title"></a>
 ### Nested Schema for `group_settings.info_tooltip_title`
 
 Optional:
 
-- `default` (String) Requires replacement if changed.
-- `key` (String) Requires replacement if changed.
+- `default` (String) Default string for info tooltip
+- `key` (String) Translation key for info tooltip
 
 
 <a id="nestedatt--group_settings--settings_flag"></a>
@@ -5306,8 +4491,8 @@ Optional:
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -5317,8 +4502,8 @@ Optional:
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `grid_gap` (String) Defines the grid gap for the mounting node of the attribute. Requires replacement if changed.
-- `grid_template_columns` (String) Defines the grid column template for the mounting node of the attribute. Requires replacement if changed.
+- `grid_gap` (String) Defines the grid gap for the mounting node of the attribute.
+- `grid_template_columns` (String) Defines the grid column template for the mounting node of the attribute.
 
 
 <a id="nestedatt--source"></a>
@@ -5326,8 +4511,8 @@ Optional:
 
 Optional:
 
-- `id` (String) Requires replacement if changed.
-- `type` (String) Requires replacement if changed.
+- `id` (String)
+- `type` (String)
 
 
 <a id="nestedatt--ui_config"></a>
@@ -5335,29 +4520,29 @@ Optional:
 
 Optional:
 
-- `create_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view))
-- `edit_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view))
-- `list_item` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--list_item))
-- `sharing` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--sharing))
-- `single_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view))
-- `table_view` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view))
+- `create_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view))
+- `edit_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view))
+- `list_item` (Attributes) (see [below for nested schema](#nestedatt--ui_config--list_item))
+- `sharing` (Attributes) (see [below for nested schema](#nestedatt--ui_config--sharing))
+- `single_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view))
+- `table_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view))
 
 <a id="nestedatt--ui_config--create_view"></a>
 ### Nested Schema for `ui_config.create_view`
 
 Optional:
 
-- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--default))
-- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--disabled))
-- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--create_view--redirect))
+- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--default))
+- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--disabled))
+- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--redirect))
 
 <a id="nestedatt--ui_config--create_view--default"></a>
 ### Nested Schema for `ui_config.create_view.default`
 
 Optional:
 
-- `search_params` (Map of String) Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
+- `search_params` (Map of String)
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--create_view--disabled"></a>
@@ -5365,7 +4550,7 @@ Optional:
 
 Optional:
 
-- `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--create_view--redirect"></a>
@@ -5373,8 +4558,8 @@ Optional:
 
 Optional:
 
-- `route` (String) Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["redirect"]
+- `route` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -5383,18 +4568,18 @@ Optional:
 
 Optional:
 
-- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--default))
-- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--disabled))
-- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect))
+- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--default))
+- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--disabled))
+- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect))
 
 <a id="nestedatt--ui_config--edit_view--default"></a>
 ### Nested Schema for `ui_config.edit_view.default`
 
 Optional:
 
-- `search_params` (Map of String) Requires replacement if changed.
-- `summary_attributes` (List of String) List of attribute names that we show in the summary header. Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
+- `search_params` (Map of String)
+- `summary_attributes` (List of String) List of attribute names that we show in the summary header
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--edit_view--disabled"></a>
@@ -5402,7 +4587,7 @@ Optional:
 
 Optional:
 
-- `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--edit_view--redirect"></a>
@@ -5410,8 +4595,8 @@ Optional:
 
 Optional:
 
-- `route` (String) Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["redirect"]
+- `route` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -5420,21 +4605,19 @@ Optional:
 
 Optional:
 
-- `quick_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--list_item--quick_actions))
-- `summary_attributes` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes))
+- `quick_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--list_item--quick_actions))
+- `summary_attributes` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes))
 
 <a id="nestedatt--ui_config--list_item--quick_actions"></a>
 ### Nested Schema for `ui_config.list_item.quick_actions`
 
 Optional:
 
-- `action` (String) A unique action name. Requires replacement if changed. ; Not Null
-- `icon` (String) Requires replacement if changed.
-- `label` (String) Requires replacement if changed. ; Not Null
+- `action` (String) A unique action name. Not Null
+- `icon` (String)
+- `label` (String) Not Null
 - `permission` (String) Permission required to show the action.
 If not provided, the action will be shown to all users.
-
-Requires replacement if changed.
 
 
 <a id="nestedatt--ui_config--list_item--summary_attributes"></a>
@@ -5442,7 +4625,7 @@ Requires replacement if changed.
 
 Optional:
 
-- `str` (String) Requires replacement if changed.
+- `str` (String)
 - `summary_attribute` (Attributes) Represents an expanded version of an attribute to be displayed in the list item summary.
 This configuration can be used in the following way:
 ```js
@@ -5453,34 +4636,30 @@ This configuration can be used in the following way:
   "render_condition": "is_composite_price = "true""
 }
 ```
-The value field supports handlebar expressions from which you can pick any field from the entity state.
-
-Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes--summary_attribute))
+The value field supports handlebar expressions from which you can pick any field from the entity state. (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes--summary_attribute))
 
 <a id="nestedatt--ui_config--list_item--summary_attributes--summary_attribute"></a>
 ### Nested Schema for `ui_config.list_item.summary_attributes.summary_attribute`
 
 Optional:
 
-- `feature_flag` (String) Binds summary field visibility to the feature flag state. Requires replacement if changed.
-- `label` (String) Label to be shown on the top of the value. Requires replacement if changed. ; Not Null
+- `feature_flag` (String) Binds summary field visibility to the feature flag state.
+- `label` (String) Label to be shown on the top of the value. Not Null
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-
-Requires replacement if changed.
-- `settings_flag` (Attributes List) This summary attribute should only be visible when all the settings have the correct value. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes--summary_attribute--settings_flag))
-- `show_as_tag` (Boolean) Displays the value within a tag chip. Requires replacement if changed.
-- `tag_color` (String) CSS hex color or CSS color name for the tag chip. Requires replacement if changed.
-- `value` (String) A static value or an handlebar expression. Requires replacement if changed. ; Not Null
+- `settings_flag` (Attributes List) This summary attribute should only be visible when all the settings have the correct value (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes--summary_attribute--settings_flag))
+- `show_as_tag` (Boolean) Displays the value within a tag chip.
+- `tag_color` (String) CSS hex color or CSS color name for the tag chip.
+- `value` (String) A static value or an handlebar expression. Not Null
 
 <a id="nestedatt--ui_config--list_item--summary_attributes--summary_attribute--settings_flag"></a>
 ### Nested Schema for `ui_config.list_item.summary_attributes.summary_attribute.settings_flag`
 
 Optional:
 
-- `enabled` (Boolean) Whether the setting should be enabled or not. Requires replacement if changed.
-- `name` (String) The name of the organization setting to check. Requires replacement if changed.
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
 
 
 
@@ -5491,7 +4670,7 @@ Optional:
 
 Optional:
 
-- `show_sharing_button` (Boolean) Show the sharing button in entity detail view. Requires replacement if changed.
+- `show_sharing_button` (Boolean) Show the sharing button in entity detail view
 
 
 <a id="nestedatt--ui_config--single_view"></a>
@@ -5499,18 +4678,18 @@ Optional:
 
 Optional:
 
-- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--default))
-- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--disabled))
-- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--single_view--redirect))
+- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--default))
+- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--disabled))
+- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--redirect))
 
 <a id="nestedatt--ui_config--single_view--default"></a>
 ### Nested Schema for `ui_config.single_view.default`
 
 Optional:
 
-- `search_params` (Map of String) Requires replacement if changed.
-- `summary_attributes` (List of String) List of attribute names that we show in the summary header. Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
+- `search_params` (Map of String)
+- `summary_attributes` (List of String) List of attribute names that we show in the summary header
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--single_view--disabled"></a>
@@ -5518,7 +4697,7 @@ Optional:
 
 Optional:
 
-- `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--single_view--redirect"></a>
@@ -5526,8 +4705,8 @@ Optional:
 
 Optional:
 
-- `route` (String) Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["redirect"]
+- `route` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -5536,41 +4715,39 @@ Optional:
 
 Optional:
 
-- `default` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default))
-- `disabled` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--disabled))
-- `redirect` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--redirect))
+- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--default))
+- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--disabled))
+- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--redirect))
 
 <a id="nestedatt--ui_config--table_view--default"></a>
 ### Nested Schema for `ui_config.table_view.default`
 
 Optional:
 
-- `bulk_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--bulk_actions))
-- `enable_thumbnails` (Boolean) Enable the thumbnail column. Requires replacement if changed. ; Default: false
-- `navbar_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--navbar_actions))
-- `row_actions` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--row_actions))
-- `view_type` (String) Requires replacement if changed. ; must be one of ["default"]
+- `bulk_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--bulk_actions))
+- `enable_thumbnails` (Boolean) Enable the thumbnail column. Default: false
+- `navbar_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--navbar_actions))
+- `row_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--row_actions))
+- `view_type` (String) must be one of ["default"]
 
 <a id="nestedatt--ui_config--table_view--default--bulk_actions"></a>
 ### Nested Schema for `ui_config.table_view.default.view_type`
 
 Optional:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
-- `str` (String) Requires replacement if changed.
+- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
+- `str` (String)
 
 <a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
 ### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
 
 Optional:
 
-- `action` (String) A unique action name. Requires replacement if changed. ; Not Null
-- `icon` (String) Requires replacement if changed.
-- `label` (String) Requires replacement if changed. ; Not Null
+- `action` (String) A unique action name. Not Null
+- `icon` (String)
+- `label` (String) Not Null
 - `permission` (String) Permission required to show the action.
 If not provided, the action will be shown to all users.
-
-Requires replacement if changed.
 
 
 
@@ -5579,16 +4756,16 @@ Requires replacement if changed.
 
 Optional:
 
-- `options` (Attributes List) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options))
-- `type` (String) Requires replacement if changed. ; Not Null
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options))
+- `type` (String) Not Null
 
 <a id="nestedatt--ui_config--table_view--default--view_type--options"></a>
 ### Nested Schema for `ui_config.table_view.default.view_type.options`
 
 Optional:
 
-- `label` (String) Requires replacement if changed. ; Not Null
-- `params` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options--params))
+- `label` (String) Not Null
+- `params` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options--params))
 
 <a id="nestedatt--ui_config--table_view--default--view_type--options--params"></a>
 ### Nested Schema for `ui_config.table_view.default.view_type.options.params`
@@ -5601,21 +4778,19 @@ Optional:
 
 Optional:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema. Requires replacement if changed. (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
-- `str` (String) Requires replacement if changed.
+- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
+- `str` (String)
 
 <a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
 ### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
 
 Optional:
 
-- `action` (String) A unique action name. Requires replacement if changed. ; Not Null
-- `icon` (String) Requires replacement if changed.
-- `label` (String) Requires replacement if changed. ; Not Null
+- `action` (String) A unique action name. Not Null
+- `icon` (String)
+- `label` (String) Not Null
 - `permission` (String) Permission required to show the action.
 If not provided, the action will be shown to all users.
-
-Requires replacement if changed.
 
 
 
@@ -5625,7 +4800,7 @@ Requires replacement if changed.
 
 Optional:
 
-- `view_type` (String) Requires replacement if changed. ; must be one of ["disabled"]
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--table_view--redirect"></a>
@@ -5633,8 +4808,8 @@ Optional:
 
 Optional:
 
-- `route` (String) Requires replacement if changed.
-- `view_type` (String) Requires replacement if changed. ; must be one of ["redirect"]
+- `route` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 ## Import
 

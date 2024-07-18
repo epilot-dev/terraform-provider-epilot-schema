@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: c3c4c7c25c41b9f1eb33944d90f89b5a
+  docChecksum: 7213340d0ab6e744a09d319e3d64f16a
   docVersion: 1.0.0
   speakeasyVersion: 1.330.0
   generationVersion: 2.361.10
-  releaseVersion: 0.5.0
-  configChecksum: 99e7318447c95e0a5b96204b9ad14fad
+  releaseVersion: 0.7.0
+  configChecksum: 1a175cf43d73882401b3e4f007fac1ec
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -16,14 +16,25 @@ features:
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
     core: 3.23.3
+    deprecations: 2.81.1
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     nullables: 0.0.0
+    retries: 2.81.1
     typeOverrides: 2.81.1
     unions: 2.81.15
 generatedFiles:
   - internal/sdk/schemas.go
+  - internal/sdk/entities.go
+  - internal/sdk/activity.go
+  - internal/sdk/relations.go
+  - internal/sdk/export.go
+  - internal/sdk/entityimport.go
+  - internal/sdk/savedviews.go
+  - internal/sdk/taxonomy.go
+  - internal/sdk/elasticclusterassignment.go
+  - internal/sdk/internal.go
   - internal/sdk/sdk.go
   - internal/sdk/models/errors/sdkerror.go
   - internal/sdk/retry/config.go
@@ -42,15 +53,66 @@ generatedFiles:
   - internal/sdk/internal/utils/retries.go
   - internal/sdk/internal/utils/security.go
   - internal/sdk/internal/utils/utils.go
+  - internal/sdk/models/operations/listschemas.go
   - internal/sdk/models/operations/getschema.go
   - internal/sdk/models/operations/putschema.go
   - internal/sdk/models/operations/deleteschema.go
+  - internal/sdk/models/operations/getjsonschema.go
+  - internal/sdk/models/operations/getschemaexample.go
+  - internal/sdk/models/operations/getschemaversions.go
+  - internal/sdk/models/operations/listschemablueprints.go
+  - internal/sdk/models/operations/listtaxonomyclassificationsforschema.go
   - internal/sdk/models/operations/getschemaattribute.go
   - internal/sdk/models/operations/putschemaattribute.go
   - internal/sdk/models/operations/deleteschemaattribute.go
   - internal/sdk/models/operations/getschemacapability.go
   - internal/sdk/models/operations/putschemacapability.go
   - internal/sdk/models/operations/deleteschemacapability.go
+  - internal/sdk/models/operations/getschemagroup.go
+  - internal/sdk/models/operations/putschemagroup.go
+  - internal/sdk/models/operations/deleteschemagroup.go
+  - internal/sdk/models/operations/searchentities.go
+  - internal/sdk/models/operations/listentities.go
+  - internal/sdk/models/operations/createentity.go
+  - internal/sdk/models/operations/validateentity.go
+  - internal/sdk/models/operations/upsertentity.go
+  - internal/sdk/models/operations/getentityv2.go
+  - internal/sdk/models/operations/getentity.go
+  - internal/sdk/models/operations/updateentity.go
+  - internal/sdk/models/operations/patchentity.go
+  - internal/sdk/models/operations/deleteentity.go
+  - internal/sdk/models/operations/autocomplete.go
+  - internal/sdk/models/operations/createactivity.go
+  - internal/sdk/models/operations/getactivity.go
+  - internal/sdk/models/operations/attachactivity.go
+  - internal/sdk/models/operations/getentityactivityfeed.go
+  - internal/sdk/models/operations/getrelations.go
+  - internal/sdk/models/operations/addrelations.go
+  - internal/sdk/models/operations/getrelationsv2.go
+  - internal/sdk/models/operations/getrelationsv3.go
+  - internal/sdk/models/operations/getrelatedentitiescount.go
+  - internal/sdk/models/operations/updaterelation.go
+  - internal/sdk/models/operations/deleterelation.go
+  - internal/sdk/models/operations/exportentities.go
+  - internal/sdk/models/operations/importentities.go
+  - internal/sdk/models/operations/listsavedviews.go
+  - internal/sdk/models/operations/createsavedview.go
+  - internal/sdk/models/operations/getsavedview.go
+  - internal/sdk/models/operations/updatesavedview.go
+  - internal/sdk/models/operations/deletesavedview.go
+  - internal/sdk/models/operations/listfavoriteviewsforuser.go
+  - internal/sdk/models/operations/listtaxonomies.go
+  - internal/sdk/models/operations/createtaxonomy.go
+  - internal/sdk/models/operations/gettaxonomy.go
+  - internal/sdk/models/operations/updatetaxonomy.go
+  - internal/sdk/models/operations/deletetaxonomy.go
+  - internal/sdk/models/operations/taxonomyautocomplete.go
+  - internal/sdk/models/operations/taxonomiesclassificationssearch.go
+  - internal/sdk/models/operations/updateclassificationsfortaxonomy.go
+  - internal/sdk/models/operations/createtaxonomyclassification.go
+  - internal/sdk/models/operations/updatetaxonomyclassification.go
+  - internal/sdk/models/operations/deletetaxonomyclassification.go
+  - internal/sdk/models/operations/getelasticclusterfororg.go
   - internal/sdk/models/shared/entityschemaitem.go
   - internal/sdk/models/shared/searchmappings.go
   - internal/sdk/models/shared/attribute.go
@@ -86,6 +148,7 @@ generatedFiles:
   - internal/sdk/models/shared/internaluserattribute.go
   - internal/sdk/models/shared/purposeattribute.go
   - internal/sdk/models/shared/partnerorganisationattribute.go
+  - internal/sdk/models/shared/entityschemagroup.go
   - internal/sdk/models/shared/entitycapability.go
   - internal/sdk/models/shared/entityaction.go
   - internal/sdk/models/shared/summaryattribute.go
@@ -94,10 +157,43 @@ generatedFiles:
   - internal/sdk/models/shared/entityviewdisabled.go
   - internal/sdk/models/shared/entitydefaultcreate.go
   - internal/sdk/models/shared/entitydefaulttable.go
+  - internal/sdk/models/shared/attributeinput.go
+  - internal/sdk/models/shared/taxonomyclassification.go
   - internal/sdk/models/shared/attributewithcompositeid.go
   - internal/sdk/models/shared/entitycapabilitywithcompositeid.go
+  - internal/sdk/models/shared/entityschemagroupwithcompositeid.go
+  - internal/sdk/models/shared/entitysearchresults.go
+  - internal/sdk/models/shared/entityitem.go
+  - internal/sdk/models/shared/entitysearchparams.go
+  - internal/sdk/models/shared/entitylistparams.go
+  - internal/sdk/models/shared/searchfilter.go
+  - internal/sdk/models/shared/searchfiltervalue.go
+  - internal/sdk/models/shared/entityinput.go
+  - internal/sdk/models/shared/entityvalidationresulterror.go
+  - internal/sdk/models/shared/entityvalidationerror.go
+  - internal/sdk/models/shared/entityvalidationresultsuccess.go
+  - internal/sdk/models/shared/baseactivityitem.go
+  - internal/sdk/models/shared/activitycallercontext.go
+  - internal/sdk/models/shared/activity.go
+  - internal/sdk/models/shared/activityitem.go
+  - internal/sdk/models/shared/entityoperation.go
+  - internal/sdk/models/shared/entity.go
+  - internal/sdk/models/shared/getrelationsresp.go
+  - internal/sdk/models/shared/relationitem.go
+  - internal/sdk/models/shared/relationentity.go
+  - internal/sdk/models/shared/getrelationsrespwithpagination.go
+  - internal/sdk/models/shared/entityrelationsmodequeryparam.go
+  - internal/sdk/models/shared/getrelatedentitiescount.go
+  - internal/sdk/models/shared/entityimportparams.go
+  - internal/sdk/models/shared/listsavedviewsresults.go
+  - internal/sdk/models/shared/savedviewitem.go
+  - internal/sdk/models/shared/savedview.go
+  - internal/sdk/models/shared/taxonomy.go
+  - internal/sdk/models/shared/classificationsupdate.go
+  - internal/sdk/models/shared/esclusterassignment.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
+  - internal/sdk/models/operations/options.go
   - internal/sdk/.gitattributes
   - internal/sdk/internal/hooks/registration.go
   - internal/sdk/internal/hooks/hooks.go
@@ -174,7 +270,7 @@ generatedFiles:
   - internal/provider/types/purpose_attribute.go
   - internal/provider/types/entity_acl.go
   - internal/provider/types/entity_owner.go
-  - internal/provider/types/new_entity_item.go
+  - internal/provider/types/relation_attribute_new_entity_item.go
   - internal/provider/types/actions.go
   - internal/provider/types/summary_field.go
   - internal/provider/types/summary_fields.go
@@ -192,7 +288,7 @@ generatedFiles:
   - internal/provider/types/entity_capability.go
   - internal/provider/types/search_mappings.go
   - internal/provider/types/info_tooltip_title.go
-  - internal/provider/types/group_settings.go
+  - internal/provider/types/entity_schema_group.go
   - internal/provider/types/layout_settings.go
   - internal/provider/types/source.go
   - internal/provider/types/entity_default_create.go
@@ -251,17 +347,17 @@ generatedFiles:
   - internal/provider/schemaattribute_resource.go
   - internal/provider/schemaattribute_resource_sdk.go
   - examples/resources/epilot-schema_schema_attribute/resource.tf
-  - examples/resources/epilot-schema_schema_capability/import.sh
-  - internal/provider/schemacapability_resource.go
-  - internal/provider/schemacapability_resource_sdk.go
-  - examples/resources/epilot-schema_schema_capability/resource.tf
+  - examples/resources/epilot-schema_schema_group/import.sh
+  - internal/provider/schemagroup_resource.go
+  - internal/provider/schemagroup_resource_sdk.go
+  - examples/resources/epilot-schema_schema_group/resource.tf
   - internal/provider/schema_data_source.go
   - internal/provider/schema_data_source_sdk.go
   - examples/data-sources/epilot-schema_schema/data-source.tf
   - internal/provider/schemaattribute_data_source.go
   - internal/provider/schemaattribute_data_source_sdk.go
   - examples/data-sources/epilot-schema_schema_attribute/data-source.tf
-  - internal/provider/schemacapability_data_source.go
-  - internal/provider/schemacapability_data_source_sdk.go
-  - examples/data-sources/epilot-schema_schema_capability/data-source.tf
+  - internal/provider/schemagroup_data_source.go
+  - internal/provider/schemagroup_data_source_sdk.go
+  - examples/data-sources/epilot-schema_schema_group/data-source.tf
   - .gitattributes
