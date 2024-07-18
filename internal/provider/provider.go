@@ -108,6 +108,7 @@ func (p *EpilotSchemaProvider) Resources(ctx context.Context) []func() resource.
 	return []func() resource.Resource{
 		NewSchemaResource,
 		NewSchemaAttributeResource,
+		NewSchemaCapabilityResource,
 		NewSchemaGroupResource,
 	}
 }
@@ -116,6 +117,7 @@ func (p *EpilotSchemaProvider) DataSources(ctx context.Context) []func() datasou
 	return []func() datasource.DataSource{
 		NewSchemaDataSource,
 		NewSchemaAttributeDataSource,
+		NewSchemaCapabilityDataSource,
 		NewSchemaGroupDataSource,
 	}
 }

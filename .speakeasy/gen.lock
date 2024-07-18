@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 7213340d0ab6e744a09d319e3d64f16a
+  docChecksum: 322f7f9e7f57e163cba7ef2d41bd7f4a
   docVersion: 1.0.0
   speakeasyVersion: 1.330.0
   generationVersion: 2.361.10
-  releaseVersion: 0.7.0
-  configChecksum: 1a175cf43d73882401b3e4f007fac1ec
+  releaseVersion: 0.7.1
+  configChecksum: 946ec14965d400c88fe9a83023d1a705
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -347,6 +347,10 @@ generatedFiles:
   - internal/provider/schemaattribute_resource.go
   - internal/provider/schemaattribute_resource_sdk.go
   - examples/resources/epilot-schema_schema_attribute/resource.tf
+  - examples/resources/epilot-schema_schema_capability/import.sh
+  - internal/provider/schemacapability_resource.go
+  - internal/provider/schemacapability_resource_sdk.go
+  - examples/resources/epilot-schema_schema_capability/resource.tf
   - examples/resources/epilot-schema_schema_group/import.sh
   - internal/provider/schemagroup_resource.go
   - internal/provider/schemagroup_resource_sdk.go
@@ -357,6 +361,9 @@ generatedFiles:
   - internal/provider/schemaattribute_data_source.go
   - internal/provider/schemaattribute_data_source_sdk.go
   - examples/data-sources/epilot-schema_schema_attribute/data-source.tf
+  - internal/provider/schemacapability_data_source.go
+  - internal/provider/schemacapability_data_source_sdk.go
+  - examples/data-sources/epilot-schema_schema_capability/data-source.tf
   - internal/provider/schemagroup_data_source.go
   - internal/provider/schemagroup_data_source_sdk.go
   - examples/data-sources/epilot-schema_schema_group/data-source.tf
