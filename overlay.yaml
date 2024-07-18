@@ -37,13 +37,13 @@ actions:
       x-speakeasy-entity-operation: SchemaAttribute#delete
 
   # Schema Capability
-  - target: $["paths"]["/v1/entity/schemas/capability/{composite_id}"]["get"]
+  - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["get"]
     update:
       x-speakeasy-entity-operation: SchemaCapability#get
-  - target: $["paths"]["/v1/entity/schemas/capability/{composite_id}"]["put"]
+  - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["put"]
     update:
       x-speakeasy-entity-operation: SchemaCapability#create,update
-  - target: $["paths"]["/v1/entity/schemas/capability/{composite_id}"]["delete"]
+  - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["delete"]
     update:
       x-speakeasy-entity-operation: SchemaCapability#delete
 
