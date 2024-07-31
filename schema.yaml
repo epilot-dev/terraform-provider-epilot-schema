@@ -2692,7 +2692,6 @@ components:
         protected:
           description: Setting to `true` prevents the attribute from being modified / deleted
           type: boolean
-          default: true
         info_helpers:
           description: A set of configurations meant to document and assist the user in filling the attribute.
           type: object

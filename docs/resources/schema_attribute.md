@@ -108,7 +108,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -179,7 +179,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -250,7 +250,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -321,7 +321,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -393,7 +393,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -465,7 +465,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -538,7 +538,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -628,7 +628,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -705,7 +705,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -776,7 +776,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -847,7 +847,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -918,7 +918,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -989,7 +989,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1064,7 +1064,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1154,7 +1154,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1226,7 +1226,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1297,7 +1297,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1368,7 +1368,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1440,7 +1440,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1513,7 +1513,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `parents` (List of String)
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1594,7 +1594,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
@@ -1760,7 +1760,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
@@ -1835,7 +1835,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1907,7 +1907,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `placeholder` (String)
 - `prefix` (String) Prefix added before the sequence number
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -1980,7 +1980,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -2070,7 +2070,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -2143,7 +2143,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
@@ -2215,7 +2215,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
 - `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted. Default: true
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
