@@ -53,5 +53,3 @@ Read-Only:
 
 - `enabled` (Boolean) Whether the setting should be enabled or not
 - `name` (String) The name of the organization setting to check
-
-

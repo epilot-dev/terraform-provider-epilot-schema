@@ -1544,13 +1544,14 @@ must be one of ["add_existing", "create_new", "create_from_existing"]
 - `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag))
 
 <a id="nestedatt--attributes--relation_attribute--actions--new_entity_item"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag`
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item`
 
 Optional:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `id` (String) Not Null
+- `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema. Not Null
 - `tags` (List of String)
 - `title` (String) Title of entity. Not Null
@@ -1559,11 +1560,11 @@ Read-Only:
 
 - `created_at` (String)
 - `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--owners))
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--owners))
 - `updated_at` (String)
 
-<a id="nestedatt--attributes--relation_attribute--actions--settings_flag--acl"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag.acl`
+<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--acl"></a>
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.acl`
 
 Optional:
 
@@ -1573,8 +1574,8 @@ Optional:
 - `view` (List of String)
 
 
-<a id="nestedatt--attributes--relation_attribute--actions--settings_flag--owners"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag.owners`
+<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--owners"></a>
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.owners`
 
 Read-Only:
 

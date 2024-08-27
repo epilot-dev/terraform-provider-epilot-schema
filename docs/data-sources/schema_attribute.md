@@ -1581,13 +1581,14 @@ Read-Only:
 - `id` (String)
 - `org` (String) Organization Id the entity belongs to
 - `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
+- `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema
 - `tags` (List of String)
 - `title` (String) Title of entity
 - `updated_at` (String)
 
 <a id="nestedatt--relation_attribute--actions--new_entity_item--acl"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
+### Nested Schema for `relation_attribute.actions.new_entity_item.acl`
 
 Read-Only:
 
@@ -1598,7 +1599,7 @@ Read-Only:
 
 
 <a id="nestedatt--relation_attribute--actions--new_entity_item--owners"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
+### Nested Schema for `relation_attribute.actions.new_entity_item.owners`
 
 Read-Only:
 
@@ -2169,5 +2170,3 @@ Read-Only:
 
 - `enabled` (Boolean) Whether the setting should be enabled or not
 - `name` (String) The name of the organization setting to check
-
-

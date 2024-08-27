@@ -31,9 +31,6 @@ security:
   - EpilotAuth: []
   - EpilotOrg: []
 
-servers:
-- url: https://entity.sls.epilot.io
-
 paths:
   /v1/entity/schemas:
     get:
@@ -100,7 +97,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EntitySchemaItem"
+              $ref: "#/components/schemas/EntitySchema"
       responses:
         "200":
           description: Success
@@ -209,27 +206,8 @@ paths:
                             example: org:456
                     title:
                       type: string
-                      nullable: true
-                      enum:
-                        - Dr.
-                        - Prof.
-                        - Prof. Dr.
-                        - null
                     salutation:
                       type: string
-                      nullable: true
-                      enum:
-                        - Mr.
-                        - Ms. / Mrs.
-                        - Company
-                        - Contact Person
-                        - Company/Contact Person
-                        - Spouse
-                        - Family
-                        - Ownership
-                        - Assembly
-                        - Other
-                        - null
                     first_name:
                       type: string
                     last_name:
@@ -284,12 +262,6 @@ paths:
                             nullable: true
                           country:
                             type: string
-                            nullable: true
-                            enum:
-                              - DE
-                              - AT
-                              - CH
-                              - null
                           additional_info:
                             type: string
                             nullable: true
@@ -453,38 +425,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/EntitySchemaItem"
-
-  # Taxonomies
-  /v1/entity/schemas/{slug}/taxonomy/{taxonomySlug}:
-    get:
-      operationId: listTaxonomyClassificationsForSchema
-      summary: listTaxonomyClassificationsForSchema
-      description: List taxonomy classifications for a given schema
-      tags:
-        - Schemas
-      parameters:
-        - $ref: "#/components/parameters/EntitySlugPathParam"
-        - $ref: "#/components/parameters/TaxonomySlugPathParam"
-        - in: query
-          name: query
-          schema:
-            type: string
-        - in: query
-          name: size
-          schema:
-            type: number
-      responses:
-        "200":
-          description: List of taxonomy classifications
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  results:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/TaxonomyClassification"
 
   # Entities
   /v1/entity:search:
@@ -1289,7 +1229,6 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
-        - $ref: "#/components/parameters/ActivityIdQueryParam"
       requestBody:
         content:
           application/json:
@@ -1313,6 +1252,35 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RelationItem"
+    delete:
+      operationId: removeRelations
+      summary: removeRelations
+      description: Disassociate one or more entities to parent entity by removing items to a relation attribute
+      tags:
+        - Relations
+      parameters:
+        - $ref: "#/components/parameters/EntitySlugPathParam"
+        - $ref: "#/components/parameters/EntityIdPathParam"
+        - $ref: "#/components/parameters/AsyncOperationQueryParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/RelationItem"
+            example:
+              - attribute: contacts
+                entity_id: e8878f62-2d3d-4c86-bfe7-01a4180ff048
+                _tags:
+                  - billing
+              - attribute: contacts
+                entity_id: ee8a2af9-fb36-4981-b848-4e65275851af
+              - attribute: opportunities
+                entity_id: 30990430-a53d-41a2-83db-2de072dc4dd4
+      responses:
+        "204":
+          description: Relations deleted with success.
 
   /v2/entity/{slug}/{id}/relations:
     get:
@@ -1724,35 +1692,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                slug:
-                  $ref: "#/components/schemas/TaxonomySlug"
-                name:
-                  type: string
-                  description: A human friendly name of a Taxonomy e.g. Purpose, Product Category, Folder, Tag
-                  example: Purpose
-                plural:
-                  type: string
-                  description: Plural name of a Taxonomy e.g. Purposes, Product Categories, Folders, Tags. Defaults to name is not provided.
-                  example: Purposes
-                icon:
-                  type: string
-                  description: Icon name for the taxonomy (from epilot360/icons icon set)
-                  example: "purpose"
-                color:
-                  type: string
-                  description: HEX Color code for the taxonomy
-                  example: "#FF5733"
-              required:
-                - slug
-                - name
-              example:
-                slug: product-category
-                name: Product Category
-                plural: Product Categories
-                icon: product-hub
-                color: "#FF5733"
+              $ref: "#/components/schemas/Taxonomy"
       responses:
         "201":
           description: Taxonomy created
@@ -1791,34 +1731,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: A human friendly name of a Taxonomy e.g. Purpose, Product Category, Folder, Tag
-                  example: Purpose
-                plural:
-                  type: string
-                  description: Plural name of a Taxonomy e.g. Purposes, Product Categories, Folders, Tags. Defaults to name is not provided.
-                  example: Purposes
-                icon:
-                  type: string
-                  description: Icon name for the taxonomy (from epilot360/icons icon set)
-                  example: "purpose"
-                color:
-                  type: string
-                  description: HEX Color code for the taxonomy
-                  example: "#FF5733"
-                enabled:
-                  type: boolean
-                  description: Whether the taxonomy is enabled or not
-                  example: true
-              example:
-                name: Product Category
-                plural: Product Categories
-                icon: product-hub
-                color: "#FF5733"
-                enabled: true
+              $ref: "#/components/schemas/Taxonomy"
       responses:
         "200":
           description: Taxonomy updated
@@ -1948,30 +1861,55 @@ paths:
                     items:
                       $ref: "#/components/schemas/ClassificationId"
 
-  /v2/entity/taxonomies/{taxonomySlug}/classifications:
-    post:
-      operationId: createTaxonomyClassification
-      summary: createTaxonomyClassification
-      description: Create a new classification for a taxonomy
+  /v1/entity/schemas/{slug}/taxonomy/{taxonomySlug}:
+    get:
+      operationId: listTaxonomyClassificationsForSchema
+      summary: listTaxonomyClassificationsForSchema
+      description: List taxonomy classifications for a given schema
+      tags:
+        - Schemas
+      parameters:
+        - $ref: "#/components/parameters/EntitySlugPathParam"
+        - $ref: "#/components/parameters/TaxonomySlugPathParam"
+        - in: query
+          name: query
+          schema:
+            type: string
+        - in: query
+          name: size
+          schema:
+            type: number
+      responses:
+        "200":
+          description: List of taxonomy classifications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/TaxonomyClassification"
+
+  /v2/entity/taxonomies/classifications/{classificationSlug}:
+    get:
+      operationId: getTaxonomyClassification
+      summary: getTaxonomyClassification
+      description: Get a classification for a taxonomy
       tags:
         - Taxonomy
       parameters:
-        - $ref: "#/components/parameters/TaxonomySlugPathParam"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TaxonomyClassification"
+        - $ref: "#/components/parameters/TaxonomyClassificationSlugPathParam"
       responses:
-        "201":
-          description: Taxonomy classification created
+        "200":
+          description: Taxonomy classification
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TaxonomyClassification"
-        "409":
-          description: Taxonomy classification already exists"
-  /v2/entity/taxonomies/{taxonomySlug}/classifications/{classificationSlug}:
+        "404":
+          description: Taxonomy classification not found
     put:
       operationId: updateTaxonomyClassification
       summary: updateTaxonomyClassification
@@ -1979,7 +1917,6 @@ paths:
       tags:
         - Taxonomy
       parameters:
-        - $ref: "#/components/parameters/TaxonomySlugPathParam"
         - $ref: "#/components/parameters/TaxonomyClassificationSlugPathParam"
       requestBody:
         content:
@@ -2002,16 +1939,14 @@ paths:
       tags:
         - Taxonomy
       parameters:
-        - $ref: "#/components/parameters/TaxonomySlugPathParam"
         - $ref: "#/components/parameters/TaxonomyClassificationSlugPathParam"
-        - in: query
-          name: permanent
-          description: If true, the classification will be permanently deleted
-          schema:
-            type: boolean
       responses:
-        "204":
+        "200":
           description: Taxonomy classification deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaxonomyClassification"
 
   # Elastic Cluster Assignment
   /v1/internal/clusterAssignment/{orgId}:
@@ -2335,45 +2270,21 @@ components:
           type: object
           properties:
             table_view:
-              discriminator:
-                propertyName: view_type
-                mapping:
-                  default: "#/components/schemas/EntityDefaultTable"
-                  redirect: "#/components/schemas/RedirectEntityView"
-                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultTable"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             create_view:
-              discriminator:
-                propertyName: view_type
-                mapping:
-                  default: "#/components/schemas/EntityDefaultCreate"
-                  redirect: "#/components/schemas/RedirectEntityView"
-                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultCreate"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             edit_view:
-              discriminator:
-                propertyName: view_type
-                mapping:
-                  default: "#/components/schemas/EntityDefaultEdit"
-                  redirect: "#/components/schemas/RedirectEntityView"
-                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
                 - $ref: "#/components/schemas/EntityViewDisabled"
             single_view:
-              discriminator:
-                propertyName: view_type
-                mapping:
-                  default: "#/components/schemas/EntityDefaultEdit"
-                  redirect: "#/components/schemas/RedirectEntityView"
-                  disabled: "#/components/schemas/EntityViewDisabled"
               anyOf:
                 - $ref: "#/components/schemas/EntityDefaultEdit"
                 - $ref: "#/components/schemas/RedirectEntityView"
@@ -2471,6 +2382,10 @@ components:
             - name: image
               type: file
               label: Image
+        _purpose:
+          type: array
+          items:
+            type: string
         explicit_search_mappings:
           $ref: "#/components/schemas/SearchMappings"
       required:
@@ -2485,13 +2400,10 @@ components:
           properties:
             id:
               $ref: "#/components/schemas/SchemaId"
-              readOnly: true
             created_at:
               type: string
-              readOnly: true
             updated_at:
               type: string
-              readOnly: true
             comment:
               type: string
             source:
@@ -2502,6 +2414,83 @@ components:
                 type:
                   type: string
         - $ref: "#/components/schemas/EntitySchema"
+
+    GenerateEntityTableAIFiltersRequest:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to generate the filters
+          example: "Show me all contacts that are not customers"
+          maxLength: 300
+        main_entity_slug:
+          type: string
+          description: The main entity slug
+          example: order
+        filter_options:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityTableFilterOption"
+      required:
+        - prompt
+        - main_entity_slug
+        - filter_options
+
+    GenerateEntityTableAIFiltersResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/EntityTableFilterSearch"
+
+    EntityTableFilterSearch:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The label for the search filter
+        type:
+          type: string
+          description: The type for the search filter
+        value:
+          type: string
+          description: The value for the search filter
+      required:
+        - label
+        - type
+        - value
+
+    EntityTableFilterOption:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of filter option
+          enum:
+            - search
+            - filter
+        label:
+          type: string
+          description: The label for the filter option
+        label_type:
+          type: string
+          description: The label type for the filter option
+        name:
+          type: string
+          description: The name for the filter option
+        group:
+          type: string
+          description: The group for the filter option
+        allowedSchemas:
+          type: array
+          items:
+            type: string
+            description: The allowed schemas for the filter option
+        relatedOptions:
+          type: array
+          items:
+            $ref: "#/components/schemas/EntityTableFilterOption"
+          description: The related options for the filter option
+      required:
+        - label
 
     EntitySchemaGroup:
       type: object
@@ -3634,6 +3623,11 @@ components:
         _acl:
           readOnly: true
           $ref: "#/components/schemas/EntityAcl"
+        _purpose:
+          type: array
+          items:
+            type: string
+          nullable: true
       example:
         _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         _org: "123"
@@ -4412,6 +4406,7 @@ components:
         - created_by
         - ui_config
 
+    # * Region Start: Taxonomies *
     Taxonomy:
       type: object
       properties:
@@ -4471,21 +4466,29 @@ components:
           description: List of locations where the taxonomy is enabled to be used. If empty, it's enabled for all locations.
           type: array
           items:
-            type: string
-            enum:
-              - email-templates
-              - emails
-              - contacts
-              - orders
-              - contracts
-              - meters
-              - accounts
-              - products
-              - prices
-              - opportunities
-              - all_entities
-              - files
-
+            $ref: "#/components/schemas/TaxonomyLocationId"
+    TaxonomyLocationId:
+      type: string
+      enum:
+        - account
+        - contact
+        - contract
+        - email_template
+        - file
+        - journey
+        - meter_counter
+        - meter
+        - opportunity
+        - order
+        - partner
+        - price
+        - product
+        - submission
+        - tax
+        - message
+        - portal_user
+        - request
+        - comment
     TaxonomyClassification:
       type: object
       properties:
@@ -4539,6 +4542,7 @@ components:
               - $ref: "#/components/schemas/ClassificationId"
               - type: string
                 example: "taxonomy-slug:classification-slug"
+    # * Region End: Taxonomies *
 
     ESClusterAssignment:
       type: object
@@ -4558,6 +4562,7 @@ components:
         enabled:
           type: boolean
           description: Whether the setting should be enabled or not
+
   parameters:
     EntityIdPathParam:
       name: id
@@ -4609,6 +4614,7 @@ components:
       required: true
       schema:
         type: string
+      example: purpose:<name>
     SavedViewIdPathParam:
       name: id
       description: View id
@@ -5151,3 +5157,5 @@ components:
         status: "error"
         errors:
           - $ref: "#/components/examples/EntityValidationError"
+servers:
+- url: https://entity.sls.epilot.io

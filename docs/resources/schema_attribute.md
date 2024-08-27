@@ -1644,6 +1644,7 @@ Optional:
 - `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `id` (String) Not Null
+- `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema. Not Null
 - `tags` (List of String)
 - `title` (String) Title of entity. Not Null
@@ -1656,7 +1657,7 @@ Read-Only:
 - `updated_at` (String)
 
 <a id="nestedatt--relation_attribute--actions--new_entity_item--acl"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
+### Nested Schema for `relation_attribute.actions.new_entity_item.acl`
 
 Optional:
 
@@ -1667,7 +1668,7 @@ Optional:
 
 
 <a id="nestedatt--relation_attribute--actions--new_entity_item--owners"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.updated_at`
+### Nested Schema for `relation_attribute.actions.new_entity_item.owners`
 
 Read-Only:
 

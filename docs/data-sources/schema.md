@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "4da571d0-8a60-465a-8a73-d65b80e30b09"
+  id   = "a73d65b8-0e30-4b09-a847-d3e315b5a14e"
   slug = "contact"
 }
 ```
@@ -47,6 +47,7 @@ data "epilot-schema_schema" "my_schema" {
 - `name` (String) User-friendly identifier for the entity schema
 - `plural` (String)
 - `published` (Boolean)
+- `purpose` (List of String)
 - `source` (Attributes) (see [below for nested schema](#nestedatt--source))
 - `title_template` (String) Template for rendering the title field. Uses handlebars
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
@@ -1557,23 +1558,24 @@ must be one of ["add_existing", "create_new", "create_from_existing"]
 - `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag))
 
 <a id="nestedatt--attributes--relation_attribute--actions--new_entity_item"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag`
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item`
 
 Read-Only:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `created_at` (String)
 - `id` (String)
 - `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag--owners))
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--owners))
+- `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema
 - `tags` (List of String)
 - `title` (String) Title of entity
 - `updated_at` (String)
 
-<a id="nestedatt--attributes--relation_attribute--actions--settings_flag--acl"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag.acl`
+<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--acl"></a>
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.acl`
 
 Read-Only:
 
@@ -1583,8 +1585,8 @@ Read-Only:
 - `view` (List of String)
 
 
-<a id="nestedatt--attributes--relation_attribute--actions--settings_flag--owners"></a>
-### Nested Schema for `attributes.relation_attribute.actions.settings_flag.owners`
+<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--owners"></a>
+### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.owners`
 
 Read-Only:
 
@@ -2239,11 +2241,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.address_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.address_relation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.address_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.address_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -2259,7 +2261,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--address_relation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.address_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.address_relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -2306,11 +2308,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--automation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.automation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.automation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--automation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.automation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.automation_attribute.info_helpers`
 
 Read-Only:
 
@@ -2326,7 +2328,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--automation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.automation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.automation_attribute.settings_flag`
 
 Read-Only:
 
@@ -2373,11 +2375,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--boolean_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.boolean_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.boolean_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--boolean_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.boolean_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.boolean_attribute.info_helpers`
 
 Read-Only:
 
@@ -2393,7 +2395,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--boolean_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.boolean_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.boolean_attribute.settings_flag`
 
 Read-Only:
 
@@ -2440,11 +2442,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--computed_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.computed_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.computed_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--computed_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.computed_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.computed_attribute.info_helpers`
 
 Read-Only:
 
@@ -2460,7 +2462,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--computed_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.computed_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.computed_attribute.settings_flag`
 
 Read-Only:
 
@@ -2509,11 +2511,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--consent_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.consent_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.consent_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--consent_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.consent_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.consent_attribute.info_helpers`
 
 Read-Only:
 
@@ -2529,7 +2531,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--consent_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.consent_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.consent_attribute.settings_flag`
 
 Read-Only:
 
@@ -2576,11 +2578,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--country_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.country_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.country_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--country_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.country_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.country_attribute.info_helpers`
 
 Read-Only:
 
@@ -2596,7 +2598,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--country_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.country_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.country_attribute.settings_flag`
 
 Read-Only:
 
@@ -2645,18 +2647,18 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.currency_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--currency"></a>
-### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.currency_attribute.currency`
 
 Read-Only:
 
-- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--value_formatter--one))
+- `one` (Attributes) A currency configuration (see [below for nested schema](#nestedatt--capabilities--attributes--currency_attribute--currency--one))
 
-<a id="nestedatt--capabilities--attributes--currency_attribute--value_formatter--one"></a>
-### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter.one`
+<a id="nestedatt--capabilities--attributes--currency_attribute--currency--one"></a>
+### Nested Schema for `capabilities.attributes.currency_attribute.currency.one`
 
 Read-Only:
 
@@ -2668,7 +2670,7 @@ Read-Only:
 
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.currency_attribute.info_helpers`
 
 Read-Only:
 
@@ -2684,7 +2686,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--currency_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.currency_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.currency_attribute.settings_flag`
 
 Read-Only:
 
@@ -2731,11 +2733,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--date_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.date_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.date_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--date_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.date_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.date_attribute.info_helpers`
 
 Read-Only:
 
@@ -2751,7 +2753,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--date_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.date_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.date_attribute.settings_flag`
 
 Read-Only:
 
@@ -2804,11 +2806,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--file_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.file_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.file_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--file_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.file_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.file_attribute.info_helpers`
 
 Read-Only:
 
@@ -2824,7 +2826,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--file_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.file_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.file_attribute.settings_flag`
 
 Read-Only:
 
@@ -2871,11 +2873,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--internal_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.internal_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--internal_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.internal_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_attribute.info_helpers`
 
 Read-Only:
 
@@ -2891,7 +2893,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--internal_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.internal_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_attribute.settings_flag`
 
 Read-Only:
 
@@ -2938,11 +2940,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--internal_user_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.internal_user_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_user_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--internal_user_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.internal_user_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_user_attribute.info_helpers`
 
 Read-Only:
 
@@ -2958,7 +2960,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--internal_user_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.internal_user_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.internal_user_attribute.settings_flag`
 
 Read-Only:
 
@@ -3005,11 +3007,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--invitation_email_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.invitation_email_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.invitation_email_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--invitation_email_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.invitation_email_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.invitation_email_attribute.info_helpers`
 
 Read-Only:
 
@@ -3025,7 +3027,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--invitation_email_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.invitation_email_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.invitation_email_attribute.settings_flag`
 
 Read-Only:
 
@@ -3072,11 +3074,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--link_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.link_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.link_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--link_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.link_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.link_attribute.info_helpers`
 
 Read-Only:
 
@@ -3092,7 +3094,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--link_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.link_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.link_attribute.settings_flag`
 
 Read-Only:
 
@@ -3143,11 +3145,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.multi_select_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.multi_select_attribute.info_helpers`
 
 Read-Only:
 
@@ -3163,15 +3165,15 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--options"></a>
-### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.multi_select_attribute.options`
 
 Read-Only:
 
 - `str` (String)
-- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--value_formatter--two))
+- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--multi_select_attribute--options--two))
 
-<a id="nestedatt--capabilities--attributes--multi_select_attribute--value_formatter--two"></a>
-### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter.two`
+<a id="nestedatt--capabilities--attributes--multi_select_attribute--options--two"></a>
+### Nested Schema for `capabilities.attributes.multi_select_attribute.options.two`
 
 Read-Only:
 
@@ -3181,7 +3183,7 @@ Read-Only:
 
 
 <a id="nestedatt--capabilities--attributes--multi_select_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.multi_select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.multi_select_attribute.settings_flag`
 
 Read-Only:
 
@@ -3230,11 +3232,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--number_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.number_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.number_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--number_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.number_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.number_attribute.info_helpers`
 
 Read-Only:
 
@@ -3250,7 +3252,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--number_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.number_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.number_attribute.settings_flag`
 
 Read-Only:
 
@@ -3297,11 +3299,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--ordered_list_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.ordered_list_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.ordered_list_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--ordered_list_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.ordered_list_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.ordered_list_attribute.info_helpers`
 
 Read-Only:
 
@@ -3317,7 +3319,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--ordered_list_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.ordered_list_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.ordered_list_attribute.settings_flag`
 
 Read-Only:
 
@@ -3364,11 +3366,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--partner_organisation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.partner_organisation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_organisation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--partner_organisation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.partner_organisation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_organisation_attribute.info_helpers`
 
 Read-Only:
 
@@ -3384,7 +3386,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--partner_organisation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.partner_organisation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_organisation_attribute.settings_flag`
 
 Read-Only:
 
@@ -3431,11 +3433,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--partner_status_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.partner_status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_status_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--partner_status_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.partner_status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_status_attribute.info_helpers`
 
 Read-Only:
 
@@ -3451,7 +3453,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--partner_status_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.partner_status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.partner_status_attribute.settings_flag`
 
 Read-Only:
 
@@ -3499,11 +3501,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--payment_method_relation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--payment_method_relation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -3519,7 +3521,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--payment_method_relation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.payment_method_relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -3570,11 +3572,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--purpose_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.purpose_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.purpose_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--purpose_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.purpose_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.purpose_attribute.info_helpers`
 
 Read-Only:
 
@@ -3590,7 +3592,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--purpose_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.purpose_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.purpose_attribute.settings_flag`
 
 Read-Only:
 
@@ -3650,7 +3652,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--actions"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.relation_attribute.actions`
 
 Read-Only:
 
@@ -3666,27 +3668,28 @@ must be one of ["add_existing", "create_new", "create_from_existing"]
 - `default` (Boolean) Sets the action as the default action, visible as the main action button.
 - `feature_flag` (String) Name of the feature flag that enables this action
 - `label` (String) The action label or action translation key (i18n)
-- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item))
-- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--settings_flag))
+- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item))
+- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions--settings_flag))
 
-<a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item`
+<a id="nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item"></a>
+### Nested Schema for `capabilities.attributes.relation_attribute.actions.new_entity_item`
 
 Read-Only:
 
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--acl))
+- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `created_at` (String)
 - `id` (String)
 - `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--owners))
+- `owners` (Attributes List) (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item--owners))
+- `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema
 - `tags` (List of String)
 - `title` (String) Title of entity
 - `updated_at` (String)
 
-<a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--acl"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item.updated_at`
+<a id="nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item--acl"></a>
+### Nested Schema for `capabilities.attributes.relation_attribute.actions.new_entity_item.acl`
 
 Read-Only:
 
@@ -3696,8 +3699,8 @@ Read-Only:
 - `view` (List of String)
 
 
-<a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--new_entity_item--owners"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.new_entity_item.updated_at`
+<a id="nestedatt--capabilities--attributes--relation_attribute--actions--new_entity_item--owners"></a>
+### Nested Schema for `capabilities.attributes.relation_attribute.actions.new_entity_item.owners`
 
 Read-Only:
 
@@ -3706,8 +3709,8 @@ Read-Only:
 
 
 
-<a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.settings_flag`
+<a id="nestedatt--capabilities--attributes--relation_attribute--actions--settings_flag"></a>
+### Nested Schema for `capabilities.attributes.relation_attribute.actions.settings_flag`
 
 Read-Only:
 
@@ -3717,11 +3720,11 @@ Read-Only:
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.relation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -3737,7 +3740,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -3746,15 +3749,15 @@ Read-Only:
 
 
 <a id="nestedatt--capabilities--attributes--relation_attribute--summary_fields"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.relation_attribute.summary_fields`
 
 Read-Only:
 
 - `str` (String)
-- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--value_formatter--summary_field))
+- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--capabilities--attributes--relation_attribute--summary_fields--summary_field))
 
-<a id="nestedatt--capabilities--attributes--relation_attribute--value_formatter--summary_field"></a>
-### Nested Schema for `capabilities.attributes.relation_attribute.value_formatter.summary_field`
+<a id="nestedatt--capabilities--attributes--relation_attribute--summary_fields--summary_field"></a>
+### Nested Schema for `capabilities.attributes.relation_attribute.summary_fields.summary_field`
 
 Read-Only:
 
@@ -3806,11 +3809,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--repeatable_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.repeatable_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.repeatable_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--repeatable_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.repeatable_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.repeatable_attribute.info_helpers`
 
 Read-Only:
 
@@ -3826,7 +3829,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--repeatable_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.repeatable_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.repeatable_attribute.settings_flag`
 
 Read-Only:
 
@@ -3875,11 +3878,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--select_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.select_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--select_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.select_attribute.info_helpers`
 
 Read-Only:
 
@@ -3895,7 +3898,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--select_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.select_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.select_attribute.settings_flag`
 
 Read-Only:
 
@@ -3944,11 +3947,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--sequence_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.sequence_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.sequence_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--sequence_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.sequence_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.sequence_attribute.info_helpers`
 
 Read-Only:
 
@@ -3964,7 +3967,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--sequence_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.sequence_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.sequence_attribute.settings_flag`
 
 Read-Only:
 
@@ -4012,11 +4015,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--status_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.status_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--status_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.status_attribute.info_helpers`
 
 Read-Only:
 
@@ -4032,15 +4035,15 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--status_attribute--options"></a>
-### Nested Schema for `capabilities.attributes.status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.status_attribute.options`
 
 Read-Only:
 
 - `str` (String)
-- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--value_formatter--two))
+- `two` (Attributes) (see [below for nested schema](#nestedatt--capabilities--attributes--status_attribute--options--two))
 
-<a id="nestedatt--capabilities--attributes--status_attribute--value_formatter--two"></a>
-### Nested Schema for `capabilities.attributes.status_attribute.value_formatter.two`
+<a id="nestedatt--capabilities--attributes--status_attribute--options--two"></a>
+### Nested Schema for `capabilities.attributes.status_attribute.options.two`
 
 Read-Only:
 
@@ -4050,7 +4053,7 @@ Read-Only:
 
 
 <a id="nestedatt--capabilities--attributes--status_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.status_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.status_attribute.settings_flag`
 
 Read-Only:
 
@@ -4099,11 +4102,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--tags_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.tags_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.tags_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--tags_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.tags_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.tags_attribute.info_helpers`
 
 Read-Only:
 
@@ -4119,7 +4122,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--tags_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.tags_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.tags_attribute.settings_flag`
 
 Read-Only:
 
@@ -4167,11 +4170,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--text_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.text_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.text_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--text_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.text_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.text_attribute.info_helpers`
 
 Read-Only:
 
@@ -4187,7 +4190,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--text_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.text_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.text_attribute.settings_flag`
 
 Read-Only:
 
@@ -4235,11 +4238,11 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `value_formatter` (String)
 
 <a id="nestedatt--capabilities--attributes--user_relation_attribute--constraints"></a>
-### Nested Schema for `capabilities.attributes.user_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.user_relation_attribute.constraints`
 
 
 <a id="nestedatt--capabilities--attributes--user_relation_attribute--info_helpers"></a>
-### Nested Schema for `capabilities.attributes.user_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.user_relation_attribute.info_helpers`
 
 Read-Only:
 
@@ -4255,7 +4258,7 @@ The value should be a valid `@mui/core` tooltip placement.
 
 
 <a id="nestedatt--capabilities--attributes--user_relation_attribute--settings_flag"></a>
-### Nested Schema for `capabilities.attributes.user_relation_attribute.value_formatter`
+### Nested Schema for `capabilities.attributes.user_relation_attribute.settings_flag`
 
 Read-Only:
 
@@ -4384,12 +4387,12 @@ Read-Only:
 
 Read-Only:
 
-- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--default))
-- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--disabled))
-- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--redirect))
+- `entity_default_create` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--entity_default_create))
+- `entity_view_disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--entity_view_disabled))
+- `redirect_entity_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--create_view--redirect_entity_view))
 
-<a id="nestedatt--ui_config--create_view--default"></a>
-### Nested Schema for `ui_config.create_view.default`
+<a id="nestedatt--ui_config--create_view--entity_default_create"></a>
+### Nested Schema for `ui_config.create_view.entity_default_create`
 
 Read-Only:
 
@@ -4397,16 +4400,16 @@ Read-Only:
 - `view_type` (String) must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--create_view--disabled"></a>
-### Nested Schema for `ui_config.create_view.disabled`
+<a id="nestedatt--ui_config--create_view--entity_view_disabled"></a>
+### Nested Schema for `ui_config.create_view.entity_view_disabled`
 
 Read-Only:
 
 - `view_type` (String) must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--create_view--redirect"></a>
-### Nested Schema for `ui_config.create_view.redirect`
+<a id="nestedatt--ui_config--create_view--redirect_entity_view"></a>
+### Nested Schema for `ui_config.create_view.redirect_entity_view`
 
 Read-Only:
 
@@ -4420,12 +4423,12 @@ Read-Only:
 
 Read-Only:
 
-- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--default))
-- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--disabled))
-- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect))
+- `entity_default_edit` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--entity_default_edit))
+- `entity_view_disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--entity_view_disabled))
+- `redirect_entity_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--edit_view--redirect_entity_view))
 
-<a id="nestedatt--ui_config--edit_view--default"></a>
-### Nested Schema for `ui_config.edit_view.default`
+<a id="nestedatt--ui_config--edit_view--entity_default_edit"></a>
+### Nested Schema for `ui_config.edit_view.entity_default_edit`
 
 Read-Only:
 
@@ -4434,16 +4437,16 @@ Read-Only:
 - `view_type` (String) must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--edit_view--disabled"></a>
-### Nested Schema for `ui_config.edit_view.disabled`
+<a id="nestedatt--ui_config--edit_view--entity_view_disabled"></a>
+### Nested Schema for `ui_config.edit_view.entity_view_disabled`
 
 Read-Only:
 
 - `view_type` (String) must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--edit_view--redirect"></a>
-### Nested Schema for `ui_config.edit_view.redirect`
+<a id="nestedatt--ui_config--edit_view--redirect_entity_view"></a>
+### Nested Schema for `ui_config.edit_view.redirect_entity_view`
 
 Read-Only:
 
@@ -4483,7 +4486,7 @@ This configuration can be used in the following way:
 ```js
 {
   "label": "Price components"
-  "value": "{{item.prices.length}} price components"
+  "value": "{{"{{"}}item.prices.length{{"}}"}} price components"
   "show_as_tag": true
   "render_condition": "is_composite_price = "true""
 }
@@ -4530,12 +4533,12 @@ Read-Only:
 
 Read-Only:
 
-- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--default))
-- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--disabled))
-- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--redirect))
+- `entity_default_edit` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--entity_default_edit))
+- `entity_view_disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--entity_view_disabled))
+- `redirect_entity_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--single_view--redirect_entity_view))
 
-<a id="nestedatt--ui_config--single_view--default"></a>
-### Nested Schema for `ui_config.single_view.default`
+<a id="nestedatt--ui_config--single_view--entity_default_edit"></a>
+### Nested Schema for `ui_config.single_view.entity_default_edit`
 
 Read-Only:
 
@@ -4544,16 +4547,16 @@ Read-Only:
 - `view_type` (String) must be one of ["default"]
 
 
-<a id="nestedatt--ui_config--single_view--disabled"></a>
-### Nested Schema for `ui_config.single_view.disabled`
+<a id="nestedatt--ui_config--single_view--entity_view_disabled"></a>
+### Nested Schema for `ui_config.single_view.entity_view_disabled`
 
 Read-Only:
 
 - `view_type` (String) must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--single_view--redirect"></a>
-### Nested Schema for `ui_config.single_view.redirect`
+<a id="nestedatt--ui_config--single_view--redirect_entity_view"></a>
+### Nested Schema for `ui_config.single_view.redirect_entity_view`
 
 Read-Only:
 
@@ -4567,31 +4570,31 @@ Read-Only:
 
 Read-Only:
 
-- `default` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--default))
-- `disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--disabled))
-- `redirect` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--redirect))
+- `entity_default_table` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table))
+- `entity_view_disabled` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_view_disabled))
+- `redirect_entity_view` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--redirect_entity_view))
 
-<a id="nestedatt--ui_config--table_view--default"></a>
-### Nested Schema for `ui_config.table_view.default`
+<a id="nestedatt--ui_config--table_view--entity_default_table"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table`
 
 Read-Only:
 
-- `bulk_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--bulk_actions))
+- `bulk_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--bulk_actions))
 - `enable_thumbnails` (Boolean) Enable the thumbnail column
-- `navbar_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--navbar_actions))
-- `row_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--row_actions))
+- `navbar_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions))
+- `row_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--row_actions))
 - `view_type` (String) must be one of ["default"]
 
-<a id="nestedatt--ui_config--table_view--default--bulk_actions"></a>
-### Nested Schema for `ui_config.table_view.default.view_type`
+<a id="nestedatt--ui_config--table_view--entity_default_table--bulk_actions"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.bulk_actions`
 
 Read-Only:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
+- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--bulk_actions--entity_action))
 - `str` (String)
 
-<a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
-### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
+<a id="nestedatt--ui_config--table_view--entity_default_table--bulk_actions--entity_action"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.bulk_actions.entity_action`
 
 Read-Only:
 
@@ -4603,38 +4606,38 @@ If not provided, the action will be shown to all users.
 
 
 
-<a id="nestedatt--ui_config--table_view--default--navbar_actions"></a>
-### Nested Schema for `ui_config.table_view.default.view_type`
+<a id="nestedatt--ui_config--table_view--entity_default_table--navbar_actions"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.navbar_actions`
 
 Read-Only:
 
-- `options` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options))
+- `options` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions--options))
 - `type` (String)
 
-<a id="nestedatt--ui_config--table_view--default--view_type--options"></a>
-### Nested Schema for `ui_config.table_view.default.view_type.options`
+<a id="nestedatt--ui_config--table_view--entity_default_table--navbar_actions--options"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.navbar_actions.options`
 
 Read-Only:
 
 - `label` (String)
-- `params` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--options--params))
+- `params` (Attributes) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions--options--params))
 
-<a id="nestedatt--ui_config--table_view--default--view_type--options--params"></a>
-### Nested Schema for `ui_config.table_view.default.view_type.options.params`
-
-
+<a id="nestedatt--ui_config--table_view--entity_default_table--navbar_actions--options--params"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.navbar_actions.options.params`
 
 
-<a id="nestedatt--ui_config--table_view--default--row_actions"></a>
-### Nested Schema for `ui_config.table_view.default.view_type`
+
+
+<a id="nestedatt--ui_config--table_view--entity_default_table--row_actions"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.row_actions`
 
 Read-Only:
 
-- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--default--view_type--entity_action))
+- `entity_action` (Attributes) An entity action configured from the entity schema (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--row_actions--entity_action))
 - `str` (String)
 
-<a id="nestedatt--ui_config--table_view--default--view_type--entity_action"></a>
-### Nested Schema for `ui_config.table_view.default.view_type.entity_action`
+<a id="nestedatt--ui_config--table_view--entity_default_table--row_actions--entity_action"></a>
+### Nested Schema for `ui_config.table_view.entity_default_table.row_actions.entity_action`
 
 Read-Only:
 
@@ -4647,20 +4650,18 @@ If not provided, the action will be shown to all users.
 
 
 
-<a id="nestedatt--ui_config--table_view--disabled"></a>
-### Nested Schema for `ui_config.table_view.disabled`
+<a id="nestedatt--ui_config--table_view--entity_view_disabled"></a>
+### Nested Schema for `ui_config.table_view.entity_view_disabled`
 
 Read-Only:
 
 - `view_type` (String) must be one of ["disabled"]
 
 
-<a id="nestedatt--ui_config--table_view--redirect"></a>
-### Nested Schema for `ui_config.table_view.redirect`
+<a id="nestedatt--ui_config--table_view--redirect_entity_view"></a>
+### Nested Schema for `ui_config.table_view.redirect_entity_view`
 
 Read-Only:
 
 - `route` (String)
 - `view_type` (String) must be one of ["redirect"]
-
-

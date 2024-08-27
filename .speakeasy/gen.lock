@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 354713ad28fa13e8df7e5ad7feb86bb3
+  docChecksum: 5fc64e51b7161fd5094d4c5fcf734769
   docVersion: 1.0.0
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 0.8.0
-  configChecksum: ee3f10896b8d69d09178a0daafd6970d
+  speakeasyVersion: 1.379.0
+  generationVersion: 2.404.3
+  releaseVersion: 0.9.0
+  configChecksum: 7a24df5fbb074cf21ea8b2ea9efc1dce
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -15,15 +15,16 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.24.3
+    core: 3.24.7
     deprecations: 2.81.1
-    globalSecurity: 2.81.6
+    envVarSecurityUsage: 0.1.0
+    globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     nullables: 0.0.0
     retries: 2.81.1
     typeOverrides: 2.81.1
-    unions: 2.81.15
+    unions: 2.81.16
 generatedFiles:
   - internal/sdk/schemas.go
   - internal/sdk/entities.go
@@ -88,6 +89,7 @@ generatedFiles:
   - internal/sdk/models/operations/getentityactivityfeed.go
   - internal/sdk/models/operations/getrelations.go
   - internal/sdk/models/operations/addrelations.go
+  - internal/sdk/models/operations/removerelations.go
   - internal/sdk/models/operations/getrelationsv2.go
   - internal/sdk/models/operations/getrelationsv3.go
   - internal/sdk/models/operations/getrelatedentitiescount.go
@@ -109,7 +111,7 @@ generatedFiles:
   - internal/sdk/models/operations/taxonomyautocomplete.go
   - internal/sdk/models/operations/taxonomiesclassificationssearch.go
   - internal/sdk/models/operations/updateclassificationsfortaxonomy.go
-  - internal/sdk/models/operations/createtaxonomyclassification.go
+  - internal/sdk/models/operations/gettaxonomyclassification.go
   - internal/sdk/models/operations/updatetaxonomyclassification.go
   - internal/sdk/models/operations/deletetaxonomyclassification.go
   - internal/sdk/models/operations/getelasticclusterfororg.go
@@ -157,6 +159,7 @@ generatedFiles:
   - internal/sdk/models/shared/entityviewdisabled.go
   - internal/sdk/models/shared/entitydefaultcreate.go
   - internal/sdk/models/shared/entitydefaulttable.go
+  - internal/sdk/models/shared/entityschema.go
   - internal/sdk/models/shared/attributeinput.go
   - internal/sdk/models/shared/taxonomyclassification.go
   - internal/sdk/models/shared/attributewithcompositeid.go
@@ -189,13 +192,14 @@ generatedFiles:
   - internal/sdk/models/shared/savedviewitem.go
   - internal/sdk/models/shared/savedview.go
   - internal/sdk/models/shared/taxonomy.go
+  - internal/sdk/models/shared/taxonomylocationid.go
+  - internal/sdk/models/shared/taxonomyinput.go
   - internal/sdk/models/shared/classificationsupdate.go
   - internal/sdk/models/shared/esclusterassignment.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
   - internal/sdk/models/operations/options.go
   - internal/sdk/.gitattributes
-  - internal/sdk/internal/hooks/registration.go
   - internal/sdk/internal/hooks/hooks.go
   - internal/sdk/CONTRIBUTING.md
   - examples/README.md
@@ -290,25 +294,25 @@ generatedFiles:
   - internal/provider/types/search_mappings.go
   - internal/provider/types/info_tooltip_title.go
   - internal/provider/types/entity_schema_group.go
-  - internal/provider/types/layout_settings.go
+  - internal/provider/types/entity_schema_layout_settings.go
   - internal/provider/types/source.go
   - internal/provider/types/entity_default_create.go
   - internal/provider/types/entity_view_disabled.go
   - internal/provider/types/redirect_entity_view.go
-  - internal/provider/types/create_view.go
+  - internal/provider/types/entity_schema_create_view.go
   - internal/provider/types/entity_default_edit.go
-  - internal/provider/types/edit_view.go
+  - internal/provider/types/entity_schema_edit_view.go
   - internal/provider/types/entity_action.go
   - internal/provider/types/summary_attribute.go
   - internal/provider/types/summary_attributes.go
-  - internal/provider/types/list_item.go
-  - internal/provider/types/sharing.go
+  - internal/provider/types/entity_schema_list_item.go
+  - internal/provider/types/entity_schema_sharing.go
   - internal/provider/types/bulk_actions.go
   - internal/provider/types/entity_default_table_options.go
   - internal/provider/types/navbar_actions.go
   - internal/provider/types/entity_default_table.go
-  - internal/provider/types/table_view.go
-  - internal/provider/types/ui_config.go
+  - internal/provider/types/entity_schema_table_view.go
+  - internal/provider/types/entity_schema_ui_config.go
   - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
   - internal/provider/types/attribute_with_composite_id_automation_attribute.go
   - internal/provider/types/attribute_with_composite_id_boolean_attribute.go
