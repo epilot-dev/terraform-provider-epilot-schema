@@ -31,7 +31,7 @@ terraform {
     }
     epilot-schema = {
       source  = "epilot-dev/epilot-schema"
-      version = "4.1.0"
+      version = "4.1.1"
     }
     epilot-workflow = {
       source  = "epilot-dev/epilot-workflow"
@@ -46,39 +46,39 @@ variable "epilot_auth" {
 }
 variable "journey_api_url" {
   type    = string
-  default = "https://journey-config.sls.epilot.io"
+  default = "https://journey-config.dev.sls.epilot.io"
 }
 variable "product_api_url" {
   type    = string
-  default = "https://product.sls.epilot.io"
+  default = "https://product.dev.sls.epilot.io"
 }
 variable "automation_api_url" {
   type    = string
-  default = "https://automation.sls.epilot.io"
+  default = "https://automation.dev.sls.epilot.io"
 }
 variable "file_api_url" {
   type    = string
-  default = "https://file.sls.epilot.io"
+  default = "https://file.dev.sls.epilot.io"
 }
 variable "emailtemplate_api_url" {
   type    = string
-  default = "https://email-template.sls.epilot.io"
+  default = "https://email-template.dev.sls.epilot.io"
 }
 variable "designbuilder_api_url" {
   type    = string
-  default = "https://design-builder-api.sls.epilot.io"
+  default = "https://design-builder-api.dev.sls.epilot.io"
 }
 variable "entitymapping_api_url" {
   type    = string
-  default = "https://entity-mapping.sls.epilot.io"
+  default = "https://entity-mapping.dev.sls.epilot.io"
 }
 variable "schema_api_url" {
   type    = string
-  default = "https://entity.sls.epilot.io"
+  default = "https://entity.dev.sls.epilot.io"
 }
 variable "workflow_api_url" {
   type    = string
-  default = "https://workflows-definition.sls.epilot.io"
+  default = "https://workflows-definition.dev.sls.epilot.io"
 }
 
 # Providers configuration
@@ -119,7 +119,10 @@ provider "epilot-workflow" {
   server_url  = var.workflow_api_url
 }
 
-# import {
-#   to = epilot-schema_schema_attribute.my_attribute
-#   id = "opportunity:4787665b-52b2-4948-a8fa-8fc028244fd2"
+import {
+  to = epilot-schema_schema.myschema
+  id = "opportunity"
+}
+
+# resource "epilot-schema_schema" "myschema" {
 # }
