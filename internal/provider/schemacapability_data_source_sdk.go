@@ -2142,6 +2142,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
 		r.ID = types.StringPointerValue(resp.ID)
 		r.Name = types.StringValue(resp.Name)
+		r.Schema = types.StringPointerValue(resp.Schema)
 		r.SettingsFlag = []tfTypes.SettingFlag{}
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]

@@ -4470,7 +4470,7 @@ Optional:
 
 - `expanded` (Boolean) Expanded by default. Default: false
 - `feature_flag` (String) This group should only be active when the feature flag is enabled
-- `id` (String) Not Null
+- `id` (String)
 - `info_tooltip_title` (Attributes) (see [below for nested schema](#nestedatt--group_settings--info_tooltip_title))
 - `label` (String) Not Null
 - `order` (Number) Render order of the group. Default: 0

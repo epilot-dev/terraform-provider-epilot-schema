@@ -44,6 +44,7 @@ type SchemaCapabilityResourceModel struct {
 	ID           types.String          `tfsdk:"id"`
 	Name         types.String          `tfsdk:"name"`
 	Purpose      []types.String        `tfsdk:"purpose"`
+	Schema       types.String          `tfsdk:"schema"`
 	SettingsFlag []tfTypes.SettingFlag `tfsdk:"settings_flag"`
 	Title        types.String          `tfsdk:"title"`
 	UIHooks      []tfTypes.UIHooks     `tfsdk:"ui_hooks"`
@@ -7466,7 +7467,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				},
 			},
 			"composite_id": schema.StringAttribute{
-				Required:    true,
+				Computed:    true,
 				Description: `Schema Slug and the Attribute ID`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
@@ -7490,6 +7491,11 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				Computed:    true,
 				Optional:    true,
 				ElementType: types.StringType,
+			},
+			"schema": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Schema slug the capability belongs to`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,
@@ -7648,15 +7654,8 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
-
-	entityCapabilityWithCompositeID := data.ToSharedEntityCapabilityWithCompositeIDInput()
-	request := operations.PutSchemaCapabilityRequest{
-		CompositeID:                     compositeID,
-		EntityCapabilityWithCompositeID: entityCapabilityWithCompositeID,
-	}
-	res, err := r.client.Schemas.PutSchemaCapability(ctx, request)
+	request := data.ToSharedEntityCapabilityWithCompositeIDInput()
+	res, err := r.client.Schemas.CreateSchemaCapability(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -7668,7 +7667,7 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode != 200 {
+	if res.StatusCode != 201 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}

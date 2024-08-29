@@ -6940,6 +6940,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			Enabled: enabled29,
 		})
 	}
+	schema1 := new(string)
+	if !r.Schema.IsUnknown() && !r.Schema.IsNull() {
+		*schema1 = r.Schema.ValueString()
+	} else {
+		schema1 = nil
+	}
 	out := shared.EntityCapabilityWithCompositeIDInput{
 		ID:           id,
 		Name:         name,
@@ -6949,6 +6955,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 		UIHooks:      uiHooks,
 		FeatureFlag:  featureFlag29,
 		SettingsFlag: settingsFlag29,
+		Schema:       schema1,
 	}
 	return &out
 }
@@ -9085,6 +9092,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
 		r.ID = types.StringPointerValue(resp.ID)
 		r.Name = types.StringValue(resp.Name)
+		r.Schema = types.StringPointerValue(resp.Schema)
 		r.SettingsFlag = []tfTypes.SettingFlag{}
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]

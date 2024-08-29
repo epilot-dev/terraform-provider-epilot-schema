@@ -38,6 +38,7 @@ type SchemaGroupDataSourceModel struct {
 	Order            types.Int64               `tfsdk:"order"`
 	Purpose          []types.String            `tfsdk:"purpose"`
 	RenderCondition  types.String              `tfsdk:"render_condition"`
+	Schema           types.String              `tfsdk:"schema"`
 	SettingsFlag     []tfTypes.SettingFlag     `tfsdk:"settings_flag"`
 }
 
@@ -95,6 +96,10 @@ func (r *SchemaGroupDataSource) Schema(ctx context.Context, req datasource.Schem
 			"render_condition": schema.StringAttribute{
 				Computed:    true,
 				Description: `Only render group when render_condition resolves to true`,
+			},
+			"schema": schema.StringAttribute{
+				Computed:    true,
+				Description: `Schema slug the group belongs to`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,

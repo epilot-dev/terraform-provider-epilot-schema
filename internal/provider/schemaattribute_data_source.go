@@ -70,6 +70,7 @@ type SchemaAttributeDataSourceModel struct {
 	RenderCondition                types.String                                                    `tfsdk:"render_condition"`
 	RepeatableAttribute            *tfTypes.AttributeWithCompositeIDRepeatableAttribute            `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
 	Required                       types.Bool                                                      `tfsdk:"required"`
+	Schema                         types.String                                                    `tfsdk:"schema"`
 	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute                `tfsdk:"select_attribute" tfPlanOnly:"true"`
 	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute              `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
 	ShowInTable                    types.Bool                                                      `tfsdk:"show_in_table"`
@@ -215,6 +216,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -371,6 +376,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -525,6 +534,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -685,6 +698,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -844,6 +861,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -1001,6 +1022,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -1186,6 +1211,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -1340,6 +1369,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -1529,6 +1562,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -1706,6 +1743,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -1861,6 +1902,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -2015,6 +2060,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -2176,6 +2225,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -2365,6 +2418,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -2525,6 +2582,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -2689,6 +2750,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -2844,6 +2909,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -2998,6 +3067,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -3156,6 +3229,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -3327,6 +3404,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -3654,6 +3735,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						ElementType: types.StringType,
 						Description: `Map of schema slug to target relation attribute`,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"search_placeholder": schema.StringAttribute{
 						Computed:    true,
 						Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
@@ -3858,6 +3943,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -3894,6 +3983,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 			},
 			"required": schema.BoolAttribute{
 				Computed: true,
+			},
+			"schema": schema.StringAttribute{
+				Computed:    true,
+				Description: `Schema slug the attribute belongs to`,
 			},
 			"select_attribute": schema.SingleNestedAttribute{
 				Computed: true,
@@ -4023,6 +4116,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -4182,6 +4279,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -4372,6 +4473,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -4530,6 +4635,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
@@ -4693,6 +4802,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"required": schema.BoolAttribute{
 						Computed: true,
 					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,
 						NestedObject: schema.NestedAttributeObject{
@@ -4850,6 +4963,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					},
 					"required": schema.BoolAttribute{
 						Computed: true,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Description: `Schema slug the attribute belongs to`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,

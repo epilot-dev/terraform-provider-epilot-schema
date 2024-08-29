@@ -170,6 +170,8 @@ type EntityCapabilityWithCompositeID struct {
 	// This capability should only be active when all the settings have the correct value
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
 	CompositeID  *string       `json:"composite_id,omitempty"`
+	// Schema slug the capability belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (o *EntityCapabilityWithCompositeID) GetID() *string {
@@ -235,6 +237,13 @@ func (o *EntityCapabilityWithCompositeID) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *EntityCapabilityWithCompositeID) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // EntityCapabilityWithCompositeIDInput - a readonly computed ID for the entity capability including schema slug and the capability ID
 type EntityCapabilityWithCompositeIDInput struct {
 	// ID for the entity capability
@@ -250,6 +259,8 @@ type EntityCapabilityWithCompositeIDInput struct {
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+	// Schema slug the capability belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (o *EntityCapabilityWithCompositeIDInput) GetID() *string {
@@ -306,4 +317,11 @@ func (o *EntityCapabilityWithCompositeIDInput) GetSettingsFlag() []SettingFlag {
 		return nil
 	}
 	return o.SettingsFlag
+}
+
+func (o *EntityCapabilityWithCompositeIDInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }

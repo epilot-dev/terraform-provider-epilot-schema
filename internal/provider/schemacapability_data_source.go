@@ -35,6 +35,7 @@ type SchemaCapabilityDataSourceModel struct {
 	ID           types.String          `tfsdk:"id"`
 	Name         types.String          `tfsdk:"name"`
 	Purpose      []types.String        `tfsdk:"purpose"`
+	Schema       types.String          `tfsdk:"schema"`
 	SettingsFlag []tfTypes.SettingFlag `tfsdk:"settings_flag"`
 	Title        types.String          `tfsdk:"title"`
 	UIHooks      []tfTypes.UIHooks     `tfsdk:"ui_hooks"`
@@ -4705,6 +4706,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 			"purpose": schema.ListAttribute{
 				Computed:    true,
 				ElementType: types.StringType,
+			},
+			"schema": schema.StringAttribute{
+				Computed:    true,
+				Description: `Schema slug the capability belongs to`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,

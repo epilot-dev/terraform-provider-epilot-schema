@@ -14,13 +14,13 @@ SchemaGroup Resource
 
 ```terraform
 resource "epilot-schema_schema_group" "my_schemagroup" {
-  composite_id     = "contact:e18a532b-ae79-4d86-a6a5-e5dbfb579d14"
   expanded         = false
   feature_flag     = "FF_MY_FEATURE_FLAG"
   id               = "e18a532b-ae79-4d86-a6a5-e5dbfb579d14"
   label            = "Contact Details"
-  order            = 7
+  order            = 4
   render_condition = "_is_composite_price = \"false\""
+  schema           = "contact"
 }
 ```
 
@@ -29,7 +29,6 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
 
 ### Required
 
-- `composite_id` (String) Schema Slug and the Group ID
 - `label` (String)
 
 ### Optional
@@ -40,10 +39,12 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
 - `order` (Number) Render order of the group. Default: 0
 - `purpose` (List of String) Only render group when one of the purposes is enabled
 - `render_condition` (String) Only render group when render_condition resolves to true
+- `schema` (String) Schema slug the group belongs to
 - `settings_flag` (Attributes List) This group should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 
 ### Read-Only
 
+- `composite_id` (String) Schema Slug and the Group ID
 - `id` (String) The ID of this resource.
 
 <a id="nestedatt--info_tooltip_title"></a>

@@ -1619,6 +1619,187 @@ func (s *Schemas) ListTaxonomyClassificationsForSchema(ctx context.Context, requ
 
 }
 
+// CreateSchemaAttribute - createSchemaAttribute
+// Create a schema attribute
+func (s *Schemas) CreateSchemaAttribute(ctx context.Context, request *shared.AttributeWithCompositeIDInput, opts ...operations.Option) (*operations.CreateSchemaAttributeResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "createSchemaAttribute",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	opURL, err := url.JoinPath(baseURL, "/v1/entity/schemas/attributes")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 5000,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				return nil, backoff.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.CreateSchemaAttributeResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: httpRes.Header.Get("Content-Type"),
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	switch {
+	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			var out shared.AttributeWithCompositeID
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.AttributeWithCompositeID = &out
+		default:
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	default:
+		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
 // GetSchemaAttribute - getSchemaAttribute
 // Get a schema attribute from given attribute ID
 func (s *Schemas) GetSchemaAttribute(ctx context.Context, request operations.GetSchemaAttributeRequest, opts ...operations.Option) (*operations.GetSchemaAttributeResponse, error) {
@@ -2150,6 +2331,187 @@ func (s *Schemas) DeleteSchemaAttribute(ctx context.Context, request operations.
 
 }
 
+// CreateSchemaCapability - createSchemaCapability
+// Create a schema capability
+func (s *Schemas) CreateSchemaCapability(ctx context.Context, request *shared.EntityCapabilityWithCompositeIDInput, opts ...operations.Option) (*operations.CreateSchemaCapabilityResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "createSchemaCapability",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	opURL, err := url.JoinPath(baseURL, "/v1/entity/schemas/capabilities")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 5000,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				return nil, backoff.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.CreateSchemaCapabilityResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: httpRes.Header.Get("Content-Type"),
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	switch {
+	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			var out shared.EntityCapabilityWithCompositeID
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityCapabilityWithCompositeID = &out
+		default:
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	default:
+		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
 // GetSchemaCapability - getSchemaCapability
 // Get a schema capability from given capability ID
 func (s *Schemas) GetSchemaCapability(ctx context.Context, request operations.GetSchemaCapabilityRequest, opts ...operations.Option) (*operations.GetSchemaCapabilityResponse, error) {
@@ -2670,6 +3032,187 @@ func (s *Schemas) DeleteSchemaCapability(ctx context.Context, request operations
 			}
 
 			res.EntityCapabilityWithCompositeID = &out
+		default:
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	default:
+		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// CreateSchemaGroup - createSchemaGroup
+// Create a schema group
+func (s *Schemas) CreateSchemaGroup(ctx context.Context, request *shared.EntitySchemaGroupWithCompositeIDInput, opts ...operations.Option) (*operations.CreateSchemaGroupResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "createSchemaGroup",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	opURL, err := url.JoinPath(baseURL, "/v1/entity/schemas/group")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 5000,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				return nil, backoff.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.CreateSchemaGroupResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: httpRes.Header.Get("Content-Type"),
+		RawResponse: httpRes,
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	switch {
+	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			var out shared.EntitySchemaGroupWithCompositeID
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntitySchemaGroupWithCompositeID = &out
 		default:
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}

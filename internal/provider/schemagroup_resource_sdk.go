@@ -12,9 +12,12 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 	var label string
 	label = r.Label.ValueString()
 
-	var id string
-	id = r.ID.ValueString()
-
+	id := new(string)
+	if !r.ID.IsUnknown() && !r.ID.IsNull() {
+		*id = r.ID.ValueString()
+	} else {
+		id = nil
+	}
 	order := new(int64)
 	if !r.Order.IsUnknown() && !r.Order.IsNull() {
 		*order = r.Order.ValueInt64()
@@ -81,6 +84,12 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 			Default: defaultVar,
 		}
 	}
+	schema := new(string)
+	if !r.Schema.IsUnknown() && !r.Schema.IsNull() {
+		*schema = r.Schema.ValueString()
+	} else {
+		schema = nil
+	}
 	out := shared.EntitySchemaGroupWithCompositeIDInput{
 		Label:            label,
 		ID:               id,
@@ -91,6 +100,7 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		FeatureFlag:      featureFlag,
 		SettingsFlag:     settingsFlag,
 		InfoTooltipTitle: infoTooltipTitle,
+		Schema:           schema,
 	}
 	return &out
 }
@@ -104,7 +114,7 @@ func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithComposi
 		r.CompositeID = types.StringPointerValue(resp.CompositeID)
 		r.Expanded = types.BoolPointerValue(resp.Expanded)
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
-		r.ID = types.StringValue(resp.ID)
+		r.ID = types.StringPointerValue(resp.ID)
 		if resp.InfoTooltipTitle == nil {
 			r.InfoTooltipTitle = nil
 		} else {
@@ -115,6 +125,7 @@ func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithComposi
 		r.Label = types.StringValue(resp.Label)
 		r.Order = types.Int64PointerValue(resp.Order)
 		r.RenderCondition = types.StringPointerValue(resp.RenderCondition)
+		r.Schema = types.StringPointerValue(resp.Schema)
 		r.SettingsFlag = []tfTypes.SettingFlag{}
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]

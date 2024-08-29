@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "a73d65b8-0e30-4b09-a847-d3e315b5a14e"
+  id   = "4a73d65b-80e3-40b0-9684-7d3e315b5a14"
   slug = "contact"
 }
 ```

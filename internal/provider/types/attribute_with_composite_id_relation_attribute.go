@@ -40,6 +40,7 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	RenderCondition          types.String                         `tfsdk:"render_condition"`
 	Required                 types.Bool                           `tfsdk:"required"`
 	ReverseAttributes        map[string]types.String              `tfsdk:"reverse_attributes"`
+	Schema                   types.String                         `tfsdk:"schema"`
 	SearchPlaceholder        types.String                         `tfsdk:"search_placeholder"`
 	SettingsFlag             []SettingFlag                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                           `tfsdk:"show_in_table"`

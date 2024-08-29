@@ -210,6 +210,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			multiline = nil
 		}
+		schema := new(string)
+		if !r.TextAttribute.Schema.IsUnknown() && !r.TextAttribute.Schema.IsNull() {
+			*schema = r.TextAttribute.Schema.ValueString()
+		} else {
+			schema = nil
+		}
 		attributeWithCompositeIDTextAttributeInput = &shared.AttributeWithCompositeIDTextAttributeInput{
 			ID:                       id,
 			Name:                     name,
@@ -239,6 +245,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers,
 			Type:                     typeVar,
 			Multiline:                multiline,
+			Schema:                   schema,
 		}
 	}
 	if attributeWithCompositeIDTextAttributeInput != nil {
@@ -438,6 +445,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar1 = nil
 		}
+		schema1 := new(string)
+		if !r.LinkAttribute.Schema.IsUnknown() && !r.LinkAttribute.Schema.IsNull() {
+			*schema1 = r.LinkAttribute.Schema.ValueString()
+		} else {
+			schema1 = nil
+		}
 		attributeWithCompositeIDLinkAttributeInput = &shared.AttributeWithCompositeIDLinkAttributeInput{
 			ID:                       id1,
 			Name:                     name2,
@@ -466,6 +479,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected1,
 			InfoHelpers:              infoHelpers1,
 			Type:                     typeVar1,
+			Schema:                   schema1,
 		}
 	}
 	if attributeWithCompositeIDLinkAttributeInput != nil {
@@ -665,6 +679,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar2 = nil
 		}
+		schema2 := new(string)
+		if !r.DateAttribute.Schema.IsUnknown() && !r.DateAttribute.Schema.IsNull() {
+			*schema2 = r.DateAttribute.Schema.ValueString()
+		} else {
+			schema2 = nil
+		}
 		attributeWithCompositeIDDateAttributeInput = &shared.AttributeWithCompositeIDDateAttributeInput{
 			ID:                       id2,
 			Name:                     name4,
@@ -693,6 +713,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected2,
 			InfoHelpers:              infoHelpers2,
 			Type:                     typeVar2,
+			Schema:                   schema2,
 		}
 	}
 	if attributeWithCompositeIDDateAttributeInput != nil {
@@ -892,6 +913,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar3 = nil
 		}
+		schema3 := new(string)
+		if !r.CountryAttribute.Schema.IsUnknown() && !r.CountryAttribute.Schema.IsNull() {
+			*schema3 = r.CountryAttribute.Schema.ValueString()
+		} else {
+			schema3 = nil
+		}
 		attributeWithCompositeIDCountryAttributeInput = &shared.AttributeWithCompositeIDCountryAttributeInput{
 			ID:                       id3,
 			Name:                     name6,
@@ -920,6 +947,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected3,
 			InfoHelpers:              infoHelpers3,
 			Type:                     typeVar3,
+			Schema:                   schema3,
 		}
 	}
 	if attributeWithCompositeIDCountryAttributeInput != nil {
@@ -1119,6 +1147,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar4 = nil
 		}
+		schema4 := new(string)
+		if !r.BooleanAttribute.Schema.IsUnknown() && !r.BooleanAttribute.Schema.IsNull() {
+			*schema4 = r.BooleanAttribute.Schema.ValueString()
+		} else {
+			schema4 = nil
+		}
 		attributeWithCompositeIDBooleanAttributeInput = &shared.AttributeWithCompositeIDBooleanAttributeInput{
 			ID:                       id4,
 			Name:                     name8,
@@ -1147,6 +1181,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected4,
 			InfoHelpers:              infoHelpers4,
 			Type:                     typeVar4,
+			Schema:                   schema4,
 		}
 	}
 	if attributeWithCompositeIDBooleanAttributeInput != nil {
@@ -1356,6 +1391,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			allowAny = nil
 		}
+		schema5 := new(string)
+		if !r.SelectAttribute.Schema.IsUnknown() && !r.SelectAttribute.Schema.IsNull() {
+			*schema5 = r.SelectAttribute.Schema.ValueString()
+		} else {
+			schema5 = nil
+		}
 		attributeWithCompositeIDSelectAttributeInput = &shared.AttributeWithCompositeIDSelectAttributeInput{
 			ID:                       id5,
 			Name:                     name10,
@@ -1386,6 +1427,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar5,
 			Options:                  optionsVar,
 			AllowAny:                 allowAny,
+			Schema:                   schema5,
 		}
 	}
 	if attributeWithCompositeIDSelectAttributeInput != nil {
@@ -1632,6 +1674,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			allowAny1 = nil
 		}
+		schema6 := new(string)
+		if !r.MultiSelectAttribute.Schema.IsUnknown() && !r.MultiSelectAttribute.Schema.IsNull() {
+			*schema6 = r.MultiSelectAttribute.Schema.ValueString()
+		} else {
+			schema6 = nil
+		}
 		attributeWithCompositeIDMultiSelectAttributeInput = &shared.AttributeWithCompositeIDMultiSelectAttributeInput{
 			ID:                       id6,
 			Name:                     name12,
@@ -1664,6 +1712,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			AllowExtraOptions:        allowExtraOptions,
 			Options:                  optionsVar1,
 			AllowAny:                 allowAny1,
+			Schema:                   schema6,
 		}
 	}
 	if attributeWithCompositeIDMultiSelectAttributeInput != nil {
@@ -1892,6 +1941,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				})
 			}
 		}
+		schema7 := new(string)
+		if !r.StatusAttribute.Schema.IsUnknown() && !r.StatusAttribute.Schema.IsNull() {
+			*schema7 = r.StatusAttribute.Schema.ValueString()
+		} else {
+			schema7 = nil
+		}
 		attributeWithCompositeIDStatusAttributeInput = &shared.AttributeWithCompositeIDStatusAttributeInput{
 			ID:                       id7,
 			Name:                     name14,
@@ -1921,6 +1976,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers7,
 			Type:                     typeVar7,
 			Options:                  optionsVar2,
+			Schema:                   schema7,
 		}
 	}
 	if attributeWithCompositeIDStatusAttributeInput != nil {
@@ -2132,6 +2188,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			startNumber = nil
 		}
+		schema8 := new(string)
+		if !r.SequenceAttribute.Schema.IsUnknown() && !r.SequenceAttribute.Schema.IsNull() {
+			*schema8 = r.SequenceAttribute.Schema.ValueString()
+		} else {
+			schema8 = nil
+		}
 		attributeWithCompositeIDSequenceAttributeInput = &shared.AttributeWithCompositeIDSequenceAttributeInput{
 			ID:                       id8,
 			Name:                     name16,
@@ -2162,6 +2224,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar8,
 			Prefix:                   prefix,
 			StartNumber:              startNumber,
+			Schema:                   schema8,
 		}
 	}
 	if attributeWithCompositeIDSequenceAttributeInput != nil {
@@ -2448,8 +2511,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				var id10 string
 				id10 = actionsItem.NewEntityItem.ID.ValueString()
 
-				var schema string
-				schema = actionsItem.NewEntityItem.Schema.ValueString()
+				var schema9 string
+				schema9 = actionsItem.NewEntityItem.Schema.ValueString()
 
 				title2 := new(string)
 				if !actionsItem.NewEntityItem.Title.IsUnknown() && !actionsItem.NewEntityItem.Title.IsNull() {
@@ -2496,7 +2559,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				}
 				newEntityItem = &shared.RelationAttributeNewEntityItemInput{
 					ID:                   id10,
-					Schema:               schema,
+					Schema:               schema9,
 					Title:                title2,
 					Tags:                 tags,
 					ACL:                  acl,
@@ -2579,6 +2642,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			searchPlaceholder = nil
 		}
+		schema10 := new(string)
+		if !r.RelationAttribute.Schema.IsUnknown() && !r.RelationAttribute.Schema.IsNull() {
+			*schema10 = r.RelationAttribute.Schema.ValueString()
+		} else {
+			schema10 = nil
+		}
 		attributeWithCompositeIDRelationAttributeInput = &shared.AttributeWithCompositeIDRelationAttributeInput{
 			ID:                       id9,
 			Name:                     name18,
@@ -2621,6 +2690,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			EnableRelationTags:       enableRelationTags,
 			AddButtonLabel:           addButtonLabel,
 			SearchPlaceholder:        searchPlaceholder,
+			Schema:                   schema10,
 		}
 	}
 	if attributeWithCompositeIDRelationAttributeInput != nil {
@@ -2826,6 +2896,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			multiple = nil
 		}
+		schema11 := new(string)
+		if !r.UserRelationAttribute.Schema.IsUnknown() && !r.UserRelationAttribute.Schema.IsNull() {
+			*schema11 = r.UserRelationAttribute.Schema.ValueString()
+		} else {
+			schema11 = nil
+		}
 		attributeWithCompositeIDUserRelationAttributeInput = &shared.AttributeWithCompositeIDUserRelationAttributeInput{
 			ID:                       id11,
 			Name:                     name21,
@@ -2855,6 +2931,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers10,
 			Type:                     typeVar10,
 			Multiple:                 multiple,
+			Schema:                   schema11,
 		}
 	}
 	if attributeWithCompositeIDUserRelationAttributeInput != nil {
@@ -3060,6 +3137,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			hasPrimary1 = nil
 		}
+		schema12 := new(string)
+		if !r.AddressRelationAttribute.Schema.IsUnknown() && !r.AddressRelationAttribute.Schema.IsNull() {
+			*schema12 = r.AddressRelationAttribute.Schema.ValueString()
+		} else {
+			schema12 = nil
+		}
 		attributeWithCompositeIDAddressRelationAttributeInput = &shared.AttributeWithCompositeIDAddressRelationAttributeInput{
 			ID:                       id12,
 			Name:                     name23,
@@ -3089,6 +3172,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers11,
 			Type:                     typeVar11,
 			HasPrimary:               hasPrimary1,
+			Schema:                   schema12,
 		}
 	}
 	if attributeWithCompositeIDAddressRelationAttributeInput != nil {
@@ -3294,6 +3378,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			hasPrimary2 = nil
 		}
+		schema13 := new(string)
+		if !r.PaymentMethodRelationAttribute.Schema.IsUnknown() && !r.PaymentMethodRelationAttribute.Schema.IsNull() {
+			*schema13 = r.PaymentMethodRelationAttribute.Schema.ValueString()
+		} else {
+			schema13 = nil
+		}
 		attributeWithCompositeIDPaymentMethodRelationAttributeInput = &shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput{
 			ID:                       id13,
 			Name:                     name25,
@@ -3323,6 +3413,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers12,
 			Type:                     typeVar12,
 			HasPrimary:               hasPrimary2,
+			Schema:                   schema13,
 		}
 	}
 	if attributeWithCompositeIDPaymentMethodRelationAttributeInput != nil {
@@ -3552,6 +3643,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				})
 			}
 		}
+		schema14 := new(string)
+		if !r.CurrencyAttribute.Schema.IsUnknown() && !r.CurrencyAttribute.Schema.IsNull() {
+			*schema14 = r.CurrencyAttribute.Schema.ValueString()
+		} else {
+			schema14 = nil
+		}
 		attributeWithCompositeIDCurrencyAttributeInput = &shared.AttributeWithCompositeIDCurrencyAttributeInput{
 			ID:                       id14,
 			Name:                     name27,
@@ -3582,6 +3679,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar13,
 			CurrencySelectorOnly:     currencySelectorOnly,
 			Currency:                 currency,
+			Schema:                   schema14,
 		}
 	}
 	if attributeWithCompositeIDCurrencyAttributeInput != nil {
@@ -3805,6 +3903,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			enableRelationPicker1 = nil
 		}
+		schema15 := new(string)
+		if !r.RepeatableAttribute.Schema.IsUnknown() && !r.RepeatableAttribute.Schema.IsNull() {
+			*schema15 = r.RepeatableAttribute.Schema.ValueString()
+		} else {
+			schema15 = nil
+		}
 		attributeWithCompositeIDRepeatableAttributeInput = &shared.AttributeWithCompositeIDRepeatableAttributeInput{
 			ID:                       id15,
 			Name:                     name29,
@@ -3837,6 +3941,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			RelationAffinityMode:     relationAffinityMode1,
 			Type:                     typeVar14,
 			EnableRelationPicker:     enableRelationPicker1,
+			Schema:                   schema15,
 		}
 	}
 	if attributeWithCompositeIDRepeatableAttributeInput != nil {
@@ -4044,6 +4149,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
 			suggestions = append(suggestions, suggestionsItem.ValueString())
 		}
+		schema16 := new(string)
+		if !r.TagsAttribute.Schema.IsUnknown() && !r.TagsAttribute.Schema.IsNull() {
+			*schema16 = r.TagsAttribute.Schema.ValueString()
+		} else {
+			schema16 = nil
+		}
 		attributeWithCompositeIDTagsAttributeInput = &shared.AttributeWithCompositeIDTagsAttributeInput{
 			ID:                       id16,
 			Name:                     name31,
@@ -4074,6 +4185,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar15,
 			Options:                  optionsVar3,
 			Suggestions:              suggestions,
+			Schema:                   schema16,
 		}
 	}
 	if attributeWithCompositeIDTagsAttributeInput != nil {
@@ -4285,6 +4397,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			showSeparator = nil
 		}
+		schema17 := new(string)
+		if !r.NumberAttribute.Schema.IsUnknown() && !r.NumberAttribute.Schema.IsNull() {
+			*schema17 = r.NumberAttribute.Schema.ValueString()
+		} else {
+			schema17 = nil
+		}
 		attributeWithCompositeIDNumberAttributeInput = &shared.AttributeWithCompositeIDNumberAttributeInput{
 			ID:                       id17,
 			Name:                     name33,
@@ -4315,6 +4433,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar16,
 			Format:                   format,
 			ShowSeparator:            showSeparator,
+			Schema:                   schema17,
 		}
 	}
 	if attributeWithCompositeIDNumberAttributeInput != nil {
@@ -4516,6 +4635,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
 			identifiers = append(identifiers, identifiersItem.ValueString())
 		}
+		schema18 := new(string)
+		if !r.ConsentAttribute.Schema.IsUnknown() && !r.ConsentAttribute.Schema.IsNull() {
+			*schema18 = r.ConsentAttribute.Schema.ValueString()
+		} else {
+			schema18 = nil
+		}
 		attributeWithCompositeIDConsentAttributeInput = &shared.AttributeWithCompositeIDConsentAttributeInput{
 			ID:                       id18,
 			Name:                     name35,
@@ -4546,6 +4671,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar17,
 			Topic:                    topic,
 			Identifiers:              identifiers,
+			Schema:                   schema18,
 		}
 	}
 	if attributeWithCompositeIDConsentAttributeInput != nil {
@@ -4745,6 +4871,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar18 = nil
 		}
+		schema19 := new(string)
+		if !r.InternalAttribute.Schema.IsUnknown() && !r.InternalAttribute.Schema.IsNull() {
+			*schema19 = r.InternalAttribute.Schema.ValueString()
+		} else {
+			schema19 = nil
+		}
 		attributeWithCompositeIDInternalAttributeInput = &shared.AttributeWithCompositeIDInternalAttributeInput{
 			ID:                       id19,
 			Name:                     name37,
@@ -4773,6 +4905,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected18,
 			InfoHelpers:              infoHelpers18,
 			Type:                     typeVar18,
+			Schema:                   schema19,
 		}
 	}
 	if attributeWithCompositeIDInternalAttributeInput != nil {
@@ -4972,6 +5105,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar19 = nil
 		}
+		schema20 := new(string)
+		if !r.OrderedListAttribute.Schema.IsUnknown() && !r.OrderedListAttribute.Schema.IsNull() {
+			*schema20 = r.OrderedListAttribute.Schema.ValueString()
+		} else {
+			schema20 = nil
+		}
 		attributeWithCompositeIDOrderedListAttributeInput = &shared.AttributeWithCompositeIDOrderedListAttributeInput{
 			ID:                       id20,
 			Name:                     name39,
@@ -5000,6 +5139,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected19,
 			InfoHelpers:              infoHelpers19,
 			Type:                     typeVar19,
+			Schema:                   schema20,
 		}
 	}
 	if attributeWithCompositeIDOrderedListAttributeInput != nil {
@@ -5222,6 +5362,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			defaultAccessControl = nil
 		}
+		schema21 := new(string)
+		if !r.FileAttribute.Schema.IsUnknown() && !r.FileAttribute.Schema.IsNull() {
+			*schema21 = r.FileAttribute.Schema.ValueString()
+		} else {
+			schema21 = nil
+		}
 		attributeWithCompositeIDFileAttributeInput = &shared.AttributeWithCompositeIDFileAttributeInput{
 			ID:                       id21,
 			Name:                     name41,
@@ -5255,6 +5401,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			DisplayImagesLandscaped:  displayImagesLandscaped,
 			EnableDescription:        enableDescription,
 			DefaultAccessControl:     defaultAccessControl,
+			Schema:                   schema21,
 		}
 	}
 	if attributeWithCompositeIDFileAttributeInput != nil {
@@ -5454,6 +5601,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar21 = nil
 		}
+		schema22 := new(string)
+		if !r.ComputedAttribute.Schema.IsUnknown() && !r.ComputedAttribute.Schema.IsNull() {
+			*schema22 = r.ComputedAttribute.Schema.ValueString()
+		} else {
+			schema22 = nil
+		}
 		attributeWithCompositeIDComputedAttributeInput = &shared.AttributeWithCompositeIDComputedAttributeInput{
 			ID:                       id22,
 			Name:                     name43,
@@ -5482,6 +5635,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected21,
 			InfoHelpers:              infoHelpers21,
 			Type:                     typeVar21,
+			Schema:                   schema22,
 		}
 	}
 	if attributeWithCompositeIDComputedAttributeInput != nil {
@@ -5681,6 +5835,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar22 = nil
 		}
+		schema23 := new(string)
+		if !r.PartnerStatusAttribute.Schema.IsUnknown() && !r.PartnerStatusAttribute.Schema.IsNull() {
+			*schema23 = r.PartnerStatusAttribute.Schema.ValueString()
+		} else {
+			schema23 = nil
+		}
 		attributeWithCompositeIDPartnerStatusAttributeInput = &shared.AttributeWithCompositeIDPartnerStatusAttributeInput{
 			ID:                       id23,
 			Name:                     name45,
@@ -5709,6 +5869,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected22,
 			InfoHelpers:              infoHelpers22,
 			Type:                     typeVar22,
+			Schema:                   schema23,
 		}
 	}
 	if attributeWithCompositeIDPartnerStatusAttributeInput != nil {
@@ -5908,6 +6069,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar23 = nil
 		}
+		schema24 := new(string)
+		if !r.InvitationEmailAttribute.Schema.IsUnknown() && !r.InvitationEmailAttribute.Schema.IsNull() {
+			*schema24 = r.InvitationEmailAttribute.Schema.ValueString()
+		} else {
+			schema24 = nil
+		}
 		attributeWithCompositeIDInvitationEmailAttributeInput = &shared.AttributeWithCompositeIDInvitationEmailAttributeInput{
 			ID:                       id24,
 			Name:                     name47,
@@ -5936,6 +6103,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected23,
 			InfoHelpers:              infoHelpers23,
 			Type:                     typeVar23,
+			Schema:                   schema24,
 		}
 	}
 	if attributeWithCompositeIDInvitationEmailAttributeInput != nil {
@@ -6135,6 +6303,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar24 = nil
 		}
+		schema25 := new(string)
+		if !r.AutomationAttribute.Schema.IsUnknown() && !r.AutomationAttribute.Schema.IsNull() {
+			*schema25 = r.AutomationAttribute.Schema.ValueString()
+		} else {
+			schema25 = nil
+		}
 		attributeWithCompositeIDAutomationAttributeInput = &shared.AttributeWithCompositeIDAutomationAttributeInput{
 			ID:                       id25,
 			Name:                     name49,
@@ -6163,6 +6337,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected24,
 			InfoHelpers:              infoHelpers24,
 			Type:                     typeVar24,
+			Schema:                   schema25,
 		}
 	}
 	if attributeWithCompositeIDAutomationAttributeInput != nil {
@@ -6362,6 +6537,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar25 = nil
 		}
+		schema26 := new(string)
+		if !r.InternalUserAttribute.Schema.IsUnknown() && !r.InternalUserAttribute.Schema.IsNull() {
+			*schema26 = r.InternalUserAttribute.Schema.ValueString()
+		} else {
+			schema26 = nil
+		}
 		attributeWithCompositeIDInternalUserAttributeInput = &shared.AttributeWithCompositeIDInternalUserAttributeInput{
 			ID:                       id26,
 			Name:                     name51,
@@ -6390,6 +6571,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected25,
 			InfoHelpers:              infoHelpers25,
 			Type:                     typeVar25,
+			Schema:                   schema26,
 		}
 	}
 	if attributeWithCompositeIDInternalUserAttributeInput != nil {
@@ -6611,6 +6793,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar26 = nil
 		}
+		schema27 := new(string)
+		if !r.PurposeAttribute.Schema.IsUnknown() && !r.PurposeAttribute.Schema.IsNull() {
+			*schema27 = r.PurposeAttribute.Schema.ValueString()
+		} else {
+			schema27 = nil
+		}
 		attributeWithCompositeIDPurposeAttributeInput = &shared.AttributeWithCompositeIDPurposeAttributeInput{
 			ID:                       id27,
 			Name:                     name53,
@@ -6643,6 +6831,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			CreatedAt:                createdAt,
 			UpdatedAt:                updatedAt,
 			Type:                     typeVar26,
+			Schema:                   schema27,
 		}
 	}
 	if attributeWithCompositeIDPurposeAttributeInput != nil {
@@ -6842,6 +7031,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar27 = nil
 		}
+		schema28 := new(string)
+		if !r.PartnerOrganisationAttribute.Schema.IsUnknown() && !r.PartnerOrganisationAttribute.Schema.IsNull() {
+			*schema28 = r.PartnerOrganisationAttribute.Schema.ValueString()
+		} else {
+			schema28 = nil
+		}
 		attributeWithCompositeIDPartnerOrganisationAttributeInput = &shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput{
 			ID:                       id28,
 			Name:                     name55,
@@ -6870,6 +7065,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Protected:                protected27,
 			InfoHelpers:              infoHelpers27,
 			Type:                     typeVar27,
+			Schema:                   schema28,
 		}
 	}
 	if attributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
@@ -6881,7 +7077,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 }
 
 func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID(resp *shared.AttributeWithCompositeID) {
-	if resp != nil {
+	if resp == nil {
+	} else {
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
 			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.AddressRelationAttribute.Purpose = []types.String{}
@@ -6947,6 +7144,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.AddressRelationAttribute.RenderCondition
 			r.AddressRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Required)
 			r.Required = r.AddressRelationAttribute.Required
+			r.AddressRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Schema)
+			r.Schema = r.AddressRelationAttribute.Schema
 			r.AddressRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.AddressRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag) {
 				r.AddressRelationAttribute.SettingsFlag = r.AddressRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag)]
@@ -7038,6 +7237,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.AutomationAttribute.RenderCondition
 			r.AutomationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Required)
 			r.Required = r.AutomationAttribute.Required
+			r.AutomationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Schema)
+			r.Schema = r.AutomationAttribute.Schema
 			r.AutomationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.AutomationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag) {
 				r.AutomationAttribute.SettingsFlag = r.AutomationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag)]
@@ -7129,6 +7330,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.BooleanAttribute.RenderCondition
 			r.BooleanAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Required)
 			r.Required = r.BooleanAttribute.Required
+			r.BooleanAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Schema)
+			r.Schema = r.BooleanAttribute.Schema
 			r.BooleanAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.BooleanAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag) {
 				r.BooleanAttribute.SettingsFlag = r.BooleanAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag)]
@@ -7220,6 +7423,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.ComputedAttribute.RenderCondition
 			r.ComputedAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Required)
 			r.Required = r.ComputedAttribute.Required
+			r.ComputedAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Schema)
+			r.Schema = r.ComputedAttribute.Schema
 			r.ComputedAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.ComputedAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag) {
 				r.ComputedAttribute.SettingsFlag = r.ComputedAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag)]
@@ -7315,6 +7520,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.ConsentAttribute.RenderCondition
 			r.ConsentAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Required)
 			r.Required = r.ConsentAttribute.Required
+			r.ConsentAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Schema)
+			r.Schema = r.ConsentAttribute.Schema
 			r.ConsentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.ConsentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag) {
 				r.ConsentAttribute.SettingsFlag = r.ConsentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag)]
@@ -7403,6 +7610,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.CountryAttribute.RenderCondition
 			r.CountryAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Required)
 			r.Required = r.CountryAttribute.Required
+			r.CountryAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Schema)
+			r.Schema = r.CountryAttribute.Schema
 			r.CountryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.CountryAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag) {
 				r.CountryAttribute.SettingsFlag = r.CountryAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag)]
@@ -7514,6 +7723,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.CurrencyAttribute.RenderCondition
 			r.CurrencyAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Required)
 			r.Required = r.CurrencyAttribute.Required
+			r.CurrencyAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Schema)
+			r.Schema = r.CurrencyAttribute.Schema
 			r.CurrencyAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.CurrencyAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag) {
 				r.CurrencyAttribute.SettingsFlag = r.CurrencyAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag)]
@@ -7601,6 +7812,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.DateAttribute.RenderCondition
 			r.DateAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Required)
 			r.Required = r.DateAttribute.Required
+			r.DateAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Schema)
+			r.Schema = r.DateAttribute.Schema
 			r.DateAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.DateAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag) {
 				r.DateAttribute.SettingsFlag = r.DateAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag)]
@@ -7704,6 +7917,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.FileAttribute.RenderCondition
 			r.FileAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Required)
 			r.Required = r.FileAttribute.Required
+			r.FileAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Schema)
+			r.Schema = r.FileAttribute.Schema
 			r.FileAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.FileAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag) {
 				r.FileAttribute.SettingsFlag = r.FileAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag)]
@@ -7791,6 +8006,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.InternalAttribute.RenderCondition
 			r.InternalAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Required)
 			r.Required = r.InternalAttribute.Required
+			r.InternalAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Schema)
+			r.Schema = r.InternalAttribute.Schema
 			r.InternalAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.InternalAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag) {
 				r.InternalAttribute.SettingsFlag = r.InternalAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag)]
@@ -7882,6 +8099,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.InternalUserAttribute.RenderCondition
 			r.InternalUserAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Required)
 			r.Required = r.InternalUserAttribute.Required
+			r.InternalUserAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Schema)
+			r.Schema = r.InternalUserAttribute.Schema
 			r.InternalUserAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.InternalUserAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag) {
 				r.InternalUserAttribute.SettingsFlag = r.InternalUserAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag)]
@@ -7973,6 +8192,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.InvitationEmailAttribute.RenderCondition
 			r.InvitationEmailAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Required)
 			r.Required = r.InvitationEmailAttribute.Required
+			r.InvitationEmailAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Schema)
+			r.Schema = r.InvitationEmailAttribute.Schema
 			r.InvitationEmailAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.InvitationEmailAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag) {
 				r.InvitationEmailAttribute.SettingsFlag = r.InvitationEmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag)]
@@ -8064,6 +8285,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.LinkAttribute.RenderCondition
 			r.LinkAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Required)
 			r.Required = r.LinkAttribute.Required
+			r.LinkAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Schema)
+			r.Schema = r.LinkAttribute.Schema
 			r.LinkAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.LinkAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag) {
 				r.LinkAttribute.SettingsFlag = r.LinkAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag)]
@@ -8179,6 +8402,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.MultiSelectAttribute.RenderCondition
 			r.MultiSelectAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Required)
 			r.Required = r.MultiSelectAttribute.Required
+			r.MultiSelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Schema)
+			r.Schema = r.MultiSelectAttribute.Schema
 			r.MultiSelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.MultiSelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag) {
 				r.MultiSelectAttribute.SettingsFlag = r.MultiSelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag)]
@@ -8271,6 +8496,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.NumberAttribute.RenderCondition
 			r.NumberAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Required)
 			r.Required = r.NumberAttribute.Required
+			r.NumberAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Schema)
+			r.Schema = r.NumberAttribute.Schema
 			r.NumberAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.NumberAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag) {
 				r.NumberAttribute.SettingsFlag = r.NumberAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag)]
@@ -8363,6 +8590,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.OrderedListAttribute.RenderCondition
 			r.OrderedListAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Required)
 			r.Required = r.OrderedListAttribute.Required
+			r.OrderedListAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Schema)
+			r.Schema = r.OrderedListAttribute.Schema
 			r.OrderedListAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.OrderedListAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag) {
 				r.OrderedListAttribute.SettingsFlag = r.OrderedListAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag)]
@@ -8454,6 +8683,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.PartnerOrganisationAttribute.RenderCondition
 			r.PartnerOrganisationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Required)
 			r.Required = r.PartnerOrganisationAttribute.Required
+			r.PartnerOrganisationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Schema)
+			r.Schema = r.PartnerOrganisationAttribute.Schema
 			r.PartnerOrganisationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.PartnerOrganisationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag) {
 				r.PartnerOrganisationAttribute.SettingsFlag = r.PartnerOrganisationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag)]
@@ -8545,6 +8776,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.PartnerStatusAttribute.RenderCondition
 			r.PartnerStatusAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Required)
 			r.Required = r.PartnerStatusAttribute.Required
+			r.PartnerStatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Schema)
+			r.Schema = r.PartnerStatusAttribute.Schema
 			r.PartnerStatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.PartnerStatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag) {
 				r.PartnerStatusAttribute.SettingsFlag = r.PartnerStatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag)]
@@ -8637,6 +8870,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.PaymentMethodRelationAttribute.RenderCondition
 			r.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Required)
 			r.Required = r.PaymentMethodRelationAttribute.Required
+			r.PaymentMethodRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Schema)
+			r.Schema = r.PaymentMethodRelationAttribute.Schema
 			r.PaymentMethodRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.PaymentMethodRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag) {
 				r.PaymentMethodRelationAttribute.SettingsFlag = r.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag)]
@@ -8737,6 +8972,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.PurposeAttribute.RenderCondition
 			r.PurposeAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Required)
 			r.Required = r.PurposeAttribute.Required
+			r.PurposeAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Schema)
+			r.Schema = r.PurposeAttribute.Schema
 			r.PurposeAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.PurposeAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag) {
 				r.PurposeAttribute.SettingsFlag = r.PurposeAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag)]
@@ -8974,6 +9211,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 					r.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
 				}
 			}
+			r.RelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Schema)
+			r.Schema = r.RelationAttribute.Schema
 			r.RelationAttribute.SearchPlaceholder = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.SearchPlaceholder)
 			r.RelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.RelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag) {
@@ -9095,6 +9334,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RepeatableAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Repeatable)
 			r.RepeatableAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Required)
 			r.Required = r.RepeatableAttribute.Required
+			r.RepeatableAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Schema)
+			r.Schema = r.RepeatableAttribute.Schema
 			r.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.RepeatableAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag) {
 				r.RepeatableAttribute.SettingsFlag = r.RepeatableAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag)]
@@ -9193,6 +9434,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.SelectAttribute.RenderCondition
 			r.SelectAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Required)
 			r.Required = r.SelectAttribute.Required
+			r.SelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Schema)
+			r.Schema = r.SelectAttribute.Schema
 			r.SelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.SelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag) {
 				r.SelectAttribute.SettingsFlag = r.SelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag)]
@@ -9285,6 +9528,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.SequenceAttribute.RenderCondition
 			r.SequenceAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Required)
 			r.Required = r.SequenceAttribute.Required
+			r.SequenceAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Schema)
+			r.Schema = r.SequenceAttribute.Schema
 			r.SequenceAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.SequenceAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag) {
 				r.SequenceAttribute.SettingsFlag = r.SequenceAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag)]
@@ -9398,6 +9643,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.StatusAttribute.RenderCondition
 			r.StatusAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Required)
 			r.Required = r.StatusAttribute.Required
+			r.StatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Schema)
+			r.Schema = r.StatusAttribute.Schema
 			r.StatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.StatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag) {
 				r.StatusAttribute.SettingsFlag = r.StatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag)]
@@ -9493,6 +9740,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.TagsAttribute.RenderCondition
 			r.TagsAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Required)
 			r.Required = r.TagsAttribute.Required
+			r.TagsAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Schema)
+			r.Schema = r.TagsAttribute.Schema
 			r.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.TagsAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag) {
 				r.TagsAttribute.SettingsFlag = r.TagsAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag)]
@@ -9589,6 +9838,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.TextAttribute.RenderCondition
 			r.TextAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Required)
 			r.Required = r.TextAttribute.Required
+			r.TextAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Schema)
+			r.Schema = r.TextAttribute.Schema
 			r.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.TextAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag) {
 				r.TextAttribute.SettingsFlag = r.TextAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag)]
@@ -9681,6 +9932,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.UserRelationAttribute.RenderCondition
 			r.UserRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Required)
 			r.Required = r.UserRelationAttribute.Required
+			r.UserRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Schema)
+			r.Schema = r.UserRelationAttribute.Schema
 			r.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.UserRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag) {
 				r.UserRelationAttribute.SettingsFlag = r.UserRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag)]

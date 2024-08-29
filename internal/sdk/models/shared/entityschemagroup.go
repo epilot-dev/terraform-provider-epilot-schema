@@ -28,8 +28,8 @@ func (o *InfoTooltipTitle) GetDefault() *string {
 }
 
 type EntitySchemaGroup struct {
-	Label string `json:"label"`
-	ID    string `json:"id"`
+	Label string  `json:"label"`
+	ID    *string `json:"id,omitempty"`
 	// Render order of the group
 	Order *int64 `default:"0" json:"order"`
 	// Expanded by default
@@ -63,9 +63,9 @@ func (o *EntitySchemaGroup) GetLabel() string {
 	return o.Label
 }
 
-func (o *EntitySchemaGroup) GetID() string {
+func (o *EntitySchemaGroup) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

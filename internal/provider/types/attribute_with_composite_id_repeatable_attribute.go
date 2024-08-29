@@ -32,6 +32,7 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	RenderCondition          types.String                         `tfsdk:"render_condition"`
 	Repeatable               types.Bool                           `tfsdk:"repeatable"`
 	Required                 types.Bool                           `tfsdk:"required"`
+	Schema                   types.String                         `tfsdk:"schema"`
 	SettingsFlag             []SettingFlag                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                           `tfsdk:"show_in_table"`
 	Sortable                 types.Bool                           `tfsdk:"sortable"`

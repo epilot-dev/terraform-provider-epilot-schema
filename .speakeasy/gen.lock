@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 5fc64e51b7161fd5094d4c5fcf734769
+  docChecksum: af8859f948e8ad3e3121452147bed01a
   docVersion: 1.0.0
-  speakeasyVersion: 1.379.0
-  generationVersion: 2.404.3
-  releaseVersion: 0.9.0
-  configChecksum: 7a24df5fbb074cf21ea8b2ea9efc1dce
+  speakeasyVersion: 1.366.0
+  generationVersion: 2.396.0
+  releaseVersion: 0.9.1
+  configChecksum: d5fd30c9ad7bbf01bd7332f241133b7d
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.24.7
+    core: 3.24.6
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.0
     globalSecurity: 2.81.8
@@ -63,12 +63,15 @@ generatedFiles:
   - internal/sdk/models/operations/getschemaversions.go
   - internal/sdk/models/operations/listschemablueprints.go
   - internal/sdk/models/operations/listtaxonomyclassificationsforschema.go
+  - internal/sdk/models/operations/createschemaattribute.go
   - internal/sdk/models/operations/getschemaattribute.go
   - internal/sdk/models/operations/putschemaattribute.go
   - internal/sdk/models/operations/deleteschemaattribute.go
+  - internal/sdk/models/operations/createschemacapability.go
   - internal/sdk/models/operations/getschemacapability.go
   - internal/sdk/models/operations/putschemacapability.go
   - internal/sdk/models/operations/deleteschemacapability.go
+  - internal/sdk/models/operations/createschemagroup.go
   - internal/sdk/models/operations/getschemagroup.go
   - internal/sdk/models/operations/putschemagroup.go
   - internal/sdk/models/operations/deleteschemagroup.go

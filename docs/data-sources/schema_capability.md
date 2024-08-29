@@ -32,6 +32,7 @@ data "epilot-schema_schema_capability" "my_schemacapability" {
 - `id` (String) ID for the entity capability
 - `name` (String) Unique name for the capability
 - `purpose` (List of String)
+- `schema` (String) Schema slug the capability belongs to
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 - `title` (String) Human readable title of the capability
 - `ui_hooks` (Attributes List) (see [below for nested schema](#nestedatt--ui_hooks))

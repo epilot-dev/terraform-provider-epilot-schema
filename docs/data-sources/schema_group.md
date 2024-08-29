@@ -14,7 +14,7 @@ SchemaGroup DataSource
 
 ```terraform
 data "epilot-schema_schema_group" "my_schemagroup" {
-  composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
+  composite_id = "contact:e18a532b-ae79-4d86-a6a5-e5dbfb579d14"
 }
 ```
 
@@ -35,6 +35,7 @@ data "epilot-schema_schema_group" "my_schemagroup" {
 - `order` (Number) Render order of the group
 - `purpose` (List of String) Only render group when one of the purposes is enabled
 - `render_condition` (String) Only render group when render_condition resolves to true
+- `schema` (String) Schema slug the group belongs to
 - `settings_flag` (Attributes List) This group should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 
 <a id="nestedatt--info_tooltip_title"></a>

@@ -139,6 +139,8 @@ type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *PartnerOrganisationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                          `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPartnerOrganisationAttribute) MarshalJSON() ([]byte, error) {
@@ -348,6 +350,13 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetCompositeID() 
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // PurposeAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PurposeAttributeAttributeWithCompositeIDConstraints struct {
@@ -481,6 +490,8 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	UpdatedAt   *time.Time                                    `json:"updated_at,omitempty"`
 	Type        *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	CompositeID *string                                       `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPurposeAttribute) MarshalJSON() ([]byte, error) {
@@ -718,6 +729,13 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDPurposeAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // InternalUserAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InternalUserAttributeAttributeWithCompositeIDConstraints struct {
@@ -847,6 +865,8 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InternalUserAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                   `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInternalUserAttribute) MarshalJSON() ([]byte, error) {
@@ -1056,6 +1076,13 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetCompositeID() *string
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AutomationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type AutomationAttributeAttributeWithCompositeIDConstraints struct {
@@ -1185,6 +1212,8 @@ type AttributeWithCompositeIDAutomationAttribute struct {
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *AutomationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                 `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDAutomationAttribute) MarshalJSON() ([]byte, error) {
@@ -1394,6 +1423,13 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDAutomationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // InvitationEmailAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InvitationEmailAttributeAttributeWithCompositeIDConstraints struct {
@@ -1523,6 +1559,8 @@ type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InvitationEmailAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                      `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInvitationEmailAttribute) MarshalJSON() ([]byte, error) {
@@ -1732,6 +1770,13 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetCompositeID() *str
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // PartnerStatusAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PartnerStatusAttributeAttributeWithCompositeIDConstraints struct {
@@ -1861,6 +1906,8 @@ type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *PartnerStatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                    `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPartnerStatusAttribute) MarshalJSON() ([]byte, error) {
@@ -2070,6 +2117,13 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetCompositeID() *strin
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // ComputedAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type ComputedAttributeAttributeWithCompositeIDConstraints struct {
@@ -2199,6 +2253,8 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *ComputedAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                               `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDComputedAttribute) MarshalJSON() ([]byte, error) {
@@ -2408,6 +2464,13 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDComputedAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // FileAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type FileAttributeAttributeWithCompositeIDConstraints struct {
@@ -2576,6 +2639,8 @@ type AttributeWithCompositeIDFileAttribute struct {
 	EnableDescription    *bool                              `json:"enable_description,omitempty"`
 	DefaultAccessControl *FileAttributeDefaultAccessControl `json:"default_access_control,omitempty"`
 	CompositeID          *string                            `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDFileAttribute) MarshalJSON() ([]byte, error) {
@@ -2820,6 +2885,13 @@ func (o *AttributeWithCompositeIDFileAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDFileAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // OrderedListAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type OrderedListAttributeAttributeWithCompositeIDConstraints struct {
@@ -2949,6 +3021,8 @@ type AttributeWithCompositeIDOrderedListAttribute struct {
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *OrderedListAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                                  `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDOrderedListAttribute) MarshalJSON() ([]byte, error) {
@@ -3158,6 +3232,13 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetCompositeID() *string 
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // InternalAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InternalAttributeAttributeWithCompositeIDConstraints struct {
@@ -3287,6 +3368,8 @@ type AttributeWithCompositeIDInternalAttribute struct {
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InternalAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                               `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInternalAttribute) MarshalJSON() ([]byte, error) {
@@ -3496,6 +3579,13 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDInternalAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // ConsentAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type ConsentAttributeAttributeWithCompositeIDConstraints struct {
@@ -3627,6 +3717,8 @@ type AttributeWithCompositeIDConsentAttribute struct {
 	Topic       string                                               `json:"topic"`
 	Identifiers []string                                             `json:"identifiers,omitempty"`
 	CompositeID *string                                              `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDConsentAttribute) MarshalJSON() ([]byte, error) {
@@ -3850,6 +3942,13 @@ func (o *AttributeWithCompositeIDConsentAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDConsentAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // NumberAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type NumberAttributeAttributeWithCompositeIDConstraints struct {
@@ -3982,6 +4081,8 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool   `default:"true" json:"show_separator"`
 	CompositeID   *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDNumberAttribute) MarshalJSON() ([]byte, error) {
@@ -4205,6 +4306,13 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // TagsAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type TagsAttributeAttributeWithCompositeIDConstraints struct {
@@ -4336,6 +4444,8 @@ type AttributeWithCompositeIDTagsAttribute struct {
 	Options     []string                                          `json:"options,omitempty"`
 	Suggestions []string                                          `json:"suggestions,omitempty"`
 	CompositeID *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDTagsAttribute) MarshalJSON() ([]byte, error) {
@@ -4559,6 +4669,13 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDTagsAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // RepeatableAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type RepeatableAttributeAttributeWithCompositeIDConstraints struct {
@@ -4742,6 +4859,8 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool   `default:"true" json:"enable_relation_picker"`
 	CompositeID          *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDRepeatableAttribute) MarshalJSON() ([]byte, error) {
@@ -4979,6 +5098,13 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // CurrencyAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type CurrencyAttributeAttributeWithCompositeIDConstraints struct {
@@ -5188,6 +5314,8 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency    []CurrencyAttributeCurrency `json:"currency"`
 	CompositeID *string                     `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDCurrencyAttribute) MarshalJSON() ([]byte, error) {
@@ -5411,6 +5539,13 @@ func (o *AttributeWithCompositeIDCurrencyAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints struct {
@@ -5541,6 +5676,8 @@ type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	Type        *PaymentMethodRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	HasPrimary  *bool                                                              `json:"has_primary,omitempty"`
 	CompositeID *string                                                            `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPaymentMethodRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -5757,6 +5894,13 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetCompositeID(
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AddressRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type AddressRelationAttributeAttributeWithCompositeIDConstraints struct {
@@ -5887,6 +6031,8 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	Type        *AddressRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
 	CompositeID *string                                                      `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDAddressRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -6103,6 +6249,13 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *str
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // UserRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type UserRelationAttributeAttributeWithCompositeIDConstraints struct {
@@ -6233,6 +6386,8 @@ type AttributeWithCompositeIDUserRelationAttribute struct {
 	Type        *UserRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Multiple    *bool                                                     `default:"false" json:"multiple"`
 	CompositeID *string                                                   `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDUserRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -6447,6 +6602,13 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetCompositeID() *string
 		return nil
 	}
 	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
 
 // RelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
@@ -6969,6 +7131,8 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
 	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
 	CompositeID       *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -7276,6 +7440,13 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDRelationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // SequenceAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type SequenceAttributeAttributeWithCompositeIDConstraints struct {
@@ -7408,6 +7579,8 @@ type AttributeWithCompositeIDSequenceAttribute struct {
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDSequenceAttribute) MarshalJSON() ([]byte, error) {
@@ -7631,6 +7804,13 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDSequenceAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // StatusAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type StatusAttributeAttributeWithCompositeIDConstraints struct {
@@ -7845,6 +8025,8 @@ type AttributeWithCompositeIDStatusAttribute struct {
 	Type        *StatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Options     []StatusAttributeAttributeWithCompositeIDOptions    `json:"options,omitempty"`
 	CompositeID *string                                             `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDStatusAttribute) MarshalJSON() ([]byte, error) {
@@ -8059,6 +8241,13 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetCompositeID() *string {
 		return nil
 	}
 	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
 
 // MultiSelectAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
@@ -8282,6 +8471,8 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDMultiSelectAttribute) MarshalJSON() ([]byte, error) {
@@ -8519,6 +8710,13 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetCompositeID() *string 
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // SelectAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type SelectAttributeAttributeWithCompositeIDConstraints struct {
@@ -8654,6 +8852,8 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDSelectAttribute) MarshalJSON() ([]byte, error) {
@@ -8877,6 +9077,13 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDSelectAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // BooleanAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type BooleanAttributeAttributeWithCompositeIDConstraints struct {
@@ -9006,6 +9213,8 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *BooleanAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                              `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDBooleanAttribute) MarshalJSON() ([]byte, error) {
@@ -9215,6 +9424,13 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDBooleanAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // CountryAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type CountryAttributeAttributeWithCompositeIDConstraints struct {
@@ -9344,6 +9560,8 @@ type AttributeWithCompositeIDCountryAttribute struct {
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *CountryAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                              `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDCountryAttribute) MarshalJSON() ([]byte, error) {
@@ -9553,6 +9771,13 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDCountryAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // DateAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type DateAttributeAttributeWithCompositeIDConstraints struct {
@@ -9685,6 +9910,8 @@ type AttributeWithCompositeIDDateAttribute struct {
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *DateAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDDateAttribute) MarshalJSON() ([]byte, error) {
@@ -9894,6 +10121,13 @@ func (o *AttributeWithCompositeIDDateAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDDateAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // LinkAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type LinkAttributeAttributeWithCompositeIDConstraints struct {
@@ -10023,6 +10257,8 @@ type AttributeWithCompositeIDLinkAttribute struct {
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *LinkAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	CompositeID *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDLinkAttribute) MarshalJSON() ([]byte, error) {
@@ -10232,6 +10468,13 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *AttributeWithCompositeIDLinkAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // TextAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type TextAttributeConstraints struct {
@@ -10362,6 +10605,8 @@ type AttributeWithCompositeIDTextAttribute struct {
 	Type        *TextAttributeType        `json:"type,omitempty"`
 	Multiline   *bool                     `json:"multiline,omitempty"`
 	CompositeID *string                   `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDTextAttribute) MarshalJSON() ([]byte, error) {
@@ -10576,6 +10821,13 @@ func (o *AttributeWithCompositeIDTextAttribute) GetCompositeID() *string {
 		return nil
 	}
 	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
 
 type AttributeWithCompositeIDType string
@@ -11265,6 +11517,8 @@ type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *PartnerOrganisationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPartnerOrganisationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -11467,6 +11721,13 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() *P
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
 	ID          *string `json:"id,omitempty"`
@@ -11522,6 +11783,8 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	CreatedAt *time.Time                                    `json:"created_at,omitempty"`
 	UpdatedAt *time.Time                                    `json:"updated_at,omitempty"`
 	Type      *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPurposeAttributeInput) MarshalJSON() ([]byte, error) {
@@ -11752,6 +12015,13 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttrib
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDInternalUserAttributeInput - Epilot internal user info
 type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	// ID for the entity attribute
@@ -11803,6 +12073,8 @@ type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InternalUserAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInternalUserAttributeInput) MarshalJSON() ([]byte, error) {
@@ -12005,6 +12277,13 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() *Internal
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDAutomationAttributeInput - Automation entity
 type AttributeWithCompositeIDAutomationAttributeInput struct {
 	// ID for the entity attribute
@@ -12056,6 +12335,8 @@ type AttributeWithCompositeIDAutomationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *AutomationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDAutomationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -12258,6 +12539,13 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() *Automation
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDInvitationEmailAttributeInput - Email address for send invitation
 type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	// ID for the entity attribute
@@ -12309,6 +12597,8 @@ type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InvitationEmailAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInvitationEmailAttributeInput) MarshalJSON() ([]byte, error) {
@@ -12511,6 +12801,13 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() *Invit
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDPartnerStatusAttributeInput - Partner Status
 type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	// ID for the entity attribute
@@ -12562,6 +12859,8 @@ type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *PartnerStatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPartnerStatusAttributeInput) MarshalJSON() ([]byte, error) {
@@ -12764,6 +13063,13 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() *Partner
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDComputedAttributeInput - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
 type AttributeWithCompositeIDComputedAttributeInput struct {
 	// ID for the entity attribute
@@ -12815,6 +13121,8 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *ComputedAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDComputedAttributeInput) MarshalJSON() ([]byte, error) {
@@ -13017,6 +13325,13 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttr
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDFileAttributeInput - File or Image Attachment
 type AttributeWithCompositeIDFileAttributeInput struct {
 	// ID for the entity attribute
@@ -13078,6 +13393,8 @@ type AttributeWithCompositeIDFileAttributeInput struct {
 	//
 	EnableDescription    *bool                              `json:"enable_description,omitempty"`
 	DefaultAccessControl *FileAttributeDefaultAccessControl `json:"default_access_control,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDFileAttributeInput) MarshalJSON() ([]byte, error) {
@@ -13315,6 +13632,13 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultAccessControl() *
 	return o.DefaultAccessControl
 }
 
+func (o *AttributeWithCompositeIDFileAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDOrderedListAttributeInput - Type of attribute to render N number of ordered fields
 type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	// ID for the entity attribute
@@ -13366,6 +13690,8 @@ type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *OrderedListAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDOrderedListAttributeInput) MarshalJSON() ([]byte, error) {
@@ -13568,6 +13894,13 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() *OrderedLi
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDInternalAttributeInput - No UI representation
 type AttributeWithCompositeIDInternalAttributeInput struct {
 	// ID for the entity attribute
@@ -13619,6 +13952,8 @@ type AttributeWithCompositeIDInternalAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *InternalAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDInternalAttributeInput) MarshalJSON() ([]byte, error) {
@@ -13821,6 +14156,13 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() *InternalAttr
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDConsentAttributeInput - Consent Management
 type AttributeWithCompositeIDConsentAttributeInput struct {
 	// ID for the entity attribute
@@ -13874,6 +14216,8 @@ type AttributeWithCompositeIDConsentAttributeInput struct {
 	Type        ConsentAttributeAttributeWithCompositeIDType         `json:"type"`
 	Topic       string                                               `json:"topic"`
 	Identifiers []string                                             `json:"identifiers,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDConsentAttributeInput) MarshalJSON() ([]byte, error) {
@@ -14090,6 +14434,13 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetIdentifiers() []strin
 	return o.Identifiers
 }
 
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDNumberAttributeInput - Numeric input
 type AttributeWithCompositeIDNumberAttributeInput struct {
 	// ID for the entity attribute
@@ -14144,6 +14495,8 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	Format      *string                                             `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool `default:"true" json:"show_separator"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDNumberAttributeInput) MarshalJSON() ([]byte, error) {
@@ -14360,6 +14713,13 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetShowSeparator() *bool 
 	return o.ShowSeparator
 }
 
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDTagsAttributeInput - Tags
 type AttributeWithCompositeIDTagsAttributeInput struct {
 	// ID for the entity attribute
@@ -14413,6 +14773,8 @@ type AttributeWithCompositeIDTagsAttributeInput struct {
 	Type        *TagsAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Options     []string                                          `json:"options,omitempty"`
 	Suggestions []string                                          `json:"suggestions,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDTagsAttributeInput) MarshalJSON() ([]byte, error) {
@@ -14629,6 +14991,13 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
 	return o.Suggestions
 }
 
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDRepeatableAttributeInput - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	// ID for the entity attribute
@@ -14686,6 +15055,8 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	Type                 *RepeatableAttributeAttributeWithCompositeIDType                 `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDRepeatableAttributeInput) MarshalJSON() ([]byte, error) {
@@ -14916,6 +15287,13 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEnableRelationPick
 	return o.EnableRelationPicker
 }
 
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDCurrencyAttributeInput - Currency input
 type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	// ID for the entity attribute
@@ -14970,6 +15348,8 @@ type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	CurrencySelectorOnly *bool                                                 `default:"false" json:"currency_selector_only"`
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency []CurrencyAttributeCurrency `json:"currency"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDCurrencyAttributeInput) MarshalJSON() ([]byte, error) {
@@ -15186,6 +15566,13 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrency() []Currenc
 	return o.Currency
 }
 
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDPaymentMethodRelationAttributeInput - Reference to a payment method attribute of another entity
 type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	// ID for the entity attribute
@@ -15238,6 +15625,8 @@ type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	InfoHelpers *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *PaymentMethodRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	HasPrimary  *bool                                                              `json:"has_primary,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDPaymentMethodRelationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -15447,6 +15836,13 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrim
 	return o.HasPrimary
 }
 
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDAddressRelationAttributeInput - Reference to an address attribute of another entity
 type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	// ID for the entity attribute
@@ -15499,6 +15895,8 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *AddressRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDAddressRelationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -15708,6 +16106,13 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() 
 	return o.HasPrimary
 }
 
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDUserRelationAttributeInput - User Relationship
 type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	// ID for the entity attribute
@@ -15760,6 +16165,8 @@ type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	InfoHelpers *UserRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *UserRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Multiple    *bool                                                     `default:"false" json:"multiple"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDUserRelationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -15969,6 +16376,13 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool
 	return o.Multiple
 }
 
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 type RelationAttributeNewEntityItemInput struct {
 	ID string `json:"_id"`
 	// URL-friendly identifier for the entity schema
@@ -16174,6 +16588,8 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	AddButtonLabel *string `json:"add_button_label,omitempty"`
 	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
 	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDRelationAttributeInput) MarshalJSON() ([]byte, error) {
@@ -16474,6 +16890,13 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetSearchPlaceholder() 
 	return o.SearchPlaceholder
 }
 
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDSequenceAttributeInput - Sequence of unique identifiers
 type AttributeWithCompositeIDSequenceAttributeInput struct {
 	// ID for the entity attribute
@@ -16528,6 +16951,8 @@ type AttributeWithCompositeIDSequenceAttributeInput struct {
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDSequenceAttributeInput) MarshalJSON() ([]byte, error) {
@@ -16744,6 +17169,13 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetStartNumber() *int64
 	return o.StartNumber
 }
 
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDStatusAttributeInput - Status select
 type AttributeWithCompositeIDStatusAttributeInput struct {
 	// ID for the entity attribute
@@ -16796,6 +17228,8 @@ type AttributeWithCompositeIDStatusAttributeInput struct {
 	InfoHelpers *StatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *StatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
 	Options     []StatusAttributeAttributeWithCompositeIDOptions    `json:"options,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDStatusAttributeInput) MarshalJSON() ([]byte, error) {
@@ -17005,6 +17439,13 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []StatusAttr
 	return o.Options
 }
 
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDMultiSelectAttributeInput - Multi Choice Selection
 type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	// ID for the entity attribute
@@ -17063,6 +17504,8 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDMultiSelectAttributeInput) MarshalJSON() ([]byte, error) {
@@ -17293,6 +17736,13 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowAny() *bool 
 	return o.AllowAny
 }
 
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDSelectAttributeInput - Dropdown select
 type AttributeWithCompositeIDSelectAttributeInput struct {
 	// ID for the entity attribute
@@ -17347,6 +17797,8 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	Options     any                                                 `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDSelectAttributeInput) MarshalJSON() ([]byte, error) {
@@ -17563,6 +18015,13 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetAllowAny() *bool {
 	return o.AllowAny
 }
 
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDBooleanAttributeInput - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// ID for the entity attribute
@@ -17614,6 +18073,8 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *BooleanAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDBooleanAttributeInput) MarshalJSON() ([]byte, error) {
@@ -17816,6 +18277,13 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttrib
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDCountryAttributeInput - Country picker
 type AttributeWithCompositeIDCountryAttributeInput struct {
 	// ID for the entity attribute
@@ -17867,6 +18335,8 @@ type AttributeWithCompositeIDCountryAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *CountryAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDCountryAttributeInput) MarshalJSON() ([]byte, error) {
@@ -18069,6 +18539,13 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() *CountryAttrib
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDDateAttributeInput - Date or Datetime picker
 type AttributeWithCompositeIDDateAttributeInput struct {
 	// ID for the entity attribute
@@ -18120,6 +18597,8 @@ type AttributeWithCompositeIDDateAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *DateAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDDateAttributeInput) MarshalJSON() ([]byte, error) {
@@ -18322,6 +18801,13 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetType() *DateAttributeAtt
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDDateAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDLinkAttributeInput - Link with title and href
 type AttributeWithCompositeIDLinkAttributeInput struct {
 	// ID for the entity attribute
@@ -18373,6 +18859,8 @@ type AttributeWithCompositeIDLinkAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *LinkAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDLinkAttributeInput) MarshalJSON() ([]byte, error) {
@@ -18575,6 +19063,13 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() *LinkAttributeAtt
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDTextAttributeInput - Textarea or text input
 type AttributeWithCompositeIDTextAttributeInput struct {
 	// ID for the entity attribute
@@ -18627,6 +19122,8 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *TextAttributeType        `json:"type,omitempty"`
 	Multiline   *bool                     `json:"multiline,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (a AttributeWithCompositeIDTextAttributeInput) MarshalJSON() ([]byte, error) {
@@ -18834,6 +19331,13 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetMultiline() *bool {
 		return nil
 	}
 	return o.Multiline
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
 
 type AttributeWithCompositeIDInputType string

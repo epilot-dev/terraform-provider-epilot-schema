@@ -44,6 +44,7 @@ type SchemaGroupResourceModel struct {
 	Order            types.Int64               `tfsdk:"order"`
 	Purpose          []types.String            `tfsdk:"purpose"`
 	RenderCondition  types.String              `tfsdk:"render_condition"`
+	Schema           types.String              `tfsdk:"schema"`
 	SettingsFlag     []tfTypes.SettingFlag     `tfsdk:"settings_flag"`
 }
 
@@ -56,7 +57,7 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 		MarkdownDescription: "SchemaGroup Resource",
 		Attributes: map[string]schema.Attribute{
 			"composite_id": schema.StringAttribute{
-				Required:    true,
+				Computed:    true,
 				Description: `Schema Slug and the Group ID`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
@@ -74,7 +75,8 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Description: `This group should only be active when the feature flag is enabled`,
 			},
 			"id": schema.StringAttribute{
-				Required: true,
+				Computed: true,
+				Optional: true,
 			},
 			"info_tooltip_title": schema.SingleNestedAttribute{
 				Computed: true,
@@ -111,6 +113,11 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Computed:    true,
 				Optional:    true,
 				Description: `Only render group when render_condition resolves to true`,
+			},
+			"schema": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Schema slug the group belongs to`,
 			},
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,
@@ -173,15 +180,8 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
-
-	entitySchemaGroupWithCompositeID := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
-	request := operations.PutSchemaGroupRequest{
-		CompositeID:                      compositeID,
-		EntitySchemaGroupWithCompositeID: entitySchemaGroupWithCompositeID,
-	}
-	res, err := r.client.Schemas.PutSchemaGroup(ctx, request)
+	request := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
+	res, err := r.client.Schemas.CreateSchemaGroup(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -193,7 +193,7 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode != 200 {
+	if res.StatusCode != 201 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}

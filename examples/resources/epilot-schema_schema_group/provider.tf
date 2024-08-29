@@ -15,4 +15,5 @@ provider "epilot-schema" {
   # Configuration options
 
   epilot_auth = var.epilot_auth
+  server_url  = "https://entity.dev.sls.epilot.io"
 }

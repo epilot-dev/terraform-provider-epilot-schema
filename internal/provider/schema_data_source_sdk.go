@@ -4389,7 +4389,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {

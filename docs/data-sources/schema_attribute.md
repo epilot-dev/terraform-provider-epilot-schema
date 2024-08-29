@@ -70,6 +70,7 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--repeatable_attribute))
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--select_attribute))
 - `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--sequence_attribute))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -113,6 +114,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -181,6 +183,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -249,6 +252,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -317,6 +321,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -386,6 +391,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--consent_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -455,6 +461,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -525,6 +532,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--currency_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -612,6 +620,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -686,6 +695,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--file_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -754,6 +764,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -822,6 +833,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -890,6 +902,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -958,6 +971,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1030,6 +1044,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1117,6 +1132,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `show_separator` (Boolean) Whether or not to show a thousands separator
@@ -1186,6 +1202,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1254,6 +1271,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1322,6 +1340,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1391,6 +1410,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1461,6 +1481,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `slug` (String) URL-friendly identifier for the classification
@@ -1542,6 +1563,7 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
+- `schema` (String) Schema slug the attribute belongs to
 - `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1702,6 +1724,7 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean)
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1772,6 +1795,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1841,6 +1865,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--sequence_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1911,6 +1936,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -1998,6 +2024,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--tags_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -2068,6 +2095,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
@@ -2137,6 +2165,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true

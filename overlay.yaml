@@ -25,13 +25,17 @@ actions:
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["delete"]
     update:
       x-speakeasy-entity-operation: Schema#delete
+
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]
     update:
       x-speakeasy-entity-operation: SchemaAttribute#get
+  - target: $["paths"]["/v1/entity/schemas/attributes"]["post"]
+    update:
+      x-speakeasy-entity-operation: SchemaAttribute#create
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["put"]
     update:
-      x-speakeasy-entity-operation: SchemaAttribute#create,update
+      x-speakeasy-entity-operation: SchemaAttribute#update
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["delete"]
     update:
       x-speakeasy-entity-operation: SchemaAttribute#delete
@@ -40,9 +44,12 @@ actions:
   - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["get"]
     update:
       x-speakeasy-entity-operation: SchemaCapability#get
+  - target: $["paths"]["/v1/entity/schemas/capabilities"]["post"]
+    update:
+      x-speakeasy-entity-operation: SchemaCapability#create
   - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["put"]
     update:
-      x-speakeasy-entity-operation: SchemaCapability#create,update
+      x-speakeasy-entity-operation: SchemaCapability#update
   - target: $["paths"]["/v1/entity/schemas/capabilities/{composite_id}"]["delete"]
     update:
       x-speakeasy-entity-operation: SchemaCapability#delete
@@ -51,9 +58,12 @@ actions:
   - target: $["paths"]["/v1/entity/schemas/group/{composite_id}"]["get"]
     update:
       x-speakeasy-entity-operation: SchemaGroup#get
+  - target: $["paths"]["/v1/entity/schemas/group"]["post"]
+    update:
+      x-speakeasy-entity-operation: SchemaGroup#create
   - target: $["paths"]["/v1/entity/schemas/group/{composite_id}"]["put"]
     update:
-      x-speakeasy-entity-operation: SchemaGroup#create,update
+      x-speakeasy-entity-operation: SchemaGroup#update
   - target: $["paths"]["/v1/entity/schemas/group/{composite_id}"]["delete"]
     update:
       x-speakeasy-entity-operation: SchemaGroup#delete

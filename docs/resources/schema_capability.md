@@ -14,10 +14,10 @@ SchemaCapability Resource
 
 ```terraform
 resource "epilot-schema_schema_capability" "my_schemacapability" {
-  composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
   feature_flag = "FF_MY_FEATURE_FLAG"
   id           = "d5839b94-ba20-4225-a78e-76951d352bd6"
   name         = "customer_messaging"
+  schema       = "contact"
   title        = "Messaging"
 }
 ```
@@ -27,7 +27,6 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
 
 ### Required
 
-- `composite_id` (String) Schema Slug and the Attribute ID
 - `name` (String) Unique name for the capability
 
 ### Optional
@@ -36,9 +35,14 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
 - `feature_flag` (String) This capability should only be active when the feature flag is enabled
 - `id` (String) ID for the entity capability
 - `purpose` (List of String)
+- `schema` (String) Schema slug the capability belongs to
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
 - `title` (String) Human readable title of the capability
 - `ui_hooks` (Attributes List) (see [below for nested schema](#nestedatt--ui_hooks))
+
+### Read-Only
+
+- `composite_id` (String) Schema Slug and the Attribute ID
 
 <a id="nestedatt--attributes"></a>
 ### Nested Schema for `attributes`

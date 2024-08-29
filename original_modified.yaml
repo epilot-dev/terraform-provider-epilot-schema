@@ -1,5 +1,4 @@
 openapi: 3.0.2
-
 info:
   title: Entity API
   version: 1.0.0
@@ -9,10 +8,8 @@ info:
     Use this API configure and access your business objects like Contacts, Opportunities and Products.
 
     [Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)
-
 servers:
   - url: https://entity.sls.epilot.io
-
 tags:
   - name: Schemas
     description: Model Entities
@@ -33,7 +30,6 @@ tags:
 security:
   - EpilotAuth: []
   - EpilotOrg: []
-
 paths:
   /v1/entity/schemas:
     get:
@@ -61,7 +57,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/EntitySchemaItem"
-
   /v1/entity/schemas/{slug}:
     get:
       operationId: getSchema
@@ -82,7 +77,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaItem"
-
+      x-speakeasy-entity-operation: Schema#get
     put:
       operationId: putSchema
       summary: putSchema
@@ -108,7 +103,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaItem"
-
+      x-speakeasy-entity-operation: Schema#create,update
     delete:
       operationId: deleteSchema
       summary: deleteSchema
@@ -120,7 +115,7 @@ paths:
       responses:
         "200":
           description: Success
-
+      x-speakeasy-entity-operation: Schema#delete
   /v1/entity/schemas/{slug}/json/schema:
     get:
       operationId: getJsonSchema
@@ -355,7 +350,6 @@ paths:
                     - _created_at
                     - _updated_at
                     - _acl
-
   /v1/entity/schemas/{slug}/json/example:
     get:
       operationId: getSchemaExample
@@ -375,7 +369,6 @@ paths:
               examples:
                 contact:
                   $ref: "#/components/examples/ContactEntity"
-
   /v1/entity/schemas/{slug}/versions:
     get:
       operationId: getSchemaVersions
@@ -430,7 +423,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/EntitySchemaItem"
-
   /v1/entity/schemas/blueprints:
     get:
       operationId: listSchemaBlueprints
@@ -450,7 +442,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/EntitySchemaItem"
-
   # Entities
   /v1/entity:search:
     post:
@@ -539,7 +530,6 @@ paths:
             text/csv:
               schema:
                 type: string
-
   /v1/entity:list:
     post:
       operationId: listEntities
@@ -565,7 +555,6 @@ paths:
             text/csv:
               schema:
                 type: string
-
   /v1/entity/{slug}:
     post:
       operationId: createEntity
@@ -637,7 +626,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
-
   /v1/entity/{slug}:validate:
     post:
       operationId: validateEntity
@@ -670,7 +658,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityValidationResultError"
-
   /v1/entity/{slug}:upsert:
     patch:
       operationId: upsertEntity
@@ -698,7 +685,6 @@ paths:
           schema:
             type: boolean
             default: false
-
       requestBody:
         content:
           application/json:
@@ -733,7 +719,6 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: multiple entities were matched with `unique_key`"
-
   /v2/entity/{slug}/{id}:
     get:
       operationId: getEntityV2
@@ -972,7 +957,6 @@ paths:
       responses:
         "200":
           description: Success
-
   /v1/entity:autocomplete:
     get:
       operationId: autocomplete
@@ -1028,7 +1012,6 @@ paths:
                           additionalProperties: true
                     example:
                       - "value"
-
   /v1/entity/activity:
     post:
       operationId: createActivity
@@ -1062,7 +1045,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseActivityItem"
-
   /v1/entity/activity/{id}:
     get:
       operationId: getActivity
@@ -1096,7 +1078,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ActivityItem"
-
   /v1/entity/activity/{id}:attach:
     post:
       operationId: attachActivity
@@ -1122,7 +1103,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseActivityItem"
-
   /v1/entity/{slug}/{id}/activity:
     get:
       operationId: getEntityActivityFeed
@@ -1181,7 +1161,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/ActivityItem"
-
   # Relations
   /v1/entity/{slug}/{id}/relations:
     get:
@@ -1306,7 +1285,6 @@ paths:
       responses:
         "204":
           description: Relations deleted with success.
-
   /v2/entity/{slug}/{id}/relations:
     get:
       operationId: getRelationsV2
@@ -1350,7 +1328,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetRelationsRespWithPagination"
-
   /v3/entity/{slug}/{id}/relations:
     get:
       operationId: getRelationsV3
@@ -1388,7 +1365,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetRelationsRespWithPagination"
-
   /v2/entity/{slug}/{id}/relations/count:
     get:
       operationId: getRelatedEntitiesCount
@@ -1408,7 +1384,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetRelatedEntitiesCount"
-
   /v1/entity/{slug}/{id}/relations/{attribute}/{entity_id}:
     put:
       operationId: updateRelation
@@ -1481,7 +1456,6 @@ paths:
       responses:
         "204":
           description: Relation deleted with success.
-
   /v1/entity:export:
     post:
       operationId: exportEntities
@@ -1513,7 +1487,6 @@ paths:
       responses:
         "201":
           description: created export url and download url
-
   /v1/entity:import:
     post:
       operationId: importEntities
@@ -1540,7 +1513,6 @@ paths:
           description: |
             The import operation was initiated successfully.
             The response includes the URLs for the files containing the successful and failed imported entities.
-
   # Saved Views
   /v1/entity/views:
     get:
@@ -1591,7 +1563,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ListSavedViewsResults"
-
   /v1/entity/view:
     post:
       operationId: createSavedView
@@ -1611,7 +1582,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SavedViewItem"
-
   /v1/entity/view/{id}:
     get:
       operationId: getSavedView
@@ -1659,7 +1629,6 @@ paths:
       responses:
         "200":
           description: List of all available saved views
-
   /v1/entity/views/favorites:
     get:
       operationId: listFavoriteViewsForUser
@@ -1679,7 +1648,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/SavedViewItem"
-
   # Taxonomies
   /v1/entity/taxonomies:
     get:
@@ -1727,7 +1695,6 @@ paths:
                 $ref: "#/components/schemas/Taxonomy"
         "409":
           description: Taxonomy already exists
-
   /v1/entity/taxonomies/{taxonomySlug}:
     get:
       operationId: getTaxonomy
@@ -1780,7 +1747,6 @@ paths:
       responses:
         "204":
           description: Taxonomy deleted
-
   /v1/entity/taxonomies/{taxonomySlug}:autocomplete:
     get:
       operationId: taxonomyAutocomplete
@@ -1812,7 +1778,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/TaxonomyClassification"
-
   /v1/entity/taxonomies/classifications:search:
     post:
       operationId: taxonomiesClassificationsSearch
@@ -1850,7 +1815,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/TaxonomyClassification"
-
   /v1/entity/taxonomies/{taxonomySlug}/classifications:
     post:
       operationId: updateClassificationsForTaxonomy
@@ -1885,7 +1849,6 @@ paths:
                     type: object
                     items:
                       $ref: "#/components/schemas/ClassificationId"
-
   /v1/entity/schemas/{slug}/taxonomy/{taxonomySlug}:
     get:
       operationId: listTaxonomyClassificationsForSchema
@@ -1916,7 +1879,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/TaxonomyClassification"
-
   /v2/entity/taxonomies/classifications/{classificationSlug}:
     get:
       operationId: getTaxonomyClassification
@@ -1972,7 +1934,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TaxonomyClassification"
-
   # Elastic Cluster Assignment
   /v1/internal/clusterAssignment/{orgId}:
     get:
@@ -1997,7 +1958,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ESClusterAssignment"
-
   # Terraform Schema API - CRUDable schema attributes and capabilities
   # Attributes
   /v1/entity/schemas/attributes:
@@ -2006,7 +1966,7 @@ paths:
       summary: createSchemaAttribute
       description: Create a schema attribute
       tags:
-       - Schemas
+        - Schemas
       requestBody:
         content:
           application/json:
@@ -2019,6 +1979,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AttributeWithCompositeID"
+      x-speakeasy-entity-operation: SchemaAttribute#create
   /v1/entity/schemas/attributes/{composite_id}:
     get:
       operationId: getSchemaAttribute
@@ -2042,6 +2003,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AttributeWithCompositeID"
+      x-speakeasy-entity-operation: SchemaAttribute#get
     put:
       operationId: putSchemaAttribute
       summary: putSchemaAttribute
@@ -2069,6 +2031,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AttributeWithCompositeID"
+      x-speakeasy-entity-operation: SchemaAttribute#update
     delete:
       operationId: deleteSchemaAttribute
       summary: deleteSchemaAttribute
@@ -2091,7 +2054,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AttributeWithCompositeID"
-
+      x-speakeasy-entity-operation: SchemaAttribute#delete
   # Capabilities
   /v1/entity/schemas/capabilities:
     post:
@@ -2112,6 +2075,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+      x-speakeasy-entity-operation: SchemaCapability#create
   /v1/entity/schemas/capabilities/{composite_id}:
     get:
       operationId: getSchemaCapability
@@ -2135,6 +2099,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+      x-speakeasy-entity-operation: SchemaCapability#get
     put:
       operationId: putSchemaCapability
       summary: putSchemaCapability
@@ -2162,6 +2127,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
+      x-speakeasy-entity-operation: SchemaCapability#update
     delete:
       operationId: deleteSchemaCapability
       summary: deleteSchemaCapability
@@ -2184,7 +2150,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityCapabilityWithCompositeID"
-
+      x-speakeasy-entity-operation: SchemaCapability#delete
   # Groups
   /v1/entity/schemas/group:
     post:
@@ -2205,6 +2171,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroup#create
   /v1/entity/schemas/group/{composite_id}:
     get:
       operationId: getSchemaGroup
@@ -2228,6 +2195,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroup#get
     put:
       operationId: putSchemaGroup
       summary: putSchemaGroup
@@ -2255,6 +2223,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroup#update
     delete:
       operationId: deleteSchemaGroup
       summary: deleteSchemaGroup
@@ -2277,7 +2246,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
-
+      x-speakeasy-entity-operation: SchemaGroup#delete
 components:
   securitySchemes:
     EpilotAuth:
@@ -2290,7 +2259,6 @@ components:
       name: x-epilot-org-id
       in: header
       type: apiKey
-
   schemas:
     # Schemas
     ExportJobId:
@@ -2414,7 +2382,6 @@ components:
               info_tooltip_title:
                 key: "partner.partner_information_group_tooltip"
                 default: "These informations are provided by the partner company and cannot be edited."
-
         layout_settings:
           type: object
           description: |
@@ -2496,7 +2463,7 @@ components:
                 type:
                   type: string
         - $ref: "#/components/schemas/EntitySchema"
-
+      x-speakeasy-entity: Schema
     GenerateEntityTableAIFiltersRequest:
       type: object
       properties:
@@ -2517,12 +2484,10 @@ components:
         - prompt
         - main_entity_slug
         - filter_options
-
     GenerateEntityTableAIFiltersResponse:
       type: array
       items:
         $ref: "#/components/schemas/EntityTableFilterSearch"
-
     EntityTableFilterSearch:
       type: object
       properties:
@@ -2539,7 +2504,6 @@ components:
         - label
         - type
         - value
-
     EntityTableFilterOption:
       type: object
       properties:
@@ -2573,7 +2537,6 @@ components:
           description: The related options for the filter option
       required:
         - label
-
     EntitySchemaGroup:
       type: object
       properties:
@@ -2618,10 +2581,8 @@ components:
             default:
               description: Default string for info tooltip
               type: string
-
       required:
         - label
-
     EntitySchemaGroupWithCompositeID:
       allOf:
         - $ref: "#/components/schemas/EntitySchemaGroup"
@@ -2636,6 +2597,7 @@ components:
               type: string
               description: Schema slug the group belongs to
               example: contact
+      x-speakeasy-entity: SchemaGroup
     Attribute:
       anyOf:
         - $ref: "#/components/schemas/TextAttribute"
@@ -2680,7 +2642,7 @@ components:
               type: string
               description: Schema slug the attribute belongs to
               example: contact
-
+      x-speakeasy-entity: SchemaAttribute
     BaseAttribute:
       type: object
       properties:
@@ -2887,6 +2849,7 @@ components:
                       - value
                   - type: string
                     nullable: true
+              x-speakeasy-type-override: any
             allow_any:
               type: boolean
               description: Allow arbitrary input values in addition to provided options
@@ -2969,7 +2932,6 @@ components:
             start_number:
               type: integer
               minimum: 0
-
     FileAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -3041,7 +3003,7 @@ components:
                       code: EUR
                       description: Euro
                       symbol: €
-                      flag: 🇪🇺
+                      flag: "\U0001F1EA\U0001F1FA"
           required:
             - type
             - currency
@@ -3154,24 +3116,8 @@ components:
                     type: object
                     allOf:
                       - $ref: "#/components/schemas/EntityItem"
-
               example:
-                value:
-                  [
-                    {
-                      action_type: "add_existing",
-                      label: "entityrelation.add_existing",
-                      default: true,
-                    },
-                    {
-                      action_type: "create_new",
-                      label: "entityrelation.create_new",
-                    },
-                    {
-                      action_type: "create_from_existing",
-                      label: "entityrelation.create_from_existing",
-                    },
-                  ]
+                value: [{action_type: "add_existing", label: "entityrelation.add_existing", default: true}, {action_type: "create_new", label: "entityrelation.create_new"}, {action_type: "create_from_existing", label: "entityrelation.create_from_existing"}]
             drawer_size:
               type: string
               enum:
@@ -3226,7 +3172,6 @@ components:
               type: string
               enum:
                 - partner_organisation
-
     AddressRelationAttribute:
       allOf:
         - $ref: "#/components/schemas/BaseAttribute"
@@ -3406,7 +3351,6 @@ components:
               type: string
               enum:
                 - partner_status
-
     SummaryAttribute:
       description: |
         Represents an expanded version of an attribute to be displayed in the list item summary.
@@ -3451,7 +3395,6 @@ components:
       required:
         - label
         - value
-
     EntitySlug:
       description: URL-friendly identifier for the entity schema
       type: string
@@ -3564,6 +3507,7 @@ components:
               type: string
               description: Schema slug the capability belongs to
               example: contact
+      x-speakeasy-entity: SchemaCapability
     EntityViewDisabled:
       type: object
       properties:
@@ -3571,7 +3515,6 @@ components:
           type: string
           enum:
             - disabled
-
     EntityDefaultTable:
       type: object
       properties:
@@ -3615,7 +3558,6 @@ components:
           description: Enable the thumbnail column
           type: boolean
           default: false
-
     EntityDefaultCreate:
       type: object
       properties:
@@ -3627,7 +3569,6 @@ components:
           type: object
           additionalProperties:
             type: string
-
     EntityDefaultEdit:
       type: object
       properties:
@@ -3645,7 +3586,6 @@ components:
           items:
             type: string
             example: email
-
     RedirectEntityView:
       type: object
       properties:
@@ -3659,7 +3599,6 @@ components:
       example:
         type: redirect
         route: /app/pricing-hub/product/:entityId
-
     # Entity
     EntityId:
       type: string
@@ -3674,7 +3613,6 @@ components:
             - _schema
             - _created_at
             - _updated_at
-
     Entity:
       type: object
       additionalProperties: true
@@ -3723,7 +3661,7 @@ components:
       example:
         _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         _org: "123"
-        _owners: [{ "org_id": "123", "user_id": "123" }]
+        _owners: [{"org_id": "123", "user_id": "123"}]
         _schema: contact
         _tags: ["example", "mock"]
         _created_at: 2021-02-09T12:41:43.662Z
@@ -3732,7 +3670,6 @@ components:
           view: ["org:456", "org:789"]
           edit: ["org:456"]
           delete: ["org:456"]
-
     EntityOwner:
       description: |
         The user / organization owning this entity.
@@ -3748,7 +3685,6 @@ components:
           example: "123"
       required:
         - org_id
-
     EntityAcl:
       description: Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
       type: object
@@ -3769,7 +3705,6 @@ components:
             type: string
             example: "org:456"
       additionalProperties: true
-
     HydratedEntity:
       type: object
       description: Entity with relation data resolved into the attribute values
@@ -3787,7 +3722,7 @@ components:
       required:
         - _relations
       example:
-        _relations: [{ "entity_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6" }]
+        _relations: [{"entity_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"}]
         status: active
         customer_number: "abc123"
         email:
@@ -3817,12 +3752,10 @@ components:
               $relation:
                 - _tags: ["CEO"]
                   entity_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-
     EntityItem:
       allOf:
         - $ref: "#/components/schemas/BaseEntity"
         - $ref: "#/components/schemas/Entity"
-
     EntityValidationError:
       type: object
       description: Validation error for an entity attribute
@@ -3855,7 +3788,6 @@ components:
         - params
         - path
         - message
-
     EntityValidationResultSuccess:
       type: object
       description: Validation result for a successful validation
@@ -3872,7 +3804,6 @@ components:
       required:
         - status
         - errors
-
     EntityValidationResultError:
       type: object
       description: Validation result for a failed validation
@@ -3889,17 +3820,14 @@ components:
       required:
         - status
         - errors
-
     EntityValidationResult:
       oneOf:
         - $ref: "#/components/schemas/EntityValidationResultSuccess"
         - $ref: "#/components/schemas/EntityValidationResultError"
-
     HydratedEntityItem:
       allOf:
         - $ref: "#/components/schemas/BaseEntity"
         - $ref: "#/components/schemas/HydratedEntity"
-
     # Relations
     GetRelationsResp:
       type: array
@@ -3907,7 +3835,6 @@ components:
         anyOf:
           - $ref: "#/components/schemas/RelationItem"
           - $ref: "#/components/schemas/RelationEntity"
-
     GetRelationsRespWithPagination:
       type: object
       properties:
@@ -3916,14 +3843,12 @@ components:
           example: 1
         relations:
           $ref: "#/components/schemas/GetRelationsResp"
-
     GetRelatedEntitiesCount:
       type: object
       properties:
         hits:
           type: integer
           example: 1
-
     RelationEntity:
       allOf:
         - $ref: "#/components/schemas/BaseEntity"
@@ -3931,7 +3856,6 @@ components:
           properties:
             "$relation":
               $ref: "#/components/schemas/RelationItem"
-
     RelationItem:
       type: object
       properties:
@@ -3949,7 +3873,6 @@ components:
       required:
         - entity_id
         - attribute
-
     EntitySearchParams:
       allOf:
         - type: object
@@ -3972,7 +3895,6 @@ components:
           required:
             - q
         - $ref: "#/components/schemas/EntitySearchOptions"
-
     EntityListParams:
       allOf:
         - type: object
@@ -3993,7 +3915,6 @@ components:
           required:
             - filter
         - $ref: "#/components/schemas/EntitySearchOptions"
-
     SearchFilter:
       type: array
       description: A subset of simplified Elasticsearch query clauses. The default operator is a logical AND. Use nested $and, $or, $not to combine filters using different logical operators.
@@ -4018,7 +3939,6 @@ components:
               $ref: "#/components/schemas/SearchFilterValue"
             example:
               _schema: contact
-
           terms:
             description: "Returns documents that contain one of the exact terms in a provided field. See term filter for more info."
             externalDocs:
@@ -4033,7 +3953,6 @@ components:
             example:
               status:
                 - active
-
           ids:
             description: "Returns documents based on their IDs."
             externalDocs:
@@ -4047,7 +3966,6 @@ components:
             example:
               values:
                 - 550e8400-e29b-41d4-a716-446655440000
-
           range:
             description: "Returns documents with fields that have terms within a certain range."
             externalDocs:
@@ -4083,7 +4001,6 @@ components:
               _created_at:
                 gte: "2021-01-01T00:00:00.000Z"
                 lte: "2021-01-31T23:59:59.999Z"
-
           exists:
             description: "Returns documents that have a value in the specified field."
             externalDocs:
@@ -4096,23 +4013,18 @@ components:
               - field
             example:
               field: _tags
-
           $and:
             $ref: "#/components/schemas/SearchFilter"
-
           $or:
             $ref: "#/components/schemas/SearchFilter"
-
           $not:
             $ref: "#/components/schemas/SearchFilter"
-
       example:
         - term:
             _schema: contact
         - terms:
             status:
               - active
-
     SearchFilterValue:
       description: A filter field value.
       oneOf:
@@ -4120,7 +4032,6 @@ components:
           nullable: true
         - type: number
         - type: boolean
-
     EntitySearchOptions:
       type: object
       properties:
@@ -4150,7 +4061,6 @@ components:
             contact-count-per-tag:
               terms:
                 field: _tags.keyword
-
     FieldsParam:
       type: array
       description: |
@@ -4168,7 +4078,6 @@ components:
         - account
         - "!account.*._files"
         - "**._product"
-
     EntityImportParams:
       type: object
       additionalProperties: false
@@ -4196,7 +4105,6 @@ components:
         - S3Reference
         - schema
       description: The parameters for importing entities.
-
     EntitySearchResults:
       type: object
       properties:
@@ -4213,12 +4121,7 @@ components:
             contact-count-per-tag:
               doc_count_error_upper_bound: 0
               sum_other_doc_count: 23
-              buckets:
-                [
-                  { key: "automation", doc_count: 108 },
-                  { key: "primary", doc_count: 66 },
-                ]
-
+              buckets: [{key: "automation", doc_count: 108}, {key: "primary", doc_count: 66}]
     SearchMappings:
       description: |
         Advanced: explicit Elasticsearch index mapping definitions for entity data
@@ -4247,7 +4150,6 @@ components:
               - nested
           fields:
             additionalProperties: true
-
     # Activity (Event System)
     ActivityId:
       type: string
@@ -4276,25 +4178,7 @@ components:
                 custom:ivy_user_id:
                   type: string
                   example: "10006129"
-              example:
-                {
-                  "sub": "476e9b48-42f4-4234-a2b0-4668b34626ce",
-                  "cognito:groups": ["Administrator"],
-                  "cognito:preferred_role": "arn:aws:iam::912468240823:role/base-administrator-role",
-                  "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_6lZSgmU6D",
-                  "custom:ivy_org_id": "739224",
-                  "cognito:username": "n.ahmad@epilot.cloud",
-                  "custom:ivy_user_id": "10006129",
-                  "cognito:roles":
-                    ["arn:aws:iam::912468240823:role/base-administrator-role"],
-                  "aud": "6e0jbdnger7nmoktaaflarue1l",
-                  "event_id": "cd5f5583-d90c-4db5-8e99-5f5dd29a4d75",
-                  "token_use": "id",
-                  "auth_time": 1614333023,
-                  "exp": 1614336623,
-                  "iat": 1614333023,
-                  "email": "n.ahmad@epilot.cloud",
-                }
+              example: {"sub": "476e9b48-42f4-4234-a2b0-4668b34626ce", "cognito:groups": ["Administrator"], "cognito:preferred_role": "arn:aws:iam::912468240823:role/base-administrator-role", "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_6lZSgmU6D", "custom:ivy_org_id": "739224", "cognito:username": "n.ahmad@epilot.cloud", "custom:ivy_user_id": "10006129", "cognito:roles": ["arn:aws:iam::912468240823:role/base-administrator-role"], "aud": "6e0jbdnger7nmoktaaflarue1l", "event_id": "cd5f5583-d90c-4db5-8e99-5f5dd29a4d75", "token_use": "id", "auth_time": 1614333023, "exp": 1614336623, "iat": 1614333023, "email": "n.ahmad@epilot.cloud"}
     Activity:
       type: object
       additionalProperties: false
@@ -4364,12 +4248,10 @@ components:
               $ref: "#/components/schemas/Entity"
             deleted:
               $ref: "#/components/schemas/Entity"
-
       required:
         - entity
         - org
         - operation
-
     BaseActivityItem:
       allOf:
         - type: object
@@ -4384,7 +4266,6 @@ components:
           properties:
             caller:
               $ref: "#/components/schemas/ActivityCallerContext"
-
     ActivityItem:
       allOf:
         - $ref: "#/components/schemas/BaseActivityItem"
@@ -4398,12 +4279,10 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/EntityOperation"
-
     BlueprintEntityId:
       description: Reference to blueprint
       type: string
       format: uuid
-
     ListSavedViewsResults:
       type: object
       properties:
@@ -4478,26 +4357,12 @@ components:
         ui_config:
           type: object
           additionalProperties: true
-          example:
-            {
-              filters: { customer_name: "suresh test", _tags: "360" },
-              table_layout:
-                {
-                  "opportunity":
-                    {
-                      "page": 1,
-                      "sort": "_created_at:desc",
-                      "pageSize": 25,
-                      "columnSettings": [],
-                    },
-                },
-            }
+          example: {filters: {customer_name: "suresh test", _tags: "360"}, table_layout: {"opportunity": {"page": 1, "sort": "_created_at:desc", "pageSize": 25, "columnSettings": []}}}
       required:
         - slug
         - name
         - created_by
         - ui_config
-
     # * Region Start: Taxonomies *
     Taxonomy:
       type: object
@@ -4654,7 +4519,6 @@ components:
         enabled:
           type: boolean
           description: Whether the setting should be enabled or not
-
   parameters:
     EntityIdPathParam:
       name: id
@@ -4817,7 +4681,6 @@ components:
       schema:
         type: boolean
         default: false
-
   examples:
     EmptyGenericEntity:
       description: Example of an empty, generic entity
@@ -5249,3 +5112,13 @@ components:
         status: "error"
         errors:
           - $ref: "#/components/examples/EntityValidationError"
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 5000 # 5 seconds
+    maxInterval: 60000 # 60 seconds
+    maxElapsedTime: 3600000 # 5 minutes
+    exponent: 1.5
+  statusCodes:
+    - 5XX
+  retryConnectionErrors: true

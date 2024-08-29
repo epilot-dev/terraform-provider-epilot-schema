@@ -15136,12 +15136,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 							Description: `This group should only be active when the feature flag is enabled`,
 						},
 						"id": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
+							Computed: true,
+							Optional: true,
 						},
 						"info_tooltip_title": schema.SingleNestedAttribute{
 							Computed: true,

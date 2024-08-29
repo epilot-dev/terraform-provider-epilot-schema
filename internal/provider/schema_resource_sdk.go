@@ -7536,9 +7536,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchema() *shared.EntitySchema {
 		var label34 string
 		label34 = groupSettingsItem.Label.ValueString()
 
-		var id30 string
-		id30 = groupSettingsItem.ID.ValueString()
-
+		id30 := new(string)
+		if !groupSettingsItem.ID.IsUnknown() && !groupSettingsItem.ID.IsNull() {
+			*id30 = groupSettingsItem.ID.ValueString()
+		} else {
+			id30 = nil
+		}
 		order29 := new(int64)
 		if !groupSettingsItem.Order.IsUnknown() && !groupSettingsItem.Order.IsNull() {
 			*order29 = groupSettingsItem.Order.ValueInt64()
@@ -18865,7 +18868,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			groupSettings1.Expanded = types.BoolPointerValue(groupSettingsItem.Expanded)
 			groupSettings1.FeatureFlag = types.StringPointerValue(groupSettingsItem.FeatureFlag)
-			groupSettings1.ID = types.StringValue(groupSettingsItem.ID)
+			groupSettings1.ID = types.StringPointerValue(groupSettingsItem.ID)
 			if groupSettingsItem.InfoTooltipTitle == nil {
 				groupSettings1.InfoTooltipTitle = nil
 			} else {

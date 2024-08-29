@@ -29,8 +29,8 @@ func (o *EntitySchemaGroupWithCompositeIDInfoTooltipTitle) GetDefault() *string 
 
 // EntitySchemaGroupWithCompositeID - a readonly computed ID for the group including schema slug and the group ID
 type EntitySchemaGroupWithCompositeID struct {
-	Label string `json:"label"`
-	ID    string `json:"id"`
+	Label string  `json:"label"`
+	ID    *string `json:"id,omitempty"`
 	// Render order of the group
 	Order *int64 `default:"0" json:"order"`
 	// Expanded by default
@@ -45,6 +45,8 @@ type EntitySchemaGroupWithCompositeID struct {
 	SettingsFlag     []SettingFlag                                     `json:"settings_flag,omitempty"`
 	InfoTooltipTitle *EntitySchemaGroupWithCompositeIDInfoTooltipTitle `json:"info_tooltip_title,omitempty"`
 	CompositeID      *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the group belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (e EntitySchemaGroupWithCompositeID) MarshalJSON() ([]byte, error) {
@@ -65,9 +67,9 @@ func (o *EntitySchemaGroupWithCompositeID) GetLabel() string {
 	return o.Label
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetID() string {
+func (o *EntitySchemaGroupWithCompositeID) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -128,10 +130,17 @@ func (o *EntitySchemaGroupWithCompositeID) GetCompositeID() *string {
 	return o.CompositeID
 }
 
+func (o *EntitySchemaGroupWithCompositeID) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // EntitySchemaGroupWithCompositeIDInput - a readonly computed ID for the group including schema slug and the group ID
 type EntitySchemaGroupWithCompositeIDInput struct {
-	Label string `json:"label"`
-	ID    string `json:"id"`
+	Label string  `json:"label"`
+	ID    *string `json:"id,omitempty"`
 	// Render order of the group
 	Order *int64 `default:"0" json:"order"`
 	// Expanded by default
@@ -145,6 +154,8 @@ type EntitySchemaGroupWithCompositeIDInput struct {
 	// This group should only be active when all the settings have the correct value
 	SettingsFlag     []SettingFlag                                     `json:"settings_flag,omitempty"`
 	InfoTooltipTitle *EntitySchemaGroupWithCompositeIDInfoTooltipTitle `json:"info_tooltip_title,omitempty"`
+	// Schema slug the group belongs to
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (e EntitySchemaGroupWithCompositeIDInput) MarshalJSON() ([]byte, error) {
@@ -165,9 +176,9 @@ func (o *EntitySchemaGroupWithCompositeIDInput) GetLabel() string {
 	return o.Label
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetID() string {
+func (o *EntitySchemaGroupWithCompositeIDInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -219,4 +230,11 @@ func (o *EntitySchemaGroupWithCompositeIDInput) GetInfoTooltipTitle() *EntitySch
 		return nil
 	}
 	return o.InfoTooltipTitle
+}
+
+func (o *EntitySchemaGroupWithCompositeIDInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
 }
