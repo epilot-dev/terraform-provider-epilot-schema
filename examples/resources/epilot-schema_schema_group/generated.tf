@@ -6,8 +6,8 @@ resource "epilot-schema_schema_group" "myschemagroup" {
   expanded           = false
   feature_flag       = null
   info_tooltip_title = null
-  label              = "Payment Details"
-  order              = 7
+  label              = "Test Group"
+  order              = -2
   purpose            = []
   render_condition   = null
   schema             = "contact"
