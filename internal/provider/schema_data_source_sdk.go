@@ -4342,7 +4342,6 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				r.Capabilities[capabilitiesCount].UIHooks = capabilities1.UIHooks
 			}
 		}
-		r.Comment = types.StringPointerValue(resp.Comment)
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		if len(resp.DialogConfig) > 0 {
 			r.DialogConfig = make(map[string]types.String)
@@ -4445,13 +4444,6 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		r.Plural = types.StringValue(resp.Plural)
 		r.Published = types.BoolPointerValue(resp.Published)
 		r.Slug = types.StringValue(resp.Slug)
-		if resp.Source == nil {
-			r.Source = nil
-		} else {
-			r.Source = &tfTypes.Source{}
-			r.Source.ID = types.StringPointerValue(resp.Source.ID)
-			r.Source.Type = types.StringPointerValue(resp.Source.Type)
-		}
 		r.TitleTemplate = types.StringPointerValue(resp.TitleTemplate)
 		if resp.UIConfig == nil {
 			r.UIConfig = nil

@@ -166,8 +166,8 @@ func New(opts ...SDKOption) *SDK {
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.396.0",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.396.0 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
+			GenVersion:        "2.409.0",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.409.0 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
 			Hooks:             hooks.New(),
 		},
 	}

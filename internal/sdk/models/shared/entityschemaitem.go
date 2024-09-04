@@ -8,25 +8,6 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type Source struct {
-	ID   *string `json:"id,omitempty"`
-	Type *string `json:"type,omitempty"`
-}
-
-func (o *Source) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *Source) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
 type TableViewType string
 
 const (
@@ -561,8 +542,6 @@ type EntitySchemaItem struct {
 	ID        *string `json:"id,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	Comment   *string `json:"comment,omitempty"`
-	Source    *Source `json:"source,omitempty"`
 	// URL-friendly identifier for the entity schema
 	Slug    string `json:"slug"`
 	Version *int64 `json:"version,omitempty"`
@@ -617,20 +596,6 @@ func (o *EntitySchemaItem) GetUpdatedAt() *string {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *EntitySchemaItem) GetComment() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Comment
-}
-
-func (o *EntitySchemaItem) GetSource() *Source {
-	if o == nil {
-		return nil
-	}
-	return o.Source
 }
 
 func (o *EntitySchemaItem) GetSlug() string {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: af8859f948e8ad3e3121452147bed01a
+  docChecksum: e520af2e5169f6933f36583b9a9e7b1e
   docVersion: 1.0.0
-  speakeasyVersion: 1.366.0
-  generationVersion: 2.396.0
-  releaseVersion: 0.9.1
-  configChecksum: d5fd30c9ad7bbf01bd7332f241133b7d
+  speakeasyVersion: 1.390.0
+  generationVersion: 2.409.0
+  releaseVersion: 0.9.2
+  configChecksum: 687ba08e4cf951fa7135cafb1142474d
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.4
-    core: 3.24.6
+    core: 3.24.7
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.0
     globalSecurity: 2.81.8
@@ -298,7 +298,6 @@ generatedFiles:
   - internal/provider/types/info_tooltip_title.go
   - internal/provider/types/entity_schema_group.go
   - internal/provider/types/entity_schema_layout_settings.go
-  - internal/provider/types/source.go
   - internal/provider/types/entity_default_create.go
   - internal/provider/types/entity_view_disabled.go
   - internal/provider/types/redirect_entity_view.go

@@ -25,6 +25,10 @@ actions:
   - target: $["paths"]["/v1/entity/schemas/{slug}"]["delete"]
     update:
       x-speakeasy-entity-operation: Schema#delete
+  - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["comment"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["source"]
+    remove: true
 
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]

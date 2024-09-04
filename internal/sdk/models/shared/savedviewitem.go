@@ -9,17 +9,17 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type CreatedBySource string
+type Source string
 
 const (
-	CreatedBySourceSystem    CreatedBySource = "SYSTEM"
-	CreatedBySourceBlueprint CreatedBySource = "BLUEPRINT"
+	SourceSystem    Source = "SYSTEM"
+	SourceBlueprint Source = "BLUEPRINT"
 )
 
-func (e CreatedBySource) ToPointer() *CreatedBySource {
+func (e Source) ToPointer() *Source {
 	return &e
 }
-func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
+func (e *Source) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,17 +28,17 @@ func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
 	case "SYSTEM":
 		fallthrough
 	case "BLUEPRINT":
-		*e = CreatedBySource(v)
+		*e = Source(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreatedBySource: %v", v)
+		return fmt.Errorf("invalid value for Source: %v", v)
 	}
 }
 
 // CreatedBy2 - A system-created view
 type CreatedBy2 struct {
-	Source               *CreatedBySource `json:"source,omitempty"`
-	AdditionalProperties any              `additionalProperties:"true" json:"-"`
+	Source               *Source `json:"source,omitempty"`
+	AdditionalProperties any     `additionalProperties:"true" json:"-"`
 }
 
 func (c CreatedBy2) MarshalJSON() ([]byte, error) {
@@ -52,7 +52,7 @@ func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreatedBy2) GetSource() *CreatedBySource {
+func (o *CreatedBy2) GetSource() *Source {
 	if o == nil {
 		return nil
 	}

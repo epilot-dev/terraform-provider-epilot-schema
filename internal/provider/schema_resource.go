@@ -43,7 +43,6 @@ type SchemaResourceModel struct {
 	Attributes             []tfTypes.Attribute                 `tfsdk:"attributes"`
 	Blueprint              types.String                        `tfsdk:"blueprint"`
 	Capabilities           []tfTypes.EntityCapability          `tfsdk:"capabilities"`
-	Comment                types.String                        `tfsdk:"comment"`
 	CreatedAt              types.String                        `tfsdk:"created_at"`
 	DialogConfig           map[string]types.String             `tfsdk:"dialog_config"`
 	Draft                  types.Bool                          `tfsdk:"draft"`
@@ -59,7 +58,6 @@ type SchemaResourceModel struct {
 	Published              types.Bool                          `tfsdk:"published"`
 	Purpose                []types.String                      `tfsdk:"purpose"`
 	Slug                   types.String                        `tfsdk:"slug"`
-	Source                 *tfTypes.Source                     `tfsdk:"source"`
 	TitleTemplate          types.String                        `tfsdk:"title_template"`
 	UIConfig               *tfTypes.EntitySchemaUIConfig       `tfsdk:"ui_config"`
 	UpdatedAt              types.String                        `tfsdk:"updated_at"`
@@ -15040,9 +15038,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					},
 				},
 			},
-			"comment": schema.StringAttribute{
-				Computed: true,
-			},
 			"created_at": schema.StringAttribute{
 				Computed: true,
 			},
@@ -15252,17 +15247,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			"slug": schema.StringAttribute{
 				Required:    true,
 				Description: `Entity Type`,
-			},
-			"source": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.StringAttribute{
-						Computed: true,
-					},
-					"type": schema.StringAttribute{
-						Computed: true,
-					},
-				},
 			},
 			"title_template": schema.StringAttribute{
 				Computed:    true,

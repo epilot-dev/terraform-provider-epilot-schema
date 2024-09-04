@@ -188,10 +188,8 @@ resource "epilot-schema_schema" "my_schema" {
 
 ### Read-Only
 
-- `comment` (String)
 - `created_at` (String)
 - `id` (String) Generated uuid for schema
-- `source` (Attributes) (see [below for nested schema](#nestedatt--source))
 - `updated_at` (String)
 
 <a id="nestedatt--attributes"></a>
@@ -4802,17 +4800,6 @@ Optional:
 
 - `route` (String)
 - `view_type` (String) must be one of ["redirect"]
-
-
-
-
-<a id="nestedatt--source"></a>
-### Nested Schema for `source`
-
-Read-Only:
-
-- `id` (String)
-- `type` (String)
 
 ## Import
 

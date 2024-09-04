@@ -2453,15 +2453,6 @@ components:
               type: string
             updated_at:
               type: string
-            comment:
-              type: string
-            source:
-              type: object
-              properties:
-                id:
-                  type: string
-                type:
-                  type: string
         - $ref: "#/components/schemas/EntitySchema"
       x-speakeasy-entity: Schema
     GenerateEntityTableAIFiltersRequest:

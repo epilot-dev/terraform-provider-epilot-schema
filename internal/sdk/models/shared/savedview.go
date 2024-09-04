@@ -9,17 +9,17 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type SavedViewCreatedBySource string
+type CreatedBySource string
 
 const (
-	SavedViewCreatedBySourceSystem    SavedViewCreatedBySource = "SYSTEM"
-	SavedViewCreatedBySourceBlueprint SavedViewCreatedBySource = "BLUEPRINT"
+	CreatedBySourceSystem    CreatedBySource = "SYSTEM"
+	CreatedBySourceBlueprint CreatedBySource = "BLUEPRINT"
 )
 
-func (e SavedViewCreatedBySource) ToPointer() *SavedViewCreatedBySource {
+func (e CreatedBySource) ToPointer() *CreatedBySource {
 	return &e
 }
-func (e *SavedViewCreatedBySource) UnmarshalJSON(data []byte) error {
+func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,17 +28,17 @@ func (e *SavedViewCreatedBySource) UnmarshalJSON(data []byte) error {
 	case "SYSTEM":
 		fallthrough
 	case "BLUEPRINT":
-		*e = SavedViewCreatedBySource(v)
+		*e = CreatedBySource(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SavedViewCreatedBySource: %v", v)
+		return fmt.Errorf("invalid value for CreatedBySource: %v", v)
 	}
 }
 
 // SavedViewCreatedBy2 - A system-created view
 type SavedViewCreatedBy2 struct {
-	Source               *SavedViewCreatedBySource `json:"source,omitempty"`
-	AdditionalProperties any                       `additionalProperties:"true" json:"-"`
+	Source               *CreatedBySource `json:"source,omitempty"`
+	AdditionalProperties any              `additionalProperties:"true" json:"-"`
 }
 
 func (s SavedViewCreatedBy2) MarshalJSON() ([]byte, error) {
@@ -52,7 +52,7 @@ func (s *SavedViewCreatedBy2) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SavedViewCreatedBy2) GetSource() *SavedViewCreatedBySource {
+func (o *SavedViewCreatedBy2) GetSource() *CreatedBySource {
 	if o == nil {
 		return nil
 	}
