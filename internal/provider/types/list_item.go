@@ -2,7 +2,7 @@
 
 package types
 
-type EntitySchemaListItem struct {
+type ListItem struct {
 	QuickActions      []EntityAction      `tfsdk:"quick_actions"`
 	SummaryAttributes []SummaryAttributes `tfsdk:"summary_attributes"`
 }

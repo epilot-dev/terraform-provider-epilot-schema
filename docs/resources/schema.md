@@ -144,15 +144,18 @@ resource "epilot-schema_schema" "my_schema" {
       ]
     },
   ]
+  created_at     = "...my_created_at..."
   draft          = false
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
+  id             = "6618ed5e-e614-4694-b65b-0af303692efc"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
-  version        = 2
+  updated_at     = "...my_updated_at..."
+  version        = 6
 }
 ```
 
@@ -170,6 +173,7 @@ resource "epilot-schema_schema" "my_schema" {
 ### Optional
 
 - `blueprint` (String) Reference to blueprint
+- `created_at` (String)
 - `dialog_config` (Map of String)
 - `draft` (Boolean) Default: false
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
@@ -177,6 +181,7 @@ resource "epilot-schema_schema" "my_schema" {
 - `feature_flag` (String) This schema should only be active when the feature flag is enabled
 - `group_settings` (Attributes List) A list of Group Titles and associated settings if present. (see [below for nested schema](#nestedatt--group_settings))
 - `icon` (String)
+- `id` (String) Generated uuid for schema
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 - Managed Properties: are interpreted and transformed into layout styles
 - Un-managed Properties: are appended as styles into the attribute mounting node (see [below for nested schema](#nestedatt--layout_settings))
@@ -184,13 +189,8 @@ resource "epilot-schema_schema" "my_schema" {
 - `purpose` (List of String)
 - `title_template` (String) Template for rendering the title field. Uses handlebars
 - `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config))
-- `version` (Number)
-
-### Read-Only
-
-- `created_at` (String)
-- `id` (String) Generated uuid for schema
 - `updated_at` (String)
+- `version` (Number)
 
 <a id="nestedatt--attributes"></a>
 ### Nested Schema for `attributes`

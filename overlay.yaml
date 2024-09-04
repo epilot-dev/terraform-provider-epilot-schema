@@ -29,6 +29,11 @@ actions:
     remove: true
   - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]["properties"]["source"]
     remove: true
+  - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]["$ref"]
+    remove: true
+  - target: $["paths"]["/v1/entity/schemas/{slug}"]["put"]["requestBody"]["content"]["application/json"]["schema"]
+    update:
+      $ref: "#/components/schemas/EntitySchemaItem"
 
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]

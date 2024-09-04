@@ -129,13 +129,16 @@ resource "epilot-schema_schema" "my_schema" {
       ]
     },
   ]
+  created_at     = "...my_created_at..."
   draft          = false
   feature_flag   = "FF_MY_FEATURE_FLAG"
   icon           = "person"
+  id             = "6618ed5e-e614-4694-b65b-0af303692efc"
   name           = "Contact"
   plural         = "Contacts"
   published      = false
   slug           = "contact"
   title_template = "{{first_name}} {{last_name}}"
-  version        = 2
+  updated_at     = "...my_updated_at..."
+  version        = 6
 }

@@ -415,7 +415,7 @@ func (s *Schemas) PutSchema(ctx context.Context, request operations.PutSchemaReq
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySchema", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySchemaItem", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}

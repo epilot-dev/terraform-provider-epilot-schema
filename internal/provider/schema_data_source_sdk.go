@@ -4430,7 +4430,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		if resp.LayoutSettings == nil {
 			r.LayoutSettings = nil
 		} else {
-			r.LayoutSettings = &tfTypes.EntitySchemaLayoutSettings{}
+			r.LayoutSettings = &tfTypes.LayoutSettings{}
 			if resp.LayoutSettings.AdditionalProperties == nil {
 				r.LayoutSettings.AdditionalProperties = types.StringNull()
 			} else {
@@ -4448,11 +4448,11 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		if resp.UIConfig == nil {
 			r.UIConfig = nil
 		} else {
-			r.UIConfig = &tfTypes.EntitySchemaUIConfig{}
+			r.UIConfig = &tfTypes.UIConfig{}
 			if resp.UIConfig.CreateView == nil {
 				r.UIConfig.CreateView = nil
 			} else {
-				r.UIConfig.CreateView = &tfTypes.EntitySchemaCreateView{}
+				r.UIConfig.CreateView = &tfTypes.CreateView{}
 				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
 					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
@@ -4488,7 +4488,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			if resp.UIConfig.EditView == nil {
 				r.UIConfig.EditView = nil
 			} else {
-				r.UIConfig.EditView = &tfTypes.EntitySchemaEditView{}
+				r.UIConfig.EditView = &tfTypes.EditView{}
 				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
 					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
@@ -4528,7 +4528,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			if resp.UIConfig.ListItem == nil {
 				r.UIConfig.ListItem = nil
 			} else {
-				r.UIConfig.ListItem = &tfTypes.EntitySchemaListItem{}
+				r.UIConfig.ListItem = &tfTypes.ListItem{}
 				r.UIConfig.ListItem.QuickActions = []tfTypes.EntityAction{}
 				if len(r.UIConfig.ListItem.QuickActions) > len(resp.UIConfig.ListItem.QuickActions) {
 					r.UIConfig.ListItem.QuickActions = r.UIConfig.ListItem.QuickActions[:len(resp.UIConfig.ListItem.QuickActions)]
@@ -4589,13 +4589,13 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			if resp.UIConfig.Sharing == nil {
 				r.UIConfig.Sharing = nil
 			} else {
-				r.UIConfig.Sharing = &tfTypes.EntitySchemaSharing{}
+				r.UIConfig.Sharing = &tfTypes.Sharing{}
 				r.UIConfig.Sharing.ShowSharingButton = types.BoolPointerValue(resp.UIConfig.Sharing.ShowSharingButton)
 			}
 			if resp.UIConfig.SingleView == nil {
 				r.UIConfig.SingleView = nil
 			} else {
-				r.UIConfig.SingleView = &tfTypes.EntitySchemaEditView{}
+				r.UIConfig.SingleView = &tfTypes.EditView{}
 				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
 					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
@@ -4635,7 +4635,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			if resp.UIConfig.TableView == nil {
 				r.UIConfig.TableView = nil
 			} else {
-				r.UIConfig.TableView = &tfTypes.EntitySchemaTableView{}
+				r.UIConfig.TableView = &tfTypes.TableView{}
 				if resp.UIConfig.TableView.EntityDefaultTable != nil {
 					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
 					r.UIConfig.TableView.EntityDefaultTable.BulkActions = []tfTypes.BulkActions{}

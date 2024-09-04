@@ -29,28 +29,28 @@ type SchemaDataSource struct {
 
 // SchemaDataSourceModel describes the data model.
 type SchemaDataSourceModel struct {
-	Attributes             []tfTypes.Attribute                 `tfsdk:"attributes"`
-	Blueprint              types.String                        `tfsdk:"blueprint"`
-	Capabilities           []tfTypes.EntityCapability          `tfsdk:"capabilities"`
-	CreatedAt              types.String                        `tfsdk:"created_at"`
-	DialogConfig           map[string]types.String             `tfsdk:"dialog_config"`
-	Draft                  types.Bool                          `tfsdk:"draft"`
-	EnableSetting          []types.String                      `tfsdk:"enable_setting"`
-	ExplicitSearchMappings map[string]tfTypes.SearchMappings   `tfsdk:"explicit_search_mappings"`
-	FeatureFlag            types.String                        `tfsdk:"feature_flag"`
-	GroupSettings          []tfTypes.EntitySchemaGroup         `tfsdk:"group_settings"`
-	Icon                   types.String                        `tfsdk:"icon"`
-	ID                     types.String                        `tfsdk:"id"`
-	LayoutSettings         *tfTypes.EntitySchemaLayoutSettings `tfsdk:"layout_settings"`
-	Name                   types.String                        `tfsdk:"name"`
-	Plural                 types.String                        `tfsdk:"plural"`
-	Published              types.Bool                          `tfsdk:"published"`
-	Purpose                []types.String                      `tfsdk:"purpose"`
-	Slug                   types.String                        `tfsdk:"slug"`
-	TitleTemplate          types.String                        `tfsdk:"title_template"`
-	UIConfig               *tfTypes.EntitySchemaUIConfig       `tfsdk:"ui_config"`
-	UpdatedAt              types.String                        `tfsdk:"updated_at"`
-	Version                types.Int64                         `tfsdk:"version"`
+	Attributes             []tfTypes.Attribute               `tfsdk:"attributes"`
+	Blueprint              types.String                      `tfsdk:"blueprint"`
+	Capabilities           []tfTypes.EntityCapability        `tfsdk:"capabilities"`
+	CreatedAt              types.String                      `tfsdk:"created_at"`
+	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
+	Draft                  types.Bool                        `tfsdk:"draft"`
+	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
+	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
+	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
+	GroupSettings          []tfTypes.EntitySchemaGroup       `tfsdk:"group_settings"`
+	Icon                   types.String                      `tfsdk:"icon"`
+	ID                     types.String                      `tfsdk:"id"`
+	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
+	Name                   types.String                      `tfsdk:"name"`
+	Plural                 types.String                      `tfsdk:"plural"`
+	Published              types.Bool                        `tfsdk:"published"`
+	Purpose                []types.String                    `tfsdk:"purpose"`
+	Slug                   types.String                      `tfsdk:"slug"`
+	TitleTemplate          types.String                      `tfsdk:"title_template"`
+	UIConfig               *tfTypes.UIConfig                 `tfsdk:"ui_config"`
+	UpdatedAt              types.String                      `tfsdk:"updated_at"`
+	Version                types.Int64                       `tfsdk:"version"`
 }
 
 // Metadata returns the data source type name.

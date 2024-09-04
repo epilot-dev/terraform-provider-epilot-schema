@@ -2,7 +2,7 @@
 
 package types
 
-type EntitySchemaTableView struct {
+type TableView struct {
 	EntityDefaultTable *EntityDefaultTable `tfsdk:"entity_default_table" tfPlanOnly:"true"`
 	EntityViewDisabled *EntityViewDisabled `tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
 	RedirectEntityView *RedirectEntityView `tfsdk:"redirect_entity_view" tfPlanOnly:"true"`
