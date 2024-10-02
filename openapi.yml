@@ -2278,6 +2278,99 @@ paths:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
 
+  # Group Headlines
+  /v1/entity/schemas/headline:
+    post:
+      operationId: createSchemaGroupHeadline
+      summary: createSchemaGroupHeadline
+      description: Create a headline in a schema group
+      tags:
+        - Schemas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+  /v1/entity/schemas/headline/{composite_id}:
+    get:
+      operationId: getSchemaGroupHeadline
+      summary: getSchemaGroupHeadline
+      description: Get a group headline from schema from given headline composite ID
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+    put:
+      operationId: putSchemaGroupHeadline
+      summary: putSchemaGroupHeadline
+      description: Adds or updates a group headline in the schema
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+    delete:
+      operationId: deleteSchemaGroupHeadline
+      summary: deleteSchemaGroupHeadline
+      description: Deletes a group headline from a schema
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+
 components:
   securitySchemes:
     EpilotAuth:
@@ -3451,7 +3544,57 @@ components:
       required:
         - label
         - value
-
+    GroupHeadline:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        label:
+          type: string
+        layout:
+          type: string
+        group:
+          type: string
+          description: The group of headline attribute
+        order:
+          type: integer
+          description: The order of headline attribute
+        type:
+          type: string
+          enum:
+            - headline
+        enable_divider:
+          type: boolean
+          default: false
+        divider:
+          type: string
+          enum:
+            - top_divider
+            - bottom_divider
+      required:
+        - id
+        - name
+        - label
+        - group
+        - type
+    GroupHeadlineWithCompositeID:
+      allOf:
+        - $ref: "#/components/schemas/GroupHeadline"
+        - type: object
+          description: a readonly computed ID for the entity group headline including schema slug and the headline ID
+          properties:
+            composite_id:
+              type: string
+              readOnly: true
+              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+            schema:
+              type: string
+              description: Schema slug the capability belongs to
+              example: contact
+    
     EntitySlug:
       description: URL-friendly identifier for the entity schema
       type: string

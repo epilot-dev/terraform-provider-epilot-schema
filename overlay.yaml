@@ -77,6 +77,21 @@ actions:
     update:
       x-speakeasy-entity-operation: SchemaGroup#delete
 
+  # Schema Group Headlines
+  - target: $["paths"]["/v1/entity/schemas/headline/{composite_id}"]["get"]
+    update:
+      x-speakeasy-entity-operation: SchemaGroupHeadline#get
+  - target: $["paths"]["/v1/entity/schemas/headline"]["post"]
+    update:
+      x-speakeasy-entity-operation: SchemaGroupHeadline#create
+  - target: $["paths"]["/v1/entity/schemas/headline/{composite_id}"]["put"]
+    update:
+      x-speakeasy-entity-operation: SchemaGroupHeadline#update
+  - target: $["paths"]["/v1/entity/schemas/headline/{composite_id}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: SchemaGroupHeadline#delete
+
+
   # Components 
   - target: $["components"]["schemas"]["EntitySchemaItem"]
     update:
@@ -90,6 +105,9 @@ actions:
   - target: $["components"]["schemas"]["EntitySchemaGroupWithCompositeID"]
     update:
       x-speakeasy-entity: SchemaGroup
+  - target: $["components"]["schemas"]["GroupHeadlineWithCompositeID"]
+    update:
+      x-speakeasy-entity: SchemaGroupHeadline
 
   # Ignore
   - target: $["components"]["schemas"]["SelectAttribute"]["allOf"][1]["properties"]["options"]

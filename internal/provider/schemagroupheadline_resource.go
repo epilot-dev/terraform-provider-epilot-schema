@@ -5,16 +5,13 @@ package provider
 import (
 	"context"
 	"fmt"
-	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
-	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -22,131 +19,104 @@ import (
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
-var _ resource.Resource = &SchemaGroupResource{}
-var _ resource.ResourceWithImportState = &SchemaGroupResource{}
+var _ resource.Resource = &SchemaGroupHeadlineResource{}
+var _ resource.ResourceWithImportState = &SchemaGroupHeadlineResource{}
 
-func NewSchemaGroupResource() resource.Resource {
-	return &SchemaGroupResource{}
+func NewSchemaGroupHeadlineResource() resource.Resource {
+	return &SchemaGroupHeadlineResource{}
 }
 
-// SchemaGroupResource defines the resource implementation.
-type SchemaGroupResource struct {
+// SchemaGroupHeadlineResource defines the resource implementation.
+type SchemaGroupHeadlineResource struct {
 	client *sdk.SDK
 }
 
-// SchemaGroupResourceModel describes the resource data model.
-type SchemaGroupResourceModel struct {
-	CompositeID      types.String              `tfsdk:"composite_id"`
-	Expanded         types.Bool                `tfsdk:"expanded"`
-	FeatureFlag      types.String              `tfsdk:"feature_flag"`
-	ID               types.String              `tfsdk:"id"`
-	InfoTooltipTitle *tfTypes.InfoTooltipTitle `tfsdk:"info_tooltip_title"`
-	Label            types.String              `tfsdk:"label"`
-	Order            types.Int64               `tfsdk:"order"`
-	Purpose          []types.String            `tfsdk:"purpose"`
-	RenderCondition  types.String              `tfsdk:"render_condition"`
-	Schema           types.String              `tfsdk:"schema"`
-	SettingsFlag     []tfTypes.SettingFlag     `tfsdk:"settings_flag"`
+// SchemaGroupHeadlineResourceModel describes the resource data model.
+type SchemaGroupHeadlineResourceModel struct {
+	CompositeID   types.String `tfsdk:"composite_id"`
+	Divider       types.String `tfsdk:"divider"`
+	EnableDivider types.Bool   `tfsdk:"enable_divider"`
+	Group         types.String `tfsdk:"group"`
+	ID            types.String `tfsdk:"id"`
+	Label         types.String `tfsdk:"label"`
+	Layout        types.String `tfsdk:"layout"`
+	Name          types.String `tfsdk:"name"`
+	Order         types.Int64  `tfsdk:"order"`
+	Schema        types.String `tfsdk:"schema"`
+	Type          types.String `tfsdk:"type"`
 }
 
-func (r *SchemaGroupResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_schema_group"
+func (r *SchemaGroupHeadlineResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_schema_group_headline"
 }
 
-func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *SchemaGroupHeadlineResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "SchemaGroup Resource",
+		MarkdownDescription: "SchemaGroupHeadline Resource",
 		Attributes: map[string]schema.Attribute{
 			"composite_id": schema.StringAttribute{
 				Computed:    true,
-				Description: `Schema Slug and the Group ID`,
+				Description: `Schema Slug and the Schema Group ID`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
 				},
 			},
-			"expanded": schema.BoolAttribute{
+			"divider": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `must be one of ["top_divider", "bottom_divider"]`,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"top_divider",
+						"bottom_divider",
+					),
+				},
+			},
+			"enable_divider": schema.BoolAttribute{
 				Computed:    true,
 				Optional:    true,
 				Default:     booldefault.StaticBool(false),
-				Description: `Expanded by default. Default: false`,
+				Description: `Default: false`,
 			},
-			"feature_flag": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `This group should only be active when the feature flag is enabled`,
+			"group": schema.StringAttribute{
+				Required:    true,
+				Description: `The group of headline attribute`,
 			},
 			"id": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
-			},
-			"info_tooltip_title": schema.SingleNestedAttribute{
-				Computed: true,
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"default": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Default string for info tooltip`,
-					},
-					"key": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Translation key for info tooltip`,
-					},
-				},
+				Required: true,
 			},
 			"label": schema.StringAttribute{
+				Required: true,
+			},
+			"layout": schema.StringAttribute{
+				Computed: true,
+				Optional: true,
+			},
+			"name": schema.StringAttribute{
 				Required: true,
 			},
 			"order": schema.Int64Attribute{
 				Computed:    true,
 				Optional:    true,
-				Default:     int64default.StaticInt64(0),
-				Description: `Render order of the group. Default: 0`,
-			},
-			"purpose": schema.ListAttribute{
-				Computed:    true,
-				Optional:    true,
-				ElementType: types.StringType,
-				Description: `Only render group when one of the purposes is enabled`,
-			},
-			"render_condition": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `Only render group when render_condition resolves to true`,
+				Description: `The order of headline attribute`,
 			},
 			"schema": schema.StringAttribute{
 				Computed:    true,
 				Optional:    true,
-				Description: `Schema slug the group belongs to`,
+				Description: `Schema slug the capability belongs to`,
 			},
-			"settings_flag": schema.ListNestedAttribute{
-				Computed: true,
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
-					Attributes: map[string]schema.Attribute{
-						"enabled": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Whether the setting should be enabled or not`,
-						},
-						"name": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `The name of the organization setting to check`,
-						},
-					},
+			"type": schema.StringAttribute{
+				Required:    true,
+				Description: `must be "headline"`,
+				Validators: []validator.String{
+					stringvalidator.OneOf("headline"),
 				},
-				Description: `This group should only be active when all the settings have the correct value`,
 			},
 		},
 	}
 }
 
-func (r *SchemaGroupResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *SchemaGroupHeadlineResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	// Prevent panic if the provider has not been configured.
 	if req.ProviderData == nil {
 		return
@@ -166,8 +136,8 @@ func (r *SchemaGroupResource) Configure(ctx context.Context, req resource.Config
 	r.client = client
 }
 
-func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var data *SchemaGroupResourceModel
+func (r *SchemaGroupHeadlineResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var data *SchemaGroupHeadlineResourceModel
 	var plan types.Object
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
@@ -184,8 +154,8 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	request := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
-	res, err := r.client.Schemas.CreateSchemaGroup(ctx, request)
+	request := data.ToSharedGroupHeadlineWithCompositeIDInput()
+	res, err := r.client.Schemas.CreateSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -201,19 +171,19 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}
-	if !(res.EntitySchemaGroupWithCompositeID != nil) {
+	if !(res.GroupHeadlineWithCompositeID != nil) {
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
 	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *SchemaGroupResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var data *SchemaGroupResourceModel
+func (r *SchemaGroupHeadlineResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var data *SchemaGroupHeadlineResourceModel
 	var item types.Object
 
 	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
@@ -233,10 +203,10 @@ func (r *SchemaGroupResource) Read(ctx context.Context, req resource.ReadRequest
 	var compositeID string
 	compositeID = data.CompositeID.ValueString()
 
-	request := operations.GetSchemaGroupRequest{
+	request := operations.GetSchemaGroupHeadlineRequest{
 		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.GetSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.GetSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -256,18 +226,18 @@ func (r *SchemaGroupResource) Read(ctx context.Context, req resource.ReadRequest
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}
-	if !(res.EntitySchemaGroupWithCompositeID != nil) {
+	if !(res.GroupHeadlineWithCompositeID != nil) {
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *SchemaGroupResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var data *SchemaGroupResourceModel
+func (r *SchemaGroupHeadlineResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var data *SchemaGroupHeadlineResourceModel
 	var plan types.Object
 
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
@@ -283,12 +253,12 @@ func (r *SchemaGroupResource) Update(ctx context.Context, req resource.UpdateReq
 	var compositeID string
 	compositeID = data.CompositeID.ValueString()
 
-	entitySchemaGroupWithCompositeID := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
-	request := operations.PutSchemaGroupRequest{
-		CompositeID:                      compositeID,
-		EntitySchemaGroupWithCompositeID: entitySchemaGroupWithCompositeID,
+	groupHeadlineWithCompositeID := data.ToSharedGroupHeadlineWithCompositeIDInput()
+	request := operations.PutSchemaGroupHeadlineRequest{
+		CompositeID:                  compositeID,
+		GroupHeadlineWithCompositeID: groupHeadlineWithCompositeID,
 	}
-	res, err := r.client.Schemas.PutSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.PutSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -304,19 +274,19 @@ func (r *SchemaGroupResource) Update(ctx context.Context, req resource.UpdateReq
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}
-	if !(res.EntitySchemaGroupWithCompositeID != nil) {
+	if !(res.GroupHeadlineWithCompositeID != nil) {
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
 	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *SchemaGroupResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var data *SchemaGroupResourceModel
+func (r *SchemaGroupHeadlineResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var data *SchemaGroupHeadlineResourceModel
 	var item types.Object
 
 	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
@@ -336,10 +306,10 @@ func (r *SchemaGroupResource) Delete(ctx context.Context, req resource.DeleteReq
 	var compositeID string
 	compositeID = data.CompositeID.ValueString()
 
-	request := operations.DeleteSchemaGroupRequest{
+	request := operations.DeleteSchemaGroupHeadlineRequest{
 		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.DeleteSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.DeleteSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -358,6 +328,6 @@ func (r *SchemaGroupResource) Delete(ctx context.Context, req resource.DeleteReq
 
 }
 
-func (r *SchemaGroupResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *SchemaGroupHeadlineResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("composite_id"), req.ID)...)
 }
