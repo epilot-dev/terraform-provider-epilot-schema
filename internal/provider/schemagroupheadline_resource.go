@@ -83,7 +83,8 @@ func (r *SchemaGroupHeadlineResource) Schema(ctx context.Context, req resource.S
 				Description: `The group of headline attribute`,
 			},
 			"id": schema.StringAttribute{
-				Required: true,
+				Computed: true,
+				Optional: true,
 			},
 			"label": schema.StringAttribute{
 				Required: true,

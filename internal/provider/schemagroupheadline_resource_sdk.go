@@ -8,9 +8,12 @@ import (
 )
 
 func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDInput() *shared.GroupHeadlineWithCompositeIDInput {
-	var id string
-	id = r.ID.ValueString()
-
+	id := new(string)
+	if !r.ID.IsUnknown() && !r.ID.IsNull() {
+		*id = r.ID.ValueString()
+	} else {
+		id = nil
+	}
 	var name string
 	name = r.Name.ValueString()
 
@@ -76,7 +79,7 @@ func (r *SchemaGroupHeadlineResourceModel) RefreshFromSharedGroupHeadlineWithCom
 		}
 		r.EnableDivider = types.BoolPointerValue(resp.EnableDivider)
 		r.Group = types.StringValue(resp.Group)
-		r.ID = types.StringValue(resp.ID)
+		r.ID = types.StringPointerValue(resp.ID)
 		r.Label = types.StringValue(resp.Label)
 		r.Layout = types.StringPointerValue(resp.Layout)
 		r.Name = types.StringValue(resp.Name)

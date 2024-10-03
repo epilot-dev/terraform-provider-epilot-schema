@@ -3575,7 +3575,6 @@ components:
             - top_divider
             - bottom_divider
       required:
-        - id
         - name
         - label
         - group

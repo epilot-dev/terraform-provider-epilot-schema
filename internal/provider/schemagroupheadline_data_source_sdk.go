@@ -17,7 +17,7 @@ func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithC
 		}
 		r.EnableDivider = types.BoolPointerValue(resp.EnableDivider)
 		r.Group = types.StringValue(resp.Group)
-		r.ID = types.StringValue(resp.ID)
+		r.ID = types.StringPointerValue(resp.ID)
 		r.Label = types.StringValue(resp.Label)
 		r.Layout = types.StringPointerValue(resp.Layout)
 		r.Name = types.StringValue(resp.Name)

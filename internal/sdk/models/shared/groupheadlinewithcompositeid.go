@@ -59,7 +59,7 @@ func (e *Divider) UnmarshalJSON(data []byte) error {
 
 // GroupHeadlineWithCompositeID - a readonly computed ID for the entity group headline including schema slug and the headline ID
 type GroupHeadlineWithCompositeID struct {
-	ID     string  `json:"id"`
+	ID     *string `json:"id,omitempty"`
 	Name   string  `json:"name"`
 	Label  string  `json:"label"`
 	Layout *string `json:"layout,omitempty"`
@@ -86,9 +86,9 @@ func (g *GroupHeadlineWithCompositeID) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GroupHeadlineWithCompositeID) GetID() string {
+func (o *GroupHeadlineWithCompositeID) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -165,7 +165,7 @@ func (o *GroupHeadlineWithCompositeID) GetSchema() *string {
 
 // GroupHeadlineWithCompositeIDInput - a readonly computed ID for the entity group headline including schema slug and the headline ID
 type GroupHeadlineWithCompositeIDInput struct {
-	ID     string  `json:"id"`
+	ID     *string `json:"id,omitempty"`
 	Name   string  `json:"name"`
 	Label  string  `json:"label"`
 	Layout *string `json:"layout,omitempty"`
@@ -191,9 +191,9 @@ func (g *GroupHeadlineWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetID() string {
+func (o *GroupHeadlineWithCompositeIDInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
