@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type TextAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	Constraints              *AddressRelationAttributeConstraints `tfsdk:"constraints"`
 	DefaultValue             types.String                         `tfsdk:"default_value"`

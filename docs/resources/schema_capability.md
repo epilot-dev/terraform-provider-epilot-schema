@@ -36,8 +36,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -79,8 +82,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -122,8 +128,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -165,8 +174,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -211,8 +223,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -255,8 +270,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -309,8 +327,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -352,8 +373,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -401,8 +425,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         multiple                = false
         name                    = "...my_name..."
         order                   = 0
@@ -445,8 +472,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -488,8 +518,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -531,8 +564,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -574,8 +610,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -622,7 +661,10 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         }
         label  = "...my_label..."
         layout = "full_width"
-        name   = "...my_name..."
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
+        name = "...my_name..."
         options = [
           {
             str = "...my_str..."
@@ -673,8 +715,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -717,8 +762,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -760,8 +808,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -803,8 +854,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -847,8 +901,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -893,8 +950,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         }
         label  = "...my_label..."
         layout = "full_width"
-        name   = "Wallbox PV"
-        order  = 0
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
+        name  = "Wallbox PV"
+        order = 0
         parents = [
           "taxonomy-slug:classification-slug"
         ]
@@ -940,8 +1000,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
                   "org:456"
                 ]
               }
-              additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] } }
+              additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] }, "_manifest" : ["123e4567-e89b-12d3-a456-426614174000"] }
               id                    = "8475b15d-aa75-43bc-bc8e-905e08980b73"
+              manifest = [
+                "123e4567-e89b-12d3-a456-426614174000"
+              ]
               purpose = [
                 "..."
               ]
@@ -987,8 +1050,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -1047,8 +1113,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -1093,8 +1162,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         options                 = "{ \"see\": \"documentation\" }"
         order                   = 0
@@ -1137,8 +1209,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
@@ -1184,7 +1259,10 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         }
         label  = "...my_label..."
         layout = "full_width"
-        name   = "...my_name..."
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
+        name = "...my_name..."
         options = [
           {
             str = "...my_str..."
@@ -1236,7 +1314,10 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         }
         label  = "...my_label..."
         layout = "full_width"
-        name   = "...my_name..."
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
+        name = "...my_name..."
         options = [
           "..."
         ]
@@ -1283,8 +1364,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         multiline               = false
         name                    = "...my_name..."
         order                   = 0
@@ -1327,8 +1411,11 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
           hint_text_key          = "...my_hint_text_key..."
           hint_tooltip_placement = "top"
         }
-        label                   = "...my_label..."
-        layout                  = "full_width"
+        label  = "...my_label..."
+        layout = "full_width"
+        manifest = [
+          "123e4567-e89b-12d3-a456-426614174000"
+        ]
         multiple                = true
         name                    = "...my_name..."
         order                   = 0
@@ -1356,7 +1443,10 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
   ]
   feature_flag = "FF_MY_FEATURE_FLAG"
   id           = "d5839b94-ba20-4225-a78e-76951d352bd6"
-  name         = "customer_messaging"
+  manifest = [
+    "123e4567-e89b-12d3-a456-426614174000"
+  ]
+  name = "customer_messaging"
   purpose = [
     "taxonomy-slug:classification-slug"
   ]
@@ -1403,6 +1493,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
 - `attributes` (Attributes List) (see [below for nested schema](#nestedatt--attributes))
 - `feature_flag` (String) This capability should only be active when the feature flag is enabled
 - `id` (String) ID for the entity capability
+- `manifest` (List of String) Manifest ID used to create/update the schema capabilility
 - `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
 - `settings_flag` (Attributes List) This capability should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--settings_flag))
@@ -1468,6 +1559,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1479,7 +1571,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "relation_address"
@@ -1535,6 +1627,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--automation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1546,7 +1639,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "automation"
@@ -1602,6 +1695,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1613,7 +1707,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "boolean"
@@ -1669,6 +1763,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--computed_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1680,7 +1775,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "computed"
@@ -1737,6 +1832,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--consent_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1748,7 +1844,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `topic` (String) Not Null
@@ -1805,6 +1901,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--country_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1816,7 +1913,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "country"
@@ -1874,6 +1971,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--currency_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1885,7 +1983,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "currency"
@@ -1960,6 +2058,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--date_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -1971,7 +2070,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["date", "datetime"]
@@ -2032,6 +2131,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--file_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `multiple` (Boolean)
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
@@ -2044,7 +2144,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be one of ["image", "file"]
@@ -2100,6 +2200,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2111,7 +2212,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "internal"
@@ -2167,6 +2268,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2178,7 +2280,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "internal_user"
@@ -2234,6 +2336,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2245,7 +2348,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "invitation_email"
@@ -2301,6 +2404,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--link_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2312,7 +2416,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "link"
@@ -2371,6 +2475,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `options` (Attributes List) (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--options))
 - `order` (Number) Attribute sort order (ascending) in group
@@ -2383,7 +2488,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["multiselect", "checkbox"]
@@ -2458,6 +2563,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--number_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2469,7 +2575,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `show_separator` (Boolean) Whether or not to show a thousands separator. Default: true
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
@@ -2526,6 +2632,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2537,7 +2644,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "ordered_list"
@@ -2593,6 +2700,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2604,7 +2712,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "partner_organisation"
@@ -2660,6 +2768,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2671,7 +2780,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "partner_status"
@@ -2728,6 +2837,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2739,7 +2849,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "relation_payment_method"
@@ -2796,6 +2906,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the taxonomy classification
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `parents` (List of String)
@@ -2808,7 +2919,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `slug` (String) URL-friendly identifier for the classification
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
@@ -2874,6 +2985,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--relation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -2889,7 +3001,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--summary_fields))
@@ -2923,6 +3035,7 @@ Optional:
 - `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `id` (String) Not Null
+- `manifest` (List of String) Manifest ID used to create/update the entity
 - `purpose` (List of String)
 - `schema` (String) URL-friendly identifier for the entity schema. Not Null
 - `tags` (List of String)
@@ -3036,6 +3149,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -3049,7 +3163,7 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean)
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
@@ -3106,6 +3220,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--select_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `options` (String) Parsed as JSON.
 - `order` (Number) Attribute sort order (ascending) in group
@@ -3118,7 +3233,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["select", "radio"]
@@ -3174,6 +3289,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
@@ -3186,7 +3302,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `start_number` (Number)
@@ -3243,6 +3359,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--status_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `options` (Attributes List) (see [below for nested schema](#nestedatt--attributes--status_attribute--options))
 - `order` (Number) Attribute sort order (ascending) in group
@@ -3255,7 +3372,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "status"
@@ -3329,6 +3446,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--tags_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `options` (List of String)
 - `order` (Number) Attribute sort order (ascending) in group
@@ -3341,7 +3459,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `suggestions` (List of String)
@@ -3398,6 +3516,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--text_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `multiline` (Boolean)
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
@@ -3410,7 +3529,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "string"
@@ -3466,6 +3585,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `multiple` (Boolean) Default: false
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
@@ -3478,7 +3598,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
-- `settings_flag` (Attributes List) This attribute should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be "relation_user"

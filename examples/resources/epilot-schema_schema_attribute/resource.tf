@@ -19,8 +19,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -63,8 +66,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -107,8 +113,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -151,8 +160,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -198,8 +210,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -243,8 +258,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -298,8 +316,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -342,8 +363,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -392,8 +416,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     multiple                = true
     name                    = "...my_name..."
     order                   = 0
@@ -437,8 +464,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -481,8 +511,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -525,8 +558,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -569,8 +605,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -618,7 +657,10 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     label  = "...my_label..."
     layout = "full_width"
-    name   = "...my_name..."
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name = "...my_name..."
     options = [
       {
         str = "...my_str..."
@@ -670,8 +712,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -715,8 +760,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -759,8 +807,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -803,8 +854,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -848,8 +902,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -895,8 +952,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     label  = "...my_label..."
     layout = "full_width"
-    name   = "Wallbox PV"
-    order  = 0
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name  = "Wallbox PV"
+    order = 0
     parents = [
       "taxonomy-slug:classification-slug"
     ]
@@ -943,8 +1003,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
               "org:456"
             ]
           }
-          additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] } }
+          additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] }, "_manifest" : ["123e4567-e89b-12d3-a456-426614174000"] }
           id                    = "094dd5ad-d4b4-4ace-a195-70b490540f31"
+          manifest = [
+            "123e4567-e89b-12d3-a456-426614174000"
+          ]
           purpose = [
             "..."
           ]
@@ -990,8 +1053,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -1051,8 +1117,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -1098,8 +1167,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     options                 = "{ \"see\": \"documentation\" }"
     order                   = 0
@@ -1143,8 +1215,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     name                    = "...my_name..."
     order                   = 0
     placeholder             = "...my_placeholder..."
@@ -1191,7 +1266,10 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     label  = "...my_label..."
     layout = "full_width"
-    name   = "...my_name..."
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name = "...my_name..."
     options = [
       {
         str = "...my_str..."
@@ -1244,7 +1322,10 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     label  = "...my_label..."
     layout = "full_width"
-    name   = "...my_name..."
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name = "...my_name..."
     options = [
       "..."
     ]
@@ -1292,8 +1373,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     multiline               = true
     name                    = "...my_name..."
     order                   = 0
@@ -1337,8 +1421,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       hint_text_key          = "...my_hint_text_key..."
       hint_tooltip_placement = "top"
     }
-    label                   = "...my_label..."
-    layout                  = "full_width"
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
     multiple                = true
     name                    = "...my_name..."
     order                   = 0

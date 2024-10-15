@@ -119,13 +119,15 @@ type PartnerOrganisationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PartnerOrganisationAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -273,6 +275,13 @@ func (o *PartnerOrganisationAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *PartnerOrganisationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *PartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeConstraints {

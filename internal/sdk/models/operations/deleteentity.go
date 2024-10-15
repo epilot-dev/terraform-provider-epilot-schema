@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -12,7 +13,9 @@ type DeleteEntityRequest struct {
 	// Entity id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Activity to include in event feed
-	ActivityID *string `queryParam:"style=form,explode=true,name=activity_id"`
+	ActivityID *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
+	// Permanently deletes the entity when set to `true`
+	Purge *bool `queryParam:"style=form,explode=true,name=purge"`
 }
 
 func (o *DeleteEntityRequest) GetSlug() string {
@@ -29,11 +32,18 @@ func (o *DeleteEntityRequest) GetID() string {
 	return o.ID
 }
 
-func (o *DeleteEntityRequest) GetActivityID() *string {
+func (o *DeleteEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityID
+}
+
+func (o *DeleteEntityRequest) GetPurge() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Purge
 }
 
 type DeleteEntityResponse struct {

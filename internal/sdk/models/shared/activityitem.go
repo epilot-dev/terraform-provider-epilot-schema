@@ -15,8 +15,12 @@ type ActivityItem struct {
 	// Title for activity. Supports handlebars syntax.
 	Title string `json:"title"`
 	// Message for activity. Supports handlebars syntax.
-	Message string                 `json:"message"`
-	Payload map[string]any         `json:"payload,omitempty"`
+	Message string         `json:"message"`
+	Payload map[string]any `json:"payload,omitempty"`
+	// Indicates whether the activity is in the pending state.
+	// Pending activities are not yet visible in the activity feed and events are not yet dispatched.
+	//
+	Pending *bool                  `default:"false" json:"pending"`
 	Caller  *ActivityCallerContext `json:"caller,omitempty"`
 	// Count of total operations attached to this activity
 	OperationsTotal *int64            `json:"operations_total,omitempty"`
@@ -74,6 +78,13 @@ func (o *ActivityItem) GetPayload() map[string]any {
 		return nil
 	}
 	return o.Payload
+}
+
+func (o *ActivityItem) GetPending() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Pending
 }
 
 func (o *ActivityItem) GetCaller() *ActivityCallerContext {

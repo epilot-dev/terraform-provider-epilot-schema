@@ -127,6 +127,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem := range attributesItem.TextAttribute.Purpose {
 				purpose = append(purpose, purposeItem.ValueString())
 			}
+			var manifest []string = []string{}
+			for _, manifestItem := range attributesItem.TextAttribute.Manifest {
+				manifest = append(manifest, manifestItem.ValueString())
+			}
 			var constraints *shared.Constraints
 			if attributesItem.TextAttribute.Constraints != nil {
 				constraints = &shared.Constraints{}
@@ -244,6 +248,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon,
 				RenderCondition:          renderCondition,
 				Purpose:                  purpose,
+				Manifest:                 manifest,
 				Constraints:              constraints,
 				FeatureFlag:              featureFlag,
 				SettingsFlag:             settingsFlag,
@@ -358,6 +363,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem1 := range attributesItem.LinkAttribute.Purpose {
 				purpose1 = append(purpose1, purposeItem1.ValueString())
 			}
+			var manifest1 []string = []string{}
+			for _, manifestItem1 := range attributesItem.LinkAttribute.Manifest {
+				manifest1 = append(manifest1, manifestItem1.ValueString())
+			}
 			var constraints1 *shared.LinkAttributeConstraints
 			if attributesItem.LinkAttribute.Constraints != nil {
 				constraints1 = &shared.LinkAttributeConstraints{}
@@ -469,6 +478,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon1,
 				RenderCondition:          renderCondition1,
 				Purpose:                  purpose1,
+				Manifest:                 manifest1,
 				Constraints:              constraints1,
 				FeatureFlag:              featureFlag1,
 				SettingsFlag:             settingsFlag1,
@@ -582,6 +592,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem2 := range attributesItem.DateAttribute.Purpose {
 				purpose2 = append(purpose2, purposeItem2.ValueString())
 			}
+			var manifest2 []string = []string{}
+			for _, manifestItem2 := range attributesItem.DateAttribute.Manifest {
+				manifest2 = append(manifest2, manifestItem2.ValueString())
+			}
 			var constraints2 *shared.DateAttributeConstraints
 			if attributesItem.DateAttribute.Constraints != nil {
 				constraints2 = &shared.DateAttributeConstraints{}
@@ -693,6 +707,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon2,
 				RenderCondition:          renderCondition2,
 				Purpose:                  purpose2,
+				Manifest:                 manifest2,
 				Constraints:              constraints2,
 				FeatureFlag:              featureFlag2,
 				SettingsFlag:             settingsFlag2,
@@ -806,6 +821,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem3 := range attributesItem.CountryAttribute.Purpose {
 				purpose3 = append(purpose3, purposeItem3.ValueString())
 			}
+			var manifest3 []string = []string{}
+			for _, manifestItem3 := range attributesItem.CountryAttribute.Manifest {
+				manifest3 = append(manifest3, manifestItem3.ValueString())
+			}
 			var constraints3 *shared.CountryAttributeConstraints
 			if attributesItem.CountryAttribute.Constraints != nil {
 				constraints3 = &shared.CountryAttributeConstraints{}
@@ -917,6 +936,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon3,
 				RenderCondition:          renderCondition3,
 				Purpose:                  purpose3,
+				Manifest:                 manifest3,
 				Constraints:              constraints3,
 				FeatureFlag:              featureFlag3,
 				SettingsFlag:             settingsFlag3,
@@ -1030,6 +1050,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem4 := range attributesItem.BooleanAttribute.Purpose {
 				purpose4 = append(purpose4, purposeItem4.ValueString())
 			}
+			var manifest4 []string = []string{}
+			for _, manifestItem4 := range attributesItem.BooleanAttribute.Manifest {
+				manifest4 = append(manifest4, manifestItem4.ValueString())
+			}
 			var constraints4 *shared.BooleanAttributeConstraints
 			if attributesItem.BooleanAttribute.Constraints != nil {
 				constraints4 = &shared.BooleanAttributeConstraints{}
@@ -1141,6 +1165,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon4,
 				RenderCondition:          renderCondition4,
 				Purpose:                  purpose4,
+				Manifest:                 manifest4,
 				Constraints:              constraints4,
 				FeatureFlag:              featureFlag4,
 				SettingsFlag:             settingsFlag4,
@@ -1253,6 +1278,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose5 []string = []string{}
 			for _, purposeItem5 := range attributesItem.SelectAttribute.Purpose {
 				purpose5 = append(purpose5, purposeItem5.ValueString())
+			}
+			var manifest5 []string = []string{}
+			for _, manifestItem5 := range attributesItem.SelectAttribute.Manifest {
+				manifest5 = append(manifest5, manifestItem5.ValueString())
 			}
 			var constraints5 *shared.SelectAttributeConstraints
 			if attributesItem.SelectAttribute.Constraints != nil {
@@ -1375,6 +1404,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon5,
 				RenderCondition:          renderCondition5,
 				Purpose:                  purpose5,
+				Manifest:                 manifest5,
 				Constraints:              constraints5,
 				FeatureFlag:              featureFlag5,
 				SettingsFlag:             settingsFlag5,
@@ -1489,6 +1519,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose6 []string = []string{}
 			for _, purposeItem6 := range attributesItem.MultiSelectAttribute.Purpose {
 				purpose6 = append(purpose6, purposeItem6.ValueString())
+			}
+			var manifest6 []string = []string{}
+			for _, manifestItem6 := range attributesItem.MultiSelectAttribute.Manifest {
+				manifest6 = append(manifest6, manifestItem6.ValueString())
 			}
 			var constraints6 *shared.MultiSelectAttributeConstraints
 			if attributesItem.MultiSelectAttribute.Constraints != nil {
@@ -1648,6 +1682,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon6,
 				RenderCondition:          renderCondition6,
 				Purpose:                  purpose6,
+				Manifest:                 manifest6,
 				Constraints:              constraints6,
 				FeatureFlag:              featureFlag6,
 				SettingsFlag:             settingsFlag6,
@@ -1764,6 +1799,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose7 []string = []string{}
 			for _, purposeItem7 := range attributesItem.StatusAttribute.Purpose {
 				purpose7 = append(purpose7, purposeItem7.ValueString())
+			}
+			var manifest7 []string = []string{}
+			for _, manifestItem7 := range attributesItem.StatusAttribute.Manifest {
+				manifest7 = append(manifest7, manifestItem7.ValueString())
 			}
 			var constraints7 *shared.StatusAttributeConstraints
 			if attributesItem.StatusAttribute.Constraints != nil {
@@ -1905,6 +1944,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon7,
 				RenderCondition:          renderCondition7,
 				Purpose:                  purpose7,
+				Manifest:                 manifest7,
 				Constraints:              constraints7,
 				FeatureFlag:              featureFlag7,
 				SettingsFlag:             settingsFlag7,
@@ -2018,6 +2058,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose8 []string = []string{}
 			for _, purposeItem8 := range attributesItem.SequenceAttribute.Purpose {
 				purpose8 = append(purpose8, purposeItem8.ValueString())
+			}
+			var manifest8 []string = []string{}
+			for _, manifestItem8 := range attributesItem.SequenceAttribute.Manifest {
+				manifest8 = append(manifest8, manifestItem8.ValueString())
 			}
 			var constraints8 *shared.SequenceAttributeConstraints
 			if attributesItem.SequenceAttribute.Constraints != nil {
@@ -2142,6 +2186,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon8,
 				RenderCondition:          renderCondition8,
 				Purpose:                  purpose8,
+				Manifest:                 manifest8,
 				Constraints:              constraints8,
 				FeatureFlag:              featureFlag8,
 				SettingsFlag:             settingsFlag8,
@@ -2256,6 +2301,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose9 []string = []string{}
 			for _, purposeItem9 := range attributesItem.RelationAttribute.Purpose {
 				purpose9 = append(purpose9, purposeItem9.ValueString())
+			}
+			var manifest9 []string = []string{}
+			for _, manifestItem9 := range attributesItem.RelationAttribute.Manifest {
+				manifest9 = append(manifest9, manifestItem9.ValueString())
 			}
 			var constraints9 *shared.RelationAttributeConstraints
 			if attributesItem.RelationAttribute.Constraints != nil {
@@ -2478,6 +2527,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					for _, purposeItem10 := range actionsItem.NewEntityItem.Purpose {
 						purpose10 = append(purpose10, purposeItem10.ValueString())
 					}
+					var manifest10 []string = []string{}
+					for _, manifestItem10 := range actionsItem.NewEntityItem.Manifest {
+						manifest10 = append(manifest10, manifestItem10.ValueString())
+					}
 					var additionalProperties1 interface{}
 					if !actionsItem.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem.NewEntityItem.AdditionalProperties.IsNull() {
 						_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
@@ -2489,6 +2542,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 						Tags:                 tags,
 						ACL:                  acl,
 						Purpose:              purpose10,
+						Manifest:             manifest10,
 						AdditionalProperties: additionalProperties1,
 					}
 				}
@@ -2586,6 +2640,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon9,
 				RenderCondition:          renderCondition9,
 				Purpose:                  purpose9,
+				Manifest:                 manifest9,
 				Constraints:              constraints9,
 				FeatureFlag:              featureFlag9,
 				SettingsFlag:             settingsFlag9,
@@ -2713,6 +2768,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem11 := range attributesItem.UserRelationAttribute.Purpose {
 				purpose11 = append(purpose11, purposeItem11.ValueString())
 			}
+			var manifest11 []string = []string{}
+			for _, manifestItem11 := range attributesItem.UserRelationAttribute.Manifest {
+				manifest11 = append(manifest11, manifestItem11.ValueString())
+			}
 			var constraints10 *shared.UserRelationAttributeConstraints
 			if attributesItem.UserRelationAttribute.Constraints != nil {
 				constraints10 = &shared.UserRelationAttributeConstraints{}
@@ -2830,6 +2889,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon10,
 				RenderCondition:          renderCondition10,
 				Purpose:                  purpose11,
+				Manifest:                 manifest11,
 				Constraints:              constraints10,
 				FeatureFlag:              featureFlag11,
 				SettingsFlag:             settingsFlag11,
@@ -2943,6 +3003,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose12 []string = []string{}
 			for _, purposeItem12 := range attributesItem.AddressRelationAttribute.Purpose {
 				purpose12 = append(purpose12, purposeItem12.ValueString())
+			}
+			var manifest12 []string = []string{}
+			for _, manifestItem12 := range attributesItem.AddressRelationAttribute.Manifest {
+				manifest12 = append(manifest12, manifestItem12.ValueString())
 			}
 			var constraints11 *shared.AddressRelationAttributeConstraints
 			if attributesItem.AddressRelationAttribute.Constraints != nil {
@@ -3061,6 +3125,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon11,
 				RenderCondition:          renderCondition11,
 				Purpose:                  purpose12,
+				Manifest:                 manifest12,
 				Constraints:              constraints11,
 				FeatureFlag:              featureFlag12,
 				SettingsFlag:             settingsFlag12,
@@ -3174,6 +3239,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose13 []string = []string{}
 			for _, purposeItem13 := range attributesItem.PaymentMethodRelationAttribute.Purpose {
 				purpose13 = append(purpose13, purposeItem13.ValueString())
+			}
+			var manifest13 []string = []string{}
+			for _, manifestItem13 := range attributesItem.PaymentMethodRelationAttribute.Manifest {
+				manifest13 = append(manifest13, manifestItem13.ValueString())
 			}
 			var constraints12 *shared.PaymentMethodRelationAttributeConstraints
 			if attributesItem.PaymentMethodRelationAttribute.Constraints != nil {
@@ -3292,6 +3361,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon12,
 				RenderCondition:          renderCondition12,
 				Purpose:                  purpose13,
+				Manifest:                 manifest13,
 				Constraints:              constraints12,
 				FeatureFlag:              featureFlag13,
 				SettingsFlag:             settingsFlag13,
@@ -3405,6 +3475,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose14 []string = []string{}
 			for _, purposeItem14 := range attributesItem.CurrencyAttribute.Purpose {
 				purpose14 = append(purpose14, purposeItem14.ValueString())
+			}
+			var manifest14 []string = []string{}
+			for _, manifestItem14 := range attributesItem.CurrencyAttribute.Manifest {
+				manifest14 = append(manifest14, manifestItem14.ValueString())
 			}
 			var constraints13 *shared.CurrencyAttributeConstraints
 			if attributesItem.CurrencyAttribute.Constraints != nil {
@@ -3547,6 +3621,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon13,
 				RenderCondition:          renderCondition13,
 				Purpose:                  purpose14,
+				Manifest:                 manifest14,
 				Constraints:              constraints13,
 				FeatureFlag:              featureFlag14,
 				SettingsFlag:             settingsFlag14,
@@ -3661,6 +3736,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose15 []string = []string{}
 			for _, purposeItem15 := range attributesItem.RepeatableAttribute.Purpose {
 				purpose15 = append(purpose15, purposeItem15.ValueString())
+			}
+			var manifest15 []string = []string{}
+			for _, manifestItem15 := range attributesItem.RepeatableAttribute.Manifest {
+				manifest15 = append(manifest15, manifestItem15.ValueString())
 			}
 			var constraints14 *shared.RepeatableAttributeConstraints
 			if attributesItem.RepeatableAttribute.Constraints != nil {
@@ -3797,6 +3876,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon14,
 				RenderCondition:          renderCondition14,
 				Purpose:                  purpose15,
+				Manifest:                 manifest15,
 				Constraints:              constraints14,
 				FeatureFlag:              featureFlag15,
 				SettingsFlag:             settingsFlag15,
@@ -3913,6 +3993,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose16 []string = []string{}
 			for _, purposeItem16 := range attributesItem.TagsAttribute.Purpose {
 				purpose16 = append(purpose16, purposeItem16.ValueString())
+			}
+			var manifest16 []string = []string{}
+			for _, manifestItem16 := range attributesItem.TagsAttribute.Manifest {
+				manifest16 = append(manifest16, manifestItem16.ValueString())
 			}
 			var constraints15 *shared.TagsAttributeConstraints
 			if attributesItem.TagsAttribute.Constraints != nil {
@@ -4033,6 +4117,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon15,
 				RenderCondition:          renderCondition15,
 				Purpose:                  purpose16,
+				Manifest:                 manifest16,
 				Constraints:              constraints15,
 				FeatureFlag:              featureFlag16,
 				SettingsFlag:             settingsFlag16,
@@ -4147,6 +4232,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose17 []string = []string{}
 			for _, purposeItem17 := range attributesItem.NumberAttribute.Purpose {
 				purpose17 = append(purpose17, purposeItem17.ValueString())
+			}
+			var manifest17 []string = []string{}
+			for _, manifestItem17 := range attributesItem.NumberAttribute.Manifest {
+				manifest17 = append(manifest17, manifestItem17.ValueString())
 			}
 			var constraints16 *shared.NumberAttributeConstraints
 			if attributesItem.NumberAttribute.Constraints != nil {
@@ -4271,6 +4360,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon16,
 				RenderCondition:          renderCondition16,
 				Purpose:                  purpose17,
+				Manifest:                 manifest17,
 				Constraints:              constraints16,
 				FeatureFlag:              featureFlag17,
 				SettingsFlag:             settingsFlag17,
@@ -4386,6 +4476,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem18 := range attributesItem.ConsentAttribute.Purpose {
 				purpose18 = append(purpose18, purposeItem18.ValueString())
 			}
+			var manifest18 []string = []string{}
+			for _, manifestItem18 := range attributesItem.ConsentAttribute.Manifest {
+				manifest18 = append(manifest18, manifestItem18.ValueString())
+			}
 			var constraints17 *shared.ConsentAttributeConstraints
 			if attributesItem.ConsentAttribute.Constraints != nil {
 				constraints17 = &shared.ConsentAttributeConstraints{}
@@ -4499,6 +4593,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon17,
 				RenderCondition:          renderCondition17,
 				Purpose:                  purpose18,
+				Manifest:                 manifest18,
 				Constraints:              constraints17,
 				FeatureFlag:              featureFlag18,
 				SettingsFlag:             settingsFlag18,
@@ -4614,6 +4709,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem19 := range attributesItem.InternalAttribute.Purpose {
 				purpose19 = append(purpose19, purposeItem19.ValueString())
 			}
+			var manifest19 []string = []string{}
+			for _, manifestItem19 := range attributesItem.InternalAttribute.Manifest {
+				manifest19 = append(manifest19, manifestItem19.ValueString())
+			}
 			var constraints18 *shared.InternalAttributeConstraints
 			if attributesItem.InternalAttribute.Constraints != nil {
 				constraints18 = &shared.InternalAttributeConstraints{}
@@ -4725,6 +4824,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon18,
 				RenderCondition:          renderCondition18,
 				Purpose:                  purpose19,
+				Manifest:                 manifest19,
 				Constraints:              constraints18,
 				FeatureFlag:              featureFlag19,
 				SettingsFlag:             settingsFlag19,
@@ -4838,6 +4938,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem20 := range attributesItem.OrderedListAttribute.Purpose {
 				purpose20 = append(purpose20, purposeItem20.ValueString())
 			}
+			var manifest20 []string = []string{}
+			for _, manifestItem20 := range attributesItem.OrderedListAttribute.Manifest {
+				manifest20 = append(manifest20, manifestItem20.ValueString())
+			}
 			var constraints19 *shared.OrderedListAttributeConstraints
 			if attributesItem.OrderedListAttribute.Constraints != nil {
 				constraints19 = &shared.OrderedListAttributeConstraints{}
@@ -4949,6 +5053,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon19,
 				RenderCondition:          renderCondition19,
 				Purpose:                  purpose20,
+				Manifest:                 manifest20,
 				Constraints:              constraints19,
 				FeatureFlag:              featureFlag20,
 				SettingsFlag:             settingsFlag20,
@@ -5061,6 +5166,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose21 []string = []string{}
 			for _, purposeItem21 := range attributesItem.FileAttribute.Purpose {
 				purpose21 = append(purpose21, purposeItem21.ValueString())
+			}
+			var manifest21 []string = []string{}
+			for _, manifestItem21 := range attributesItem.FileAttribute.Manifest {
+				manifest21 = append(manifest21, manifestItem21.ValueString())
 			}
 			var constraints20 *shared.FileAttributeConstraints
 			if attributesItem.FileAttribute.Constraints != nil {
@@ -5196,6 +5305,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon20,
 				RenderCondition:          renderCondition20,
 				Purpose:                  purpose21,
+				Manifest:                 manifest21,
 				Constraints:              constraints20,
 				FeatureFlag:              featureFlag21,
 				SettingsFlag:             settingsFlag21,
@@ -5314,6 +5424,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem22 := range attributesItem.ComputedAttribute.Purpose {
 				purpose22 = append(purpose22, purposeItem22.ValueString())
 			}
+			var manifest22 []string = []string{}
+			for _, manifestItem22 := range attributesItem.ComputedAttribute.Manifest {
+				manifest22 = append(manifest22, manifestItem22.ValueString())
+			}
 			var constraints21 *shared.ComputedAttributeConstraints
 			if attributesItem.ComputedAttribute.Constraints != nil {
 				constraints21 = &shared.ComputedAttributeConstraints{}
@@ -5425,6 +5539,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon21,
 				RenderCondition:          renderCondition21,
 				Purpose:                  purpose22,
+				Manifest:                 manifest22,
 				Constraints:              constraints21,
 				FeatureFlag:              featureFlag22,
 				SettingsFlag:             settingsFlag22,
@@ -5538,6 +5653,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem23 := range attributesItem.PartnerStatusAttribute.Purpose {
 				purpose23 = append(purpose23, purposeItem23.ValueString())
 			}
+			var manifest23 []string = []string{}
+			for _, manifestItem23 := range attributesItem.PartnerStatusAttribute.Manifest {
+				manifest23 = append(manifest23, manifestItem23.ValueString())
+			}
 			var constraints22 *shared.PartnerStatusAttributeConstraints
 			if attributesItem.PartnerStatusAttribute.Constraints != nil {
 				constraints22 = &shared.PartnerStatusAttributeConstraints{}
@@ -5649,6 +5768,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon22,
 				RenderCondition:          renderCondition22,
 				Purpose:                  purpose23,
+				Manifest:                 manifest23,
 				Constraints:              constraints22,
 				FeatureFlag:              featureFlag23,
 				SettingsFlag:             settingsFlag23,
@@ -5762,6 +5882,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem24 := range attributesItem.InvitationEmailAttribute.Purpose {
 				purpose24 = append(purpose24, purposeItem24.ValueString())
 			}
+			var manifest24 []string = []string{}
+			for _, manifestItem24 := range attributesItem.InvitationEmailAttribute.Manifest {
+				manifest24 = append(manifest24, manifestItem24.ValueString())
+			}
 			var constraints23 *shared.InvitationEmailAttributeConstraints
 			if attributesItem.InvitationEmailAttribute.Constraints != nil {
 				constraints23 = &shared.InvitationEmailAttributeConstraints{}
@@ -5873,6 +5997,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon23,
 				RenderCondition:          renderCondition23,
 				Purpose:                  purpose24,
+				Manifest:                 manifest24,
 				Constraints:              constraints23,
 				FeatureFlag:              featureFlag24,
 				SettingsFlag:             settingsFlag24,
@@ -5986,6 +6111,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem25 := range attributesItem.AutomationAttribute.Purpose {
 				purpose25 = append(purpose25, purposeItem25.ValueString())
 			}
+			var manifest25 []string = []string{}
+			for _, manifestItem25 := range attributesItem.AutomationAttribute.Manifest {
+				manifest25 = append(manifest25, manifestItem25.ValueString())
+			}
 			var constraints24 *shared.AutomationAttributeConstraints
 			if attributesItem.AutomationAttribute.Constraints != nil {
 				constraints24 = &shared.AutomationAttributeConstraints{}
@@ -6097,6 +6226,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon24,
 				RenderCondition:          renderCondition24,
 				Purpose:                  purpose25,
+				Manifest:                 manifest25,
 				Constraints:              constraints24,
 				FeatureFlag:              featureFlag25,
 				SettingsFlag:             settingsFlag25,
@@ -6210,6 +6340,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem26 := range attributesItem.InternalUserAttribute.Purpose {
 				purpose26 = append(purpose26, purposeItem26.ValueString())
 			}
+			var manifest26 []string = []string{}
+			for _, manifestItem26 := range attributesItem.InternalUserAttribute.Manifest {
+				manifest26 = append(manifest26, manifestItem26.ValueString())
+			}
 			var constraints25 *shared.InternalUserAttributeConstraints
 			if attributesItem.InternalUserAttribute.Constraints != nil {
 				constraints25 = &shared.InternalUserAttributeConstraints{}
@@ -6321,6 +6455,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon25,
 				RenderCondition:          renderCondition25,
 				Purpose:                  purpose26,
+				Manifest:                 manifest26,
 				Constraints:              constraints25,
 				FeatureFlag:              featureFlag26,
 				SettingsFlag:             settingsFlag26,
@@ -6433,6 +6568,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			var purpose27 []string = []string{}
 			for _, purposeItem27 := range attributesItem.PurposeAttribute.Purpose {
 				purpose27 = append(purpose27, purposeItem27.ValueString())
+			}
+			var manifest27 []string = []string{}
+			for _, manifestItem27 := range attributesItem.PurposeAttribute.Manifest {
+				manifest27 = append(manifest27, manifestItem27.ValueString())
 			}
 			var constraints26 *shared.PurposeAttributeConstraints
 			if attributesItem.PurposeAttribute.Constraints != nil {
@@ -6567,6 +6706,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon26,
 				RenderCondition:          renderCondition26,
 				Purpose:                  purpose27,
+				Manifest:                 manifest27,
 				Constraints:              constraints26,
 				FeatureFlag:              featureFlag27,
 				SettingsFlag:             settingsFlag27,
@@ -6684,6 +6824,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, purposeItem28 := range attributesItem.PartnerOrganisationAttribute.Purpose {
 				purpose28 = append(purpose28, purposeItem28.ValueString())
 			}
+			var manifest28 []string = []string{}
+			for _, manifestItem28 := range attributesItem.PartnerOrganisationAttribute.Manifest {
+				manifest28 = append(manifest28, manifestItem28.ValueString())
+			}
 			var constraints27 *shared.PartnerOrganisationAttributeConstraints
 			if attributesItem.PartnerOrganisationAttribute.Constraints != nil {
 				constraints27 = &shared.PartnerOrganisationAttributeConstraints{}
@@ -6795,6 +6939,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				Icon:                     icon27,
 				RenderCondition:          renderCondition27,
 				Purpose:                  purpose28,
+				Manifest:                 manifest28,
 				Constraints:              constraints27,
 				FeatureFlag:              featureFlag28,
 				SettingsFlag:             settingsFlag28,
@@ -6813,6 +6958,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 	var purpose29 []string = []string{}
 	for _, purposeItem29 := range r.Purpose {
 		purpose29 = append(purpose29, purposeItem29.ValueString())
+	}
+	var manifest29 []string = []string{}
+	for _, manifestItem29 := range r.Manifest {
+		manifest29 = append(manifest29, manifestItem29.ValueString())
 	}
 	var uiHooks []shared.EntityCapabilityWithCompositeIDUIHooks = []shared.EntityCapabilityWithCompositeIDUIHooks{}
 	for _, uiHooksItem := range r.UIHooks {
@@ -6952,6 +7101,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 		Title:        title,
 		Attributes:   attributes,
 		Purpose:      purpose29,
+		Manifest:     manifest29,
 		UIHooks:      uiHooks,
 		FeatureFlag:  featureFlag29,
 		SettingsFlag: settingsFlag29,
@@ -6962,6 +7112,10 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 
 func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCompositeID(resp *shared.EntityCapabilityWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.Purpose = []types.String{}
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
@@ -6974,6 +7128,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			var attributes1 tfTypes.Attribute
 			if attributesItem.AddressRelationAttribute != nil {
 				attributes1.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+				attributes1.AddressRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AddressRelationAttribute.Manifest {
+					attributes1.AddressRelationAttribute.Manifest = append(attributes1.AddressRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AddressRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AddressRelationAttribute.Purpose {
 					attributes1.AddressRelationAttribute.Purpose = append(attributes1.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -7040,6 +7198,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.AutomationAttribute != nil {
 				attributes1.AutomationAttribute = &tfTypes.AutomationAttribute{}
+				attributes1.AutomationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AutomationAttribute.Manifest {
+					attributes1.AutomationAttribute.Manifest = append(attributes1.AutomationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AutomationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AutomationAttribute.Purpose {
 					attributes1.AutomationAttribute.Purpose = append(attributes1.AutomationAttribute.Purpose, types.StringValue(v))
@@ -7105,6 +7267,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.BooleanAttribute != nil {
 				attributes1.BooleanAttribute = &tfTypes.BooleanAttribute{}
+				attributes1.BooleanAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.BooleanAttribute.Manifest {
+					attributes1.BooleanAttribute.Manifest = append(attributes1.BooleanAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.BooleanAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.BooleanAttribute.Purpose {
 					attributes1.BooleanAttribute.Purpose = append(attributes1.BooleanAttribute.Purpose, types.StringValue(v))
@@ -7170,6 +7336,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.ComputedAttribute != nil {
 				attributes1.ComputedAttribute = &tfTypes.ComputedAttribute{}
+				attributes1.ComputedAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ComputedAttribute.Manifest {
+					attributes1.ComputedAttribute.Manifest = append(attributes1.ComputedAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ComputedAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ComputedAttribute.Purpose {
 					attributes1.ComputedAttribute.Purpose = append(attributes1.ComputedAttribute.Purpose, types.StringValue(v))
@@ -7235,6 +7405,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.ConsentAttribute != nil {
 				attributes1.ConsentAttribute = &tfTypes.ConsentAttribute{}
+				attributes1.ConsentAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ConsentAttribute.Manifest {
+					attributes1.ConsentAttribute.Manifest = append(attributes1.ConsentAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ConsentAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ConsentAttribute.Purpose {
 					attributes1.ConsentAttribute.Purpose = append(attributes1.ConsentAttribute.Purpose, types.StringValue(v))
@@ -7301,6 +7475,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.CountryAttribute != nil {
 				attributes1.CountryAttribute = &tfTypes.CountryAttribute{}
+				attributes1.CountryAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CountryAttribute.Manifest {
+					attributes1.CountryAttribute.Manifest = append(attributes1.CountryAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CountryAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CountryAttribute.Purpose {
 					attributes1.CountryAttribute.Purpose = append(attributes1.CountryAttribute.Purpose, types.StringValue(v))
@@ -7366,6 +7544,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.CurrencyAttribute != nil {
 				attributes1.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+				attributes1.CurrencyAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CurrencyAttribute.Manifest {
+					attributes1.CurrencyAttribute.Manifest = append(attributes1.CurrencyAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CurrencyAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CurrencyAttribute.Purpose {
 					attributes1.CurrencyAttribute.Purpose = append(attributes1.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -7444,6 +7626,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.DateAttribute != nil {
 				attributes1.DateAttribute = &tfTypes.DateAttribute{}
+				attributes1.DateAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.DateAttribute.Manifest {
+					attributes1.DateAttribute.Manifest = append(attributes1.DateAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.DateAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.DateAttribute.Purpose {
 					attributes1.DateAttribute.Purpose = append(attributes1.DateAttribute.Purpose, types.StringValue(v))
@@ -7509,6 +7695,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.FileAttribute != nil {
 				attributes1.FileAttribute = &tfTypes.FileAttribute{}
+				attributes1.FileAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.FileAttribute.Manifest {
+					attributes1.FileAttribute.Manifest = append(attributes1.FileAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.FileAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.FileAttribute.Purpose {
 					attributes1.FileAttribute.Purpose = append(attributes1.FileAttribute.Purpose, types.StringValue(v))
@@ -7582,6 +7772,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.InternalAttribute != nil {
 				attributes1.InternalAttribute = &tfTypes.InternalAttribute{}
+				attributes1.InternalAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalAttribute.Manifest {
+					attributes1.InternalAttribute.Manifest = append(attributes1.InternalAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalAttribute.Purpose {
 					attributes1.InternalAttribute.Purpose = append(attributes1.InternalAttribute.Purpose, types.StringValue(v))
@@ -7647,6 +7841,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.InternalUserAttribute != nil {
 				attributes1.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+				attributes1.InternalUserAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalUserAttribute.Manifest {
+					attributes1.InternalUserAttribute.Manifest = append(attributes1.InternalUserAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalUserAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalUserAttribute.Purpose {
 					attributes1.InternalUserAttribute.Purpose = append(attributes1.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -7712,6 +7910,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.InvitationEmailAttribute != nil {
 				attributes1.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+				attributes1.InvitationEmailAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InvitationEmailAttribute.Manifest {
+					attributes1.InvitationEmailAttribute.Manifest = append(attributes1.InvitationEmailAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InvitationEmailAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
 					attributes1.InvitationEmailAttribute.Purpose = append(attributes1.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -7777,6 +7979,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.LinkAttribute != nil {
 				attributes1.LinkAttribute = &tfTypes.LinkAttribute{}
+				attributes1.LinkAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.LinkAttribute.Manifest {
+					attributes1.LinkAttribute.Manifest = append(attributes1.LinkAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.LinkAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.LinkAttribute.Purpose {
 					attributes1.LinkAttribute.Purpose = append(attributes1.LinkAttribute.Purpose, types.StringValue(v))
@@ -7842,6 +8048,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.MultiSelectAttribute != nil {
 				attributes1.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+				attributes1.MultiSelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.MultiSelectAttribute.Manifest {
+					attributes1.MultiSelectAttribute.Manifest = append(attributes1.MultiSelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.MultiSelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.MultiSelectAttribute.Purpose {
 					attributes1.MultiSelectAttribute.Purpose = append(attributes1.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -7928,6 +8138,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.NumberAttribute != nil {
 				attributes1.NumberAttribute = &tfTypes.NumberAttribute{}
+				attributes1.NumberAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.NumberAttribute.Manifest {
+					attributes1.NumberAttribute.Manifest = append(attributes1.NumberAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.NumberAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.NumberAttribute.Purpose {
 					attributes1.NumberAttribute.Purpose = append(attributes1.NumberAttribute.Purpose, types.StringValue(v))
@@ -7995,6 +8209,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.OrderedListAttribute != nil {
 				attributes1.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+				attributes1.OrderedListAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.OrderedListAttribute.Manifest {
+					attributes1.OrderedListAttribute.Manifest = append(attributes1.OrderedListAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.OrderedListAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.OrderedListAttribute.Purpose {
 					attributes1.OrderedListAttribute.Purpose = append(attributes1.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -8060,6 +8278,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.PartnerOrganisationAttribute != nil {
 				attributes1.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+				attributes1.PartnerOrganisationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerOrganisationAttribute.Manifest {
+					attributes1.PartnerOrganisationAttribute.Manifest = append(attributes1.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerOrganisationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
 					attributes1.PartnerOrganisationAttribute.Purpose = append(attributes1.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -8125,6 +8347,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.PartnerStatusAttribute != nil {
 				attributes1.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+				attributes1.PartnerStatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerStatusAttribute.Manifest {
+					attributes1.PartnerStatusAttribute.Manifest = append(attributes1.PartnerStatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerStatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
 					attributes1.PartnerStatusAttribute.Purpose = append(attributes1.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -8190,6 +8416,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.PaymentMethodRelationAttribute != nil {
 				attributes1.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+				attributes1.PaymentMethodRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PaymentMethodRelationAttribute.Manifest {
+					attributes1.PaymentMethodRelationAttribute.Manifest = append(attributes1.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PaymentMethodRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
 					attributes1.PaymentMethodRelationAttribute.Purpose = append(attributes1.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -8256,6 +8486,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.PurposeAttribute != nil {
 				attributes1.PurposeAttribute = &tfTypes.PurposeAttribute{}
+				attributes1.PurposeAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PurposeAttribute.Manifest {
+					attributes1.PurposeAttribute.Manifest = append(attributes1.PurposeAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PurposeAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PurposeAttribute.Purpose {
 					attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
@@ -8336,6 +8570,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.RelationAttribute != nil {
 				attributes1.RelationAttribute = &tfTypes.RelationAttribute{}
+				attributes1.RelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RelationAttribute.Manifest {
+					attributes1.RelationAttribute.Manifest = append(attributes1.RelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
@@ -8384,6 +8622,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 							actions1.NewEntityItem.CreatedAt = types.StringNull()
 						}
 						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+						actions1.NewEntityItem.Manifest = []types.String{}
+						for _, v := range actionsItem.NewEntityItem.Manifest {
+							actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
+						}
 						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
 						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -8557,6 +8799,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.RepeatableAttribute != nil {
 				attributes1.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+				attributes1.RepeatableAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RepeatableAttribute.Manifest {
+					attributes1.RepeatableAttribute.Manifest = append(attributes1.RepeatableAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RepeatableAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RepeatableAttribute.Purpose {
 					attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -8630,6 +8876,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.SelectAttribute != nil {
 				attributes1.SelectAttribute = &tfTypes.SelectAttribute{}
+				attributes1.SelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SelectAttribute.Manifest {
+					attributes1.SelectAttribute.Manifest = append(attributes1.SelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SelectAttribute.Purpose {
 					attributes1.SelectAttribute.Purpose = append(attributes1.SelectAttribute.Purpose, types.StringValue(v))
@@ -8702,6 +8952,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.SequenceAttribute != nil {
 				attributes1.SequenceAttribute = &tfTypes.SequenceAttribute{}
+				attributes1.SequenceAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SequenceAttribute.Manifest {
+					attributes1.SequenceAttribute.Manifest = append(attributes1.SequenceAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SequenceAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SequenceAttribute.Purpose {
 					attributes1.SequenceAttribute.Purpose = append(attributes1.SequenceAttribute.Purpose, types.StringValue(v))
@@ -8769,6 +9023,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.StatusAttribute != nil {
 				attributes1.StatusAttribute = &tfTypes.StatusAttribute{}
+				attributes1.StatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.StatusAttribute.Manifest {
+					attributes1.StatusAttribute.Manifest = append(attributes1.StatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.StatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.StatusAttribute.Purpose {
 					attributes1.StatusAttribute.Purpose = append(attributes1.StatusAttribute.Purpose, types.StringValue(v))
@@ -8852,6 +9110,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.TagsAttribute != nil {
 				attributes1.TagsAttribute = &tfTypes.TagsAttribute{}
+				attributes1.TagsAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Manifest {
+					attributes1.TagsAttribute.Manifest = append(attributes1.TagsAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TagsAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TagsAttribute.Purpose {
 					attributes1.TagsAttribute.Purpose = append(attributes1.TagsAttribute.Purpose, types.StringValue(v))
@@ -8925,6 +9187,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.TextAttribute != nil {
 				attributes1.TextAttribute = &tfTypes.TextAttribute{}
+				attributes1.TextAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TextAttribute.Manifest {
+					attributes1.TextAttribute.Manifest = append(attributes1.TextAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TextAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TextAttribute.Purpose {
 					attributes1.TextAttribute.Purpose = append(attributes1.TextAttribute.Purpose, types.StringValue(v))
@@ -8991,6 +9257,10 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 			}
 			if attributesItem.UserRelationAttribute != nil {
 				attributes1.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+				attributes1.UserRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.UserRelationAttribute.Manifest {
+					attributes1.UserRelationAttribute.Manifest = append(attributes1.UserRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.UserRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.UserRelationAttribute.Purpose {
 					attributes1.UserRelationAttribute.Purpose = append(attributes1.UserRelationAttribute.Purpose, types.StringValue(v))

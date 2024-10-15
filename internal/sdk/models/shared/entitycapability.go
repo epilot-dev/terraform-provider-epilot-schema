@@ -164,7 +164,9 @@ type EntityCapability struct {
 	Title      *string     `json:"title,omitempty"`
 	Attributes []Attribute `json:"attributes,omitempty"`
 	Purpose    []string    `json:"_purpose,omitempty"`
-	UIHooks    []UIHooks   `json:"ui_hooks,omitempty"`
+	// Manifest ID used to create/update the schema capabilility
+	Manifest []string  `json:"_manifest,omitempty"`
+	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -206,6 +208,13 @@ func (o *EntityCapability) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *EntityCapability) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *EntityCapability) GetUIHooks() []UIHooks {
 	if o == nil {
 		return nil
@@ -237,7 +246,9 @@ type EntityCapabilityInput struct {
 	Title      *string          `json:"title,omitempty"`
 	Attributes []AttributeInput `json:"attributes,omitempty"`
 	Purpose    []string         `json:"_purpose,omitempty"`
-	UIHooks    []UIHooks        `json:"ui_hooks,omitempty"`
+	// Manifest ID used to create/update the schema capabilility
+	Manifest []string  `json:"_manifest,omitempty"`
+	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -277,6 +288,13 @@ func (o *EntityCapabilityInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *EntityCapabilityInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *EntityCapabilityInput) GetUIHooks() []UIHooks {

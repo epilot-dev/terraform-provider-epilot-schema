@@ -5,8 +5,11 @@ resource "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
   id             = "2668f09e-37d5-44d1-a8bd-74f30bb9e291"
   label          = "...my_label..."
   layout         = "...my_layout..."
-  name           = "...my_name..."
-  order          = 4
-  schema         = "contact"
-  type           = "headline"
+  manifest = [
+    "123e4567-e89b-12d3-a456-426614174000"
+  ]
+  name   = "...my_name..."
+  order  = 4
+  schema = "contact"
+  type   = "headline"
 }

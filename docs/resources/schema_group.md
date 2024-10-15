@@ -22,6 +22,9 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
     key     = "...my_key..."
   }
   label = "Contact Details"
+  manifest = [
+    "123e4567-e89b-12d3-a456-426614174000"
+  ]
   order = 8
   purpose = [
     "taxonomy-slug:classification-slug"
@@ -49,6 +52,7 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
 - `expanded` (Boolean) Expanded by default. Default: false
 - `feature_flag` (String) This group should only be active when the feature flag is enabled
 - `info_tooltip_title` (Attributes) (see [below for nested schema](#nestedatt--info_tooltip_title))
+- `manifest` (List of String) Manifest ID used to create/update the schema group
 - `order` (Number) Render order of the group. Default: 0
 - `purpose` (List of String) Only render group when one of the purposes is enabled
 - `render_condition` (String) Only render group when render_condition resolves to true

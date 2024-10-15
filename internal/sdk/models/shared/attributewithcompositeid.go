@@ -121,13 +121,15 @@ type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -278,6 +280,13 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPurpose() []st
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
@@ -467,13 +476,15 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the taxonomy classification
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PurposeAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -629,6 +640,13 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDPurposeAttribute) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
@@ -847,13 +865,15 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InternalUserAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -1004,6 +1024,13 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDInternalUserAttribute) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
@@ -1194,13 +1221,15 @@ type AttributeWithCompositeIDAutomationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *AutomationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -1351,6 +1380,13 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDAutomationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDAutomationAttribute) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
@@ -1541,13 +1577,15 @@ type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InvitationEmailAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -1698,6 +1736,13 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetPurpose() []string
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
@@ -1888,13 +1933,15 @@ type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PartnerStatusAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -2045,6 +2092,13 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
@@ -2235,13 +2289,15 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *ComputedAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -2392,6 +2448,13 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDComputedAttribute) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
@@ -2611,13 +2674,15 @@ type AttributeWithCompositeIDFileAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *FileAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -2778,6 +2843,13 @@ func (o *AttributeWithCompositeIDFileAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDFileAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDFileAttribute) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
@@ -3003,13 +3075,15 @@ type AttributeWithCompositeIDOrderedListAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *OrderedListAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -3160,6 +3234,13 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDOrderedListAttribute) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
@@ -3350,13 +3431,15 @@ type AttributeWithCompositeIDInternalAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InternalAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -3507,6 +3590,13 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDInternalAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDInternalAttribute) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
@@ -3697,13 +3787,15 @@ type AttributeWithCompositeIDConsentAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *ConsentAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -3856,6 +3948,13 @@ func (o *AttributeWithCompositeIDConsentAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDConsentAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDConsentAttribute) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
@@ -4060,13 +4159,15 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *NumberAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -4220,6 +4321,13 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDNumberAttribute) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
@@ -4424,13 +4532,15 @@ type AttributeWithCompositeIDTagsAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *TagsAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -4583,6 +4693,13 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDTagsAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDTagsAttribute) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
@@ -4835,13 +4952,15 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RepeatableAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -4998,6 +5117,13 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDRepeatableAttribute) GetConstraints() *RepeatableAttributeAttributeWithCompositeIDConstraints {
@@ -5293,13 +5419,15 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *CurrencyAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -5453,6 +5581,13 @@ func (o *AttributeWithCompositeIDCurrencyAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDCurrencyAttribute) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
@@ -5657,13 +5792,15 @@ type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -5815,6 +5952,13 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPurpose() []
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
@@ -6012,13 +6156,15 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *AddressRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -6170,6 +6316,13 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetPurpose() []string
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
@@ -6367,13 +6520,15 @@ type AttributeWithCompositeIDUserRelationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *UserRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -6525,6 +6680,13 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDUserRelationAttribute) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
@@ -6813,9 +6975,11 @@ type RelationAttributeAttributeWithCompositeIDNewEntityItem struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL `json:"_acl,omitempty"`
-	Purpose              []string   `json:"_purpose,omitempty"`
-	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (r RelationAttributeAttributeWithCompositeIDNewEntityItem) MarshalJSON() ([]byte, error) {
@@ -6897,6 +7061,13 @@ func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetPurpose() []
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetAdditionalProperties() any {
@@ -7092,13 +7263,15 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -7270,6 +7443,13 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDRelationAttribute) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
@@ -7558,13 +7738,15 @@ type AttributeWithCompositeIDSequenceAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *SequenceAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -7718,6 +7900,13 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDSequenceAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDSequenceAttribute) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
@@ -8006,13 +8195,15 @@ type AttributeWithCompositeIDStatusAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *StatusAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -8164,6 +8355,13 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDStatusAttribute) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
@@ -8446,13 +8644,15 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *MultiSelectAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -8610,6 +8810,13 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDMultiSelectAttribute) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
@@ -8831,13 +9038,15 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *SelectAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -8991,6 +9200,13 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDSelectAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDSelectAttribute) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
@@ -9195,13 +9411,15 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *BooleanAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -9352,6 +9570,13 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDBooleanAttribute) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
@@ -9542,13 +9767,15 @@ type AttributeWithCompositeIDCountryAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *CountryAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -9699,6 +9926,13 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDCountryAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDCountryAttribute) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
@@ -9892,13 +10126,15 @@ type AttributeWithCompositeIDDateAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *DateAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -10049,6 +10285,13 @@ func (o *AttributeWithCompositeIDDateAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDDateAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDDateAttribute) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
@@ -10239,13 +10482,15 @@ type AttributeWithCompositeIDLinkAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *LinkAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -10396,6 +10641,13 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDLinkAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDLinkAttribute) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
@@ -10586,13 +10838,15 @@ type AttributeWithCompositeIDTextAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *TextAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -10744,6 +10998,13 @@ func (o *AttributeWithCompositeIDTextAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDTextAttribute) GetConstraints() *TextAttributeConstraints {
@@ -11500,13 +11761,15 @@ type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -11658,6 +11921,13 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPurpose()
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -11761,13 +12031,15 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the taxonomy classification
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PurposeAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -11924,6 +12196,13 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -12056,13 +12335,15 @@ type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InternalUserAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -12214,6 +12495,13 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetPurpose() []stri
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -12318,13 +12606,15 @@ type AttributeWithCompositeIDAutomationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *AutomationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -12476,6 +12766,13 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetPurpose() []string
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDAutomationAttributeInput) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -12580,13 +12877,15 @@ type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InvitationEmailAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -12738,6 +13037,13 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPurpose() []s
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -12842,13 +13148,15 @@ type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PartnerStatusAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -13000,6 +13308,13 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPurpose() []str
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -13104,13 +13419,15 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *ComputedAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -13262,6 +13579,13 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDComputedAttributeInput) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -13366,13 +13690,15 @@ type AttributeWithCompositeIDFileAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *FileAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -13534,6 +13860,13 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDFileAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDFileAttributeInput) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -13673,13 +14006,15 @@ type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *OrderedListAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -13831,6 +14166,13 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetPurpose() []strin
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -13935,13 +14277,15 @@ type AttributeWithCompositeIDInternalAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *InternalAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -14093,6 +14437,13 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDInternalAttributeInput) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -14197,13 +14548,15 @@ type AttributeWithCompositeIDConsentAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *ConsentAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -14357,6 +14710,13 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDConsentAttributeInput) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -14475,13 +14835,15 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *NumberAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -14636,6 +14998,13 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDNumberAttributeInput) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -14754,13 +15123,15 @@ type AttributeWithCompositeIDTagsAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *TagsAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -14914,6 +15285,13 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDTagsAttributeInput) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -15032,13 +15410,15 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RepeatableAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -15196,6 +15576,13 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetPurpose() []string
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetConstraints() *RepeatableAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -15328,13 +15715,15 @@ type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *CurrencyAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -15489,6 +15878,13 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -15607,13 +16003,15 @@ type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -15766,6 +16164,13 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPurpose
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -15877,13 +16282,15 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *AddressRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -16036,6 +16443,13 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetPurpose() []s
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -16147,13 +16561,15 @@ type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *UserRelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -16306,6 +16722,13 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetPurpose() []stri
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -16391,9 +16814,11 @@ type RelationAttributeNewEntityItemInput struct {
 	Title *string  `json:"_title"`
 	Tags  []string `json:"_tags,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL `json:"_acl,omitempty"`
-	Purpose              []string   `json:"_purpose,omitempty"`
-	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (r RelationAttributeNewEntityItemInput) MarshalJSON() ([]byte, error) {
@@ -16447,6 +16872,13 @@ func (o *RelationAttributeNewEntityItemInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationAttributeNewEntityItemInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationAttributeNewEntityItemInput) GetAdditionalProperties() any {
@@ -16550,13 +16982,15 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RelationAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -16727,6 +17161,13 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
@@ -16931,13 +17372,15 @@ type AttributeWithCompositeIDSequenceAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *SequenceAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -17092,6 +17535,13 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDSequenceAttributeInput) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -17210,13 +17660,15 @@ type AttributeWithCompositeIDStatusAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *StatusAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -17369,6 +17821,13 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDStatusAttributeInput) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -17480,13 +17939,15 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *MultiSelectAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -17645,6 +18106,13 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetPurpose() []strin
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -17777,13 +18245,15 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *SelectAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -17938,6 +18408,13 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDSelectAttributeInput) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -18056,13 +18533,15 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *BooleanAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -18214,6 +18693,13 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDBooleanAttributeInput) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -18318,13 +18804,15 @@ type AttributeWithCompositeIDCountryAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *CountryAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -18476,6 +18964,13 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDCountryAttributeInput) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -18580,13 +19075,15 @@ type AttributeWithCompositeIDDateAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *DateAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -18738,6 +19235,13 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDDateAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDDateAttributeInput) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -18842,13 +19346,15 @@ type AttributeWithCompositeIDLinkAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *LinkAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -19000,6 +19506,13 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *AttributeWithCompositeIDLinkAttributeInput) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
 	if o == nil {
 		return nil
@@ -19104,13 +19617,15 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *TextAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -19261,6 +19776,13 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *AttributeWithCompositeIDTextAttributeInput) GetConstraints() *TextAttributeConstraints {

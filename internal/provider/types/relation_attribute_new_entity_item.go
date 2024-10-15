@@ -8,6 +8,7 @@ type RelationAttributeNewEntityItem struct {
 	ACL                  *EntityACL     `tfsdk:"acl"`
 	CreatedAt            types.String   `tfsdk:"created_at"`
 	ID                   types.String   `tfsdk:"id"`
+	Manifest             []types.String `tfsdk:"manifest"`
 	Org                  types.String   `tfsdk:"org"`
 	Owners               []EntityOwner  `tfsdk:"owners"`
 	Purpose              []types.String `tfsdk:"purpose"`

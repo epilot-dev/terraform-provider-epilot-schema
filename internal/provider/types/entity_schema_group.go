@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntitySchemaGroup struct {
+	Manifest         []types.String    `tfsdk:"manifest"`
 	Purpose          []types.String    `tfsdk:"purpose"`
 	Expanded         types.Bool        `tfsdk:"expanded"`
 	FeatureFlag      types.String      `tfsdk:"feature_flag"`

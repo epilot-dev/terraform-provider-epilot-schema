@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type PurposeAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	Constraints              *AddressRelationAttributeConstraints `tfsdk:"constraints"`
 	CreatedAt                types.String                         `tfsdk:"created_at"`

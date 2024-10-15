@@ -14,7 +14,11 @@ type PatchEntityRequest struct {
 	// Entity id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Activity to include in event feed
-	ActivityID *string `queryParam:"style=form,explode=true,name=activity_id"`
+	ActivityID *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
+	// Update the diff and entity for the custom activity included in the query.
+	// Pending state on activity is automatically ended when activity is filled.
+	//
+	FillActivity *bool `default:"false" queryParam:"style=form,explode=true,name=fill_activity"`
 	// Dry Run mode = return results but does not perform the operation.
 	DryRun *bool `default:"false" queryParam:"style=form,explode=true,name=dry_run"`
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
@@ -47,11 +51,18 @@ func (o *PatchEntityRequest) GetID() string {
 	return o.ID
 }
 
-func (o *PatchEntityRequest) GetActivityID() *string {
+func (o *PatchEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityID
+}
+
+func (o *PatchEntityRequest) GetFillActivity() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FillActivity
 }
 
 func (o *PatchEntityRequest) GetDryRun() *bool {

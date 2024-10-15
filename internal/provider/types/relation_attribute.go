@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type RelationAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	Actions                  []Actions                            `tfsdk:"actions"`
 	AddButtonLabel           types.String                         `tfsdk:"add_button_label"`

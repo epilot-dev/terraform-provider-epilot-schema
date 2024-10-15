@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type CurrencyAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	Constraints              *AddressRelationAttributeConstraints `tfsdk:"constraints"`
 	Currency                 []Currency                           `tfsdk:"currency"`

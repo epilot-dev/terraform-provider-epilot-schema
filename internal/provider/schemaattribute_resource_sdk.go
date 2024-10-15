@@ -112,6 +112,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem := range r.TextAttribute.Purpose {
 			purpose = append(purpose, purposeItem.ValueString())
 		}
+		var manifest []string = []string{}
+		for _, manifestItem := range r.TextAttribute.Manifest {
+			manifest = append(manifest, manifestItem.ValueString())
+		}
 		var constraints *shared.TextAttributeConstraints
 		if r.TextAttribute.Constraints != nil {
 			constraints = &shared.TextAttributeConstraints{}
@@ -235,6 +239,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon,
 			RenderCondition:          renderCondition,
 			Purpose:                  purpose,
+			Manifest:                 manifest,
 			Constraints:              constraints,
 			FeatureFlag:              featureFlag,
 			SettingsFlag:             settingsFlag,
@@ -353,6 +358,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem1 := range r.LinkAttribute.Purpose {
 			purpose1 = append(purpose1, purposeItem1.ValueString())
 		}
+		var manifest1 []string = []string{}
+		for _, manifestItem1 := range r.LinkAttribute.Manifest {
+			manifest1 = append(manifest1, manifestItem1.ValueString())
+		}
 		var constraints1 *shared.LinkAttributeAttributeWithCompositeIDConstraints
 		if r.LinkAttribute.Constraints != nil {
 			constraints1 = &shared.LinkAttributeAttributeWithCompositeIDConstraints{}
@@ -470,6 +479,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon1,
 			RenderCondition:          renderCondition1,
 			Purpose:                  purpose1,
+			Manifest:                 manifest1,
 			Constraints:              constraints1,
 			FeatureFlag:              featureFlag1,
 			SettingsFlag:             settingsFlag1,
@@ -586,6 +596,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose2 []string = []string{}
 		for _, purposeItem2 := range r.DateAttribute.Purpose {
 			purpose2 = append(purpose2, purposeItem2.ValueString())
+		}
+		var manifest2 []string = []string{}
+		for _, manifestItem2 := range r.DateAttribute.Manifest {
+			manifest2 = append(manifest2, manifestItem2.ValueString())
 		}
 		var constraints2 *shared.DateAttributeAttributeWithCompositeIDConstraints
 		if r.DateAttribute.Constraints != nil {
@@ -704,6 +718,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon2,
 			RenderCondition:          renderCondition2,
 			Purpose:                  purpose2,
+			Manifest:                 manifest2,
 			Constraints:              constraints2,
 			FeatureFlag:              featureFlag2,
 			SettingsFlag:             settingsFlag2,
@@ -820,6 +835,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose3 []string = []string{}
 		for _, purposeItem3 := range r.CountryAttribute.Purpose {
 			purpose3 = append(purpose3, purposeItem3.ValueString())
+		}
+		var manifest3 []string = []string{}
+		for _, manifestItem3 := range r.CountryAttribute.Manifest {
+			manifest3 = append(manifest3, manifestItem3.ValueString())
 		}
 		var constraints3 *shared.CountryAttributeAttributeWithCompositeIDConstraints
 		if r.CountryAttribute.Constraints != nil {
@@ -938,6 +957,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon3,
 			RenderCondition:          renderCondition3,
 			Purpose:                  purpose3,
+			Manifest:                 manifest3,
 			Constraints:              constraints3,
 			FeatureFlag:              featureFlag3,
 			SettingsFlag:             settingsFlag3,
@@ -1054,6 +1074,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose4 []string = []string{}
 		for _, purposeItem4 := range r.BooleanAttribute.Purpose {
 			purpose4 = append(purpose4, purposeItem4.ValueString())
+		}
+		var manifest4 []string = []string{}
+		for _, manifestItem4 := range r.BooleanAttribute.Manifest {
+			manifest4 = append(manifest4, manifestItem4.ValueString())
 		}
 		var constraints4 *shared.BooleanAttributeAttributeWithCompositeIDConstraints
 		if r.BooleanAttribute.Constraints != nil {
@@ -1172,6 +1196,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon4,
 			RenderCondition:          renderCondition4,
 			Purpose:                  purpose4,
+			Manifest:                 manifest4,
 			Constraints:              constraints4,
 			FeatureFlag:              featureFlag4,
 			SettingsFlag:             settingsFlag4,
@@ -1288,6 +1313,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose5 []string = []string{}
 		for _, purposeItem5 := range r.SelectAttribute.Purpose {
 			purpose5 = append(purpose5, purposeItem5.ValueString())
+		}
+		var manifest5 []string = []string{}
+		for _, manifestItem5 := range r.SelectAttribute.Manifest {
+			manifest5 = append(manifest5, manifestItem5.ValueString())
 		}
 		var constraints5 *shared.SelectAttributeAttributeWithCompositeIDConstraints
 		if r.SelectAttribute.Constraints != nil {
@@ -1416,6 +1445,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon5,
 			RenderCondition:          renderCondition5,
 			Purpose:                  purpose5,
+			Manifest:                 manifest5,
 			Constraints:              constraints5,
 			FeatureFlag:              featureFlag5,
 			SettingsFlag:             settingsFlag5,
@@ -1534,6 +1564,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose6 []string = []string{}
 		for _, purposeItem6 := range r.MultiSelectAttribute.Purpose {
 			purpose6 = append(purpose6, purposeItem6.ValueString())
+		}
+		var manifest6 []string = []string{}
+		for _, manifestItem6 := range r.MultiSelectAttribute.Manifest {
+			manifest6 = append(manifest6, manifestItem6.ValueString())
 		}
 		var constraints6 *shared.MultiSelectAttributeAttributeWithCompositeIDConstraints
 		if r.MultiSelectAttribute.Constraints != nil {
@@ -1699,6 +1733,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon6,
 			RenderCondition:          renderCondition6,
 			Purpose:                  purpose6,
+			Manifest:                 manifest6,
 			Constraints:              constraints6,
 			FeatureFlag:              featureFlag6,
 			SettingsFlag:             settingsFlag6,
@@ -1819,6 +1854,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose7 []string = []string{}
 		for _, purposeItem7 := range r.StatusAttribute.Purpose {
 			purpose7 = append(purpose7, purposeItem7.ValueString())
+		}
+		var manifest7 []string = []string{}
+		for _, manifestItem7 := range r.StatusAttribute.Manifest {
+			manifest7 = append(manifest7, manifestItem7.ValueString())
 		}
 		var constraints7 *shared.StatusAttributeAttributeWithCompositeIDConstraints
 		if r.StatusAttribute.Constraints != nil {
@@ -1966,6 +2005,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon7,
 			RenderCondition:          renderCondition7,
 			Purpose:                  purpose7,
+			Manifest:                 manifest7,
 			Constraints:              constraints7,
 			FeatureFlag:              featureFlag7,
 			SettingsFlag:             settingsFlag7,
@@ -2083,6 +2123,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose8 []string = []string{}
 		for _, purposeItem8 := range r.SequenceAttribute.Purpose {
 			purpose8 = append(purpose8, purposeItem8.ValueString())
+		}
+		var manifest8 []string = []string{}
+		for _, manifestItem8 := range r.SequenceAttribute.Manifest {
+			manifest8 = append(manifest8, manifestItem8.ValueString())
 		}
 		var constraints8 *shared.SequenceAttributeAttributeWithCompositeIDConstraints
 		if r.SequenceAttribute.Constraints != nil {
@@ -2213,6 +2257,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon8,
 			RenderCondition:          renderCondition8,
 			Purpose:                  purpose8,
+			Manifest:                 manifest8,
 			Constraints:              constraints8,
 			FeatureFlag:              featureFlag8,
 			SettingsFlag:             settingsFlag8,
@@ -2331,6 +2376,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose9 []string = []string{}
 		for _, purposeItem9 := range r.RelationAttribute.Purpose {
 			purpose9 = append(purpose9, purposeItem9.ValueString())
+		}
+		var manifest9 []string = []string{}
+		for _, manifestItem9 := range r.RelationAttribute.Manifest {
+			manifest9 = append(manifest9, manifestItem9.ValueString())
 		}
 		var constraints9 *shared.RelationAttributeAttributeWithCompositeIDConstraints
 		if r.RelationAttribute.Constraints != nil {
@@ -2553,6 +2602,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				for _, purposeItem10 := range actionsItem.NewEntityItem.Purpose {
 					purpose10 = append(purpose10, purposeItem10.ValueString())
 				}
+				var manifest10 []string = []string{}
+				for _, manifestItem10 := range actionsItem.NewEntityItem.Manifest {
+					manifest10 = append(manifest10, manifestItem10.ValueString())
+				}
 				var additionalProperties1 interface{}
 				if !actionsItem.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem.NewEntityItem.AdditionalProperties.IsNull() {
 					_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
@@ -2564,6 +2617,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 					Tags:                 tags,
 					ACL:                  acl,
 					Purpose:              purpose10,
+					Manifest:             manifest10,
 					AdditionalProperties: additionalProperties1,
 				}
 			}
@@ -2667,6 +2721,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon9,
 			RenderCondition:          renderCondition9,
 			Purpose:                  purpose9,
+			Manifest:                 manifest9,
 			Constraints:              constraints9,
 			FeatureFlag:              featureFlag9,
 			SettingsFlag:             settingsFlag9,
@@ -2798,6 +2853,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem11 := range r.UserRelationAttribute.Purpose {
 			purpose11 = append(purpose11, purposeItem11.ValueString())
 		}
+		var manifest11 []string = []string{}
+		for _, manifestItem11 := range r.UserRelationAttribute.Manifest {
+			manifest11 = append(manifest11, manifestItem11.ValueString())
+		}
 		var constraints10 *shared.UserRelationAttributeAttributeWithCompositeIDConstraints
 		if r.UserRelationAttribute.Constraints != nil {
 			constraints10 = &shared.UserRelationAttributeAttributeWithCompositeIDConstraints{}
@@ -2921,6 +2980,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon10,
 			RenderCondition:          renderCondition10,
 			Purpose:                  purpose11,
+			Manifest:                 manifest11,
 			Constraints:              constraints10,
 			FeatureFlag:              featureFlag11,
 			SettingsFlag:             settingsFlag11,
@@ -3038,6 +3098,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose12 []string = []string{}
 		for _, purposeItem12 := range r.AddressRelationAttribute.Purpose {
 			purpose12 = append(purpose12, purposeItem12.ValueString())
+		}
+		var manifest12 []string = []string{}
+		for _, manifestItem12 := range r.AddressRelationAttribute.Manifest {
+			manifest12 = append(manifest12, manifestItem12.ValueString())
 		}
 		var constraints11 *shared.AddressRelationAttributeAttributeWithCompositeIDConstraints
 		if r.AddressRelationAttribute.Constraints != nil {
@@ -3162,6 +3226,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon11,
 			RenderCondition:          renderCondition11,
 			Purpose:                  purpose12,
+			Manifest:                 manifest12,
 			Constraints:              constraints11,
 			FeatureFlag:              featureFlag12,
 			SettingsFlag:             settingsFlag12,
@@ -3279,6 +3344,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose13 []string = []string{}
 		for _, purposeItem13 := range r.PaymentMethodRelationAttribute.Purpose {
 			purpose13 = append(purpose13, purposeItem13.ValueString())
+		}
+		var manifest13 []string = []string{}
+		for _, manifestItem13 := range r.PaymentMethodRelationAttribute.Manifest {
+			manifest13 = append(manifest13, manifestItem13.ValueString())
 		}
 		var constraints12 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints
 		if r.PaymentMethodRelationAttribute.Constraints != nil {
@@ -3403,6 +3472,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon12,
 			RenderCondition:          renderCondition12,
 			Purpose:                  purpose13,
+			Manifest:                 manifest13,
 			Constraints:              constraints12,
 			FeatureFlag:              featureFlag13,
 			SettingsFlag:             settingsFlag13,
@@ -3520,6 +3590,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose14 []string = []string{}
 		for _, purposeItem14 := range r.CurrencyAttribute.Purpose {
 			purpose14 = append(purpose14, purposeItem14.ValueString())
+		}
+		var manifest14 []string = []string{}
+		for _, manifestItem14 := range r.CurrencyAttribute.Manifest {
+			manifest14 = append(manifest14, manifestItem14.ValueString())
 		}
 		var constraints13 *shared.CurrencyAttributeAttributeWithCompositeIDConstraints
 		if r.CurrencyAttribute.Constraints != nil {
@@ -3668,6 +3742,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon13,
 			RenderCondition:          renderCondition13,
 			Purpose:                  purpose14,
+			Manifest:                 manifest14,
 			Constraints:              constraints13,
 			FeatureFlag:              featureFlag14,
 			SettingsFlag:             settingsFlag14,
@@ -3786,6 +3861,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose15 []string = []string{}
 		for _, purposeItem15 := range r.RepeatableAttribute.Purpose {
 			purpose15 = append(purpose15, purposeItem15.ValueString())
+		}
+		var manifest15 []string = []string{}
+		for _, manifestItem15 := range r.RepeatableAttribute.Manifest {
+			manifest15 = append(manifest15, manifestItem15.ValueString())
 		}
 		var constraints14 *shared.RepeatableAttributeAttributeWithCompositeIDConstraints
 		if r.RepeatableAttribute.Constraints != nil {
@@ -3928,6 +4007,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon14,
 			RenderCondition:          renderCondition14,
 			Purpose:                  purpose15,
+			Manifest:                 manifest15,
 			Constraints:              constraints14,
 			FeatureFlag:              featureFlag15,
 			SettingsFlag:             settingsFlag15,
@@ -4048,6 +4128,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose16 []string = []string{}
 		for _, purposeItem16 := range r.TagsAttribute.Purpose {
 			purpose16 = append(purpose16, purposeItem16.ValueString())
+		}
+		var manifest16 []string = []string{}
+		for _, manifestItem16 := range r.TagsAttribute.Manifest {
+			manifest16 = append(manifest16, manifestItem16.ValueString())
 		}
 		var constraints15 *shared.TagsAttributeAttributeWithCompositeIDConstraints
 		if r.TagsAttribute.Constraints != nil {
@@ -4174,6 +4258,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon15,
 			RenderCondition:          renderCondition15,
 			Purpose:                  purpose16,
+			Manifest:                 manifest16,
 			Constraints:              constraints15,
 			FeatureFlag:              featureFlag16,
 			SettingsFlag:             settingsFlag16,
@@ -4292,6 +4377,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose17 []string = []string{}
 		for _, purposeItem17 := range r.NumberAttribute.Purpose {
 			purpose17 = append(purpose17, purposeItem17.ValueString())
+		}
+		var manifest17 []string = []string{}
+		for _, manifestItem17 := range r.NumberAttribute.Manifest {
+			manifest17 = append(manifest17, manifestItem17.ValueString())
 		}
 		var constraints16 *shared.NumberAttributeAttributeWithCompositeIDConstraints
 		if r.NumberAttribute.Constraints != nil {
@@ -4422,6 +4511,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon16,
 			RenderCondition:          renderCondition16,
 			Purpose:                  purpose17,
+			Manifest:                 manifest17,
 			Constraints:              constraints16,
 			FeatureFlag:              featureFlag17,
 			SettingsFlag:             settingsFlag17,
@@ -4540,6 +4630,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose18 []string = []string{}
 		for _, purposeItem18 := range r.ConsentAttribute.Purpose {
 			purpose18 = append(purpose18, purposeItem18.ValueString())
+		}
+		var manifest18 []string = []string{}
+		for _, manifestItem18 := range r.ConsentAttribute.Manifest {
+			manifest18 = append(manifest18, manifestItem18.ValueString())
 		}
 		var constraints17 *shared.ConsentAttributeAttributeWithCompositeIDConstraints
 		if r.ConsentAttribute.Constraints != nil {
@@ -4660,6 +4754,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon17,
 			RenderCondition:          renderCondition17,
 			Purpose:                  purpose18,
+			Manifest:                 manifest18,
 			Constraints:              constraints17,
 			FeatureFlag:              featureFlag18,
 			SettingsFlag:             settingsFlag18,
@@ -4779,6 +4874,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem19 := range r.InternalAttribute.Purpose {
 			purpose19 = append(purpose19, purposeItem19.ValueString())
 		}
+		var manifest19 []string = []string{}
+		for _, manifestItem19 := range r.InternalAttribute.Manifest {
+			manifest19 = append(manifest19, manifestItem19.ValueString())
+		}
 		var constraints18 *shared.InternalAttributeAttributeWithCompositeIDConstraints
 		if r.InternalAttribute.Constraints != nil {
 			constraints18 = &shared.InternalAttributeAttributeWithCompositeIDConstraints{}
@@ -4896,6 +4995,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon18,
 			RenderCondition:          renderCondition18,
 			Purpose:                  purpose19,
+			Manifest:                 manifest19,
 			Constraints:              constraints18,
 			FeatureFlag:              featureFlag19,
 			SettingsFlag:             settingsFlag19,
@@ -5012,6 +5112,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose20 []string = []string{}
 		for _, purposeItem20 := range r.OrderedListAttribute.Purpose {
 			purpose20 = append(purpose20, purposeItem20.ValueString())
+		}
+		var manifest20 []string = []string{}
+		for _, manifestItem20 := range r.OrderedListAttribute.Manifest {
+			manifest20 = append(manifest20, manifestItem20.ValueString())
 		}
 		var constraints19 *shared.OrderedListAttributeAttributeWithCompositeIDConstraints
 		if r.OrderedListAttribute.Constraints != nil {
@@ -5130,6 +5234,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon19,
 			RenderCondition:          renderCondition19,
 			Purpose:                  purpose20,
+			Manifest:                 manifest20,
 			Constraints:              constraints19,
 			FeatureFlag:              featureFlag20,
 			SettingsFlag:             settingsFlag20,
@@ -5246,6 +5351,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose21 []string = []string{}
 		for _, purposeItem21 := range r.FileAttribute.Purpose {
 			purpose21 = append(purpose21, purposeItem21.ValueString())
+		}
+		var manifest21 []string = []string{}
+		for _, manifestItem21 := range r.FileAttribute.Manifest {
+			manifest21 = append(manifest21, manifestItem21.ValueString())
 		}
 		var constraints20 *shared.FileAttributeAttributeWithCompositeIDConstraints
 		if r.FileAttribute.Constraints != nil {
@@ -5387,6 +5496,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon20,
 			RenderCondition:          renderCondition20,
 			Purpose:                  purpose21,
+			Manifest:                 manifest21,
 			Constraints:              constraints20,
 			FeatureFlag:              featureFlag21,
 			SettingsFlag:             settingsFlag21,
@@ -5509,6 +5619,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem22 := range r.ComputedAttribute.Purpose {
 			purpose22 = append(purpose22, purposeItem22.ValueString())
 		}
+		var manifest22 []string = []string{}
+		for _, manifestItem22 := range r.ComputedAttribute.Manifest {
+			manifest22 = append(manifest22, manifestItem22.ValueString())
+		}
 		var constraints21 *shared.ComputedAttributeAttributeWithCompositeIDConstraints
 		if r.ComputedAttribute.Constraints != nil {
 			constraints21 = &shared.ComputedAttributeAttributeWithCompositeIDConstraints{}
@@ -5626,6 +5740,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon21,
 			RenderCondition:          renderCondition21,
 			Purpose:                  purpose22,
+			Manifest:                 manifest22,
 			Constraints:              constraints21,
 			FeatureFlag:              featureFlag22,
 			SettingsFlag:             settingsFlag22,
@@ -5742,6 +5857,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose23 []string = []string{}
 		for _, purposeItem23 := range r.PartnerStatusAttribute.Purpose {
 			purpose23 = append(purpose23, purposeItem23.ValueString())
+		}
+		var manifest23 []string = []string{}
+		for _, manifestItem23 := range r.PartnerStatusAttribute.Manifest {
+			manifest23 = append(manifest23, manifestItem23.ValueString())
 		}
 		var constraints22 *shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints
 		if r.PartnerStatusAttribute.Constraints != nil {
@@ -5860,6 +5979,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon22,
 			RenderCondition:          renderCondition22,
 			Purpose:                  purpose23,
+			Manifest:                 manifest23,
 			Constraints:              constraints22,
 			FeatureFlag:              featureFlag23,
 			SettingsFlag:             settingsFlag23,
@@ -5976,6 +6096,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose24 []string = []string{}
 		for _, purposeItem24 := range r.InvitationEmailAttribute.Purpose {
 			purpose24 = append(purpose24, purposeItem24.ValueString())
+		}
+		var manifest24 []string = []string{}
+		for _, manifestItem24 := range r.InvitationEmailAttribute.Manifest {
+			manifest24 = append(manifest24, manifestItem24.ValueString())
 		}
 		var constraints23 *shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints
 		if r.InvitationEmailAttribute.Constraints != nil {
@@ -6094,6 +6218,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon23,
 			RenderCondition:          renderCondition23,
 			Purpose:                  purpose24,
+			Manifest:                 manifest24,
 			Constraints:              constraints23,
 			FeatureFlag:              featureFlag24,
 			SettingsFlag:             settingsFlag24,
@@ -6210,6 +6335,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose25 []string = []string{}
 		for _, purposeItem25 := range r.AutomationAttribute.Purpose {
 			purpose25 = append(purpose25, purposeItem25.ValueString())
+		}
+		var manifest25 []string = []string{}
+		for _, manifestItem25 := range r.AutomationAttribute.Manifest {
+			manifest25 = append(manifest25, manifestItem25.ValueString())
 		}
 		var constraints24 *shared.AutomationAttributeAttributeWithCompositeIDConstraints
 		if r.AutomationAttribute.Constraints != nil {
@@ -6328,6 +6457,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon24,
 			RenderCondition:          renderCondition24,
 			Purpose:                  purpose25,
+			Manifest:                 manifest25,
 			Constraints:              constraints24,
 			FeatureFlag:              featureFlag25,
 			SettingsFlag:             settingsFlag25,
@@ -6444,6 +6574,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose26 []string = []string{}
 		for _, purposeItem26 := range r.InternalUserAttribute.Purpose {
 			purpose26 = append(purpose26, purposeItem26.ValueString())
+		}
+		var manifest26 []string = []string{}
+		for _, manifestItem26 := range r.InternalUserAttribute.Manifest {
+			manifest26 = append(manifest26, manifestItem26.ValueString())
 		}
 		var constraints25 *shared.InternalUserAttributeAttributeWithCompositeIDConstraints
 		if r.InternalUserAttribute.Constraints != nil {
@@ -6562,6 +6696,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon25,
 			RenderCondition:          renderCondition25,
 			Purpose:                  purpose26,
+			Manifest:                 manifest26,
 			Constraints:              constraints25,
 			FeatureFlag:              featureFlag26,
 			SettingsFlag:             settingsFlag26,
@@ -6678,6 +6813,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var purpose27 []string = []string{}
 		for _, purposeItem27 := range r.PurposeAttribute.Purpose {
 			purpose27 = append(purpose27, purposeItem27.ValueString())
+		}
+		var manifest27 []string = []string{}
+		for _, manifestItem27 := range r.PurposeAttribute.Manifest {
+			manifest27 = append(manifest27, manifestItem27.ValueString())
 		}
 		var constraints26 *shared.PurposeAttributeAttributeWithCompositeIDConstraints
 		if r.PurposeAttribute.Constraints != nil {
@@ -6818,6 +6957,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon26,
 			RenderCondition:          renderCondition26,
 			Purpose:                  purpose27,
+			Manifest:                 manifest27,
 			Constraints:              constraints26,
 			FeatureFlag:              featureFlag27,
 			SettingsFlag:             settingsFlag27,
@@ -6939,6 +7079,10 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, purposeItem28 := range r.PartnerOrganisationAttribute.Purpose {
 			purpose28 = append(purpose28, purposeItem28.ValueString())
 		}
+		var manifest28 []string = []string{}
+		for _, manifestItem28 := range r.PartnerOrganisationAttribute.Manifest {
+			manifest28 = append(manifest28, manifestItem28.ValueString())
+		}
 		var constraints27 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints
 		if r.PartnerOrganisationAttribute.Constraints != nil {
 			constraints27 = &shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints{}
@@ -7056,6 +7200,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Icon:                     icon27,
 			RenderCondition:          renderCondition27,
 			Purpose:                  purpose28,
+			Manifest:                 manifest28,
 			Constraints:              constraints27,
 			FeatureFlag:              featureFlag28,
 			SettingsFlag:             settingsFlag28,
@@ -7081,6 +7226,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 	} else {
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
 			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
+			r.AddressRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
+				r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.AddressRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose {
 				r.AddressRelationAttribute.Purpose = append(r.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -7175,6 +7324,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDAutomationAttribute != nil {
 			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.AutomationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
+				r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
+			}
 			r.AutomationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Purpose {
 				r.AutomationAttribute.Purpose = append(r.AutomationAttribute.Purpose, types.StringValue(v))
@@ -7268,6 +7421,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDBooleanAttribute != nil {
 			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDBooleanAttribute{}
+			r.BooleanAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
+				r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
+			}
 			r.BooleanAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Purpose {
 				r.BooleanAttribute.Purpose = append(r.BooleanAttribute.Purpose, types.StringValue(v))
@@ -7361,6 +7518,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDComputedAttribute != nil {
 			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDComputedAttribute{}
+			r.ComputedAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
+				r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
+			}
 			r.ComputedAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Purpose {
 				r.ComputedAttribute.Purpose = append(r.ComputedAttribute.Purpose, types.StringValue(v))
@@ -7454,6 +7615,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDConsentAttribute != nil {
 			r.ConsentAttribute = &tfTypes.AttributeWithCompositeIDConsentAttribute{}
+			r.ConsentAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Manifest {
+				r.ConsentAttribute.Manifest = append(r.ConsentAttribute.Manifest, types.StringValue(v))
+			}
 			r.ConsentAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Purpose {
 				r.ConsentAttribute.Purpose = append(r.ConsentAttribute.Purpose, types.StringValue(v))
@@ -7548,6 +7713,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDCountryAttribute != nil {
 			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDCountryAttribute{}
+			r.CountryAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
+				r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
+			}
 			r.CountryAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Purpose {
 				r.CountryAttribute.Purpose = append(r.CountryAttribute.Purpose, types.StringValue(v))
@@ -7641,6 +7810,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDCurrencyAttribute != nil {
 			r.CurrencyAttribute = &tfTypes.AttributeWithCompositeIDCurrencyAttribute{}
+			r.CurrencyAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Manifest {
+				r.CurrencyAttribute.Manifest = append(r.CurrencyAttribute.Manifest, types.StringValue(v))
+			}
 			r.CurrencyAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Purpose {
 				r.CurrencyAttribute.Purpose = append(r.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -7750,6 +7923,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDDateAttribute != nil {
 			r.DateAttribute = &tfTypes.AttributeWithCompositeIDDateAttribute{}
+			r.DateAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
+				r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
+			}
 			r.DateAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Purpose {
 				r.DateAttribute.Purpose = append(r.DateAttribute.Purpose, types.StringValue(v))
@@ -7843,6 +8020,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDFileAttribute != nil {
 			r.FileAttribute = &tfTypes.AttributeWithCompositeIDFileAttribute{}
+			r.FileAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Manifest {
+				r.FileAttribute.Manifest = append(r.FileAttribute.Manifest, types.StringValue(v))
+			}
 			r.FileAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Purpose {
 				r.FileAttribute.Purpose = append(r.FileAttribute.Purpose, types.StringValue(v))
@@ -7944,6 +8125,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDInternalAttribute != nil {
 			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDInternalAttribute{}
+			r.InternalAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
+				r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
+			}
 			r.InternalAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Purpose {
 				r.InternalAttribute.Purpose = append(r.InternalAttribute.Purpose, types.StringValue(v))
@@ -8037,6 +8222,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDInternalUserAttribute != nil {
 			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDInternalUserAttribute{}
+			r.InternalUserAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
+				r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
+			}
 			r.InternalUserAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Purpose {
 				r.InternalUserAttribute.Purpose = append(r.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -8130,6 +8319,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDInvitationEmailAttribute != nil {
 			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDInvitationEmailAttribute{}
+			r.InvitationEmailAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
+				r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
+			}
 			r.InvitationEmailAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose {
 				r.InvitationEmailAttribute.Purpose = append(r.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -8223,6 +8416,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDLinkAttribute != nil {
 			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDLinkAttribute{}
+			r.LinkAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
+				r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
+			}
 			r.LinkAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Purpose {
 				r.LinkAttribute.Purpose = append(r.LinkAttribute.Purpose, types.StringValue(v))
@@ -8316,6 +8513,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDMultiSelectAttribute != nil {
 			r.MultiSelectAttribute = &tfTypes.AttributeWithCompositeIDMultiSelectAttribute{}
+			r.MultiSelectAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Manifest {
+				r.MultiSelectAttribute.Manifest = append(r.MultiSelectAttribute.Manifest, types.StringValue(v))
+			}
 			r.MultiSelectAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose {
 				r.MultiSelectAttribute.Purpose = append(r.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -8433,6 +8634,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDNumberAttribute != nil {
 			r.NumberAttribute = &tfTypes.AttributeWithCompositeIDNumberAttribute{}
+			r.NumberAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Manifest {
+				r.NumberAttribute.Manifest = append(r.NumberAttribute.Manifest, types.StringValue(v))
+			}
 			r.NumberAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Purpose {
 				r.NumberAttribute.Purpose = append(r.NumberAttribute.Purpose, types.StringValue(v))
@@ -8528,6 +8733,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDOrderedListAttribute != nil {
 			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDOrderedListAttribute{}
+			r.OrderedListAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
+				r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
+			}
 			r.OrderedListAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Purpose {
 				r.OrderedListAttribute.Purpose = append(r.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -8621,6 +8830,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
 			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDPartnerOrganisationAttribute{}
+			r.PartnerOrganisationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
+				r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+			}
 			r.PartnerOrganisationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose {
 				r.PartnerOrganisationAttribute.Purpose = append(r.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -8714,6 +8927,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDPartnerStatusAttribute != nil {
 			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDPartnerStatusAttribute{}
+			r.PartnerStatusAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
+				r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
+			}
 			r.PartnerStatusAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose {
 				r.PartnerStatusAttribute.Purpose = append(r.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -8807,6 +9024,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute != nil {
 			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+			r.PaymentMethodRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
+				r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.PaymentMethodRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose {
 				r.PaymentMethodRelationAttribute.Purpose = append(r.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -8901,6 +9122,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDPurposeAttribute != nil {
 			r.PurposeAttribute = &tfTypes.AttributeWithCompositeIDPurposeAttribute{}
+			r.PurposeAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Manifest {
+				r.PurposeAttribute.Manifest = append(r.PurposeAttribute.Manifest, types.StringValue(v))
+			}
 			r.PurposeAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
@@ -9009,6 +9234,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDRelationAttribute != nil {
 			r.RelationAttribute = &tfTypes.AttributeWithCompositeIDRelationAttribute{}
+			r.RelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Manifest {
+				r.RelationAttribute.Manifest = append(r.RelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.RelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Purpose {
 				r.RelationAttribute.Purpose = append(r.RelationAttribute.Purpose, types.StringValue(v))
@@ -9060,6 +9289,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 						actions1.NewEntityItem.CreatedAt = types.StringNull()
 					}
 					actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+					actions1.NewEntityItem.Manifest = []types.String{}
+					for _, v := range actionsItem.NewEntityItem.Manifest {
+						actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
+					}
 					actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
 					actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 					for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -9264,6 +9497,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDRepeatableAttribute != nil {
 			r.RepeatableAttribute = &tfTypes.AttributeWithCompositeIDRepeatableAttribute{}
+			r.RepeatableAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Manifest {
+				r.RepeatableAttribute.Manifest = append(r.RepeatableAttribute.Manifest, types.StringValue(v))
+			}
 			r.RepeatableAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Purpose {
 				r.RepeatableAttribute.Purpose = append(r.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -9365,6 +9602,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDSelectAttribute != nil {
 			r.SelectAttribute = &tfTypes.AttributeWithCompositeIDSelectAttribute{}
+			r.SelectAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Manifest {
+				r.SelectAttribute.Manifest = append(r.SelectAttribute.Manifest, types.StringValue(v))
+			}
 			r.SelectAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Purpose {
 				r.SelectAttribute.Purpose = append(r.SelectAttribute.Purpose, types.StringValue(v))
@@ -9465,6 +9706,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDSequenceAttribute != nil {
 			r.SequenceAttribute = &tfTypes.AttributeWithCompositeIDSequenceAttribute{}
+			r.SequenceAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Manifest {
+				r.SequenceAttribute.Manifest = append(r.SequenceAttribute.Manifest, types.StringValue(v))
+			}
 			r.SequenceAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Purpose {
 				r.SequenceAttribute.Purpose = append(r.SequenceAttribute.Purpose, types.StringValue(v))
@@ -9560,6 +9805,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDStatusAttribute != nil {
 			r.StatusAttribute = &tfTypes.AttributeWithCompositeIDStatusAttribute{}
+			r.StatusAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Manifest {
+				r.StatusAttribute.Manifest = append(r.StatusAttribute.Manifest, types.StringValue(v))
+			}
 			r.StatusAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Purpose {
 				r.StatusAttribute.Purpose = append(r.StatusAttribute.Purpose, types.StringValue(v))
@@ -9674,6 +9923,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDTagsAttribute != nil {
 			r.TagsAttribute = &tfTypes.AttributeWithCompositeIDTagsAttribute{}
+			r.TagsAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Manifest {
+				r.TagsAttribute.Manifest = append(r.TagsAttribute.Manifest, types.StringValue(v))
+			}
 			r.TagsAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Purpose {
 				r.TagsAttribute.Purpose = append(r.TagsAttribute.Purpose, types.StringValue(v))
@@ -9775,6 +10028,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDTextAttribute != nil {
 			r.TextAttribute = &tfTypes.AttributeWithCompositeIDTextAttribute{}
+			r.TextAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Manifest {
+				r.TextAttribute.Manifest = append(r.TextAttribute.Manifest, types.StringValue(v))
+			}
 			r.TextAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Purpose {
 				r.TextAttribute.Purpose = append(r.TextAttribute.Purpose, types.StringValue(v))
@@ -9869,6 +10126,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 		}
 		if resp.AttributeWithCompositeIDUserRelationAttribute != nil {
 			r.UserRelationAttribute = &tfTypes.AttributeWithCompositeIDUserRelationAttribute{}
+			r.UserRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Manifest {
+				r.UserRelationAttribute.Manifest = append(r.UserRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.UserRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Purpose {
 				r.UserRelationAttribute.Purpose = append(r.UserRelationAttribute.Purpose, types.StringValue(v))

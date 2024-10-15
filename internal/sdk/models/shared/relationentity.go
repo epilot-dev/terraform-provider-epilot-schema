@@ -20,8 +20,10 @@ type RelationEntity struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL    `json:"_acl,omitempty"`
-	Purpose              []string      `json:"_purpose,omitempty"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string      `json:"_manifest,omitempty"`
 	DollarRelation       *RelationItem `json:"$relation,omitempty"`
 	AdditionalProperties any           `additionalProperties:"true" json:"-"`
 }
@@ -105,6 +107,13 @@ func (o *RelationEntity) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationEntity) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationEntity) GetDollarRelation() *RelationItem {

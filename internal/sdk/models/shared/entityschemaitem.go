@@ -575,6 +575,7 @@ type EntitySchemaItem struct {
 	// Advanced: explicit Elasticsearch index mapping definitions for entity data
 	//
 	ExplicitSearchMappings map[string]SearchMappings `json:"explicit_search_mappings,omitempty"`
+	GroupHeadlines         []GroupHeadline           `json:"group_headlines,omitempty"`
 }
 
 func (o *EntitySchemaItem) GetID() *string {
@@ -731,6 +732,13 @@ func (o *EntitySchemaItem) GetExplicitSearchMappings() map[string]SearchMappings
 	return o.ExplicitSearchMappings
 }
 
+func (o *EntitySchemaItem) GetGroupHeadlines() []GroupHeadline {
+	if o == nil {
+		return nil
+	}
+	return o.GroupHeadlines
+}
+
 // EntitySchemaItemInput - The "type" of an Entity. Describes the shape. Includes Entity Attributes, Relations and Capabilities.
 type EntitySchemaItemInput struct {
 	// Generated uuid for schema
@@ -770,6 +778,7 @@ type EntitySchemaItemInput struct {
 	// Advanced: explicit Elasticsearch index mapping definitions for entity data
 	//
 	ExplicitSearchMappings map[string]SearchMappings `json:"explicit_search_mappings,omitempty"`
+	GroupHeadlines         []GroupHeadline           `json:"group_headlines,omitempty"`
 }
 
 func (o *EntitySchemaItemInput) GetID() *string {
@@ -924,4 +933,11 @@ func (o *EntitySchemaItemInput) GetExplicitSearchMappings() map[string]SearchMap
 		return nil
 	}
 	return o.ExplicitSearchMappings
+}
+
+func (o *EntitySchemaItemInput) GetGroupHeadlines() []GroupHeadline {
+	if o == nil {
+		return nil
+	}
+	return o.GroupHeadlines
 }

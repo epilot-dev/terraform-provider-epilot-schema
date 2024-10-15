@@ -42,11 +42,15 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 	} else {
 		enableDivider = nil
 	}
-	divider := new(shared.Divider)
+	divider := new(shared.GroupHeadlineWithCompositeIDDivider)
 	if !r.Divider.IsUnknown() && !r.Divider.IsNull() {
-		*divider = shared.Divider(r.Divider.ValueString())
+		*divider = shared.GroupHeadlineWithCompositeIDDivider(r.Divider.ValueString())
 	} else {
 		divider = nil
+	}
+	var manifest []string = []string{}
+	for _, manifestItem := range r.Manifest {
+		manifest = append(manifest, manifestItem.ValueString())
 	}
 	schema := new(string)
 	if !r.Schema.IsUnknown() && !r.Schema.IsNull() {
@@ -64,6 +68,7 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 		Type:          typeVar,
 		EnableDivider: enableDivider,
 		Divider:       divider,
+		Manifest:      manifest,
 		Schema:        schema,
 	}
 	return &out
@@ -71,6 +76,10 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 
 func (r *SchemaGroupHeadlineResourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(resp *shared.GroupHeadlineWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.CompositeID = types.StringPointerValue(resp.CompositeID)
 		if resp.Divider != nil {
 			r.Divider = types.StringValue(string(*resp.Divider))

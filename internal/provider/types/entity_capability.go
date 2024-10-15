@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntityCapability struct {
+	Manifest     []types.String `tfsdk:"manifest"`
 	Purpose      []types.String `tfsdk:"purpose"`
 	Attributes   []Attribute    `tfsdk:"attributes"`
 	FeatureFlag  types.String   `tfsdk:"feature_flag"`

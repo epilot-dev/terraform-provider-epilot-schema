@@ -15,6 +15,8 @@ type TaxonomyClassification struct {
 	Parents   []string   `json:"parents,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Manifest ID used to create/update the taxonomy classification
+	Manifest []string `json:"_manifest,omitempty"`
 }
 
 func (t TaxonomyClassification) MarshalJSON() ([]byte, error) {
@@ -68,4 +70,11 @@ func (o *TaxonomyClassification) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *TaxonomyClassification) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }

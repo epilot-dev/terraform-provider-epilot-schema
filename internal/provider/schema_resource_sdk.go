@@ -725,6 +725,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem := range attributesItem.TextAttribute.Purpose {
 					purpose = append(purpose, purposeItem.ValueString())
 				}
+				var manifest []string = []string{}
+				for _, manifestItem := range attributesItem.TextAttribute.Manifest {
+					manifest = append(manifest, manifestItem.ValueString())
+				}
 				var constraints *shared.Constraints
 				if attributesItem.TextAttribute.Constraints != nil {
 					constraints = &shared.Constraints{}
@@ -842,6 +846,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon4,
 					RenderCondition:          renderCondition1,
 					Purpose:                  purpose,
+					Manifest:                 manifest,
 					Constraints:              constraints,
 					FeatureFlag:              featureFlag2,
 					SettingsFlag:             settingsFlag1,
@@ -956,6 +961,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem1 := range attributesItem.LinkAttribute.Purpose {
 					purpose1 = append(purpose1, purposeItem1.ValueString())
 				}
+				var manifest1 []string = []string{}
+				for _, manifestItem1 := range attributesItem.LinkAttribute.Manifest {
+					manifest1 = append(manifest1, manifestItem1.ValueString())
+				}
 				var constraints1 *shared.LinkAttributeConstraints
 				if attributesItem.LinkAttribute.Constraints != nil {
 					constraints1 = &shared.LinkAttributeConstraints{}
@@ -1067,6 +1076,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon5,
 					RenderCondition:          renderCondition2,
 					Purpose:                  purpose1,
+					Manifest:                 manifest1,
 					Constraints:              constraints1,
 					FeatureFlag:              featureFlag3,
 					SettingsFlag:             settingsFlag2,
@@ -1180,6 +1190,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem2 := range attributesItem.DateAttribute.Purpose {
 					purpose2 = append(purpose2, purposeItem2.ValueString())
 				}
+				var manifest2 []string = []string{}
+				for _, manifestItem2 := range attributesItem.DateAttribute.Manifest {
+					manifest2 = append(manifest2, manifestItem2.ValueString())
+				}
 				var constraints2 *shared.DateAttributeConstraints
 				if attributesItem.DateAttribute.Constraints != nil {
 					constraints2 = &shared.DateAttributeConstraints{}
@@ -1291,6 +1305,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon6,
 					RenderCondition:          renderCondition3,
 					Purpose:                  purpose2,
+					Manifest:                 manifest2,
 					Constraints:              constraints2,
 					FeatureFlag:              featureFlag4,
 					SettingsFlag:             settingsFlag3,
@@ -1404,6 +1419,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem3 := range attributesItem.CountryAttribute.Purpose {
 					purpose3 = append(purpose3, purposeItem3.ValueString())
 				}
+				var manifest3 []string = []string{}
+				for _, manifestItem3 := range attributesItem.CountryAttribute.Manifest {
+					manifest3 = append(manifest3, manifestItem3.ValueString())
+				}
 				var constraints3 *shared.CountryAttributeConstraints
 				if attributesItem.CountryAttribute.Constraints != nil {
 					constraints3 = &shared.CountryAttributeConstraints{}
@@ -1515,6 +1534,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon7,
 					RenderCondition:          renderCondition4,
 					Purpose:                  purpose3,
+					Manifest:                 manifest3,
 					Constraints:              constraints3,
 					FeatureFlag:              featureFlag5,
 					SettingsFlag:             settingsFlag4,
@@ -1628,6 +1648,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem4 := range attributesItem.BooleanAttribute.Purpose {
 					purpose4 = append(purpose4, purposeItem4.ValueString())
 				}
+				var manifest4 []string = []string{}
+				for _, manifestItem4 := range attributesItem.BooleanAttribute.Manifest {
+					manifest4 = append(manifest4, manifestItem4.ValueString())
+				}
 				var constraints4 *shared.BooleanAttributeConstraints
 				if attributesItem.BooleanAttribute.Constraints != nil {
 					constraints4 = &shared.BooleanAttributeConstraints{}
@@ -1739,6 +1763,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon8,
 					RenderCondition:          renderCondition5,
 					Purpose:                  purpose4,
+					Manifest:                 manifest4,
 					Constraints:              constraints4,
 					FeatureFlag:              featureFlag6,
 					SettingsFlag:             settingsFlag5,
@@ -1851,6 +1876,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose5 []string = []string{}
 				for _, purposeItem5 := range attributesItem.SelectAttribute.Purpose {
 					purpose5 = append(purpose5, purposeItem5.ValueString())
+				}
+				var manifest5 []string = []string{}
+				for _, manifestItem5 := range attributesItem.SelectAttribute.Manifest {
+					manifest5 = append(manifest5, manifestItem5.ValueString())
 				}
 				var constraints5 *shared.SelectAttributeConstraints
 				if attributesItem.SelectAttribute.Constraints != nil {
@@ -1973,6 +2002,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon9,
 					RenderCondition:          renderCondition6,
 					Purpose:                  purpose5,
+					Manifest:                 manifest5,
 					Constraints:              constraints5,
 					FeatureFlag:              featureFlag7,
 					SettingsFlag:             settingsFlag6,
@@ -2087,6 +2117,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose6 []string = []string{}
 				for _, purposeItem6 := range attributesItem.MultiSelectAttribute.Purpose {
 					purpose6 = append(purpose6, purposeItem6.ValueString())
+				}
+				var manifest6 []string = []string{}
+				for _, manifestItem6 := range attributesItem.MultiSelectAttribute.Manifest {
+					manifest6 = append(manifest6, manifestItem6.ValueString())
 				}
 				var constraints6 *shared.MultiSelectAttributeConstraints
 				if attributesItem.MultiSelectAttribute.Constraints != nil {
@@ -2246,6 +2280,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon10,
 					RenderCondition:          renderCondition7,
 					Purpose:                  purpose6,
+					Manifest:                 manifest6,
 					Constraints:              constraints6,
 					FeatureFlag:              featureFlag8,
 					SettingsFlag:             settingsFlag7,
@@ -2362,6 +2397,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose7 []string = []string{}
 				for _, purposeItem7 := range attributesItem.StatusAttribute.Purpose {
 					purpose7 = append(purpose7, purposeItem7.ValueString())
+				}
+				var manifest7 []string = []string{}
+				for _, manifestItem7 := range attributesItem.StatusAttribute.Manifest {
+					manifest7 = append(manifest7, manifestItem7.ValueString())
 				}
 				var constraints7 *shared.StatusAttributeConstraints
 				if attributesItem.StatusAttribute.Constraints != nil {
@@ -2503,6 +2542,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon11,
 					RenderCondition:          renderCondition8,
 					Purpose:                  purpose7,
+					Manifest:                 manifest7,
 					Constraints:              constraints7,
 					FeatureFlag:              featureFlag9,
 					SettingsFlag:             settingsFlag8,
@@ -2616,6 +2656,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose8 []string = []string{}
 				for _, purposeItem8 := range attributesItem.SequenceAttribute.Purpose {
 					purpose8 = append(purpose8, purposeItem8.ValueString())
+				}
+				var manifest8 []string = []string{}
+				for _, manifestItem8 := range attributesItem.SequenceAttribute.Manifest {
+					manifest8 = append(manifest8, manifestItem8.ValueString())
 				}
 				var constraints8 *shared.SequenceAttributeConstraints
 				if attributesItem.SequenceAttribute.Constraints != nil {
@@ -2740,6 +2784,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon12,
 					RenderCondition:          renderCondition9,
 					Purpose:                  purpose8,
+					Manifest:                 manifest8,
 					Constraints:              constraints8,
 					FeatureFlag:              featureFlag10,
 					SettingsFlag:             settingsFlag9,
@@ -2854,6 +2899,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose9 []string = []string{}
 				for _, purposeItem9 := range attributesItem.RelationAttribute.Purpose {
 					purpose9 = append(purpose9, purposeItem9.ValueString())
+				}
+				var manifest9 []string = []string{}
+				for _, manifestItem9 := range attributesItem.RelationAttribute.Manifest {
+					manifest9 = append(manifest9, manifestItem9.ValueString())
 				}
 				var constraints9 *shared.RelationAttributeConstraints
 				if attributesItem.RelationAttribute.Constraints != nil {
@@ -3076,6 +3125,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 						for _, purposeItem10 := range actionsItem.NewEntityItem.Purpose {
 							purpose10 = append(purpose10, purposeItem10.ValueString())
 						}
+						var manifest10 []string = []string{}
+						for _, manifestItem10 := range actionsItem.NewEntityItem.Manifest {
+							manifest10 = append(manifest10, manifestItem10.ValueString())
+						}
 						var additionalProperties1 interface{}
 						if !actionsItem.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem.NewEntityItem.AdditionalProperties.IsNull() {
 							_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties1)
@@ -3087,6 +3140,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 							Tags:                 tags,
 							ACL:                  acl,
 							Purpose:              purpose10,
+							Manifest:             manifest10,
 							AdditionalProperties: additionalProperties1,
 						}
 					}
@@ -3184,6 +3238,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon13,
 					RenderCondition:          renderCondition10,
 					Purpose:                  purpose9,
+					Manifest:                 manifest9,
 					Constraints:              constraints9,
 					FeatureFlag:              featureFlag11,
 					SettingsFlag:             settingsFlag10,
@@ -3311,6 +3366,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem11 := range attributesItem.UserRelationAttribute.Purpose {
 					purpose11 = append(purpose11, purposeItem11.ValueString())
 				}
+				var manifest11 []string = []string{}
+				for _, manifestItem11 := range attributesItem.UserRelationAttribute.Manifest {
+					manifest11 = append(manifest11, manifestItem11.ValueString())
+				}
 				var constraints10 *shared.UserRelationAttributeConstraints
 				if attributesItem.UserRelationAttribute.Constraints != nil {
 					constraints10 = &shared.UserRelationAttributeConstraints{}
@@ -3428,6 +3487,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon14,
 					RenderCondition:          renderCondition11,
 					Purpose:                  purpose11,
+					Manifest:                 manifest11,
 					Constraints:              constraints10,
 					FeatureFlag:              featureFlag13,
 					SettingsFlag:             settingsFlag12,
@@ -3541,6 +3601,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose12 []string = []string{}
 				for _, purposeItem12 := range attributesItem.AddressRelationAttribute.Purpose {
 					purpose12 = append(purpose12, purposeItem12.ValueString())
+				}
+				var manifest12 []string = []string{}
+				for _, manifestItem12 := range attributesItem.AddressRelationAttribute.Manifest {
+					manifest12 = append(manifest12, manifestItem12.ValueString())
 				}
 				var constraints11 *shared.AddressRelationAttributeConstraints
 				if attributesItem.AddressRelationAttribute.Constraints != nil {
@@ -3659,6 +3723,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon15,
 					RenderCondition:          renderCondition12,
 					Purpose:                  purpose12,
+					Manifest:                 manifest12,
 					Constraints:              constraints11,
 					FeatureFlag:              featureFlag14,
 					SettingsFlag:             settingsFlag13,
@@ -3772,6 +3837,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose13 []string = []string{}
 				for _, purposeItem13 := range attributesItem.PaymentMethodRelationAttribute.Purpose {
 					purpose13 = append(purpose13, purposeItem13.ValueString())
+				}
+				var manifest13 []string = []string{}
+				for _, manifestItem13 := range attributesItem.PaymentMethodRelationAttribute.Manifest {
+					manifest13 = append(manifest13, manifestItem13.ValueString())
 				}
 				var constraints12 *shared.PaymentMethodRelationAttributeConstraints
 				if attributesItem.PaymentMethodRelationAttribute.Constraints != nil {
@@ -3890,6 +3959,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon16,
 					RenderCondition:          renderCondition13,
 					Purpose:                  purpose13,
+					Manifest:                 manifest13,
 					Constraints:              constraints12,
 					FeatureFlag:              featureFlag15,
 					SettingsFlag:             settingsFlag14,
@@ -4003,6 +4073,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose14 []string = []string{}
 				for _, purposeItem14 := range attributesItem.CurrencyAttribute.Purpose {
 					purpose14 = append(purpose14, purposeItem14.ValueString())
+				}
+				var manifest14 []string = []string{}
+				for _, manifestItem14 := range attributesItem.CurrencyAttribute.Manifest {
+					manifest14 = append(manifest14, manifestItem14.ValueString())
 				}
 				var constraints13 *shared.CurrencyAttributeConstraints
 				if attributesItem.CurrencyAttribute.Constraints != nil {
@@ -4145,6 +4219,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon17,
 					RenderCondition:          renderCondition14,
 					Purpose:                  purpose14,
+					Manifest:                 manifest14,
 					Constraints:              constraints13,
 					FeatureFlag:              featureFlag16,
 					SettingsFlag:             settingsFlag15,
@@ -4259,6 +4334,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose15 []string = []string{}
 				for _, purposeItem15 := range attributesItem.RepeatableAttribute.Purpose {
 					purpose15 = append(purpose15, purposeItem15.ValueString())
+				}
+				var manifest15 []string = []string{}
+				for _, manifestItem15 := range attributesItem.RepeatableAttribute.Manifest {
+					manifest15 = append(manifest15, manifestItem15.ValueString())
 				}
 				var constraints14 *shared.RepeatableAttributeConstraints
 				if attributesItem.RepeatableAttribute.Constraints != nil {
@@ -4395,6 +4474,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon18,
 					RenderCondition:          renderCondition15,
 					Purpose:                  purpose15,
+					Manifest:                 manifest15,
 					Constraints:              constraints14,
 					FeatureFlag:              featureFlag17,
 					SettingsFlag:             settingsFlag16,
@@ -4511,6 +4591,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose16 []string = []string{}
 				for _, purposeItem16 := range attributesItem.TagsAttribute.Purpose {
 					purpose16 = append(purpose16, purposeItem16.ValueString())
+				}
+				var manifest16 []string = []string{}
+				for _, manifestItem16 := range attributesItem.TagsAttribute.Manifest {
+					manifest16 = append(manifest16, manifestItem16.ValueString())
 				}
 				var constraints15 *shared.TagsAttributeConstraints
 				if attributesItem.TagsAttribute.Constraints != nil {
@@ -4631,6 +4715,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon19,
 					RenderCondition:          renderCondition16,
 					Purpose:                  purpose16,
+					Manifest:                 manifest16,
 					Constraints:              constraints15,
 					FeatureFlag:              featureFlag18,
 					SettingsFlag:             settingsFlag17,
@@ -4745,6 +4830,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose17 []string = []string{}
 				for _, purposeItem17 := range attributesItem.NumberAttribute.Purpose {
 					purpose17 = append(purpose17, purposeItem17.ValueString())
+				}
+				var manifest17 []string = []string{}
+				for _, manifestItem17 := range attributesItem.NumberAttribute.Manifest {
+					manifest17 = append(manifest17, manifestItem17.ValueString())
 				}
 				var constraints16 *shared.NumberAttributeConstraints
 				if attributesItem.NumberAttribute.Constraints != nil {
@@ -4869,6 +4958,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon20,
 					RenderCondition:          renderCondition17,
 					Purpose:                  purpose17,
+					Manifest:                 manifest17,
 					Constraints:              constraints16,
 					FeatureFlag:              featureFlag19,
 					SettingsFlag:             settingsFlag18,
@@ -4984,6 +5074,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem18 := range attributesItem.ConsentAttribute.Purpose {
 					purpose18 = append(purpose18, purposeItem18.ValueString())
 				}
+				var manifest18 []string = []string{}
+				for _, manifestItem18 := range attributesItem.ConsentAttribute.Manifest {
+					manifest18 = append(manifest18, manifestItem18.ValueString())
+				}
 				var constraints17 *shared.ConsentAttributeConstraints
 				if attributesItem.ConsentAttribute.Constraints != nil {
 					constraints17 = &shared.ConsentAttributeConstraints{}
@@ -5097,6 +5191,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon21,
 					RenderCondition:          renderCondition18,
 					Purpose:                  purpose18,
+					Manifest:                 manifest18,
 					Constraints:              constraints17,
 					FeatureFlag:              featureFlag20,
 					SettingsFlag:             settingsFlag19,
@@ -5212,6 +5307,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem19 := range attributesItem.InternalAttribute.Purpose {
 					purpose19 = append(purpose19, purposeItem19.ValueString())
 				}
+				var manifest19 []string = []string{}
+				for _, manifestItem19 := range attributesItem.InternalAttribute.Manifest {
+					manifest19 = append(manifest19, manifestItem19.ValueString())
+				}
 				var constraints18 *shared.InternalAttributeConstraints
 				if attributesItem.InternalAttribute.Constraints != nil {
 					constraints18 = &shared.InternalAttributeConstraints{}
@@ -5323,6 +5422,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon22,
 					RenderCondition:          renderCondition19,
 					Purpose:                  purpose19,
+					Manifest:                 manifest19,
 					Constraints:              constraints18,
 					FeatureFlag:              featureFlag21,
 					SettingsFlag:             settingsFlag20,
@@ -5436,6 +5536,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem20 := range attributesItem.OrderedListAttribute.Purpose {
 					purpose20 = append(purpose20, purposeItem20.ValueString())
 				}
+				var manifest20 []string = []string{}
+				for _, manifestItem20 := range attributesItem.OrderedListAttribute.Manifest {
+					manifest20 = append(manifest20, manifestItem20.ValueString())
+				}
 				var constraints19 *shared.OrderedListAttributeConstraints
 				if attributesItem.OrderedListAttribute.Constraints != nil {
 					constraints19 = &shared.OrderedListAttributeConstraints{}
@@ -5547,6 +5651,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon23,
 					RenderCondition:          renderCondition20,
 					Purpose:                  purpose20,
+					Manifest:                 manifest20,
 					Constraints:              constraints19,
 					FeatureFlag:              featureFlag22,
 					SettingsFlag:             settingsFlag21,
@@ -5659,6 +5764,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose21 []string = []string{}
 				for _, purposeItem21 := range attributesItem.FileAttribute.Purpose {
 					purpose21 = append(purpose21, purposeItem21.ValueString())
+				}
+				var manifest21 []string = []string{}
+				for _, manifestItem21 := range attributesItem.FileAttribute.Manifest {
+					manifest21 = append(manifest21, manifestItem21.ValueString())
 				}
 				var constraints20 *shared.FileAttributeConstraints
 				if attributesItem.FileAttribute.Constraints != nil {
@@ -5794,6 +5903,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon24,
 					RenderCondition:          renderCondition21,
 					Purpose:                  purpose21,
+					Manifest:                 manifest21,
 					Constraints:              constraints20,
 					FeatureFlag:              featureFlag23,
 					SettingsFlag:             settingsFlag22,
@@ -5912,6 +6022,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem22 := range attributesItem.ComputedAttribute.Purpose {
 					purpose22 = append(purpose22, purposeItem22.ValueString())
 				}
+				var manifest22 []string = []string{}
+				for _, manifestItem22 := range attributesItem.ComputedAttribute.Manifest {
+					manifest22 = append(manifest22, manifestItem22.ValueString())
+				}
 				var constraints21 *shared.ComputedAttributeConstraints
 				if attributesItem.ComputedAttribute.Constraints != nil {
 					constraints21 = &shared.ComputedAttributeConstraints{}
@@ -6023,6 +6137,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon25,
 					RenderCondition:          renderCondition22,
 					Purpose:                  purpose22,
+					Manifest:                 manifest22,
 					Constraints:              constraints21,
 					FeatureFlag:              featureFlag24,
 					SettingsFlag:             settingsFlag23,
@@ -6136,6 +6251,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem23 := range attributesItem.PartnerStatusAttribute.Purpose {
 					purpose23 = append(purpose23, purposeItem23.ValueString())
 				}
+				var manifest23 []string = []string{}
+				for _, manifestItem23 := range attributesItem.PartnerStatusAttribute.Manifest {
+					manifest23 = append(manifest23, manifestItem23.ValueString())
+				}
 				var constraints22 *shared.PartnerStatusAttributeConstraints
 				if attributesItem.PartnerStatusAttribute.Constraints != nil {
 					constraints22 = &shared.PartnerStatusAttributeConstraints{}
@@ -6247,6 +6366,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon26,
 					RenderCondition:          renderCondition23,
 					Purpose:                  purpose23,
+					Manifest:                 manifest23,
 					Constraints:              constraints22,
 					FeatureFlag:              featureFlag25,
 					SettingsFlag:             settingsFlag24,
@@ -6360,6 +6480,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem24 := range attributesItem.InvitationEmailAttribute.Purpose {
 					purpose24 = append(purpose24, purposeItem24.ValueString())
 				}
+				var manifest24 []string = []string{}
+				for _, manifestItem24 := range attributesItem.InvitationEmailAttribute.Manifest {
+					manifest24 = append(manifest24, manifestItem24.ValueString())
+				}
 				var constraints23 *shared.InvitationEmailAttributeConstraints
 				if attributesItem.InvitationEmailAttribute.Constraints != nil {
 					constraints23 = &shared.InvitationEmailAttributeConstraints{}
@@ -6471,6 +6595,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon27,
 					RenderCondition:          renderCondition24,
 					Purpose:                  purpose24,
+					Manifest:                 manifest24,
 					Constraints:              constraints23,
 					FeatureFlag:              featureFlag26,
 					SettingsFlag:             settingsFlag25,
@@ -6584,6 +6709,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem25 := range attributesItem.AutomationAttribute.Purpose {
 					purpose25 = append(purpose25, purposeItem25.ValueString())
 				}
+				var manifest25 []string = []string{}
+				for _, manifestItem25 := range attributesItem.AutomationAttribute.Manifest {
+					manifest25 = append(manifest25, manifestItem25.ValueString())
+				}
 				var constraints24 *shared.AutomationAttributeConstraints
 				if attributesItem.AutomationAttribute.Constraints != nil {
 					constraints24 = &shared.AutomationAttributeConstraints{}
@@ -6695,6 +6824,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon28,
 					RenderCondition:          renderCondition25,
 					Purpose:                  purpose25,
+					Manifest:                 manifest25,
 					Constraints:              constraints24,
 					FeatureFlag:              featureFlag27,
 					SettingsFlag:             settingsFlag26,
@@ -6808,6 +6938,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem26 := range attributesItem.InternalUserAttribute.Purpose {
 					purpose26 = append(purpose26, purposeItem26.ValueString())
 				}
+				var manifest26 []string = []string{}
+				for _, manifestItem26 := range attributesItem.InternalUserAttribute.Manifest {
+					manifest26 = append(manifest26, manifestItem26.ValueString())
+				}
 				var constraints25 *shared.InternalUserAttributeConstraints
 				if attributesItem.InternalUserAttribute.Constraints != nil {
 					constraints25 = &shared.InternalUserAttributeConstraints{}
@@ -6919,6 +7053,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon29,
 					RenderCondition:          renderCondition26,
 					Purpose:                  purpose26,
+					Manifest:                 manifest26,
 					Constraints:              constraints25,
 					FeatureFlag:              featureFlag28,
 					SettingsFlag:             settingsFlag27,
@@ -7031,6 +7166,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				var purpose27 []string = []string{}
 				for _, purposeItem27 := range attributesItem.PurposeAttribute.Purpose {
 					purpose27 = append(purpose27, purposeItem27.ValueString())
+				}
+				var manifest27 []string = []string{}
+				for _, manifestItem27 := range attributesItem.PurposeAttribute.Manifest {
+					manifest27 = append(manifest27, manifestItem27.ValueString())
 				}
 				var constraints26 *shared.PurposeAttributeConstraints
 				if attributesItem.PurposeAttribute.Constraints != nil {
@@ -7165,6 +7304,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon30,
 					RenderCondition:          renderCondition27,
 					Purpose:                  purpose27,
+					Manifest:                 manifest27,
 					Constraints:              constraints26,
 					FeatureFlag:              featureFlag29,
 					SettingsFlag:             settingsFlag28,
@@ -7282,6 +7422,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				for _, purposeItem28 := range attributesItem.PartnerOrganisationAttribute.Purpose {
 					purpose28 = append(purpose28, purposeItem28.ValueString())
 				}
+				var manifest28 []string = []string{}
+				for _, manifestItem28 := range attributesItem.PartnerOrganisationAttribute.Manifest {
+					manifest28 = append(manifest28, manifestItem28.ValueString())
+				}
 				var constraints27 *shared.PartnerOrganisationAttributeConstraints
 				if attributesItem.PartnerOrganisationAttribute.Constraints != nil {
 					constraints27 = &shared.PartnerOrganisationAttributeConstraints{}
@@ -7393,6 +7537,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					Icon:                     icon31,
 					RenderCondition:          renderCondition28,
 					Purpose:                  purpose28,
+					Manifest:                 manifest28,
 					Constraints:              constraints27,
 					FeatureFlag:              featureFlag30,
 					SettingsFlag:             settingsFlag29,
@@ -7411,6 +7556,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 		var purpose29 []string = []string{}
 		for _, purposeItem29 := range capabilitiesItem.Purpose {
 			purpose29 = append(purpose29, purposeItem29.ValueString())
+		}
+		var manifest29 []string = []string{}
+		for _, manifestItem29 := range capabilitiesItem.Manifest {
+			manifest29 = append(manifest29, manifestItem29.ValueString())
 		}
 		var uiHooks []shared.UIHooks = []shared.UIHooks{}
 		for _, uiHooksItem := range capabilitiesItem.UIHooks {
@@ -7544,6 +7693,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			Title:        title,
 			Attributes:   attributes,
 			Purpose:      purpose29,
+			Manifest:     manifest29,
 			UIHooks:      uiHooks,
 			FeatureFlag:  featureFlag31,
 			SettingsFlag: settingsFlag30,
@@ -7581,6 +7731,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 		var purpose30 []string = []string{}
 		for _, purposeItem30 := range groupSettingsItem.Purpose {
 			purpose30 = append(purpose30, purposeItem30.ValueString())
+		}
+		var manifest30 []string = []string{}
+		for _, manifestItem30 := range groupSettingsItem.Manifest {
+			manifest30 = append(manifest30, manifestItem30.ValueString())
 		}
 		featureFlag32 := new(string)
 		if !groupSettingsItem.FeatureFlag.IsUnknown() && !groupSettingsItem.FeatureFlag.IsNull() {
@@ -7633,6 +7787,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			Expanded:         expanded,
 			RenderCondition:  renderCondition30,
 			Purpose:          purpose30,
+			Manifest:         manifest30,
 			FeatureFlag:      featureFlag32,
 			SettingsFlag:     settingsFlag31,
 			InfoTooltipTitle: infoTooltipTitle,
@@ -7769,6 +7924,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem31 := range attributesItem1.TextAttribute.Purpose {
 				purpose31 = append(purpose31, purposeItem31.ValueString())
 			}
+			var manifest31 []string = []string{}
+			for _, manifestItem31 := range attributesItem1.TextAttribute.Manifest {
+				manifest31 = append(manifest31, manifestItem31.ValueString())
+			}
 			var constraints28 *shared.Constraints
 			if attributesItem1.TextAttribute.Constraints != nil {
 				constraints28 = &shared.Constraints{}
@@ -7886,6 +8045,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon33,
 				RenderCondition:          renderCondition31,
 				Purpose:                  purpose31,
+				Manifest:                 manifest31,
 				Constraints:              constraints28,
 				FeatureFlag:              featureFlag33,
 				SettingsFlag:             settingsFlag32,
@@ -8000,6 +8160,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem32 := range attributesItem1.LinkAttribute.Purpose {
 				purpose32 = append(purpose32, purposeItem32.ValueString())
 			}
+			var manifest32 []string = []string{}
+			for _, manifestItem32 := range attributesItem1.LinkAttribute.Manifest {
+				manifest32 = append(manifest32, manifestItem32.ValueString())
+			}
 			var constraints29 *shared.LinkAttributeConstraints
 			if attributesItem1.LinkAttribute.Constraints != nil {
 				constraints29 = &shared.LinkAttributeConstraints{}
@@ -8111,6 +8275,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon34,
 				RenderCondition:          renderCondition32,
 				Purpose:                  purpose32,
+				Manifest:                 manifest32,
 				Constraints:              constraints29,
 				FeatureFlag:              featureFlag34,
 				SettingsFlag:             settingsFlag33,
@@ -8224,6 +8389,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem33 := range attributesItem1.DateAttribute.Purpose {
 				purpose33 = append(purpose33, purposeItem33.ValueString())
 			}
+			var manifest33 []string = []string{}
+			for _, manifestItem33 := range attributesItem1.DateAttribute.Manifest {
+				manifest33 = append(manifest33, manifestItem33.ValueString())
+			}
 			var constraints30 *shared.DateAttributeConstraints
 			if attributesItem1.DateAttribute.Constraints != nil {
 				constraints30 = &shared.DateAttributeConstraints{}
@@ -8335,6 +8504,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon35,
 				RenderCondition:          renderCondition33,
 				Purpose:                  purpose33,
+				Manifest:                 manifest33,
 				Constraints:              constraints30,
 				FeatureFlag:              featureFlag35,
 				SettingsFlag:             settingsFlag34,
@@ -8448,6 +8618,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem34 := range attributesItem1.CountryAttribute.Purpose {
 				purpose34 = append(purpose34, purposeItem34.ValueString())
 			}
+			var manifest34 []string = []string{}
+			for _, manifestItem34 := range attributesItem1.CountryAttribute.Manifest {
+				manifest34 = append(manifest34, manifestItem34.ValueString())
+			}
 			var constraints31 *shared.CountryAttributeConstraints
 			if attributesItem1.CountryAttribute.Constraints != nil {
 				constraints31 = &shared.CountryAttributeConstraints{}
@@ -8559,6 +8733,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon36,
 				RenderCondition:          renderCondition34,
 				Purpose:                  purpose34,
+				Manifest:                 manifest34,
 				Constraints:              constraints31,
 				FeatureFlag:              featureFlag36,
 				SettingsFlag:             settingsFlag35,
@@ -8672,6 +8847,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem35 := range attributesItem1.BooleanAttribute.Purpose {
 				purpose35 = append(purpose35, purposeItem35.ValueString())
 			}
+			var manifest35 []string = []string{}
+			for _, manifestItem35 := range attributesItem1.BooleanAttribute.Manifest {
+				manifest35 = append(manifest35, manifestItem35.ValueString())
+			}
 			var constraints32 *shared.BooleanAttributeConstraints
 			if attributesItem1.BooleanAttribute.Constraints != nil {
 				constraints32 = &shared.BooleanAttributeConstraints{}
@@ -8783,6 +8962,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon37,
 				RenderCondition:          renderCondition35,
 				Purpose:                  purpose35,
+				Manifest:                 manifest35,
 				Constraints:              constraints32,
 				FeatureFlag:              featureFlag37,
 				SettingsFlag:             settingsFlag36,
@@ -8895,6 +9075,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose36 []string = []string{}
 			for _, purposeItem36 := range attributesItem1.SelectAttribute.Purpose {
 				purpose36 = append(purpose36, purposeItem36.ValueString())
+			}
+			var manifest36 []string = []string{}
+			for _, manifestItem36 := range attributesItem1.SelectAttribute.Manifest {
+				manifest36 = append(manifest36, manifestItem36.ValueString())
 			}
 			var constraints33 *shared.SelectAttributeConstraints
 			if attributesItem1.SelectAttribute.Constraints != nil {
@@ -9017,6 +9201,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon38,
 				RenderCondition:          renderCondition36,
 				Purpose:                  purpose36,
+				Manifest:                 manifest36,
 				Constraints:              constraints33,
 				FeatureFlag:              featureFlag38,
 				SettingsFlag:             settingsFlag37,
@@ -9131,6 +9316,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose37 []string = []string{}
 			for _, purposeItem37 := range attributesItem1.MultiSelectAttribute.Purpose {
 				purpose37 = append(purpose37, purposeItem37.ValueString())
+			}
+			var manifest37 []string = []string{}
+			for _, manifestItem37 := range attributesItem1.MultiSelectAttribute.Manifest {
+				manifest37 = append(manifest37, manifestItem37.ValueString())
 			}
 			var constraints34 *shared.MultiSelectAttributeConstraints
 			if attributesItem1.MultiSelectAttribute.Constraints != nil {
@@ -9290,6 +9479,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon39,
 				RenderCondition:          renderCondition37,
 				Purpose:                  purpose37,
+				Manifest:                 manifest37,
 				Constraints:              constraints34,
 				FeatureFlag:              featureFlag39,
 				SettingsFlag:             settingsFlag38,
@@ -9406,6 +9596,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose38 []string = []string{}
 			for _, purposeItem38 := range attributesItem1.StatusAttribute.Purpose {
 				purpose38 = append(purpose38, purposeItem38.ValueString())
+			}
+			var manifest38 []string = []string{}
+			for _, manifestItem38 := range attributesItem1.StatusAttribute.Manifest {
+				manifest38 = append(manifest38, manifestItem38.ValueString())
 			}
 			var constraints35 *shared.StatusAttributeConstraints
 			if attributesItem1.StatusAttribute.Constraints != nil {
@@ -9547,6 +9741,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon40,
 				RenderCondition:          renderCondition38,
 				Purpose:                  purpose38,
+				Manifest:                 manifest38,
 				Constraints:              constraints35,
 				FeatureFlag:              featureFlag40,
 				SettingsFlag:             settingsFlag39,
@@ -9660,6 +9855,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose39 []string = []string{}
 			for _, purposeItem39 := range attributesItem1.SequenceAttribute.Purpose {
 				purpose39 = append(purpose39, purposeItem39.ValueString())
+			}
+			var manifest39 []string = []string{}
+			for _, manifestItem39 := range attributesItem1.SequenceAttribute.Manifest {
+				manifest39 = append(manifest39, manifestItem39.ValueString())
 			}
 			var constraints36 *shared.SequenceAttributeConstraints
 			if attributesItem1.SequenceAttribute.Constraints != nil {
@@ -9784,6 +9983,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon41,
 				RenderCondition:          renderCondition39,
 				Purpose:                  purpose39,
+				Manifest:                 manifest39,
 				Constraints:              constraints36,
 				FeatureFlag:              featureFlag41,
 				SettingsFlag:             settingsFlag40,
@@ -9898,6 +10098,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose40 []string = []string{}
 			for _, purposeItem40 := range attributesItem1.RelationAttribute.Purpose {
 				purpose40 = append(purpose40, purposeItem40.ValueString())
+			}
+			var manifest40 []string = []string{}
+			for _, manifestItem40 := range attributesItem1.RelationAttribute.Manifest {
+				manifest40 = append(manifest40, manifestItem40.ValueString())
 			}
 			var constraints37 *shared.RelationAttributeConstraints
 			if attributesItem1.RelationAttribute.Constraints != nil {
@@ -10120,6 +10324,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 					for _, purposeItem41 := range actionsItem1.NewEntityItem.Purpose {
 						purpose41 = append(purpose41, purposeItem41.ValueString())
 					}
+					var manifest41 []string = []string{}
+					for _, manifestItem41 := range actionsItem1.NewEntityItem.Manifest {
+						manifest41 = append(manifest41, manifestItem41.ValueString())
+					}
 					var additionalProperties5 interface{}
 					if !actionsItem1.NewEntityItem.AdditionalProperties.IsUnknown() && !actionsItem1.NewEntityItem.AdditionalProperties.IsNull() {
 						_ = json.Unmarshal([]byte(actionsItem1.NewEntityItem.AdditionalProperties.ValueString()), &additionalProperties5)
@@ -10131,6 +10339,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 						Tags:                 tags1,
 						ACL:                  acl1,
 						Purpose:              purpose41,
+						Manifest:             manifest41,
 						AdditionalProperties: additionalProperties5,
 					}
 				}
@@ -10228,6 +10437,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon42,
 				RenderCondition:          renderCondition40,
 				Purpose:                  purpose40,
+				Manifest:                 manifest40,
 				Constraints:              constraints37,
 				FeatureFlag:              featureFlag42,
 				SettingsFlag:             settingsFlag41,
@@ -10355,6 +10565,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem42 := range attributesItem1.UserRelationAttribute.Purpose {
 				purpose42 = append(purpose42, purposeItem42.ValueString())
 			}
+			var manifest42 []string = []string{}
+			for _, manifestItem42 := range attributesItem1.UserRelationAttribute.Manifest {
+				manifest42 = append(manifest42, manifestItem42.ValueString())
+			}
 			var constraints38 *shared.UserRelationAttributeConstraints
 			if attributesItem1.UserRelationAttribute.Constraints != nil {
 				constraints38 = &shared.UserRelationAttributeConstraints{}
@@ -10472,6 +10686,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon43,
 				RenderCondition:          renderCondition41,
 				Purpose:                  purpose42,
+				Manifest:                 manifest42,
 				Constraints:              constraints38,
 				FeatureFlag:              featureFlag44,
 				SettingsFlag:             settingsFlag43,
@@ -10585,6 +10800,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose43 []string = []string{}
 			for _, purposeItem43 := range attributesItem1.AddressRelationAttribute.Purpose {
 				purpose43 = append(purpose43, purposeItem43.ValueString())
+			}
+			var manifest43 []string = []string{}
+			for _, manifestItem43 := range attributesItem1.AddressRelationAttribute.Manifest {
+				manifest43 = append(manifest43, manifestItem43.ValueString())
 			}
 			var constraints39 *shared.AddressRelationAttributeConstraints
 			if attributesItem1.AddressRelationAttribute.Constraints != nil {
@@ -10703,6 +10922,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon44,
 				RenderCondition:          renderCondition42,
 				Purpose:                  purpose43,
+				Manifest:                 manifest43,
 				Constraints:              constraints39,
 				FeatureFlag:              featureFlag45,
 				SettingsFlag:             settingsFlag44,
@@ -10816,6 +11036,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose44 []string = []string{}
 			for _, purposeItem44 := range attributesItem1.PaymentMethodRelationAttribute.Purpose {
 				purpose44 = append(purpose44, purposeItem44.ValueString())
+			}
+			var manifest44 []string = []string{}
+			for _, manifestItem44 := range attributesItem1.PaymentMethodRelationAttribute.Manifest {
+				manifest44 = append(manifest44, manifestItem44.ValueString())
 			}
 			var constraints40 *shared.PaymentMethodRelationAttributeConstraints
 			if attributesItem1.PaymentMethodRelationAttribute.Constraints != nil {
@@ -10934,6 +11158,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon45,
 				RenderCondition:          renderCondition43,
 				Purpose:                  purpose44,
+				Manifest:                 manifest44,
 				Constraints:              constraints40,
 				FeatureFlag:              featureFlag46,
 				SettingsFlag:             settingsFlag45,
@@ -11047,6 +11272,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose45 []string = []string{}
 			for _, purposeItem45 := range attributesItem1.CurrencyAttribute.Purpose {
 				purpose45 = append(purpose45, purposeItem45.ValueString())
+			}
+			var manifest45 []string = []string{}
+			for _, manifestItem45 := range attributesItem1.CurrencyAttribute.Manifest {
+				manifest45 = append(manifest45, manifestItem45.ValueString())
 			}
 			var constraints41 *shared.CurrencyAttributeConstraints
 			if attributesItem1.CurrencyAttribute.Constraints != nil {
@@ -11189,6 +11418,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon46,
 				RenderCondition:          renderCondition44,
 				Purpose:                  purpose45,
+				Manifest:                 manifest45,
 				Constraints:              constraints41,
 				FeatureFlag:              featureFlag47,
 				SettingsFlag:             settingsFlag46,
@@ -11303,6 +11533,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose46 []string = []string{}
 			for _, purposeItem46 := range attributesItem1.RepeatableAttribute.Purpose {
 				purpose46 = append(purpose46, purposeItem46.ValueString())
+			}
+			var manifest46 []string = []string{}
+			for _, manifestItem46 := range attributesItem1.RepeatableAttribute.Manifest {
+				manifest46 = append(manifest46, manifestItem46.ValueString())
 			}
 			var constraints42 *shared.RepeatableAttributeConstraints
 			if attributesItem1.RepeatableAttribute.Constraints != nil {
@@ -11439,6 +11673,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon47,
 				RenderCondition:          renderCondition45,
 				Purpose:                  purpose46,
+				Manifest:                 manifest46,
 				Constraints:              constraints42,
 				FeatureFlag:              featureFlag48,
 				SettingsFlag:             settingsFlag47,
@@ -11555,6 +11790,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose47 []string = []string{}
 			for _, purposeItem47 := range attributesItem1.TagsAttribute.Purpose {
 				purpose47 = append(purpose47, purposeItem47.ValueString())
+			}
+			var manifest47 []string = []string{}
+			for _, manifestItem47 := range attributesItem1.TagsAttribute.Manifest {
+				manifest47 = append(manifest47, manifestItem47.ValueString())
 			}
 			var constraints43 *shared.TagsAttributeConstraints
 			if attributesItem1.TagsAttribute.Constraints != nil {
@@ -11675,6 +11914,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon48,
 				RenderCondition:          renderCondition46,
 				Purpose:                  purpose47,
+				Manifest:                 manifest47,
 				Constraints:              constraints43,
 				FeatureFlag:              featureFlag49,
 				SettingsFlag:             settingsFlag48,
@@ -11789,6 +12029,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose48 []string = []string{}
 			for _, purposeItem48 := range attributesItem1.NumberAttribute.Purpose {
 				purpose48 = append(purpose48, purposeItem48.ValueString())
+			}
+			var manifest48 []string = []string{}
+			for _, manifestItem48 := range attributesItem1.NumberAttribute.Manifest {
+				manifest48 = append(manifest48, manifestItem48.ValueString())
 			}
 			var constraints44 *shared.NumberAttributeConstraints
 			if attributesItem1.NumberAttribute.Constraints != nil {
@@ -11913,6 +12157,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon49,
 				RenderCondition:          renderCondition47,
 				Purpose:                  purpose48,
+				Manifest:                 manifest48,
 				Constraints:              constraints44,
 				FeatureFlag:              featureFlag50,
 				SettingsFlag:             settingsFlag49,
@@ -12028,6 +12273,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem49 := range attributesItem1.ConsentAttribute.Purpose {
 				purpose49 = append(purpose49, purposeItem49.ValueString())
 			}
+			var manifest49 []string = []string{}
+			for _, manifestItem49 := range attributesItem1.ConsentAttribute.Manifest {
+				manifest49 = append(manifest49, manifestItem49.ValueString())
+			}
 			var constraints45 *shared.ConsentAttributeConstraints
 			if attributesItem1.ConsentAttribute.Constraints != nil {
 				constraints45 = &shared.ConsentAttributeConstraints{}
@@ -12141,6 +12390,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon50,
 				RenderCondition:          renderCondition48,
 				Purpose:                  purpose49,
+				Manifest:                 manifest49,
 				Constraints:              constraints45,
 				FeatureFlag:              featureFlag51,
 				SettingsFlag:             settingsFlag50,
@@ -12256,6 +12506,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem50 := range attributesItem1.InternalAttribute.Purpose {
 				purpose50 = append(purpose50, purposeItem50.ValueString())
 			}
+			var manifest50 []string = []string{}
+			for _, manifestItem50 := range attributesItem1.InternalAttribute.Manifest {
+				manifest50 = append(manifest50, manifestItem50.ValueString())
+			}
 			var constraints46 *shared.InternalAttributeConstraints
 			if attributesItem1.InternalAttribute.Constraints != nil {
 				constraints46 = &shared.InternalAttributeConstraints{}
@@ -12367,6 +12621,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon51,
 				RenderCondition:          renderCondition49,
 				Purpose:                  purpose50,
+				Manifest:                 manifest50,
 				Constraints:              constraints46,
 				FeatureFlag:              featureFlag52,
 				SettingsFlag:             settingsFlag51,
@@ -12480,6 +12735,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem51 := range attributesItem1.OrderedListAttribute.Purpose {
 				purpose51 = append(purpose51, purposeItem51.ValueString())
 			}
+			var manifest51 []string = []string{}
+			for _, manifestItem51 := range attributesItem1.OrderedListAttribute.Manifest {
+				manifest51 = append(manifest51, manifestItem51.ValueString())
+			}
 			var constraints47 *shared.OrderedListAttributeConstraints
 			if attributesItem1.OrderedListAttribute.Constraints != nil {
 				constraints47 = &shared.OrderedListAttributeConstraints{}
@@ -12591,6 +12850,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon52,
 				RenderCondition:          renderCondition50,
 				Purpose:                  purpose51,
+				Manifest:                 manifest51,
 				Constraints:              constraints47,
 				FeatureFlag:              featureFlag53,
 				SettingsFlag:             settingsFlag52,
@@ -12703,6 +12963,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose52 []string = []string{}
 			for _, purposeItem52 := range attributesItem1.FileAttribute.Purpose {
 				purpose52 = append(purpose52, purposeItem52.ValueString())
+			}
+			var manifest52 []string = []string{}
+			for _, manifestItem52 := range attributesItem1.FileAttribute.Manifest {
+				manifest52 = append(manifest52, manifestItem52.ValueString())
 			}
 			var constraints48 *shared.FileAttributeConstraints
 			if attributesItem1.FileAttribute.Constraints != nil {
@@ -12838,6 +13102,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon53,
 				RenderCondition:          renderCondition51,
 				Purpose:                  purpose52,
+				Manifest:                 manifest52,
 				Constraints:              constraints48,
 				FeatureFlag:              featureFlag54,
 				SettingsFlag:             settingsFlag53,
@@ -12956,6 +13221,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem53 := range attributesItem1.ComputedAttribute.Purpose {
 				purpose53 = append(purpose53, purposeItem53.ValueString())
 			}
+			var manifest53 []string = []string{}
+			for _, manifestItem53 := range attributesItem1.ComputedAttribute.Manifest {
+				manifest53 = append(manifest53, manifestItem53.ValueString())
+			}
 			var constraints49 *shared.ComputedAttributeConstraints
 			if attributesItem1.ComputedAttribute.Constraints != nil {
 				constraints49 = &shared.ComputedAttributeConstraints{}
@@ -13067,6 +13336,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon54,
 				RenderCondition:          renderCondition52,
 				Purpose:                  purpose53,
+				Manifest:                 manifest53,
 				Constraints:              constraints49,
 				FeatureFlag:              featureFlag55,
 				SettingsFlag:             settingsFlag54,
@@ -13180,6 +13450,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem54 := range attributesItem1.PartnerStatusAttribute.Purpose {
 				purpose54 = append(purpose54, purposeItem54.ValueString())
 			}
+			var manifest54 []string = []string{}
+			for _, manifestItem54 := range attributesItem1.PartnerStatusAttribute.Manifest {
+				manifest54 = append(manifest54, manifestItem54.ValueString())
+			}
 			var constraints50 *shared.PartnerStatusAttributeConstraints
 			if attributesItem1.PartnerStatusAttribute.Constraints != nil {
 				constraints50 = &shared.PartnerStatusAttributeConstraints{}
@@ -13291,6 +13565,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon55,
 				RenderCondition:          renderCondition53,
 				Purpose:                  purpose54,
+				Manifest:                 manifest54,
 				Constraints:              constraints50,
 				FeatureFlag:              featureFlag56,
 				SettingsFlag:             settingsFlag55,
@@ -13404,6 +13679,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem55 := range attributesItem1.InvitationEmailAttribute.Purpose {
 				purpose55 = append(purpose55, purposeItem55.ValueString())
 			}
+			var manifest55 []string = []string{}
+			for _, manifestItem55 := range attributesItem1.InvitationEmailAttribute.Manifest {
+				manifest55 = append(manifest55, manifestItem55.ValueString())
+			}
 			var constraints51 *shared.InvitationEmailAttributeConstraints
 			if attributesItem1.InvitationEmailAttribute.Constraints != nil {
 				constraints51 = &shared.InvitationEmailAttributeConstraints{}
@@ -13515,6 +13794,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon56,
 				RenderCondition:          renderCondition54,
 				Purpose:                  purpose55,
+				Manifest:                 manifest55,
 				Constraints:              constraints51,
 				FeatureFlag:              featureFlag57,
 				SettingsFlag:             settingsFlag56,
@@ -13628,6 +13908,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem56 := range attributesItem1.AutomationAttribute.Purpose {
 				purpose56 = append(purpose56, purposeItem56.ValueString())
 			}
+			var manifest56 []string = []string{}
+			for _, manifestItem56 := range attributesItem1.AutomationAttribute.Manifest {
+				manifest56 = append(manifest56, manifestItem56.ValueString())
+			}
 			var constraints52 *shared.AutomationAttributeConstraints
 			if attributesItem1.AutomationAttribute.Constraints != nil {
 				constraints52 = &shared.AutomationAttributeConstraints{}
@@ -13739,6 +14023,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon57,
 				RenderCondition:          renderCondition55,
 				Purpose:                  purpose56,
+				Manifest:                 manifest56,
 				Constraints:              constraints52,
 				FeatureFlag:              featureFlag58,
 				SettingsFlag:             settingsFlag57,
@@ -13852,6 +14137,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem57 := range attributesItem1.InternalUserAttribute.Purpose {
 				purpose57 = append(purpose57, purposeItem57.ValueString())
 			}
+			var manifest57 []string = []string{}
+			for _, manifestItem57 := range attributesItem1.InternalUserAttribute.Manifest {
+				manifest57 = append(manifest57, manifestItem57.ValueString())
+			}
 			var constraints53 *shared.InternalUserAttributeConstraints
 			if attributesItem1.InternalUserAttribute.Constraints != nil {
 				constraints53 = &shared.InternalUserAttributeConstraints{}
@@ -13963,6 +14252,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon58,
 				RenderCondition:          renderCondition56,
 				Purpose:                  purpose57,
+				Manifest:                 manifest57,
 				Constraints:              constraints53,
 				FeatureFlag:              featureFlag59,
 				SettingsFlag:             settingsFlag58,
@@ -14075,6 +14365,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			var purpose58 []string = []string{}
 			for _, purposeItem58 := range attributesItem1.PurposeAttribute.Purpose {
 				purpose58 = append(purpose58, purposeItem58.ValueString())
+			}
+			var manifest58 []string = []string{}
+			for _, manifestItem58 := range attributesItem1.PurposeAttribute.Manifest {
+				manifest58 = append(manifest58, manifestItem58.ValueString())
 			}
 			var constraints54 *shared.PurposeAttributeConstraints
 			if attributesItem1.PurposeAttribute.Constraints != nil {
@@ -14209,6 +14503,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon59,
 				RenderCondition:          renderCondition57,
 				Purpose:                  purpose58,
+				Manifest:                 manifest58,
 				Constraints:              constraints54,
 				FeatureFlag:              featureFlag60,
 				SettingsFlag:             settingsFlag59,
@@ -14326,6 +14621,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			for _, purposeItem59 := range attributesItem1.PartnerOrganisationAttribute.Purpose {
 				purpose59 = append(purpose59, purposeItem59.ValueString())
 			}
+			var manifest59 []string = []string{}
+			for _, manifestItem59 := range attributesItem1.PartnerOrganisationAttribute.Manifest {
+				manifest59 = append(manifest59, manifestItem59.ValueString())
+			}
 			var constraints55 *shared.PartnerOrganisationAttributeConstraints
 			if attributesItem1.PartnerOrganisationAttribute.Constraints != nil {
 				constraints55 = &shared.PartnerOrganisationAttributeConstraints{}
@@ -14437,6 +14736,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 				Icon:                     icon60,
 				RenderCondition:          renderCondition58,
 				Purpose:                  purpose59,
+				Manifest:                 manifest59,
 				Constraints:              constraints55,
 				FeatureFlag:              featureFlag61,
 				SettingsFlag:             settingsFlag60,
@@ -14483,6 +14783,65 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 		}
 		explicitSearchMappings[explicitSearchMappingsKey] = explicitSearchMappingsInst
 	}
+	var groupHeadlines []shared.GroupHeadline = []shared.GroupHeadline{}
+	for _, groupHeadlinesItem := range r.GroupHeadlines {
+		id61 := new(string)
+		if !groupHeadlinesItem.ID.IsUnknown() && !groupHeadlinesItem.ID.IsNull() {
+			*id61 = groupHeadlinesItem.ID.ValueString()
+		} else {
+			id61 = nil
+		}
+		var name119 string
+		name119 = groupHeadlinesItem.Name.ValueString()
+
+		var label64 string
+		label64 = groupHeadlinesItem.Label.ValueString()
+
+		layout56 := new(string)
+		if !groupHeadlinesItem.Layout.IsUnknown() && !groupHeadlinesItem.Layout.IsNull() {
+			*layout56 = groupHeadlinesItem.Layout.ValueString()
+		} else {
+			layout56 = nil
+		}
+		var group56 string
+		group56 = groupHeadlinesItem.Group.ValueString()
+
+		order58 := new(int64)
+		if !groupHeadlinesItem.Order.IsUnknown() && !groupHeadlinesItem.Order.IsNull() {
+			*order58 = groupHeadlinesItem.Order.ValueInt64()
+		} else {
+			order58 = nil
+		}
+		type1 := shared.GroupHeadlineType(groupHeadlinesItem.Type.ValueString())
+		enableDivider := new(bool)
+		if !groupHeadlinesItem.EnableDivider.IsUnknown() && !groupHeadlinesItem.EnableDivider.IsNull() {
+			*enableDivider = groupHeadlinesItem.EnableDivider.ValueBool()
+		} else {
+			enableDivider = nil
+		}
+		divider := new(shared.Divider)
+		if !groupHeadlinesItem.Divider.IsUnknown() && !groupHeadlinesItem.Divider.IsNull() {
+			*divider = shared.Divider(groupHeadlinesItem.Divider.ValueString())
+		} else {
+			divider = nil
+		}
+		var manifest60 []string = []string{}
+		for _, manifestItem60 := range groupHeadlinesItem.Manifest {
+			manifest60 = append(manifest60, manifestItem60.ValueString())
+		}
+		groupHeadlines = append(groupHeadlines, shared.GroupHeadline{
+			ID:            id61,
+			Name:          name119,
+			Label:         label64,
+			Layout:        layout56,
+			Group:         group56,
+			Order:         order58,
+			Type:          type1,
+			EnableDivider: enableDivider,
+			Divider:       divider,
+			Manifest:      manifest60,
+		})
+	}
 	out := shared.EntitySchemaItemInput{
 		ID:                     id,
 		CreatedAt:              createdAt,
@@ -14506,6 +14865,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 		Attributes:             attributes1,
 		Purpose:                purpose60,
 		ExplicitSearchMappings: explicitSearchMappings,
+		GroupHeadlines:         groupHeadlines,
 	}
 	return &out
 }
@@ -14524,6 +14884,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			var attributes1 tfTypes.Attribute
 			if attributesItem.AddressRelationAttribute != nil {
 				attributes1.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+				attributes1.AddressRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AddressRelationAttribute.Manifest {
+					attributes1.AddressRelationAttribute.Manifest = append(attributes1.AddressRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AddressRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AddressRelationAttribute.Purpose {
 					attributes1.AddressRelationAttribute.Purpose = append(attributes1.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -14590,6 +14954,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.AutomationAttribute != nil {
 				attributes1.AutomationAttribute = &tfTypes.AutomationAttribute{}
+				attributes1.AutomationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AutomationAttribute.Manifest {
+					attributes1.AutomationAttribute.Manifest = append(attributes1.AutomationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AutomationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AutomationAttribute.Purpose {
 					attributes1.AutomationAttribute.Purpose = append(attributes1.AutomationAttribute.Purpose, types.StringValue(v))
@@ -14655,6 +15023,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.BooleanAttribute != nil {
 				attributes1.BooleanAttribute = &tfTypes.BooleanAttribute{}
+				attributes1.BooleanAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.BooleanAttribute.Manifest {
+					attributes1.BooleanAttribute.Manifest = append(attributes1.BooleanAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.BooleanAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.BooleanAttribute.Purpose {
 					attributes1.BooleanAttribute.Purpose = append(attributes1.BooleanAttribute.Purpose, types.StringValue(v))
@@ -14720,6 +15092,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.ComputedAttribute != nil {
 				attributes1.ComputedAttribute = &tfTypes.ComputedAttribute{}
+				attributes1.ComputedAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ComputedAttribute.Manifest {
+					attributes1.ComputedAttribute.Manifest = append(attributes1.ComputedAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ComputedAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ComputedAttribute.Purpose {
 					attributes1.ComputedAttribute.Purpose = append(attributes1.ComputedAttribute.Purpose, types.StringValue(v))
@@ -14785,6 +15161,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.ConsentAttribute != nil {
 				attributes1.ConsentAttribute = &tfTypes.ConsentAttribute{}
+				attributes1.ConsentAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ConsentAttribute.Manifest {
+					attributes1.ConsentAttribute.Manifest = append(attributes1.ConsentAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ConsentAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ConsentAttribute.Purpose {
 					attributes1.ConsentAttribute.Purpose = append(attributes1.ConsentAttribute.Purpose, types.StringValue(v))
@@ -14851,6 +15231,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.CountryAttribute != nil {
 				attributes1.CountryAttribute = &tfTypes.CountryAttribute{}
+				attributes1.CountryAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CountryAttribute.Manifest {
+					attributes1.CountryAttribute.Manifest = append(attributes1.CountryAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CountryAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CountryAttribute.Purpose {
 					attributes1.CountryAttribute.Purpose = append(attributes1.CountryAttribute.Purpose, types.StringValue(v))
@@ -14916,6 +15300,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.CurrencyAttribute != nil {
 				attributes1.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+				attributes1.CurrencyAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CurrencyAttribute.Manifest {
+					attributes1.CurrencyAttribute.Manifest = append(attributes1.CurrencyAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CurrencyAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CurrencyAttribute.Purpose {
 					attributes1.CurrencyAttribute.Purpose = append(attributes1.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -14994,6 +15382,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.DateAttribute != nil {
 				attributes1.DateAttribute = &tfTypes.DateAttribute{}
+				attributes1.DateAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.DateAttribute.Manifest {
+					attributes1.DateAttribute.Manifest = append(attributes1.DateAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.DateAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.DateAttribute.Purpose {
 					attributes1.DateAttribute.Purpose = append(attributes1.DateAttribute.Purpose, types.StringValue(v))
@@ -15059,6 +15451,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.FileAttribute != nil {
 				attributes1.FileAttribute = &tfTypes.FileAttribute{}
+				attributes1.FileAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.FileAttribute.Manifest {
+					attributes1.FileAttribute.Manifest = append(attributes1.FileAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.FileAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.FileAttribute.Purpose {
 					attributes1.FileAttribute.Purpose = append(attributes1.FileAttribute.Purpose, types.StringValue(v))
@@ -15132,6 +15528,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.InternalAttribute != nil {
 				attributes1.InternalAttribute = &tfTypes.InternalAttribute{}
+				attributes1.InternalAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalAttribute.Manifest {
+					attributes1.InternalAttribute.Manifest = append(attributes1.InternalAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalAttribute.Purpose {
 					attributes1.InternalAttribute.Purpose = append(attributes1.InternalAttribute.Purpose, types.StringValue(v))
@@ -15197,6 +15597,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.InternalUserAttribute != nil {
 				attributes1.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+				attributes1.InternalUserAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalUserAttribute.Manifest {
+					attributes1.InternalUserAttribute.Manifest = append(attributes1.InternalUserAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalUserAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalUserAttribute.Purpose {
 					attributes1.InternalUserAttribute.Purpose = append(attributes1.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -15262,6 +15666,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.InvitationEmailAttribute != nil {
 				attributes1.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+				attributes1.InvitationEmailAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InvitationEmailAttribute.Manifest {
+					attributes1.InvitationEmailAttribute.Manifest = append(attributes1.InvitationEmailAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InvitationEmailAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
 					attributes1.InvitationEmailAttribute.Purpose = append(attributes1.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -15327,6 +15735,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.LinkAttribute != nil {
 				attributes1.LinkAttribute = &tfTypes.LinkAttribute{}
+				attributes1.LinkAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.LinkAttribute.Manifest {
+					attributes1.LinkAttribute.Manifest = append(attributes1.LinkAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.LinkAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.LinkAttribute.Purpose {
 					attributes1.LinkAttribute.Purpose = append(attributes1.LinkAttribute.Purpose, types.StringValue(v))
@@ -15392,6 +15804,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.MultiSelectAttribute != nil {
 				attributes1.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+				attributes1.MultiSelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.MultiSelectAttribute.Manifest {
+					attributes1.MultiSelectAttribute.Manifest = append(attributes1.MultiSelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.MultiSelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.MultiSelectAttribute.Purpose {
 					attributes1.MultiSelectAttribute.Purpose = append(attributes1.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -15478,6 +15894,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.NumberAttribute != nil {
 				attributes1.NumberAttribute = &tfTypes.NumberAttribute{}
+				attributes1.NumberAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.NumberAttribute.Manifest {
+					attributes1.NumberAttribute.Manifest = append(attributes1.NumberAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.NumberAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.NumberAttribute.Purpose {
 					attributes1.NumberAttribute.Purpose = append(attributes1.NumberAttribute.Purpose, types.StringValue(v))
@@ -15545,6 +15965,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.OrderedListAttribute != nil {
 				attributes1.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+				attributes1.OrderedListAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.OrderedListAttribute.Manifest {
+					attributes1.OrderedListAttribute.Manifest = append(attributes1.OrderedListAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.OrderedListAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.OrderedListAttribute.Purpose {
 					attributes1.OrderedListAttribute.Purpose = append(attributes1.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -15610,6 +16034,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.PartnerOrganisationAttribute != nil {
 				attributes1.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+				attributes1.PartnerOrganisationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerOrganisationAttribute.Manifest {
+					attributes1.PartnerOrganisationAttribute.Manifest = append(attributes1.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerOrganisationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
 					attributes1.PartnerOrganisationAttribute.Purpose = append(attributes1.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -15675,6 +16103,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.PartnerStatusAttribute != nil {
 				attributes1.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+				attributes1.PartnerStatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerStatusAttribute.Manifest {
+					attributes1.PartnerStatusAttribute.Manifest = append(attributes1.PartnerStatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerStatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
 					attributes1.PartnerStatusAttribute.Purpose = append(attributes1.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -15740,6 +16172,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.PaymentMethodRelationAttribute != nil {
 				attributes1.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+				attributes1.PaymentMethodRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PaymentMethodRelationAttribute.Manifest {
+					attributes1.PaymentMethodRelationAttribute.Manifest = append(attributes1.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PaymentMethodRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
 					attributes1.PaymentMethodRelationAttribute.Purpose = append(attributes1.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -15806,6 +16242,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.PurposeAttribute != nil {
 				attributes1.PurposeAttribute = &tfTypes.PurposeAttribute{}
+				attributes1.PurposeAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PurposeAttribute.Manifest {
+					attributes1.PurposeAttribute.Manifest = append(attributes1.PurposeAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PurposeAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PurposeAttribute.Purpose {
 					attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
@@ -15886,6 +16326,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.RelationAttribute != nil {
 				attributes1.RelationAttribute = &tfTypes.RelationAttribute{}
+				attributes1.RelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RelationAttribute.Manifest {
+					attributes1.RelationAttribute.Manifest = append(attributes1.RelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
@@ -15934,6 +16378,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 							actions1.NewEntityItem.CreatedAt = types.StringNull()
 						}
 						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+						actions1.NewEntityItem.Manifest = []types.String{}
+						for _, v := range actionsItem.NewEntityItem.Manifest {
+							actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
+						}
 						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
 						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -16107,6 +16555,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.RepeatableAttribute != nil {
 				attributes1.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+				attributes1.RepeatableAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RepeatableAttribute.Manifest {
+					attributes1.RepeatableAttribute.Manifest = append(attributes1.RepeatableAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RepeatableAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RepeatableAttribute.Purpose {
 					attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -16180,6 +16632,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.SelectAttribute != nil {
 				attributes1.SelectAttribute = &tfTypes.SelectAttribute{}
+				attributes1.SelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SelectAttribute.Manifest {
+					attributes1.SelectAttribute.Manifest = append(attributes1.SelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SelectAttribute.Purpose {
 					attributes1.SelectAttribute.Purpose = append(attributes1.SelectAttribute.Purpose, types.StringValue(v))
@@ -16252,6 +16708,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.SequenceAttribute != nil {
 				attributes1.SequenceAttribute = &tfTypes.SequenceAttribute{}
+				attributes1.SequenceAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SequenceAttribute.Manifest {
+					attributes1.SequenceAttribute.Manifest = append(attributes1.SequenceAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SequenceAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SequenceAttribute.Purpose {
 					attributes1.SequenceAttribute.Purpose = append(attributes1.SequenceAttribute.Purpose, types.StringValue(v))
@@ -16319,6 +16779,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.StatusAttribute != nil {
 				attributes1.StatusAttribute = &tfTypes.StatusAttribute{}
+				attributes1.StatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.StatusAttribute.Manifest {
+					attributes1.StatusAttribute.Manifest = append(attributes1.StatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.StatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.StatusAttribute.Purpose {
 					attributes1.StatusAttribute.Purpose = append(attributes1.StatusAttribute.Purpose, types.StringValue(v))
@@ -16402,6 +16866,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.TagsAttribute != nil {
 				attributes1.TagsAttribute = &tfTypes.TagsAttribute{}
+				attributes1.TagsAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Manifest {
+					attributes1.TagsAttribute.Manifest = append(attributes1.TagsAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TagsAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TagsAttribute.Purpose {
 					attributes1.TagsAttribute.Purpose = append(attributes1.TagsAttribute.Purpose, types.StringValue(v))
@@ -16475,6 +16943,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.TextAttribute != nil {
 				attributes1.TextAttribute = &tfTypes.TextAttribute{}
+				attributes1.TextAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TextAttribute.Manifest {
+					attributes1.TextAttribute.Manifest = append(attributes1.TextAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TextAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TextAttribute.Purpose {
 					attributes1.TextAttribute.Purpose = append(attributes1.TextAttribute.Purpose, types.StringValue(v))
@@ -16541,6 +17013,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 			if attributesItem.UserRelationAttribute != nil {
 				attributes1.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+				attributes1.UserRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.UserRelationAttribute.Manifest {
+					attributes1.UserRelationAttribute.Manifest = append(attributes1.UserRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.UserRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.UserRelationAttribute.Purpose {
 					attributes1.UserRelationAttribute.Purpose = append(attributes1.UserRelationAttribute.Purpose, types.StringValue(v))
@@ -16645,6 +17121,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		}
 		for capabilitiesCount, capabilitiesItem := range resp.Capabilities {
 			var capabilities1 tfTypes.EntityCapability
+			capabilities1.Manifest = []types.String{}
+			for _, v := range capabilitiesItem.Manifest {
+				capabilities1.Manifest = append(capabilities1.Manifest, types.StringValue(v))
+			}
 			capabilities1.Purpose = []types.String{}
 			for _, v := range capabilitiesItem.Purpose {
 				capabilities1.Purpose = append(capabilities1.Purpose, types.StringValue(v))
@@ -16654,6 +17134,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				var attributes3 tfTypes.Attribute
 				if attributesItem1.AddressRelationAttribute != nil {
 					attributes3.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+					attributes3.AddressRelationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.AddressRelationAttribute.Manifest {
+						attributes3.AddressRelationAttribute.Manifest = append(attributes3.AddressRelationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.AddressRelationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.AddressRelationAttribute.Purpose {
 						attributes3.AddressRelationAttribute.Purpose = append(attributes3.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -16720,6 +17204,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.AutomationAttribute != nil {
 					attributes3.AutomationAttribute = &tfTypes.AutomationAttribute{}
+					attributes3.AutomationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.AutomationAttribute.Manifest {
+						attributes3.AutomationAttribute.Manifest = append(attributes3.AutomationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.AutomationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.AutomationAttribute.Purpose {
 						attributes3.AutomationAttribute.Purpose = append(attributes3.AutomationAttribute.Purpose, types.StringValue(v))
@@ -16785,6 +17273,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.BooleanAttribute != nil {
 					attributes3.BooleanAttribute = &tfTypes.BooleanAttribute{}
+					attributes3.BooleanAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.BooleanAttribute.Manifest {
+						attributes3.BooleanAttribute.Manifest = append(attributes3.BooleanAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.BooleanAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.BooleanAttribute.Purpose {
 						attributes3.BooleanAttribute.Purpose = append(attributes3.BooleanAttribute.Purpose, types.StringValue(v))
@@ -16850,6 +17342,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.ComputedAttribute != nil {
 					attributes3.ComputedAttribute = &tfTypes.ComputedAttribute{}
+					attributes3.ComputedAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.ComputedAttribute.Manifest {
+						attributes3.ComputedAttribute.Manifest = append(attributes3.ComputedAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.ComputedAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.ComputedAttribute.Purpose {
 						attributes3.ComputedAttribute.Purpose = append(attributes3.ComputedAttribute.Purpose, types.StringValue(v))
@@ -16915,6 +17411,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.ConsentAttribute != nil {
 					attributes3.ConsentAttribute = &tfTypes.ConsentAttribute{}
+					attributes3.ConsentAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.ConsentAttribute.Manifest {
+						attributes3.ConsentAttribute.Manifest = append(attributes3.ConsentAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.ConsentAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.ConsentAttribute.Purpose {
 						attributes3.ConsentAttribute.Purpose = append(attributes3.ConsentAttribute.Purpose, types.StringValue(v))
@@ -16981,6 +17481,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.CountryAttribute != nil {
 					attributes3.CountryAttribute = &tfTypes.CountryAttribute{}
+					attributes3.CountryAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.CountryAttribute.Manifest {
+						attributes3.CountryAttribute.Manifest = append(attributes3.CountryAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.CountryAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.CountryAttribute.Purpose {
 						attributes3.CountryAttribute.Purpose = append(attributes3.CountryAttribute.Purpose, types.StringValue(v))
@@ -17046,6 +17550,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.CurrencyAttribute != nil {
 					attributes3.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+					attributes3.CurrencyAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.CurrencyAttribute.Manifest {
+						attributes3.CurrencyAttribute.Manifest = append(attributes3.CurrencyAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.CurrencyAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.CurrencyAttribute.Purpose {
 						attributes3.CurrencyAttribute.Purpose = append(attributes3.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -17124,6 +17632,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.DateAttribute != nil {
 					attributes3.DateAttribute = &tfTypes.DateAttribute{}
+					attributes3.DateAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.DateAttribute.Manifest {
+						attributes3.DateAttribute.Manifest = append(attributes3.DateAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.DateAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.DateAttribute.Purpose {
 						attributes3.DateAttribute.Purpose = append(attributes3.DateAttribute.Purpose, types.StringValue(v))
@@ -17189,6 +17701,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.FileAttribute != nil {
 					attributes3.FileAttribute = &tfTypes.FileAttribute{}
+					attributes3.FileAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.FileAttribute.Manifest {
+						attributes3.FileAttribute.Manifest = append(attributes3.FileAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.FileAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.FileAttribute.Purpose {
 						attributes3.FileAttribute.Purpose = append(attributes3.FileAttribute.Purpose, types.StringValue(v))
@@ -17262,6 +17778,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.InternalAttribute != nil {
 					attributes3.InternalAttribute = &tfTypes.InternalAttribute{}
+					attributes3.InternalAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.InternalAttribute.Manifest {
+						attributes3.InternalAttribute.Manifest = append(attributes3.InternalAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.InternalAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.InternalAttribute.Purpose {
 						attributes3.InternalAttribute.Purpose = append(attributes3.InternalAttribute.Purpose, types.StringValue(v))
@@ -17327,6 +17847,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.InternalUserAttribute != nil {
 					attributes3.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+					attributes3.InternalUserAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.InternalUserAttribute.Manifest {
+						attributes3.InternalUserAttribute.Manifest = append(attributes3.InternalUserAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.InternalUserAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.InternalUserAttribute.Purpose {
 						attributes3.InternalUserAttribute.Purpose = append(attributes3.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -17392,6 +17916,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.InvitationEmailAttribute != nil {
 					attributes3.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+					attributes3.InvitationEmailAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.InvitationEmailAttribute.Manifest {
+						attributes3.InvitationEmailAttribute.Manifest = append(attributes3.InvitationEmailAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.InvitationEmailAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.InvitationEmailAttribute.Purpose {
 						attributes3.InvitationEmailAttribute.Purpose = append(attributes3.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -17457,6 +17985,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.LinkAttribute != nil {
 					attributes3.LinkAttribute = &tfTypes.LinkAttribute{}
+					attributes3.LinkAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.LinkAttribute.Manifest {
+						attributes3.LinkAttribute.Manifest = append(attributes3.LinkAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.LinkAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.LinkAttribute.Purpose {
 						attributes3.LinkAttribute.Purpose = append(attributes3.LinkAttribute.Purpose, types.StringValue(v))
@@ -17522,6 +18054,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.MultiSelectAttribute != nil {
 					attributes3.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+					attributes3.MultiSelectAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.MultiSelectAttribute.Manifest {
+						attributes3.MultiSelectAttribute.Manifest = append(attributes3.MultiSelectAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.MultiSelectAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.MultiSelectAttribute.Purpose {
 						attributes3.MultiSelectAttribute.Purpose = append(attributes3.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -17608,6 +18144,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.NumberAttribute != nil {
 					attributes3.NumberAttribute = &tfTypes.NumberAttribute{}
+					attributes3.NumberAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.NumberAttribute.Manifest {
+						attributes3.NumberAttribute.Manifest = append(attributes3.NumberAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.NumberAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.NumberAttribute.Purpose {
 						attributes3.NumberAttribute.Purpose = append(attributes3.NumberAttribute.Purpose, types.StringValue(v))
@@ -17675,6 +18215,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.OrderedListAttribute != nil {
 					attributes3.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+					attributes3.OrderedListAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.OrderedListAttribute.Manifest {
+						attributes3.OrderedListAttribute.Manifest = append(attributes3.OrderedListAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.OrderedListAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.OrderedListAttribute.Purpose {
 						attributes3.OrderedListAttribute.Purpose = append(attributes3.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -17740,6 +18284,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.PartnerOrganisationAttribute != nil {
 					attributes3.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+					attributes3.PartnerOrganisationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.PartnerOrganisationAttribute.Manifest {
+						attributes3.PartnerOrganisationAttribute.Manifest = append(attributes3.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.PartnerOrganisationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.PartnerOrganisationAttribute.Purpose {
 						attributes3.PartnerOrganisationAttribute.Purpose = append(attributes3.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -17805,6 +18353,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.PartnerStatusAttribute != nil {
 					attributes3.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+					attributes3.PartnerStatusAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.PartnerStatusAttribute.Manifest {
+						attributes3.PartnerStatusAttribute.Manifest = append(attributes3.PartnerStatusAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.PartnerStatusAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.PartnerStatusAttribute.Purpose {
 						attributes3.PartnerStatusAttribute.Purpose = append(attributes3.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -17870,6 +18422,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.PaymentMethodRelationAttribute != nil {
 					attributes3.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+					attributes3.PaymentMethodRelationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.PaymentMethodRelationAttribute.Manifest {
+						attributes3.PaymentMethodRelationAttribute.Manifest = append(attributes3.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.PaymentMethodRelationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.PaymentMethodRelationAttribute.Purpose {
 						attributes3.PaymentMethodRelationAttribute.Purpose = append(attributes3.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -17936,6 +18492,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.PurposeAttribute != nil {
 					attributes3.PurposeAttribute = &tfTypes.PurposeAttribute{}
+					attributes3.PurposeAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.PurposeAttribute.Manifest {
+						attributes3.PurposeAttribute.Manifest = append(attributes3.PurposeAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.PurposeAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.PurposeAttribute.Purpose {
 						attributes3.PurposeAttribute.Purpose = append(attributes3.PurposeAttribute.Purpose, types.StringValue(v))
@@ -18016,6 +18576,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.RelationAttribute != nil {
 					attributes3.RelationAttribute = &tfTypes.RelationAttribute{}
+					attributes3.RelationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.RelationAttribute.Manifest {
+						attributes3.RelationAttribute.Manifest = append(attributes3.RelationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.RelationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.RelationAttribute.Purpose {
 						attributes3.RelationAttribute.Purpose = append(attributes3.RelationAttribute.Purpose, types.StringValue(v))
@@ -18064,6 +18628,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 								actions3.NewEntityItem.CreatedAt = types.StringNull()
 							}
 							actions3.NewEntityItem.ID = types.StringValue(actionsItem1.NewEntityItem.ID)
+							actions3.NewEntityItem.Manifest = []types.String{}
+							for _, v := range actionsItem1.NewEntityItem.Manifest {
+								actions3.NewEntityItem.Manifest = append(actions3.NewEntityItem.Manifest, types.StringValue(v))
+							}
 							actions3.NewEntityItem.Org = types.StringValue(actionsItem1.NewEntityItem.Org)
 							actions3.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 							for ownersCount1, ownersItem1 := range actionsItem1.NewEntityItem.Owners {
@@ -18237,6 +18805,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.RepeatableAttribute != nil {
 					attributes3.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+					attributes3.RepeatableAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.RepeatableAttribute.Manifest {
+						attributes3.RepeatableAttribute.Manifest = append(attributes3.RepeatableAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.RepeatableAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.RepeatableAttribute.Purpose {
 						attributes3.RepeatableAttribute.Purpose = append(attributes3.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -18310,6 +18882,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.SelectAttribute != nil {
 					attributes3.SelectAttribute = &tfTypes.SelectAttribute{}
+					attributes3.SelectAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.SelectAttribute.Manifest {
+						attributes3.SelectAttribute.Manifest = append(attributes3.SelectAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.SelectAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.SelectAttribute.Purpose {
 						attributes3.SelectAttribute.Purpose = append(attributes3.SelectAttribute.Purpose, types.StringValue(v))
@@ -18382,6 +18958,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.SequenceAttribute != nil {
 					attributes3.SequenceAttribute = &tfTypes.SequenceAttribute{}
+					attributes3.SequenceAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.SequenceAttribute.Manifest {
+						attributes3.SequenceAttribute.Manifest = append(attributes3.SequenceAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.SequenceAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.SequenceAttribute.Purpose {
 						attributes3.SequenceAttribute.Purpose = append(attributes3.SequenceAttribute.Purpose, types.StringValue(v))
@@ -18449,6 +19029,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.StatusAttribute != nil {
 					attributes3.StatusAttribute = &tfTypes.StatusAttribute{}
+					attributes3.StatusAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.StatusAttribute.Manifest {
+						attributes3.StatusAttribute.Manifest = append(attributes3.StatusAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.StatusAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.StatusAttribute.Purpose {
 						attributes3.StatusAttribute.Purpose = append(attributes3.StatusAttribute.Purpose, types.StringValue(v))
@@ -18532,6 +19116,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.TagsAttribute != nil {
 					attributes3.TagsAttribute = &tfTypes.TagsAttribute{}
+					attributes3.TagsAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.TagsAttribute.Manifest {
+						attributes3.TagsAttribute.Manifest = append(attributes3.TagsAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.TagsAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.TagsAttribute.Purpose {
 						attributes3.TagsAttribute.Purpose = append(attributes3.TagsAttribute.Purpose, types.StringValue(v))
@@ -18605,6 +19193,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.TextAttribute != nil {
 					attributes3.TextAttribute = &tfTypes.TextAttribute{}
+					attributes3.TextAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.TextAttribute.Manifest {
+						attributes3.TextAttribute.Manifest = append(attributes3.TextAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.TextAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.TextAttribute.Purpose {
 						attributes3.TextAttribute.Purpose = append(attributes3.TextAttribute.Purpose, types.StringValue(v))
@@ -18671,6 +19263,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				}
 				if attributesItem1.UserRelationAttribute != nil {
 					attributes3.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+					attributes3.UserRelationAttribute.Manifest = []types.String{}
+					for _, v := range attributesItem1.UserRelationAttribute.Manifest {
+						attributes3.UserRelationAttribute.Manifest = append(attributes3.UserRelationAttribute.Manifest, types.StringValue(v))
+					}
 					attributes3.UserRelationAttribute.Purpose = []types.String{}
 					for _, v := range attributesItem1.UserRelationAttribute.Purpose {
 						attributes3.UserRelationAttribute.Purpose = append(attributes3.UserRelationAttribute.Purpose, types.StringValue(v))
@@ -18832,6 +19428,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			if capabilitiesCount+1 > len(r.Capabilities) {
 				r.Capabilities = append(r.Capabilities, capabilities1)
 			} else {
+				r.Capabilities[capabilitiesCount].Manifest = capabilities1.Manifest
 				r.Capabilities[capabilitiesCount].Purpose = capabilities1.Purpose
 				r.Capabilities[capabilitiesCount].Attributes = capabilities1.Attributes
 				r.Capabilities[capabilitiesCount].FeatureFlag = capabilities1.FeatureFlag
@@ -18876,12 +19473,54 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			}
 		}
 		r.FeatureFlag = types.StringPointerValue(resp.FeatureFlag)
+		r.GroupHeadlines = []tfTypes.GroupHeadline{}
+		if len(r.GroupHeadlines) > len(resp.GroupHeadlines) {
+			r.GroupHeadlines = r.GroupHeadlines[:len(resp.GroupHeadlines)]
+		}
+		for groupHeadlinesCount, groupHeadlinesItem := range resp.GroupHeadlines {
+			var groupHeadlines1 tfTypes.GroupHeadline
+			groupHeadlines1.Manifest = []types.String{}
+			for _, v := range groupHeadlinesItem.Manifest {
+				groupHeadlines1.Manifest = append(groupHeadlines1.Manifest, types.StringValue(v))
+			}
+			if groupHeadlinesItem.Divider != nil {
+				groupHeadlines1.Divider = types.StringValue(string(*groupHeadlinesItem.Divider))
+			} else {
+				groupHeadlines1.Divider = types.StringNull()
+			}
+			groupHeadlines1.EnableDivider = types.BoolPointerValue(groupHeadlinesItem.EnableDivider)
+			groupHeadlines1.Group = types.StringValue(groupHeadlinesItem.Group)
+			groupHeadlines1.ID = types.StringPointerValue(groupHeadlinesItem.ID)
+			groupHeadlines1.Label = types.StringValue(groupHeadlinesItem.Label)
+			groupHeadlines1.Layout = types.StringPointerValue(groupHeadlinesItem.Layout)
+			groupHeadlines1.Name = types.StringValue(groupHeadlinesItem.Name)
+			groupHeadlines1.Order = types.Int64PointerValue(groupHeadlinesItem.Order)
+			groupHeadlines1.Type = types.StringValue(string(groupHeadlinesItem.Type))
+			if groupHeadlinesCount+1 > len(r.GroupHeadlines) {
+				r.GroupHeadlines = append(r.GroupHeadlines, groupHeadlines1)
+			} else {
+				r.GroupHeadlines[groupHeadlinesCount].Manifest = groupHeadlines1.Manifest
+				r.GroupHeadlines[groupHeadlinesCount].Divider = groupHeadlines1.Divider
+				r.GroupHeadlines[groupHeadlinesCount].EnableDivider = groupHeadlines1.EnableDivider
+				r.GroupHeadlines[groupHeadlinesCount].Group = groupHeadlines1.Group
+				r.GroupHeadlines[groupHeadlinesCount].ID = groupHeadlines1.ID
+				r.GroupHeadlines[groupHeadlinesCount].Label = groupHeadlines1.Label
+				r.GroupHeadlines[groupHeadlinesCount].Layout = groupHeadlines1.Layout
+				r.GroupHeadlines[groupHeadlinesCount].Name = groupHeadlines1.Name
+				r.GroupHeadlines[groupHeadlinesCount].Order = groupHeadlines1.Order
+				r.GroupHeadlines[groupHeadlinesCount].Type = groupHeadlines1.Type
+			}
+		}
 		r.GroupSettings = []tfTypes.EntitySchemaGroup{}
 		if len(r.GroupSettings) > len(resp.GroupSettings) {
 			r.GroupSettings = r.GroupSettings[:len(resp.GroupSettings)]
 		}
 		for groupSettingsCount, groupSettingsItem := range resp.GroupSettings {
 			var groupSettings1 tfTypes.EntitySchemaGroup
+			groupSettings1.Manifest = []types.String{}
+			for _, v := range groupSettingsItem.Manifest {
+				groupSettings1.Manifest = append(groupSettings1.Manifest, types.StringValue(v))
+			}
 			groupSettings1.Purpose = []types.String{}
 			for _, v := range groupSettingsItem.Purpose {
 				groupSettings1.Purpose = append(groupSettings1.Purpose, types.StringValue(v))
@@ -18914,6 +19553,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			if groupSettingsCount+1 > len(r.GroupSettings) {
 				r.GroupSettings = append(r.GroupSettings, groupSettings1)
 			} else {
+				r.GroupSettings[groupSettingsCount].Manifest = groupSettings1.Manifest
 				r.GroupSettings[groupSettingsCount].Purpose = groupSettings1.Purpose
 				r.GroupSettings[groupSettingsCount].Expanded = groupSettings1.Expanded
 				r.GroupSettings[groupSettingsCount].FeatureFlag = groupSettings1.FeatureFlag

@@ -161,10 +161,12 @@ type EntityCapabilityWithCompositeID struct {
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
-	Title      *string                                  `json:"title,omitempty"`
-	Attributes []Attribute                              `json:"attributes,omitempty"`
-	Purpose    []string                                 `json:"_purpose,omitempty"`
-	UIHooks    []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
+	Title      *string     `json:"title,omitempty"`
+	Attributes []Attribute `json:"attributes,omitempty"`
+	Purpose    []string    `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema capabilility
+	Manifest []string                                 `json:"_manifest,omitempty"`
+	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -209,6 +211,13 @@ func (o *EntityCapabilityWithCompositeID) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *EntityCapabilityWithCompositeID) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *EntityCapabilityWithCompositeID) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {
 	if o == nil {
 		return nil
@@ -251,10 +260,12 @@ type EntityCapabilityWithCompositeIDInput struct {
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
-	Title      *string                                  `json:"title,omitempty"`
-	Attributes []AttributeInput                         `json:"attributes,omitempty"`
-	Purpose    []string                                 `json:"_purpose,omitempty"`
-	UIHooks    []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
+	Title      *string          `json:"title,omitempty"`
+	Attributes []AttributeInput `json:"attributes,omitempty"`
+	Purpose    []string         `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema capabilility
+	Manifest []string                                 `json:"_manifest,omitempty"`
+	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -296,6 +307,13 @@ func (o *EntityCapabilityWithCompositeIDInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *EntityCapabilityWithCompositeIDInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *EntityCapabilityWithCompositeIDInput) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {

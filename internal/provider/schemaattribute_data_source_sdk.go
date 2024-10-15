@@ -14,6 +14,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 	if resp != nil {
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
 			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
+			r.AddressRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
+				r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.AddressRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Purpose {
 				r.AddressRelationAttribute.Purpose = append(r.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -108,6 +112,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDAutomationAttribute != nil {
 			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.AutomationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
+				r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
+			}
 			r.AutomationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Purpose {
 				r.AutomationAttribute.Purpose = append(r.AutomationAttribute.Purpose, types.StringValue(v))
@@ -201,6 +209,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDBooleanAttribute != nil {
 			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDBooleanAttribute{}
+			r.BooleanAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
+				r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
+			}
 			r.BooleanAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Purpose {
 				r.BooleanAttribute.Purpose = append(r.BooleanAttribute.Purpose, types.StringValue(v))
@@ -294,6 +306,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDComputedAttribute != nil {
 			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDComputedAttribute{}
+			r.ComputedAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
+				r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
+			}
 			r.ComputedAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Purpose {
 				r.ComputedAttribute.Purpose = append(r.ComputedAttribute.Purpose, types.StringValue(v))
@@ -387,6 +403,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDConsentAttribute != nil {
 			r.ConsentAttribute = &tfTypes.AttributeWithCompositeIDConsentAttribute{}
+			r.ConsentAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Manifest {
+				r.ConsentAttribute.Manifest = append(r.ConsentAttribute.Manifest, types.StringValue(v))
+			}
 			r.ConsentAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDConsentAttribute.Purpose {
 				r.ConsentAttribute.Purpose = append(r.ConsentAttribute.Purpose, types.StringValue(v))
@@ -481,6 +501,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDCountryAttribute != nil {
 			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDCountryAttribute{}
+			r.CountryAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
+				r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
+			}
 			r.CountryAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Purpose {
 				r.CountryAttribute.Purpose = append(r.CountryAttribute.Purpose, types.StringValue(v))
@@ -574,6 +598,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDCurrencyAttribute != nil {
 			r.CurrencyAttribute = &tfTypes.AttributeWithCompositeIDCurrencyAttribute{}
+			r.CurrencyAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Manifest {
+				r.CurrencyAttribute.Manifest = append(r.CurrencyAttribute.Manifest, types.StringValue(v))
+			}
 			r.CurrencyAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCurrencyAttribute.Purpose {
 				r.CurrencyAttribute.Purpose = append(r.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -683,6 +711,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDDateAttribute != nil {
 			r.DateAttribute = &tfTypes.AttributeWithCompositeIDDateAttribute{}
+			r.DateAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
+				r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
+			}
 			r.DateAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Purpose {
 				r.DateAttribute.Purpose = append(r.DateAttribute.Purpose, types.StringValue(v))
@@ -776,6 +808,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDFileAttribute != nil {
 			r.FileAttribute = &tfTypes.AttributeWithCompositeIDFileAttribute{}
+			r.FileAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Manifest {
+				r.FileAttribute.Manifest = append(r.FileAttribute.Manifest, types.StringValue(v))
+			}
 			r.FileAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDFileAttribute.Purpose {
 				r.FileAttribute.Purpose = append(r.FileAttribute.Purpose, types.StringValue(v))
@@ -877,6 +913,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDInternalAttribute != nil {
 			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDInternalAttribute{}
+			r.InternalAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
+				r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
+			}
 			r.InternalAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Purpose {
 				r.InternalAttribute.Purpose = append(r.InternalAttribute.Purpose, types.StringValue(v))
@@ -970,6 +1010,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDInternalUserAttribute != nil {
 			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDInternalUserAttribute{}
+			r.InternalUserAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
+				r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
+			}
 			r.InternalUserAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Purpose {
 				r.InternalUserAttribute.Purpose = append(r.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -1063,6 +1107,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDInvitationEmailAttribute != nil {
 			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDInvitationEmailAttribute{}
+			r.InvitationEmailAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
+				r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
+			}
 			r.InvitationEmailAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Purpose {
 				r.InvitationEmailAttribute.Purpose = append(r.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -1156,6 +1204,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDLinkAttribute != nil {
 			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDLinkAttribute{}
+			r.LinkAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
+				r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
+			}
 			r.LinkAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Purpose {
 				r.LinkAttribute.Purpose = append(r.LinkAttribute.Purpose, types.StringValue(v))
@@ -1249,6 +1301,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDMultiSelectAttribute != nil {
 			r.MultiSelectAttribute = &tfTypes.AttributeWithCompositeIDMultiSelectAttribute{}
+			r.MultiSelectAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Manifest {
+				r.MultiSelectAttribute.Manifest = append(r.MultiSelectAttribute.Manifest, types.StringValue(v))
+			}
 			r.MultiSelectAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDMultiSelectAttribute.Purpose {
 				r.MultiSelectAttribute.Purpose = append(r.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -1366,6 +1422,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDNumberAttribute != nil {
 			r.NumberAttribute = &tfTypes.AttributeWithCompositeIDNumberAttribute{}
+			r.NumberAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Manifest {
+				r.NumberAttribute.Manifest = append(r.NumberAttribute.Manifest, types.StringValue(v))
+			}
 			r.NumberAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDNumberAttribute.Purpose {
 				r.NumberAttribute.Purpose = append(r.NumberAttribute.Purpose, types.StringValue(v))
@@ -1461,6 +1521,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDOrderedListAttribute != nil {
 			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDOrderedListAttribute{}
+			r.OrderedListAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
+				r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
+			}
 			r.OrderedListAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Purpose {
 				r.OrderedListAttribute.Purpose = append(r.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -1554,6 +1618,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
 			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDPartnerOrganisationAttribute{}
+			r.PartnerOrganisationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
+				r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+			}
 			r.PartnerOrganisationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Purpose {
 				r.PartnerOrganisationAttribute.Purpose = append(r.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -1647,6 +1715,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDPartnerStatusAttribute != nil {
 			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDPartnerStatusAttribute{}
+			r.PartnerStatusAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
+				r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
+			}
 			r.PartnerStatusAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Purpose {
 				r.PartnerStatusAttribute.Purpose = append(r.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -1740,6 +1812,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute != nil {
 			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+			r.PaymentMethodRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
+				r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.PaymentMethodRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Purpose {
 				r.PaymentMethodRelationAttribute.Purpose = append(r.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -1834,6 +1910,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDPurposeAttribute != nil {
 			r.PurposeAttribute = &tfTypes.AttributeWithCompositeIDPurposeAttribute{}
+			r.PurposeAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Manifest {
+				r.PurposeAttribute.Manifest = append(r.PurposeAttribute.Manifest, types.StringValue(v))
+			}
 			r.PurposeAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
@@ -1942,6 +2022,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDRelationAttribute != nil {
 			r.RelationAttribute = &tfTypes.AttributeWithCompositeIDRelationAttribute{}
+			r.RelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Manifest {
+				r.RelationAttribute.Manifest = append(r.RelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.RelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDRelationAttribute.Purpose {
 				r.RelationAttribute.Purpose = append(r.RelationAttribute.Purpose, types.StringValue(v))
@@ -1993,6 +2077,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 						actions1.NewEntityItem.CreatedAt = types.StringNull()
 					}
 					actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+					actions1.NewEntityItem.Manifest = []types.String{}
+					for _, v := range actionsItem.NewEntityItem.Manifest {
+						actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
+					}
 					actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
 					actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 					for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -2197,6 +2285,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDRepeatableAttribute != nil {
 			r.RepeatableAttribute = &tfTypes.AttributeWithCompositeIDRepeatableAttribute{}
+			r.RepeatableAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Manifest {
+				r.RepeatableAttribute.Manifest = append(r.RepeatableAttribute.Manifest, types.StringValue(v))
+			}
 			r.RepeatableAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Purpose {
 				r.RepeatableAttribute.Purpose = append(r.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -2298,6 +2390,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDSelectAttribute != nil {
 			r.SelectAttribute = &tfTypes.AttributeWithCompositeIDSelectAttribute{}
+			r.SelectAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Manifest {
+				r.SelectAttribute.Manifest = append(r.SelectAttribute.Manifest, types.StringValue(v))
+			}
 			r.SelectAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDSelectAttribute.Purpose {
 				r.SelectAttribute.Purpose = append(r.SelectAttribute.Purpose, types.StringValue(v))
@@ -2398,6 +2494,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDSequenceAttribute != nil {
 			r.SequenceAttribute = &tfTypes.AttributeWithCompositeIDSequenceAttribute{}
+			r.SequenceAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Manifest {
+				r.SequenceAttribute.Manifest = append(r.SequenceAttribute.Manifest, types.StringValue(v))
+			}
 			r.SequenceAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDSequenceAttribute.Purpose {
 				r.SequenceAttribute.Purpose = append(r.SequenceAttribute.Purpose, types.StringValue(v))
@@ -2493,6 +2593,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDStatusAttribute != nil {
 			r.StatusAttribute = &tfTypes.AttributeWithCompositeIDStatusAttribute{}
+			r.StatusAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Manifest {
+				r.StatusAttribute.Manifest = append(r.StatusAttribute.Manifest, types.StringValue(v))
+			}
 			r.StatusAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDStatusAttribute.Purpose {
 				r.StatusAttribute.Purpose = append(r.StatusAttribute.Purpose, types.StringValue(v))
@@ -2607,6 +2711,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDTagsAttribute != nil {
 			r.TagsAttribute = &tfTypes.AttributeWithCompositeIDTagsAttribute{}
+			r.TagsAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Manifest {
+				r.TagsAttribute.Manifest = append(r.TagsAttribute.Manifest, types.StringValue(v))
+			}
 			r.TagsAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDTagsAttribute.Purpose {
 				r.TagsAttribute.Purpose = append(r.TagsAttribute.Purpose, types.StringValue(v))
@@ -2708,6 +2816,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDTextAttribute != nil {
 			r.TextAttribute = &tfTypes.AttributeWithCompositeIDTextAttribute{}
+			r.TextAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Manifest {
+				r.TextAttribute.Manifest = append(r.TextAttribute.Manifest, types.StringValue(v))
+			}
 			r.TextAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDTextAttribute.Purpose {
 				r.TextAttribute.Purpose = append(r.TextAttribute.Purpose, types.StringValue(v))
@@ -2802,6 +2914,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 		}
 		if resp.AttributeWithCompositeIDUserRelationAttribute != nil {
 			r.UserRelationAttribute = &tfTypes.AttributeWithCompositeIDUserRelationAttribute{}
+			r.UserRelationAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Manifest {
+				r.UserRelationAttribute.Manifest = append(r.UserRelationAttribute.Manifest, types.StringValue(v))
+			}
 			r.UserRelationAttribute.Purpose = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDUserRelationAttribute.Purpose {
 				r.UserRelationAttribute.Purpose = append(r.UserRelationAttribute.Purpose, types.StringValue(v))

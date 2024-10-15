@@ -39,6 +39,8 @@ type EntitySchemaGroupWithCompositeID struct {
 	RenderCondition *string `json:"render_condition,omitempty"`
 	// Only render group when one of the purposes is enabled
 	Purpose []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema group
+	Manifest []string `json:"_manifest,omitempty"`
 	// This group should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This group should only be active when all the settings have the correct value
@@ -102,6 +104,13 @@ func (o *EntitySchemaGroupWithCompositeID) GetPurpose() []string {
 	return o.Purpose
 }
 
+func (o *EntitySchemaGroupWithCompositeID) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
 func (o *EntitySchemaGroupWithCompositeID) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
@@ -149,6 +158,8 @@ type EntitySchemaGroupWithCompositeIDInput struct {
 	RenderCondition *string `json:"render_condition,omitempty"`
 	// Only render group when one of the purposes is enabled
 	Purpose []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema group
+	Manifest []string `json:"_manifest,omitempty"`
 	// This group should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This group should only be active when all the settings have the correct value
@@ -209,6 +220,13 @@ func (o *EntitySchemaGroupWithCompositeIDInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *EntitySchemaGroupWithCompositeIDInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *EntitySchemaGroupWithCompositeIDInput) GetFeatureFlag() *string {

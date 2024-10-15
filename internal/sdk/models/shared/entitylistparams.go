@@ -3,8 +3,74 @@
 package shared
 
 import (
+	"errors"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
+
+type EntityListParamsSortType string
+
+const (
+	EntityListParamsSortTypeStr        EntityListParamsSortType = "str"
+	EntityListParamsSortTypeArrayOfStr EntityListParamsSortType = "arrayOfStr"
+)
+
+// EntityListParamsSort - You can pass one sort field or an array of sort fields. Each sort field can be a string
+type EntityListParamsSort struct {
+	Str        *string
+	ArrayOfStr []string
+
+	Type EntityListParamsSortType
+}
+
+func CreateEntityListParamsSortStr(str string) EntityListParamsSort {
+	typ := EntityListParamsSortTypeStr
+
+	return EntityListParamsSort{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateEntityListParamsSortArrayOfStr(arrayOfStr []string) EntityListParamsSort {
+	typ := EntityListParamsSortTypeArrayOfStr
+
+	return EntityListParamsSort{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *EntityListParamsSort) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = EntityListParamsSortTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = EntityListParamsSortTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSort", string(data))
+}
+
+func (u EntityListParamsSort) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type EntityListParamsSort: all fields are null")
+}
 
 // EntityListParamsAggs - Aggregation supported by ElasticSearch allows summarizing data as metrics, statistics, or other analytics.
 type EntityListParamsAggs struct {
@@ -14,9 +80,10 @@ type EntityListParams struct {
 	// A subset of simplified Elasticsearch query clauses. The default operator is a logical AND. Use nested $and, $or, $not to combine filters using different logical operators.
 	Filter []SearchFilter `json:"filter"`
 	// Allow running the listing without any schema filter. This is disabled by default to prevent security and performance issues if done by an accident.
-	AllowTargetingAllSchemas *bool   `default:"false" json:"allow_targeting_all_schemas"`
-	Sort                     *string `json:"sort,omitempty"`
-	From                     *int64  `default:"0" json:"from"`
+	AllowTargetingAllSchemas *bool `default:"false" json:"allow_targeting_all_schemas"`
+	// You can pass one sort field or an array of sort fields. Each sort field can be a string
+	Sort *EntityListParamsSort `json:"sort,omitempty"`
+	From *int64                `default:"0" json:"from"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"10" json:"size"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
@@ -30,6 +97,14 @@ type EntityListParams struct {
 	Fields []string `json:"fields,omitempty"`
 	// Aggregation supported by ElasticSearch allows summarizing data as metrics, statistics, or other analytics.
 	Aggs *EntityListParamsAggs `json:"aggs,omitempty"`
+	// Whether to include deleted entities in the search results
+	// - `true`: include deleted entities
+	// - `false`: exclude deleted entities
+	// - `only`: include only deleted entities
+	//
+	// By default, no deleted entities are included in the search results.
+	//
+	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
 }
 
 func (e EntityListParams) MarshalJSON() ([]byte, error) {
@@ -57,7 +132,7 @@ func (o *EntityListParams) GetAllowTargetingAllSchemas() *bool {
 	return o.AllowTargetingAllSchemas
 }
 
-func (o *EntityListParams) GetSort() *string {
+func (o *EntityListParams) GetSort() *EntityListParamsSort {
 	if o == nil {
 		return nil
 	}
@@ -97,4 +172,11 @@ func (o *EntityListParams) GetAggs() *EntityListParamsAggs {
 		return nil
 	}
 	return o.Aggs
+}
+
+func (o *EntityListParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDeleted
 }

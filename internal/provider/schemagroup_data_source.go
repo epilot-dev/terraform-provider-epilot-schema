@@ -35,6 +35,7 @@ type SchemaGroupDataSourceModel struct {
 	ID               types.String              `tfsdk:"id"`
 	InfoTooltipTitle *tfTypes.InfoTooltipTitle `tfsdk:"info_tooltip_title"`
 	Label            types.String              `tfsdk:"label"`
+	Manifest         []types.String            `tfsdk:"manifest"`
 	Order            types.Int64               `tfsdk:"order"`
 	Purpose          []types.String            `tfsdk:"purpose"`
 	RenderCondition  types.String              `tfsdk:"render_condition"`
@@ -83,6 +84,11 @@ func (r *SchemaGroupDataSource) Schema(ctx context.Context, req datasource.Schem
 			},
 			"label": schema.StringAttribute{
 				Computed: true,
+			},
+			"manifest": schema.ListAttribute{
+				Computed:    true,
+				ElementType: types.StringType,
+				Description: `Manifest ID used to create/update the schema group`,
 			},
 			"order": schema.Int64Attribute{
 				Computed:    true,

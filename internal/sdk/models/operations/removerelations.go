@@ -14,8 +14,10 @@ type RemoveRelationsRequest struct {
 	// Entity id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
-	Async       *bool                 `default:"false" queryParam:"style=form,explode=true,name=async"`
-	RequestBody []shared.RelationItem `request:"mediaType=application/json"`
+	Async *bool `default:"false" queryParam:"style=form,explode=true,name=async"`
+	// Activity to include in event feed
+	ActivityID  *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
+	RequestBody []shared.RelationItem        `request:"mediaType=application/json"`
 }
 
 func (r RemoveRelationsRequest) MarshalJSON() ([]byte, error) {
@@ -48,6 +50,13 @@ func (o *RemoveRelationsRequest) GetAsync() *bool {
 		return nil
 	}
 	return o.Async
+}
+
+func (o *RemoveRelationsRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if o == nil {
+		return nil
+	}
+	return o.ActivityID
 }
 
 func (o *RemoveRelationsRequest) GetRequestBody() []shared.RelationItem {

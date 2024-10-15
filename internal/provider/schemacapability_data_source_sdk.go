@@ -12,6 +12,10 @@ import (
 
 func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithCompositeID(resp *shared.EntityCapabilityWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.Purpose = []types.String{}
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
@@ -24,6 +28,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			var attributes1 tfTypes.Attribute
 			if attributesItem.AddressRelationAttribute != nil {
 				attributes1.AddressRelationAttribute = &tfTypes.AddressRelationAttribute{}
+				attributes1.AddressRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AddressRelationAttribute.Manifest {
+					attributes1.AddressRelationAttribute.Manifest = append(attributes1.AddressRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AddressRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AddressRelationAttribute.Purpose {
 					attributes1.AddressRelationAttribute.Purpose = append(attributes1.AddressRelationAttribute.Purpose, types.StringValue(v))
@@ -90,6 +98,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.AutomationAttribute != nil {
 				attributes1.AutomationAttribute = &tfTypes.AutomationAttribute{}
+				attributes1.AutomationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.AutomationAttribute.Manifest {
+					attributes1.AutomationAttribute.Manifest = append(attributes1.AutomationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.AutomationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.AutomationAttribute.Purpose {
 					attributes1.AutomationAttribute.Purpose = append(attributes1.AutomationAttribute.Purpose, types.StringValue(v))
@@ -155,6 +167,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.BooleanAttribute != nil {
 				attributes1.BooleanAttribute = &tfTypes.BooleanAttribute{}
+				attributes1.BooleanAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.BooleanAttribute.Manifest {
+					attributes1.BooleanAttribute.Manifest = append(attributes1.BooleanAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.BooleanAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.BooleanAttribute.Purpose {
 					attributes1.BooleanAttribute.Purpose = append(attributes1.BooleanAttribute.Purpose, types.StringValue(v))
@@ -220,6 +236,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.ComputedAttribute != nil {
 				attributes1.ComputedAttribute = &tfTypes.ComputedAttribute{}
+				attributes1.ComputedAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ComputedAttribute.Manifest {
+					attributes1.ComputedAttribute.Manifest = append(attributes1.ComputedAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ComputedAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ComputedAttribute.Purpose {
 					attributes1.ComputedAttribute.Purpose = append(attributes1.ComputedAttribute.Purpose, types.StringValue(v))
@@ -285,6 +305,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.ConsentAttribute != nil {
 				attributes1.ConsentAttribute = &tfTypes.ConsentAttribute{}
+				attributes1.ConsentAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.ConsentAttribute.Manifest {
+					attributes1.ConsentAttribute.Manifest = append(attributes1.ConsentAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.ConsentAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.ConsentAttribute.Purpose {
 					attributes1.ConsentAttribute.Purpose = append(attributes1.ConsentAttribute.Purpose, types.StringValue(v))
@@ -351,6 +375,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.CountryAttribute != nil {
 				attributes1.CountryAttribute = &tfTypes.CountryAttribute{}
+				attributes1.CountryAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CountryAttribute.Manifest {
+					attributes1.CountryAttribute.Manifest = append(attributes1.CountryAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CountryAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CountryAttribute.Purpose {
 					attributes1.CountryAttribute.Purpose = append(attributes1.CountryAttribute.Purpose, types.StringValue(v))
@@ -416,6 +444,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.CurrencyAttribute != nil {
 				attributes1.CurrencyAttribute = &tfTypes.CurrencyAttribute{}
+				attributes1.CurrencyAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.CurrencyAttribute.Manifest {
+					attributes1.CurrencyAttribute.Manifest = append(attributes1.CurrencyAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.CurrencyAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.CurrencyAttribute.Purpose {
 					attributes1.CurrencyAttribute.Purpose = append(attributes1.CurrencyAttribute.Purpose, types.StringValue(v))
@@ -494,6 +526,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.DateAttribute != nil {
 				attributes1.DateAttribute = &tfTypes.DateAttribute{}
+				attributes1.DateAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.DateAttribute.Manifest {
+					attributes1.DateAttribute.Manifest = append(attributes1.DateAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.DateAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.DateAttribute.Purpose {
 					attributes1.DateAttribute.Purpose = append(attributes1.DateAttribute.Purpose, types.StringValue(v))
@@ -559,6 +595,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.FileAttribute != nil {
 				attributes1.FileAttribute = &tfTypes.FileAttribute{}
+				attributes1.FileAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.FileAttribute.Manifest {
+					attributes1.FileAttribute.Manifest = append(attributes1.FileAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.FileAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.FileAttribute.Purpose {
 					attributes1.FileAttribute.Purpose = append(attributes1.FileAttribute.Purpose, types.StringValue(v))
@@ -632,6 +672,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.InternalAttribute != nil {
 				attributes1.InternalAttribute = &tfTypes.InternalAttribute{}
+				attributes1.InternalAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalAttribute.Manifest {
+					attributes1.InternalAttribute.Manifest = append(attributes1.InternalAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalAttribute.Purpose {
 					attributes1.InternalAttribute.Purpose = append(attributes1.InternalAttribute.Purpose, types.StringValue(v))
@@ -697,6 +741,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.InternalUserAttribute != nil {
 				attributes1.InternalUserAttribute = &tfTypes.InternalUserAttribute{}
+				attributes1.InternalUserAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InternalUserAttribute.Manifest {
+					attributes1.InternalUserAttribute.Manifest = append(attributes1.InternalUserAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InternalUserAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InternalUserAttribute.Purpose {
 					attributes1.InternalUserAttribute.Purpose = append(attributes1.InternalUserAttribute.Purpose, types.StringValue(v))
@@ -762,6 +810,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.InvitationEmailAttribute != nil {
 				attributes1.InvitationEmailAttribute = &tfTypes.InvitationEmailAttribute{}
+				attributes1.InvitationEmailAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.InvitationEmailAttribute.Manifest {
+					attributes1.InvitationEmailAttribute.Manifest = append(attributes1.InvitationEmailAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.InvitationEmailAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.InvitationEmailAttribute.Purpose {
 					attributes1.InvitationEmailAttribute.Purpose = append(attributes1.InvitationEmailAttribute.Purpose, types.StringValue(v))
@@ -827,6 +879,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.LinkAttribute != nil {
 				attributes1.LinkAttribute = &tfTypes.LinkAttribute{}
+				attributes1.LinkAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.LinkAttribute.Manifest {
+					attributes1.LinkAttribute.Manifest = append(attributes1.LinkAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.LinkAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.LinkAttribute.Purpose {
 					attributes1.LinkAttribute.Purpose = append(attributes1.LinkAttribute.Purpose, types.StringValue(v))
@@ -892,6 +948,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.MultiSelectAttribute != nil {
 				attributes1.MultiSelectAttribute = &tfTypes.MultiSelectAttribute{}
+				attributes1.MultiSelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.MultiSelectAttribute.Manifest {
+					attributes1.MultiSelectAttribute.Manifest = append(attributes1.MultiSelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.MultiSelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.MultiSelectAttribute.Purpose {
 					attributes1.MultiSelectAttribute.Purpose = append(attributes1.MultiSelectAttribute.Purpose, types.StringValue(v))
@@ -978,6 +1038,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.NumberAttribute != nil {
 				attributes1.NumberAttribute = &tfTypes.NumberAttribute{}
+				attributes1.NumberAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.NumberAttribute.Manifest {
+					attributes1.NumberAttribute.Manifest = append(attributes1.NumberAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.NumberAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.NumberAttribute.Purpose {
 					attributes1.NumberAttribute.Purpose = append(attributes1.NumberAttribute.Purpose, types.StringValue(v))
@@ -1045,6 +1109,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.OrderedListAttribute != nil {
 				attributes1.OrderedListAttribute = &tfTypes.OrderedListAttribute{}
+				attributes1.OrderedListAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.OrderedListAttribute.Manifest {
+					attributes1.OrderedListAttribute.Manifest = append(attributes1.OrderedListAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.OrderedListAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.OrderedListAttribute.Purpose {
 					attributes1.OrderedListAttribute.Purpose = append(attributes1.OrderedListAttribute.Purpose, types.StringValue(v))
@@ -1110,6 +1178,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.PartnerOrganisationAttribute != nil {
 				attributes1.PartnerOrganisationAttribute = &tfTypes.PartnerOrganisationAttribute{}
+				attributes1.PartnerOrganisationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerOrganisationAttribute.Manifest {
+					attributes1.PartnerOrganisationAttribute.Manifest = append(attributes1.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerOrganisationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerOrganisationAttribute.Purpose {
 					attributes1.PartnerOrganisationAttribute.Purpose = append(attributes1.PartnerOrganisationAttribute.Purpose, types.StringValue(v))
@@ -1175,6 +1247,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.PartnerStatusAttribute != nil {
 				attributes1.PartnerStatusAttribute = &tfTypes.PartnerStatusAttribute{}
+				attributes1.PartnerStatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PartnerStatusAttribute.Manifest {
+					attributes1.PartnerStatusAttribute.Manifest = append(attributes1.PartnerStatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PartnerStatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PartnerStatusAttribute.Purpose {
 					attributes1.PartnerStatusAttribute.Purpose = append(attributes1.PartnerStatusAttribute.Purpose, types.StringValue(v))
@@ -1240,6 +1316,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.PaymentMethodRelationAttribute != nil {
 				attributes1.PaymentMethodRelationAttribute = &tfTypes.PaymentMethodRelationAttribute{}
+				attributes1.PaymentMethodRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PaymentMethodRelationAttribute.Manifest {
+					attributes1.PaymentMethodRelationAttribute.Manifest = append(attributes1.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PaymentMethodRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PaymentMethodRelationAttribute.Purpose {
 					attributes1.PaymentMethodRelationAttribute.Purpose = append(attributes1.PaymentMethodRelationAttribute.Purpose, types.StringValue(v))
@@ -1306,6 +1386,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.PurposeAttribute != nil {
 				attributes1.PurposeAttribute = &tfTypes.PurposeAttribute{}
+				attributes1.PurposeAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.PurposeAttribute.Manifest {
+					attributes1.PurposeAttribute.Manifest = append(attributes1.PurposeAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.PurposeAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.PurposeAttribute.Purpose {
 					attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
@@ -1386,6 +1470,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.RelationAttribute != nil {
 				attributes1.RelationAttribute = &tfTypes.RelationAttribute{}
+				attributes1.RelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RelationAttribute.Manifest {
+					attributes1.RelationAttribute.Manifest = append(attributes1.RelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
@@ -1434,6 +1522,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 							actions1.NewEntityItem.CreatedAt = types.StringNull()
 						}
 						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
+						actions1.NewEntityItem.Manifest = []types.String{}
+						for _, v := range actionsItem.NewEntityItem.Manifest {
+							actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
+						}
 						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
 						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
 						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
@@ -1607,6 +1699,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.RepeatableAttribute != nil {
 				attributes1.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+				attributes1.RepeatableAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.RepeatableAttribute.Manifest {
+					attributes1.RepeatableAttribute.Manifest = append(attributes1.RepeatableAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.RepeatableAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.RepeatableAttribute.Purpose {
 					attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
@@ -1680,6 +1776,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.SelectAttribute != nil {
 				attributes1.SelectAttribute = &tfTypes.SelectAttribute{}
+				attributes1.SelectAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SelectAttribute.Manifest {
+					attributes1.SelectAttribute.Manifest = append(attributes1.SelectAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SelectAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SelectAttribute.Purpose {
 					attributes1.SelectAttribute.Purpose = append(attributes1.SelectAttribute.Purpose, types.StringValue(v))
@@ -1752,6 +1852,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.SequenceAttribute != nil {
 				attributes1.SequenceAttribute = &tfTypes.SequenceAttribute{}
+				attributes1.SequenceAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.SequenceAttribute.Manifest {
+					attributes1.SequenceAttribute.Manifest = append(attributes1.SequenceAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.SequenceAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.SequenceAttribute.Purpose {
 					attributes1.SequenceAttribute.Purpose = append(attributes1.SequenceAttribute.Purpose, types.StringValue(v))
@@ -1819,6 +1923,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.StatusAttribute != nil {
 				attributes1.StatusAttribute = &tfTypes.StatusAttribute{}
+				attributes1.StatusAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.StatusAttribute.Manifest {
+					attributes1.StatusAttribute.Manifest = append(attributes1.StatusAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.StatusAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.StatusAttribute.Purpose {
 					attributes1.StatusAttribute.Purpose = append(attributes1.StatusAttribute.Purpose, types.StringValue(v))
@@ -1902,6 +2010,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.TagsAttribute != nil {
 				attributes1.TagsAttribute = &tfTypes.TagsAttribute{}
+				attributes1.TagsAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TagsAttribute.Manifest {
+					attributes1.TagsAttribute.Manifest = append(attributes1.TagsAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TagsAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TagsAttribute.Purpose {
 					attributes1.TagsAttribute.Purpose = append(attributes1.TagsAttribute.Purpose, types.StringValue(v))
@@ -1975,6 +2087,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.TextAttribute != nil {
 				attributes1.TextAttribute = &tfTypes.TextAttribute{}
+				attributes1.TextAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.TextAttribute.Manifest {
+					attributes1.TextAttribute.Manifest = append(attributes1.TextAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.TextAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.TextAttribute.Purpose {
 					attributes1.TextAttribute.Purpose = append(attributes1.TextAttribute.Purpose, types.StringValue(v))
@@ -2041,6 +2157,10 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			}
 			if attributesItem.UserRelationAttribute != nil {
 				attributes1.UserRelationAttribute = &tfTypes.UserRelationAttribute{}
+				attributes1.UserRelationAttribute.Manifest = []types.String{}
+				for _, v := range attributesItem.UserRelationAttribute.Manifest {
+					attributes1.UserRelationAttribute.Manifest = append(attributes1.UserRelationAttribute.Manifest, types.StringValue(v))
+				}
 				attributes1.UserRelationAttribute.Purpose = []types.String{}
 				for _, v := range attributesItem.UserRelationAttribute.Purpose {
 					attributes1.UserRelationAttribute.Purpose = append(attributes1.UserRelationAttribute.Purpose, types.StringValue(v))

@@ -43,6 +43,7 @@ type SchemaCapabilityResourceModel struct {
 	CompositeID  types.String          `tfsdk:"composite_id"`
 	FeatureFlag  types.String          `tfsdk:"feature_flag"`
 	ID           types.String          `tfsdk:"id"`
+	Manifest     []types.String        `tfsdk:"manifest"`
 	Name         types.String          `tfsdk:"name"`
 	Purpose      []types.String        `tfsdk:"purpose"`
 	Schema       types.String          `tfsdk:"schema"`
@@ -177,6 +178,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -247,7 +254,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -414,6 +421,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -484,7 +497,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -651,6 +664,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -721,7 +740,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -886,6 +905,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -956,7 +981,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1126,6 +1151,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -1196,7 +1227,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1370,6 +1401,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -1440,7 +1477,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1661,6 +1698,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -1731,7 +1774,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1897,6 +1940,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -1967,7 +2016,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2163,6 +2212,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiple": schema.BoolAttribute{
 									Computed: true,
 									Optional: true,
@@ -2237,7 +2292,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2406,6 +2461,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -2476,7 +2537,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2641,6 +2702,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -2711,7 +2778,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2878,6 +2945,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -2948,7 +3021,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3115,6 +3188,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -3185,7 +3264,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3365,6 +3444,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -3478,7 +3563,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3650,6 +3735,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -3720,7 +3811,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3891,6 +3982,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -3961,7 +4058,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4128,6 +4225,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -4198,7 +4301,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4365,6 +4468,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -4435,7 +4544,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4606,6 +4715,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -4676,7 +4791,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4849,6 +4964,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the taxonomy classification`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -4924,7 +5045,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -5096,6 +5217,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 														Validators: []validator.String{
 															speakeasy_stringvalidators.NotNull(),
 														},
+													},
+													"manifest": schema.ListAttribute{
+														Computed:    true,
+														Optional:    true,
+														ElementType: types.StringType,
+														Description: `Manifest ID used to create/update the entity`,
 													},
 													"org": schema.StringAttribute{
 														Computed:    true,
@@ -5324,6 +5451,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -5427,7 +5560,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -5644,6 +5777,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -5729,7 +5868,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -5908,6 +6047,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -5986,7 +6131,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -6154,6 +6299,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -6229,7 +6380,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -6398,6 +6549,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -6512,7 +6669,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -6677,6 +6834,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -6752,7 +6915,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -6922,6 +7085,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiline": schema.BoolAttribute{
 									Computed: true,
 									Optional: true,
@@ -6996,7 +7165,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -7161,6 +7330,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed: true,
 									Optional: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiple": schema.BoolAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -7237,7 +7412,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -7317,6 +7492,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				Computed:    true,
 				Optional:    true,
 				Description: `ID for the entity capability`,
+			},
+			"manifest": schema.ListAttribute{
+				Computed:    true,
+				Optional:    true,
+				ElementType: types.StringType,
+				Description: `Manifest ID used to create/update the schema capabilility`,
 			},
 			"name": schema.StringAttribute{
 				Required:    true,

@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type AttributeWithCompositeIDMultiSelectAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	AllowAny                 types.Bool                           `tfsdk:"allow_any"`
 	AllowExtraOptions        types.Bool                           `tfsdk:"allow_extra_options"`

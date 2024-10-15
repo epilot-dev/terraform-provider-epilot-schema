@@ -7,6 +7,9 @@ resource "epilot-schema_schema_group" "my_schemagroup" {
     key     = "...my_key..."
   }
   label = "Contact Details"
+  manifest = [
+    "123e4567-e89b-12d3-a456-426614174000"
+  ]
   order = 8
   purpose = [
     "taxonomy-slug:classification-slug"

@@ -10,6 +10,10 @@ import (
 
 func (r *SchemaGroupDataSourceModel) RefreshFromSharedEntitySchemaGroupWithCompositeID(resp *shared.EntitySchemaGroupWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.Purpose = []types.String{}
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))

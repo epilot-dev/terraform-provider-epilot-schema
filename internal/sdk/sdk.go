@@ -91,6 +91,7 @@ type SDK struct {
 	// Elastic Cluster assignment for organizations
 	ElasticClusterAssignment *ElasticClusterAssignment
 	Internal                 *Internal
+	Public                   *Public
 
 	sdkConfiguration sdkConfiguration
 }
@@ -209,6 +210,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.ElasticClusterAssignment = newElasticClusterAssignment(sdk.sdkConfiguration)
 
 	sdk.Internal = newInternal(sdk.sdkConfiguration)
+
+	sdk.Public = newPublic(sdk.sdkConfiguration)
 
 	return sdk
 }

@@ -14,9 +14,11 @@ type EntityInput struct {
 	Title *string  `json:"_title,omitempty"`
 	Tags  []string `json:"_tags,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL `json:"_acl,omitempty"`
-	Purpose              []string   `json:"_purpose,omitempty"`
-	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (e EntityInput) MarshalJSON() ([]byte, error) {
@@ -70,6 +72,13 @@ func (o *EntityInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *EntityInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *EntityInput) GetAdditionalProperties() any {

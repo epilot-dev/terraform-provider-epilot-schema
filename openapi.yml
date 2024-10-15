@@ -178,6 +178,13 @@ paths:
                       nullable: true
                       items:
                         type: string
+                    _manifest:
+                      type: array
+                      description: Manifest ID used to create/update the entity
+                      items:
+                        type: string
+                        format: uuid
+                        example: 123e4567-e89b-12d3-a456-426614174000
                     _created_at:
                       readOnly: true
                       type: string
@@ -601,6 +608,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
       requestBody:
         content:
@@ -689,6 +697,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
         - name: strict
@@ -733,6 +742,8 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: multiple entities were matched with `unique_key`"
+        "405":
+          description: Deleted entities cannot be updated. You'll need to recover the entity first before updating.
 
   /v2/entity/{slug}/{id}:
     get:
@@ -762,6 +773,41 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+
+  /v1/entity/{slug}/{id}:restore:
+    patch:
+      operationId: restoreEntity
+      summary: restoreEntity
+      description: |
+        Restores an entity by id
+
+        ## Activity
+
+        If no `activity_id` query parameter is provided, implicitly creates Activity of type `EntityRestore`
+      tags:
+        - Entities
+      parameters:
+        - $ref: "#/components/parameters/EntityIdPathParam"
+        - $ref: "#/components/parameters/EntitySlugPathParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: This endpoint doesn't require a payload, but an empty object can be sent to satisfy certain HTTP clients.
+      responses:
+        200:
+          description: The restored entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityItem"
+        400:
+          description: The entity is not deleted
+        404:
+          description: The entity was not found
+
   /v1/entity/{slug}/{id}:
     get:
       operationId: getEntity
@@ -885,6 +931,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
       requestBody:
         content:
@@ -899,6 +946,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+
     patch:
       operationId: patchEntity
       summary: patchEntity
@@ -936,6 +984,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
       requestBody:
@@ -954,6 +1003,7 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: newer version exists"
+
     delete:
       operationId: deleteEntity
       summary: deleteEntity
@@ -963,12 +1013,22 @@ paths:
         ## Activity
 
         If no `activity_id` query parameter is provided, implicitly creates Activity of type `EntityDeleted`
+
+        ## Deletion Mode
+
+        All entities are soft deleted by default. To force an actual deletion from the system, provide `purge:true` to delete the entity and all its activity history permanently.
       tags:
         - Entities
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - in: query
+          name: purge
+          description: Permanently deletes the entity when set to `true`
+          default: false
+          schema:
+            type: boolean
       responses:
         "200":
           description: Success
@@ -1254,6 +1314,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
       requestBody:
         content:
           application/json:
@@ -1287,6 +1348,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
       requestBody:
         content:
           application/json:
@@ -2006,7 +2068,7 @@ paths:
       summary: createSchemaAttribute
       description: Create a schema attribute
       tags:
-       - Schemas
+        - Schemas
       requestBody:
         content:
           application/json:
@@ -2371,6 +2433,78 @@ paths:
               schema:
                 $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
 
+  # ElasticSearch JWT Authentication
+  /v1/entity/public/idp/.well-known/jwks.json:
+    get:
+      operationId: getESPublicJwks
+      summary: getESPublicJwks
+      description: Get jwks public key set to verify tokens generated by this API for Elasticsearch authentication
+      tags:
+        - Public
+      x-internal: true
+      security: []
+      responses:
+        200:
+          description: Set of jwks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        alg:
+                          type: string
+                          example: RS256
+                        e:
+                          type: string
+                          example: AQAB
+                        kid:
+                          type: string
+                          example: tXWU5mPMbRPczpbQwi6vbhLF4GgF3wlMDSyqo7pfeiw=
+                        kty:
+                          type: string
+                          example: RSA
+                        n:
+                          type: string
+                          example: h_QDoCjZ8W_trtYXaP7_S22wf5r5Wd9XBLED78oT44bJjQXn8ddcFV8Hik65_4IYXVX_hTTU4zpxe3H8vx2j7-Zz3O59mYMp5S0MzODNEdf5Y_2o19eis0brmAJniixsNlQ9LlYkdrVamrgaxHu3ZpP_99zkfFybYeuYoQNzb3PyrT8xVnz_USs_nlFMHpGUxvvz7gfKPqxcLvgLJr4cwI9yzaSY9CD4qW181QVcnL_WzpQ8xx6AuhhHZQ1l_3GG4InTk8ahE7U2ZHVu8RrX6d01pMgc3piEcet9RgFLnhbTg3YIiKGoAbN42wJn_x3lgIAC42T9mbmTsHyUdS6nUQ
+                        use:
+                          type: string
+                          example: sig
+
+  /v1/entity/public/idp/.well-known/openid-configuration:
+    get:
+      operationId: getESTokenOIDC
+      summary: getESTokenOIDC
+      description: |
+        OpenID Connect configuration for Entity API serving as public identity provider
+
+        Note: This API is not a fully compliant OAuth2.0 / OIDC identity provider, but this endpoint is useful to
+        automate the process of verifying JWT tokens.
+      tags:
+        - Public
+      x-internal: true
+      security: []
+      responses:
+        200:
+          description: OpenID Configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuer:
+                    type: string
+                    format: uri
+                    example: "https://entity.dev.sls.epilot.io/v1/entity/public/idp"
+                  jwks_uri:
+                    type: string
+                    format: uri
+                    example: "https://entity.dev.sls.epilot.io/v1/entity/public/idp/.well-known/jwks.json"
+
 components:
   securitySchemes:
     EpilotAuth:
@@ -2563,6 +2697,10 @@ components:
             type: string
         explicit_search_mappings:
           $ref: "#/components/schemas/SearchMappings"
+        group_headlines:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupHeadline"
       required:
         - slug
         - name
@@ -2693,6 +2831,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema group
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         feature_flag:
           type: string
           example: FF_MY_FEATURE_FLAG
@@ -2836,6 +2982,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema attribute
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         constraints:
           type: object
           description: |
@@ -2849,7 +3003,7 @@ components:
           description: This attribute should only be active when the feature flag is enabled
         settings_flag:
           type: array
-          description: This attribute should only be active when all the settings have the correct value
+          description: This attribute should only be active when one of the provided settings have the correct value
           items:
             $ref: "#/components/schemas/SettingFlag"
         value_formatter:
@@ -3574,6 +3728,14 @@ components:
           enum:
             - top_divider
             - bottom_divider
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema group headline
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
       required:
         - name
         - label
@@ -3593,7 +3755,6 @@ components:
               type: string
               description: Schema slug the capability belongs to
               example: contact
-    
     EntitySlug:
       description: URL-friendly identifier for the entity schema
       type: string
@@ -3622,6 +3783,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema capabilility
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         ui_hooks:
           type: array
           items:
@@ -3862,6 +4031,14 @@ components:
           items:
             type: string
           nullable: true
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the entity
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
       example:
         _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         _org: "123"
@@ -3874,6 +4051,7 @@ components:
           view: ["org:456", "org:789"]
           edit: ["org:456"]
           delete: ["org:456"]
+        _manifest: ["123e4567-e89b-12d3-a456-426614174000"]
 
     EntityOwner:
       description: |
@@ -4092,6 +4270,21 @@ components:
         - entity_id
         - attribute
 
+    EntitySearchIncludeDeletedParam:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+        - 'only'
+      description: |
+        Whether to include deleted entities in the search results
+        - `true`: include deleted entities
+        - `false`: exclude deleted entities
+        - `only`: include only deleted entities
+
+        By default, no deleted entities are included in the search results.
+      default: 'false'
+
     EntitySearchParams:
       allOf:
         - type: object
@@ -4110,6 +4303,9 @@ components:
             hydrate: {}
             fields: {}
             aggs: {}
+            include_deleted:
+              $ref: "#/components/schemas/EntitySearchIncludeDeletedParam"
+
           additionalProperties: false
           required:
             - q
@@ -4267,8 +4463,12 @@ components:
       type: object
       properties:
         sort:
-          type: string
-          example: "_created_at:desc"
+          description: You can pass one sort field or an array of sort fields. Each sort field can be a string
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
         from:
           type: integer
           minimum: 0
@@ -4292,6 +4492,8 @@ components:
             contact-count-per-tag:
               terms:
                 field: _tags.keyword
+        include_deleted:
+          $ref: "#/components/schemas/EntitySearchIncludeDeletedParam"
 
     FieldsParam:
       type: array
@@ -4396,6 +4598,7 @@ components:
       format: ulid
       description: See https://github.com/ulid/spec
       example: 01F130Q52Q6MWSNS8N2AVXV4JN
+      pattern: "^01[0-9a-zA-Z]{24}$"
     ActivityCallerContext:
       type: object
       additionalProperties: true
@@ -4460,6 +4663,12 @@ components:
             entity:
               id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
               schema: contact
+        pending:
+          type: boolean
+          description: |
+            Indicates whether the activity is in the pending state.
+            Pending activities are not yet visible in the activity feed and events are not yet dispatched.
+          default: false
       required:
         - type
         - title
@@ -4745,6 +4954,14 @@ components:
         updated_at:
           type: string
           format: date-time
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the taxonomy classification
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
       required:
         - name
     ClassificationId:
@@ -4877,7 +5094,12 @@ components:
       in: query
       required: false
       schema:
-        $ref: "#/components/schemas/ActivityId"
+        oneOf:
+        - $ref: "#/components/schemas/ActivityId"
+        # treat empty string as null
+        - type: string
+          nullable: true
+          enum: [""]
     ActivityIdPathParam:
       name: id
       description: Activity Id
@@ -4954,6 +5176,16 @@ components:
     DryRunQueryParam:
       name: dry_run
       description: Dry Run mode = return results but does not perform the operation.
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+    FillActivityQueryParam:
+      name: fill_activity
+      description: |
+        Update the diff and entity for the custom activity included in the query.
+        Pending state on activity is automatically ended when activity is filled.
       in: query
       required: false
       schema:

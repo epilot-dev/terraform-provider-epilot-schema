@@ -12,7 +12,11 @@ type CreateEntityRequest struct {
 	// Entity Type
 	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 	// Activity to include in event feed
-	ActivityID *string `queryParam:"style=form,explode=true,name=activity_id"`
+	ActivityID *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
+	// Update the diff and entity for the custom activity included in the query.
+	// Pending state on activity is automatically ended when activity is filled.
+	//
+	FillActivity *bool `default:"false" queryParam:"style=form,explode=true,name=fill_activity"`
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
 	Async  *bool               `default:"false" queryParam:"style=form,explode=true,name=async"`
 	Entity *shared.EntityInput `request:"mediaType=application/json"`
@@ -36,11 +40,18 @@ func (o *CreateEntityRequest) GetSlug() string {
 	return o.Slug
 }
 
-func (o *CreateEntityRequest) GetActivityID() *string {
+func (o *CreateEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityID
+}
+
+func (o *CreateEntityRequest) GetFillActivity() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FillActivity
 }
 
 func (o *CreateEntityRequest) GetAsync() *bool {

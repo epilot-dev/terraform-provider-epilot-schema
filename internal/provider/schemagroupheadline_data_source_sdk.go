@@ -9,6 +9,10 @@ import (
 
 func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(resp *shared.GroupHeadlineWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.CompositeID = types.StringPointerValue(resp.CompositeID)
 		if resp.Divider != nil {
 			r.Divider = types.StringValue(string(*resp.Divider))

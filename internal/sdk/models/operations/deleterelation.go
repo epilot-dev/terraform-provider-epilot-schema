@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -19,7 +20,7 @@ type DeleteRelationRequest struct {
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
 	Async *bool `default:"false" queryParam:"style=form,explode=true,name=async"`
 	// Activity to include in event feed
-	ActivityID *string `queryParam:"style=form,explode=true,name=activity_id"`
+	ActivityID *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
 }
 
 func (d DeleteRelationRequest) MarshalJSON() ([]byte, error) {
@@ -68,7 +69,7 @@ func (o *DeleteRelationRequest) GetAsync() *bool {
 	return o.Async
 }
 
-func (o *DeleteRelationRequest) GetActivityID() *string {
+func (o *DeleteRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
 	if o == nil {
 		return nil
 	}

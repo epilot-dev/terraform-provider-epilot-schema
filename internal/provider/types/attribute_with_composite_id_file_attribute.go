@@ -5,6 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type AttributeWithCompositeIDFileAttribute struct {
+	Manifest                 []types.String                       `tfsdk:"manifest"`
 	Purpose                  []types.String                       `tfsdk:"purpose"`
 	AllowedExtensions        []types.String                       `tfsdk:"allowed_extensions"`
 	CompositeID              types.String                         `tfsdk:"composite_id"`

@@ -3,8 +3,74 @@
 package shared
 
 import (
+	"errors"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
+
+type SortType string
+
+const (
+	SortTypeStr        SortType = "str"
+	SortTypeArrayOfStr SortType = "arrayOfStr"
+)
+
+// Sort - You can pass one sort field or an array of sort fields. Each sort field can be a string
+type Sort struct {
+	Str        *string
+	ArrayOfStr []string
+
+	Type SortType
+}
+
+func CreateSortStr(str string) Sort {
+	typ := SortTypeStr
+
+	return Sort{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateSortArrayOfStr(arrayOfStr []string) Sort {
+	typ := SortTypeArrayOfStr
+
+	return Sort{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *Sort) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = SortTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = SortTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Sort", string(data))
+}
+
+func (u Sort) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Sort: all fields are null")
+}
 
 // Aggs - Aggregation supported by ElasticSearch allows summarizing data as metrics, statistics, or other analytics.
 type Aggs struct {
@@ -14,9 +80,10 @@ type EntitySearchParams struct {
 	// Lucene [queries supported with ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax)
 	Q string `json:"q"`
 	// Adds a `_score` number field to results that can be used to rank by match score
-	IncludeScores *bool   `default:"false" json:"include_scores"`
-	Sort          *string `json:"sort,omitempty"`
-	From          *int64  `default:"0" json:"from"`
+	IncludeScores *bool `default:"false" json:"include_scores"`
+	// You can pass one sort field or an array of sort fields. Each sort field can be a string
+	Sort *Sort  `json:"sort,omitempty"`
+	From *int64 `default:"0" json:"from"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"10" json:"size"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
@@ -30,6 +97,14 @@ type EntitySearchParams struct {
 	Fields []string `json:"fields,omitempty"`
 	// Aggregation supported by ElasticSearch allows summarizing data as metrics, statistics, or other analytics.
 	Aggs *Aggs `json:"aggs,omitempty"`
+	// Whether to include deleted entities in the search results
+	// - `true`: include deleted entities
+	// - `false`: exclude deleted entities
+	// - `only`: include only deleted entities
+	//
+	// By default, no deleted entities are included in the search results.
+	//
+	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -57,7 +132,7 @@ func (o *EntitySearchParams) GetIncludeScores() *bool {
 	return o.IncludeScores
 }
 
-func (o *EntitySearchParams) GetSort() *string {
+func (o *EntitySearchParams) GetSort() *Sort {
 	if o == nil {
 		return nil
 	}
@@ -97,4 +172,11 @@ func (o *EntitySearchParams) GetAggs() *Aggs {
 		return nil
 	}
 	return o.Aggs
+}
+
+func (o *EntitySearchParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeDeleted
 }

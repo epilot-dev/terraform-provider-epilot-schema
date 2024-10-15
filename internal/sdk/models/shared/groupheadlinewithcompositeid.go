@@ -31,17 +31,17 @@ func (e *GroupHeadlineWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Divider string
+type GroupHeadlineWithCompositeIDDivider string
 
 const (
-	DividerTopDivider    Divider = "top_divider"
-	DividerBottomDivider Divider = "bottom_divider"
+	GroupHeadlineWithCompositeIDDividerTopDivider    GroupHeadlineWithCompositeIDDivider = "top_divider"
+	GroupHeadlineWithCompositeIDDividerBottomDivider GroupHeadlineWithCompositeIDDivider = "bottom_divider"
 )
 
-func (e Divider) ToPointer() *Divider {
+func (e GroupHeadlineWithCompositeIDDivider) ToPointer() *GroupHeadlineWithCompositeIDDivider {
 	return &e
 }
-func (e *Divider) UnmarshalJSON(data []byte) error {
+func (e *GroupHeadlineWithCompositeIDDivider) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -50,10 +50,10 @@ func (e *Divider) UnmarshalJSON(data []byte) error {
 	case "top_divider":
 		fallthrough
 	case "bottom_divider":
-		*e = Divider(v)
+		*e = GroupHeadlineWithCompositeIDDivider(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Divider: %v", v)
+		return fmt.Errorf("invalid value for GroupHeadlineWithCompositeIDDivider: %v", v)
 	}
 }
 
@@ -66,11 +66,13 @@ type GroupHeadlineWithCompositeID struct {
 	// The group of headline attribute
 	Group string `json:"group"`
 	// The order of headline attribute
-	Order         *int64                           `json:"order,omitempty"`
-	Type          GroupHeadlineWithCompositeIDType `json:"type"`
-	EnableDivider *bool                            `default:"false" json:"enable_divider"`
-	Divider       *Divider                         `json:"divider,omitempty"`
-	CompositeID   *string                          `json:"composite_id,omitempty"`
+	Order         *int64                               `json:"order,omitempty"`
+	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
+	EnableDivider *bool                                `default:"false" json:"enable_divider"`
+	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
+	// Manifest ID used to create/update the schema group headline
+	Manifest    []string `json:"_manifest,omitempty"`
+	CompositeID *string  `json:"composite_id,omitempty"`
 	// Schema slug the capability belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -142,11 +144,18 @@ func (o *GroupHeadlineWithCompositeID) GetEnableDivider() *bool {
 	return o.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeID) GetDivider() *Divider {
+func (o *GroupHeadlineWithCompositeID) GetDivider() *GroupHeadlineWithCompositeIDDivider {
 	if o == nil {
 		return nil
 	}
 	return o.Divider
+}
+
+func (o *GroupHeadlineWithCompositeID) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *GroupHeadlineWithCompositeID) GetCompositeID() *string {
@@ -172,10 +181,12 @@ type GroupHeadlineWithCompositeIDInput struct {
 	// The group of headline attribute
 	Group string `json:"group"`
 	// The order of headline attribute
-	Order         *int64                           `json:"order,omitempty"`
-	Type          GroupHeadlineWithCompositeIDType `json:"type"`
-	EnableDivider *bool                            `default:"false" json:"enable_divider"`
-	Divider       *Divider                         `json:"divider,omitempty"`
+	Order         *int64                               `json:"order,omitempty"`
+	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
+	EnableDivider *bool                                `default:"false" json:"enable_divider"`
+	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
+	// Manifest ID used to create/update the schema group headline
+	Manifest []string `json:"_manifest,omitempty"`
 	// Schema slug the capability belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -247,11 +258,18 @@ func (o *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
 	return o.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
+func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *GroupHeadlineWithCompositeIDDivider {
 	if o == nil {
 		return nil
 	}
 	return o.Divider
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *GroupHeadlineWithCompositeIDInput) GetSchema() *string {

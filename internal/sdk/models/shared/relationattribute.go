@@ -212,9 +212,11 @@ type NewEntityItem struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL `json:"_acl,omitempty"`
-	Purpose              []string   `json:"_purpose,omitempty"`
-	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (n NewEntityItem) MarshalJSON() ([]byte, error) {
@@ -296,6 +298,13 @@ func (o *NewEntityItem) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *NewEntityItem) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *NewEntityItem) GetAdditionalProperties() any {
@@ -491,13 +500,15 @@ type RelationAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RelationAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -666,6 +677,13 @@ func (o *RelationAttribute) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationAttribute) GetConstraints() *RelationAttributeConstraints {
@@ -837,9 +855,11 @@ type RelationAttributeNewEntityItem struct {
 	Title *string  `json:"_title"`
 	Tags  []string `json:"_tags,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL                  *EntityACL `json:"_acl,omitempty"`
-	Purpose              []string   `json:"_purpose,omitempty"`
-	AdditionalProperties any        `additionalProperties:"true" json:"-"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
 }
 
 func (r RelationAttributeNewEntityItem) MarshalJSON() ([]byte, error) {
@@ -893,6 +913,13 @@ func (o *RelationAttributeNewEntityItem) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationAttributeNewEntityItem) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationAttributeNewEntityItem) GetAdditionalProperties() any {
@@ -996,13 +1023,15 @@ type RelationAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
 	Constraints *RelationAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when all the settings have the correct value
+	// This attribute should only be active when one of the provided settings have the correct value
 	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
 	ValueFormatter        *string       `json:"value_formatter,omitempty"`
 	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
@@ -1171,6 +1200,13 @@ func (o *RelationAttributeInput) GetPurpose() []string {
 		return nil
 	}
 	return o.Purpose
+}
+
+func (o *RelationAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
 }
 
 func (o *RelationAttributeInput) GetConstraints() *RelationAttributeConstraints {

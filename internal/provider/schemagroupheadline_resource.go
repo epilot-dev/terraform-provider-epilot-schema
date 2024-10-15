@@ -33,17 +33,18 @@ type SchemaGroupHeadlineResource struct {
 
 // SchemaGroupHeadlineResourceModel describes the resource data model.
 type SchemaGroupHeadlineResourceModel struct {
-	CompositeID   types.String `tfsdk:"composite_id"`
-	Divider       types.String `tfsdk:"divider"`
-	EnableDivider types.Bool   `tfsdk:"enable_divider"`
-	Group         types.String `tfsdk:"group"`
-	ID            types.String `tfsdk:"id"`
-	Label         types.String `tfsdk:"label"`
-	Layout        types.String `tfsdk:"layout"`
-	Name          types.String `tfsdk:"name"`
-	Order         types.Int64  `tfsdk:"order"`
-	Schema        types.String `tfsdk:"schema"`
-	Type          types.String `tfsdk:"type"`
+	CompositeID   types.String   `tfsdk:"composite_id"`
+	Divider       types.String   `tfsdk:"divider"`
+	EnableDivider types.Bool     `tfsdk:"enable_divider"`
+	Group         types.String   `tfsdk:"group"`
+	ID            types.String   `tfsdk:"id"`
+	Label         types.String   `tfsdk:"label"`
+	Layout        types.String   `tfsdk:"layout"`
+	Manifest      []types.String `tfsdk:"manifest"`
+	Name          types.String   `tfsdk:"name"`
+	Order         types.Int64    `tfsdk:"order"`
+	Schema        types.String   `tfsdk:"schema"`
+	Type          types.String   `tfsdk:"type"`
 }
 
 func (r *SchemaGroupHeadlineResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -92,6 +93,12 @@ func (r *SchemaGroupHeadlineResource) Schema(ctx context.Context, req resource.S
 			"layout": schema.StringAttribute{
 				Computed: true,
 				Optional: true,
+			},
+			"manifest": schema.ListAttribute{
+				Computed:    true,
+				Optional:    true,
+				ElementType: types.StringType,
+				Description: `Manifest ID used to create/update the schema group headline`,
 			},
 			"name": schema.StringAttribute{
 				Required: true,

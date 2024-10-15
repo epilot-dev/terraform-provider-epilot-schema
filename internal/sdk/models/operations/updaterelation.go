@@ -31,8 +31,8 @@ type UpdateRelationRequest struct {
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
 	Async *bool `default:"false" queryParam:"style=form,explode=true,name=async"`
 	// Activity to include in event feed
-	ActivityID  *string                    `queryParam:"style=form,explode=true,name=activity_id"`
-	RequestBody *UpdateRelationRequestBody `request:"mediaType=application/json"`
+	ActivityID  *shared.ActivityIDQueryParam `queryParam:"style=form,explode=true,name=activity_id"`
+	RequestBody *UpdateRelationRequestBody   `request:"mediaType=application/json"`
 }
 
 func (u UpdateRelationRequest) MarshalJSON() ([]byte, error) {
@@ -81,7 +81,7 @@ func (o *UpdateRelationRequest) GetAsync() *bool {
 	return o.Async
 }
 
-func (o *UpdateRelationRequest) GetActivityID() *string {
+func (o *UpdateRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
 	if o == nil {
 		return nil
 	}

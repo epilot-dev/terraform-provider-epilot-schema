@@ -20,10 +20,13 @@ resource "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
   id             = "2668f09e-37d5-44d1-a8bd-74f30bb9e291"
   label          = "...my_label..."
   layout         = "...my_layout..."
-  name           = "...my_name..."
-  order          = 4
-  schema         = "contact"
-  type           = "headline"
+  manifest = [
+    "123e4567-e89b-12d3-a456-426614174000"
+  ]
+  name   = "...my_name..."
+  order  = 4
+  schema = "contact"
+  type   = "headline"
 }
 ```
 
@@ -42,6 +45,7 @@ resource "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
 - `divider` (String) must be one of ["top_divider", "bottom_divider"]
 - `enable_divider` (Boolean) Default: false
 - `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema group headline
 - `order` (Number) The order of headline attribute
 - `schema` (String) Schema slug the capability belongs to
 

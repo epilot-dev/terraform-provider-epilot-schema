@@ -38,6 +38,7 @@ type SchemaDataSourceModel struct {
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
+	GroupHeadlines         []tfTypes.GroupHeadline           `tfsdk:"group_headlines"`
 	GroupSettings          []tfTypes.EntitySchemaGroup       `tfsdk:"group_settings"`
 	Icon                   types.String                      `tfsdk:"icon"`
 	ID                     types.String                      `tfsdk:"id"`
@@ -148,6 +149,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -195,7 +201,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -291,6 +297,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -338,7 +349,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -434,6 +445,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -481,7 +497,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -577,6 +593,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -624,7 +645,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -724,6 +745,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -771,7 +797,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -870,6 +896,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -917,7 +948,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1042,6 +1073,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1089,7 +1125,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1185,6 +1221,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1232,7 +1273,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1345,6 +1386,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiple": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1395,7 +1441,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1491,6 +1537,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1538,7 +1589,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1634,6 +1685,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1681,7 +1737,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1777,6 +1833,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1824,7 +1885,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -1920,6 +1981,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -1967,7 +2033,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2075,6 +2141,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2143,7 +2214,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2242,6 +2313,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2289,7 +2365,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2389,6 +2465,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2436,7 +2517,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2532,6 +2613,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2579,7 +2665,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2675,6 +2761,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2722,7 +2813,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2821,6 +2912,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -2868,7 +2964,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -2966,6 +3062,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the taxonomy classification`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3017,7 +3118,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3106,6 +3207,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													},
 													"id": schema.StringAttribute{
 														Computed: true,
+													},
+													"manifest": schema.ListAttribute{
+														Computed:    true,
+														ElementType: types.StringType,
+														Description: `Manifest ID used to create/update the entity`,
 													},
 													"org": schema.StringAttribute{
 														Computed:    true,
@@ -3265,6 +3371,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3328,7 +3439,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3455,6 +3566,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3509,7 +3625,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3609,6 +3725,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3660,7 +3781,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3756,6 +3877,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3807,7 +3933,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -3906,6 +4032,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -3976,7 +4107,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4072,6 +4203,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"name": schema.StringAttribute{
 									Computed: true,
 								},
@@ -4123,7 +4259,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4223,6 +4359,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiline": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4273,7 +4414,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4369,6 +4510,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								"layout": schema.StringAttribute{
 									Computed: true,
 								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
 								"multiple": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4419,7 +4565,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											},
 										},
 									},
-									Description: `This attribute should only be active when all the settings have the correct value`,
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
 								},
 								"show_in_table": schema.BoolAttribute{
 									Computed:    true,
@@ -4534,6 +4680,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -4581,7 +4732,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -4677,6 +4828,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -4724,7 +4880,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -4820,6 +4976,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -4867,7 +5028,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -4963,6 +5124,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5010,7 +5176,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5110,6 +5276,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5157,7 +5328,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5256,6 +5427,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5303,7 +5479,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5428,6 +5604,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5475,7 +5656,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5571,6 +5752,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5618,7 +5804,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5731,6 +5917,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"multiple": schema.BoolAttribute{
 												Computed: true,
 											},
@@ -5781,7 +5972,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -5877,6 +6068,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -5924,7 +6120,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6020,6 +6216,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6067,7 +6268,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6163,6 +6364,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6210,7 +6416,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6306,6 +6512,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6353,7 +6564,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6461,6 +6672,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6529,7 +6745,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6628,6 +6844,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6675,7 +6896,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6775,6 +6996,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6822,7 +7048,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -6918,6 +7144,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -6965,7 +7196,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7061,6 +7292,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -7108,7 +7344,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7207,6 +7443,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -7254,7 +7495,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7352,6 +7593,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the taxonomy classification`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -7403,7 +7649,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7492,6 +7738,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 																},
 																"id": schema.StringAttribute{
 																	Computed: true,
+																},
+																"manifest": schema.ListAttribute{
+																	Computed:    true,
+																	ElementType: types.StringType,
+																	Description: `Manifest ID used to create/update the entity`,
 																},
 																"org": schema.StringAttribute{
 																	Computed:    true,
@@ -7651,6 +7902,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -7714,7 +7970,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7841,6 +8097,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -7895,7 +8156,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -7995,6 +8256,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -8046,7 +8312,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8142,6 +8408,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -8193,7 +8464,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8292,6 +8563,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -8362,7 +8638,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8458,6 +8734,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"name": schema.StringAttribute{
 												Computed: true,
 											},
@@ -8509,7 +8790,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8609,6 +8890,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"multiline": schema.BoolAttribute{
 												Computed: true,
 											},
@@ -8659,7 +8945,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8755,6 +9041,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 											"layout": schema.StringAttribute{
 												Computed: true,
 											},
+											"manifest": schema.ListAttribute{
+												Computed:    true,
+												ElementType: types.StringType,
+												Description: `Manifest ID used to create/update the schema attribute`,
+											},
 											"multiple": schema.BoolAttribute{
 												Computed: true,
 											},
@@ -8805,7 +9096,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														},
 													},
 												},
-												Description: `This attribute should only be active when all the settings have the correct value`,
+												Description: `This attribute should only be active when one of the provided settings have the correct value`,
 											},
 											"show_in_table": schema.BoolAttribute{
 												Computed:    true,
@@ -8834,6 +9125,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						"id": schema.StringAttribute{
 							Computed:    true,
 							Description: `ID for the entity capability`,
+						},
+						"manifest": schema.ListAttribute{
+							Computed:    true,
+							ElementType: types.StringType,
+							Description: `Manifest ID used to create/update the schema capabilility`,
 						},
 						"name": schema.StringAttribute{
 							Computed:    true,
@@ -8968,6 +9264,47 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed:    true,
 				Description: `This schema should only be active when the feature flag is enabled`,
 			},
+			"group_headlines": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"divider": schema.StringAttribute{
+							Computed: true,
+						},
+						"enable_divider": schema.BoolAttribute{
+							Computed: true,
+						},
+						"group": schema.StringAttribute{
+							Computed:    true,
+							Description: `The group of headline attribute`,
+						},
+						"id": schema.StringAttribute{
+							Computed: true,
+						},
+						"label": schema.StringAttribute{
+							Computed: true,
+						},
+						"layout": schema.StringAttribute{
+							Computed: true,
+						},
+						"manifest": schema.ListAttribute{
+							Computed:    true,
+							ElementType: types.StringType,
+							Description: `Manifest ID used to create/update the schema group headline`,
+						},
+						"name": schema.StringAttribute{
+							Computed: true,
+						},
+						"order": schema.Int64Attribute{
+							Computed:    true,
+							Description: `The order of headline attribute`,
+						},
+						"type": schema.StringAttribute{
+							Computed: true,
+						},
+					},
+				},
+			},
 			"group_settings": schema.ListNestedAttribute{
 				Computed: true,
 				NestedObject: schema.NestedAttributeObject{
@@ -8998,6 +9335,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 						},
 						"label": schema.StringAttribute{
 							Computed: true,
+						},
+						"manifest": schema.ListAttribute{
+							Computed:    true,
+							ElementType: types.StringType,
+							Description: `Manifest ID used to create/update the schema group`,
 						},
 						"order": schema.Int64Attribute{
 							Computed:    true,

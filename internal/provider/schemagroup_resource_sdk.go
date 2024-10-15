@@ -40,6 +40,10 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 	for _, purposeItem := range r.Purpose {
 		purpose = append(purpose, purposeItem.ValueString())
 	}
+	var manifest []string = []string{}
+	for _, manifestItem := range r.Manifest {
+		manifest = append(manifest, manifestItem.ValueString())
+	}
 	featureFlag := new(string)
 	if !r.FeatureFlag.IsUnknown() && !r.FeatureFlag.IsNull() {
 		*featureFlag = r.FeatureFlag.ValueString()
@@ -97,6 +101,7 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		Expanded:         expanded,
 		RenderCondition:  renderCondition,
 		Purpose:          purpose,
+		Manifest:         manifest,
 		FeatureFlag:      featureFlag,
 		SettingsFlag:     settingsFlag,
 		InfoTooltipTitle: infoTooltipTitle,
@@ -107,6 +112,10 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 
 func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithCompositeID(resp *shared.EntitySchemaGroupWithCompositeID) {
 	if resp != nil {
+		r.Manifest = []types.String{}
+		for _, v := range resp.Manifest {
+			r.Manifest = append(r.Manifest, types.StringValue(v))
+		}
 		r.Purpose = []types.String{}
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
