@@ -2923,7 +2923,10 @@ resource "epilot-schema_schema" "my_schema" {
       ]
       name  = "...my_name..."
       order = 8
-      type  = "headline"
+      purpose = [
+        "taxonomy-slug:classification-slug"
+      ]
+      type = "headline"
     }
   ]
   group_settings = [

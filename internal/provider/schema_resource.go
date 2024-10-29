@@ -15212,6 +15212,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 							Optional:    true,
 							Description: `The order of headline attribute`,
 						},
+						"purpose": schema.ListAttribute{
+							Computed:    true,
+							Optional:    true,
+							ElementType: types.StringType,
+						},
 						"type": schema.StringAttribute{
 							Computed:    true,
 							Optional:    true,

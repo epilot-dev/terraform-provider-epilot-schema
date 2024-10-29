@@ -43,6 +43,7 @@ type SchemaGroupHeadlineResourceModel struct {
 	Manifest      []types.String `tfsdk:"manifest"`
 	Name          types.String   `tfsdk:"name"`
 	Order         types.Int64    `tfsdk:"order"`
+	Purpose       []types.String `tfsdk:"purpose"`
 	Schema        types.String   `tfsdk:"schema"`
 	Type          types.String   `tfsdk:"type"`
 }
@@ -107,6 +108,11 @@ func (r *SchemaGroupHeadlineResource) Schema(ctx context.Context, req resource.S
 				Computed:    true,
 				Optional:    true,
 				Description: `The order of headline attribute`,
+			},
+			"purpose": schema.ListAttribute{
+				Computed:    true,
+				Optional:    true,
+				ElementType: types.StringType,
 			},
 			"schema": schema.StringAttribute{
 				Computed:    true,

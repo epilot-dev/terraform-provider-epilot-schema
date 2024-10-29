@@ -69,6 +69,7 @@ type GroupHeadline struct {
 	Type          GroupHeadlineType `json:"type"`
 	EnableDivider *bool             `default:"false" json:"enable_divider"`
 	Divider       *Divider          `json:"divider,omitempty"`
+	Purpose       []string          `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema group headline
 	Manifest []string `json:"_manifest,omitempty"`
 }
@@ -145,6 +146,13 @@ func (o *GroupHeadline) GetDivider() *Divider {
 		return nil
 	}
 	return o.Divider
+}
+
+func (o *GroupHeadline) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
 }
 
 func (o *GroupHeadline) GetManifest() []string {

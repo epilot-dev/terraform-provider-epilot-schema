@@ -4623,6 +4623,10 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 			for _, v := range groupHeadlinesItem.Manifest {
 				groupHeadlines1.Manifest = append(groupHeadlines1.Manifest, types.StringValue(v))
 			}
+			groupHeadlines1.Purpose = []types.String{}
+			for _, v := range groupHeadlinesItem.Purpose {
+				groupHeadlines1.Purpose = append(groupHeadlines1.Purpose, types.StringValue(v))
+			}
 			if groupHeadlinesItem.Divider != nil {
 				groupHeadlines1.Divider = types.StringValue(string(*groupHeadlinesItem.Divider))
 			} else {
@@ -4640,6 +4644,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				r.GroupHeadlines = append(r.GroupHeadlines, groupHeadlines1)
 			} else {
 				r.GroupHeadlines[groupHeadlinesCount].Manifest = groupHeadlines1.Manifest
+				r.GroupHeadlines[groupHeadlinesCount].Purpose = groupHeadlines1.Purpose
 				r.GroupHeadlines[groupHeadlinesCount].Divider = groupHeadlines1.Divider
 				r.GroupHeadlines[groupHeadlinesCount].EnableDivider = groupHeadlines1.EnableDivider
 				r.GroupHeadlines[groupHeadlinesCount].Group = groupHeadlines1.Group

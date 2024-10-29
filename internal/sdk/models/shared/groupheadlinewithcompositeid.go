@@ -70,6 +70,7 @@ type GroupHeadlineWithCompositeID struct {
 	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
 	EnableDivider *bool                                `default:"false" json:"enable_divider"`
 	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
+	Purpose       []string                             `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema group headline
 	Manifest    []string `json:"_manifest,omitempty"`
 	CompositeID *string  `json:"composite_id,omitempty"`
@@ -151,6 +152,13 @@ func (o *GroupHeadlineWithCompositeID) GetDivider() *GroupHeadlineWithCompositeI
 	return o.Divider
 }
 
+func (o *GroupHeadlineWithCompositeID) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
 func (o *GroupHeadlineWithCompositeID) GetManifest() []string {
 	if o == nil {
 		return nil
@@ -185,6 +193,7 @@ type GroupHeadlineWithCompositeIDInput struct {
 	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
 	EnableDivider *bool                                `default:"false" json:"enable_divider"`
 	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
+	Purpose       []string                             `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema group headline
 	Manifest []string `json:"_manifest,omitempty"`
 	// Schema slug the capability belongs to
@@ -263,6 +272,13 @@ func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *GroupHeadlineWithCompo
 		return nil
 	}
 	return o.Divider
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
 }
 
 func (o *GroupHeadlineWithCompositeIDInput) GetManifest() []string {

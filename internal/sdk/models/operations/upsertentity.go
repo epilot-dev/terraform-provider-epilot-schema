@@ -40,6 +40,8 @@ type UpsertEntityRequest struct {
 	DryRun *bool `default:"false" queryParam:"style=form,explode=true,name=dry_run"`
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
 	Async *bool `default:"false" queryParam:"style=form,explode=true,name=async"`
+	// When true, enables entity validation against the entity schema.
+	Validate *bool `default:"false" queryParam:"style=form,explode=true,name=validate"`
 	// Strict mode = return 409 if more than one entity is matched
 	Strict      *bool                    `default:"false" queryParam:"style=form,explode=true,name=strict"`
 	RequestBody *UpsertEntityRequestBody `request:"mediaType=application/json"`
@@ -91,6 +93,13 @@ func (o *UpsertEntityRequest) GetAsync() *bool {
 	return o.Async
 }
 
+func (o *UpsertEntityRequest) GetValidate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Validate
+}
+
 func (o *UpsertEntityRequest) GetStrict() *bool {
 	if o == nil {
 		return nil
@@ -114,6 +123,8 @@ type UpsertEntityResponse struct {
 	RawResponse *http.Response
 	// Entity was updated
 	EntityItem *shared.EntityItem
+	// Entity validation error when `?validate=true`
+	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
 }
 
 func (o *UpsertEntityResponse) GetContentType() string {
@@ -142,4 +153,11 @@ func (o *UpsertEntityResponse) GetEntityItem() *shared.EntityItem {
 		return nil
 	}
 	return o.EntityItem
+}
+
+func (o *UpsertEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if o == nil {
+		return nil
+	}
+	return o.EntityValidationV2ResultError
 }

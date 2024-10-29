@@ -8,8 +8,11 @@ resource "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
   manifest = [
     "123e4567-e89b-12d3-a456-426614174000"
   ]
-  name   = "...my_name..."
-  order  = 4
+  name  = "...my_name..."
+  order = 4
+  purpose = [
+    "taxonomy-slug:classification-slug"
+  ]
   schema = "contact"
   type   = "headline"
 }

@@ -9299,6 +9299,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							Computed:    true,
 							Description: `The order of headline attribute`,
 						},
+						"purpose": schema.ListAttribute{
+							Computed:    true,
+							ElementType: types.StringType,
+						},
 						"type": schema.StringAttribute{
 							Computed: true,
 						},

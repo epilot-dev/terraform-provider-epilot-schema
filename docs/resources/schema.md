@@ -2938,7 +2938,10 @@ resource "epilot-schema_schema" "my_schema" {
       ]
       name  = "...my_name..."
       order = 8
-      type  = "headline"
+      purpose = [
+        "taxonomy-slug:classification-slug"
+      ]
+      type = "headline"
     }
   ]
   group_settings = [
@@ -7494,6 +7497,7 @@ Optional:
 - `manifest` (List of String) Manifest ID used to create/update the schema group headline
 - `name` (String) Not Null
 - `order` (Number) The order of headline attribute
+- `purpose` (List of String)
 - `type` (String) Not Null; must be "headline"
 
 

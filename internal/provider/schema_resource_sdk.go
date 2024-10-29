@@ -14825,6 +14825,10 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 		} else {
 			divider = nil
 		}
+		var purpose61 []string = []string{}
+		for _, purposeItem61 := range groupHeadlinesItem.Purpose {
+			purpose61 = append(purpose61, purposeItem61.ValueString())
+		}
 		var manifest60 []string = []string{}
 		for _, manifestItem60 := range groupHeadlinesItem.Manifest {
 			manifest60 = append(manifest60, manifestItem60.ValueString())
@@ -14839,6 +14843,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItemInput() *shared.EntitySche
 			Type:          type1,
 			EnableDivider: enableDivider,
 			Divider:       divider,
+			Purpose:       purpose61,
 			Manifest:      manifest60,
 		})
 	}
@@ -19483,6 +19488,10 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			for _, v := range groupHeadlinesItem.Manifest {
 				groupHeadlines1.Manifest = append(groupHeadlines1.Manifest, types.StringValue(v))
 			}
+			groupHeadlines1.Purpose = []types.String{}
+			for _, v := range groupHeadlinesItem.Purpose {
+				groupHeadlines1.Purpose = append(groupHeadlines1.Purpose, types.StringValue(v))
+			}
 			if groupHeadlinesItem.Divider != nil {
 				groupHeadlines1.Divider = types.StringValue(string(*groupHeadlinesItem.Divider))
 			} else {
@@ -19500,6 +19509,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				r.GroupHeadlines = append(r.GroupHeadlines, groupHeadlines1)
 			} else {
 				r.GroupHeadlines[groupHeadlinesCount].Manifest = groupHeadlines1.Manifest
+				r.GroupHeadlines[groupHeadlinesCount].Purpose = groupHeadlines1.Purpose
 				r.GroupHeadlines[groupHeadlinesCount].Divider = groupHeadlines1.Divider
 				r.GroupHeadlines[groupHeadlinesCount].EnableDivider = groupHeadlines1.EnableDivider
 				r.GroupHeadlines[groupHeadlinesCount].Group = groupHeadlines1.Group

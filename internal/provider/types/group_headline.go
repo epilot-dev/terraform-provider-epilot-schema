@@ -6,6 +6,7 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type GroupHeadline struct {
 	Manifest      []types.String `tfsdk:"manifest"`
+	Purpose       []types.String `tfsdk:"purpose"`
 	Divider       types.String   `tfsdk:"divider"`
 	EnableDivider types.Bool     `tfsdk:"enable_divider"`
 	Group         types.String   `tfsdk:"group"`

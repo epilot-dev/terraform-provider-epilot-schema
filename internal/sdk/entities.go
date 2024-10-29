@@ -13,7 +13,6 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/retry"
-	"io"
 	"net/http"
 	"net/url"
 )
@@ -256,21 +255,11 @@ func (s *Entities) SearchEntities(ctx context.Context, request *shared.EntitySea
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -282,7 +271,7 @@ func (s *Entities) SearchEntities(ctx context.Context, request *shared.EntitySea
 
 			res.EntitySearchResults = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/csv`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -290,19 +279,17 @@ func (s *Entities) SearchEntities(ctx context.Context, request *shared.EntitySea
 			out := string(rawBody)
 			res.Res = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -471,21 +458,11 @@ func (s *Entities) ListEntities(ctx context.Context, request *shared.EntityListP
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -497,7 +474,7 @@ func (s *Entities) ListEntities(ctx context.Context, request *shared.EntityListP
 
 			res.EntitySearchResults = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/csv`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -505,19 +482,17 @@ func (s *Entities) ListEntities(ctx context.Context, request *shared.EntityListP
 			out := string(rawBody)
 			res.Res = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -708,21 +683,11 @@ func (s *Entities) CreateEntity(ctx context.Context, request operations.CreateEn
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 201:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -734,19 +699,38 @@ func (s *Entities) CreateEntity(ctx context.Context, request operations.CreateEn
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
+			var out shared.EntityValidationV2ResultError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultError = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -907,21 +891,11 @@ func (s *Entities) ValidateEntity(ctx context.Context, request operations.Valida
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -933,17 +907,16 @@ func (s *Entities) ValidateEntity(ctx context.Context, request operations.Valida
 
 			res.EntityValidationResultSuccess = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -955,19 +928,225 @@ func (s *Entities) ValidateEntity(ctx context.Context, request operations.Valida
 
 			res.EntityValidationResultError = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// ValidateEntityV2 - validateEntityV2
+// Validates an entity against the schema.
+func (s *Entities) ValidateEntityV2(ctx context.Context, request operations.ValidateEntityV2Request, opts ...operations.Option) (*operations.ValidateEntityV2Response, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "validateEntityV2",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/{slug}:validate", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Entity", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 5000,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				return nil, backoff.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
 
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.ValidateEntityV2Response{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: httpRes.Header.Get("Content-Type"),
+		RawResponse: httpRes,
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out shared.EntityValidationV2ResultSuccess
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultSuccess = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out shared.EntityValidationV2ResultError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultError = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1139,23 +1318,13 @@ func (s *Entities) UpsertEntity(ctx context.Context, request operations.UpsertEn
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		fallthrough
 	case httpRes.StatusCode == 201:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1167,22 +1336,41 @@ func (s *Entities) UpsertEntity(ctx context.Context, request operations.UpsertEn
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 405:
 		fallthrough
 	case httpRes.StatusCode == 409:
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out shared.EntityValidationV2ResultError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultError = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1343,21 +1531,11 @@ func (s *Entities) GetEntityV2(ctx context.Context, request operations.GetEntity
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1369,19 +1547,17 @@ func (s *Entities) GetEntityV2(ctx context.Context, request operations.GetEntity
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1550,21 +1726,11 @@ func (s *Entities) RestoreEntity(ctx context.Context, request operations.Restore
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1576,22 +1742,20 @@ func (s *Entities) RestoreEntity(ctx context.Context, request operations.Restore
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 404:
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1816,21 +1980,11 @@ func (s *Entities) GetEntity(ctx context.Context, request operations.GetEntityRe
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1842,19 +1996,17 @@ func (s *Entities) GetEntity(ctx context.Context, request operations.GetEntityRe
 
 			res.Object = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2045,21 +2197,11 @@ func (s *Entities) UpdateEntity(ctx context.Context, request operations.UpdateEn
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -2071,19 +2213,38 @@ func (s *Entities) UpdateEntity(ctx context.Context, request operations.UpdateEn
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
+			var out shared.EntityValidationV2ResultError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultError = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2276,21 +2437,11 @@ func (s *Entities) PatchEntity(ctx context.Context, request operations.PatchEnti
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -2302,20 +2453,39 @@ func (s *Entities) PatchEntity(ctx context.Context, request operations.PatchEnti
 
 			res.EntityItem = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 409:
+	case httpRes.StatusCode == 422:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
+			var out shared.EntityValidationV2ResultError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.EntityValidationV2ResultError = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 409:
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2482,24 +2652,13 @@ func (s *Entities) DeleteEntity(ctx context.Context, request operations.DeleteEn
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2658,21 +2817,11 @@ func (s *Entities) Autocomplete(ctx context.Context, request operations.Autocomp
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -2684,19 +2833,17 @@ func (s *Entities) Autocomplete(ctx context.Context, request operations.Autocomp
 
 			res.Object = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

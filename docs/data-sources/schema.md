@@ -4385,6 +4385,7 @@ Read-Only:
 - `manifest` (List of String) Manifest ID used to create/update the schema group headline
 - `name` (String)
 - `order` (Number) The order of headline attribute
+- `purpose` (List of String)
 - `type` (String)
 
 

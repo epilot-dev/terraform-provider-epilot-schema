@@ -13,6 +13,7 @@ info:
 servers:
   - url: https://entity.sls.epilot.io
 
+
 tags:
   - name: Schemas
     description: Model Entities
@@ -610,6 +611,7 @@ paths:
         - $ref: "#/components/parameters/ActivityIdQueryParam"
         - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -645,6 +647,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
 
   /v1/entity/{slug}:validate:
     post:
@@ -679,6 +687,39 @@ paths:
               schema:
                 $ref: "#/components/schemas/EntityValidationResultError"
 
+  /v2/entity/{slug}:validate:
+    post:
+      operationId: validateEntityV2
+      summary: validateEntityV2
+      description: Validates an entity against the schema.
+      tags:
+        - Entities
+      parameters:
+        - $ref: "#/components/parameters/EntitySlugPathPriceParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Entity"
+            examples:
+              Valid Price:
+                $ref: "#/components/examples/PriceEntity"
+              Invalid Price:
+                $ref: "#/components/examples/EmptyGenericEntity"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultSuccess"
+        "422":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
+
   /v1/entity/{slug}:upsert:
     patch:
       operationId: upsertEntity
@@ -700,6 +741,7 @@ paths:
         - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
         - name: strict
           description: Strict mode = return 409 if more than one entity is matched
           in: query
@@ -744,6 +786,12 @@ paths:
           description: "Conflict: multiple entities were matched with `unique_key`"
         "405":
           description: Deleted entities cannot be updated. You'll need to recover the entity first before updating.
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
 
   /v2/entity/{slug}/{id}:
     get:
@@ -933,6 +981,7 @@ paths:
         - $ref: "#/components/parameters/ActivityIdQueryParam"
         - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -946,6 +995,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
 
     patch:
       operationId: patchEntity
@@ -987,6 +1042,7 @@ paths:
         - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -1003,6 +1059,12 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: newer version exists"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
 
     delete:
       operationId: deleteEntity
@@ -3728,6 +3790,10 @@ components:
           enum:
             - top_divider
             - bottom_divider
+        _purpose:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationId"
         _manifest:
           type: array
           description: Manifest ID used to create/update the schema group headline
@@ -4214,6 +4280,84 @@ components:
       oneOf:
         - $ref: "#/components/schemas/EntityValidationResultSuccess"
         - $ref: "#/components/schemas/EntityValidationResultError"
+
+    EntityValidationV2Error:
+      type: object
+      properties:
+        keyword:
+          type: string
+          description: validation keyword.
+        instance_path:
+          type: string
+          description: JSON Pointer to the location in the data instance (e.g., `"/prop/1/subProp"`).
+        schema_path:
+          type: string
+          description: JSON Pointer to the location of the failing keyword in the schema.
+        params:
+          type: object
+          description: Additional information about error.
+          additionalProperties: true
+        property_name:
+          type: string
+          description: Set for errors in `propertyNames` keyword schema. `instance_path` still points to the object in this case.
+        message:
+          type: string
+          description: The error message.
+        schema:
+          type: object
+          description: The value of the failing keyword in the schema.
+        parent_schema:
+          type: object
+          description: The schema containing the keyword.
+          additionalProperties: true
+        data:
+          type: object
+          description: The data validated by the keyword.
+          additionalProperties: true
+      required:
+        - keyword
+        - instance_path
+        - schema_path
+        - params
+
+    EntityValidationV2ResultSuccess:
+      type: object
+      description: Validation result for a successful validation
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+        errors:
+          type: array
+          maxItems: 0
+          items:
+            $ref: "#/components/schemas/EntityValidationV2Error"
+      required:
+        - status
+        - errors
+
+    EntityValidationV2ResultError:
+      type: object
+      description: Validation result for a failed validation
+      properties:
+        status:
+          type: string
+          enum:
+            - error
+        errors:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/EntityValidationV2Error"
+      required:
+        - status
+        - errors
+
+    EntityValidationV2Result:
+      oneOf:
+        - $ref: "#/components/schemas/EntityValidationV2ResultSuccess"
+        - $ref: "#/components/schemas/EntityValidationV2ResultError"
 
     HydratedEntityItem:
       allOf:
@@ -5191,6 +5335,13 @@ components:
       schema:
         type: boolean
         default: false
+    ValidateEntityQueryParam:
+      name: validate
+      description: When true, enables entity validation against the entity schema.
+      in: query
+      schema:
+        default: false
+        type: boolean
 
   examples:
     EmptyGenericEntity:

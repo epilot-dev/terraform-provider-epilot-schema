@@ -20,8 +20,10 @@ type UpdateEntityRequest struct {
 	//
 	FillActivity *bool `default:"false" queryParam:"style=form,explode=true,name=fill_activity"`
 	// Don't wait for updated entity to become available in Search API. Useful for large migrations
-	Async  *bool               `default:"false" queryParam:"style=form,explode=true,name=async"`
-	Entity *shared.EntityInput `request:"mediaType=application/json"`
+	Async *bool `default:"false" queryParam:"style=form,explode=true,name=async"`
+	// When true, enables entity validation against the entity schema.
+	Validate *bool               `default:"false" queryParam:"style=form,explode=true,name=validate"`
+	Entity   *shared.EntityInput `request:"mediaType=application/json"`
 }
 
 func (u UpdateEntityRequest) MarshalJSON() ([]byte, error) {
@@ -70,6 +72,13 @@ func (o *UpdateEntityRequest) GetAsync() *bool {
 	return o.Async
 }
 
+func (o *UpdateEntityRequest) GetValidate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Validate
+}
+
 func (o *UpdateEntityRequest) GetEntity() *shared.EntityInput {
 	if o == nil {
 		return nil
@@ -86,6 +95,8 @@ type UpdateEntityResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntityItem *shared.EntityItem
+	// Entity validation error when `?validate=true`
+	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
 }
 
 func (o *UpdateEntityResponse) GetContentType() string {
@@ -114,4 +125,11 @@ func (o *UpdateEntityResponse) GetEntityItem() *shared.EntityItem {
 		return nil
 	}
 	return o.EntityItem
+}
+
+func (o *UpdateEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if o == nil {
+		return nil
+	}
+	return o.EntityValidationV2ResultError
 }

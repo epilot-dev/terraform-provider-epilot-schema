@@ -7,38 +7,38 @@ import (
 	"fmt"
 )
 
-type Status string
+type EntityValidationResultSuccessStatus string
 
 const (
-	StatusSuccess Status = "success"
+	EntityValidationResultSuccessStatusSuccess EntityValidationResultSuccessStatus = "success"
 )
 
-func (e Status) ToPointer() *Status {
+func (e EntityValidationResultSuccessStatus) ToPointer() *EntityValidationResultSuccessStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *EntityValidationResultSuccessStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "success":
-		*e = Status(v)
+		*e = EntityValidationResultSuccessStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for EntityValidationResultSuccessStatus: %v", v)
 	}
 }
 
 // EntityValidationResultSuccess - Validation result for a successful validation
 type EntityValidationResultSuccess struct {
-	Status Status                  `json:"status"`
-	Errors []EntityValidationError `json:"errors"`
+	Status EntityValidationResultSuccessStatus `json:"status"`
+	Errors []EntityValidationError             `json:"errors"`
 }
 
-func (o *EntityValidationResultSuccess) GetStatus() Status {
+func (o *EntityValidationResultSuccess) GetStatus() EntityValidationResultSuccessStatus {
 	if o == nil {
-		return Status("")
+		return EntityValidationResultSuccessStatus("")
 	}
 	return o.Status
 }

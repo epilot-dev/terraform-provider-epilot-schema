@@ -13,6 +13,10 @@ func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithC
 		for _, v := range resp.Manifest {
 			r.Manifest = append(r.Manifest, types.StringValue(v))
 		}
+		r.Purpose = []types.String{}
+		for _, v := range resp.Purpose {
+			r.Purpose = append(r.Purpose, types.StringValue(v))
+		}
 		r.CompositeID = types.StringPointerValue(resp.CompositeID)
 		if resp.Divider != nil {
 			r.Divider = types.StringValue(string(*resp.Divider))

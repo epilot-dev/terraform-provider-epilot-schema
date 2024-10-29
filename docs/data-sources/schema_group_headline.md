@@ -36,5 +36,6 @@ data "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
 - `manifest` (List of String) Manifest ID used to create/update the schema group headline
 - `name` (String)
 - `order` (Number) The order of headline attribute
+- `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
 - `type` (String)

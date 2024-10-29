@@ -38,6 +38,7 @@ type SchemaGroupHeadlineDataSourceModel struct {
 	Manifest      []types.String `tfsdk:"manifest"`
 	Name          types.String   `tfsdk:"name"`
 	Order         types.Int64    `tfsdk:"order"`
+	Purpose       []types.String `tfsdk:"purpose"`
 	Schema        types.String   `tfsdk:"schema"`
 	Type          types.String   `tfsdk:"type"`
 }
@@ -87,6 +88,10 @@ func (r *SchemaGroupHeadlineDataSource) Schema(ctx context.Context, req datasour
 			"order": schema.Int64Attribute{
 				Computed:    true,
 				Description: `The order of headline attribute`,
+			},
+			"purpose": schema.ListAttribute{
+				Computed:    true,
+				ElementType: types.StringType,
 			},
 			"schema": schema.StringAttribute{
 				Computed:    true,
