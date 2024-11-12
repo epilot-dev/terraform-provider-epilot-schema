@@ -173,6 +173,13 @@ paths:
                       nullable: true
                       items:
                         type: string
+                    _manifest:
+                      type: array
+                      description: Manifest ID used to create/update the entity
+                      items:
+                        type: string
+                        format: uuid
+                        example: 123e4567-e89b-12d3-a456-426614174000
                     _created_at:
                       readOnly: true
                       type: string
@@ -590,7 +597,9 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -626,6 +635,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
   /v1/entity/{slug}:validate:
     post:
       operationId: validateEntity
@@ -658,6 +673,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityValidationResultError"
+  /v2/entity/{slug}:validate:
+    post:
+      operationId: validateEntityV2
+      summary: validateEntityV2
+      description: Validates an entity against the schema.
+      tags:
+        - Entities
+      parameters:
+        - $ref: "#/components/parameters/EntitySlugPathPriceParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Entity"
+            examples:
+              Valid Price:
+                $ref: "#/components/examples/PriceEntity"
+              Invalid Price:
+                $ref: "#/components/examples/EmptyGenericEntity"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultSuccess"
+        "422":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
   /v1/entity/{slug}:upsert:
     patch:
       operationId: upsertEntity
@@ -676,8 +723,10 @@ paths:
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
         - name: strict
           description: Strict mode = return 409 if more than one entity is matched
           in: query
@@ -719,6 +768,14 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: multiple entities were matched with `unique_key`"
+        "405":
+          description: Deleted entities cannot be updated. You'll need to recover the entity first before updating.
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
   /v2/entity/{slug}/{id}:
     get:
       operationId: getEntityV2
@@ -747,6 +804,39 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+  /v1/entity/{slug}/{id}:restore:
+    patch:
+      operationId: restoreEntity
+      summary: restoreEntity
+      description: |
+        Restores an entity by id
+
+        ## Activity
+
+        If no `activity_id` query parameter is provided, implicitly creates Activity of type `EntityRestore`
+      tags:
+        - Entities
+      parameters:
+        - $ref: "#/components/parameters/EntityIdPathParam"
+        - $ref: "#/components/parameters/EntitySlugPathParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: This endpoint doesn't require a payload, but an empty object can be sent to satisfy certain HTTP clients.
+      responses:
+        200:
+          description: The restored entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityItem"
+        400:
+          description: The entity is not deleted
+        404:
+          description: The entity was not found
   /v1/entity/{slug}/{id}:
     get:
       operationId: getEntity
@@ -870,7 +960,9 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -884,6 +976,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EntityItem"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
     patch:
       operationId: patchEntity
       summary: patchEntity
@@ -921,8 +1019,10 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - $ref: "#/components/parameters/FillActivityQueryParam"
         - $ref: "#/components/parameters/DryRunQueryParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ValidateEntityQueryParam"
       requestBody:
         content:
           application/json:
@@ -939,6 +1039,12 @@ paths:
                 $ref: "#/components/schemas/EntityItem"
         "409":
           description: "Conflict: newer version exists"
+        "422":
+          description: Entity validation error when `?validate=true`
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntityValidationV2ResultError"
     delete:
       operationId: deleteEntity
       summary: deleteEntity
@@ -948,12 +1054,22 @@ paths:
         ## Activity
 
         If no `activity_id` query parameter is provided, implicitly creates Activity of type `EntityDeleted`
+
+        ## Deletion Mode
+
+        All entities are soft deleted by default. To force an actual deletion from the system, provide `purge:true` to delete the entity and all its activity history permanently.
       tags:
         - Entities
       parameters:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/ActivityIdQueryParam"
+        - in: query
+          name: purge
+          description: Permanently deletes the entity when set to `true`
+          default: false
+          schema:
+            type: boolean
       responses:
         "200":
           description: Success
@@ -1233,6 +1349,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
       requestBody:
         content:
           application/json:
@@ -1266,6 +1383,7 @@ paths:
         - $ref: "#/components/parameters/EntitySlugPathParam"
         - $ref: "#/components/parameters/EntityIdPathParam"
         - $ref: "#/components/parameters/AsyncOperationQueryParam"
+        - $ref: "#/components/parameters/ActivityIdQueryParam"
       requestBody:
         content:
           application/json:
@@ -2247,6 +2365,172 @@ paths:
               schema:
                 $ref: "#/components/schemas/EntitySchemaGroupWithCompositeID"
       x-speakeasy-entity-operation: SchemaGroup#delete
+  # Group Headlines
+  /v1/entity/schemas/headline:
+    post:
+      operationId: createSchemaGroupHeadline
+      summary: createSchemaGroupHeadline
+      description: Create a headline in a schema group
+      tags:
+        - Schemas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroupHeadline#create
+  /v1/entity/schemas/headline/{composite_id}:
+    get:
+      operationId: getSchemaGroupHeadline
+      summary: getSchemaGroupHeadline
+      description: Get a group headline from schema from given headline composite ID
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroupHeadline#get
+    put:
+      operationId: putSchemaGroupHeadline
+      summary: putSchemaGroupHeadline
+      description: Adds or updates a group headline in the schema
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroupHeadline#update
+    delete:
+      operationId: deleteSchemaGroupHeadline
+      summary: deleteSchemaGroupHeadline
+      description: Deletes a group headline from a schema
+      tags:
+        - Schemas
+      parameters:
+        - name: composite_id
+          description: Schema Slug and the Schema Group ID
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^.+:.+$
+            example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupHeadlineWithCompositeID"
+      x-speakeasy-entity-operation: SchemaGroupHeadline#delete
+  # ElasticSearch JWT Authentication
+  /v1/entity/public/idp/.well-known/jwks.json:
+    get:
+      operationId: getESPublicJwks
+      summary: getESPublicJwks
+      description: Get jwks public key set to verify tokens generated by this API for Elasticsearch authentication
+      tags:
+        - Public
+      x-internal: true
+      security: []
+      responses:
+        200:
+          description: Set of jwks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        alg:
+                          type: string
+                          example: RS256
+                        e:
+                          type: string
+                          example: AQAB
+                        kid:
+                          type: string
+                          example: tXWU5mPMbRPczpbQwi6vbhLF4GgF3wlMDSyqo7pfeiw=
+                        kty:
+                          type: string
+                          example: RSA
+                        n:
+                          type: string
+                          example: h_QDoCjZ8W_trtYXaP7_S22wf5r5Wd9XBLED78oT44bJjQXn8ddcFV8Hik65_4IYXVX_hTTU4zpxe3H8vx2j7-Zz3O59mYMp5S0MzODNEdf5Y_2o19eis0brmAJniixsNlQ9LlYkdrVamrgaxHu3ZpP_99zkfFybYeuYoQNzb3PyrT8xVnz_USs_nlFMHpGUxvvz7gfKPqxcLvgLJr4cwI9yzaSY9CD4qW181QVcnL_WzpQ8xx6AuhhHZQ1l_3GG4InTk8ahE7U2ZHVu8RrX6d01pMgc3piEcet9RgFLnhbTg3YIiKGoAbN42wJn_x3lgIAC42T9mbmTsHyUdS6nUQ
+                        use:
+                          type: string
+                          example: sig
+  /v1/entity/public/idp/.well-known/openid-configuration:
+    get:
+      operationId: getESTokenOIDC
+      summary: getESTokenOIDC
+      description: |
+        OpenID Connect configuration for Entity API serving as public identity provider
+
+        Note: This API is not a fully compliant OAuth2.0 / OIDC identity provider, but this endpoint is useful to
+        automate the process of verifying JWT tokens.
+      tags:
+        - Public
+      x-internal: true
+      security: []
+      responses:
+        200:
+          description: OpenID Configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuer:
+                    type: string
+                    format: uri
+                    example: "https://entity.dev.sls.epilot.io/v1/entity/public/idp"
+                  jwks_uri:
+                    type: string
+                    format: uri
+                    example: "https://entity.dev.sls.epilot.io/v1/entity/public/idp/.well-known/jwks.json"
 components:
   securitySchemes:
     EpilotAuth:
@@ -2399,44 +2683,17 @@ components:
         dialog_config:
           type: object
           additionalProperties: true
-        attributes:
-          description: An ordered list of attributes the entity contains
-          type: array
-          items:
-            $ref: "#/components/schemas/Attribute"
-          example:
-            - name: email
-              type: email
-              label: Email
-              required: true
-            - name: first_name
-              type: string
-              label: First Name
-            - name: last_name
-              type: string
-              label: Last Name
-            - name: birthdate
-              type: date
-              label: Birthdate
-            - name: salutation
-              type: select
-              label: Salutation
-              options:
-                - Mr.
-                - Ms. / Mrs.
-                - Other
-            - name: marketing_permission
-              type: boolean
-              label: Marketing permission
-            - name: image
-              type: file
-              label: Image
         _purpose:
           type: array
           items:
             type: string
         explicit_search_mappings:
           $ref: "#/components/schemas/SearchMappings"
+        group_headlines:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupHeadline"
+        attributes: {}
       required:
         - slug
         - name
@@ -2554,6 +2811,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema group
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         feature_flag:
           type: string
           example: FF_MY_FEATURE_FLAG
@@ -2696,6 +2961,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema attribute
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         constraints:
           type: object
           description: |
@@ -2709,7 +2982,7 @@ components:
           description: This attribute should only be active when the feature flag is enabled
         settings_flag:
           type: array
-          description: This attribute should only be active when all the settings have the correct value
+          description: This attribute should only be active when one of the provided settings have the correct value
           items:
             $ref: "#/components/schemas/SettingFlag"
         value_formatter:
@@ -3386,6 +3659,68 @@ components:
       required:
         - label
         - value
+    GroupHeadline:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        label:
+          type: string
+        layout:
+          type: string
+        group:
+          type: string
+          description: The group of headline attribute
+        order:
+          type: integer
+          description: The order of headline attribute
+        type:
+          type: string
+          enum:
+            - headline
+        enable_divider:
+          type: boolean
+          default: false
+        divider:
+          type: string
+          enum:
+            - top_divider
+            - bottom_divider
+        _purpose:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema group headline
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
+      required:
+        - name
+        - label
+        - group
+        - type
+    GroupHeadlineWithCompositeID:
+      allOf:
+        - $ref: "#/components/schemas/GroupHeadline"
+        - type: object
+          description: a readonly computed ID for the entity group headline including schema slug and the headline ID
+          properties:
+            composite_id:
+              type: string
+              readOnly: true
+              example: contact:97644baa-083f-4e49-9188-fcff2ecaad7d
+            schema:
+              type: string
+              description: Schema slug the capability belongs to
+              example: contact
+      x-speakeasy-entity: SchemaGroupHeadline
     EntitySlug:
       description: URL-friendly identifier for the entity schema
       type: string
@@ -3414,6 +3749,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ClassificationId"
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the schema capabilility
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
         ui_hooks:
           type: array
           items:
@@ -3649,6 +3992,14 @@ components:
           items:
             type: string
           nullable: true
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the entity
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
       example:
         _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         _org: "123"
@@ -3661,6 +4012,7 @@ components:
           view: ["org:456", "org:789"]
           edit: ["org:456"]
           delete: ["org:456"]
+        _manifest: ["123e4567-e89b-12d3-a456-426614174000"]
     EntityOwner:
       description: |
         The user / organization owning this entity.
@@ -3815,6 +4167,80 @@ components:
       oneOf:
         - $ref: "#/components/schemas/EntityValidationResultSuccess"
         - $ref: "#/components/schemas/EntityValidationResultError"
+    EntityValidationV2Error:
+      type: object
+      properties:
+        keyword:
+          type: string
+          description: validation keyword.
+        instance_path:
+          type: string
+          description: JSON Pointer to the location in the data instance (e.g., `"/prop/1/subProp"`).
+        schema_path:
+          type: string
+          description: JSON Pointer to the location of the failing keyword in the schema.
+        params:
+          type: object
+          description: Additional information about error.
+          additionalProperties: true
+        property_name:
+          type: string
+          description: Set for errors in `propertyNames` keyword schema. `instance_path` still points to the object in this case.
+        message:
+          type: string
+          description: The error message.
+        schema:
+          type: object
+          description: The value of the failing keyword in the schema.
+        parent_schema:
+          type: object
+          description: The schema containing the keyword.
+          additionalProperties: true
+        data:
+          type: object
+          description: The data validated by the keyword.
+          additionalProperties: true
+      required:
+        - keyword
+        - instance_path
+        - schema_path
+        - params
+    EntityValidationV2ResultSuccess:
+      type: object
+      description: Validation result for a successful validation
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+        errors:
+          type: array
+          maxItems: 0
+          items:
+            $ref: "#/components/schemas/EntityValidationV2Error"
+      required:
+        - status
+        - errors
+    EntityValidationV2ResultError:
+      type: object
+      description: Validation result for a failed validation
+      properties:
+        status:
+          type: string
+          enum:
+            - error
+        errors:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/EntityValidationV2Error"
+      required:
+        - status
+        - errors
+    EntityValidationV2Result:
+      oneOf:
+        - $ref: "#/components/schemas/EntityValidationV2ResultSuccess"
+        - $ref: "#/components/schemas/EntityValidationV2ResultError"
     HydratedEntityItem:
       allOf:
         - $ref: "#/components/schemas/BaseEntity"
@@ -3864,6 +4290,20 @@ components:
       required:
         - entity_id
         - attribute
+    EntitySearchIncludeDeletedParam:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+        - 'only'
+      description: |
+        Whether to include deleted entities in the search results
+        - `true`: include deleted entities
+        - `false`: exclude deleted entities
+        - `only`: include only deleted entities
+
+        By default, no deleted entities are included in the search results.
+      default: 'false'
     EntitySearchParams:
       allOf:
         - type: object
@@ -3882,6 +4322,8 @@ components:
             hydrate: {}
             fields: {}
             aggs: {}
+            include_deleted:
+              $ref: "#/components/schemas/EntitySearchIncludeDeletedParam"
           additionalProperties: false
           required:
             - q
@@ -4027,8 +4469,12 @@ components:
       type: object
       properties:
         sort:
-          type: string
-          example: "_created_at:desc"
+          description: You can pass one sort field or an array of sort fields. Each sort field can be a string
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
         from:
           type: integer
           minimum: 0
@@ -4052,6 +4498,8 @@ components:
             contact-count-per-tag:
               terms:
                 field: _tags.keyword
+        include_deleted:
+          $ref: "#/components/schemas/EntitySearchIncludeDeletedParam"
     FieldsParam:
       type: array
       description: |
@@ -4147,6 +4595,7 @@ components:
       format: ulid
       description: See https://github.com/ulid/spec
       example: 01F130Q52Q6MWSNS8N2AVXV4JN
+      pattern: "^01[0-9a-zA-Z]{24}$"
     ActivityCallerContext:
       type: object
       additionalProperties: true
@@ -4193,6 +4642,12 @@ components:
             entity:
               id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
               schema: contact
+        pending:
+          type: boolean
+          description: |
+            Indicates whether the activity is in the pending state.
+            Pending activities are not yet visible in the activity feed and events are not yet dispatched.
+          default: false
       required:
         - type
         - title
@@ -4459,6 +4914,14 @@ components:
         updated_at:
           type: string
           format: date-time
+        _manifest:
+          type: array
+          description: Manifest ID used to create/update the taxonomy classification
+          items:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426614174000
+          nullable: true
       required:
         - name
     ClassificationId:
@@ -4590,7 +5053,12 @@ components:
       in: query
       required: false
       schema:
-        $ref: "#/components/schemas/ActivityId"
+        oneOf:
+          - $ref: "#/components/schemas/ActivityId"
+          # treat empty string as null
+          - type: string
+            nullable: true
+            enum: [""]
     ActivityIdPathParam:
       name: id
       description: Activity Id
@@ -4672,6 +5140,23 @@ components:
       schema:
         type: boolean
         default: false
+    FillActivityQueryParam:
+      name: fill_activity
+      description: |
+        Update the diff and entity for the custom activity included in the query.
+        Pending state on activity is automatically ended when activity is filled.
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+    ValidateEntityQueryParam:
+      name: validate
+      description: When true, enables entity validation against the entity schema.
+      in: query
+      schema:
+        default: false
+        type: boolean
   examples:
     EmptyGenericEntity:
       description: Example of an empty, generic entity

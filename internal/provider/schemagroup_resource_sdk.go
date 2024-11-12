@@ -69,7 +69,7 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 			Enabled: enabled,
 		})
 	}
-	var infoTooltipTitle *shared.EntitySchemaGroupWithCompositeIDInfoTooltipTitle
+	var infoTooltipTitle *shared.InfoTooltipTitle
 	if r.InfoTooltipTitle != nil {
 		key := new(string)
 		if !r.InfoTooltipTitle.Key.IsUnknown() && !r.InfoTooltipTitle.Key.IsNull() {
@@ -83,7 +83,7 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		} else {
 			defaultVar = nil
 		}
-		infoTooltipTitle = &shared.EntitySchemaGroupWithCompositeIDInfoTooltipTitle{
+		infoTooltipTitle = &shared.InfoTooltipTitle{
 			Key:     key,
 			Default: defaultVar,
 		}

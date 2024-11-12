@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntityDefaultTableOptions struct {
-	Label  types.String                         `tfsdk:"label"`
-	Params *AddressRelationAttributeConstraints `tfsdk:"params"`
+	Label  types.String              `tfsdk:"label"`
+	Params *EntityDefaultTableParams `tfsdk:"params"`
 }

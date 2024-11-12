@@ -35,6 +35,34 @@ actions:
     update:
       $ref: "#/components/schemas/EntitySchemaItem"
 
+  # jsonencode attributes in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["attributes"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      attributes: {}
+
+  # jsonencode capabilities in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["capabilities"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      capabilities: {}
+
+  # jsonencode groups in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["group_settings"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      group_settings: {}
+    
+  # jsonencode group_headlines in full schema
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]["group_headlines"]
+    remove: true
+  - target: $["components"]["schemas"]["EntitySchema"]["properties"]
+    update:
+      group_headlines: {}
+
   # Schema Attribute
   - target: $["paths"]["/v1/entity/schemas/attributes/{composite_id}"]["get"]
     update:

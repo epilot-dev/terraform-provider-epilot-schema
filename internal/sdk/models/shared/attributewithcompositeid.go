@@ -5308,36 +5308,36 @@ func (e *CurrencyAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 	}
 }
 
-// Currency1 - A currency configuration
-type Currency1 struct {
+// CurrencyAttributeCurrency1 - A currency configuration
+type CurrencyAttributeCurrency1 struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *Currency1) GetCode() string {
+func (o *CurrencyAttributeCurrency1) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *Currency1) GetDescription() string {
+func (o *CurrencyAttributeCurrency1) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *Currency1) GetSymbol() string {
+func (o *CurrencyAttributeCurrency1) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *Currency1) GetFlag() *string {
+func (o *CurrencyAttributeCurrency1) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -5347,30 +5347,30 @@ func (o *Currency1) GetFlag() *string {
 type CurrencyAttributeCurrencyType string
 
 const (
-	CurrencyAttributeCurrencyTypeCurrency1 CurrencyAttributeCurrencyType = "currency_1"
+	CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1 CurrencyAttributeCurrencyType = "CurrencyAttribute_currency_1"
 )
 
 type CurrencyAttributeCurrency struct {
-	Currency1 *Currency1
+	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1
 
 	Type CurrencyAttributeCurrencyType
 }
 
-func CreateCurrencyAttributeCurrencyCurrency1(currency1 Currency1) CurrencyAttributeCurrency {
-	typ := CurrencyAttributeCurrencyTypeCurrency1
+func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttributeCurrency1 CurrencyAttributeCurrency1) CurrencyAttributeCurrency {
+	typ := CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
 
 	return CurrencyAttributeCurrency{
-		Currency1: &currency1,
-		Type:      typ,
+		CurrencyAttributeCurrency1: &currencyAttributeCurrency1,
+		Type:                       typ,
 	}
 }
 
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
-	var currency1 Currency1 = Currency1{}
-	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
-		u.Currency1 = &currency1
-		u.Type = CurrencyAttributeCurrencyTypeCurrency1
+	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
+	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, false); err == nil {
+		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
+		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
 		return nil
 	}
 
@@ -5378,8 +5378,8 @@ func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 }
 
 func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
-	if u.Currency1 != nil {
-		return utils.MarshalJSON(u.Currency1, "", true)
+	if u.CurrencyAttributeCurrency1 != nil {
+		return utils.MarshalJSON(u.CurrencyAttributeCurrency1, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CurrencyAttributeCurrency: all fields are null")
@@ -8077,21 +8077,21 @@ func (e *StatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 	}
 }
 
-type StatusAttributeOptions2 struct {
+type StatusAttributeOptionsAttributeWithCompositeID2 struct {
 	// The stored value of the option
 	Value string `json:"value"`
 	// The displayed title of the option
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *StatusAttributeOptions2) GetValue() string {
+func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *StatusAttributeOptions2) GetTitle() *string {
+func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -8101,13 +8101,13 @@ func (o *StatusAttributeOptions2) GetTitle() *string {
 type StatusAttributeAttributeWithCompositeIDOptionsType string
 
 const (
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                     StatusAttributeAttributeWithCompositeIDOptionsType = "str"
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_2"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                                             StatusAttributeAttributeWithCompositeIDOptionsType = "str"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_AttributeWithCompositeID_2"
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                     *string
-	StatusAttributeOptions2 *StatusAttributeOptions2
+	Str                                             *string
+	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -8121,21 +8121,21 @@ func CreateStatusAttributeAttributeWithCompositeIDOptionsStr(str string) StatusA
 	}
 }
 
-func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptions2(statusAttributeOptions2 StatusAttributeOptions2) StatusAttributeAttributeWithCompositeIDOptions {
-	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
+func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptionsAttributeWithCompositeID2(statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2) StatusAttributeAttributeWithCompositeIDOptions {
+	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
 
 	return StatusAttributeAttributeWithCompositeIDOptions{
-		StatusAttributeOptions2: &statusAttributeOptions2,
-		Type:                    typ,
+		StatusAttributeOptionsAttributeWithCompositeID2: &statusAttributeOptionsAttributeWithCompositeID2,
+		Type: typ,
 	}
 }
 
 func (u *StatusAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
-	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
-	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, false); err == nil {
-		u.StatusAttributeOptions2 = &statusAttributeOptions2
-		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
+	var statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2 = StatusAttributeOptionsAttributeWithCompositeID2{}
+	if err := utils.UnmarshalJSON(data, &statusAttributeOptionsAttributeWithCompositeID2, "", true, false); err == nil {
+		u.StatusAttributeOptionsAttributeWithCompositeID2 = &statusAttributeOptionsAttributeWithCompositeID2
+		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
 		return nil
 	}
 
@@ -8154,8 +8154,8 @@ func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, e
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.StatusAttributeOptions2 != nil {
-		return utils.MarshalJSON(u.StatusAttributeOptions2, "", true)
+	if u.StatusAttributeOptionsAttributeWithCompositeID2 != nil {
+		return utils.MarshalJSON(u.StatusAttributeOptionsAttributeWithCompositeID2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type StatusAttributeAttributeWithCompositeIDOptions: all fields are null")
@@ -10781,26 +10781,26 @@ func (o *TextAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
-type TextAttributeType string
+type TextAttributeAttributeWithCompositeIDType string
 
 const (
-	TextAttributeTypeString TextAttributeType = "string"
+	TextAttributeAttributeWithCompositeIDTypeString TextAttributeAttributeWithCompositeIDType = "string"
 )
 
-func (e TextAttributeType) ToPointer() *TextAttributeType {
+func (e TextAttributeAttributeWithCompositeIDType) ToPointer() *TextAttributeAttributeWithCompositeIDType {
 	return &e
 }
-func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
+func (e *TextAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "string":
-		*e = TextAttributeType(v)
+		*e = TextAttributeAttributeWithCompositeIDType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TextAttributeType: %v", v)
+		return fmt.Errorf("invalid value for TextAttributeAttributeWithCompositeIDType: %v", v)
 	}
 }
 
@@ -10855,10 +10855,10 @@ type AttributeWithCompositeIDTextAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *TextAttributeType        `json:"type,omitempty"`
-	Multiline   *bool                     `json:"multiline,omitempty"`
-	CompositeID *string                   `json:"composite_id,omitempty"`
+	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
+	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiline   *bool                                      `json:"multiline,omitempty"`
+	CompositeID *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -11063,7 +11063,7 @@ func (o *AttributeWithCompositeIDTextAttribute) GetInfoHelpers() *TextAttributeI
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetType() *TextAttributeType {
+func (o *AttributeWithCompositeIDTextAttribute) GetType() *TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
 	}
@@ -19634,9 +19634,9 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *TextAttributeType        `json:"type,omitempty"`
-	Multiline   *bool                     `json:"multiline,omitempty"`
+	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
+	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiline   *bool                                      `json:"multiline,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -19841,7 +19841,7 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetInfoHelpers() *TextAttri
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetType() *TextAttributeType {
+func (o *AttributeWithCompositeIDTextAttributeInput) GetType() *TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
 	}

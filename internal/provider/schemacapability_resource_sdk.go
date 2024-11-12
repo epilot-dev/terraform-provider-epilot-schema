@@ -217,9 +217,9 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					HintTooltipPlacement: hintTooltipPlacement,
 				}
 			}
-			typeVar := new(shared.Type)
+			typeVar := new(shared.TextAttributeType)
 			if !attributesItem.TextAttribute.Type.IsUnknown() && !attributesItem.TextAttribute.Type.IsNull() {
-				*typeVar = shared.Type(attributesItem.TextAttribute.Type.ValueString())
+				*typeVar = shared.TextAttributeType(attributesItem.TextAttribute.Type.ValueString())
 			} else {
 				typeVar = nil
 			}
@@ -1648,12 +1648,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					} else {
 						title1 = nil
 					}
-					two := shared.Two{
+					options2 := shared.Options2{
 						Value: value,
 						Title: title1,
 					}
 					optionsVar1 = append(optionsVar1, shared.OptionsObj{
-						Two: &two,
+						Options2: &options2,
 					})
 				}
 			}
@@ -1916,12 +1916,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					} else {
 						title2 = nil
 					}
-					options2 := shared.Options2{
+					statusAttributeOptions2 := shared.StatusAttributeOptions2{
 						Value: value1,
 						Title: title2,
 					}
 					optionsVar2 = append(optionsVar2, shared.StatusAttributeOptions{
-						Options2: &options2,
+						StatusAttributeOptions2: &statusAttributeOptions2,
 					})
 				}
 			}
@@ -3591,14 +3591,14 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 					} else {
 						flag = nil
 					}
-					one := shared.One{
+					currency1 := shared.Currency1{
 						Code:        code,
 						Description: description,
 						Symbol:      symbol,
 						Flag:        flag,
 					}
 					currency = append(currency, shared.Currency{
-						One: &one,
+						Currency1: &currency1,
 					})
 				}
 			}
@@ -6963,7 +6963,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 	for _, manifestItem29 := range r.Manifest {
 		manifest29 = append(manifest29, manifestItem29.ValueString())
 	}
-	var uiHooks []shared.EntityCapabilityWithCompositeIDUIHooks = []shared.EntityCapabilityWithCompositeIDUIHooks{}
+	var uiHooks []shared.UIHooks = []shared.UIHooks{}
 	for _, uiHooksItem := range r.UIHooks {
 		var hook string
 		hook = uiHooksItem.Hook.ValueString()
@@ -7028,7 +7028,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 		} else {
 			header = nil
 		}
-		var requiredPermission *shared.EntityCapabilityWithCompositeIDRequiredPermission
+		var requiredPermission *shared.RequiredPermission
 		if uiHooksItem.RequiredPermission != nil {
 			var action string
 			action = uiHooksItem.RequiredPermission.Action.ValueString()
@@ -7039,7 +7039,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			} else {
 				resource = nil
 			}
-			requiredPermission = &shared.EntityCapabilityWithCompositeIDRequiredPermission{
+			requiredPermission = &shared.RequiredPermission{
 				Action:   action,
 				Resource: resource,
 			}
@@ -7048,7 +7048,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 		if !uiHooksItem.AdditionalProperties.IsUnknown() && !uiHooksItem.AdditionalProperties.IsNull() {
 			_ = json.Unmarshal([]byte(uiHooksItem.AdditionalProperties.ValueString()), &additionalProperties2)
 		}
-		uiHooks = append(uiHooks, shared.EntityCapabilityWithCompositeIDUIHooks{
+		uiHooks = append(uiHooks, shared.UIHooks{
 			Hook:                 hook,
 			RenderCondition:      renderCondition28,
 			Order:                order28,
@@ -7139,7 +7139,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.AddressRelationAttribute.Constraints == nil {
 					attributes1.AddressRelationAttribute.Constraints = nil
 				} else {
-					attributes1.AddressRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.AddressRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.AddressRelationAttribute.DefaultValue == nil {
 					attributes1.AddressRelationAttribute.DefaultValue = types.StringNull()
@@ -7159,7 +7159,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.AddressRelationAttribute.InfoHelpers == nil {
 					attributes1.AddressRelationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintText)
 					attributes1.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AddressRelationAttribute.InfoHelpers.HintTextKey)
@@ -7209,7 +7209,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.AutomationAttribute.Constraints == nil {
 					attributes1.AutomationAttribute.Constraints = nil
 				} else {
-					attributes1.AutomationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.AutomationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.AutomationAttribute.DefaultValue == nil {
 					attributes1.AutomationAttribute.DefaultValue = types.StringNull()
@@ -7228,7 +7228,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.AutomationAttribute.InfoHelpers == nil {
 					attributes1.AutomationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.AutomationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.AutomationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintText)
 					attributes1.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.AutomationAttribute.InfoHelpers.HintTextKey)
@@ -7278,7 +7278,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.BooleanAttribute.Constraints == nil {
 					attributes1.BooleanAttribute.Constraints = nil
 				} else {
-					attributes1.BooleanAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.BooleanAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.BooleanAttribute.DefaultValue == nil {
 					attributes1.BooleanAttribute.DefaultValue = types.StringNull()
@@ -7297,7 +7297,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.BooleanAttribute.InfoHelpers == nil {
 					attributes1.BooleanAttribute.InfoHelpers = nil
 				} else {
-					attributes1.BooleanAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.BooleanAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintText)
 					attributes1.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.BooleanAttribute.InfoHelpers.HintTextKey)
@@ -7347,7 +7347,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.ComputedAttribute.Constraints == nil {
 					attributes1.ComputedAttribute.Constraints = nil
 				} else {
-					attributes1.ComputedAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.ComputedAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.ComputedAttribute.DefaultValue == nil {
 					attributes1.ComputedAttribute.DefaultValue = types.StringNull()
@@ -7366,7 +7366,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.ComputedAttribute.InfoHelpers == nil {
 					attributes1.ComputedAttribute.InfoHelpers = nil
 				} else {
-					attributes1.ComputedAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.ComputedAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintText)
 					attributes1.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ComputedAttribute.InfoHelpers.HintTextKey)
@@ -7416,7 +7416,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.ConsentAttribute.Constraints == nil {
 					attributes1.ConsentAttribute.Constraints = nil
 				} else {
-					attributes1.ConsentAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.ConsentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.ConsentAttribute.DefaultValue == nil {
 					attributes1.ConsentAttribute.DefaultValue = types.StringNull()
@@ -7439,7 +7439,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.ConsentAttribute.InfoHelpers == nil {
 					attributes1.ConsentAttribute.InfoHelpers = nil
 				} else {
-					attributes1.ConsentAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.ConsentAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintText)
 					attributes1.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.ConsentAttribute.InfoHelpers.HintTextKey)
@@ -7486,7 +7486,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.CountryAttribute.Constraints == nil {
 					attributes1.CountryAttribute.Constraints = nil
 				} else {
-					attributes1.CountryAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.CountryAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.CountryAttribute.DefaultValue == nil {
 					attributes1.CountryAttribute.DefaultValue = types.StringNull()
@@ -7505,7 +7505,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.CountryAttribute.InfoHelpers == nil {
 					attributes1.CountryAttribute.InfoHelpers = nil
 				} else {
-					attributes1.CountryAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.CountryAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintText)
 					attributes1.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CountryAttribute.InfoHelpers.HintTextKey)
@@ -7555,17 +7555,17 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.CurrencyAttribute.Constraints == nil {
 					attributes1.CurrencyAttribute.Constraints = nil
 				} else {
-					attributes1.CurrencyAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.CurrencyAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
-				attributes1.CurrencyAttribute.Currency = []tfTypes.Currency{}
+				attributes1.CurrencyAttribute.Currency = []tfTypes.CurrencyAttributeCurrency{}
 				for currencyCount, currencyItem := range attributesItem.CurrencyAttribute.Currency {
-					var currency1 tfTypes.Currency
-					if currencyItem.One != nil {
-						currency1.One = &tfTypes.One{}
-						currency1.One.Code = types.StringValue(currencyItem.One.Code)
-						currency1.One.Description = types.StringValue(currencyItem.One.Description)
-						currency1.One.Flag = types.StringPointerValue(currencyItem.One.Flag)
-						currency1.One.Symbol = types.StringValue(currencyItem.One.Symbol)
+					var currency1 tfTypes.CurrencyAttributeCurrency
+					if currencyItem.Currency1 != nil {
+						currency1.One = &tfTypes.CurrencyAttributeCurrency1{}
+						currency1.One.Code = types.StringValue(currencyItem.Currency1.Code)
+						currency1.One.Description = types.StringValue(currencyItem.Currency1.Description)
+						currency1.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
+						currency1.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
 					}
 					if currencyCount+1 > len(attributes1.CurrencyAttribute.Currency) {
 						attributes1.CurrencyAttribute.Currency = append(attributes1.CurrencyAttribute.Currency, currency1)
@@ -7591,7 +7591,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.CurrencyAttribute.InfoHelpers == nil {
 					attributes1.CurrencyAttribute.InfoHelpers = nil
 				} else {
-					attributes1.CurrencyAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.CurrencyAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintText)
 					attributes1.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.CurrencyAttribute.InfoHelpers.HintTextKey)
@@ -7637,7 +7637,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.DateAttribute.Constraints == nil {
 					attributes1.DateAttribute.Constraints = nil
 				} else {
-					attributes1.DateAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.DateAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.DateAttribute.DefaultValue == nil {
 					attributes1.DateAttribute.DefaultValue = types.StringNull()
@@ -7656,7 +7656,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.DateAttribute.InfoHelpers == nil {
 					attributes1.DateAttribute.InfoHelpers = nil
 				} else {
-					attributes1.DateAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.DateAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintText)
 					attributes1.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.DateAttribute.InfoHelpers.HintTextKey)
@@ -7710,7 +7710,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.FileAttribute.Constraints == nil {
 					attributes1.FileAttribute.Constraints = nil
 				} else {
-					attributes1.FileAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.FileAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.FileAttribute.DefaultAccessControl != nil {
 					attributes1.FileAttribute.DefaultAccessControl = types.StringValue(string(*attributesItem.FileAttribute.DefaultAccessControl))
@@ -7736,7 +7736,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.FileAttribute.InfoHelpers == nil {
 					attributes1.FileAttribute.InfoHelpers = nil
 				} else {
-					attributes1.FileAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.FileAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintText)
 					attributes1.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.FileAttribute.InfoHelpers.HintTextKey)
@@ -7783,7 +7783,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InternalAttribute.Constraints == nil {
 					attributes1.InternalAttribute.Constraints = nil
 				} else {
-					attributes1.InternalAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.InternalAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.InternalAttribute.DefaultValue == nil {
 					attributes1.InternalAttribute.DefaultValue = types.StringNull()
@@ -7802,7 +7802,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InternalAttribute.InfoHelpers == nil {
 					attributes1.InternalAttribute.InfoHelpers = nil
 				} else {
-					attributes1.InternalAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InternalAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintText)
 					attributes1.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalAttribute.InfoHelpers.HintTextKey)
@@ -7852,7 +7852,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InternalUserAttribute.Constraints == nil {
 					attributes1.InternalUserAttribute.Constraints = nil
 				} else {
-					attributes1.InternalUserAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.InternalUserAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.InternalUserAttribute.DefaultValue == nil {
 					attributes1.InternalUserAttribute.DefaultValue = types.StringNull()
@@ -7871,7 +7871,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InternalUserAttribute.InfoHelpers == nil {
 					attributes1.InternalUserAttribute.InfoHelpers = nil
 				} else {
-					attributes1.InternalUserAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InternalUserAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintText)
 					attributes1.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InternalUserAttribute.InfoHelpers.HintTextKey)
@@ -7921,7 +7921,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InvitationEmailAttribute.Constraints == nil {
 					attributes1.InvitationEmailAttribute.Constraints = nil
 				} else {
-					attributes1.InvitationEmailAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.InvitationEmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.InvitationEmailAttribute.DefaultValue == nil {
 					attributes1.InvitationEmailAttribute.DefaultValue = types.StringNull()
@@ -7940,7 +7940,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.InvitationEmailAttribute.InfoHelpers == nil {
 					attributes1.InvitationEmailAttribute.InfoHelpers = nil
 				} else {
-					attributes1.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintText)
 					attributes1.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.InvitationEmailAttribute.InfoHelpers.HintTextKey)
@@ -7990,7 +7990,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.LinkAttribute.Constraints == nil {
 					attributes1.LinkAttribute.Constraints = nil
 				} else {
-					attributes1.LinkAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.LinkAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.LinkAttribute.DefaultValue == nil {
 					attributes1.LinkAttribute.DefaultValue = types.StringNull()
@@ -8009,7 +8009,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.LinkAttribute.InfoHelpers == nil {
 					attributes1.LinkAttribute.InfoHelpers = nil
 				} else {
-					attributes1.LinkAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.LinkAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintText)
 					attributes1.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.LinkAttribute.InfoHelpers.HintTextKey)
@@ -8061,7 +8061,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.MultiSelectAttribute.Constraints == nil {
 					attributes1.MultiSelectAttribute.Constraints = nil
 				} else {
-					attributes1.MultiSelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.MultiSelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.MultiSelectAttribute.DefaultValue == nil {
 					attributes1.MultiSelectAttribute.DefaultValue = types.StringNull()
@@ -8081,7 +8081,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.MultiSelectAttribute.InfoHelpers == nil {
 					attributes1.MultiSelectAttribute.InfoHelpers = nil
 				} else {
-					attributes1.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintText)
 					attributes1.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.MultiSelectAttribute.InfoHelpers.HintTextKey)
@@ -8090,16 +8090,16 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.MultiSelectAttribute.Label = types.StringValue(attributesItem.MultiSelectAttribute.Label)
 				attributes1.MultiSelectAttribute.Layout = types.StringPointerValue(attributesItem.MultiSelectAttribute.Layout)
 				attributes1.MultiSelectAttribute.Name = types.StringValue(attributesItem.MultiSelectAttribute.Name)
-				attributes1.MultiSelectAttribute.Options = []tfTypes.OptionsObj{}
+				attributes1.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				for optionsVarCount, optionsVarItem := range attributesItem.MultiSelectAttribute.Options {
-					var optionsVar1 tfTypes.OptionsObj
+					var optionsVar1 tfTypes.MultiSelectAttributeOptions
 					if optionsVarItem.Str != nil {
 						optionsVar1.Str = types.StringPointerValue(optionsVarItem.Str)
 					}
-					if optionsVarItem.Two != nil {
-						optionsVar1.Two = &tfTypes.Two{}
-						optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem.Two.Title)
-						optionsVar1.Two.Value = types.StringValue(optionsVarItem.Two.Value)
+					if optionsVarItem.Options2 != nil {
+						optionsVar1.Two = &tfTypes.MultiSelectAttributeOptions2{}
+						optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem.Options2.Title)
+						optionsVar1.Two.Value = types.StringValue(optionsVarItem.Options2.Value)
 					}
 					if optionsVarCount+1 > len(attributes1.MultiSelectAttribute.Options) {
 						attributes1.MultiSelectAttribute.Options = append(attributes1.MultiSelectAttribute.Options, optionsVar1)
@@ -8149,7 +8149,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.NumberAttribute.Constraints == nil {
 					attributes1.NumberAttribute.Constraints = nil
 				} else {
-					attributes1.NumberAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.NumberAttribute.DefaultValue == nil {
 					attributes1.NumberAttribute.DefaultValue = types.StringNull()
@@ -8169,7 +8169,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.NumberAttribute.InfoHelpers == nil {
 					attributes1.NumberAttribute.InfoHelpers = nil
 				} else {
-					attributes1.NumberAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.NumberAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintText)
 					attributes1.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.NumberAttribute.InfoHelpers.HintTextKey)
@@ -8220,7 +8220,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.OrderedListAttribute.Constraints == nil {
 					attributes1.OrderedListAttribute.Constraints = nil
 				} else {
-					attributes1.OrderedListAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.OrderedListAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.OrderedListAttribute.DefaultValue == nil {
 					attributes1.OrderedListAttribute.DefaultValue = types.StringNull()
@@ -8239,7 +8239,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.OrderedListAttribute.InfoHelpers == nil {
 					attributes1.OrderedListAttribute.InfoHelpers = nil
 				} else {
-					attributes1.OrderedListAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.OrderedListAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintText)
 					attributes1.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.OrderedListAttribute.InfoHelpers.HintTextKey)
@@ -8289,7 +8289,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PartnerOrganisationAttribute.Constraints == nil {
 					attributes1.PartnerOrganisationAttribute.Constraints = nil
 				} else {
-					attributes1.PartnerOrganisationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.PartnerOrganisationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.PartnerOrganisationAttribute.DefaultValue == nil {
 					attributes1.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
@@ -8308,7 +8308,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PartnerOrganisationAttribute.InfoHelpers == nil {
 					attributes1.PartnerOrganisationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintText)
 					attributes1.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.InfoHelpers.HintTextKey)
@@ -8358,7 +8358,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PartnerStatusAttribute.Constraints == nil {
 					attributes1.PartnerStatusAttribute.Constraints = nil
 				} else {
-					attributes1.PartnerStatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.PartnerStatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.PartnerStatusAttribute.DefaultValue == nil {
 					attributes1.PartnerStatusAttribute.DefaultValue = types.StringNull()
@@ -8377,7 +8377,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PartnerStatusAttribute.InfoHelpers == nil {
 					attributes1.PartnerStatusAttribute.InfoHelpers = nil
 				} else {
-					attributes1.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintText)
 					attributes1.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PartnerStatusAttribute.InfoHelpers.HintTextKey)
@@ -8427,7 +8427,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PaymentMethodRelationAttribute.Constraints == nil {
 					attributes1.PaymentMethodRelationAttribute.Constraints = nil
 				} else {
-					attributes1.PaymentMethodRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.PaymentMethodRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.PaymentMethodRelationAttribute.DefaultValue == nil {
 					attributes1.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
@@ -8447,7 +8447,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PaymentMethodRelationAttribute.InfoHelpers == nil {
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintText)
 					attributes1.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
@@ -8497,7 +8497,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PurposeAttribute.Constraints == nil {
 					attributes1.PurposeAttribute.Constraints = nil
 				} else {
-					attributes1.PurposeAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.PurposeAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.PurposeAttribute.CreatedAt != nil {
 					attributes1.PurposeAttribute.CreatedAt = types.StringValue(attributesItem.PurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
@@ -8521,7 +8521,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.PurposeAttribute.InfoHelpers == nil {
 					attributes1.PurposeAttribute.InfoHelpers = nil
 				} else {
-					attributes1.PurposeAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.PurposeAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintText)
 					attributes1.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.PurposeAttribute.InfoHelpers.HintTextKey)
@@ -8578,9 +8578,9 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
 				}
-				attributes1.RelationAttribute.Actions = []tfTypes.Actions{}
+				attributes1.RelationAttribute.Actions = []tfTypes.RelationAttributeActionsInput{}
 				for actionsCount, actionsItem := range attributesItem.RelationAttribute.Actions {
-					var actions1 tfTypes.Actions
+					var actions1 tfTypes.RelationAttributeActionsInput
 					if actionsItem.ActionType != nil {
 						actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
 					} else {
@@ -8592,7 +8592,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 					if actionsItem.NewEntityItem == nil {
 						actions1.NewEntityItem = nil
 					} else {
-						actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
+						actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItemInput{}
 						if actionsItem.NewEntityItem.ACL == nil {
 							actions1.NewEntityItem.ACL = nil
 						} else {
@@ -8692,7 +8692,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.RelationAttribute.Constraints == nil {
 					attributes1.RelationAttribute.Constraints = nil
 				} else {
-					attributes1.RelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.RelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.RelationAttribute.DefaultValue == nil {
 					attributes1.RelationAttribute.DefaultValue = types.StringNull()
@@ -8725,7 +8725,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.RelationAttribute.InfoHelpers == nil {
 					attributes1.RelationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.RelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.RelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintText)
 					attributes1.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RelationAttribute.InfoHelpers.HintTextKey)
@@ -8772,9 +8772,9 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				}
 				attributes1.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RelationAttribute.ShowInTable)
 				attributes1.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem.RelationAttribute.Sortable)
-				attributes1.RelationAttribute.SummaryFields = []tfTypes.SummaryFields{}
+				attributes1.RelationAttribute.SummaryFields = []tfTypes.RelationAttributeSummaryFields{}
 				for summaryFieldsCount, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
-					var summaryFields1 tfTypes.SummaryFields
+					var summaryFields1 tfTypes.RelationAttributeSummaryFields
 					if summaryFieldsItem.Str != nil {
 						summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
 					}
@@ -8810,7 +8810,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.RepeatableAttribute.Constraints == nil {
 					attributes1.RepeatableAttribute.Constraints = nil
 				} else {
-					attributes1.RepeatableAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.RepeatableAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.RepeatableAttribute.DefaultValue == nil {
 					attributes1.RepeatableAttribute.DefaultValue = types.StringNull()
@@ -8831,7 +8831,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.RepeatableAttribute.InfoHelpers == nil {
 					attributes1.RepeatableAttribute.InfoHelpers = nil
 				} else {
-					attributes1.RepeatableAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.RepeatableAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintText)
 					attributes1.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.RepeatableAttribute.InfoHelpers.HintTextKey)
@@ -8888,7 +8888,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.SelectAttribute.Constraints == nil {
 					attributes1.SelectAttribute.Constraints = nil
 				} else {
-					attributes1.SelectAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.SelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.SelectAttribute.DefaultValue == nil {
 					attributes1.SelectAttribute.DefaultValue = types.StringNull()
@@ -8907,7 +8907,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.SelectAttribute.InfoHelpers == nil {
 					attributes1.SelectAttribute.InfoHelpers = nil
 				} else {
-					attributes1.SelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.SelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintText)
 					attributes1.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SelectAttribute.InfoHelpers.HintTextKey)
@@ -8963,7 +8963,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.SequenceAttribute.Constraints == nil {
 					attributes1.SequenceAttribute.Constraints = nil
 				} else {
-					attributes1.SequenceAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.SequenceAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.SequenceAttribute.DefaultValue == nil {
 					attributes1.SequenceAttribute.DefaultValue = types.StringNull()
@@ -8982,7 +8982,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.SequenceAttribute.InfoHelpers == nil {
 					attributes1.SequenceAttribute.InfoHelpers = nil
 				} else {
-					attributes1.SequenceAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.SequenceAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintText)
 					attributes1.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.SequenceAttribute.InfoHelpers.HintTextKey)
@@ -9034,7 +9034,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.StatusAttribute.Constraints == nil {
 					attributes1.StatusAttribute.Constraints = nil
 				} else {
-					attributes1.StatusAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.StatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.StatusAttribute.DefaultValue == nil {
 					attributes1.StatusAttribute.DefaultValue = types.StringNull()
@@ -9053,7 +9053,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.StatusAttribute.InfoHelpers == nil {
 					attributes1.StatusAttribute.InfoHelpers = nil
 				} else {
-					attributes1.StatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.StatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintText)
 					attributes1.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.StatusAttribute.InfoHelpers.HintTextKey)
@@ -9062,16 +9062,16 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.StatusAttribute.Label = types.StringValue(attributesItem.StatusAttribute.Label)
 				attributes1.StatusAttribute.Layout = types.StringPointerValue(attributesItem.StatusAttribute.Layout)
 				attributes1.StatusAttribute.Name = types.StringValue(attributesItem.StatusAttribute.Name)
-				attributes1.StatusAttribute.Options = []tfTypes.OptionsObj{}
+				attributes1.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
 				for optionsVarCount1, optionsVarItem1 := range attributesItem.StatusAttribute.Options {
-					var optionsVar2 tfTypes.OptionsObj
+					var optionsVar2 tfTypes.MultiSelectAttributeOptions
 					if optionsVarItem1.Str != nil {
 						optionsVar2.Str = types.StringPointerValue(optionsVarItem1.Str)
 					}
-					if optionsVarItem1.Options2 != nil {
-						optionsVar2.Two = &tfTypes.Two{}
-						optionsVar2.Two.Title = types.StringPointerValue(optionsVarItem1.Options2.Title)
-						optionsVar2.Two.Value = types.StringValue(optionsVarItem1.Options2.Value)
+					if optionsVarItem1.StatusAttributeOptions2 != nil {
+						optionsVar2.Two = &tfTypes.MultiSelectAttributeOptions2{}
+						optionsVar2.Two.Title = types.StringPointerValue(optionsVarItem1.StatusAttributeOptions2.Title)
+						optionsVar2.Two.Value = types.StringValue(optionsVarItem1.StatusAttributeOptions2.Value)
 					}
 					if optionsVarCount1+1 > len(attributes1.StatusAttribute.Options) {
 						attributes1.StatusAttribute.Options = append(attributes1.StatusAttribute.Options, optionsVar2)
@@ -9121,7 +9121,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.TagsAttribute.Constraints == nil {
 					attributes1.TagsAttribute.Constraints = nil
 				} else {
-					attributes1.TagsAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.TagsAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.TagsAttribute.DefaultValue == nil {
 					attributes1.TagsAttribute.DefaultValue = types.StringNull()
@@ -9140,7 +9140,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.TagsAttribute.InfoHelpers == nil {
 					attributes1.TagsAttribute.InfoHelpers = nil
 				} else {
-					attributes1.TagsAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.TagsAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintText)
 					attributes1.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TagsAttribute.InfoHelpers.HintTextKey)
@@ -9198,7 +9198,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.TextAttribute.Constraints == nil {
 					attributes1.TextAttribute.Constraints = nil
 				} else {
-					attributes1.TextAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.TextAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.TextAttribute.DefaultValue == nil {
 					attributes1.TextAttribute.DefaultValue = types.StringNull()
@@ -9217,7 +9217,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.TextAttribute.InfoHelpers == nil {
 					attributes1.TextAttribute.InfoHelpers = nil
 				} else {
-					attributes1.TextAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.TextAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintText)
 					attributes1.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.TextAttribute.InfoHelpers.HintTextKey)
@@ -9268,7 +9268,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.UserRelationAttribute.Constraints == nil {
 					attributes1.UserRelationAttribute.Constraints = nil
 				} else {
-					attributes1.UserRelationAttribute.Constraints = &tfTypes.AddressRelationAttributeConstraints{}
+					attributes1.UserRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
 				if attributesItem.UserRelationAttribute.DefaultValue == nil {
 					attributes1.UserRelationAttribute.DefaultValue = types.StringNull()
@@ -9287,7 +9287,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				if attributesItem.UserRelationAttribute.InfoHelpers == nil {
 					attributes1.UserRelationAttribute.InfoHelpers = nil
 				} else {
-					attributes1.UserRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeInfoHelpers{}
+					attributes1.UserRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 					attributes1.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintCustomComponent)
 					attributes1.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintText)
 					attributes1.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(attributesItem.UserRelationAttribute.InfoHelpers.HintTextKey)

@@ -89,19 +89,19 @@ func (e *MultiSelectAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Two struct {
+type Options2 struct {
 	Value string  `json:"value"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *Two) GetValue() string {
+func (o *Options2) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *Two) GetTitle() *string {
+func (o *Options2) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,13 +111,13 @@ func (o *Two) GetTitle() *string {
 type OptionsObjType string
 
 const (
-	OptionsObjTypeStr OptionsObjType = "str"
-	OptionsObjTypeTwo OptionsObjType = "2"
+	OptionsObjTypeStr      OptionsObjType = "str"
+	OptionsObjTypeOptions2 OptionsObjType = "options_2"
 )
 
 type OptionsObj struct {
-	Str *string
-	Two *Two
+	Str      *string
+	Options2 *Options2
 
 	Type OptionsObjType
 }
@@ -131,21 +131,21 @@ func CreateOptionsObjStr(str string) OptionsObj {
 	}
 }
 
-func CreateOptionsObjTwo(two Two) OptionsObj {
-	typ := OptionsObjTypeTwo
+func CreateOptionsObjOptions2(options2 Options2) OptionsObj {
+	typ := OptionsObjTypeOptions2
 
 	return OptionsObj{
-		Two:  &two,
-		Type: typ,
+		Options2: &options2,
+		Type:     typ,
 	}
 }
 
 func (u *OptionsObj) UnmarshalJSON(data []byte) error {
 
-	var two Two = Two{}
-	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
-		u.Two = &two
-		u.Type = OptionsObjTypeTwo
+	var options2 Options2 = Options2{}
+	if err := utils.UnmarshalJSON(data, &options2, "", true, false); err == nil {
+		u.Options2 = &options2
+		u.Type = OptionsObjTypeOptions2
 		return nil
 	}
 
@@ -164,8 +164,8 @@ func (u OptionsObj) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.Two != nil {
-		return utils.MarshalJSON(u.Two, "", true)
+	if u.Options2 != nil {
+		return utils.MarshalJSON(u.Options2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type OptionsObj: all fields are null")

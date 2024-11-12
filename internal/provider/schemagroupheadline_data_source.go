@@ -59,7 +59,8 @@ func (r *SchemaGroupHeadlineDataSource) Schema(ctx context.Context, req datasour
 				Description: `Schema Slug and the Schema Group ID`,
 			},
 			"divider": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: `must be one of ["top_divider", "bottom_divider"]`,
 			},
 			"enable_divider": schema.BoolAttribute{
 				Computed: true,
@@ -98,7 +99,8 @@ func (r *SchemaGroupHeadlineDataSource) Schema(ctx context.Context, req datasour
 				Description: `Schema slug the capability belongs to`,
 			},
 			"type": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: `must be one of ["headline"]`,
 			},
 		},
 	}

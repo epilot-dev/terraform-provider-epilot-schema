@@ -2,5 +2,5 @@
 
 package types
 
-type AddressRelationAttributeConstraints struct {
+type EntityDefaultTableParams struct {
 }

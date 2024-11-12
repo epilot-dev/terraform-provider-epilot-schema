@@ -60,10 +60,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"address_relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -98,7 +109,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -111,22 +123,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -136,11 +152,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -159,10 +170,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -170,7 +177,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -200,7 +208,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["relation_address"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -211,10 +220,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"automation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -246,7 +266,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -259,22 +280,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -284,11 +309,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -307,10 +327,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -318,7 +334,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -348,7 +365,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["automation"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -359,10 +377,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"boolean_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -394,7 +423,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -407,22 +437,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -432,11 +466,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -455,10 +484,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -466,7 +491,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -496,7 +522,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["boolean"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -507,10 +534,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"computed_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -542,7 +580,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -555,22 +594,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -580,11 +623,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -603,10 +641,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -614,7 +648,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -644,7 +679,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["computed"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -655,10 +691,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"consent_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -690,7 +737,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -707,22 +755,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -732,11 +784,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -755,10 +802,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -766,7 +809,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -799,7 +843,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["consent"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -810,10 +855,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"country_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -845,7 +901,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -858,22 +915,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -883,11 +944,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -906,10 +962,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -917,7 +969,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -947,7 +1000,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["country"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -958,10 +1012,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"currency_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"currency": schema.ListNestedAttribute{
 									Computed: true,
@@ -1022,7 +1087,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1035,22 +1101,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1060,11 +1130,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1083,10 +1148,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1094,7 +1155,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1124,7 +1186,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["currency"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1135,10 +1198,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"date_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1170,7 +1244,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1183,22 +1258,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1208,11 +1287,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1231,10 +1305,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1242,7 +1312,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1272,7 +1343,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["date", "datetime"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1283,18 +1355,30 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"file_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"allowed_extensions": schema.ListAttribute{
 									Computed:    true,
 									ElementType: types.StringType,
 									Description: `List of file extensions (without the dot suffix)`,
 								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_access_control": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["public-read", "private"]`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1310,7 +1394,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"enable_description": schema.BoolAttribute{
 									Computed: true,
 									MarkdownDescription: `When set to true, an i18n description will be used alongside the attribute label.` + "\n" +
-										`This description should be set through the platform locales in the form: ` + "`" + `file.{attribute_name}.description_text` + "`" + `.`,
+										`This description should be set through the platform locales in the form: ` + "`" + `file.{attribute_name}.description_text` + "`" + `.` + "\n" +
+										``,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
@@ -1335,7 +1420,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1348,22 +1434,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1373,11 +1463,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"multiple": schema.BoolAttribute{
 									Computed: true,
@@ -1399,10 +1484,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1410,7 +1491,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1440,7 +1522,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["image", "file"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1451,10 +1534,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"internal_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1486,7 +1580,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1499,22 +1594,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1524,11 +1623,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1547,10 +1641,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1558,7 +1648,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1588,7 +1679,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["internal"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1599,10 +1691,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"internal_user_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1634,7 +1737,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1647,22 +1751,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1672,11 +1780,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1695,10 +1798,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1706,7 +1805,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1736,7 +1836,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["internal_user"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1747,10 +1848,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"invitation_email_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1782,7 +1894,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1795,22 +1908,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1820,11 +1937,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1843,10 +1955,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -1854,7 +1962,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -1884,7 +1993,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["invitation_email"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -1895,10 +2005,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"link_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -1930,7 +2051,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -1943,22 +2065,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -1968,11 +2094,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -1991,10 +2112,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2002,7 +2119,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2032,7 +2150,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["link"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2043,6 +2162,15 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"multi_select_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"allow_any": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow arbitrary input values in addition to provided options`,
@@ -2052,9 +2180,11 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `controls if the 360 ui will allow the user to enter a value which is not defined by the options`,
 								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2090,7 +2220,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2103,22 +2234,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2128,11 +2263,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2172,10 +2302,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2183,7 +2309,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2213,7 +2340,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["multiselect", "checkbox"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2224,10 +2352,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"number_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2262,7 +2401,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2275,22 +2415,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2300,11 +2444,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2323,10 +2462,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2334,7 +2469,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2368,7 +2504,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["number"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2379,10 +2516,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"ordered_list_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2414,7 +2562,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2427,22 +2576,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2452,11 +2605,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2475,10 +2623,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2486,7 +2630,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2516,7 +2661,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["ordered_list"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2527,10 +2673,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"partner_organisation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2562,7 +2719,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2575,22 +2733,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2600,11 +2762,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2623,10 +2780,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2634,7 +2787,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2664,7 +2818,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["partner_organisation"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2675,10 +2830,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"partner_status_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2710,7 +2876,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2723,22 +2890,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2748,11 +2919,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2771,10 +2937,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2782,7 +2944,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2812,7 +2975,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["partner_status"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2823,10 +2987,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"payment_method_relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -2861,7 +3036,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -2874,22 +3050,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -2899,11 +3079,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -2922,10 +3097,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -2933,7 +3104,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -2963,7 +3135,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["relation_payment_method"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -2974,10 +3147,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"purpose_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the taxonomy classification`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"created_at": schema.StringAttribute{
 									Computed: true,
@@ -3012,7 +3196,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed: true,
@@ -3024,22 +3209,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -3049,11 +3238,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the taxonomy classification`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -3076,10 +3260,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -3087,7 +3267,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -3121,7 +3302,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["purpose"]`,
 								},
 								"updated_at": schema.StringAttribute{
 									Computed: true,
@@ -3135,6 +3317,15 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"actions": schema.ListNestedAttribute{
 									Computed: true,
 									NestedObject: schema.NestedAttributeObject{
@@ -3147,7 +3338,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 													`|--------|-------------|` + "\n" +
 													`| add_existing | Enables the user to pick an existing entity to link as relation |` + "\n" +
 													`| create_new | Enables the user to create a new entity using the first/main ` + "`" + `allowed_schemas` + "`" + ` schema` + "\n" +
-													`| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |`,
+													`| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |` + "\n" +
+													`` + "\n" +
+													`must be one of ["add_existing", "create_new", "create_from_existing"]`,
 											},
 											"default": schema.BoolAttribute{
 												Computed:    true,
@@ -3185,10 +3378,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 															},
 														},
 														Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
-													},
-													"additional_properties": schema.StringAttribute{
-														Computed:    true,
-														Description: `Parsed as JSON.`,
 													},
 													"created_at": schema.StringAttribute{
 														Computed: true,
@@ -3237,6 +3426,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 													"updated_at": schema.StringAttribute{
 														Computed: true,
 													},
+													"additional_properties": schema.StringAttribute{
+														Computed:    true,
+														Description: `Parsed as JSON.`,
+													},
 												},
 											},
 											"settings_flag": schema.ListNestedAttribute{
@@ -3267,9 +3460,11 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									ElementType: types.StringType,
 								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -3283,10 +3478,12 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
 								},
 								"drawer_size": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["small", "medium", "large"]`,
 								},
 								"edit_mode": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["list-view"]`,
 								},
 								"enable_relation_picker": schema.BoolAttribute{
 									Computed:    true,
@@ -3333,22 +3530,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -3358,11 +3559,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -3381,25 +3577,23 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
 								"relation_affinity_mode": schema.StringAttribute{
 									Computed:    true,
-									Description: `Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.`,
+									Description: `Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
 								},
 								"relation_type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["has_many", "has_one"]`,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -3462,7 +3656,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									},
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["relation"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -3473,10 +3668,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"repeatable_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -3515,7 +3721,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -3528,22 +3735,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -3553,11 +3764,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -3576,22 +3782,19 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
 								"relation_affinity_mode": schema.StringAttribute{
 									Computed:    true,
-									Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.`,
+									Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
 								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"repeatable": schema.BoolAttribute{
 									Computed: true,
@@ -3624,7 +3827,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -3635,14 +3839,25 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"select_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"allow_any": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow arbitrary input values in addition to provided options`,
 								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -3674,7 +3889,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -3687,22 +3903,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -3712,11 +3932,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -3739,10 +3954,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -3750,7 +3961,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -3780,7 +3992,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["select", "radio"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -3791,10 +4004,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"sequence_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -3826,7 +4050,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -3839,22 +4064,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -3864,11 +4093,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -3891,10 +4115,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -3902,7 +4122,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -3935,7 +4156,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["sequence"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -3946,10 +4168,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"status_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -3981,7 +4214,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -3994,22 +4228,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -4019,11 +4257,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -4065,10 +4298,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4076,7 +4305,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -4106,7 +4336,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["status"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -4117,10 +4348,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"tags_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -4152,7 +4394,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -4165,22 +4408,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -4190,11 +4437,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -4217,10 +4459,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4228,7 +4466,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -4262,7 +4501,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									ElementType: types.StringType,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["tags"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -4273,10 +4513,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"text_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -4308,7 +4559,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -4321,22 +4573,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -4346,11 +4602,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"multiline": schema.BoolAttribute{
 									Computed: true,
@@ -4372,10 +4623,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4383,7 +4630,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -4413,7 +4661,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["string"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -4424,10 +4673,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"user_relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
-									Computed: true,
+									Computed:   true,
+									Attributes: map[string]schema.Attribute{},
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-										`These constraints should and will be enforced by the attribute renderer.`,
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -4459,7 +4719,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"icon": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -4472,22 +4733,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 											Computed: true,
 											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
 												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
 										},
 										"hint_text_key": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-												`The key should be a valid i18n key.`,
+												`The key should be a valid i18n key.` + "\n" +
+												``,
 										},
 										"hint_tooltip_placement": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
 										},
 									},
 									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
@@ -4497,11 +4762,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"layout": schema.StringAttribute{
 									Computed: true,
-								},
-								"manifest": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"multiple": schema.BoolAttribute{
 									Computed: true,
@@ -4523,10 +4783,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
 								},
-								"purpose": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
-								},
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
@@ -4534,7 +4790,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-										`Note: Empty or invalid expression have no effect on the field visibility.`,
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -4564,7 +4821,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `must be one of ["relation_user"]`,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,

@@ -558,24 +558,22 @@ type EntitySchemaItem struct {
 	Draft     *bool   `json:"draft,omitempty"`
 	Icon      *string `json:"icon,omitempty"`
 	// Template for rendering the title field. Uses handlebars
-	TitleTemplate *string            `json:"title_template,omitempty"`
-	UIConfig      *UIConfig          `json:"ui_config,omitempty"`
-	Capabilities  []EntityCapability `json:"capabilities"`
-	// A list of Group Titles and associated settings if present.
-	GroupSettings []EntitySchemaGroup `json:"group_settings,omitempty"`
+	TitleTemplate *string   `json:"title_template,omitempty"`
+	UIConfig      *UIConfig `json:"ui_config,omitempty"`
 	// Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 	// - Managed Properties: are interpreted and transformed into layout styles
 	// - Un-managed Properties: are appended as styles into the attribute mounting node
 	//
 	LayoutSettings *LayoutSettings `json:"layout_settings,omitempty"`
 	DialogConfig   map[string]any  `json:"dialog_config,omitempty"`
-	// An ordered list of attributes the entity contains
-	Attributes []Attribute `json:"attributes"`
-	Purpose    []string    `json:"_purpose,omitempty"`
+	Purpose        []string        `json:"_purpose,omitempty"`
 	// Advanced: explicit Elasticsearch index mapping definitions for entity data
 	//
 	ExplicitSearchMappings map[string]SearchMappings `json:"explicit_search_mappings,omitempty"`
-	GroupHeadlines         []GroupHeadline           `json:"group_headlines,omitempty"`
+	Attributes             any                       `json:"attributes"`
+	Capabilities           any                       `json:"capabilities"`
+	GroupSettings          any                       `json:"group_settings,omitempty"`
+	GroupHeadlines         any                       `json:"group_headlines,omitempty"`
 }
 
 func (o *EntitySchemaItem) GetID() *string {
@@ -683,20 +681,6 @@ func (o *EntitySchemaItem) GetUIConfig() *UIConfig {
 	return o.UIConfig
 }
 
-func (o *EntitySchemaItem) GetCapabilities() []EntityCapability {
-	if o == nil {
-		return []EntityCapability{}
-	}
-	return o.Capabilities
-}
-
-func (o *EntitySchemaItem) GetGroupSettings() []EntitySchemaGroup {
-	if o == nil {
-		return nil
-	}
-	return o.GroupSettings
-}
-
 func (o *EntitySchemaItem) GetLayoutSettings() *LayoutSettings {
 	if o == nil {
 		return nil
@@ -709,13 +693,6 @@ func (o *EntitySchemaItem) GetDialogConfig() map[string]any {
 		return nil
 	}
 	return o.DialogConfig
-}
-
-func (o *EntitySchemaItem) GetAttributes() []Attribute {
-	if o == nil {
-		return []Attribute{}
-	}
-	return o.Attributes
 }
 
 func (o *EntitySchemaItem) GetPurpose() []string {
@@ -732,210 +709,28 @@ func (o *EntitySchemaItem) GetExplicitSearchMappings() map[string]SearchMappings
 	return o.ExplicitSearchMappings
 }
 
-func (o *EntitySchemaItem) GetGroupHeadlines() []GroupHeadline {
+func (o *EntitySchemaItem) GetAttributes() any {
 	if o == nil {
 		return nil
 	}
-	return o.GroupHeadlines
+	return o.Attributes
 }
 
-// EntitySchemaItemInput - The "type" of an Entity. Describes the shape. Includes Entity Attributes, Relations and Capabilities.
-type EntitySchemaItemInput struct {
-	// Generated uuid for schema
-	ID        *string `json:"id,omitempty"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	// URL-friendly identifier for the entity schema
-	Slug    string `json:"slug"`
-	Version *int64 `json:"version,omitempty"`
-	// Reference to blueprint
-	Blueprint *string `json:"blueprint,omitempty"`
-	// This schema should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This schema should only be active when one of the organization settings is enabled
-	EnableSetting []string `json:"enable_setting,omitempty"`
-	// User-friendly identifier for the entity schema
-	Name      string  `json:"name"`
-	Plural    string  `json:"plural"`
-	Published *bool   `json:"published,omitempty"`
-	Draft     *bool   `json:"draft,omitempty"`
-	Icon      *string `json:"icon,omitempty"`
-	// Template for rendering the title field. Uses handlebars
-	TitleTemplate *string                 `json:"title_template,omitempty"`
-	UIConfig      *UIConfig               `json:"ui_config,omitempty"`
-	Capabilities  []EntityCapabilityInput `json:"capabilities"`
-	// A list of Group Titles and associated settings if present.
-	GroupSettings []EntitySchemaGroup `json:"group_settings,omitempty"`
-	// Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
-	// - Managed Properties: are interpreted and transformed into layout styles
-	// - Un-managed Properties: are appended as styles into the attribute mounting node
-	//
-	LayoutSettings *LayoutSettings `json:"layout_settings,omitempty"`
-	DialogConfig   map[string]any  `json:"dialog_config,omitempty"`
-	// An ordered list of attributes the entity contains
-	Attributes []AttributeInput `json:"attributes"`
-	Purpose    []string         `json:"_purpose,omitempty"`
-	// Advanced: explicit Elasticsearch index mapping definitions for entity data
-	//
-	ExplicitSearchMappings map[string]SearchMappings `json:"explicit_search_mappings,omitempty"`
-	GroupHeadlines         []GroupHeadline           `json:"group_headlines,omitempty"`
-}
-
-func (o *EntitySchemaItemInput) GetID() *string {
+func (o *EntitySchemaItem) GetCapabilities() any {
 	if o == nil {
 		return nil
-	}
-	return o.ID
-}
-
-func (o *EntitySchemaItemInput) GetCreatedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *EntitySchemaItemInput) GetUpdatedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *EntitySchemaItemInput) GetSlug() string {
-	if o == nil {
-		return ""
-	}
-	return o.Slug
-}
-
-func (o *EntitySchemaItemInput) GetVersion() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Version
-}
-
-func (o *EntitySchemaItemInput) GetBlueprint() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Blueprint
-}
-
-func (o *EntitySchemaItemInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *EntitySchemaItemInput) GetEnableSetting() []string {
-	if o == nil {
-		return nil
-	}
-	return o.EnableSetting
-}
-
-func (o *EntitySchemaItemInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *EntitySchemaItemInput) GetPlural() string {
-	if o == nil {
-		return ""
-	}
-	return o.Plural
-}
-
-func (o *EntitySchemaItemInput) GetPublished() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Published
-}
-
-func (o *EntitySchemaItemInput) GetDraft() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Draft
-}
-
-func (o *EntitySchemaItemInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *EntitySchemaItemInput) GetTitleTemplate() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TitleTemplate
-}
-
-func (o *EntitySchemaItemInput) GetUIConfig() *UIConfig {
-	if o == nil {
-		return nil
-	}
-	return o.UIConfig
-}
-
-func (o *EntitySchemaItemInput) GetCapabilities() []EntityCapabilityInput {
-	if o == nil {
-		return []EntityCapabilityInput{}
 	}
 	return o.Capabilities
 }
 
-func (o *EntitySchemaItemInput) GetGroupSettings() []EntitySchemaGroup {
+func (o *EntitySchemaItem) GetGroupSettings() any {
 	if o == nil {
 		return nil
 	}
 	return o.GroupSettings
 }
 
-func (o *EntitySchemaItemInput) GetLayoutSettings() *LayoutSettings {
-	if o == nil {
-		return nil
-	}
-	return o.LayoutSettings
-}
-
-func (o *EntitySchemaItemInput) GetDialogConfig() map[string]any {
-	if o == nil {
-		return nil
-	}
-	return o.DialogConfig
-}
-
-func (o *EntitySchemaItemInput) GetAttributes() []AttributeInput {
-	if o == nil {
-		return []AttributeInput{}
-	}
-	return o.Attributes
-}
-
-func (o *EntitySchemaItemInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *EntitySchemaItemInput) GetExplicitSearchMappings() map[string]SearchMappings {
-	if o == nil {
-		return nil
-	}
-	return o.ExplicitSearchMappings
-}
-
-func (o *EntitySchemaItemInput) GetGroupHeadlines() []GroupHeadline {
+func (o *EntitySchemaItem) GetGroupHeadlines() any {
 	if o == nil {
 		return nil
 	}

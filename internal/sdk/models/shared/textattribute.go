@@ -62,26 +62,26 @@ func (o *InfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
-type Type string
+type TextAttributeType string
 
 const (
-	TypeString Type = "string"
+	TextAttributeTypeString TextAttributeType = "string"
 )
 
-func (e Type) ToPointer() *Type {
+func (e TextAttributeType) ToPointer() *TextAttributeType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "string":
-		*e = Type(v)
+		*e = TextAttributeType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for TextAttributeType: %v", v)
 	}
 }
 
@@ -136,9 +136,9 @@ type TextAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *InfoHelpers `json:"info_helpers,omitempty"`
-	Type        *Type        `json:"type,omitempty"`
-	Multiline   *bool        `json:"multiline,omitempty"`
+	InfoHelpers *InfoHelpers       `json:"info_helpers,omitempty"`
+	Type        *TextAttributeType `json:"type,omitempty"`
+	Multiline   *bool              `json:"multiline,omitempty"`
 }
 
 func (t TextAttribute) MarshalJSON() ([]byte, error) {
@@ -341,7 +341,7 @@ func (o *TextAttribute) GetInfoHelpers() *InfoHelpers {
 	return o.InfoHelpers
 }
 
-func (o *TextAttribute) GetType() *Type {
+func (o *TextAttribute) GetType() *TextAttributeType {
 	if o == nil {
 		return nil
 	}

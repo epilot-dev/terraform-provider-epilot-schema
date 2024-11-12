@@ -42,9 +42,9 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 	} else {
 		enableDivider = nil
 	}
-	divider := new(shared.GroupHeadlineWithCompositeIDDivider)
+	divider := new(shared.Divider)
 	if !r.Divider.IsUnknown() && !r.Divider.IsNull() {
-		*divider = shared.GroupHeadlineWithCompositeIDDivider(r.Divider.ValueString())
+		*divider = shared.Divider(r.Divider.ValueString())
 	} else {
 		divider = nil
 	}

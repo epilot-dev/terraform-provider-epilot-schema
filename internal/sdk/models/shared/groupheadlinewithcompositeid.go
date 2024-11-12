@@ -31,17 +31,17 @@ func (e *GroupHeadlineWithCompositeIDType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type GroupHeadlineWithCompositeIDDivider string
+type Divider string
 
 const (
-	GroupHeadlineWithCompositeIDDividerTopDivider    GroupHeadlineWithCompositeIDDivider = "top_divider"
-	GroupHeadlineWithCompositeIDDividerBottomDivider GroupHeadlineWithCompositeIDDivider = "bottom_divider"
+	DividerTopDivider    Divider = "top_divider"
+	DividerBottomDivider Divider = "bottom_divider"
 )
 
-func (e GroupHeadlineWithCompositeIDDivider) ToPointer() *GroupHeadlineWithCompositeIDDivider {
+func (e Divider) ToPointer() *Divider {
 	return &e
 }
-func (e *GroupHeadlineWithCompositeIDDivider) UnmarshalJSON(data []byte) error {
+func (e *Divider) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -50,10 +50,10 @@ func (e *GroupHeadlineWithCompositeIDDivider) UnmarshalJSON(data []byte) error {
 	case "top_divider":
 		fallthrough
 	case "bottom_divider":
-		*e = GroupHeadlineWithCompositeIDDivider(v)
+		*e = Divider(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GroupHeadlineWithCompositeIDDivider: %v", v)
+		return fmt.Errorf("invalid value for Divider: %v", v)
 	}
 }
 
@@ -66,11 +66,11 @@ type GroupHeadlineWithCompositeID struct {
 	// The group of headline attribute
 	Group string `json:"group"`
 	// The order of headline attribute
-	Order         *int64                               `json:"order,omitempty"`
-	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
-	EnableDivider *bool                                `default:"false" json:"enable_divider"`
-	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
-	Purpose       []string                             `json:"_purpose,omitempty"`
+	Order         *int64                           `json:"order,omitempty"`
+	Type          GroupHeadlineWithCompositeIDType `json:"type"`
+	EnableDivider *bool                            `default:"false" json:"enable_divider"`
+	Divider       *Divider                         `json:"divider,omitempty"`
+	Purpose       []string                         `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema group headline
 	Manifest    []string `json:"_manifest,omitempty"`
 	CompositeID *string  `json:"composite_id,omitempty"`
@@ -145,7 +145,7 @@ func (o *GroupHeadlineWithCompositeID) GetEnableDivider() *bool {
 	return o.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeID) GetDivider() *GroupHeadlineWithCompositeIDDivider {
+func (o *GroupHeadlineWithCompositeID) GetDivider() *Divider {
 	if o == nil {
 		return nil
 	}
@@ -189,11 +189,11 @@ type GroupHeadlineWithCompositeIDInput struct {
 	// The group of headline attribute
 	Group string `json:"group"`
 	// The order of headline attribute
-	Order         *int64                               `json:"order,omitempty"`
-	Type          GroupHeadlineWithCompositeIDType     `json:"type"`
-	EnableDivider *bool                                `default:"false" json:"enable_divider"`
-	Divider       *GroupHeadlineWithCompositeIDDivider `json:"divider,omitempty"`
-	Purpose       []string                             `json:"_purpose,omitempty"`
+	Order         *int64                           `json:"order,omitempty"`
+	Type          GroupHeadlineWithCompositeIDType `json:"type"`
+	EnableDivider *bool                            `default:"false" json:"enable_divider"`
+	Divider       *Divider                         `json:"divider,omitempty"`
+	Purpose       []string                         `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema group headline
 	Manifest []string `json:"_manifest,omitempty"`
 	// Schema slug the capability belongs to
@@ -267,7 +267,7 @@ func (o *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
 	return o.EnableDivider
 }
 
-func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *GroupHeadlineWithCompositeIDDivider {
+func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
 	if o == nil {
 		return nil
 	}

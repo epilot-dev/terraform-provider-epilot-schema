@@ -10,9 +10,9 @@ import (
 
 type PutSchemaRequest struct {
 	// Entity Type
-	Slug             string                        `pathParam:"style=simple,explode=false,name=slug"`
-	Draft            *bool                         `default:"false" queryParam:"style=form,explode=true,name=draft"`
-	EntitySchemaItem *shared.EntitySchemaItemInput `request:"mediaType=application/json"`
+	Slug             string                   `pathParam:"style=simple,explode=false,name=slug"`
+	Draft            *bool                    `default:"false" queryParam:"style=form,explode=true,name=draft"`
+	EntitySchemaItem *shared.EntitySchemaItem `request:"mediaType=application/json"`
 }
 
 func (p PutSchemaRequest) MarshalJSON() ([]byte, error) {
@@ -40,7 +40,7 @@ func (o *PutSchemaRequest) GetDraft() *bool {
 	return o.Draft
 }
 
-func (o *PutSchemaRequest) GetEntitySchemaItem() *shared.EntitySchemaItemInput {
+func (o *PutSchemaRequest) GetEntitySchemaItem() *shared.EntitySchemaItem {
 	if o == nil {
 		return nil
 	}

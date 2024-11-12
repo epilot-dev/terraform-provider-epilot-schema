@@ -35,43 +35,43 @@ func (e *Source) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreatedBy2 - A system-created view
-type CreatedBy2 struct {
+// Two - A system-created view
+type Two struct {
 	Source               *Source `json:"source,omitempty"`
 	AdditionalProperties any     `additionalProperties:"true" json:"-"`
 }
 
-func (c CreatedBy2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (t Two) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+func (t *Two) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreatedBy2) GetSource() *Source {
+func (o *Two) GetSource() *Source {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *CreatedBy2) GetAdditionalProperties() any {
+func (o *Two) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalProperties
 }
 
-// CreatedBy1 - A user that created the view
-type CreatedBy1 struct {
+// One - A user that created the view
+type One struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (o *CreatedBy1) GetUserID() *string {
+func (o *One) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,48 +81,48 @@ func (o *CreatedBy1) GetUserID() *string {
 type CreatedByType string
 
 const (
-	CreatedByTypeCreatedBy1 CreatedByType = "created_by_1"
-	CreatedByTypeCreatedBy2 CreatedByType = "created_by_2"
+	CreatedByTypeOne CreatedByType = "1"
+	CreatedByTypeTwo CreatedByType = "2"
 )
 
 type CreatedBy struct {
-	CreatedBy1 *CreatedBy1
-	CreatedBy2 *CreatedBy2
+	One *One
+	Two *Two
 
 	Type CreatedByType
 }
 
-func CreateCreatedByCreatedBy1(createdBy1 CreatedBy1) CreatedBy {
-	typ := CreatedByTypeCreatedBy1
+func CreateCreatedByOne(one One) CreatedBy {
+	typ := CreatedByTypeOne
 
 	return CreatedBy{
-		CreatedBy1: &createdBy1,
-		Type:       typ,
+		One:  &one,
+		Type: typ,
 	}
 }
 
-func CreateCreatedByCreatedBy2(createdBy2 CreatedBy2) CreatedBy {
-	typ := CreatedByTypeCreatedBy2
+func CreateCreatedByTwo(two Two) CreatedBy {
+	typ := CreatedByTypeTwo
 
 	return CreatedBy{
-		CreatedBy2: &createdBy2,
-		Type:       typ,
+		Two:  &two,
+		Type: typ,
 	}
 }
 
 func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 
-	var createdBy1 CreatedBy1 = CreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, false); err == nil {
-		u.CreatedBy1 = &createdBy1
-		u.Type = CreatedByTypeCreatedBy1
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+		u.One = &one
+		u.Type = CreatedByTypeOne
 		return nil
 	}
 
-	var createdBy2 CreatedBy2 = CreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, false); err == nil {
-		u.CreatedBy2 = &createdBy2
-		u.Type = CreatedByTypeCreatedBy2
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
+		u.Two = &two
+		u.Type = CreatedByTypeTwo
 		return nil
 	}
 
@@ -130,12 +130,12 @@ func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 }
 
 func (u CreatedBy) MarshalJSON() ([]byte, error) {
-	if u.CreatedBy1 != nil {
-		return utils.MarshalJSON(u.CreatedBy1, "", true)
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
 	}
 
-	if u.CreatedBy2 != nil {
-		return utils.MarshalJSON(u.CreatedBy2, "", true)
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CreatedBy: all fields are null")

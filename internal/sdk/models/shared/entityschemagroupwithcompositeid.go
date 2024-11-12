@@ -6,21 +6,21 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type EntitySchemaGroupWithCompositeIDInfoTooltipTitle struct {
+type InfoTooltipTitle struct {
 	// Translation key for info tooltip
 	Key *string `json:"key,omitempty"`
 	// Default string for info tooltip
 	Default *string `json:"default,omitempty"`
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInfoTooltipTitle) GetKey() *string {
+func (o *InfoTooltipTitle) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInfoTooltipTitle) GetDefault() *string {
+func (o *InfoTooltipTitle) GetDefault() *string {
 	if o == nil {
 		return nil
 	}
@@ -44,9 +44,9 @@ type EntitySchemaGroupWithCompositeID struct {
 	// This group should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This group should only be active when all the settings have the correct value
-	SettingsFlag     []SettingFlag                                     `json:"settings_flag,omitempty"`
-	InfoTooltipTitle *EntitySchemaGroupWithCompositeIDInfoTooltipTitle `json:"info_tooltip_title,omitempty"`
-	CompositeID      *string                                           `json:"composite_id,omitempty"`
+	SettingsFlag     []SettingFlag     `json:"settings_flag,omitempty"`
+	InfoTooltipTitle *InfoTooltipTitle `json:"info_tooltip_title,omitempty"`
+	CompositeID      *string           `json:"composite_id,omitempty"`
 	// Schema slug the group belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -125,7 +125,7 @@ func (o *EntitySchemaGroupWithCompositeID) GetSettingsFlag() []SettingFlag {
 	return o.SettingsFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeID) GetInfoTooltipTitle() *EntitySchemaGroupWithCompositeIDInfoTooltipTitle {
+func (o *EntitySchemaGroupWithCompositeID) GetInfoTooltipTitle() *InfoTooltipTitle {
 	if o == nil {
 		return nil
 	}
@@ -163,8 +163,8 @@ type EntitySchemaGroupWithCompositeIDInput struct {
 	// This group should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This group should only be active when all the settings have the correct value
-	SettingsFlag     []SettingFlag                                     `json:"settings_flag,omitempty"`
-	InfoTooltipTitle *EntitySchemaGroupWithCompositeIDInfoTooltipTitle `json:"info_tooltip_title,omitempty"`
+	SettingsFlag     []SettingFlag     `json:"settings_flag,omitempty"`
+	InfoTooltipTitle *InfoTooltipTitle `json:"info_tooltip_title,omitempty"`
 	// Schema slug the group belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -243,7 +243,7 @@ func (o *EntitySchemaGroupWithCompositeIDInput) GetSettingsFlag() []SettingFlag 
 	return o.SettingsFlag
 }
 
-func (o *EntitySchemaGroupWithCompositeIDInput) GetInfoTooltipTitle() *EntitySchemaGroupWithCompositeIDInfoTooltipTitle {
+func (o *EntitySchemaGroupWithCompositeIDInput) GetInfoTooltipTitle() *InfoTooltipTitle {
 	if o == nil {
 		return nil
 	}

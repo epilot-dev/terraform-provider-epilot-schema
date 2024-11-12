@@ -86,21 +86,21 @@ func (e *StatusAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Options2 struct {
+type StatusAttributeOptions2 struct {
 	// The stored value of the option
 	Value string `json:"value"`
 	// The displayed title of the option
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *Options2) GetValue() string {
+func (o *StatusAttributeOptions2) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *Options2) GetTitle() *string {
+func (o *StatusAttributeOptions2) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -110,13 +110,13 @@ func (o *Options2) GetTitle() *string {
 type StatusAttributeOptionsType string
 
 const (
-	StatusAttributeOptionsTypeStr      StatusAttributeOptionsType = "str"
-	StatusAttributeOptionsTypeOptions2 StatusAttributeOptionsType = "options_2"
+	StatusAttributeOptionsTypeStr                     StatusAttributeOptionsType = "str"
+	StatusAttributeOptionsTypeStatusAttributeOptions2 StatusAttributeOptionsType = "StatusAttribute_options_2"
 )
 
 type StatusAttributeOptions struct {
-	Str      *string
-	Options2 *Options2
+	Str                     *string
+	StatusAttributeOptions2 *StatusAttributeOptions2
 
 	Type StatusAttributeOptionsType
 }
@@ -130,21 +130,21 @@ func CreateStatusAttributeOptionsStr(str string) StatusAttributeOptions {
 	}
 }
 
-func CreateStatusAttributeOptionsOptions2(options2 Options2) StatusAttributeOptions {
-	typ := StatusAttributeOptionsTypeOptions2
+func CreateStatusAttributeOptionsStatusAttributeOptions2(statusAttributeOptions2 StatusAttributeOptions2) StatusAttributeOptions {
+	typ := StatusAttributeOptionsTypeStatusAttributeOptions2
 
 	return StatusAttributeOptions{
-		Options2: &options2,
-		Type:     typ,
+		StatusAttributeOptions2: &statusAttributeOptions2,
+		Type:                    typ,
 	}
 }
 
 func (u *StatusAttributeOptions) UnmarshalJSON(data []byte) error {
 
-	var options2 Options2 = Options2{}
-	if err := utils.UnmarshalJSON(data, &options2, "", true, false); err == nil {
-		u.Options2 = &options2
-		u.Type = StatusAttributeOptionsTypeOptions2
+	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
+	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, false); err == nil {
+		u.StatusAttributeOptions2 = &statusAttributeOptions2
+		u.Type = StatusAttributeOptionsTypeStatusAttributeOptions2
 		return nil
 	}
 
@@ -163,8 +163,8 @@ func (u StatusAttributeOptions) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.Options2 != nil {
-		return utils.MarshalJSON(u.Options2, "", true)
+	if u.StatusAttributeOptions2 != nil {
+		return utils.MarshalJSON(u.StatusAttributeOptions2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type StatusAttributeOptions: all fields are null")

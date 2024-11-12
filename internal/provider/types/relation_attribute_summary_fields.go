@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type SummaryFields struct {
+type RelationAttributeSummaryFields struct {
 	Str          types.String  `tfsdk:"str" tfPlanOnly:"true"`
 	SummaryField *SummaryField `tfsdk:"summary_field" tfPlanOnly:"true"`
 }

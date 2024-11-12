@@ -6,27 +6,27 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// EntityCapabilityWithCompositeIDRequiredPermission - Require a permission to display UI hook
-type EntityCapabilityWithCompositeIDRequiredPermission struct {
+// RequiredPermission - Require a permission to display UI hook
+type RequiredPermission struct {
 	Action   string  `json:"action"`
 	Resource *string `json:"resource,omitempty"`
 }
 
-func (o *EntityCapabilityWithCompositeIDRequiredPermission) GetAction() string {
+func (o *RequiredPermission) GetAction() string {
 	if o == nil {
 		return ""
 	}
 	return o.Action
 }
 
-func (o *EntityCapabilityWithCompositeIDRequiredPermission) GetResource() *string {
+func (o *RequiredPermission) GetResource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Resource
 }
 
-type EntityCapabilityWithCompositeIDUIHooks struct {
+type UIHooks struct {
 	// name of the hook to use
 	Hook            string  `json:"hook"`
 	RenderCondition *string `json:"render_condition,omitempty"`
@@ -48,106 +48,106 @@ type EntityCapabilityWithCompositeIDUIHooks struct {
 	// Specific to Activity pilot
 	Header *bool `json:"header,omitempty"`
 	// Require a permission to display UI hook
-	RequiredPermission   *EntityCapabilityWithCompositeIDRequiredPermission `json:"requiredPermission,omitempty"`
-	AdditionalProperties any                                                `additionalProperties:"true" json:"-"`
+	RequiredPermission   *RequiredPermission `json:"requiredPermission,omitempty"`
+	AdditionalProperties any                 `additionalProperties:"true" json:"-"`
 }
 
-func (e EntityCapabilityWithCompositeIDUIHooks) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
+func (u UIHooks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (e *EntityCapabilityWithCompositeIDUIHooks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+func (u *UIHooks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetHook() string {
+func (o *UIHooks) GetHook() string {
 	if o == nil {
 		return ""
 	}
 	return o.Hook
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetRenderCondition() *string {
+func (o *UIHooks) GetRenderCondition() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RenderCondition
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetOrder() *int64 {
+func (o *UIHooks) GetOrder() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetTitle() *string {
+func (o *UIHooks) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetGroupExpanded() *bool {
+func (o *UIHooks) GetGroupExpanded() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.GroupExpanded
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetImport() *string {
+func (o *UIHooks) GetImport() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Import
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetComponent() *string {
+func (o *UIHooks) GetComponent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Component
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetRoute() *string {
+func (o *UIHooks) GetRoute() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Route
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetIcon() *string {
+func (o *UIHooks) GetIcon() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Icon
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetDisabled() *bool {
+func (o *UIHooks) GetDisabled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Disabled
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetHeader() *bool {
+func (o *UIHooks) GetHeader() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Header
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetRequiredPermission() *EntityCapabilityWithCompositeIDRequiredPermission {
+func (o *UIHooks) GetRequiredPermission() *RequiredPermission {
 	if o == nil {
 		return nil
 	}
 	return o.RequiredPermission
 }
 
-func (o *EntityCapabilityWithCompositeIDUIHooks) GetAdditionalProperties() any {
+func (o *UIHooks) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
@@ -165,8 +165,8 @@ type EntityCapabilityWithCompositeID struct {
 	Attributes []Attribute `json:"attributes,omitempty"`
 	Purpose    []string    `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema capabilility
-	Manifest []string                                 `json:"_manifest,omitempty"`
-	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
+	Manifest []string  `json:"_manifest,omitempty"`
+	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -218,7 +218,7 @@ func (o *EntityCapabilityWithCompositeID) GetManifest() []string {
 	return o.Manifest
 }
 
-func (o *EntityCapabilityWithCompositeID) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {
+func (o *EntityCapabilityWithCompositeID) GetUIHooks() []UIHooks {
 	if o == nil {
 		return nil
 	}
@@ -264,8 +264,8 @@ type EntityCapabilityWithCompositeIDInput struct {
 	Attributes []AttributeInput `json:"attributes,omitempty"`
 	Purpose    []string         `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema capabilility
-	Manifest []string                                 `json:"_manifest,omitempty"`
-	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
+	Manifest []string  `json:"_manifest,omitempty"`
+	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -316,7 +316,7 @@ func (o *EntityCapabilityWithCompositeIDInput) GetManifest() []string {
 	return o.Manifest
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {
+func (o *EntityCapabilityWithCompositeIDInput) GetUIHooks() []UIHooks {
 	if o == nil {
 		return nil
 	}

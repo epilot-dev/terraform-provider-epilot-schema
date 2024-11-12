@@ -41,7 +41,8 @@ func (p *EpilotSchemaProvider) Schema(ctx context.Context, req provider.SchemaRe
 			`` + "\n" +
 			`Use this API configure and access your business objects like Contacts, Opportunities and Products.` + "\n" +
 			`` + "\n" +
-			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)`,
+			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)` + "\n" +
+			``,
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
 				MarkdownDescription: "Server URL (defaults to https://entity.sls.epilot.io)",

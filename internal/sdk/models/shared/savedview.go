@@ -35,43 +35,43 @@ func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// SavedViewCreatedBy2 - A system-created view
-type SavedViewCreatedBy2 struct {
+// CreatedBy2 - A system-created view
+type CreatedBy2 struct {
 	Source               *CreatedBySource `json:"source,omitempty"`
 	AdditionalProperties any              `additionalProperties:"true" json:"-"`
 }
 
-func (s SavedViewCreatedBy2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
+func (c CreatedBy2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (s *SavedViewCreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SavedViewCreatedBy2) GetSource() *CreatedBySource {
+func (o *CreatedBy2) GetSource() *CreatedBySource {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *SavedViewCreatedBy2) GetAdditionalProperties() any {
+func (o *CreatedBy2) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalProperties
 }
 
-// SavedViewCreatedBy1 - A user that created the view
-type SavedViewCreatedBy1 struct {
+// CreatedBy1 - A user that created the view
+type CreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (o *SavedViewCreatedBy1) GetUserID() *string {
+func (o *CreatedBy1) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,48 +81,48 @@ func (o *SavedViewCreatedBy1) GetUserID() *string {
 type SavedViewCreatedByType string
 
 const (
-	SavedViewCreatedByTypeSavedViewCreatedBy1 SavedViewCreatedByType = "SavedView_created_by_1"
-	SavedViewCreatedByTypeSavedViewCreatedBy2 SavedViewCreatedByType = "SavedView_created_by_2"
+	SavedViewCreatedByTypeCreatedBy1 SavedViewCreatedByType = "created_by_1"
+	SavedViewCreatedByTypeCreatedBy2 SavedViewCreatedByType = "created_by_2"
 )
 
 type SavedViewCreatedBy struct {
-	SavedViewCreatedBy1 *SavedViewCreatedBy1
-	SavedViewCreatedBy2 *SavedViewCreatedBy2
+	CreatedBy1 *CreatedBy1
+	CreatedBy2 *CreatedBy2
 
 	Type SavedViewCreatedByType
 }
 
-func CreateSavedViewCreatedBySavedViewCreatedBy1(savedViewCreatedBy1 SavedViewCreatedBy1) SavedViewCreatedBy {
-	typ := SavedViewCreatedByTypeSavedViewCreatedBy1
+func CreateSavedViewCreatedByCreatedBy1(createdBy1 CreatedBy1) SavedViewCreatedBy {
+	typ := SavedViewCreatedByTypeCreatedBy1
 
 	return SavedViewCreatedBy{
-		SavedViewCreatedBy1: &savedViewCreatedBy1,
-		Type:                typ,
+		CreatedBy1: &createdBy1,
+		Type:       typ,
 	}
 }
 
-func CreateSavedViewCreatedBySavedViewCreatedBy2(savedViewCreatedBy2 SavedViewCreatedBy2) SavedViewCreatedBy {
-	typ := SavedViewCreatedByTypeSavedViewCreatedBy2
+func CreateSavedViewCreatedByCreatedBy2(createdBy2 CreatedBy2) SavedViewCreatedBy {
+	typ := SavedViewCreatedByTypeCreatedBy2
 
 	return SavedViewCreatedBy{
-		SavedViewCreatedBy2: &savedViewCreatedBy2,
-		Type:                typ,
+		CreatedBy2: &createdBy2,
+		Type:       typ,
 	}
 }
 
 func (u *SavedViewCreatedBy) UnmarshalJSON(data []byte) error {
 
-	var savedViewCreatedBy1 SavedViewCreatedBy1 = SavedViewCreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &savedViewCreatedBy1, "", true, false); err == nil {
-		u.SavedViewCreatedBy1 = &savedViewCreatedBy1
-		u.Type = SavedViewCreatedByTypeSavedViewCreatedBy1
+	var createdBy1 CreatedBy1 = CreatedBy1{}
+	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, false); err == nil {
+		u.CreatedBy1 = &createdBy1
+		u.Type = SavedViewCreatedByTypeCreatedBy1
 		return nil
 	}
 
-	var savedViewCreatedBy2 SavedViewCreatedBy2 = SavedViewCreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &savedViewCreatedBy2, "", true, false); err == nil {
-		u.SavedViewCreatedBy2 = &savedViewCreatedBy2
-		u.Type = SavedViewCreatedByTypeSavedViewCreatedBy2
+	var createdBy2 CreatedBy2 = CreatedBy2{}
+	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, false); err == nil {
+		u.CreatedBy2 = &createdBy2
+		u.Type = SavedViewCreatedByTypeCreatedBy2
 		return nil
 	}
 
@@ -130,12 +130,12 @@ func (u *SavedViewCreatedBy) UnmarshalJSON(data []byte) error {
 }
 
 func (u SavedViewCreatedBy) MarshalJSON() ([]byte, error) {
-	if u.SavedViewCreatedBy1 != nil {
-		return utils.MarshalJSON(u.SavedViewCreatedBy1, "", true)
+	if u.CreatedBy1 != nil {
+		return utils.MarshalJSON(u.CreatedBy1, "", true)
 	}
 
-	if u.SavedViewCreatedBy2 != nil {
-		return utils.MarshalJSON(u.SavedViewCreatedBy2, "", true)
+	if u.CreatedBy2 != nil {
+		return utils.MarshalJSON(u.CreatedBy2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type SavedViewCreatedBy: all fields are null")

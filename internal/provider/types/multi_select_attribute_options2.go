@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type OptionsObj struct {
-	Str types.String `tfsdk:"str" tfPlanOnly:"true"`
-	Two *Two         `tfsdk:"two" tfPlanOnly:"true"`
+type MultiSelectAttributeOptions2 struct {
+	Title types.String `tfsdk:"title"`
+	Value types.String `tfsdk:"value"`
 }
