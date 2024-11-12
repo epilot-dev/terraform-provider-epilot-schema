@@ -41,8 +41,11 @@ type SchemaResourceModel struct {
 	Attributes             types.String                      `tfsdk:"attributes"`
 	Blueprint              types.String                      `tfsdk:"blueprint"`
 	Capabilities           types.String                      `tfsdk:"capabilities"`
+	Category               types.String                      `tfsdk:"category"`
 	CreatedAt              types.String                      `tfsdk:"created_at"`
+	Description            types.String                      `tfsdk:"description"`
 	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
+	DocsURL                types.String                      `tfsdk:"docs_url"`
 	Draft                  types.Bool                        `tfsdk:"draft"`
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
@@ -90,7 +93,27 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					validators.IsValidJSON(),
 				},
 			},
+			"category": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]`,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"customer_relations",
+						"sales",
+						"product_hub",
+						"contracts",
+						"journeys",
+						"messaging",
+						"system",
+					),
+				},
+			},
 			"created_at": schema.StringAttribute{
+				Computed: true,
+				Optional: true,
+			},
+			"description": schema.StringAttribute{
 				Computed: true,
 				Optional: true,
 			},
@@ -101,6 +124,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
+			},
+			"docs_url": schema.StringAttribute{
+				Computed: true,
+				Optional: true,
 			},
 			"draft": schema.BoolAttribute{
 				Computed:    true,

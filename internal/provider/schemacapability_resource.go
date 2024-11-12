@@ -4975,6 +4975,11 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional:    true,
 									ElementType: types.StringType,
 								},
+								"color": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Color of the classification`,
+								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed:   true,
 									Optional:   true,
@@ -7302,6 +7307,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional:    true,
 									Default:     booldefault.StaticBool(false),
 									Description: `Default: false`,
+								},
+								"rich_text": schema.BoolAttribute{
+									Computed: true,
+									Optional: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,

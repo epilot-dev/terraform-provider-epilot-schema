@@ -139,6 +139,7 @@ type TextAttribute struct {
 	InfoHelpers *InfoHelpers       `json:"info_helpers,omitempty"`
 	Type        *TextAttributeType `json:"type,omitempty"`
 	Multiline   *bool              `json:"multiline,omitempty"`
+	RichText    *bool              `json:"rich_text,omitempty"`
 }
 
 func (t TextAttribute) MarshalJSON() ([]byte, error) {
@@ -353,4 +354,11 @@ func (o *TextAttribute) GetMultiline() *bool {
 		return nil
 	}
 	return o.Multiline
+}
+
+func (o *TextAttribute) GetRichText() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.RichText
 }

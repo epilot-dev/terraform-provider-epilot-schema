@@ -3,10 +3,52 @@
 package shared
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
+
+type Category string
+
+const (
+	CategoryCustomerRelations Category = "customer_relations"
+	CategorySales             Category = "sales"
+	CategoryProductHub        Category = "product_hub"
+	CategoryContracts         Category = "contracts"
+	CategoryJourneys          Category = "journeys"
+	CategoryMessaging         Category = "messaging"
+	CategorySystem            Category = "system"
+)
+
+func (e Category) ToPointer() *Category {
+	return &e
+}
+func (e *Category) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "customer_relations":
+		fallthrough
+	case "sales":
+		fallthrough
+	case "product_hub":
+		fallthrough
+	case "contracts":
+		fallthrough
+	case "journeys":
+		fallthrough
+	case "messaging":
+		fallthrough
+	case "system":
+		*e = Category(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Category: %v", v)
+	}
+}
 
 type TableViewType string
 
@@ -552,11 +594,14 @@ type EntitySchemaItem struct {
 	// This schema should only be active when one of the organization settings is enabled
 	EnableSetting []string `json:"enable_setting,omitempty"`
 	// User-friendly identifier for the entity schema
-	Name      string  `json:"name"`
-	Plural    string  `json:"plural"`
-	Published *bool   `json:"published,omitempty"`
-	Draft     *bool   `json:"draft,omitempty"`
-	Icon      *string `json:"icon,omitempty"`
+	Name        string    `json:"name"`
+	Plural      string    `json:"plural"`
+	Description *string   `json:"description,omitempty"`
+	DocsURL     *string   `json:"docs_url,omitempty"`
+	Category    *Category `json:"category,omitempty"`
+	Published   *bool     `json:"published,omitempty"`
+	Draft       *bool     `json:"draft,omitempty"`
+	Icon        *string   `json:"icon,omitempty"`
 	// Template for rendering the title field. Uses handlebars
 	TitleTemplate *string   `json:"title_template,omitempty"`
 	UIConfig      *UIConfig `json:"ui_config,omitempty"`
@@ -644,6 +689,27 @@ func (o *EntitySchemaItem) GetPlural() string {
 		return ""
 	}
 	return o.Plural
+}
+
+func (o *EntitySchemaItem) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *EntitySchemaItem) GetDocsURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DocsURL
+}
+
+func (o *EntitySchemaItem) GetCategory() *Category {
+	if o == nil {
+		return nil
+	}
+	return o.Category
 }
 
 func (o *EntitySchemaItem) GetPublished() *bool {

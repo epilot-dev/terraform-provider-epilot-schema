@@ -495,8 +495,10 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// URL-friendly identifier for the classification
-	Slug        *string                                       `json:"slug,omitempty"`
-	Parents     []string                                      `json:"parents,omitempty"`
+	Slug    *string  `json:"slug,omitempty"`
+	Parents []string `json:"parents,omitempty"`
+	// Color of the classification
+	Color       *string                                       `json:"color,omitempty"`
 	CreatedAt   *time.Time                                    `json:"created_at,omitempty"`
 	UpdatedAt   *time.Time                                    `json:"updated_at,omitempty"`
 	Type        *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
@@ -717,6 +719,13 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetParents() []string {
 		return nil
 	}
 	return o.Parents
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
 }
 
 func (o *AttributeWithCompositeIDPurposeAttribute) GetCreatedAt() *time.Time {
@@ -10858,6 +10867,7 @@ type AttributeWithCompositeIDTextAttribute struct {
 	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
 	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	Multiline   *bool                                      `json:"multiline,omitempty"`
+	RichText    *bool                                      `json:"rich_text,omitempty"`
 	CompositeID *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
@@ -11075,6 +11085,13 @@ func (o *AttributeWithCompositeIDTextAttribute) GetMultiline() *bool {
 		return nil
 	}
 	return o.Multiline
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetRichText() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.RichText
 }
 
 func (o *AttributeWithCompositeIDTextAttribute) GetCompositeID() *string {
@@ -11510,13 +11527,6 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
@@ -11566,6 +11576,13 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
@@ -11587,17 +11604,17 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
 		return nil
 	}
 
@@ -12050,8 +12067,10 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// URL-friendly identifier for the classification
-	Slug      *string                                       `json:"slug,omitempty"`
-	Parents   []string                                      `json:"parents,omitempty"`
+	Slug    *string  `json:"slug,omitempty"`
+	Parents []string `json:"parents,omitempty"`
+	// Color of the classification
+	Color     *string                                       `json:"color,omitempty"`
 	CreatedAt *time.Time                                    `json:"created_at,omitempty"`
 	UpdatedAt *time.Time                                    `json:"updated_at,omitempty"`
 	Type      *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
@@ -12271,6 +12290,13 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetParents() []string {
 		return nil
 	}
 	return o.Parents
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
 }
 
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetCreatedAt() *time.Time {
@@ -19637,6 +19663,7 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
 	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	Multiline   *bool                                      `json:"multiline,omitempty"`
+	RichText    *bool                                      `json:"rich_text,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -19853,6 +19880,13 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetMultiline() *bool {
 		return nil
 	}
 	return o.Multiline
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetRichText() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.RichText
 }
 
 func (o *AttributeWithCompositeIDTextAttributeInput) GetSchema() *string {
@@ -20281,13 +20315,6 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
@@ -20337,6 +20364,13 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
@@ -20358,17 +20392,17 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
 		return nil
 	}
 

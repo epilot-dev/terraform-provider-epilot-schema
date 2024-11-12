@@ -20,7 +20,13 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
 		capabilitiesResult, _ := json.Marshal(resp.Capabilities)
 		r.Capabilities = types.StringValue(string(capabilitiesResult))
+		if resp.Category != nil {
+			r.Category = types.StringValue(string(*resp.Category))
+		} else {
+			r.Category = types.StringNull()
+		}
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
+		r.Description = types.StringPointerValue(resp.Description)
 		if len(resp.DialogConfig) > 0 {
 			r.DialogConfig = make(map[string]types.String)
 			for key, value := range resp.DialogConfig {
@@ -28,6 +34,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 				r.DialogConfig[key] = types.StringValue(string(result))
 			}
 		}
+		r.DocsURL = types.StringPointerValue(resp.DocsURL)
 		r.Draft = types.BoolPointerValue(resp.Draft)
 		r.EnableSetting = []types.String{}
 		for _, v := range resp.EnableSetting {

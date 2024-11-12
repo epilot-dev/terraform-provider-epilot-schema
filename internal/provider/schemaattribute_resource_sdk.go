@@ -214,6 +214,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			multiline = nil
 		}
+		richText := new(bool)
+		if !r.TextAttribute.RichText.IsUnknown() && !r.TextAttribute.RichText.IsNull() {
+			*richText = r.TextAttribute.RichText.ValueBool()
+		} else {
+			richText = nil
+		}
 		schema := new(string)
 		if !r.TextAttribute.Schema.IsUnknown() && !r.TextAttribute.Schema.IsNull() {
 			*schema = r.TextAttribute.Schema.ValueString()
@@ -250,6 +256,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers,
 			Type:                     typeVar,
 			Multiline:                multiline,
+			RichText:                 richText,
 			Schema:                   schema,
 		}
 	}
@@ -6914,6 +6921,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		for _, parentsItem := range r.PurposeAttribute.Parents {
 			parents = append(parents, parentsItem.ValueString())
 		}
+		color := new(string)
+		if !r.PurposeAttribute.Color.IsUnknown() && !r.PurposeAttribute.Color.IsNull() {
+			*color = r.PurposeAttribute.Color.ValueString()
+		} else {
+			color = nil
+		}
 		createdAt := new(time.Time)
 		if !r.PurposeAttribute.CreatedAt.IsUnknown() && !r.PurposeAttribute.CreatedAt.IsNull() {
 			*createdAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.CreatedAt.ValueString())
@@ -6968,6 +6981,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers26,
 			Slug:                     slug,
 			Parents:                  parents,
+			Color:                    color,
 			CreatedAt:                createdAt,
 			UpdatedAt:                updatedAt,
 			Type:                     typeVar26,
@@ -9130,6 +9144,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
 			}
+			r.PurposeAttribute.Color = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Color)
 			r.PurposeAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.CompositeID)
 			r.CompositeID = r.PurposeAttribute.CompositeID
 			if resp.AttributeWithCompositeIDPurposeAttribute.Constraints == nil {
@@ -10095,6 +10110,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RenderCondition = r.TextAttribute.RenderCondition
 			r.TextAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Required)
 			r.Required = r.TextAttribute.Required
+			r.TextAttribute.RichText = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.RichText)
 			r.TextAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Schema)
 			r.Schema = r.TextAttribute.Schema
 			r.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}

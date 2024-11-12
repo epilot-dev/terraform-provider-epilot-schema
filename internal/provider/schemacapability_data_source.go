@@ -3156,6 +3156,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									ElementType: types.StringType,
 								},
+								"color": schema.StringAttribute{
+									Computed:    true,
+									Description: `Color of the classification`,
+								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed:   true,
 									Attributes: map[string]schema.Attribute{},
@@ -4634,6 +4638,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										``,
 								},
 								"required": schema.BoolAttribute{
+									Computed: true,
+								},
+								"rich_text": schema.BoolAttribute{
 									Computed: true,
 								},
 								"settings_flag": schema.ListNestedAttribute{

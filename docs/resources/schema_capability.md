@@ -1431,6 +1431,7 @@ Optional:
 
 Optional:
 
+- `color` (String) Color of the classification
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--constraints))
 - `created_at` (String)
@@ -2071,6 +2072,7 @@ The value must be a valid @epilot/base-elements Icon name
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean) Default: false
+- `rich_text` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true

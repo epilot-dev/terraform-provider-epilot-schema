@@ -229,6 +229,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			} else {
 				multiline = nil
 			}
+			richText := new(bool)
+			if !attributesItem.TextAttribute.RichText.IsUnknown() && !attributesItem.TextAttribute.RichText.IsNull() {
+				*richText = attributesItem.TextAttribute.RichText.ValueBool()
+			} else {
+				richText = nil
+			}
 			textAttribute := shared.TextAttribute{
 				ID:                       id1,
 				Name:                     name1,
@@ -259,6 +265,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				InfoHelpers:              infoHelpers,
 				Type:                     typeVar,
 				Multiline:                multiline,
+				RichText:                 richText,
 			}
 			attributes = append(attributes, shared.AttributeInput{
 				TextAttribute: &textAttribute,
@@ -6669,6 +6676,12 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 			for _, parentsItem := range attributesItem.PurposeAttribute.Parents {
 				parents = append(parents, parentsItem.ValueString())
 			}
+			color := new(string)
+			if !attributesItem.PurposeAttribute.Color.IsUnknown() && !attributesItem.PurposeAttribute.Color.IsNull() {
+				*color = attributesItem.PurposeAttribute.Color.ValueString()
+			} else {
+				color = nil
+			}
 			createdAt := new(time.Time)
 			if !attributesItem.PurposeAttribute.CreatedAt.IsUnknown() && !attributesItem.PurposeAttribute.CreatedAt.IsNull() {
 				*createdAt, _ = time.Parse(time.RFC3339Nano, attributesItem.PurposeAttribute.CreatedAt.ValueString())
@@ -6717,6 +6730,7 @@ func (r *SchemaCapabilityResourceModel) ToSharedEntityCapabilityWithCompositeIDI
 				InfoHelpers:              infoHelpers26,
 				Slug:                     slug,
 				Parents:                  parents,
+				Color:                    color,
 				CreatedAt:                createdAt,
 				UpdatedAt:                updatedAt,
 				Type:                     typeVar26,
@@ -8494,6 +8508,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				for _, v := range attributesItem.PurposeAttribute.Purpose {
 					attributes1.PurposeAttribute.Purpose = append(attributes1.PurposeAttribute.Purpose, types.StringValue(v))
 				}
+				attributes1.PurposeAttribute.Color = types.StringPointerValue(attributesItem.PurposeAttribute.Color)
 				if attributesItem.PurposeAttribute.Constraints == nil {
 					attributes1.PurposeAttribute.Constraints = nil
 				} else {
@@ -9234,6 +9249,7 @@ func (r *SchemaCapabilityResourceModel) RefreshFromSharedEntityCapabilityWithCom
 				attributes1.TextAttribute.Readonly = types.BoolPointerValue(attributesItem.TextAttribute.Readonly)
 				attributes1.TextAttribute.RenderCondition = types.StringPointerValue(attributesItem.TextAttribute.RenderCondition)
 				attributes1.TextAttribute.Required = types.BoolPointerValue(attributesItem.TextAttribute.Required)
+				attributes1.TextAttribute.RichText = types.BoolPointerValue(attributesItem.TextAttribute.RichText)
 				attributes1.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount27, settingsFlagItem27 := range attributesItem.TextAttribute.SettingsFlag {
 					var settingsFlag55 tfTypes.SettingFlag

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 84746655f8cec854603316d67866b133
+  docChecksum: 3f8d4528645e6f9dedcab425a5a74f8b
   docVersion: 1.0.0
   speakeasyVersion: 1.366.0
   generationVersion: 2.396.0
-  releaseVersion: 0.10.2
-  configChecksum: e017bd95ba7923f7e0c6c7e658795886
+  releaseVersion: 0.10.3
+  configChecksum: b5502f86ffad05c9e9f08b18d788b89f
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -30,13 +30,9 @@ generatedFiles:
   - internal/sdk/entities.go
   - internal/sdk/activity.go
   - internal/sdk/relations.go
-  - internal/sdk/export.go
-  - internal/sdk/entityimport.go
+  - internal/sdk/importexport.go
   - internal/sdk/savedviews.go
   - internal/sdk/taxonomy.go
-  - internal/sdk/elasticclusterassignment.go
-  - internal/sdk/internal.go
-  - internal/sdk/public.go
   - internal/sdk/sdk.go
   - internal/sdk/models/errors/sdkerror.go
   - internal/sdk/retry/config.go
@@ -118,15 +114,16 @@ generatedFiles:
   - internal/sdk/models/operations/gettaxonomy.go
   - internal/sdk/models/operations/updatetaxonomy.go
   - internal/sdk/models/operations/deletetaxonomy.go
-  - internal/sdk/models/operations/taxonomyautocomplete.go
-  - internal/sdk/models/operations/taxonomiesclassificationssearch.go
   - internal/sdk/models/operations/updateclassificationsfortaxonomy.go
   - internal/sdk/models/operations/gettaxonomyclassification.go
   - internal/sdk/models/operations/updatetaxonomyclassification.go
   - internal/sdk/models/operations/deletetaxonomyclassification.go
-  - internal/sdk/models/operations/getelasticclusterfororg.go
-  - internal/sdk/models/operations/getespublicjwks.go
-  - internal/sdk/models/operations/getestokenoidc.go
+  - internal/sdk/models/operations/taxonomyautocomplete.go
+  - internal/sdk/models/operations/taxonomiesclassificationssearch.go
+  - internal/sdk/models/operations/gettaxonomybulkactionjobs.go
+  - internal/sdk/models/operations/gettaxonomybulkactionjobbyid.go
+  - internal/sdk/models/operations/bulkmoveclassifications.go
+  - internal/sdk/models/operations/bulkdeleteclassifications.go
   - internal/sdk/models/shared/entityschemaitem.go
   - internal/sdk/models/shared/searchmappings.go
   - internal/sdk/models/shared/entityaction.go
@@ -210,7 +207,10 @@ generatedFiles:
   - internal/sdk/models/shared/taxonomylocationid.go
   - internal/sdk/models/shared/taxonomyinput.go
   - internal/sdk/models/shared/classificationsupdate.go
-  - internal/sdk/models/shared/esclusterassignment.go
+  - internal/sdk/models/shared/taxonomybulkjob.go
+  - internal/sdk/models/shared/taxonomybulkjobactiontype.go
+  - internal/sdk/models/shared/taxonomybulkjobstatus.go
+  - internal/sdk/models/shared/taxonomybulkjobtriggerresponse.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
   - internal/sdk/models/operations/options.go

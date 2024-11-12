@@ -32,8 +32,11 @@ type SchemaDataSourceModel struct {
 	Attributes             types.String                      `tfsdk:"attributes"`
 	Blueprint              types.String                      `tfsdk:"blueprint"`
 	Capabilities           types.String                      `tfsdk:"capabilities"`
+	Category               types.String                      `tfsdk:"category"`
 	CreatedAt              types.String                      `tfsdk:"created_at"`
+	Description            types.String                      `tfsdk:"description"`
 	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
+	DocsURL                types.String                      `tfsdk:"docs_url"`
 	Draft                  types.Bool                        `tfsdk:"draft"`
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
@@ -77,12 +80,22 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
+			"category": schema.StringAttribute{
+				Computed:    true,
+				Description: `must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]`,
+			},
 			"created_at": schema.StringAttribute{
+				Computed: true,
+			},
+			"description": schema.StringAttribute{
 				Computed: true,
 			},
 			"dialog_config": schema.MapAttribute{
 				Computed:    true,
 				ElementType: types.StringType,
+			},
+			"docs_url": schema.StringAttribute{
+				Computed: true,
 			},
 			"draft": schema.BoolAttribute{
 				Computed: true,

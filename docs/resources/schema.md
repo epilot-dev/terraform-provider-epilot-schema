@@ -17,20 +17,23 @@ resource "epilot-schema_schema" "my_schema" {
   attributes      = "{ \"see\": \"documentation\" }"
   blueprint       = "cebc1a5b-7aa3-4326-b103-2fe9376227ba"
   capabilities    = "{ \"see\": \"documentation\" }"
+  category        = "customer_relations"
   created_at      = "...my_created_at..."
+  description     = "Example description"
+  docs_url        = "https://docs.epilot.io/docs/pricing/entities"
   draft           = false
   feature_flag    = "FF_MY_FEATURE_FLAG"
   group_headlines = "{ \"see\": \"documentation\" }"
   group_settings  = "{ \"see\": \"documentation\" }"
   icon            = "person"
-  id              = "c702b9ea-b416-40bc-aec7-e04c948e2d54"
+  id              = "ab4160bc-2ec7-4e04-8948-e2d54b5b05fd"
   name            = "Contact"
   plural          = "Contacts"
   published       = false
   slug            = "contact"
   title_template  = "{{first_name}} {{last_name}}"
   updated_at      = "...my_updated_at..."
-  version         = 7
+  version         = 8
 }
 ```
 
@@ -48,8 +51,11 @@ resource "epilot-schema_schema" "my_schema" {
 ### Optional
 
 - `blueprint` (String) Reference to blueprint
+- `category` (String) must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]
 - `created_at` (String)
+- `description` (String)
 - `dialog_config` (Map of String)
+- `docs_url` (String)
 - `draft` (Boolean) Default: false
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
 - `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))

@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "5b202e68-6fb4-42fd-bf5a-6a16618ed5ee"
+  id   = "6fb42fdf-f5a6-4a16-a18e-d5ee61469436"
   slug = "contact"
 }
 ```
@@ -31,8 +31,11 @@ data "epilot-schema_schema" "my_schema" {
 - `attributes` (String) Parsed as JSON.
 - `blueprint` (String) Reference to blueprint
 - `capabilities` (String) Parsed as JSON.
+- `category` (String) must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]
 - `created_at` (String)
+- `description` (String)
 - `dialog_config` (Map of String)
+- `docs_url` (String)
 - `draft` (Boolean)
 - `enable_setting` (List of String) This schema should only be active when one of the organization settings is enabled
 - `explicit_search_mappings` (Attributes Map) Advanced: explicit Elasticsearch index mapping definitions for entity data (see [below for nested schema](#nestedatt--explicit_search_mappings))

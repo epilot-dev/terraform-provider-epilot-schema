@@ -426,13 +426,6 @@ func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var textAttribute TextAttribute = TextAttribute{}
-	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
-		u.TextAttribute = &textAttribute
-		u.Type = AttributeInputTypeTextAttribute
-		return nil
-	}
-
 	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
 		u.UserRelationAttribute = &userRelationAttribute
@@ -482,6 +475,13 @@ func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var textAttribute TextAttribute = TextAttribute{}
+	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
+		u.TextAttribute = &textAttribute
+		u.Type = AttributeInputTypeTextAttribute
+		return nil
+	}
+
 	var selectAttribute SelectAttribute = SelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, false); err == nil {
 		u.SelectAttribute = &selectAttribute
@@ -503,17 +503,17 @@ func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var purposeAttribute PurposeAttribute = PurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
-		u.PurposeAttribute = &purposeAttribute
-		u.Type = AttributeInputTypePurposeAttribute
-		return nil
-	}
-
 	var fileAttribute FileAttribute = FileAttribute{}
 	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, false); err == nil {
 		u.FileAttribute = &fileAttribute
 		u.Type = AttributeInputTypeFileAttribute
+		return nil
+	}
+
+	var purposeAttribute PurposeAttribute = PurposeAttribute{}
+	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
+		u.PurposeAttribute = &purposeAttribute
+		u.Type = AttributeInputTypePurposeAttribute
 		return nil
 	}
 

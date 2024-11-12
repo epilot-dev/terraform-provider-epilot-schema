@@ -78,17 +78,12 @@ type SDK struct {
 	Activity *Activity
 	// Entity Relationships
 	Relations *Relations
-	// Export and Import entities via files
-	Export       *Export
-	EntityImport *EntityImport
+	// Import and Export entities via portable files (CSV)
+	ImportExport *ImportExport
 	// Saved Views for Entities
 	SavedViews *SavedViews
 	// Taxonomies and Classifications
 	Taxonomy *Taxonomy
-	// Elastic Cluster assignment for organizations
-	ElasticClusterAssignment *ElasticClusterAssignment
-	Internal                 *Internal
-	Public                   *Public
 
 	sdkConfiguration sdkConfiguration
 }
@@ -196,19 +191,11 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.Relations = newRelations(sdk.sdkConfiguration)
 
-	sdk.Export = newExport(sdk.sdkConfiguration)
-
-	sdk.EntityImport = newEntityImport(sdk.sdkConfiguration)
+	sdk.ImportExport = newImportExport(sdk.sdkConfiguration)
 
 	sdk.SavedViews = newSavedViews(sdk.sdkConfiguration)
 
 	sdk.Taxonomy = newTaxonomy(sdk.sdkConfiguration)
-
-	sdk.ElasticClusterAssignment = newElasticClusterAssignment(sdk.sdkConfiguration)
-
-	sdk.Internal = newInternal(sdk.sdkConfiguration)
-
-	sdk.Public = newPublic(sdk.sdkConfiguration)
 
 	return sdk
 }

@@ -10,9 +10,11 @@ import (
 type TaxonomyClassification struct {
 	ID *string `json:"id,omitempty"`
 	// URL-friendly identifier for the classification
-	Slug      *string    `json:"slug,omitempty"`
-	Name      string     `json:"name"`
-	Parents   []string   `json:"parents,omitempty"`
+	Slug    *string  `json:"slug,omitempty"`
+	Name    string   `json:"name"`
+	Parents []string `json:"parents,omitempty"`
+	// Color of the classification
+	Color     *string    `json:"color,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Manifest ID used to create/update the taxonomy classification
@@ -56,6 +58,13 @@ func (o *TaxonomyClassification) GetParents() []string {
 		return nil
 	}
 	return o.Parents
+}
+
+func (o *TaxonomyClassification) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
 }
 
 func (o *TaxonomyClassification) GetCreatedAt() *time.Time {

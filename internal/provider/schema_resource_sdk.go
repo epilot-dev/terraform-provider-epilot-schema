@@ -59,6 +59,24 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 	var plural string
 	plural = r.Plural.ValueString()
 
+	description := new(string)
+	if !r.Description.IsUnknown() && !r.Description.IsNull() {
+		*description = r.Description.ValueString()
+	} else {
+		description = nil
+	}
+	docsURL := new(string)
+	if !r.DocsURL.IsUnknown() && !r.DocsURL.IsNull() {
+		*docsURL = r.DocsURL.ValueString()
+	} else {
+		docsURL = nil
+	}
+	category := new(shared.Category)
+	if !r.Category.IsUnknown() && !r.Category.IsNull() {
+		*category = shared.Category(r.Category.ValueString())
+	} else {
+		category = nil
+	}
 	published := new(bool)
 	if !r.Published.IsUnknown() && !r.Published.IsNull() {
 		*published = r.Published.ValueBool()
@@ -690,6 +708,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		EnableSetting:          enableSetting,
 		Name:                   name,
 		Plural:                 plural,
+		Description:            description,
+		DocsURL:                docsURL,
+		Category:               category,
 		Published:              published,
 		Draft:                  draft,
 		Icon:                   icon,
@@ -718,7 +739,13 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
 		capabilitiesResult, _ := json.Marshal(resp.Capabilities)
 		r.Capabilities = types.StringValue(string(capabilitiesResult))
+		if resp.Category != nil {
+			r.Category = types.StringValue(string(*resp.Category))
+		} else {
+			r.Category = types.StringNull()
+		}
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
+		r.Description = types.StringPointerValue(resp.Description)
 		if len(resp.DialogConfig) > 0 {
 			r.DialogConfig = make(map[string]types.String)
 			for key, value := range resp.DialogConfig {
@@ -726,6 +753,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				r.DialogConfig[key] = types.StringValue(string(result))
 			}
 		}
+		r.DocsURL = types.StringPointerValue(resp.DocsURL)
 		r.Draft = types.BoolPointerValue(resp.Draft)
 		r.EnableSetting = []types.String{}
 		for _, v := range resp.EnableSetting {

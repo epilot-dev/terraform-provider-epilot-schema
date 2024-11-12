@@ -138,8 +138,10 @@ type PurposeAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// URL-friendly identifier for the classification
-	Slug      *string               `json:"slug,omitempty"`
-	Parents   []string              `json:"parents,omitempty"`
+	Slug    *string  `json:"slug,omitempty"`
+	Parents []string `json:"parents,omitempty"`
+	// Color of the classification
+	Color     *string               `json:"color,omitempty"`
 	CreatedAt *time.Time            `json:"created_at,omitempty"`
 	UpdatedAt *time.Time            `json:"updated_at,omitempty"`
 	Type      *PurposeAttributeType `json:"type,omitempty"`
@@ -357,6 +359,13 @@ func (o *PurposeAttribute) GetParents() []string {
 		return nil
 	}
 	return o.Parents
+}
+
+func (o *PurposeAttribute) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
 }
 
 func (o *PurposeAttribute) GetCreatedAt() *time.Time {

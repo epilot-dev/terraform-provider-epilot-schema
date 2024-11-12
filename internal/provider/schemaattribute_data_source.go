@@ -3385,6 +3385,10 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed:    true,
 						ElementType: types.StringType,
 					},
+					"color": schema.StringAttribute{
+						Computed:    true,
+						Description: `Color of the classification`,
+					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
 					},
@@ -4940,6 +4944,9 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							``,
 					},
 					"required": schema.BoolAttribute{
+						Computed: true,
+					},
+					"rich_text": schema.BoolAttribute{
 						Computed: true,
 					},
 					"schema": schema.StringAttribute{

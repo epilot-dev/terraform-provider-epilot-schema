@@ -1,12 +1,12 @@
 resource "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
   divider        = "top_divider"
-  enable_divider = true
+  enable_divider = false
   group          = "...my_group..."
-  id             = "cbd766ab-a3c7-47de-a705-1dc7150b775f"
+  id             = "ba3c77de-2705-41dc-b150-b775fc625841"
   label          = "...my_label..."
   layout         = "...my_layout..."
-  name           = "Nathaniel D'Amore"
-  order          = 2
+  name           = "Mr. Patty Connelly"
+  order          = 4
   schema         = "contact"
   type           = "headline"
 }
