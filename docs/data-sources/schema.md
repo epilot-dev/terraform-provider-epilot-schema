@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "6fb42fdf-f5a6-4a16-a18e-d5ee61469436"
+  id   = "89868668-91fd-45da-ba4d-b78cf9b60131"
   slug = "contact"
 }
 ```
@@ -31,7 +31,7 @@ data "epilot-schema_schema" "my_schema" {
 - `attributes` (String) Parsed as JSON.
 - `blueprint` (String) Reference to blueprint
 - `capabilities` (String) Parsed as JSON.
-- `category` (String) must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]
+- `category` (String)
 - `created_at` (String)
 - `description` (String)
 - `dialog_config` (Map of String)
@@ -63,7 +63,7 @@ Read-Only:
 
 - `fields` (Map of String)
 - `index` (Boolean)
-- `type` (String) must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]
+- `type` (String)
 
 
 <a id="nestedatt--layout_settings"></a>
@@ -103,7 +103,7 @@ Read-Only:
 Read-Only:
 
 - `search_params` (Map of String)
-- `view_type` (String) must be one of ["default"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--create_view--entity_view_disabled"></a>
@@ -111,7 +111,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String) must be one of ["disabled"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--create_view--redirect_entity_view"></a>
@@ -120,7 +120,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String) must be one of ["redirect"]
+- `view_type` (String)
 
 
 
@@ -140,7 +140,7 @@ Read-Only:
 
 - `search_params` (Map of String)
 - `summary_attributes` (List of String) List of attribute names that we show in the summary header
-- `view_type` (String) must be one of ["default"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--edit_view--entity_view_disabled"></a>
@@ -148,7 +148,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String) must be one of ["disabled"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--edit_view--redirect_entity_view"></a>
@@ -157,7 +157,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String) must be one of ["redirect"]
+- `view_type` (String)
 
 
 
@@ -250,7 +250,7 @@ Read-Only:
 
 - `search_params` (Map of String)
 - `summary_attributes` (List of String) List of attribute names that we show in the summary header
-- `view_type` (String) must be one of ["default"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--single_view--entity_view_disabled"></a>
@@ -258,7 +258,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String) must be one of ["disabled"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--single_view--redirect_entity_view"></a>
@@ -267,7 +267,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String) must be one of ["redirect"]
+- `view_type` (String)
 
 
 
@@ -289,7 +289,7 @@ Read-Only:
 - `enable_thumbnails` (Boolean) Enable the thumbnail column
 - `navbar_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions))
 - `row_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--row_actions))
-- `view_type` (String) must be one of ["default"]
+- `view_type` (String)
 
 <a id="nestedatt--ui_config--table_view--entity_default_table--bulk_actions"></a>
 ### Nested Schema for `ui_config.table_view.entity_default_table.bulk_actions`
@@ -361,7 +361,7 @@ If not provided, the action will be shown to all users.
 
 Read-Only:
 
-- `view_type` (String) must be one of ["disabled"]
+- `view_type` (String)
 
 
 <a id="nestedatt--ui_config--table_view--redirect_entity_view"></a>
@@ -370,4 +370,4 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String) must be one of ["redirect"]
+- `view_type` (String)

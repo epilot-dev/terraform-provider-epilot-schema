@@ -5,15 +5,21 @@ package provider
 import (
 	"context"
 	"fmt"
+	speakeasy_boolplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/boolplanmodifier"
+	speakeasy_listplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/listplanmodifier"
+	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
+	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
+	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -71,8 +77,11 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Description: `Expanded by default. Default: false`,
 			},
 			"feature_flag": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
+				Computed: true,
+				Optional: true,
+				PlanModifiers: []planmodifier.String{
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
 				Description: `This group should only be active when the feature flag is enabled`,
 			},
 			"id": schema.StringAttribute{
@@ -82,15 +91,24 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 			"info_tooltip_title": schema.SingleNestedAttribute{
 				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.Object{
+					speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
+				},
 				Attributes: map[string]schema.Attribute{
 					"default": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
+						Computed: true,
+						Optional: true,
+						PlanModifiers: []planmodifier.String{
+							speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+						},
 						Description: `Default string for info tooltip`,
 					},
 					"key": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
+						Computed: true,
+						Optional: true,
+						PlanModifiers: []planmodifier.String{
+							speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+						},
 						Description: `Translation key for info tooltip`,
 					},
 				},
@@ -99,8 +117,11 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Required: true,
 			},
 			"manifest": schema.ListAttribute{
-				Computed:    true,
-				Optional:    true,
+				Computed: true,
+				Optional: true,
+				PlanModifiers: []planmodifier.List{
+					speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
+				},
 				ElementType: types.StringType,
 				Description: `Manifest ID used to create/update the schema group`,
 			},
@@ -111,14 +132,20 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Description: `Render order of the group. Default: 0`,
 			},
 			"purpose": schema.ListAttribute{
-				Computed:    true,
-				Optional:    true,
+				Computed: true,
+				Optional: true,
+				PlanModifiers: []planmodifier.List{
+					speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
+				},
 				ElementType: types.StringType,
 				Description: `Only render group when one of the purposes is enabled`,
 			},
 			"render_condition": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
+				Computed: true,
+				Optional: true,
+				PlanModifiers: []planmodifier.String{
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
 				Description: `Only render group when render_condition resolves to true`,
 			},
 			"schema": schema.StringAttribute{
@@ -129,16 +156,31 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 			"settings_flag": schema.ListNestedAttribute{
 				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.List{
+					speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
+				},
 				NestedObject: schema.NestedAttributeObject{
+					Validators: []validator.Object{
+						speakeasy_objectvalidators.NotNull(),
+					},
+					PlanModifiers: []planmodifier.Object{
+						speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
+					},
 					Attributes: map[string]schema.Attribute{
 						"enabled": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
+							Computed: true,
+							Optional: true,
+							PlanModifiers: []planmodifier.Bool{
+								speakeasy_boolplanmodifier.SuppressDiff(speakeasy_boolplanmodifier.ExplicitSuppress),
+							},
 							Description: `Whether the setting should be enabled or not`,
 						},
 						"name": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
+							Computed: true,
+							Optional: true,
+							PlanModifiers: []planmodifier.String{
+								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+							},
 							Description: `The name of the organization setting to check`,
 						},
 					},

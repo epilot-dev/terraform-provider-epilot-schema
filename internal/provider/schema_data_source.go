@@ -81,8 +81,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Description: `Parsed as JSON.`,
 			},
 			"category": schema.StringAttribute{
-				Computed:    true,
-				Description: `must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]`,
+				Computed: true,
 			},
 			"created_at": schema.StringAttribute{
 				Computed: true,
@@ -117,13 +116,11 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							Computed: true,
 						},
 						"type": schema.StringAttribute{
-							Computed:    true,
-							Description: `must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]`,
+							Computed: true,
 						},
 					},
 				},
-				MarkdownDescription: `Advanced: explicit Elasticsearch index mapping definitions for entity data` + "\n" +
-					``,
+				Description: `Advanced: explicit Elasticsearch index mapping definitions for entity data`,
 			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
@@ -162,8 +159,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				},
 				MarkdownDescription: `Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:` + "\n" +
 					`- Managed Properties: are interpreted and transformed into layout styles` + "\n" +
-					`- Un-managed Properties: are appended as styles into the attribute mounting node` + "\n" +
-					``,
+					`- Un-managed Properties: are appended as styles into the attribute mounting node`,
 			},
 			"name": schema.StringAttribute{
 				Computed:    true,
@@ -201,8 +197,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										ElementType: types.StringType,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["default"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -210,8 +205,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								Computed: true,
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["disabled"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -222,8 +216,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["redirect"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -245,8 +238,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Description: `List of attribute names that we show in the summary header`,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["default"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -254,8 +246,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								Computed: true,
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["disabled"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -266,8 +257,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["redirect"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -293,8 +283,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										"permission": schema.StringAttribute{
 											Computed: true,
 											MarkdownDescription: `Permission required to show the action.` + "\n" +
-												`If not provided, the action will be shown to all users.` + "\n" +
-												``,
+												`If not provided, the action will be shown to all users.`,
 										},
 									},
 								},
@@ -321,8 +310,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													Computed: true,
 													MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 														`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-														`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
-														``,
+														`Note: Empty or invalid expression have no effect on the field visibility.`,
 												},
 												"settings_flag": schema.ListNestedAttribute{
 													Computed: true,
@@ -363,8 +351,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												`  "render_condition": "is_composite_price = "true""` + "\n" +
 												`}` + "\n" +
 												`` + "```" + `` + "\n" +
-												`The value field supports handlebar expressions from which you can pick any field from the entity state.` + "\n" +
-												``,
+												`The value field supports handlebar expressions from which you can pick any field from the entity state.`,
 										},
 									},
 								},
@@ -396,8 +383,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Description: `List of attribute names that we show in the summary header`,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["default"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -405,8 +391,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								Computed: true,
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["disabled"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -417,8 +402,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["redirect"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -434,9 +418,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"str": schema.StringAttribute{
-													Computed: true,
-												},
 												"entity_action": schema.SingleNestedAttribute{
 													Computed: true,
 													Attributes: map[string]schema.Attribute{
@@ -453,11 +434,13 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														"permission": schema.StringAttribute{
 															Computed: true,
 															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.` + "\n" +
-																``,
+																`If not provided, the action will be shown to all users.`,
 														},
 													},
 													Description: `An entity action configured from the entity schema`,
+												},
+												"str": schema.StringAttribute{
+													Computed: true,
 												},
 											},
 										},
@@ -478,8 +461,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 																Computed: true,
 															},
 															"params": schema.SingleNestedAttribute{
-																Computed:   true,
-																Attributes: map[string]schema.Attribute{},
+																Computed: true,
 															},
 														},
 													},
@@ -494,9 +476,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"str": schema.StringAttribute{
-													Computed: true,
-												},
 												"entity_action": schema.SingleNestedAttribute{
 													Computed: true,
 													Attributes: map[string]schema.Attribute{
@@ -513,18 +492,19 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 														"permission": schema.StringAttribute{
 															Computed: true,
 															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.` + "\n" +
-																``,
+																`If not provided, the action will be shown to all users.`,
 														},
 													},
 													Description: `An entity action configured from the entity schema`,
+												},
+												"str": schema.StringAttribute{
+													Computed: true,
 												},
 											},
 										},
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["default"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -532,8 +512,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 								Computed: true,
 								Attributes: map[string]schema.Attribute{
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["disabled"]`,
+										Computed: true,
 									},
 								},
 							},
@@ -544,8 +523,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 									},
 									"view_type": schema.StringAttribute{
-										Computed:    true,
-										Description: `must be one of ["redirect"]`,
+										Computed: true,
 									},
 								},
 							},

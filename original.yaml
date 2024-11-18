@@ -2085,6 +2085,7 @@ paths:
         name: job_id
         schema:
           type: string
+        required: true
       responses:
         '200':
           description: Returns the job matching the given job id

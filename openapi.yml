@@ -211,7 +211,6 @@ paths:
                       - Dr.
                       - Prof.
                       - Prof. Dr.
-                      - null
                     salutation:
                       type: string
                       nullable: true
@@ -226,7 +225,6 @@ paths:
                       - Ownership
                       - Assembly
                       - Other
-                      - null
                     first_name:
                       type: string
                     last_name:
@@ -286,7 +284,6 @@ paths:
                             - DE
                             - AT
                             - CH
-                            - null
                           additional_info:
                             type: string
                             nullable: true
@@ -1064,9 +1061,9 @@ paths:
       - in: query
         name: purge
         description: Permanently deletes the entity when set to `true`
+        default: false
         schema:
           type: boolean
-          default: false
       responses:
         '200':
           description: Success
@@ -2086,9 +2083,9 @@ paths:
       parameters:
       - in: path
         name: job_id
-        required: true
         schema:
           type: string
+        required: true
       responses:
         '200':
           description: Returns the job matching the given job id
