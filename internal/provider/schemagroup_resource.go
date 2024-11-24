@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	speakeasy_boolplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/boolplanmodifier"
+	speakeasy_int64planmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/int64planmodifier"
 	speakeasy_listplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/listplanmodifier"
 	speakeasy_objectplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/objectplanmodifier"
 	speakeasy_stringplanmodifier "github.com/epilot/terraform-provider-epilot-schema/internal/planmodifiers/stringplanmodifier"
@@ -87,6 +88,9 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 			"id": schema.StringAttribute{
 				Computed: true,
 				Optional: true,
+				PlanModifiers: []planmodifier.String{
+					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
+				},
 			},
 			"info_tooltip_title": schema.SingleNestedAttribute{
 				Computed: true,
@@ -126,9 +130,12 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 				Description: `Manifest ID used to create/update the schema group`,
 			},
 			"order": schema.Int64Attribute{
-				Computed:    true,
-				Optional:    true,
-				Default:     int64default.StaticInt64(0),
+				Computed: true,
+				Optional: true,
+				Default:  int64default.StaticInt64(0),
+				PlanModifiers: []planmodifier.Int64{
+					speakeasy_int64planmodifier.SuppressDiff(speakeasy_int64planmodifier.ExplicitSuppress),
+				},
 				Description: `Render order of the group. Default: 0`,
 			},
 			"purpose": schema.ListAttribute{
