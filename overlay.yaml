@@ -143,9 +143,6 @@ actions:
       x-speakeasy-type-override: any
 
   # Suppress diffs for unnecessary plan changes
-  - target: $["components"]["schemas"]["EntitySchemaGroup"]["properties"]["id"]
-    update:
-      x-speakeasy-param-suppress-computed-diff: true
   - target: $["components"]["schemas"]["EntitySchemaGroup"]["properties"]["order"]
     update:
       x-speakeasy-param-suppress-computed-diff: true
@@ -165,8 +162,5 @@ actions:
     update:
       x-speakeasy-param-suppress-computed-diff: true
   - target: $["components"]["schemas"]["EntitySchemaGroup"]["properties"]["info_tooltip_title"]
-    update:
-      x-speakeasy-param-suppress-computed-diff: true
-  - target: $["components"]["schemas"]["EntitySchemaGroupWithCompositeID"]["all"][1]["properties"]["composite_id"]
     update:
       x-speakeasy-param-suppress-computed-diff: true

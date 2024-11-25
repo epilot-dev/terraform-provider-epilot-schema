@@ -88,9 +88,6 @@ func (r *SchemaGroupResource) Schema(ctx context.Context, req resource.SchemaReq
 			"id": schema.StringAttribute{
 				Computed: true,
 				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-				},
 			},
 			"info_tooltip_title": schema.SingleNestedAttribute{
 				Computed: true,
