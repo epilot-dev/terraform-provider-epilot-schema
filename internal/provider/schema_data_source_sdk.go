@@ -7,6 +7,7 @@ import (
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"math/big"
 )
 
 func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.EntitySchemaItem) {
@@ -20,11 +21,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
 		capabilitiesResult, _ := json.Marshal(resp.Capabilities)
 		r.Capabilities = types.StringValue(string(capabilitiesResult))
-		if resp.Category != nil {
-			r.Category = types.StringValue(string(*resp.Category))
-		} else {
-			r.Category = types.StringNull()
-		}
+		r.Category = types.StringPointerValue(resp.Category)
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		r.Description = types.StringPointerValue(resp.Description)
 		if len(resp.DialogConfig) > 0 {
@@ -207,7 +204,24 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					}
 					if summaryAttributesItem.SummaryAttribute != nil {
 						summaryAttributes2.SummaryAttribute = &tfTypes.SummaryAttribute{}
+						if summaryAttributesItem.SummaryAttribute.ContentLineCap != nil {
+							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberValue(big.NewFloat(float64(*summaryAttributesItem.SummaryAttribute.ContentLineCap)))
+						} else {
+							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberNull()
+						}
+						if summaryAttributesItem.SummaryAttribute.ContentWrap != nil {
+							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.ContentWrap))
+						} else {
+							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringNull()
+						}
+						if summaryAttributesItem.SummaryAttribute.DisplayMode != nil {
+							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.DisplayMode))
+						} else {
+							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringNull()
+						}
 						summaryAttributes2.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
+						summaryAttributes2.SummaryAttribute.HideLabel = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HideLabel)
+						summaryAttributes2.SummaryAttribute.HighlightContainer = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HighlightContainer)
 						summaryAttributes2.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
 						summaryAttributes2.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
 						summaryAttributes2.SummaryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
@@ -231,6 +245,16 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 					} else {
 						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].Str = summaryAttributes2.Str
 						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].SummaryAttribute = summaryAttributes2.SummaryAttribute
+					}
+				}
+				if resp.UIConfig.ListItem.UIConfig == nil {
+					r.UIConfig.ListItem.UIConfig = nil
+				} else {
+					r.UIConfig.ListItem.UIConfig = &tfTypes.EntitySchemaItemUIConfig{}
+					if resp.UIConfig.ListItem.UIConfig.ContentDirection != nil {
+						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringValue(string(*resp.UIConfig.ListItem.UIConfig.ContentDirection))
+					} else {
+						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringNull()
 					}
 				}
 			}

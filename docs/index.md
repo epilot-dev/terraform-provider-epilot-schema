@@ -23,7 +23,7 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "epilot/epilot-schema"
-      version = "0.10.3"
+      version = "0.10.4"
     }
   }
 }
@@ -40,4 +40,4 @@ provider "epilot-schema" {
 
 - `epilot_auth` (String, Sensitive)
 - `epilot_org` (String, Sensitive)
-- `server_url` (String) Server URL (defaults to https://entity.sls.epilot.io)
+- `server_url` (String) Server URL (defaults to https://entity.dev.sls.epilot.io)

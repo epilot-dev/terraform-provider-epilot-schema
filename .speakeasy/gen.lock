@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 3f8d4528645e6f9dedcab425a5a74f8b
+  docChecksum: 074153dfb6e7fb4434ad53ab905b5c74
   docVersion: 1.0.0
   speakeasyVersion: 1.366.0
   generationVersion: 2.396.0
-  releaseVersion: 0.10.3
-  configChecksum: b5502f86ffad05c9e9f08b18d788b89f
+  releaseVersion: 0.10.4
+  configChecksum: 539c1a33c27cbaef89216078fc6926dc
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -134,11 +134,13 @@ generatedFiles:
   - internal/sdk/models/shared/entityviewdisabled.go
   - internal/sdk/models/shared/entitydefaultcreate.go
   - internal/sdk/models/shared/entitydefaulttable.go
+  - internal/sdk/models/shared/notfounderror.go
   - internal/sdk/models/shared/taxonomyclassification.go
   - internal/sdk/models/shared/attributewithcompositeid.go
   - internal/sdk/models/shared/summaryfield.go
   - internal/sdk/models/shared/entityacl.go
   - internal/sdk/models/shared/entityowner.go
+  - internal/sdk/models/shared/defaultaddressfields.go
   - internal/sdk/models/shared/entitycapabilitywithcompositeid.go
   - internal/sdk/models/shared/attribute.go
   - internal/sdk/models/shared/textattribute.go
@@ -152,11 +154,13 @@ generatedFiles:
   - internal/sdk/models/shared/sequenceattribute.go
   - internal/sdk/models/shared/relationattribute.go
   - internal/sdk/models/shared/userrelationattribute.go
+  - internal/sdk/models/shared/addressattribute.go
   - internal/sdk/models/shared/addressrelationattribute.go
   - internal/sdk/models/shared/paymentmethodrelationattribute.go
   - internal/sdk/models/shared/currencyattribute.go
   - internal/sdk/models/shared/repeatableattribute.go
   - internal/sdk/models/shared/tagsattribute.go
+  - internal/sdk/models/shared/messageemailaddressattribute.go
   - internal/sdk/models/shared/numberattribute.go
   - internal/sdk/models/shared/consentattribute.go
   - internal/sdk/models/shared/internalattribute.go
@@ -273,6 +277,7 @@ generatedFiles:
   - internal/provider/types/setting_flag.go
   - internal/provider/types/summary_attribute.go
   - internal/provider/types/summary_attributes.go
+  - internal/provider/types/entity_schema_item_ui_config.go
   - internal/provider/types/list_item.go
   - internal/provider/types/sharing.go
   - internal/provider/types/bulk_actions.go
@@ -282,7 +287,8 @@ generatedFiles:
   - internal/provider/types/entity_default_table.go
   - internal/provider/types/table_view.go
   - internal/provider/types/ui_config.go
-  - internal/provider/types/address_relation_attribute_attribute_with_composite_id_info_helpers.go
+  - internal/provider/types/address_attribute_attribute_with_composite_id_info_helpers.go
+  - internal/provider/types/attribute_with_composite_id_address_attribute.go
   - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
   - internal/provider/types/attribute_with_composite_id_automation_attribute.go
   - internal/provider/types/attribute_with_composite_id_boolean_attribute.go
@@ -298,6 +304,7 @@ generatedFiles:
   - internal/provider/types/attribute_with_composite_id_internal_user_attribute.go
   - internal/provider/types/attribute_with_composite_id_invitation_email_attribute.go
   - internal/provider/types/attribute_with_composite_id_link_attribute.go
+  - internal/provider/types/attribute_with_composite_id_message_email_address_attribute.go
   - internal/provider/types/multi_select_attribute_options2.go
   - internal/provider/types/multi_select_attribute_options.go
   - internal/provider/types/attribute_with_composite_id_multi_select_attribute.go
@@ -321,6 +328,7 @@ generatedFiles:
   - internal/provider/types/attribute_with_composite_id_tags_attribute.go
   - internal/provider/types/attribute_with_composite_id_text_attribute.go
   - internal/provider/types/attribute_with_composite_id_user_relation_attribute.go
+  - internal/provider/types/address_attribute.go
   - internal/provider/types/address_relation_attribute.go
   - internal/provider/types/automation_attribute.go
   - internal/provider/types/boolean_attribute.go
@@ -334,6 +342,7 @@ generatedFiles:
   - internal/provider/types/internal_user_attribute.go
   - internal/provider/types/invitation_email_attribute.go
   - internal/provider/types/link_attribute.go
+  - internal/provider/types/message_email_address_attribute.go
   - internal/provider/types/multi_select_attribute.go
   - internal/provider/types/number_attribute.go
   - internal/provider/types/ordered_list_attribute.go

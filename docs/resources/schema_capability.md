@@ -50,6 +50,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
 
 Optional:
 
+- `address_attribute` (Attributes) Address attribute (see [below for nested schema](#nestedatt--attributes--address_attribute))
 - `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--attributes--address_relation_attribute))
 - `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--attributes--automation_attribute))
 - `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--attributes--boolean_attribute))
@@ -63,6 +64,7 @@ Optional:
 - `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--attributes--internal_user_attribute))
 - `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute))
 - `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--attributes--link_attribute))
+- `message_email_address_attribute` (Attributes) Message emil address (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute))
 - `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--attributes--multi_select_attribute))
 - `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--attributes--number_attribute))
 - `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute))
@@ -79,6 +81,75 @@ Optional:
 - `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--attributes--text_attribute))
 - `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--attributes--user_relation_attribute))
 
+<a id="nestedatt--attributes--address_attribute"></a>
+### Nested Schema for `attributes.address_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_attribute--constraints))
+- `default_address_fields` (List of String) Default fields visible on addresses
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--address_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["address"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--address_attribute--constraints"></a>
+### Nested Schema for `attributes.address_attribute.constraints`
+
+
+<a id="nestedatt--attributes--address_attribute--info_helpers"></a>
+### Nested Schema for `attributes.address_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--address_attribute--settings_flag"></a>
+### Nested Schema for `attributes.address_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--attributes--address_relation_attribute"></a>
 ### Nested Schema for `attributes.address_relation_attribute`
 
@@ -86,6 +157,7 @@ Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--constraints))
+- `default_address_fields` (List of String) Default fields visible on addresses
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
@@ -993,6 +1065,77 @@ Optional:
 
 
 
+<a id="nestedatt--attributes--message_email_address_attribute"></a>
+### Nested Schema for `attributes.message_email_address_attribute`
+
+Optional:
+
+- `address` (String) Not Null
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `email_type` (String)
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `required` (Boolean) Default: false
+- `send_status` (String)
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be one of ["message_email_address"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--message_email_address_attribute--constraints"></a>
+### Nested Schema for `attributes.message_email_address_attribute.constraints`
+
+
+<a id="nestedatt--attributes--message_email_address_attribute--info_helpers"></a>
+### Nested Schema for `attributes.message_email_address_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--message_email_address_attribute--settings_flag"></a>
+### Nested Schema for `attributes.message_email_address_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--attributes--multi_select_attribute"></a>
 ### Nested Schema for `attributes.multi_select_attribute`
 
@@ -1431,6 +1574,7 @@ Optional:
 
 Optional:
 
+- `archived` (Boolean) Archived classification are not visible in the UI. Default: false
 - `color` (String) Color of the classification
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--constraints))
@@ -1587,6 +1731,7 @@ Optional:
 Read-Only:
 
 - `created_at` (String)
+- `deleted_at` (String)
 - `org` (String) Organization Id the entity belongs to
 - `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--owners))
 - `updated_at` (String)
@@ -1709,7 +1854,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]
+- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date", "message_email_address"]
 - `value_formatter` (String)
 
 <a id="nestedatt--attributes--repeatable_attribute--constraints"></a>

@@ -46,6 +46,8 @@ type GetRelatedEntitiesCountResponse struct {
 	RawResponse *http.Response
 	// Success
 	GetRelatedEntitiesCount *shared.GetRelatedEntitiesCount
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetRelatedEntitiesCountResponse) GetContentType() string {
@@ -74,4 +76,11 @@ func (o *GetRelatedEntitiesCountResponse) GetGetRelatedEntitiesCount() *shared.G
 		return nil
 	}
 	return o.GetRelatedEntitiesCount
+}
+
+func (o *GetRelatedEntitiesCountResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

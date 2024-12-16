@@ -2,7 +2,7 @@
 all: speakeasy docs
 
 original.yaml:
-  curl https://docs.api.epilot.io/entity.yaml > original.yaml
+  curl https://docs.api.dev.epilot.io/entity.yaml > original.yaml
 # cp openapi.yml original.yaml
 
 original_modified.yaml: original.yaml overlay.yaml

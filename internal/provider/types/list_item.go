@@ -3,6 +3,7 @@
 package types
 
 type ListItem struct {
-	QuickActions      []EntityAction      `tfsdk:"quick_actions"`
-	SummaryAttributes []SummaryAttributes `tfsdk:"summary_attributes"`
+	QuickActions      []EntityAction            `tfsdk:"quick_actions"`
+	SummaryAttributes []SummaryAttributes       `tfsdk:"summary_attributes"`
+	UIConfig          *EntitySchemaItemUIConfig `tfsdk:"ui_config"`
 }

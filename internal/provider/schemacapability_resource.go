@@ -64,6 +64,262 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
+						"address_attribute": schema.SingleNestedAttribute{
+							Computed: true,
+							Optional: true,
+							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+								},
+								"constraints": schema.SingleNestedAttribute{
+									Computed:   true,
+									Optional:   true,
+									Attributes: map[string]schema.Attribute{},
+									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
+								},
+								"default_address_fields": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Default fields visible on addresses`,
+								},
+								"default_value": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+									Validators: []validator.String{
+										validators.IsValidJSON(),
+									},
+								},
+								"deprecated": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"entity_builder_disable_edit": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"group": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"hidden": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Do not render attribute in entity views. Default: false`,
+								},
+								"hide_label": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `When set to true, will hide the label of the field.`,
+								},
+								"icon": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
+								},
+								"id": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
+								},
+								"info_helpers": schema.SingleNestedAttribute{
+									Computed: true,
+									Optional: true,
+									Attributes: map[string]schema.Attribute{
+										"hint_custom_component": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
+										},
+										"hint_text": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
+										},
+										"hint_text_key": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+												`The key should be a valid i18n key.` + "\n" +
+												``,
+										},
+										"hint_tooltip_placement": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
+										},
+									},
+									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+								},
+								"label": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"layout": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"order": schema.Int64Attribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Attribute sort order (ascending) in group`,
+								},
+								"placeholder": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"preview_value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"protected": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+								},
+								"readonly": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"render_condition": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
+								},
+								"required": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									Optional: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
+								},
+								"show_in_table": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"sortable": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(true),
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+								},
+								"type": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `must be one of ["address"]`,
+									Validators: []validator.String{
+										stringvalidator.OneOf(
+											"address",
+										),
+									},
+								},
+								"value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+							},
+							Description: `Address attribute`,
+							Validators: []validator.Object{
+								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("automation_attribute"),
+									path.MatchRelative().AtParent().AtName("boolean_attribute"),
+									path.MatchRelative().AtParent().AtName("computed_attribute"),
+									path.MatchRelative().AtParent().AtName("consent_attribute"),
+									path.MatchRelative().AtParent().AtName("country_attribute"),
+									path.MatchRelative().AtParent().AtName("currency_attribute"),
+									path.MatchRelative().AtParent().AtName("date_attribute"),
+									path.MatchRelative().AtParent().AtName("file_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
+									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+									path.MatchRelative().AtParent().AtName("number_attribute"),
+									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("purpose_attribute"),
+									path.MatchRelative().AtParent().AtName("relation_attribute"),
+									path.MatchRelative().AtParent().AtName("repeatable_attribute"),
+									path.MatchRelative().AtParent().AtName("select_attribute"),
+									path.MatchRelative().AtParent().AtName("sequence_attribute"),
+									path.MatchRelative().AtParent().AtName("status_attribute"),
+									path.MatchRelative().AtParent().AtName("tags_attribute"),
+									path.MatchRelative().AtParent().AtName("text_attribute"),
+									path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+								}...),
+							},
+						},
 						"address_relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Optional: true,
@@ -86,6 +342,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
 										``,
+								},
+								"default_address_fields": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Default fields visible on addresses`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -286,6 +548,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Reference to an address attribute of another entity`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
 									path.MatchRelative().AtParent().AtName("computed_attribute"),
@@ -298,6 +561,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -534,6 +798,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Automation entity`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
 									path.MatchRelative().AtParent().AtName("computed_attribute"),
@@ -546,6 +811,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -782,6 +1048,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Yes / No Toggle`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("computed_attribute"),
@@ -794,6 +1061,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -1030,6 +1298,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -1042,6 +1311,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -1292,6 +1562,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Consent Management`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -1304,6 +1575,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -1540,6 +1812,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Country picker`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -1552,6 +1825,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -1845,6 +2119,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Currency input`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -1857,6 +2132,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -2094,6 +2370,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Date or Datetime picker`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -2106,6 +2383,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -2377,6 +2655,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `File or Image Attachment`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -2389,6 +2668,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -2625,6 +2905,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `No UI representation`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -2637,6 +2918,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -2873,6 +3155,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Epilot internal user info`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -2885,6 +3168,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -3121,6 +3405,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Email address for send invitation`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -3133,6 +3418,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_attribute"),
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -3369,6 +3655,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Link with title and href`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -3381,6 +3668,274 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_attribute"),
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
+									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+									path.MatchRelative().AtParent().AtName("number_attribute"),
+									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("purpose_attribute"),
+									path.MatchRelative().AtParent().AtName("relation_attribute"),
+									path.MatchRelative().AtParent().AtName("repeatable_attribute"),
+									path.MatchRelative().AtParent().AtName("select_attribute"),
+									path.MatchRelative().AtParent().AtName("sequence_attribute"),
+									path.MatchRelative().AtParent().AtName("status_attribute"),
+									path.MatchRelative().AtParent().AtName("tags_attribute"),
+									path.MatchRelative().AtParent().AtName("text_attribute"),
+									path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+								}...),
+							},
+						},
+						"message_email_address_attribute": schema.SingleNestedAttribute{
+							Computed: true,
+							Optional: true,
+							Attributes: map[string]schema.Attribute{
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+								},
+								"address": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"constraints": schema.SingleNestedAttribute{
+									Computed:   true,
+									Optional:   true,
+									Attributes: map[string]schema.Attribute{},
+									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+										`These constraints should and will be enforced by the attribute renderer.` + "\n" +
+										``,
+								},
+								"default_value": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+									Validators: []validator.String{
+										validators.IsValidJSON(),
+									},
+								},
+								"deprecated": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"email_type": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"entity_builder_disable_edit": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"group": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"hidden": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Do not render attribute in entity views. Default: false`,
+								},
+								"hide_label": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `When set to true, will hide the label of the field.`,
+								},
+								"icon": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+										`The value must be a valid @epilot/base-elements Icon name` + "\n" +
+										``,
+								},
+								"id": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
+								},
+								"info_helpers": schema.SingleNestedAttribute{
+									Computed: true,
+									Optional: true,
+									Attributes: map[string]schema.Attribute{
+										"hint_custom_component": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
+										},
+										"hint_text": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.` + "\n" +
+												``,
+										},
+										"hint_text_key": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+												`The key should be a valid i18n key.` + "\n" +
+												``,
+										},
+										"hint_tooltip_placement": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.` + "\n" +
+												``,
+										},
+									},
+									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+								},
+								"label": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"layout": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"order": schema.Int64Attribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Attribute sort order (ascending) in group`,
+								},
+								"placeholder": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"preview_value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"protected": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+								},
+								"readonly": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"render_condition": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+										`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+										``,
+								},
+								"required": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"send_status": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									Optional: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
+								},
+								"show_in_table": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"sortable": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(true),
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+								},
+								"type": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null; must be one of ["message_email_address"]`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+										stringvalidator.OneOf(
+											"message_email_address",
+										),
+									},
+								},
+								"value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+							},
+							Description: `Message emil address`,
+							Validators: []validator.Object{
+								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
+									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("automation_attribute"),
+									path.MatchRelative().AtParent().AtName("boolean_attribute"),
+									path.MatchRelative().AtParent().AtName("computed_attribute"),
+									path.MatchRelative().AtParent().AtName("consent_attribute"),
+									path.MatchRelative().AtParent().AtName("country_attribute"),
+									path.MatchRelative().AtParent().AtName("currency_attribute"),
+									path.MatchRelative().AtParent().AtName("date_attribute"),
+									path.MatchRelative().AtParent().AtName("file_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+									path.MatchRelative().AtParent().AtName("link_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -3676,6 +4231,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Multi Choice Selection`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -3689,6 +4245,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
@@ -3934,6 +4491,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Numeric input`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -3947,6 +4505,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
@@ -4182,6 +4741,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Type of attribute to render N number of ordered fields`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -4195,6 +4755,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
@@ -4430,6 +4991,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Shared Partner Organisations`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -4443,6 +5005,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -4678,6 +5241,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Partner Status`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -4691,6 +5255,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -4930,6 +5495,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Reference to a payment method attribute of another entity`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -4943,6 +5509,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -4974,6 +5541,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed:    true,
 									Optional:    true,
 									ElementType: types.StringType,
+								},
+								"archived": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Archived classification are not visible in the UI. Default: false`,
 								},
 								"color": schema.StringAttribute{
 									Computed:    true,
@@ -5206,6 +5779,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Entity Taxonomy`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -5219,6 +5793,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -5326,6 +5901,12 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 														Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
 													},
 													"created_at": schema.StringAttribute{
+														Computed: true,
+														Validators: []validator.String{
+															validators.IsRFC3339(),
+														},
+													},
+													"deleted_at": schema.StringAttribute{
 														Computed: true,
 														Validators: []validator.String{
 															validators.IsRFC3339(),
@@ -5755,6 +6336,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Entity Relationship`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -5768,6 +6350,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -6013,7 +6596,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date"]`,
+									Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date", "message_email_address"]`,
 									Validators: []validator.String{
 										stringvalidator.OneOf(
 											"string",
@@ -6024,6 +6607,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 											"payment",
 											"price_component",
 											"date",
+											"message_email_address",
 										),
 									},
 								},
@@ -6035,6 +6619,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Repeatable (add N number of fields)`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -6048,6 +6633,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -6297,6 +6883,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Dropdown select`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -6310,6 +6897,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -6554,6 +7142,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Sequence of unique identifiers`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -6567,6 +7156,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -6846,6 +7436,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Status select`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -6859,6 +7450,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -7104,6 +7696,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Tags`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -7117,6 +7710,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -7360,6 +7954,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `Textarea or text input`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -7373,6 +7968,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
@@ -7614,6 +8210,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Description: `User Relationship`,
 							Validators: []validator.Object{
 								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
 									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("automation_attribute"),
 									path.MatchRelative().AtParent().AtName("boolean_attribute"),
@@ -7627,6 +8224,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 									path.MatchRelative().AtParent().AtName("number_attribute"),
 									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),

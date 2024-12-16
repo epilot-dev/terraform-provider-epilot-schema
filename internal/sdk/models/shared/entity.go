@@ -19,6 +19,7 @@ type Entity struct {
 	Tags      []string   `json:"_tags,omitempty"`
 	CreatedAt *time.Time `json:"_created_at,omitempty"`
 	UpdatedAt *time.Time `json:"_updated_at,omitempty"`
+	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
 	ACL     *EntityACL `json:"_acl,omitempty"`
 	Purpose []string   `json:"_purpose,omitempty"`
@@ -92,6 +93,13 @@ func (o *Entity) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *Entity) GetDeletedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.DeletedAt
 }
 
 func (o *Entity) GetACL() *EntityACL {

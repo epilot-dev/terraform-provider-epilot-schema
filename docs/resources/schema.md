@@ -51,7 +51,7 @@ resource "epilot-schema_schema" "my_schema" {
 ### Optional
 
 - `blueprint` (String) Reference to blueprint
-- `category` (String) must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]
+- `category` (String)
 - `created_at` (String)
 - `description` (String)
 - `dialog_config` (Map of String)
@@ -186,6 +186,7 @@ Optional:
 
 - `quick_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--list_item--quick_actions))
 - `summary_attributes` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--list_item--summary_attributes))
+- `ui_config` (Attributes) (see [below for nested schema](#nestedatt--ui_config--list_item--ui_config))
 
 <a id="nestedatt--ui_config--list_item--quick_actions"></a>
 ### Nested Schema for `ui_config.list_item.quick_actions`
@@ -222,7 +223,19 @@ The value field supports handlebar expressions from which you can pick any field
 
 Optional:
 
+- `content_line_cap` (Number) Defines the line numbers of the content.
+For instance, When set to 1, the content will be displayed in a single line.
+- `content_wrap` (String) Defines white-space of the content.
+
+must be one of ["normal", "nowrap", "pre", "pre-wrap"]
+- `display_mode` (String) Defines the display mode of the summary attribute.
+When set to `inline`, the label and value will be displayed in the same line.
+When set to `block`, the label and value will be displayed in separate lines.
+
+must be one of ["inline", "block"]
 - `feature_flag` (String) Binds summary field visibility to the feature flag state.
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `highlight_container` (Boolean) When set to true, will highlight the container of the field.
 - `label` (String) Label to be shown on the top of the value. Not Null
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
@@ -241,6 +254,14 @@ Optional:
 - `name` (String) The name of the organization setting to check
 
 
+
+
+<a id="nestedatt--ui_config--list_item--ui_config"></a>
+### Nested Schema for `ui_config.list_item.ui_config`
+
+Optional:
+
+- `content_direction` (String) Show attributes in a row or column. must be one of ["row", "column"]
 
 
 

@@ -3,6 +3,7 @@
 package types
 
 type Attribute struct {
+	AddressAttribute               *AddressAttribute               `tfsdk:"address_attribute" tfPlanOnly:"true"`
 	AddressRelationAttribute       *AddressRelationAttribute       `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
 	AutomationAttribute            *AutomationAttribute            `tfsdk:"automation_attribute" tfPlanOnly:"true"`
 	BooleanAttribute               *BooleanAttribute               `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
@@ -16,6 +17,7 @@ type Attribute struct {
 	InternalUserAttribute          *InternalUserAttribute          `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
 	InvitationEmailAttribute       *InvitationEmailAttribute       `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
 	LinkAttribute                  *LinkAttribute                  `tfsdk:"link_attribute" tfPlanOnly:"true"`
+	MessageEmailAddressAttribute   *MessageEmailAddressAttribute   `tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
 	MultiSelectAttribute           *MultiSelectAttribute           `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
 	NumberAttribute                *NumberAttribute                `tfsdk:"number_attribute" tfPlanOnly:"true"`
 	OrderedListAttribute           *OrderedListAttribute           `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`

@@ -28,6 +28,8 @@ type GetSchemaAttributeResponse struct {
 	RawResponse *http.Response
 	// Success
 	AttributeWithCompositeID *shared.AttributeWithCompositeID
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSchemaAttributeResponse) GetContentType() string {
@@ -56,4 +58,11 @@ func (o *GetSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.Attri
 		return nil
 	}
 	return o.AttributeWithCompositeID
+}
+
+func (o *GetSchemaAttributeResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

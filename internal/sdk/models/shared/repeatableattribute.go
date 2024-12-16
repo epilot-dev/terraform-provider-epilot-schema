@@ -92,14 +92,15 @@ func (e *RepeatableAttributeRelationAffinityMode) UnmarshalJSON(data []byte) err
 type RepeatableAttributeType string
 
 const (
-	RepeatableAttributeTypeString         RepeatableAttributeType = "string"
-	RepeatableAttributeTypePhone          RepeatableAttributeType = "phone"
-	RepeatableAttributeTypeEmail          RepeatableAttributeType = "email"
-	RepeatableAttributeTypeAddress        RepeatableAttributeType = "address"
-	RepeatableAttributeTypeRelation       RepeatableAttributeType = "relation"
-	RepeatableAttributeTypePayment        RepeatableAttributeType = "payment"
-	RepeatableAttributeTypePriceComponent RepeatableAttributeType = "price_component"
-	RepeatableAttributeTypeDate           RepeatableAttributeType = "date"
+	RepeatableAttributeTypeString              RepeatableAttributeType = "string"
+	RepeatableAttributeTypePhone               RepeatableAttributeType = "phone"
+	RepeatableAttributeTypeEmail               RepeatableAttributeType = "email"
+	RepeatableAttributeTypeAddress             RepeatableAttributeType = "address"
+	RepeatableAttributeTypeRelation            RepeatableAttributeType = "relation"
+	RepeatableAttributeTypePayment             RepeatableAttributeType = "payment"
+	RepeatableAttributeTypePriceComponent      RepeatableAttributeType = "price_component"
+	RepeatableAttributeTypeDate                RepeatableAttributeType = "date"
+	RepeatableAttributeTypeMessageEmailAddress RepeatableAttributeType = "message_email_address"
 )
 
 func (e RepeatableAttributeType) ToPointer() *RepeatableAttributeType {
@@ -126,6 +127,8 @@ func (e *RepeatableAttributeType) UnmarshalJSON(data []byte) error {
 	case "price_component":
 		fallthrough
 	case "date":
+		fallthrough
+	case "message_email_address":
 		*e = RepeatableAttributeType(v)
 		return nil
 	default:

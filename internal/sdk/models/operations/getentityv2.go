@@ -67,6 +67,8 @@ type GetEntityV2Response struct {
 	RawResponse *http.Response
 	// Success
 	EntityItem *shared.EntityItem
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetEntityV2Response) GetContentType() string {
@@ -95,4 +97,11 @@ func (o *GetEntityV2Response) GetEntityItem() *shared.EntityItem {
 		return nil
 	}
 	return o.EntityItem
+}
+
+func (o *GetEntityV2Response) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

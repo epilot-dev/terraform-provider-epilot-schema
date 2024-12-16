@@ -139,6 +139,8 @@ type AddressRelationAttribute struct {
 	InfoHelpers *AddressRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	Type        *AddressRelationAttributeType        `json:"type,omitempty"`
 	HasPrimary  *bool                                `json:"has_primary,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 }
 
 func (a AddressRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -353,4 +355,11 @@ func (o *AddressRelationAttribute) GetHasPrimary() *bool {
 		return nil
 	}
 	return o.HasPrimary
+}
+
+func (o *AddressRelationAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
 }
