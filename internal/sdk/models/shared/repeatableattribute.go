@@ -3,8 +3,6 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
@@ -62,33 +60,6 @@ func (o *RepeatableAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
-// RepeatableAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-type RepeatableAttributeRelationAffinityMode string
-
-const (
-	RepeatableAttributeRelationAffinityModeWeak   RepeatableAttributeRelationAffinityMode = "weak"
-	RepeatableAttributeRelationAffinityModeStrong RepeatableAttributeRelationAffinityMode = "strong"
-)
-
-func (e RepeatableAttributeRelationAffinityMode) ToPointer() *RepeatableAttributeRelationAffinityMode {
-	return &e
-}
-func (e *RepeatableAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "weak":
-		fallthrough
-	case "strong":
-		*e = RepeatableAttributeRelationAffinityMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RepeatableAttributeRelationAffinityMode: %v", v)
-	}
-}
-
 // RepeatableAttribute - Repeatable (add N number of fields)
 type RepeatableAttribute struct {
 	// ID for the entity attribute
@@ -141,13 +112,6 @@ type RepeatableAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RepeatableAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Repeatable  *bool                           `json:"repeatable,omitempty"`
-	HasPrimary  *bool                           `json:"has_primary,omitempty"`
-	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RepeatableAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *string                                  `json:"type,omitempty"`
-	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 }
 
 func (r RepeatableAttribute) MarshalJSON() ([]byte, error) {
@@ -348,39 +312,4 @@ func (o *RepeatableAttribute) GetInfoHelpers() *RepeatableAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
-}
-
-func (o *RepeatableAttribute) GetRepeatable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Repeatable
-}
-
-func (o *RepeatableAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *RepeatableAttribute) GetRelationAffinityMode() *RepeatableAttributeRelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *RepeatableAttribute) GetType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *RepeatableAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
 }

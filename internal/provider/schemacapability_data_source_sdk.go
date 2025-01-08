@@ -1625,122 +1625,6 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				for _, v := range attributesItem.RelationAttribute.Purpose {
 					attributes1.RelationAttribute.Purpose = append(attributes1.RelationAttribute.Purpose, types.StringValue(v))
 				}
-				attributes1.RelationAttribute.Actions = []tfTypes.RelationAttributeActions{}
-				for actionsCount, actionsItem := range attributesItem.RelationAttribute.Actions {
-					var actions1 tfTypes.RelationAttributeActions
-					if actionsItem.ActionType != nil {
-						actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
-					} else {
-						actions1.ActionType = types.StringNull()
-					}
-					actions1.Default = types.BoolPointerValue(actionsItem.Default)
-					actions1.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
-					actions1.Label = types.StringPointerValue(actionsItem.Label)
-					if actionsItem.NewEntityItem == nil {
-						actions1.NewEntityItem = nil
-					} else {
-						actions1.NewEntityItem = &tfTypes.RelationAttributeNewEntityItem{}
-						if actionsItem.NewEntityItem.ACL == nil {
-							actions1.NewEntityItem.ACL = nil
-						} else {
-							actions1.NewEntityItem.ACL = &tfTypes.EntityACL{}
-							if actionsItem.NewEntityItem.ACL.AdditionalProperties == nil {
-								actions1.NewEntityItem.ACL.AdditionalProperties = types.StringNull()
-							} else {
-								additionalPropertiesResult, _ := json.Marshal(actionsItem.NewEntityItem.ACL.AdditionalProperties)
-								actions1.NewEntityItem.ACL.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
-							}
-							actions1.NewEntityItem.ACL.Delete = []types.String{}
-							for _, v := range actionsItem.NewEntityItem.ACL.Delete {
-								actions1.NewEntityItem.ACL.Delete = append(actions1.NewEntityItem.ACL.Delete, types.StringValue(v))
-							}
-							actions1.NewEntityItem.ACL.Edit = []types.String{}
-							for _, v := range actionsItem.NewEntityItem.ACL.Edit {
-								actions1.NewEntityItem.ACL.Edit = append(actions1.NewEntityItem.ACL.Edit, types.StringValue(v))
-							}
-							actions1.NewEntityItem.ACL.View = []types.String{}
-							for _, v := range actionsItem.NewEntityItem.ACL.View {
-								actions1.NewEntityItem.ACL.View = append(actions1.NewEntityItem.ACL.View, types.StringValue(v))
-							}
-						}
-						if actionsItem.NewEntityItem.CreatedAt != nil {
-							actions1.NewEntityItem.CreatedAt = types.StringValue(actionsItem.NewEntityItem.CreatedAt.Format(time.RFC3339Nano))
-						} else {
-							actions1.NewEntityItem.CreatedAt = types.StringNull()
-						}
-						if actionsItem.NewEntityItem.DeletedAt != nil {
-							actions1.NewEntityItem.DeletedAt = types.StringValue(actionsItem.NewEntityItem.DeletedAt.Format(time.RFC3339Nano))
-						} else {
-							actions1.NewEntityItem.DeletedAt = types.StringNull()
-						}
-						actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
-						actions1.NewEntityItem.Manifest = []types.String{}
-						for _, v := range actionsItem.NewEntityItem.Manifest {
-							actions1.NewEntityItem.Manifest = append(actions1.NewEntityItem.Manifest, types.StringValue(v))
-						}
-						actions1.NewEntityItem.Org = types.StringValue(actionsItem.NewEntityItem.Org)
-						actions1.NewEntityItem.Owners = []tfTypes.EntityOwner{}
-						for ownersCount, ownersItem := range actionsItem.NewEntityItem.Owners {
-							var owners1 tfTypes.EntityOwner
-							owners1.OrgID = types.StringValue(ownersItem.OrgID)
-							owners1.UserID = types.StringPointerValue(ownersItem.UserID)
-							if ownersCount+1 > len(actions1.NewEntityItem.Owners) {
-								actions1.NewEntityItem.Owners = append(actions1.NewEntityItem.Owners, owners1)
-							} else {
-								actions1.NewEntityItem.Owners[ownersCount].OrgID = owners1.OrgID
-								actions1.NewEntityItem.Owners[ownersCount].UserID = owners1.UserID
-							}
-						}
-						actions1.NewEntityItem.Purpose = []types.String{}
-						for _, v := range actionsItem.NewEntityItem.Purpose {
-							actions1.NewEntityItem.Purpose = append(actions1.NewEntityItem.Purpose, types.StringValue(v))
-						}
-						actions1.NewEntityItem.Schema = types.StringValue(actionsItem.NewEntityItem.Schema)
-						actions1.NewEntityItem.Tags = []types.String{}
-						for _, v := range actionsItem.NewEntityItem.Tags {
-							actions1.NewEntityItem.Tags = append(actions1.NewEntityItem.Tags, types.StringValue(v))
-						}
-						actions1.NewEntityItem.Title = types.StringPointerValue(actionsItem.NewEntityItem.Title)
-						if actionsItem.NewEntityItem.UpdatedAt != nil {
-							actions1.NewEntityItem.UpdatedAt = types.StringValue(actionsItem.NewEntityItem.UpdatedAt.Format(time.RFC3339Nano))
-						} else {
-							actions1.NewEntityItem.UpdatedAt = types.StringNull()
-						}
-						if actionsItem.NewEntityItem.AdditionalProperties == nil {
-							actions1.NewEntityItem.AdditionalProperties = types.StringNull()
-						} else {
-							additionalPropertiesResult1, _ := json.Marshal(actionsItem.NewEntityItem.AdditionalProperties)
-							actions1.NewEntityItem.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
-						}
-					}
-					actions1.SettingsFlag = []tfTypes.SettingFlag{}
-					for settingsFlagCount22, settingsFlagItem22 := range actionsItem.SettingsFlag {
-						var settingsFlag45 tfTypes.SettingFlag
-						settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-						settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
-						if settingsFlagCount22+1 > len(actions1.SettingsFlag) {
-							actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag45)
-						} else {
-							actions1.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-							actions1.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
-						}
-					}
-					if actionsCount+1 > len(attributes1.RelationAttribute.Actions) {
-						attributes1.RelationAttribute.Actions = append(attributes1.RelationAttribute.Actions, actions1)
-					} else {
-						attributes1.RelationAttribute.Actions[actionsCount].ActionType = actions1.ActionType
-						attributes1.RelationAttribute.Actions[actionsCount].Default = actions1.Default
-						attributes1.RelationAttribute.Actions[actionsCount].FeatureFlag = actions1.FeatureFlag
-						attributes1.RelationAttribute.Actions[actionsCount].Label = actions1.Label
-						attributes1.RelationAttribute.Actions[actionsCount].NewEntityItem = actions1.NewEntityItem
-						attributes1.RelationAttribute.Actions[actionsCount].SettingsFlag = actions1.SettingsFlag
-					}
-				}
-				attributes1.RelationAttribute.AddButtonLabel = types.StringPointerValue(attributesItem.RelationAttribute.AddButtonLabel)
-				attributes1.RelationAttribute.AllowedSchemas = []types.String{}
-				for _, v := range attributesItem.RelationAttribute.AllowedSchemas {
-					attributes1.RelationAttribute.AllowedSchemas = append(attributes1.RelationAttribute.AllowedSchemas, types.StringValue(v))
-				}
 				if attributesItem.RelationAttribute.Constraints == nil {
 					attributes1.RelationAttribute.Constraints = nil
 				} else {
@@ -1753,23 +1637,9 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 					attributes1.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
 				}
 				attributes1.RelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.RelationAttribute.Deprecated)
-				attributes1.RelationAttribute.DetailsViewModeEnabled = types.BoolPointerValue(attributesItem.RelationAttribute.DetailsViewModeEnabled)
-				if attributesItem.RelationAttribute.DrawerSize != nil {
-					attributes1.RelationAttribute.DrawerSize = types.StringValue(string(*attributesItem.RelationAttribute.DrawerSize))
-				} else {
-					attributes1.RelationAttribute.DrawerSize = types.StringNull()
-				}
-				if attributesItem.RelationAttribute.EditMode != nil {
-					attributes1.RelationAttribute.EditMode = types.StringValue(string(*attributesItem.RelationAttribute.EditMode))
-				} else {
-					attributes1.RelationAttribute.EditMode = types.StringNull()
-				}
-				attributes1.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationPicker)
-				attributes1.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationTags)
 				attributes1.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RelationAttribute.EntityBuilderDisableEdit)
 				attributes1.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RelationAttribute.FeatureFlag)
 				attributes1.RelationAttribute.Group = types.StringPointerValue(attributesItem.RelationAttribute.Group)
-				attributes1.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RelationAttribute.HasPrimary)
 				attributes1.RelationAttribute.Hidden = types.BoolPointerValue(attributesItem.RelationAttribute.Hidden)
 				attributes1.RelationAttribute.HideLabel = types.BoolPointerValue(attributesItem.RelationAttribute.HideLabel)
 				attributes1.RelationAttribute.Icon = types.StringPointerValue(attributesItem.RelationAttribute.Icon)
@@ -1791,66 +1661,26 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.RelationAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.PreviewValueFormatter)
 				attributes1.RelationAttribute.Protected = types.BoolPointerValue(attributesItem.RelationAttribute.Protected)
 				attributes1.RelationAttribute.Readonly = types.BoolPointerValue(attributesItem.RelationAttribute.Readonly)
-				if attributesItem.RelationAttribute.RelationAffinityMode != nil {
-					attributes1.RelationAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RelationAttribute.RelationAffinityMode))
-				} else {
-					attributes1.RelationAttribute.RelationAffinityMode = types.StringNull()
-				}
-				if attributesItem.RelationAttribute.RelationType != nil {
-					attributes1.RelationAttribute.RelationType = types.StringValue(string(*attributesItem.RelationAttribute.RelationType))
-				} else {
-					attributes1.RelationAttribute.RelationType = types.StringNull()
-				}
 				attributes1.RelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.RelationAttribute.RenderCondition)
 				attributes1.RelationAttribute.Required = types.BoolPointerValue(attributesItem.RelationAttribute.Required)
-				if len(attributesItem.RelationAttribute.ReverseAttributes) > 0 {
-					attributes1.RelationAttribute.ReverseAttributes = make(map[string]types.String)
-					for key, value1 := range attributesItem.RelationAttribute.ReverseAttributes {
-						attributes1.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
-					}
-				}
-				attributes1.RelationAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem.RelationAttribute.SearchPlaceholder)
 				attributes1.RelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount23, settingsFlagItem23 := range attributesItem.RelationAttribute.SettingsFlag {
-					var settingsFlag47 tfTypes.SettingFlag
-					settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-					settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
-					if settingsFlagCount23+1 > len(attributes1.RelationAttribute.SettingsFlag) {
-						attributes1.RelationAttribute.SettingsFlag = append(attributes1.RelationAttribute.SettingsFlag, settingsFlag47)
+				for settingsFlagCount22, settingsFlagItem22 := range attributesItem.RelationAttribute.SettingsFlag {
+					var settingsFlag45 tfTypes.SettingFlag
+					settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+					settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
+					if settingsFlagCount22+1 > len(attributes1.RelationAttribute.SettingsFlag) {
+						attributes1.RelationAttribute.SettingsFlag = append(attributes1.RelationAttribute.SettingsFlag, settingsFlag45)
 					} else {
-						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
+						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
+						attributes1.RelationAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
 					}
 				}
 				attributes1.RelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RelationAttribute.ShowInTable)
 				attributes1.RelationAttribute.Sortable = types.BoolPointerValue(attributesItem.RelationAttribute.Sortable)
-				attributes1.RelationAttribute.SummaryFields = []tfTypes.RelationAttributeSummaryFields{}
-				for summaryFieldsCount, summaryFieldsItem := range attributesItem.RelationAttribute.SummaryFields {
-					var summaryFields1 tfTypes.RelationAttributeSummaryFields
-					if summaryFieldsItem.Str != nil {
-						summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
-					}
-					if summaryFieldsItem.SummaryField != nil {
-						summaryFields1.SummaryField = &tfTypes.SummaryField{}
-						summaryFields1.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
-						summaryFields1.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
-					}
-					if summaryFieldsCount+1 > len(attributes1.RelationAttribute.SummaryFields) {
-						attributes1.RelationAttribute.SummaryFields = append(attributes1.RelationAttribute.SummaryFields, summaryFields1)
-					} else {
-						attributes1.RelationAttribute.SummaryFields[summaryFieldsCount].Str = summaryFields1.Str
-						attributes1.RelationAttribute.SummaryFields[summaryFieldsCount].SummaryField = summaryFields1.SummaryField
-					}
-				}
-				if attributesItem.RelationAttribute.Type != nil {
-					attributes1.RelationAttribute.Type = types.StringValue(string(*attributesItem.RelationAttribute.Type))
-				} else {
-					attributes1.RelationAttribute.Type = types.StringNull()
-				}
 				attributes1.RelationAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RelationAttribute.ValueFormatter)
 			}
 			if attributesItem.RepeatableAttribute != nil {
-				attributes1.RepeatableAttribute = &tfTypes.RepeatableAttribute{}
+				attributes1.RepeatableAttribute = &tfTypes.RelationAttribute{}
 				attributes1.RepeatableAttribute.Manifest = []types.String{}
 				for _, v := range attributesItem.RepeatableAttribute.Manifest {
 					attributes1.RepeatableAttribute.Manifest = append(attributes1.RepeatableAttribute.Manifest, types.StringValue(v))
@@ -1871,11 +1701,9 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 					attributes1.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
 				}
 				attributes1.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem.RepeatableAttribute.Deprecated)
-				attributes1.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RepeatableAttribute.EnableRelationPicker)
 				attributes1.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RepeatableAttribute.EntityBuilderDisableEdit)
 				attributes1.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RepeatableAttribute.FeatureFlag)
 				attributes1.RepeatableAttribute.Group = types.StringPointerValue(attributesItem.RepeatableAttribute.Group)
-				attributes1.RepeatableAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RepeatableAttribute.HasPrimary)
 				attributes1.RepeatableAttribute.Hidden = types.BoolPointerValue(attributesItem.RepeatableAttribute.Hidden)
 				attributes1.RepeatableAttribute.HideLabel = types.BoolPointerValue(attributesItem.RepeatableAttribute.HideLabel)
 				attributes1.RepeatableAttribute.Icon = types.StringPointerValue(attributesItem.RepeatableAttribute.Icon)
@@ -1897,29 +1725,22 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.PreviewValueFormatter)
 				attributes1.RepeatableAttribute.Protected = types.BoolPointerValue(attributesItem.RepeatableAttribute.Protected)
 				attributes1.RepeatableAttribute.Readonly = types.BoolPointerValue(attributesItem.RepeatableAttribute.Readonly)
-				if attributesItem.RepeatableAttribute.RelationAffinityMode != nil {
-					attributes1.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*attributesItem.RepeatableAttribute.RelationAffinityMode))
-				} else {
-					attributes1.RepeatableAttribute.RelationAffinityMode = types.StringNull()
-				}
 				attributes1.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem.RepeatableAttribute.RenderCondition)
-				attributes1.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Repeatable)
 				attributes1.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem.RepeatableAttribute.Required)
 				attributes1.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount24, settingsFlagItem24 := range attributesItem.RepeatableAttribute.SettingsFlag {
-					var settingsFlag49 tfTypes.SettingFlag
-					settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-					settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
-					if settingsFlagCount24+1 > len(attributes1.RepeatableAttribute.SettingsFlag) {
-						attributes1.RepeatableAttribute.SettingsFlag = append(attributes1.RepeatableAttribute.SettingsFlag, settingsFlag49)
+				for settingsFlagCount23, settingsFlagItem23 := range attributesItem.RepeatableAttribute.SettingsFlag {
+					var settingsFlag47 tfTypes.SettingFlag
+					settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+					settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
+					if settingsFlagCount23+1 > len(attributes1.RepeatableAttribute.SettingsFlag) {
+						attributes1.RepeatableAttribute.SettingsFlag = append(attributes1.RepeatableAttribute.SettingsFlag, settingsFlag47)
 					} else {
-						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
+						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
+						attributes1.RepeatableAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
 					}
 				}
 				attributes1.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RepeatableAttribute.ShowInTable)
 				attributes1.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Sortable)
-				attributes1.RepeatableAttribute.Type = types.StringPointerValue(attributesItem.RepeatableAttribute.Type)
 				attributes1.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.ValueFormatter)
 			}
 			if attributesItem.SelectAttribute != nil {
@@ -1978,15 +1799,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.SelectAttribute.RenderCondition = types.StringPointerValue(attributesItem.SelectAttribute.RenderCondition)
 				attributes1.SelectAttribute.Required = types.BoolPointerValue(attributesItem.SelectAttribute.Required)
 				attributes1.SelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount25, settingsFlagItem25 := range attributesItem.SelectAttribute.SettingsFlag {
-					var settingsFlag51 tfTypes.SettingFlag
-					settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-					settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
-					if settingsFlagCount25+1 > len(attributes1.SelectAttribute.SettingsFlag) {
-						attributes1.SelectAttribute.SettingsFlag = append(attributes1.SelectAttribute.SettingsFlag, settingsFlag51)
+				for settingsFlagCount24, settingsFlagItem24 := range attributesItem.SelectAttribute.SettingsFlag {
+					var settingsFlag49 tfTypes.SettingFlag
+					settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+					settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
+					if settingsFlagCount24+1 > len(attributes1.SelectAttribute.SettingsFlag) {
+						attributes1.SelectAttribute.SettingsFlag = append(attributes1.SelectAttribute.SettingsFlag, settingsFlag49)
 					} else {
-						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
+						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
+						attributes1.SelectAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
 					}
 				}
 				attributes1.SelectAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SelectAttribute.ShowInTable)
@@ -2048,15 +1869,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.SequenceAttribute.RenderCondition = types.StringPointerValue(attributesItem.SequenceAttribute.RenderCondition)
 				attributes1.SequenceAttribute.Required = types.BoolPointerValue(attributesItem.SequenceAttribute.Required)
 				attributes1.SequenceAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount26, settingsFlagItem26 := range attributesItem.SequenceAttribute.SettingsFlag {
-					var settingsFlag53 tfTypes.SettingFlag
-					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-					if settingsFlagCount26+1 > len(attributes1.SequenceAttribute.SettingsFlag) {
-						attributes1.SequenceAttribute.SettingsFlag = append(attributes1.SequenceAttribute.SettingsFlag, settingsFlag53)
+				for settingsFlagCount25, settingsFlagItem25 := range attributesItem.SequenceAttribute.SettingsFlag {
+					var settingsFlag51 tfTypes.SettingFlag
+					settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+					settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
+					if settingsFlagCount25+1 > len(attributes1.SequenceAttribute.SettingsFlag) {
+						attributes1.SequenceAttribute.SettingsFlag = append(attributes1.SequenceAttribute.SettingsFlag, settingsFlag51)
 					} else {
-						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
+						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
+						attributes1.SequenceAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
 					}
 				}
 				attributes1.SequenceAttribute.ShowInTable = types.BoolPointerValue(attributesItem.SequenceAttribute.ShowInTable)
@@ -2136,15 +1957,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.StatusAttribute.RenderCondition = types.StringPointerValue(attributesItem.StatusAttribute.RenderCondition)
 				attributes1.StatusAttribute.Required = types.BoolPointerValue(attributesItem.StatusAttribute.Required)
 				attributes1.StatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount27, settingsFlagItem27 := range attributesItem.StatusAttribute.SettingsFlag {
-					var settingsFlag55 tfTypes.SettingFlag
-					settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-					settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
-					if settingsFlagCount27+1 > len(attributes1.StatusAttribute.SettingsFlag) {
-						attributes1.StatusAttribute.SettingsFlag = append(attributes1.StatusAttribute.SettingsFlag, settingsFlag55)
+				for settingsFlagCount26, settingsFlagItem26 := range attributesItem.StatusAttribute.SettingsFlag {
+					var settingsFlag53 tfTypes.SettingFlag
+					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
+					if settingsFlagCount26+1 > len(attributes1.StatusAttribute.SettingsFlag) {
+						attributes1.StatusAttribute.SettingsFlag = append(attributes1.StatusAttribute.SettingsFlag, settingsFlag53)
 					} else {
-						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
+						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
+						attributes1.StatusAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
 					}
 				}
 				attributes1.StatusAttribute.ShowInTable = types.BoolPointerValue(attributesItem.StatusAttribute.ShowInTable)
@@ -2209,15 +2030,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.TagsAttribute.RenderCondition = types.StringPointerValue(attributesItem.TagsAttribute.RenderCondition)
 				attributes1.TagsAttribute.Required = types.BoolPointerValue(attributesItem.TagsAttribute.Required)
 				attributes1.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount28, settingsFlagItem28 := range attributesItem.TagsAttribute.SettingsFlag {
-					var settingsFlag57 tfTypes.SettingFlag
-					settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-					settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
-					if settingsFlagCount28+1 > len(attributes1.TagsAttribute.SettingsFlag) {
-						attributes1.TagsAttribute.SettingsFlag = append(attributes1.TagsAttribute.SettingsFlag, settingsFlag57)
+				for settingsFlagCount27, settingsFlagItem27 := range attributesItem.TagsAttribute.SettingsFlag {
+					var settingsFlag55 tfTypes.SettingFlag
+					settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+					settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
+					if settingsFlagCount27+1 > len(attributes1.TagsAttribute.SettingsFlag) {
+						attributes1.TagsAttribute.SettingsFlag = append(attributes1.TagsAttribute.SettingsFlag, settingsFlag55)
 					} else {
-						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
+						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
+						attributes1.TagsAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
 					}
 				}
 				attributes1.TagsAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TagsAttribute.ShowInTable)
@@ -2284,15 +2105,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.TextAttribute.Required = types.BoolPointerValue(attributesItem.TextAttribute.Required)
 				attributes1.TextAttribute.RichText = types.BoolPointerValue(attributesItem.TextAttribute.RichText)
 				attributes1.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount29, settingsFlagItem29 := range attributesItem.TextAttribute.SettingsFlag {
-					var settingsFlag59 tfTypes.SettingFlag
-					settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-					settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
-					if settingsFlagCount29+1 > len(attributes1.TextAttribute.SettingsFlag) {
-						attributes1.TextAttribute.SettingsFlag = append(attributes1.TextAttribute.SettingsFlag, settingsFlag59)
+				for settingsFlagCount28, settingsFlagItem28 := range attributesItem.TextAttribute.SettingsFlag {
+					var settingsFlag57 tfTypes.SettingFlag
+					settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
+					settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
+					if settingsFlagCount28+1 > len(attributes1.TextAttribute.SettingsFlag) {
+						attributes1.TextAttribute.SettingsFlag = append(attributes1.TextAttribute.SettingsFlag, settingsFlag57)
 					} else {
-						attributes1.TextAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-						attributes1.TextAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
+						attributes1.TextAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
+						attributes1.TextAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
 					}
 				}
 				attributes1.TextAttribute.ShowInTable = types.BoolPointerValue(attributesItem.TextAttribute.ShowInTable)
@@ -2354,15 +2175,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.UserRelationAttribute.RenderCondition = types.StringPointerValue(attributesItem.UserRelationAttribute.RenderCondition)
 				attributes1.UserRelationAttribute.Required = types.BoolPointerValue(attributesItem.UserRelationAttribute.Required)
 				attributes1.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount30, settingsFlagItem30 := range attributesItem.UserRelationAttribute.SettingsFlag {
-					var settingsFlag61 tfTypes.SettingFlag
-					settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-					settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
-					if settingsFlagCount30+1 > len(attributes1.UserRelationAttribute.SettingsFlag) {
-						attributes1.UserRelationAttribute.SettingsFlag = append(attributes1.UserRelationAttribute.SettingsFlag, settingsFlag61)
+				for settingsFlagCount29, settingsFlagItem29 := range attributesItem.UserRelationAttribute.SettingsFlag {
+					var settingsFlag59 tfTypes.SettingFlag
+					settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
+					settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
+					if settingsFlagCount29+1 > len(attributes1.UserRelationAttribute.SettingsFlag) {
+						attributes1.UserRelationAttribute.SettingsFlag = append(attributes1.UserRelationAttribute.SettingsFlag, settingsFlag59)
 					} else {
-						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
+						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
+						attributes1.UserRelationAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
 					}
 				}
 				attributes1.UserRelationAttribute.ShowInTable = types.BoolPointerValue(attributesItem.UserRelationAttribute.ShowInTable)
@@ -2418,15 +2239,15 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 		if len(r.SettingsFlag) > len(resp.SettingsFlag) {
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]
 		}
-		for settingsFlagCount31, settingsFlagItem31 := range resp.SettingsFlag {
-			var settingsFlag63 tfTypes.SettingFlag
-			settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
-			settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
-			if settingsFlagCount31+1 > len(r.SettingsFlag) {
-				r.SettingsFlag = append(r.SettingsFlag, settingsFlag63)
+		for settingsFlagCount30, settingsFlagItem30 := range resp.SettingsFlag {
+			var settingsFlag61 tfTypes.SettingFlag
+			settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
+			settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
+			if settingsFlagCount30+1 > len(r.SettingsFlag) {
+				r.SettingsFlag = append(r.SettingsFlag, settingsFlag61)
 			} else {
-				r.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
-				r.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
+				r.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
+				r.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
 			}
 		}
 		r.Title = types.StringPointerValue(resp.Title)
@@ -2439,8 +2260,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 			if uiHooksItem.AdditionalProperties == nil {
 				uiHooks1.AdditionalProperties = types.StringNull()
 			} else {
-				additionalPropertiesResult2, _ := json.Marshal(uiHooksItem.AdditionalProperties)
-				uiHooks1.AdditionalProperties = types.StringValue(string(additionalPropertiesResult2))
+				additionalPropertiesResult, _ := json.Marshal(uiHooksItem.AdditionalProperties)
+				uiHooks1.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
 			}
 			uiHooks1.Component = types.StringPointerValue(uiHooksItem.Component)
 			uiHooks1.Disabled = types.BoolPointerValue(uiHooksItem.Disabled)

@@ -141,7 +141,14 @@ actions:
   - target: $["components"]["schemas"]["SelectAttribute"]["allOf"][1]["properties"]["options"]
     update:
       x-speakeasy-type-override: any
-
-  - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]["type"]["enum"]
+  
+  - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]
     remove: true
-
+  - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]
+    update:
+      properties: {}
+  - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]["properties"]
+    remove: true
+  - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]
+    update:
+      properties: {}

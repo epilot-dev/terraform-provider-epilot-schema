@@ -1694,26 +1694,18 @@ Read-Only:
 
 Read-Only:
 
-- `actions` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions))
-- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
-- `allowed_schemas` (List of String)
 - `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
-- `details_view_mode_enabled` (Boolean) Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-- `drawer_size` (String)
-- `edit_mode` (String)
-- `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String)
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
 - `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--relation_attribute--info_helpers))
 - `label` (String)
@@ -1726,89 +1718,15 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
-- `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-- `relation_type` (String)
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
 - `required` (Boolean)
-- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `schema` (String) Schema slug the attribute belongs to
-- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--summary_fields))
-- `type` (String)
 - `value_formatter` (String)
-
-<a id="nestedatt--relation_attribute--actions"></a>
-### Nested Schema for `relation_attribute.actions`
-
-Read-Only:
-
-- `action_type` (String) The action type. Currently supported actions:
-
-| action | description |
-|--------|-------------|
-| add_existing | Enables the user to pick an existing entity to link as relation |
-| create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
-| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
-- `default` (Boolean) Sets the action as the default action, visible as the main action button.
-- `feature_flag` (String) Name of the feature flag that enables this action
-- `label` (String) The action label or action translation key (i18n)
-- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item))
-- `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--relation_attribute--actions--settings_flag))
-
-<a id="nestedatt--relation_attribute--actions--new_entity_item"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item`
-
-Read-Only:
-
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--acl))
-- `additional_properties` (String) Parsed as JSON.
-- `created_at` (String)
-- `deleted_at` (String)
-- `id` (String)
-- `manifest` (List of String) Manifest ID used to create/update the entity
-- `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
-- `purpose` (List of String)
-- `schema` (String) URL-friendly identifier for the entity schema
-- `tags` (List of String)
-- `title` (String) Title of entity
-- `updated_at` (String)
-
-<a id="nestedatt--relation_attribute--actions--new_entity_item--acl"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.acl`
-
-Read-Only:
-
-- `additional_properties` (String) Parsed as JSON.
-- `delete` (List of String)
-- `edit` (List of String)
-- `view` (List of String)
-
-
-<a id="nestedatt--relation_attribute--actions--new_entity_item--owners"></a>
-### Nested Schema for `relation_attribute.actions.new_entity_item.owners`
-
-Read-Only:
-
-- `org_id` (String)
-- `user_id` (String)
-
-
-
-<a id="nestedatt--relation_attribute--actions--settings_flag"></a>
-### Nested Schema for `relation_attribute.actions.settings_flag`
-
-Read-Only:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
 
 <a id="nestedatt--relation_attribute--constraints"></a>
 ### Nested Schema for `relation_attribute.constraints`
@@ -1839,24 +1757,6 @@ Read-Only:
 - `name` (String) The name of the organization setting to check
 
 
-<a id="nestedatt--relation_attribute--summary_fields"></a>
-### Nested Schema for `relation_attribute.summary_fields`
-
-Read-Only:
-
-- `str` (String)
-- `summary_field` (Attributes) Summary Fields are displayed inside list view as a resume of the relation entity. (see [below for nested schema](#nestedatt--relation_attribute--summary_fields--summary_field))
-
-<a id="nestedatt--relation_attribute--summary_fields--summary_field"></a>
-### Nested Schema for `relation_attribute.summary_fields.summary_field`
-
-Read-Only:
-
-- `display_as` (String) An hint on how to display the summary field
-- `field` (String) The field from the entity attributes to display
-
-
-
 
 <a id="nestedatt--repeatable_attribute"></a>
 ### Nested Schema for `repeatable_attribute`
@@ -1868,11 +1768,9 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1889,17 +1787,14 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
-- `repeatable` (Boolean)
 - `required` (Boolean)
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `type` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--repeatable_attribute--constraints"></a>

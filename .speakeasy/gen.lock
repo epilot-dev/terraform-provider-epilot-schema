@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 0c5ec0d9bc65107934d8a0d1072d9a8d
+  docChecksum: bbd8126b23c318e12c6d4ede798dc822
   docVersion: 1.0.0
   speakeasyVersion: 1.465.1
   generationVersion: 2.488.4
-  releaseVersion: 0.11.5
-  configChecksum: 3bf2806d235f2bd35e82aad27444ba0d
+  releaseVersion: 0.11.6
+  configChecksum: 250f87ebcaac1baa6b3d9cb9309cd8be
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -109,7 +109,6 @@ generatedFiles:
   - internal/provider/types/attribute_with_composite_id_payment_method_relation_attribute.go
   - internal/provider/types/attribute_with_composite_id_purpose_attribute.go
   - internal/provider/types/attribute_with_composite_id_relation_attribute.go
-  - internal/provider/types/attribute_with_composite_id_repeatable_attribute.go
   - internal/provider/types/attribute_with_composite_id_select_attribute.go
   - internal/provider/types/attribute_with_composite_id_sequence_attribute.go
   - internal/provider/types/attribute_with_composite_id_status_attribute.go
@@ -124,14 +123,12 @@ generatedFiles:
   - internal/provider/types/currency_attribute_currency.go
   - internal/provider/types/currency_attribute_currency1.go
   - internal/provider/types/edit_view.go
-  - internal/provider/types/entity_acl.go
   - internal/provider/types/entity_action.go
   - internal/provider/types/entity_default_create.go
   - internal/provider/types/entity_default_edit.go
   - internal/provider/types/entity_default_table.go
   - internal/provider/types/entity_default_table_options.go
   - internal/provider/types/entity_default_table_params.go
-  - internal/provider/types/entity_owner.go
   - internal/provider/types/entity_schema_item_ui_config.go
   - internal/provider/types/entity_view_disabled.go
   - internal/provider/types/file_attribute.go
@@ -148,10 +145,6 @@ generatedFiles:
   - internal/provider/types/purpose_attribute.go
   - internal/provider/types/redirect_entity_view.go
   - internal/provider/types/relation_attribute.go
-  - internal/provider/types/relation_attribute_actions.go
-  - internal/provider/types/relation_attribute_new_entity_item.go
-  - internal/provider/types/relation_attribute_summary_fields.go
-  - internal/provider/types/repeatable_attribute.go
   - internal/provider/types/required_permission.go
   - internal/provider/types/search_mappings.go
   - internal/provider/types/select_attribute.go
@@ -161,7 +154,6 @@ generatedFiles:
   - internal/provider/types/status_attribute.go
   - internal/provider/types/summary_attribute.go
   - internal/provider/types/summary_attributes.go
-  - internal/provider/types/summary_field.go
   - internal/provider/types/table_view.go
   - internal/provider/types/tags_attribute.go
   - internal/provider/types/text_attribute.go
@@ -269,7 +261,6 @@ generatedFiles:
   - internal/sdk/models/shared/addressattribute.go
   - internal/sdk/models/shared/addressrelationattribute.go
   - internal/sdk/models/shared/attribute.go
-  - internal/sdk/models/shared/attributeinput.go
   - internal/sdk/models/shared/attributewithcompositeid.go
   - internal/sdk/models/shared/automationattribute.go
   - internal/sdk/models/shared/baseactivityitem.go
@@ -342,7 +333,6 @@ generatedFiles:
   - internal/sdk/models/shared/settingflag.go
   - internal/sdk/models/shared/statusattribute.go
   - internal/sdk/models/shared/summaryattribute.go
-  - internal/sdk/models/shared/summaryfield.go
   - internal/sdk/models/shared/tagsattribute.go
   - internal/sdk/models/shared/taxonomy.go
   - internal/sdk/models/shared/taxonomybulkjob.go
@@ -585,7 +575,7 @@ examples:
   createSchemaCapability:
     speakeasy-default-create-schema-capability:
       requestBody:
-        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schema": "contact"}
+        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "schema": "contact"}
       responses:
         "201":
           application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
@@ -648,7 +638,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
   deleteSchemaCapability:
     speakeasy-default-delete-schema-capability:
       parameters:
@@ -656,7 +646,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}, {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}, {"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
   deleteSchemaGroup:
     speakeasy-default-delete-schema-group:
       parameters:
@@ -867,7 +857,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
         "404":
           application/json: {"status": 400, "error": "Bad Request"}
   getSchemaCapability:
@@ -877,7 +867,7 @@ examples:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "customer_messaging", "title": "Messaging", "attributes": [{"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}, {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}}, {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "type": "image", "allowed_extensions": ["csv"]}], "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "ui_hooks": [{"0": "<", "1": "v", "2": "a", "3": "l", "4": "u", "5": "e", "6": ">", "hook": "EntityDetailsV2:Tab", "render_condition": "_is_composite_price = \"false\"", "order": 10, "title": "Notes", "import": "@epilot360/notes", "component": "PricingItems", "route": "notes", "icon": "email", "requiredPermission": {"action": "note:view", "resource": "123"}}], "feature_flag": "FF_MY_FEATURE_FLAG", "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
         "404":
           application/json: {"status": 400, "error": "Bad Request"}
   getSchemaExample:
@@ -1021,10 +1011,10 @@ examples:
         path:
           composite_id: "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
       requestBody:
-        application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "schema": "contact"}
+        application/json: {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "schema": "contact"}
       responses:
         "200":
-          application/json: {"id": "d5839b94-ba20-4225-a78e-76951d352bd6", "name": "<value>", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
+          application/json: {"id": "taxonomy-slug:classification-slug", "name": "Wallbox PV", "label": "<value>", "order": 0, "layout": "full_width", "_purpose": ["taxonomy-slug:classification-slug"], "_manifest": ["123e4567-e89b-12d3-a456-426614174000"], "feature_flag": "FF_MY_FEATURE_FLAG", "info_helpers": {"hint_tooltip_placement": "top"}, "composite_id": "contact:97644baa-083f-4e49-9188-fcff2ecaad7d", "schema": "contact"}
   putSchemaCapability:
     speakeasy-default-put-schema-capability:
       parameters:

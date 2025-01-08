@@ -350,24 +350,17 @@ func CreateAttributePartnerOrganisationAttribute(partnerOrganisationAttribute Pa
 
 func (u *Attribute) UnmarshalJSON(data []byte) error {
 
-	var internalAttribute InternalAttribute = InternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
-		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
+	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
+	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
+		u.RepeatableAttribute = &repeatableAttribute
+		u.Type = AttributeTypeRepeatableAttribute
 		return nil
 	}
 
-	var linkAttribute LinkAttribute = LinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
-		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
-		return nil
-	}
-
-	var dateAttribute DateAttribute = DateAttribute{}
-	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, false); err == nil {
-		u.DateAttribute = &dateAttribute
-		u.Type = AttributeTypeDateAttribute
+	var relationAttribute RelationAttribute = RelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, false); err == nil {
+		u.RelationAttribute = &relationAttribute
+		u.Type = AttributeTypeRelationAttribute
 		return nil
 	}
 
@@ -375,6 +368,13 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, false); err == nil {
 		u.CountryAttribute = &countryAttribute
 		u.Type = AttributeTypeCountryAttribute
+		return nil
+	}
+
+	var dateAttribute DateAttribute = DateAttribute{}
+	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, false); err == nil {
+		u.DateAttribute = &dateAttribute
+		u.Type = AttributeTypeDateAttribute
 		return nil
 	}
 
@@ -413,6 +413,13 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var linkAttribute LinkAttribute = LinkAttribute{}
+	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
+		u.LinkAttribute = &linkAttribute
+		u.Type = AttributeTypeLinkAttribute
+		return nil
+	}
+
 	var partnerStatusAttribute PartnerStatusAttribute = PartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, false); err == nil {
 		u.PartnerStatusAttribute = &partnerStatusAttribute
@@ -434,17 +441,17 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var internalAttribute InternalAttribute = InternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
+		u.InternalAttribute = &internalAttribute
+		u.Type = AttributeTypeInternalAttribute
+		return nil
+	}
+
 	var statusAttribute StatusAttribute = StatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
 		u.StatusAttribute = &statusAttribute
 		u.Type = AttributeTypeStatusAttribute
-		return nil
-	}
-
-	var addressAttribute AddressAttribute = AddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressAttribute, "", true, false); err == nil {
-		u.AddressAttribute = &addressAttribute
-		u.Type = AttributeTypeAddressAttribute
 		return nil
 	}
 
@@ -462,17 +469,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, false); err == nil {
-		u.SequenceAttribute = &sequenceAttribute
-		u.Type = AttributeTypeSequenceAttribute
-		return nil
-	}
-
-	var textAttribute TextAttribute = TextAttribute{}
-	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
-		u.TextAttribute = &textAttribute
-		u.Type = AttributeTypeTextAttribute
+	var addressAttribute AddressAttribute = AddressAttribute{}
+	if err := utils.UnmarshalJSON(data, &addressAttribute, "", true, false); err == nil {
+		u.AddressAttribute = &addressAttribute
+		u.Type = AttributeTypeAddressAttribute
 		return nil
 	}
 
@@ -490,6 +490,13 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
+	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, false); err == nil {
+		u.CurrencyAttribute = &currencyAttribute
+		u.Type = AttributeTypeCurrencyAttribute
+		return nil
+	}
+
 	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
 		u.AddressRelationAttribute = &addressRelationAttribute
@@ -504,6 +511,20 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
+	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, false); err == nil {
+		u.SequenceAttribute = &sequenceAttribute
+		u.Type = AttributeTypeSequenceAttribute
+		return nil
+	}
+
+	var textAttribute TextAttribute = TextAttribute{}
+	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
+		u.TextAttribute = &textAttribute
+		u.Type = AttributeTypeTextAttribute
+		return nil
+	}
+
 	var selectAttribute SelectAttribute = SelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, false); err == nil {
 		u.SelectAttribute = &selectAttribute
@@ -511,24 +532,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, false); err == nil {
-		u.CurrencyAttribute = &currencyAttribute
-		u.Type = AttributeTypeCurrencyAttribute
-		return nil
-	}
-
 	var messageEmailAddressAttribute MessageEmailAddressAttribute = MessageEmailAddressAttribute{}
 	if err := utils.UnmarshalJSON(data, &messageEmailAddressAttribute, "", true, false); err == nil {
 		u.MessageEmailAddressAttribute = &messageEmailAddressAttribute
 		u.Type = AttributeTypeMessageEmailAddressAttribute
-		return nil
-	}
-
-	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
-		u.RepeatableAttribute = &repeatableAttribute
-		u.Type = AttributeTypeRepeatableAttribute
 		return nil
 	}
 
@@ -550,13 +557,6 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
 		u.PurposeAttribute = &purposeAttribute
 		u.Type = AttributeTypePurposeAttribute
-		return nil
-	}
-
-	var relationAttribute RelationAttribute = RelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, false); err == nil {
-		u.RelationAttribute = &relationAttribute
-		u.Type = AttributeTypeRelationAttribute
 		return nil
 	}
 
