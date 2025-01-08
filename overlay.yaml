@@ -148,17 +148,3 @@ actions:
         type: array
         items:
           $ref: '#/components/schemas/EntitySlug'
-
-  # - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]
-  #   remove: true
-  # - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]
-  #   update:
-  #     properties: {}
-  # - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]["properties"]
-  #   remove: true
-  # - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]
-  #   update:
-  #     properties: {}
-
-
-            
