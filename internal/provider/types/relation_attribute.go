@@ -7,7 +7,7 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 type RelationAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	Actions                  []RelationAttributeActionsInput                      `tfsdk:"actions"`
+	Actions                  []RelationAttributeActions                           `tfsdk:"actions"`
 	AddButtonLabel           types.String                                         `tfsdk:"add_button_label"`
 	AllowedSchemas           []types.String                                       `tfsdk:"allowed_schemas"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`

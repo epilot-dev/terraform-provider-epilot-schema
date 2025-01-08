@@ -121,11 +121,9 @@ func (r *SchemaGroupHeadlineResource) Schema(ctx context.Context, req resource.S
 			},
 			"type": schema.StringAttribute{
 				Required:    true,
-				Description: `must be one of ["headline"]`,
+				Description: `must be "headline"`,
 				Validators: []validator.String{
-					stringvalidator.OneOf(
-						"headline",
-					),
+					stringvalidator.OneOf("headline"),
 				},
 			},
 		},

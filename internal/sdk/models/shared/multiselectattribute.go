@@ -116,8 +116,8 @@ const (
 )
 
 type OptionsObj struct {
-	Str      *string
-	Options2 *Options2
+	Str      *string   `queryParam:"inline"`
+	Options2 *Options2 `queryParam:"inline"`
 
 	Type OptionsObjType
 }

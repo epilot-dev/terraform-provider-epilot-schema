@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type RelationAttributeNewEntityItemInput struct {
+type RelationAttributeNewEntityItem struct {
 	ACL                  *EntityACL     `tfsdk:"acl"`
 	CreatedAt            types.String   `tfsdk:"created_at"`
 	DeletedAt            types.String   `tfsdk:"deleted_at"`

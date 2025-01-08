@@ -86,8 +86,8 @@ const (
 )
 
 type SavedViewCreatedBy struct {
-	CreatedBy1 *CreatedBy1
-	CreatedBy2 *CreatedBy2
+	CreatedBy1 *CreatedBy1 `queryParam:"inline"`
+	CreatedBy2 *CreatedBy2 `queryParam:"inline"`
 
 	Type SavedViewCreatedByType
 }

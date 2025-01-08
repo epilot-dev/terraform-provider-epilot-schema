@@ -142,3 +142,7 @@ actions:
     update:
       x-speakeasy-type-override: any
 
+  - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]["type"]
+    update:
+      x-speakeasy-type-override: any
+

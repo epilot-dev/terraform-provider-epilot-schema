@@ -89,53 +89,6 @@ func (e *RepeatableAttributeRelationAffinityMode) UnmarshalJSON(data []byte) err
 	}
 }
 
-type RepeatableAttributeType string
-
-const (
-	RepeatableAttributeTypeString              RepeatableAttributeType = "string"
-	RepeatableAttributeTypePhone               RepeatableAttributeType = "phone"
-	RepeatableAttributeTypeEmail               RepeatableAttributeType = "email"
-	RepeatableAttributeTypeAddress             RepeatableAttributeType = "address"
-	RepeatableAttributeTypeRelation            RepeatableAttributeType = "relation"
-	RepeatableAttributeTypePayment             RepeatableAttributeType = "payment"
-	RepeatableAttributeTypePriceComponent      RepeatableAttributeType = "price_component"
-	RepeatableAttributeTypeDate                RepeatableAttributeType = "date"
-	RepeatableAttributeTypeMessageEmailAddress RepeatableAttributeType = "message_email_address"
-)
-
-func (e RepeatableAttributeType) ToPointer() *RepeatableAttributeType {
-	return &e
-}
-func (e *RepeatableAttributeType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "string":
-		fallthrough
-	case "phone":
-		fallthrough
-	case "email":
-		fallthrough
-	case "address":
-		fallthrough
-	case "relation":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "price_component":
-		fallthrough
-	case "date":
-		fallthrough
-	case "message_email_address":
-		*e = RepeatableAttributeType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RepeatableAttributeType: %v", v)
-	}
-}
-
 // RepeatableAttribute - Repeatable (add N number of fields)
 type RepeatableAttribute struct {
 	// ID for the entity attribute
@@ -192,7 +145,7 @@ type RepeatableAttribute struct {
 	HasPrimary  *bool                           `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *RepeatableAttributeType                 `json:"type,omitempty"`
+	Type                 any                                      `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 }
@@ -418,7 +371,7 @@ func (o *RepeatableAttribute) GetRelationAffinityMode() *RepeatableAttributeRela
 	return o.RelationAffinityMode
 }
 
-func (o *RepeatableAttribute) GetType() *RepeatableAttributeType {
+func (o *RepeatableAttribute) GetType() any {
 	if o == nil {
 		return nil
 	}

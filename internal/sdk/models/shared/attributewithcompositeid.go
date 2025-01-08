@@ -5272,53 +5272,6 @@ func (e *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode) Unmars
 	}
 }
 
-type RepeatableAttributeAttributeWithCompositeIDType string
-
-const (
-	RepeatableAttributeAttributeWithCompositeIDTypeString              RepeatableAttributeAttributeWithCompositeIDType = "string"
-	RepeatableAttributeAttributeWithCompositeIDTypePhone               RepeatableAttributeAttributeWithCompositeIDType = "phone"
-	RepeatableAttributeAttributeWithCompositeIDTypeEmail               RepeatableAttributeAttributeWithCompositeIDType = "email"
-	RepeatableAttributeAttributeWithCompositeIDTypeAddress             RepeatableAttributeAttributeWithCompositeIDType = "address"
-	RepeatableAttributeAttributeWithCompositeIDTypeRelation            RepeatableAttributeAttributeWithCompositeIDType = "relation"
-	RepeatableAttributeAttributeWithCompositeIDTypePayment             RepeatableAttributeAttributeWithCompositeIDType = "payment"
-	RepeatableAttributeAttributeWithCompositeIDTypePriceComponent      RepeatableAttributeAttributeWithCompositeIDType = "price_component"
-	RepeatableAttributeAttributeWithCompositeIDTypeDate                RepeatableAttributeAttributeWithCompositeIDType = "date"
-	RepeatableAttributeAttributeWithCompositeIDTypeMessageEmailAddress RepeatableAttributeAttributeWithCompositeIDType = "message_email_address"
-)
-
-func (e RepeatableAttributeAttributeWithCompositeIDType) ToPointer() *RepeatableAttributeAttributeWithCompositeIDType {
-	return &e
-}
-func (e *RepeatableAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "string":
-		fallthrough
-	case "phone":
-		fallthrough
-	case "email":
-		fallthrough
-	case "address":
-		fallthrough
-	case "relation":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "price_component":
-		fallthrough
-	case "date":
-		fallthrough
-	case "message_email_address":
-		*e = RepeatableAttributeAttributeWithCompositeIDType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RepeatableAttributeAttributeWithCompositeIDType: %v", v)
-	}
-}
-
 // AttributeWithCompositeIDRepeatableAttribute - Repeatable (add N number of fields)
 type AttributeWithCompositeIDRepeatableAttribute struct {
 	// ID for the entity attribute
@@ -5375,7 +5328,7 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *RepeatableAttributeAttributeWithCompositeIDType                 `json:"type,omitempty"`
+	Type                 any                                                              `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool   `default:"true" json:"enable_relation_picker"`
 	CompositeID          *string `json:"composite_id,omitempty"`
@@ -5604,7 +5557,7 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetRelationAffinityMode() 
 	return o.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetType() *RepeatableAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetType() any {
 	if o == nil {
 		return nil
 	}
@@ -5752,7 +5705,7 @@ const (
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1
+	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1 `queryParam:"inline"`
 
 	Type CurrencyAttributeCurrencyType
 }
@@ -7960,8 +7913,8 @@ const (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          *string
-	SummaryField *SummaryField
+	Str          *string       `queryParam:"inline"`
+	SummaryField *SummaryField `queryParam:"inline"`
 
 	Type RelationAttributeSummaryFieldsType
 }
@@ -8889,8 +8842,8 @@ const (
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                                             *string
-	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2
+	Str                                             *string                                          `queryParam:"inline"`
+	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2 `queryParam:"inline"`
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -9338,8 +9291,8 @@ const (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str                          *string
-	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2
+	Str                          *string                       `queryParam:"inline"`
+	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline"`
 
 	Type MultiSelectAttributeOptionsType
 }
@@ -11919,36 +11872,36 @@ const (
 
 // AttributeWithCompositeID - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeID struct {
-	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute
-	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute
-	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute
-	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute
-	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute
-	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute
-	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute
-	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute
-	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute
-	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute
-	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute
-	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute
-	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute
-	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute
-	AttributeWithCompositeIDRepeatableAttribute            *AttributeWithCompositeIDRepeatableAttribute
-	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute
-	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute
-	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute
-	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute
-	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute
-	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute
-	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute
-	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute
-	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute
-	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute
-	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute
-	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute
-	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute
-	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute
+	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline"`
+	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
+	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
+	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDRepeatableAttribute            *AttributeWithCompositeIDRepeatableAttribute            `queryParam:"inline"`
+	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline"`
+	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline"`
+	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline"`
+	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline"`
+	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline"`
+	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline"`
+	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline"`
 
 	Type AttributeWithCompositeIDType
 }
@@ -16580,7 +16533,7 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *RepeatableAttributeAttributeWithCompositeIDType                 `json:"type,omitempty"`
+	Type                 any                                                              `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 	// Schema slug the attribute belongs to
@@ -16808,7 +16761,7 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRelationAffinityMo
 	return o.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetType() *RepeatableAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetType() any {
 	if o == nil {
 		return nil
 	}
@@ -21344,36 +21297,36 @@ const (
 
 // AttributeWithCompositeIDInput - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeIDInput struct {
-	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput
-	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput
-	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput
-	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput
-	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput
-	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput
-	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput
-	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput
-	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput
-	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput
-	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput
-	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput
-	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput
-	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput
-	AttributeWithCompositeIDRepeatableAttributeInput            *AttributeWithCompositeIDRepeatableAttributeInput
-	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput
-	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput
-	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput
-	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput
-	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput
-	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput
-	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput
-	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput
-	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput
-	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput
-	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput
-	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput
-	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput
-	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput
+	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline"`
+	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
+	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
+	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDRepeatableAttributeInput            *AttributeWithCompositeIDRepeatableAttributeInput            `queryParam:"inline"`
+	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline"`
+	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline"`
+	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline"`
+	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline"`
+	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline"`
+	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline"`
+	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline"`
 
 	Type AttributeWithCompositeIDInputType
 }
