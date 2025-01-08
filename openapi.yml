@@ -3602,6 +3602,10 @@ components:
             type: boolean
             default: true
             description: when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+          allowedSchemas:
+            type: array
+            items:
+              $ref: '#/components/schemas/EntitySlug'
     TagsAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'

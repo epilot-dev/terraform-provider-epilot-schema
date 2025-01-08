@@ -26,7 +26,7 @@ type Attribute struct {
 	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
 	PurposeAttribute               *PurposeAttribute               `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
 	RelationAttribute              *RelationAttribute              `tfsdk:"relation_attribute" tfPlanOnly:"true"`
-	RepeatableAttribute            *RelationAttribute              `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
+	RepeatableAttribute            *RepeatableAttribute            `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
 	SelectAttribute                *SelectAttribute                `tfsdk:"select_attribute" tfPlanOnly:"true"`
 	SequenceAttribute              *SequenceAttribute              `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
 	StatusAttribute                *StatusAttribute                `tfsdk:"status_attribute" tfPlanOnly:"true"`

@@ -3458,6 +3458,140 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"relation_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"actions": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"action_type": schema.StringAttribute{
+												Computed: true,
+												MarkdownDescription: `The action type. Currently supported actions:` + "\n" +
+													`` + "\n" +
+													`| action | description |` + "\n" +
+													`|--------|-------------|` + "\n" +
+													`| add_existing | Enables the user to pick an existing entity to link as relation |` + "\n" +
+													`| create_new | Enables the user to create a new entity using the first/main ` + "`" + `allowed_schemas` + "`" + ` schema` + "\n" +
+													`| create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |`,
+											},
+											"default": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Sets the action as the default action, visible as the main action button.`,
+											},
+											"feature_flag": schema.StringAttribute{
+												Computed:    true,
+												Description: `Name of the feature flag that enables this action`,
+											},
+											"label": schema.StringAttribute{
+												Computed:    true,
+												Description: `The action label or action translation key (i18n)`,
+											},
+											"new_entity_item": schema.SingleNestedAttribute{
+												Computed: true,
+												Attributes: map[string]schema.Attribute{
+													"acl": schema.SingleNestedAttribute{
+														Computed: true,
+														Attributes: map[string]schema.Attribute{
+															"additional_properties": schema.StringAttribute{
+																Computed:    true,
+																Description: `Parsed as JSON.`,
+															},
+															"delete": schema.ListAttribute{
+																Computed:    true,
+																ElementType: types.StringType,
+															},
+															"edit": schema.ListAttribute{
+																Computed:    true,
+																ElementType: types.StringType,
+															},
+															"view": schema.ListAttribute{
+																Computed:    true,
+																ElementType: types.StringType,
+															},
+														},
+														Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
+													},
+													"additional_properties": schema.StringAttribute{
+														Computed:    true,
+														Description: `Parsed as JSON.`,
+													},
+													"created_at": schema.StringAttribute{
+														Computed: true,
+													},
+													"deleted_at": schema.StringAttribute{
+														Computed: true,
+													},
+													"id": schema.StringAttribute{
+														Computed: true,
+													},
+													"manifest": schema.ListAttribute{
+														Computed:    true,
+														ElementType: types.StringType,
+														Description: `Manifest ID used to create/update the entity`,
+													},
+													"org": schema.StringAttribute{
+														Computed:    true,
+														Description: `Organization Id the entity belongs to`,
+													},
+													"owners": schema.ListNestedAttribute{
+														Computed: true,
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"org_id": schema.StringAttribute{
+																	Computed: true,
+																},
+																"user_id": schema.StringAttribute{
+																	Computed: true,
+																},
+															},
+														},
+													},
+													"purpose": schema.ListAttribute{
+														Computed:    true,
+														ElementType: types.StringType,
+													},
+													"schema": schema.StringAttribute{
+														Computed:    true,
+														Description: `URL-friendly identifier for the entity schema`,
+													},
+													"tags": schema.ListAttribute{
+														Computed:    true,
+														ElementType: types.StringType,
+													},
+													"title": schema.StringAttribute{
+														Computed:    true,
+														Description: `Title of entity`,
+													},
+													"updated_at": schema.StringAttribute{
+														Computed: true,
+													},
+												},
+											},
+											"settings_flag": schema.ListNestedAttribute{
+												Computed: true,
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"enabled": schema.BoolAttribute{
+															Computed:    true,
+															Description: `Whether the setting should be enabled or not`,
+														},
+														"name": schema.StringAttribute{
+															Computed:    true,
+															Description: `The name of the organization setting to check`,
+														},
+													},
+												},
+												Description: `This action should only be active when all the settings have the correct value`,
+											},
+										},
+									},
+								},
+								"add_button_label": schema.StringAttribute{
+									Computed:    true,
+									Description: `Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.`,
+								},
+								"allowed_schemas": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
@@ -3469,6 +3603,24 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed: true,
+								},
+								"details_view_mode_enabled": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Enables the preview, edition, and creation of relation items on a Master-Details view mode.`,
+								},
+								"drawer_size": schema.StringAttribute{
+									Computed: true,
+								},
+								"edit_mode": schema.StringAttribute{
+									Computed: true,
+								},
+								"enable_relation_picker": schema.BoolAttribute{
+									Computed:    true,
+									Description: `When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
+								},
+								"enable_relation_tags": schema.BoolAttribute{
+									Computed:    true,
+									Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.`,
 								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
@@ -3482,6 +3634,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
 								},
+								"has_primary": schema.BoolAttribute{
+									Computed: true,
+								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Do not render attribute in entity views`,
@@ -3492,8 +3647,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"icon": schema.StringAttribute{
 									Computed: true,
-									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-										`The value must be a valid @epilot/base-elements Icon name`,
 								},
 								"id": schema.StringAttribute{
 									Computed:    true,
@@ -3561,6 +3714,13 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
+								"relation_affinity_mode": schema.StringAttribute{
+									Computed:    true,
+									Description: `Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.`,
+								},
+								"relation_type": schema.StringAttribute{
+									Computed: true,
+								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
@@ -3569,6 +3729,15 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
+								},
+								"reverse_attributes": schema.MapAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Map of schema slug to target relation attribute`,
+								},
+								"search_placeholder": schema.StringAttribute{
+									Computed:    true,
+									Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -3593,6 +3762,33 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+								},
+								"summary_fields": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"str": schema.StringAttribute{
+												Computed: true,
+											},
+											"summary_field": schema.SingleNestedAttribute{
+												Computed: true,
+												Attributes: map[string]schema.Attribute{
+													"display_as": schema.StringAttribute{
+														Computed:    true,
+														Description: `An hint on how to display the summary field`,
+													},
+													"field": schema.StringAttribute{
+														Computed:    true,
+														Description: `The field from the entity attributes to display`,
+													},
+												},
+												Description: `Summary Fields are displayed inside list view as a resume of the relation entity.`,
+											},
+										},
+									},
+								},
+								"type": schema.StringAttribute{
+									Computed: true,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
@@ -3603,6 +3799,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"repeatable_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
+								"allowed_schemas": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
@@ -3615,6 +3815,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"deprecated": schema.BoolAttribute{
 									Computed: true,
 								},
+								"enable_relation_picker": schema.BoolAttribute{
+									Computed:    true,
+									Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.`,
+								},
 								"entity_builder_disable_edit": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
@@ -3626,6 +3830,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"group": schema.StringAttribute{
 									Computed:    true,
 									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"has_primary": schema.BoolAttribute{
+									Computed: true,
 								},
 								"hidden": schema.BoolAttribute{
 									Computed:    true,
@@ -3706,11 +3913,18 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"readonly": schema.BoolAttribute{
 									Computed: true,
 								},
+								"relation_affinity_mode": schema.StringAttribute{
+									Computed:    true,
+									Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.`,
+								},
 								"render_condition": schema.StringAttribute{
 									Computed: true,
 									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 										`Note: Empty or invalid expression have no effect on the field visibility.`,
+								},
+								"repeatable": schema.BoolAttribute{
+									Computed: true,
 								},
 								"required": schema.BoolAttribute{
 									Computed: true,
@@ -3738,6 +3952,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+								},
+								"type": schema.StringAttribute{
+									Computed: true,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,

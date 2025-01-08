@@ -1089,14 +1089,65 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   relation_attribute = {
+    actions = [
+      {
+        action_type  = "create_new"
+        default      = false
+        feature_flag = "...my_feature_flag..."
+        label        = "...my_label..."
+        new_entity_item = {
+          acl = {
+            additional_properties = "{ \"see\": \"documentation\" }"
+            delete = [
+              "org:456"
+            ]
+            edit = [
+              "org:456"
+            ]
+            view = [
+              "org:456"
+            ]
+          }
+          additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] }, "_manifest" : ["123e4567-e89b-12d3-a456-426614174000"] }
+          id                    = "094dd5ad-d4b4-4ace-a195-70b490540f31"
+          manifest = [
+            "123e4567-e89b-12d3-a456-426614174000"
+          ]
+          purpose = [
+            "..."
+          ]
+          schema = "contact"
+          tags = [
+            "..."
+          ]
+          title = "...my_title..."
+        }
+        settings_flag = [
+          {
+            enabled = true
+            name    = "...my_name..."
+          }
+        ]
+      }
+    ]
+    add_button_label = "...my_add_button_label..."
+    allowed_schemas = [
+      "contact"
+    ]
     constraints = {
       # ...
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    details_view_mode_enabled   = true
+    drawer_size                 = "large"
+    edit_mode                   = "list-view"
+    enable_relation_picker      = false
+    enable_relation_tags        = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1120,29 +1171,50 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "strong"
+    relation_type          = "has_one"
+    render_condition       = "...my_render_condition..."
+    required               = false
+    reverse_attributes = {
+      key = "value",
+    }
+    schema             = "contact"
+    search_placeholder = "...my_search_placeholder..."
     settings_flag = [
       {
         enabled = false
         name    = "...my_name..."
       }
     ]
-    show_in_table   = false
-    sortable        = false
+    show_in_table = false
+    sortable      = false
+    summary_fields = [
+      {
+        str = "...my_str..."
+        summary_field = {
+          display_as = "...my_display_as..."
+          field      = "...my_field..."
+        }
+      }
+    ]
+    type            = "relation"
     value_formatter = "...my_value_formatter..."
   }
   repeatable_attribute = {
+    allowed_schemas = [
+      "contact"
+    ]
     constraints = {
       # ...
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1166,10 +1238,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = false
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1178,6 +1252,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     show_in_table   = false
     sortable        = false
+    type            = "date"
     value_formatter = "...my_value_formatter..."
   }
   select_attribute = {

@@ -8,42 +8,42 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type AttributeType string
+type AttributeInputType string
 
 const (
-	AttributeTypeTextAttribute                  AttributeType = "TextAttribute"
-	AttributeTypeLinkAttribute                  AttributeType = "LinkAttribute"
-	AttributeTypeDateAttribute                  AttributeType = "DateAttribute"
-	AttributeTypeCountryAttribute               AttributeType = "CountryAttribute"
-	AttributeTypeBooleanAttribute               AttributeType = "BooleanAttribute"
-	AttributeTypeSelectAttribute                AttributeType = "SelectAttribute"
-	AttributeTypeMultiSelectAttribute           AttributeType = "MultiSelectAttribute"
-	AttributeTypeStatusAttribute                AttributeType = "StatusAttribute"
-	AttributeTypeSequenceAttribute              AttributeType = "SequenceAttribute"
-	AttributeTypeRelationAttribute              AttributeType = "RelationAttribute"
-	AttributeTypeUserRelationAttribute          AttributeType = "UserRelationAttribute"
-	AttributeTypeAddressAttribute               AttributeType = "AddressAttribute"
-	AttributeTypeAddressRelationAttribute       AttributeType = "AddressRelationAttribute"
-	AttributeTypePaymentMethodRelationAttribute AttributeType = "PaymentMethodRelationAttribute"
-	AttributeTypeCurrencyAttribute              AttributeType = "CurrencyAttribute"
-	AttributeTypeRepeatableAttribute            AttributeType = "RepeatableAttribute"
-	AttributeTypeTagsAttribute                  AttributeType = "TagsAttribute"
-	AttributeTypeMessageEmailAddressAttribute   AttributeType = "MessageEmailAddressAttribute"
-	AttributeTypeNumberAttribute                AttributeType = "NumberAttribute"
-	AttributeTypeConsentAttribute               AttributeType = "ConsentAttribute"
-	AttributeTypeInternalAttribute              AttributeType = "InternalAttribute"
-	AttributeTypeOrderedListAttribute           AttributeType = "OrderedListAttribute"
-	AttributeTypeFileAttribute                  AttributeType = "FileAttribute"
-	AttributeTypeComputedAttribute              AttributeType = "ComputedAttribute"
-	AttributeTypePartnerStatusAttribute         AttributeType = "PartnerStatusAttribute"
-	AttributeTypeInvitationEmailAttribute       AttributeType = "InvitationEmailAttribute"
-	AttributeTypeAutomationAttribute            AttributeType = "AutomationAttribute"
-	AttributeTypeInternalUserAttribute          AttributeType = "InternalUserAttribute"
-	AttributeTypePurposeAttribute               AttributeType = "PurposeAttribute"
-	AttributeTypePartnerOrganisationAttribute   AttributeType = "PartnerOrganisationAttribute"
+	AttributeInputTypeTextAttribute                  AttributeInputType = "TextAttribute"
+	AttributeInputTypeLinkAttribute                  AttributeInputType = "LinkAttribute"
+	AttributeInputTypeDateAttribute                  AttributeInputType = "DateAttribute"
+	AttributeInputTypeCountryAttribute               AttributeInputType = "CountryAttribute"
+	AttributeInputTypeBooleanAttribute               AttributeInputType = "BooleanAttribute"
+	AttributeInputTypeSelectAttribute                AttributeInputType = "SelectAttribute"
+	AttributeInputTypeMultiSelectAttribute           AttributeInputType = "MultiSelectAttribute"
+	AttributeInputTypeStatusAttribute                AttributeInputType = "StatusAttribute"
+	AttributeInputTypeSequenceAttribute              AttributeInputType = "SequenceAttribute"
+	AttributeInputTypeRelationAttributeInput         AttributeInputType = "RelationAttribute_input"
+	AttributeInputTypeUserRelationAttribute          AttributeInputType = "UserRelationAttribute"
+	AttributeInputTypeAddressAttribute               AttributeInputType = "AddressAttribute"
+	AttributeInputTypeAddressRelationAttribute       AttributeInputType = "AddressRelationAttribute"
+	AttributeInputTypePaymentMethodRelationAttribute AttributeInputType = "PaymentMethodRelationAttribute"
+	AttributeInputTypeCurrencyAttribute              AttributeInputType = "CurrencyAttribute"
+	AttributeInputTypeRepeatableAttribute            AttributeInputType = "RepeatableAttribute"
+	AttributeInputTypeTagsAttribute                  AttributeInputType = "TagsAttribute"
+	AttributeInputTypeMessageEmailAddressAttribute   AttributeInputType = "MessageEmailAddressAttribute"
+	AttributeInputTypeNumberAttribute                AttributeInputType = "NumberAttribute"
+	AttributeInputTypeConsentAttribute               AttributeInputType = "ConsentAttribute"
+	AttributeInputTypeInternalAttribute              AttributeInputType = "InternalAttribute"
+	AttributeInputTypeOrderedListAttribute           AttributeInputType = "OrderedListAttribute"
+	AttributeInputTypeFileAttribute                  AttributeInputType = "FileAttribute"
+	AttributeInputTypeComputedAttribute              AttributeInputType = "ComputedAttribute"
+	AttributeInputTypePartnerStatusAttribute         AttributeInputType = "PartnerStatusAttribute"
+	AttributeInputTypeInvitationEmailAttribute       AttributeInputType = "InvitationEmailAttribute"
+	AttributeInputTypeAutomationAttribute            AttributeInputType = "AutomationAttribute"
+	AttributeInputTypeInternalUserAttribute          AttributeInputType = "InternalUserAttribute"
+	AttributeInputTypePurposeAttribute               AttributeInputType = "PurposeAttribute"
+	AttributeInputTypePartnerOrganisationAttribute   AttributeInputType = "PartnerOrganisationAttribute"
 )
 
-type Attribute struct {
+type AttributeInput struct {
 	TextAttribute                  *TextAttribute                  `queryParam:"inline"`
 	LinkAttribute                  *LinkAttribute                  `queryParam:"inline"`
 	DateAttribute                  *DateAttribute                  `queryParam:"inline"`
@@ -53,7 +53,7 @@ type Attribute struct {
 	MultiSelectAttribute           *MultiSelectAttribute           `queryParam:"inline"`
 	StatusAttribute                *StatusAttribute                `queryParam:"inline"`
 	SequenceAttribute              *SequenceAttribute              `queryParam:"inline"`
-	RelationAttribute              *RelationAttribute              `queryParam:"inline"`
+	RelationAttributeInput         *RelationAttributeInput         `queryParam:"inline"`
 	UserRelationAttribute          *UserRelationAttribute          `queryParam:"inline"`
 	AddressAttribute               *AddressAttribute               `queryParam:"inline"`
 	AddressRelationAttribute       *AddressRelationAttribute       `queryParam:"inline"`
@@ -75,495 +75,495 @@ type Attribute struct {
 	PurposeAttribute               *PurposeAttribute               `queryParam:"inline"`
 	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `queryParam:"inline"`
 
-	Type AttributeType
+	Type AttributeInputType
 }
 
-func CreateAttributeTextAttribute(textAttribute TextAttribute) Attribute {
-	typ := AttributeTypeTextAttribute
+func CreateAttributeInputTextAttribute(textAttribute TextAttribute) AttributeInput {
+	typ := AttributeInputTypeTextAttribute
 
-	return Attribute{
+	return AttributeInput{
 		TextAttribute: &textAttribute,
 		Type:          typ,
 	}
 }
 
-func CreateAttributeLinkAttribute(linkAttribute LinkAttribute) Attribute {
-	typ := AttributeTypeLinkAttribute
+func CreateAttributeInputLinkAttribute(linkAttribute LinkAttribute) AttributeInput {
+	typ := AttributeInputTypeLinkAttribute
 
-	return Attribute{
+	return AttributeInput{
 		LinkAttribute: &linkAttribute,
 		Type:          typ,
 	}
 }
 
-func CreateAttributeDateAttribute(dateAttribute DateAttribute) Attribute {
-	typ := AttributeTypeDateAttribute
+func CreateAttributeInputDateAttribute(dateAttribute DateAttribute) AttributeInput {
+	typ := AttributeInputTypeDateAttribute
 
-	return Attribute{
+	return AttributeInput{
 		DateAttribute: &dateAttribute,
 		Type:          typ,
 	}
 }
 
-func CreateAttributeCountryAttribute(countryAttribute CountryAttribute) Attribute {
-	typ := AttributeTypeCountryAttribute
+func CreateAttributeInputCountryAttribute(countryAttribute CountryAttribute) AttributeInput {
+	typ := AttributeInputTypeCountryAttribute
 
-	return Attribute{
+	return AttributeInput{
 		CountryAttribute: &countryAttribute,
 		Type:             typ,
 	}
 }
 
-func CreateAttributeBooleanAttribute(booleanAttribute BooleanAttribute) Attribute {
-	typ := AttributeTypeBooleanAttribute
+func CreateAttributeInputBooleanAttribute(booleanAttribute BooleanAttribute) AttributeInput {
+	typ := AttributeInputTypeBooleanAttribute
 
-	return Attribute{
+	return AttributeInput{
 		BooleanAttribute: &booleanAttribute,
 		Type:             typ,
 	}
 }
 
-func CreateAttributeSelectAttribute(selectAttribute SelectAttribute) Attribute {
-	typ := AttributeTypeSelectAttribute
+func CreateAttributeInputSelectAttribute(selectAttribute SelectAttribute) AttributeInput {
+	typ := AttributeInputTypeSelectAttribute
 
-	return Attribute{
+	return AttributeInput{
 		SelectAttribute: &selectAttribute,
 		Type:            typ,
 	}
 }
 
-func CreateAttributeMultiSelectAttribute(multiSelectAttribute MultiSelectAttribute) Attribute {
-	typ := AttributeTypeMultiSelectAttribute
+func CreateAttributeInputMultiSelectAttribute(multiSelectAttribute MultiSelectAttribute) AttributeInput {
+	typ := AttributeInputTypeMultiSelectAttribute
 
-	return Attribute{
+	return AttributeInput{
 		MultiSelectAttribute: &multiSelectAttribute,
 		Type:                 typ,
 	}
 }
 
-func CreateAttributeStatusAttribute(statusAttribute StatusAttribute) Attribute {
-	typ := AttributeTypeStatusAttribute
+func CreateAttributeInputStatusAttribute(statusAttribute StatusAttribute) AttributeInput {
+	typ := AttributeInputTypeStatusAttribute
 
-	return Attribute{
+	return AttributeInput{
 		StatusAttribute: &statusAttribute,
 		Type:            typ,
 	}
 }
 
-func CreateAttributeSequenceAttribute(sequenceAttribute SequenceAttribute) Attribute {
-	typ := AttributeTypeSequenceAttribute
+func CreateAttributeInputSequenceAttribute(sequenceAttribute SequenceAttribute) AttributeInput {
+	typ := AttributeInputTypeSequenceAttribute
 
-	return Attribute{
+	return AttributeInput{
 		SequenceAttribute: &sequenceAttribute,
 		Type:              typ,
 	}
 }
 
-func CreateAttributeRelationAttribute(relationAttribute RelationAttribute) Attribute {
-	typ := AttributeTypeRelationAttribute
+func CreateAttributeInputRelationAttributeInput(relationAttributeInput RelationAttributeInput) AttributeInput {
+	typ := AttributeInputTypeRelationAttributeInput
 
-	return Attribute{
-		RelationAttribute: &relationAttribute,
-		Type:              typ,
+	return AttributeInput{
+		RelationAttributeInput: &relationAttributeInput,
+		Type:                   typ,
 	}
 }
 
-func CreateAttributeUserRelationAttribute(userRelationAttribute UserRelationAttribute) Attribute {
-	typ := AttributeTypeUserRelationAttribute
+func CreateAttributeInputUserRelationAttribute(userRelationAttribute UserRelationAttribute) AttributeInput {
+	typ := AttributeInputTypeUserRelationAttribute
 
-	return Attribute{
+	return AttributeInput{
 		UserRelationAttribute: &userRelationAttribute,
 		Type:                  typ,
 	}
 }
 
-func CreateAttributeAddressAttribute(addressAttribute AddressAttribute) Attribute {
-	typ := AttributeTypeAddressAttribute
+func CreateAttributeInputAddressAttribute(addressAttribute AddressAttribute) AttributeInput {
+	typ := AttributeInputTypeAddressAttribute
 
-	return Attribute{
+	return AttributeInput{
 		AddressAttribute: &addressAttribute,
 		Type:             typ,
 	}
 }
 
-func CreateAttributeAddressRelationAttribute(addressRelationAttribute AddressRelationAttribute) Attribute {
-	typ := AttributeTypeAddressRelationAttribute
+func CreateAttributeInputAddressRelationAttribute(addressRelationAttribute AddressRelationAttribute) AttributeInput {
+	typ := AttributeInputTypeAddressRelationAttribute
 
-	return Attribute{
+	return AttributeInput{
 		AddressRelationAttribute: &addressRelationAttribute,
 		Type:                     typ,
 	}
 }
 
-func CreateAttributePaymentMethodRelationAttribute(paymentMethodRelationAttribute PaymentMethodRelationAttribute) Attribute {
-	typ := AttributeTypePaymentMethodRelationAttribute
+func CreateAttributeInputPaymentMethodRelationAttribute(paymentMethodRelationAttribute PaymentMethodRelationAttribute) AttributeInput {
+	typ := AttributeInputTypePaymentMethodRelationAttribute
 
-	return Attribute{
+	return AttributeInput{
 		PaymentMethodRelationAttribute: &paymentMethodRelationAttribute,
 		Type:                           typ,
 	}
 }
 
-func CreateAttributeCurrencyAttribute(currencyAttribute CurrencyAttribute) Attribute {
-	typ := AttributeTypeCurrencyAttribute
+func CreateAttributeInputCurrencyAttribute(currencyAttribute CurrencyAttribute) AttributeInput {
+	typ := AttributeInputTypeCurrencyAttribute
 
-	return Attribute{
+	return AttributeInput{
 		CurrencyAttribute: &currencyAttribute,
 		Type:              typ,
 	}
 }
 
-func CreateAttributeRepeatableAttribute(repeatableAttribute RepeatableAttribute) Attribute {
-	typ := AttributeTypeRepeatableAttribute
+func CreateAttributeInputRepeatableAttribute(repeatableAttribute RepeatableAttribute) AttributeInput {
+	typ := AttributeInputTypeRepeatableAttribute
 
-	return Attribute{
+	return AttributeInput{
 		RepeatableAttribute: &repeatableAttribute,
 		Type:                typ,
 	}
 }
 
-func CreateAttributeTagsAttribute(tagsAttribute TagsAttribute) Attribute {
-	typ := AttributeTypeTagsAttribute
+func CreateAttributeInputTagsAttribute(tagsAttribute TagsAttribute) AttributeInput {
+	typ := AttributeInputTypeTagsAttribute
 
-	return Attribute{
+	return AttributeInput{
 		TagsAttribute: &tagsAttribute,
 		Type:          typ,
 	}
 }
 
-func CreateAttributeMessageEmailAddressAttribute(messageEmailAddressAttribute MessageEmailAddressAttribute) Attribute {
-	typ := AttributeTypeMessageEmailAddressAttribute
+func CreateAttributeInputMessageEmailAddressAttribute(messageEmailAddressAttribute MessageEmailAddressAttribute) AttributeInput {
+	typ := AttributeInputTypeMessageEmailAddressAttribute
 
-	return Attribute{
+	return AttributeInput{
 		MessageEmailAddressAttribute: &messageEmailAddressAttribute,
 		Type:                         typ,
 	}
 }
 
-func CreateAttributeNumberAttribute(numberAttribute NumberAttribute) Attribute {
-	typ := AttributeTypeNumberAttribute
+func CreateAttributeInputNumberAttribute(numberAttribute NumberAttribute) AttributeInput {
+	typ := AttributeInputTypeNumberAttribute
 
-	return Attribute{
+	return AttributeInput{
 		NumberAttribute: &numberAttribute,
 		Type:            typ,
 	}
 }
 
-func CreateAttributeConsentAttribute(consentAttribute ConsentAttribute) Attribute {
-	typ := AttributeTypeConsentAttribute
+func CreateAttributeInputConsentAttribute(consentAttribute ConsentAttribute) AttributeInput {
+	typ := AttributeInputTypeConsentAttribute
 
-	return Attribute{
+	return AttributeInput{
 		ConsentAttribute: &consentAttribute,
 		Type:             typ,
 	}
 }
 
-func CreateAttributeInternalAttribute(internalAttribute InternalAttribute) Attribute {
-	typ := AttributeTypeInternalAttribute
+func CreateAttributeInputInternalAttribute(internalAttribute InternalAttribute) AttributeInput {
+	typ := AttributeInputTypeInternalAttribute
 
-	return Attribute{
+	return AttributeInput{
 		InternalAttribute: &internalAttribute,
 		Type:              typ,
 	}
 }
 
-func CreateAttributeOrderedListAttribute(orderedListAttribute OrderedListAttribute) Attribute {
-	typ := AttributeTypeOrderedListAttribute
+func CreateAttributeInputOrderedListAttribute(orderedListAttribute OrderedListAttribute) AttributeInput {
+	typ := AttributeInputTypeOrderedListAttribute
 
-	return Attribute{
+	return AttributeInput{
 		OrderedListAttribute: &orderedListAttribute,
 		Type:                 typ,
 	}
 }
 
-func CreateAttributeFileAttribute(fileAttribute FileAttribute) Attribute {
-	typ := AttributeTypeFileAttribute
+func CreateAttributeInputFileAttribute(fileAttribute FileAttribute) AttributeInput {
+	typ := AttributeInputTypeFileAttribute
 
-	return Attribute{
+	return AttributeInput{
 		FileAttribute: &fileAttribute,
 		Type:          typ,
 	}
 }
 
-func CreateAttributeComputedAttribute(computedAttribute ComputedAttribute) Attribute {
-	typ := AttributeTypeComputedAttribute
+func CreateAttributeInputComputedAttribute(computedAttribute ComputedAttribute) AttributeInput {
+	typ := AttributeInputTypeComputedAttribute
 
-	return Attribute{
+	return AttributeInput{
 		ComputedAttribute: &computedAttribute,
 		Type:              typ,
 	}
 }
 
-func CreateAttributePartnerStatusAttribute(partnerStatusAttribute PartnerStatusAttribute) Attribute {
-	typ := AttributeTypePartnerStatusAttribute
+func CreateAttributeInputPartnerStatusAttribute(partnerStatusAttribute PartnerStatusAttribute) AttributeInput {
+	typ := AttributeInputTypePartnerStatusAttribute
 
-	return Attribute{
+	return AttributeInput{
 		PartnerStatusAttribute: &partnerStatusAttribute,
 		Type:                   typ,
 	}
 }
 
-func CreateAttributeInvitationEmailAttribute(invitationEmailAttribute InvitationEmailAttribute) Attribute {
-	typ := AttributeTypeInvitationEmailAttribute
+func CreateAttributeInputInvitationEmailAttribute(invitationEmailAttribute InvitationEmailAttribute) AttributeInput {
+	typ := AttributeInputTypeInvitationEmailAttribute
 
-	return Attribute{
+	return AttributeInput{
 		InvitationEmailAttribute: &invitationEmailAttribute,
 		Type:                     typ,
 	}
 }
 
-func CreateAttributeAutomationAttribute(automationAttribute AutomationAttribute) Attribute {
-	typ := AttributeTypeAutomationAttribute
+func CreateAttributeInputAutomationAttribute(automationAttribute AutomationAttribute) AttributeInput {
+	typ := AttributeInputTypeAutomationAttribute
 
-	return Attribute{
+	return AttributeInput{
 		AutomationAttribute: &automationAttribute,
 		Type:                typ,
 	}
 }
 
-func CreateAttributeInternalUserAttribute(internalUserAttribute InternalUserAttribute) Attribute {
-	typ := AttributeTypeInternalUserAttribute
+func CreateAttributeInputInternalUserAttribute(internalUserAttribute InternalUserAttribute) AttributeInput {
+	typ := AttributeInputTypeInternalUserAttribute
 
-	return Attribute{
+	return AttributeInput{
 		InternalUserAttribute: &internalUserAttribute,
 		Type:                  typ,
 	}
 }
 
-func CreateAttributePurposeAttribute(purposeAttribute PurposeAttribute) Attribute {
-	typ := AttributeTypePurposeAttribute
+func CreateAttributeInputPurposeAttribute(purposeAttribute PurposeAttribute) AttributeInput {
+	typ := AttributeInputTypePurposeAttribute
 
-	return Attribute{
+	return AttributeInput{
 		PurposeAttribute: &purposeAttribute,
 		Type:             typ,
 	}
 }
 
-func CreateAttributePartnerOrganisationAttribute(partnerOrganisationAttribute PartnerOrganisationAttribute) Attribute {
-	typ := AttributeTypePartnerOrganisationAttribute
+func CreateAttributeInputPartnerOrganisationAttribute(partnerOrganisationAttribute PartnerOrganisationAttribute) AttributeInput {
+	typ := AttributeInputTypePartnerOrganisationAttribute
 
-	return Attribute{
+	return AttributeInput{
 		PartnerOrganisationAttribute: &partnerOrganisationAttribute,
 		Type:                         typ,
 	}
 }
 
-func (u *Attribute) UnmarshalJSON(data []byte) error {
+func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 
 	var internalAttribute InternalAttribute = InternalAttribute{}
 	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
 		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
+		u.Type = AttributeInputTypeInternalAttribute
 		return nil
 	}
 
 	var linkAttribute LinkAttribute = LinkAttribute{}
 	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
 		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
+		u.Type = AttributeInputTypeLinkAttribute
 		return nil
 	}
 
 	var dateAttribute DateAttribute = DateAttribute{}
 	if err := utils.UnmarshalJSON(data, &dateAttribute, "", true, false); err == nil {
 		u.DateAttribute = &dateAttribute
-		u.Type = AttributeTypeDateAttribute
+		u.Type = AttributeInputTypeDateAttribute
 		return nil
 	}
 
 	var countryAttribute CountryAttribute = CountryAttribute{}
 	if err := utils.UnmarshalJSON(data, &countryAttribute, "", true, false); err == nil {
 		u.CountryAttribute = &countryAttribute
-		u.Type = AttributeTypeCountryAttribute
+		u.Type = AttributeInputTypeCountryAttribute
 		return nil
 	}
 
 	var booleanAttribute BooleanAttribute = BooleanAttribute{}
 	if err := utils.UnmarshalJSON(data, &booleanAttribute, "", true, false); err == nil {
 		u.BooleanAttribute = &booleanAttribute
-		u.Type = AttributeTypeBooleanAttribute
+		u.Type = AttributeInputTypeBooleanAttribute
 		return nil
 	}
 
 	var partnerOrganisationAttribute PartnerOrganisationAttribute = PartnerOrganisationAttribute{}
 	if err := utils.UnmarshalJSON(data, &partnerOrganisationAttribute, "", true, false); err == nil {
 		u.PartnerOrganisationAttribute = &partnerOrganisationAttribute
-		u.Type = AttributeTypePartnerOrganisationAttribute
+		u.Type = AttributeInputTypePartnerOrganisationAttribute
 		return nil
 	}
 
 	var internalUserAttribute InternalUserAttribute = InternalUserAttribute{}
 	if err := utils.UnmarshalJSON(data, &internalUserAttribute, "", true, false); err == nil {
 		u.InternalUserAttribute = &internalUserAttribute
-		u.Type = AttributeTypeInternalUserAttribute
+		u.Type = AttributeInputTypeInternalUserAttribute
 		return nil
 	}
 
 	var automationAttribute AutomationAttribute = AutomationAttribute{}
 	if err := utils.UnmarshalJSON(data, &automationAttribute, "", true, false); err == nil {
 		u.AutomationAttribute = &automationAttribute
-		u.Type = AttributeTypeAutomationAttribute
+		u.Type = AttributeInputTypeAutomationAttribute
 		return nil
 	}
 
 	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
 	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
 		u.InvitationEmailAttribute = &invitationEmailAttribute
-		u.Type = AttributeTypeInvitationEmailAttribute
+		u.Type = AttributeInputTypeInvitationEmailAttribute
 		return nil
 	}
 
 	var partnerStatusAttribute PartnerStatusAttribute = PartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &partnerStatusAttribute, "", true, false); err == nil {
 		u.PartnerStatusAttribute = &partnerStatusAttribute
-		u.Type = AttributeTypePartnerStatusAttribute
+		u.Type = AttributeInputTypePartnerStatusAttribute
 		return nil
 	}
 
 	var computedAttribute ComputedAttribute = ComputedAttribute{}
 	if err := utils.UnmarshalJSON(data, &computedAttribute, "", true, false); err == nil {
 		u.ComputedAttribute = &computedAttribute
-		u.Type = AttributeTypeComputedAttribute
+		u.Type = AttributeInputTypeComputedAttribute
 		return nil
 	}
 
 	var orderedListAttribute OrderedListAttribute = OrderedListAttribute{}
 	if err := utils.UnmarshalJSON(data, &orderedListAttribute, "", true, false); err == nil {
 		u.OrderedListAttribute = &orderedListAttribute
-		u.Type = AttributeTypeOrderedListAttribute
+		u.Type = AttributeInputTypeOrderedListAttribute
 		return nil
 	}
 
 	var statusAttribute StatusAttribute = StatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
 		u.StatusAttribute = &statusAttribute
-		u.Type = AttributeTypeStatusAttribute
+		u.Type = AttributeInputTypeStatusAttribute
 		return nil
 	}
 
 	var addressAttribute AddressAttribute = AddressAttribute{}
 	if err := utils.UnmarshalJSON(data, &addressAttribute, "", true, false); err == nil {
 		u.AddressAttribute = &addressAttribute
-		u.Type = AttributeTypeAddressAttribute
+		u.Type = AttributeInputTypeAddressAttribute
 		return nil
 	}
 
 	var paymentMethodRelationAttribute PaymentMethodRelationAttribute = PaymentMethodRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &paymentMethodRelationAttribute, "", true, false); err == nil {
 		u.PaymentMethodRelationAttribute = &paymentMethodRelationAttribute
-		u.Type = AttributeTypePaymentMethodRelationAttribute
+		u.Type = AttributeInputTypePaymentMethodRelationAttribute
 		return nil
 	}
 
 	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
 		u.UserRelationAttribute = &userRelationAttribute
-		u.Type = AttributeTypeUserRelationAttribute
+		u.Type = AttributeInputTypeUserRelationAttribute
 		return nil
 	}
 
 	var sequenceAttribute SequenceAttribute = SequenceAttribute{}
 	if err := utils.UnmarshalJSON(data, &sequenceAttribute, "", true, false); err == nil {
 		u.SequenceAttribute = &sequenceAttribute
-		u.Type = AttributeTypeSequenceAttribute
+		u.Type = AttributeInputTypeSequenceAttribute
 		return nil
 	}
 
 	var textAttribute TextAttribute = TextAttribute{}
 	if err := utils.UnmarshalJSON(data, &textAttribute, "", true, false); err == nil {
 		u.TextAttribute = &textAttribute
-		u.Type = AttributeTypeTextAttribute
+		u.Type = AttributeInputTypeTextAttribute
 		return nil
 	}
 
 	var numberAttribute NumberAttribute = NumberAttribute{}
 	if err := utils.UnmarshalJSON(data, &numberAttribute, "", true, false); err == nil {
 		u.NumberAttribute = &numberAttribute
-		u.Type = AttributeTypeNumberAttribute
+		u.Type = AttributeInputTypeNumberAttribute
 		return nil
 	}
 
 	var consentAttribute ConsentAttribute = ConsentAttribute{}
 	if err := utils.UnmarshalJSON(data, &consentAttribute, "", true, false); err == nil {
 		u.ConsentAttribute = &consentAttribute
-		u.Type = AttributeTypeConsentAttribute
+		u.Type = AttributeInputTypeConsentAttribute
 		return nil
 	}
 
 	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
 		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
+		u.Type = AttributeInputTypeAddressRelationAttribute
 		return nil
 	}
 
 	var tagsAttribute TagsAttribute = TagsAttribute{}
 	if err := utils.UnmarshalJSON(data, &tagsAttribute, "", true, false); err == nil {
 		u.TagsAttribute = &tagsAttribute
-		u.Type = AttributeTypeTagsAttribute
+		u.Type = AttributeInputTypeTagsAttribute
 		return nil
 	}
 
 	var selectAttribute SelectAttribute = SelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &selectAttribute, "", true, false); err == nil {
 		u.SelectAttribute = &selectAttribute
-		u.Type = AttributeTypeSelectAttribute
+		u.Type = AttributeInputTypeSelectAttribute
 		return nil
 	}
 
 	var currencyAttribute CurrencyAttribute = CurrencyAttribute{}
 	if err := utils.UnmarshalJSON(data, &currencyAttribute, "", true, false); err == nil {
 		u.CurrencyAttribute = &currencyAttribute
-		u.Type = AttributeTypeCurrencyAttribute
+		u.Type = AttributeInputTypeCurrencyAttribute
 		return nil
 	}
 
 	var messageEmailAddressAttribute MessageEmailAddressAttribute = MessageEmailAddressAttribute{}
 	if err := utils.UnmarshalJSON(data, &messageEmailAddressAttribute, "", true, false); err == nil {
 		u.MessageEmailAddressAttribute = &messageEmailAddressAttribute
-		u.Type = AttributeTypeMessageEmailAddressAttribute
+		u.Type = AttributeInputTypeMessageEmailAddressAttribute
 		return nil
 	}
 
 	var multiSelectAttribute MultiSelectAttribute = MultiSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &multiSelectAttribute, "", true, false); err == nil {
 		u.MultiSelectAttribute = &multiSelectAttribute
-		u.Type = AttributeTypeMultiSelectAttribute
+		u.Type = AttributeInputTypeMultiSelectAttribute
 		return nil
 	}
 
 	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
 	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
 		u.RepeatableAttribute = &repeatableAttribute
-		u.Type = AttributeTypeRepeatableAttribute
+		u.Type = AttributeInputTypeRepeatableAttribute
 		return nil
 	}
 
 	var fileAttribute FileAttribute = FileAttribute{}
 	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, false); err == nil {
 		u.FileAttribute = &fileAttribute
-		u.Type = AttributeTypeFileAttribute
+		u.Type = AttributeInputTypeFileAttribute
 		return nil
 	}
 
 	var purposeAttribute PurposeAttribute = PurposeAttribute{}
 	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
 		u.PurposeAttribute = &purposeAttribute
-		u.Type = AttributeTypePurposeAttribute
+		u.Type = AttributeInputTypePurposeAttribute
 		return nil
 	}
 
-	var relationAttribute RelationAttribute = RelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &relationAttribute, "", true, false); err == nil {
-		u.RelationAttribute = &relationAttribute
-		u.Type = AttributeTypeRelationAttribute
+	var relationAttributeInput RelationAttributeInput = RelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &relationAttributeInput, "", true, false); err == nil {
+		u.RelationAttributeInput = &relationAttributeInput
+		u.Type = AttributeInputTypeRelationAttributeInput
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Attribute", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AttributeInput", string(data))
 }
 
-func (u Attribute) MarshalJSON() ([]byte, error) {
+func (u AttributeInput) MarshalJSON() ([]byte, error) {
 	if u.TextAttribute != nil {
 		return utils.MarshalJSON(u.TextAttribute, "", true)
 	}
@@ -600,8 +600,8 @@ func (u Attribute) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.SequenceAttribute, "", true)
 	}
 
-	if u.RelationAttribute != nil {
-		return utils.MarshalJSON(u.RelationAttribute, "", true)
+	if u.RelationAttributeInput != nil {
+		return utils.MarshalJSON(u.RelationAttributeInput, "", true)
 	}
 
 	if u.UserRelationAttribute != nil {
@@ -684,5 +684,5 @@ func (u Attribute) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PartnerOrganisationAttribute, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type Attribute: all fields are null")
+	return nil, errors.New("could not marshal union type AttributeInput: all fields are null")
 }
