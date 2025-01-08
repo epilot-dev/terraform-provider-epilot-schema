@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.465.1
   generationVersion: 2.488.4
-  releaseVersion: 0.11.2
-  configChecksum: e584477cca3ca9b5c6f782d21ce01118
+  releaseVersion: 0.11.4
+  configChecksum: c5be88a25804c0c5f5b5ab1629a444d1
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
