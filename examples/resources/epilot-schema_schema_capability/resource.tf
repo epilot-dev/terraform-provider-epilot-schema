@@ -1227,7 +1227,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         ]
         show_in_table   = true
         sortable        = true
-        type            = "{ \"see\": \"documentation\" }"
+        type            = "...my_type..."
         value_formatter = "...my_value_formatter..."
       }
       select_attribute = {

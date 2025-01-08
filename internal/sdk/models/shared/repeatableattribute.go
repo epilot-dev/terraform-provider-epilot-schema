@@ -145,7 +145,7 @@ type RepeatableAttribute struct {
 	HasPrimary  *bool                           `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 any                                      `json:"type,omitempty"`
+	Type                 *string                                  `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 }
@@ -371,7 +371,7 @@ func (o *RepeatableAttribute) GetRelationAffinityMode() *RepeatableAttributeRela
 	return o.RelationAffinityMode
 }
 
-func (o *RepeatableAttribute) GetType() any {
+func (o *RepeatableAttribute) GetType() *string {
 	if o == nil {
 		return nil
 	}

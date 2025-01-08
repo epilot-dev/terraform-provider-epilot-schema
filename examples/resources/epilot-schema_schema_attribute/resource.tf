@@ -1249,7 +1249,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     show_in_table   = false
     sortable        = false
-    type            = "{ \"see\": \"documentation\" }"
+    type            = "...my_type..."
     value_formatter = "...my_value_formatter..."
   }
   select_attribute = {

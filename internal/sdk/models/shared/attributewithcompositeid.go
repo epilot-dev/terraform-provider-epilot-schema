@@ -5328,7 +5328,7 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 any                                                              `json:"type,omitempty"`
+	Type                 *string                                                          `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool   `default:"true" json:"enable_relation_picker"`
 	CompositeID          *string `json:"composite_id,omitempty"`
@@ -5557,7 +5557,7 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetRelationAffinityMode() 
 	return o.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetType() any {
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetType() *string {
 	if o == nil {
 		return nil
 	}
@@ -16533,7 +16533,7 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
 	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 any                                                              `json:"type,omitempty"`
+	Type                 *string                                                          `json:"type,omitempty"`
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 	// Schema slug the attribute belongs to
@@ -16761,7 +16761,7 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRelationAffinityMo
 	return o.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetType() any {
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetType() *string {
 	if o == nil {
 		return nil
 	}

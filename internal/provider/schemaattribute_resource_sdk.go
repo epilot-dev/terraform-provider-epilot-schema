@@ -4226,9 +4226,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			relationAffinityMode1 = nil
 		}
-		var typeVar15 interface{}
+		typeVar15 := new(string)
 		if !r.RepeatableAttribute.Type.IsUnknown() && !r.RepeatableAttribute.Type.IsNull() {
-			_ = json.Unmarshal([]byte(r.RepeatableAttribute.Type.ValueString()), &typeVar15)
+			*typeVar15 = r.RepeatableAttribute.Type.ValueString()
+		} else {
+			typeVar15 = nil
 		}
 		enableRelationPicker1 := new(bool)
 		if !r.RepeatableAttribute.EnableRelationPicker.IsUnknown() && !r.RepeatableAttribute.EnableRelationPicker.IsNull() {
@@ -10320,12 +10322,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ShowInTable = r.RepeatableAttribute.ShowInTable
 			r.RepeatableAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Sortable)
 			r.Sortable = r.RepeatableAttribute.Sortable
-			if resp.AttributeWithCompositeIDRepeatableAttribute.Type == nil {
-				r.RepeatableAttribute.Type = types.StringNull()
-			} else {
-				typeVarResult, _ := json.Marshal(resp.AttributeWithCompositeIDRepeatableAttribute.Type)
-				r.RepeatableAttribute.Type = types.StringValue(string(typeVarResult))
-			}
+			r.RepeatableAttribute.Type = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Type)
 			r.RepeatableAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.ValueFormatter)
 			r.ValueFormatter = r.RepeatableAttribute.ValueFormatter
 		}

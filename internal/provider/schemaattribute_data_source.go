@@ -4224,8 +4224,7 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 					},
 					"type": schema.StringAttribute{
-						Computed:    true,
-						Description: `Parsed as JSON.`,
+						Computed: true,
 					},
 					"value_formatter": schema.StringAttribute{
 						Computed: true,

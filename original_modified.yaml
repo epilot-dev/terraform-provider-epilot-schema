@@ -3643,17 +3643,6 @@ components:
                 - strong
             type:
               type: string
-              enum:
-                - string
-                - phone
-                - email
-                - address
-                - relation
-                - payment
-                - price_component
-                - date
-                - message_email_address
-              x-speakeasy-type-override: any
             enable_relation_picker:
               type: boolean
               default: true

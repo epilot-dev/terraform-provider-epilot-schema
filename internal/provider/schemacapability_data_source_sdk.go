@@ -1919,12 +1919,7 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes1.RepeatableAttribute.ShowInTable = types.BoolPointerValue(attributesItem.RepeatableAttribute.ShowInTable)
 				attributes1.RepeatableAttribute.Sortable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Sortable)
-				if attributesItem.RepeatableAttribute.Type == nil {
-					attributes1.RepeatableAttribute.Type = types.StringNull()
-				} else {
-					typeVarResult, _ := json.Marshal(attributesItem.RepeatableAttribute.Type)
-					attributes1.RepeatableAttribute.Type = types.StringValue(string(typeVarResult))
-				}
+				attributes1.RepeatableAttribute.Type = types.StringPointerValue(attributesItem.RepeatableAttribute.Type)
 				attributes1.RepeatableAttribute.ValueFormatter = types.StringPointerValue(attributesItem.RepeatableAttribute.ValueFormatter)
 			}
 			if attributesItem.SelectAttribute != nil {

@@ -1242,7 +1242,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         ]
         show_in_table   = true
         sortable        = true
-        type            = "{ \"see\": \"documentation\" }"
+        type            = "...my_type..."
         value_formatter = "...my_value_formatter..."
       }
       select_attribute = {
@@ -3416,7 +3416,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) Parsed as JSON.
+- `type` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--attributes--repeatable_attribute--constraints"></a>

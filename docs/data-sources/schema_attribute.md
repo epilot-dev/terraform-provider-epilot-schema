@@ -1899,7 +1899,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `type` (String) Parsed as JSON.
+- `type` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--repeatable_attribute--constraints"></a>

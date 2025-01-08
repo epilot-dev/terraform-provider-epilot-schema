@@ -6458,12 +6458,8 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
 								},
 								"type": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
+									Computed: true,
+									Optional: true,
 								},
 								"value_formatter": schema.StringAttribute{
 									Computed: true,
