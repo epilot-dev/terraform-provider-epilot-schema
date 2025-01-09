@@ -5379,7 +5379,15 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool    `default:"true" json:"enable_relation_picker"`
 	AllowedSchemas       []string `json:"allowedSchemas,omitempty"`
-	CompositeID          *string  `json:"composite_id,omitempty"`
+	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
+	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
+	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+	AddButtonLabel *string `json:"add_button_label,omitempty"`
+	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
+	CompositeID       *string           `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -5624,6 +5632,34 @@ func (o *AttributeWithCompositeIDRepeatableAttribute) GetAllowedSchemas() []stri
 		return nil
 	}
 	return o.AllowedSchemas
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetEnableRelationTags() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationTags
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetAddButtonLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AddButtonLabel
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetSearchPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SearchPlaceholder
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttribute) GetReverseAttributes() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReverseAttributes
 }
 
 func (o *AttributeWithCompositeIDRepeatableAttribute) GetCompositeID() *string {
@@ -12415,13 +12451,6 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute = AttributeWithCompositeIDRepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRepeatableAttribute = &attributeWithCompositeIDRepeatableAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
@@ -12433,6 +12462,13 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute = AttributeWithCompositeIDRepeatableAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDRepeatableAttribute = &attributeWithCompositeIDRepeatableAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
 		return nil
 	}
 
@@ -16592,6 +16628,14 @@ type AttributeWithCompositeIDRepeatableAttributeInput struct {
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool    `default:"true" json:"enable_relation_picker"`
 	AllowedSchemas       []string `json:"allowedSchemas,omitempty"`
+	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
+	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
+	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+	AddButtonLabel *string `json:"add_button_label,omitempty"`
+	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -16836,6 +16880,34 @@ func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetAllowedSchemas() [
 		return nil
 	}
 	return o.AllowedSchemas
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEnableRelationTags() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationTags
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetAddButtonLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AddButtonLabel
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSearchPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SearchPlaceholder
+}
+
+func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetReverseAttributes() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReverseAttributes
 }
 
 func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSchema() *string {
@@ -21848,13 +21920,6 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput = AttributeWithCompositeIDRepeatableAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRepeatableAttributeInput = &attributeWithCompositeIDRepeatableAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
@@ -21866,6 +21931,13 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput = AttributeWithCompositeIDRepeatableAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDRepeatableAttributeInput = &attributeWithCompositeIDRepeatableAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
 		return nil
 	}
 

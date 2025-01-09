@@ -142,9 +142,29 @@ actions:
     update:
       x-speakeasy-type-override: any
   
+  # Add relation fields to repeatable type of relation
   - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]
     update:
       allowedSchemas:
         type: array
         items:
           $ref: '#/components/schemas/EntitySlug'
+      enable_relation_tags:
+        type: boolean
+        default: true
+        description: When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
+      add_button_label:
+        type: string
+        description: Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+      search_placeholder:
+        type: string
+        description: Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+      reverse_attributes:
+        description: Map of schema slug to target relation attribute
+        type: object
+        additionalProperties:
+          type: string
+          example: contact.account
+        example:
+          contact: account
+          opportunity: customer

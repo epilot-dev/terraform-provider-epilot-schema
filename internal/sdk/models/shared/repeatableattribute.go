@@ -196,6 +196,14 @@ type RepeatableAttribute struct {
 	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 	EnableRelationPicker *bool    `default:"true" json:"enable_relation_picker"`
 	AllowedSchemas       []string `json:"allowedSchemas,omitempty"`
+	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
+	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
+	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
+	AddButtonLabel *string `json:"add_button_label,omitempty"`
+	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 }
 
 func (r RepeatableAttribute) MarshalJSON() ([]byte, error) {
@@ -438,4 +446,32 @@ func (o *RepeatableAttribute) GetAllowedSchemas() []string {
 		return nil
 	}
 	return o.AllowedSchemas
+}
+
+func (o *RepeatableAttribute) GetEnableRelationTags() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationTags
+}
+
+func (o *RepeatableAttribute) GetAddButtonLabel() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AddButtonLabel
+}
+
+func (o *RepeatableAttribute) GetSearchPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SearchPlaceholder
+}
+
+func (o *RepeatableAttribute) GetReverseAttributes() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.ReverseAttributes
 }

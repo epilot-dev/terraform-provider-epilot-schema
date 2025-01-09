@@ -1202,6 +1202,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   repeatable_attribute = {
+    add_button_label = "...my_add_button_label..."
     allowed_schemas = [
       "contact"
     ]
@@ -1211,6 +1212,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     enable_relation_picker      = false
+    enable_relation_tags        = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
@@ -1243,7 +1245,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     render_condition       = "...my_render_condition..."
     repeatable             = false
     required               = false
-    schema                 = "contact"
+    reverse_attributes = {
+      key = "value",
+    }
+    schema             = "contact"
+    search_placeholder = "...my_search_placeholder..."
     settings_flag = [
       {
         enabled = true

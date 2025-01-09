@@ -6536,6 +6536,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
+					"add_button_label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.`,
+					},
 					"allowed_schemas": schema.ListAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -6569,6 +6574,12 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Default:     booldefault.StaticBool(true),
 						Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
+					},
+					"enable_relation_tags": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true`,
 					},
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
@@ -6727,10 +6738,21 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Default:     booldefault.StaticBool(false),
 						Description: `Default: false`,
 					},
+					"reverse_attributes": schema.MapAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Map of schema slug to target relation attribute`,
+					},
 					"schema": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
 						Description: `Schema slug the attribute belongs to`,
+					},
+					"search_placeholder": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
 					},
 					"settings_flag": schema.ListNestedAttribute{
 						Computed: true,

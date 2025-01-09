@@ -2501,6 +2501,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Purpose {
 				r.RepeatableAttribute.Purpose = append(r.RepeatableAttribute.Purpose, types.StringValue(v))
 			}
+			r.RepeatableAttribute.AddButtonLabel = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.AddButtonLabel)
 			r.RepeatableAttribute.AllowedSchemas = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.AllowedSchemas {
 				r.RepeatableAttribute.AllowedSchemas = append(r.RepeatableAttribute.AllowedSchemas, types.StringValue(v))
@@ -2521,6 +2522,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.RepeatableAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Deprecated)
 			r.Deprecated = r.RepeatableAttribute.Deprecated
 			r.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.EnableRelationPicker)
+			r.RepeatableAttribute.EnableRelationTags = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.EnableRelationTags)
 			r.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.RepeatableAttribute.EntityBuilderDisableEdit
 			r.RepeatableAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.FeatureFlag)
@@ -2571,8 +2573,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.RepeatableAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Repeatable)
 			r.RepeatableAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Required)
 			r.Required = r.RepeatableAttribute.Required
+			if len(resp.AttributeWithCompositeIDRepeatableAttribute.ReverseAttributes) > 0 {
+				r.RepeatableAttribute.ReverseAttributes = make(map[string]types.String)
+				for key1, value2 := range resp.AttributeWithCompositeIDRepeatableAttribute.ReverseAttributes {
+					r.RepeatableAttribute.ReverseAttributes[key1] = types.StringValue(value2)
+				}
+			}
 			r.RepeatableAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Schema)
 			r.Schema = r.RepeatableAttribute.Schema
+			r.RepeatableAttribute.SearchPlaceholder = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.SearchPlaceholder)
 			r.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.RepeatableAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag) {
 				r.RepeatableAttribute.SettingsFlag = r.RepeatableAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag)]

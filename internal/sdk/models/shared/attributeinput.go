@@ -532,13 +532,6 @@ func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
-		u.RepeatableAttribute = &repeatableAttribute
-		u.Type = AttributeInputTypeRepeatableAttribute
-		return nil
-	}
-
 	var fileAttribute FileAttribute = FileAttribute{}
 	if err := utils.UnmarshalJSON(data, &fileAttribute, "", true, false); err == nil {
 		u.FileAttribute = &fileAttribute
@@ -550,6 +543,13 @@ func (u *AttributeInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &purposeAttribute, "", true, false); err == nil {
 		u.PurposeAttribute = &purposeAttribute
 		u.Type = AttributeInputTypePurposeAttribute
+		return nil
+	}
+
+	var repeatableAttribute RepeatableAttribute = RepeatableAttribute{}
+	if err := utils.UnmarshalJSON(data, &repeatableAttribute, "", true, false); err == nil {
+		u.RepeatableAttribute = &repeatableAttribute
+		u.Type = AttributeInputTypeRepeatableAttribute
 		return nil
 	}
 
