@@ -3091,17 +3091,6 @@ components:
           enum:
           - weak
           - strong
-        type:
-          type: string
-          enum:
-          - string
-          - phone
-          - email
-          - address
-          - relation
-          - payment
-          - price_component
-          - date
         enable_relation_picker:
           type: boolean
           default: true
