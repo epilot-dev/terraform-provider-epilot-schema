@@ -62,6 +62,33 @@ func (o *AddressRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string 
 	return o.HintTooltipPlacement
 }
 
+// AddressRelationAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type AddressRelationAttributeRelationAffinityMode string
+
+const (
+	AddressRelationAttributeRelationAffinityModeWeak   AddressRelationAttributeRelationAffinityMode = "weak"
+	AddressRelationAttributeRelationAffinityModeStrong AddressRelationAttributeRelationAffinityMode = "strong"
+)
+
+func (e AddressRelationAttributeRelationAffinityMode) ToPointer() *AddressRelationAttributeRelationAffinityMode {
+	return &e
+}
+func (e *AddressRelationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = AddressRelationAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AddressRelationAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type AddressRelationAttributeType string
 
 const (
@@ -137,10 +164,13 @@ type AddressRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressRelationAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                                `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                `json:"has_primary,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AddressRelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                         `default:"true" json:"enable_relation_picker"`
+	Type                 *AddressRelationAttributeType `json:"type,omitempty"`
 }
 
 func (a AddressRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -343,11 +373,11 @@ func (o *AddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeInf
 	return o.InfoHelpers
 }
 
-func (o *AddressRelationAttribute) GetType() *AddressRelationAttributeType {
+func (o *AddressRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AddressRelationAttribute) GetHasPrimary() *bool {
@@ -357,9 +387,23 @@ func (o *AddressRelationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AddressRelationAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+func (o *AddressRelationAttribute) GetRelationAffinityMode() *AddressRelationAttributeRelationAffinityMode {
 	if o == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return o.RelationAffinityMode
+}
+
+func (o *AddressRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *AddressRelationAttribute) GetType() *AddressRelationAttributeType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

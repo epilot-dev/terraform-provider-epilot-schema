@@ -12,107 +12,6 @@ import (
 
 func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithCompositeID(resp *shared.AttributeWithCompositeID) {
 	if resp != nil {
-		if resp.AttributeWithCompositeIDAddressAttribute != nil {
-			r.AddressAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
-			r.AddressAttribute.Manifest = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Manifest {
-				r.AddressAttribute.Manifest = append(r.AddressAttribute.Manifest, types.StringValue(v))
-			}
-			r.AddressAttribute.Purpose = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.Purpose {
-				r.AddressAttribute.Purpose = append(r.AddressAttribute.Purpose, types.StringValue(v))
-			}
-			r.AddressAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.CompositeID)
-			r.CompositeID = r.AddressAttribute.CompositeID
-			if resp.AttributeWithCompositeIDAddressAttribute.Constraints == nil {
-				r.AddressAttribute.Constraints = nil
-			} else {
-				r.AddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
-			}
-			r.AddressAttribute.DefaultAddressFields = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields {
-				r.AddressAttribute.DefaultAddressFields = append(r.AddressAttribute.DefaultAddressFields, types.StringValue(string(v)))
-			}
-			if resp.AttributeWithCompositeIDAddressAttribute.DefaultValue == nil {
-				r.AddressAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult, _ := json.Marshal(resp.AttributeWithCompositeIDAddressAttribute.DefaultValue)
-				r.AddressAttribute.DefaultValue = types.StringValue(string(defaultValueResult))
-			}
-			r.AddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Deprecated)
-			r.Deprecated = r.AddressAttribute.Deprecated
-			r.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.EntityBuilderDisableEdit)
-			r.EntityBuilderDisableEdit = r.AddressAttribute.EntityBuilderDisableEdit
-			r.AddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.FeatureFlag)
-			r.FeatureFlag = r.AddressAttribute.FeatureFlag
-			r.AddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Group)
-			r.Group = r.AddressAttribute.Group
-			r.AddressAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Hidden)
-			r.Hidden = r.AddressAttribute.Hidden
-			r.AddressAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.HideLabel)
-			r.HideLabel = r.AddressAttribute.HideLabel
-			r.AddressAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Icon)
-			r.Icon = r.AddressAttribute.Icon
-			r.AddressAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ID)
-			r.ID = r.AddressAttribute.ID
-			if resp.AttributeWithCompositeIDAddressAttribute.InfoHelpers == nil {
-				r.AddressAttribute.InfoHelpers = nil
-			} else {
-				r.AddressAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
-				r.AddressAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.InfoHelpers.HintCustomComponent)
-				r.AddressAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.InfoHelpers.HintText)
-				r.AddressAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.InfoHelpers.HintTextKey)
-				r.AddressAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			r.AddressAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDAddressAttribute.Label)
-			r.Label = r.AddressAttribute.Label
-			r.AddressAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Layout)
-			r.Layout = r.AddressAttribute.Layout
-			r.AddressAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDAddressAttribute.Name)
-			r.Name = r.AddressAttribute.Name
-			r.AddressAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDAddressAttribute.Order)
-			r.Order = r.AddressAttribute.Order
-			r.AddressAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Placeholder)
-			r.Placeholder = r.AddressAttribute.Placeholder
-			r.AddressAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.PreviewValueFormatter)
-			r.PreviewValueFormatter = r.AddressAttribute.PreviewValueFormatter
-			r.AddressAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Protected)
-			r.Protected = r.AddressAttribute.Protected
-			r.AddressAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Readonly)
-			r.Readonly = r.AddressAttribute.Readonly
-			r.AddressAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.RenderCondition)
-			r.RenderCondition = r.AddressAttribute.RenderCondition
-			r.AddressAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Required)
-			r.Required = r.AddressAttribute.Required
-			r.AddressAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Schema)
-			r.Schema = r.AddressAttribute.Schema
-			r.AddressAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.AddressAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag) {
-				r.AddressAttribute.SettingsFlag = r.AddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount, settingsFlagItem := range resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag {
-				var settingsFlag1 tfTypes.SettingFlag
-				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
-				if settingsFlagCount+1 > len(r.AddressAttribute.SettingsFlag) {
-					r.AddressAttribute.SettingsFlag = append(r.AddressAttribute.SettingsFlag, settingsFlag1)
-				} else {
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
-				}
-			}
-			r.AddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ShowInTable)
-			r.ShowInTable = r.AddressAttribute.ShowInTable
-			r.AddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Sortable)
-			r.Sortable = r.AddressAttribute.Sortable
-			if resp.AttributeWithCompositeIDAddressAttribute.Type != nil {
-				r.AddressAttribute.Type = types.StringValue(string(*resp.AttributeWithCompositeIDAddressAttribute.Type))
-			} else {
-				r.AddressAttribute.Type = types.StringNull()
-			}
-			r.AddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ValueFormatter)
-			r.ValueFormatter = r.AddressAttribute.ValueFormatter
-		}
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
 			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.AddressRelationAttribute.Manifest = []types.String{}
@@ -130,18 +29,16 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			} else {
 				r.AddressRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
-			r.AddressRelationAttribute.DefaultAddressFields = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields {
-				r.AddressRelationAttribute.DefaultAddressFields = append(r.AddressRelationAttribute.DefaultAddressFields, types.StringValue(string(v)))
-			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue == nil {
 				r.AddressRelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult1, _ := json.Marshal(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue)
-				r.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult1))
+				defaultValueResult, _ := json.Marshal(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue)
+				r.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult))
 			}
 			r.AddressRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Deprecated)
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
+			r.AddressRelationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.AddressRelationAttribute.EnableRelationPicker
 			r.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AddressRelationAttribute.EntityBuilderDisableEdit
 			r.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.FeatureFlag)
@@ -149,6 +46,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AddressRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Group)
 			r.Group = r.AddressRelationAttribute.Group
 			r.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.HasPrimary)
+			r.HasPrimary = r.AddressRelationAttribute.HasPrimary
 			r.AddressRelationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Hidden)
 			r.Hidden = r.AddressRelationAttribute.Hidden
 			r.AddressRelationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.HideLabel)
@@ -160,7 +58,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.InfoHelpers == nil {
 				r.AddressRelationAttribute.InfoHelpers = nil
 			} else {
-				r.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.AddressRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.AddressRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.InfoHelpers.HintCustomComponent)
 				r.AddressRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.InfoHelpers.HintText)
 				r.AddressRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.InfoHelpers.HintTextKey)
@@ -182,8 +80,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.AddressRelationAttribute.Protected
 			r.AddressRelationAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Readonly)
 			r.Readonly = r.AddressRelationAttribute.Readonly
+			if resp.AttributeWithCompositeIDAddressRelationAttribute.RelationAffinityMode != nil {
+				r.AddressRelationAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDAddressRelationAttribute.RelationAffinityMode))
+			} else {
+				r.AddressRelationAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.AddressRelationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.RenderCondition)
 			r.RenderCondition = r.AddressRelationAttribute.RenderCondition
+			r.AddressRelationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Repeatable)
+			r.Repeatable = r.AddressRelationAttribute.Repeatable
 			r.AddressRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Required)
 			r.Required = r.AddressRelationAttribute.Required
 			r.AddressRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Schema)
@@ -192,15 +97,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.AddressRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag) {
 				r.AddressRelationAttribute.SettingsFlag = r.AddressRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount1, settingsFlagItem1 := range resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag {
-				var settingsFlag3 tfTypes.SettingFlag
-				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
-				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
-				if settingsFlagCount1+1 > len(r.AddressRelationAttribute.SettingsFlag) {
-					r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag3)
+			for settingsFlagCount, settingsFlagItem := range resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag {
+				var settingsFlag1 tfTypes.SettingFlag
+				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
+				if settingsFlagCount+1 > len(r.AddressRelationAttribute.SettingsFlag) {
+					r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag1)
 				} else {
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
+					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
+					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
 				}
 			}
 			r.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ShowInTable)
@@ -216,7 +121,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.AddressRelationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDAutomationAttribute != nil {
-			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.AutomationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
 				r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
@@ -235,17 +140,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue == nil {
 				r.AutomationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult2, _ := json.Marshal(resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue)
-				r.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult2))
+				defaultValueResult1, _ := json.Marshal(resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue)
+				r.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult1))
 			}
 			r.AutomationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Deprecated)
 			r.Deprecated = r.AutomationAttribute.Deprecated
+			r.AutomationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.AutomationAttribute.EnableRelationPicker
 			r.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AutomationAttribute.EntityBuilderDisableEdit
 			r.AutomationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.FeatureFlag)
 			r.FeatureFlag = r.AutomationAttribute.FeatureFlag
 			r.AutomationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Group)
 			r.Group = r.AutomationAttribute.Group
+			r.AutomationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.HasPrimary)
+			r.HasPrimary = r.AutomationAttribute.HasPrimary
 			r.AutomationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Hidden)
 			r.Hidden = r.AutomationAttribute.Hidden
 			r.AutomationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.HideLabel)
@@ -257,7 +166,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDAutomationAttribute.InfoHelpers == nil {
 				r.AutomationAttribute.InfoHelpers = nil
 			} else {
-				r.AutomationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.AutomationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.AutomationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.InfoHelpers.HintCustomComponent)
 				r.AutomationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.InfoHelpers.HintText)
 				r.AutomationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.InfoHelpers.HintTextKey)
@@ -279,8 +188,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.AutomationAttribute.Protected
 			r.AutomationAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Readonly)
 			r.Readonly = r.AutomationAttribute.Readonly
+			if resp.AttributeWithCompositeIDAutomationAttribute.RelationAffinityMode != nil {
+				r.AutomationAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDAutomationAttribute.RelationAffinityMode))
+			} else {
+				r.AutomationAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.AutomationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.RenderCondition)
 			r.RenderCondition = r.AutomationAttribute.RenderCondition
+			r.AutomationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Repeatable)
+			r.Repeatable = r.AutomationAttribute.Repeatable
 			r.AutomationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Required)
 			r.Required = r.AutomationAttribute.Required
 			r.AutomationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Schema)
@@ -289,15 +205,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.AutomationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag) {
 				r.AutomationAttribute.SettingsFlag = r.AutomationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount2, settingsFlagItem2 := range resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag {
-				var settingsFlag5 tfTypes.SettingFlag
-				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
-				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
-				if settingsFlagCount2+1 > len(r.AutomationAttribute.SettingsFlag) {
-					r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag5)
+			for settingsFlagCount1, settingsFlagItem1 := range resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag {
+				var settingsFlag3 tfTypes.SettingFlag
+				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
+				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
+				if settingsFlagCount1+1 > len(r.AutomationAttribute.SettingsFlag) {
+					r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag3)
 				} else {
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
+					r.AutomationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
+					r.AutomationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
 				}
 			}
 			r.AutomationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ShowInTable)
@@ -313,7 +229,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.AutomationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDBooleanAttribute != nil {
-			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.BooleanAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
 				r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
@@ -332,17 +248,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue == nil {
 				r.BooleanAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult3, _ := json.Marshal(resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue)
-				r.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult3))
+				defaultValueResult2, _ := json.Marshal(resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue)
+				r.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult2))
 			}
 			r.BooleanAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Deprecated)
 			r.Deprecated = r.BooleanAttribute.Deprecated
+			r.BooleanAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.BooleanAttribute.EnableRelationPicker
 			r.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.BooleanAttribute.EntityBuilderDisableEdit
 			r.BooleanAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.FeatureFlag)
 			r.FeatureFlag = r.BooleanAttribute.FeatureFlag
 			r.BooleanAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Group)
 			r.Group = r.BooleanAttribute.Group
+			r.BooleanAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.HasPrimary)
+			r.HasPrimary = r.BooleanAttribute.HasPrimary
 			r.BooleanAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Hidden)
 			r.Hidden = r.BooleanAttribute.Hidden
 			r.BooleanAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.HideLabel)
@@ -354,7 +274,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDBooleanAttribute.InfoHelpers == nil {
 				r.BooleanAttribute.InfoHelpers = nil
 			} else {
-				r.BooleanAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.BooleanAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.BooleanAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.InfoHelpers.HintCustomComponent)
 				r.BooleanAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.InfoHelpers.HintText)
 				r.BooleanAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.InfoHelpers.HintTextKey)
@@ -376,8 +296,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.BooleanAttribute.Protected
 			r.BooleanAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Readonly)
 			r.Readonly = r.BooleanAttribute.Readonly
+			if resp.AttributeWithCompositeIDBooleanAttribute.RelationAffinityMode != nil {
+				r.BooleanAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDBooleanAttribute.RelationAffinityMode))
+			} else {
+				r.BooleanAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.BooleanAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.RenderCondition)
 			r.RenderCondition = r.BooleanAttribute.RenderCondition
+			r.BooleanAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Repeatable)
+			r.Repeatable = r.BooleanAttribute.Repeatable
 			r.BooleanAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Required)
 			r.Required = r.BooleanAttribute.Required
 			r.BooleanAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Schema)
@@ -386,15 +313,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.BooleanAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag) {
 				r.BooleanAttribute.SettingsFlag = r.BooleanAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount3, settingsFlagItem3 := range resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag {
-				var settingsFlag7 tfTypes.SettingFlag
-				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
-				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
-				if settingsFlagCount3+1 > len(r.BooleanAttribute.SettingsFlag) {
-					r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag7)
+			for settingsFlagCount2, settingsFlagItem2 := range resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag {
+				var settingsFlag5 tfTypes.SettingFlag
+				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
+				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
+				if settingsFlagCount2+1 > len(r.BooleanAttribute.SettingsFlag) {
+					r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag5)
 				} else {
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
+					r.BooleanAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
+					r.BooleanAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
 				}
 			}
 			r.BooleanAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ShowInTable)
@@ -410,7 +337,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.BooleanAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDComputedAttribute != nil {
-			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.ComputedAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
 				r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
@@ -429,17 +356,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDComputedAttribute.DefaultValue == nil {
 				r.ComputedAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult4, _ := json.Marshal(resp.AttributeWithCompositeIDComputedAttribute.DefaultValue)
-				r.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult4))
+				defaultValueResult3, _ := json.Marshal(resp.AttributeWithCompositeIDComputedAttribute.DefaultValue)
+				r.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult3))
 			}
 			r.ComputedAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Deprecated)
 			r.Deprecated = r.ComputedAttribute.Deprecated
+			r.ComputedAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.ComputedAttribute.EnableRelationPicker
 			r.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ComputedAttribute.EntityBuilderDisableEdit
 			r.ComputedAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.FeatureFlag)
 			r.FeatureFlag = r.ComputedAttribute.FeatureFlag
 			r.ComputedAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Group)
 			r.Group = r.ComputedAttribute.Group
+			r.ComputedAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.HasPrimary)
+			r.HasPrimary = r.ComputedAttribute.HasPrimary
 			r.ComputedAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Hidden)
 			r.Hidden = r.ComputedAttribute.Hidden
 			r.ComputedAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.HideLabel)
@@ -451,7 +382,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDComputedAttribute.InfoHelpers == nil {
 				r.ComputedAttribute.InfoHelpers = nil
 			} else {
-				r.ComputedAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.ComputedAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.ComputedAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.InfoHelpers.HintCustomComponent)
 				r.ComputedAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.InfoHelpers.HintText)
 				r.ComputedAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.InfoHelpers.HintTextKey)
@@ -473,8 +404,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.ComputedAttribute.Protected
 			r.ComputedAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Readonly)
 			r.Readonly = r.ComputedAttribute.Readonly
+			if resp.AttributeWithCompositeIDComputedAttribute.RelationAffinityMode != nil {
+				r.ComputedAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDComputedAttribute.RelationAffinityMode))
+			} else {
+				r.ComputedAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.ComputedAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.RenderCondition)
 			r.RenderCondition = r.ComputedAttribute.RenderCondition
+			r.ComputedAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Repeatable)
+			r.Repeatable = r.ComputedAttribute.Repeatable
 			r.ComputedAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Required)
 			r.Required = r.ComputedAttribute.Required
 			r.ComputedAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Schema)
@@ -483,15 +421,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.ComputedAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag) {
 				r.ComputedAttribute.SettingsFlag = r.ComputedAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount4, settingsFlagItem4 := range resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag {
-				var settingsFlag9 tfTypes.SettingFlag
-				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
-				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
-				if settingsFlagCount4+1 > len(r.ComputedAttribute.SettingsFlag) {
-					r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag9)
+			for settingsFlagCount3, settingsFlagItem3 := range resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag {
+				var settingsFlag7 tfTypes.SettingFlag
+				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
+				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
+				if settingsFlagCount3+1 > len(r.ComputedAttribute.SettingsFlag) {
+					r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag7)
 				} else {
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
+					r.ComputedAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
+					r.ComputedAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
 				}
 			}
 			r.ComputedAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ShowInTable)
@@ -526,17 +464,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDConsentAttribute.DefaultValue == nil {
 				r.ConsentAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult5, _ := json.Marshal(resp.AttributeWithCompositeIDConsentAttribute.DefaultValue)
-				r.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult5))
+				defaultValueResult4, _ := json.Marshal(resp.AttributeWithCompositeIDConsentAttribute.DefaultValue)
+				r.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult4))
 			}
 			r.ConsentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Deprecated)
 			r.Deprecated = r.ConsentAttribute.Deprecated
+			r.ConsentAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.ConsentAttribute.EnableRelationPicker
 			r.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ConsentAttribute.EntityBuilderDisableEdit
 			r.ConsentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.FeatureFlag)
 			r.FeatureFlag = r.ConsentAttribute.FeatureFlag
 			r.ConsentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Group)
 			r.Group = r.ConsentAttribute.Group
+			r.ConsentAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.HasPrimary)
+			r.HasPrimary = r.ConsentAttribute.HasPrimary
 			r.ConsentAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Hidden)
 			r.Hidden = r.ConsentAttribute.Hidden
 			r.ConsentAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.HideLabel)
@@ -552,7 +494,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDConsentAttribute.InfoHelpers == nil {
 				r.ConsentAttribute.InfoHelpers = nil
 			} else {
-				r.ConsentAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.ConsentAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.ConsentAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.InfoHelpers.HintCustomComponent)
 				r.ConsentAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.InfoHelpers.HintText)
 				r.ConsentAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.InfoHelpers.HintTextKey)
@@ -574,8 +516,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.ConsentAttribute.Protected
 			r.ConsentAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Readonly)
 			r.Readonly = r.ConsentAttribute.Readonly
+			if resp.AttributeWithCompositeIDConsentAttribute.RelationAffinityMode != nil {
+				r.ConsentAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDConsentAttribute.RelationAffinityMode))
+			} else {
+				r.ConsentAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.ConsentAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.RenderCondition)
 			r.RenderCondition = r.ConsentAttribute.RenderCondition
+			r.ConsentAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Repeatable)
+			r.Repeatable = r.ConsentAttribute.Repeatable
 			r.ConsentAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Required)
 			r.Required = r.ConsentAttribute.Required
 			r.ConsentAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Schema)
@@ -584,15 +533,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.ConsentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag) {
 				r.ConsentAttribute.SettingsFlag = r.ConsentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount5, settingsFlagItem5 := range resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag {
-				var settingsFlag11 tfTypes.SettingFlag
-				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
-				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
-				if settingsFlagCount5+1 > len(r.ConsentAttribute.SettingsFlag) {
-					r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag11)
+			for settingsFlagCount4, settingsFlagItem4 := range resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag {
+				var settingsFlag9 tfTypes.SettingFlag
+				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
+				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
+				if settingsFlagCount4+1 > len(r.ConsentAttribute.SettingsFlag) {
+					r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag9)
 				} else {
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
+					r.ConsentAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
+					r.ConsentAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
 				}
 			}
 			r.ConsentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ShowInTable)
@@ -605,7 +554,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.ConsentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDCountryAttribute != nil {
-			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.CountryAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
 				r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
@@ -624,17 +573,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDCountryAttribute.DefaultValue == nil {
 				r.CountryAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult6, _ := json.Marshal(resp.AttributeWithCompositeIDCountryAttribute.DefaultValue)
-				r.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult6))
+				defaultValueResult5, _ := json.Marshal(resp.AttributeWithCompositeIDCountryAttribute.DefaultValue)
+				r.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult5))
 			}
 			r.CountryAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Deprecated)
 			r.Deprecated = r.CountryAttribute.Deprecated
+			r.CountryAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.CountryAttribute.EnableRelationPicker
 			r.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CountryAttribute.EntityBuilderDisableEdit
 			r.CountryAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.FeatureFlag)
 			r.FeatureFlag = r.CountryAttribute.FeatureFlag
 			r.CountryAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Group)
 			r.Group = r.CountryAttribute.Group
+			r.CountryAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.HasPrimary)
+			r.HasPrimary = r.CountryAttribute.HasPrimary
 			r.CountryAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Hidden)
 			r.Hidden = r.CountryAttribute.Hidden
 			r.CountryAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.HideLabel)
@@ -646,7 +599,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDCountryAttribute.InfoHelpers == nil {
 				r.CountryAttribute.InfoHelpers = nil
 			} else {
-				r.CountryAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.CountryAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.CountryAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.InfoHelpers.HintCustomComponent)
 				r.CountryAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.InfoHelpers.HintText)
 				r.CountryAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.InfoHelpers.HintTextKey)
@@ -668,8 +621,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.CountryAttribute.Protected
 			r.CountryAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Readonly)
 			r.Readonly = r.CountryAttribute.Readonly
+			if resp.AttributeWithCompositeIDCountryAttribute.RelationAffinityMode != nil {
+				r.CountryAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDCountryAttribute.RelationAffinityMode))
+			} else {
+				r.CountryAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.CountryAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.RenderCondition)
 			r.RenderCondition = r.CountryAttribute.RenderCondition
+			r.CountryAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Repeatable)
+			r.Repeatable = r.CountryAttribute.Repeatable
 			r.CountryAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Required)
 			r.Required = r.CountryAttribute.Required
 			r.CountryAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Schema)
@@ -678,15 +638,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.CountryAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag) {
 				r.CountryAttribute.SettingsFlag = r.CountryAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount6, settingsFlagItem6 := range resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag {
-				var settingsFlag13 tfTypes.SettingFlag
-				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
-				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
-				if settingsFlagCount6+1 > len(r.CountryAttribute.SettingsFlag) {
-					r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag13)
+			for settingsFlagCount5, settingsFlagItem5 := range resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag {
+				var settingsFlag11 tfTypes.SettingFlag
+				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
+				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
+				if settingsFlagCount5+1 > len(r.CountryAttribute.SettingsFlag) {
+					r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag11)
 				} else {
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
+					r.CountryAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
+					r.CountryAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
 				}
 			}
 			r.CountryAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ShowInTable)
@@ -741,17 +701,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue == nil {
 				r.CurrencyAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult7, _ := json.Marshal(resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue)
-				r.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult7))
+				defaultValueResult6, _ := json.Marshal(resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue)
+				r.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult6))
 			}
 			r.CurrencyAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Deprecated)
 			r.Deprecated = r.CurrencyAttribute.Deprecated
+			r.CurrencyAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.CurrencyAttribute.EnableRelationPicker
 			r.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CurrencyAttribute.EntityBuilderDisableEdit
 			r.CurrencyAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.FeatureFlag)
 			r.FeatureFlag = r.CurrencyAttribute.FeatureFlag
 			r.CurrencyAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Group)
 			r.Group = r.CurrencyAttribute.Group
+			r.CurrencyAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.HasPrimary)
+			r.HasPrimary = r.CurrencyAttribute.HasPrimary
 			r.CurrencyAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Hidden)
 			r.Hidden = r.CurrencyAttribute.Hidden
 			r.CurrencyAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.HideLabel)
@@ -763,7 +727,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDCurrencyAttribute.InfoHelpers == nil {
 				r.CurrencyAttribute.InfoHelpers = nil
 			} else {
-				r.CurrencyAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.CurrencyAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.CurrencyAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.InfoHelpers.HintCustomComponent)
 				r.CurrencyAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.InfoHelpers.HintText)
 				r.CurrencyAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.InfoHelpers.HintTextKey)
@@ -785,8 +749,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.CurrencyAttribute.Protected
 			r.CurrencyAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Readonly)
 			r.Readonly = r.CurrencyAttribute.Readonly
+			if resp.AttributeWithCompositeIDCurrencyAttribute.RelationAffinityMode != nil {
+				r.CurrencyAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDCurrencyAttribute.RelationAffinityMode))
+			} else {
+				r.CurrencyAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.CurrencyAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.RenderCondition)
 			r.RenderCondition = r.CurrencyAttribute.RenderCondition
+			r.CurrencyAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Repeatable)
+			r.Repeatable = r.CurrencyAttribute.Repeatable
 			r.CurrencyAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Required)
 			r.Required = r.CurrencyAttribute.Required
 			r.CurrencyAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Schema)
@@ -795,15 +766,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.CurrencyAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag) {
 				r.CurrencyAttribute.SettingsFlag = r.CurrencyAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount7, settingsFlagItem7 := range resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag {
-				var settingsFlag15 tfTypes.SettingFlag
-				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
-				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
-				if settingsFlagCount7+1 > len(r.CurrencyAttribute.SettingsFlag) {
-					r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag15)
+			for settingsFlagCount6, settingsFlagItem6 := range resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag {
+				var settingsFlag13 tfTypes.SettingFlag
+				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
+				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
+				if settingsFlagCount6+1 > len(r.CurrencyAttribute.SettingsFlag) {
+					r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag13)
 				} else {
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
+					r.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
+					r.CurrencyAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
 				}
 			}
 			r.CurrencyAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ShowInTable)
@@ -815,7 +786,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.CurrencyAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDDateAttribute != nil {
-			r.DateAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.DateAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.DateAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
 				r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
@@ -834,17 +805,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDDateAttribute.DefaultValue == nil {
 				r.DateAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult8, _ := json.Marshal(resp.AttributeWithCompositeIDDateAttribute.DefaultValue)
-				r.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult8))
+				defaultValueResult7, _ := json.Marshal(resp.AttributeWithCompositeIDDateAttribute.DefaultValue)
+				r.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult7))
 			}
 			r.DateAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Deprecated)
 			r.Deprecated = r.DateAttribute.Deprecated
+			r.DateAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.DateAttribute.EnableRelationPicker
 			r.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.DateAttribute.EntityBuilderDisableEdit
 			r.DateAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.FeatureFlag)
 			r.FeatureFlag = r.DateAttribute.FeatureFlag
 			r.DateAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Group)
 			r.Group = r.DateAttribute.Group
+			r.DateAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.HasPrimary)
+			r.HasPrimary = r.DateAttribute.HasPrimary
 			r.DateAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Hidden)
 			r.Hidden = r.DateAttribute.Hidden
 			r.DateAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.HideLabel)
@@ -856,7 +831,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDDateAttribute.InfoHelpers == nil {
 				r.DateAttribute.InfoHelpers = nil
 			} else {
-				r.DateAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.DateAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.DateAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.InfoHelpers.HintCustomComponent)
 				r.DateAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.InfoHelpers.HintText)
 				r.DateAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.InfoHelpers.HintTextKey)
@@ -878,8 +853,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.DateAttribute.Protected
 			r.DateAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Readonly)
 			r.Readonly = r.DateAttribute.Readonly
+			if resp.AttributeWithCompositeIDDateAttribute.RelationAffinityMode != nil {
+				r.DateAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDDateAttribute.RelationAffinityMode))
+			} else {
+				r.DateAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.DateAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.RenderCondition)
 			r.RenderCondition = r.DateAttribute.RenderCondition
+			r.DateAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Repeatable)
+			r.Repeatable = r.DateAttribute.Repeatable
 			r.DateAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Required)
 			r.Required = r.DateAttribute.Required
 			r.DateAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Schema)
@@ -888,15 +870,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.DateAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag) {
 				r.DateAttribute.SettingsFlag = r.DateAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount8, settingsFlagItem8 := range resp.AttributeWithCompositeIDDateAttribute.SettingsFlag {
-				var settingsFlag17 tfTypes.SettingFlag
-				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
-				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
-				if settingsFlagCount8+1 > len(r.DateAttribute.SettingsFlag) {
-					r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag17)
+			for settingsFlagCount7, settingsFlagItem7 := range resp.AttributeWithCompositeIDDateAttribute.SettingsFlag {
+				var settingsFlag15 tfTypes.SettingFlag
+				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
+				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
+				if settingsFlagCount7+1 > len(r.DateAttribute.SettingsFlag) {
+					r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag15)
 				} else {
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
+					r.DateAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
+					r.DateAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
 				}
 			}
 			r.DateAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ShowInTable)
@@ -940,19 +922,23 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDFileAttribute.DefaultValue == nil {
 				r.FileAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult9, _ := json.Marshal(resp.AttributeWithCompositeIDFileAttribute.DefaultValue)
-				r.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult9))
+				defaultValueResult8, _ := json.Marshal(resp.AttributeWithCompositeIDFileAttribute.DefaultValue)
+				r.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult8))
 			}
 			r.FileAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Deprecated)
 			r.Deprecated = r.FileAttribute.Deprecated
 			r.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.DisplayImagesLandscaped)
 			r.FileAttribute.EnableDescription = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EnableDescription)
+			r.FileAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.FileAttribute.EnableRelationPicker
 			r.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.FileAttribute.EntityBuilderDisableEdit
 			r.FileAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.FeatureFlag)
 			r.FeatureFlag = r.FileAttribute.FeatureFlag
 			r.FileAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Group)
 			r.Group = r.FileAttribute.Group
+			r.FileAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.HasPrimary)
+			r.HasPrimary = r.FileAttribute.HasPrimary
 			r.FileAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Hidden)
 			r.Hidden = r.FileAttribute.Hidden
 			r.FileAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.HideLabel)
@@ -964,7 +950,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDFileAttribute.InfoHelpers == nil {
 				r.FileAttribute.InfoHelpers = nil
 			} else {
-				r.FileAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.FileAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.FileAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.InfoHelpers.HintCustomComponent)
 				r.FileAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.InfoHelpers.HintText)
 				r.FileAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.InfoHelpers.HintTextKey)
@@ -987,8 +973,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.FileAttribute.Protected
 			r.FileAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Readonly)
 			r.Readonly = r.FileAttribute.Readonly
+			if resp.AttributeWithCompositeIDFileAttribute.RelationAffinityMode != nil {
+				r.FileAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDFileAttribute.RelationAffinityMode))
+			} else {
+				r.FileAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.FileAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.RenderCondition)
 			r.RenderCondition = r.FileAttribute.RenderCondition
+			r.FileAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Repeatable)
+			r.Repeatable = r.FileAttribute.Repeatable
 			r.FileAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Required)
 			r.Required = r.FileAttribute.Required
 			r.FileAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Schema)
@@ -997,15 +990,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.FileAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag) {
 				r.FileAttribute.SettingsFlag = r.FileAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount9, settingsFlagItem9 := range resp.AttributeWithCompositeIDFileAttribute.SettingsFlag {
-				var settingsFlag19 tfTypes.SettingFlag
-				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
-				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
-				if settingsFlagCount9+1 > len(r.FileAttribute.SettingsFlag) {
-					r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag19)
+			for settingsFlagCount8, settingsFlagItem8 := range resp.AttributeWithCompositeIDFileAttribute.SettingsFlag {
+				var settingsFlag17 tfTypes.SettingFlag
+				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
+				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
+				if settingsFlagCount8+1 > len(r.FileAttribute.SettingsFlag) {
+					r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag17)
 				} else {
-					r.FileAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
-					r.FileAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
+					r.FileAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
+					r.FileAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
 				}
 			}
 			r.FileAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ShowInTable)
@@ -1017,7 +1010,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.FileAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalAttribute != nil {
-			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.InternalAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
 				r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
@@ -1036,17 +1029,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInternalAttribute.DefaultValue == nil {
 				r.InternalAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult10, _ := json.Marshal(resp.AttributeWithCompositeIDInternalAttribute.DefaultValue)
-				r.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult10))
+				defaultValueResult9, _ := json.Marshal(resp.AttributeWithCompositeIDInternalAttribute.DefaultValue)
+				r.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult9))
 			}
 			r.InternalAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Deprecated)
 			r.Deprecated = r.InternalAttribute.Deprecated
+			r.InternalAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.InternalAttribute.EnableRelationPicker
 			r.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalAttribute.EntityBuilderDisableEdit
 			r.InternalAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalAttribute.FeatureFlag
 			r.InternalAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Group)
 			r.Group = r.InternalAttribute.Group
+			r.InternalAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.HasPrimary)
+			r.HasPrimary = r.InternalAttribute.HasPrimary
 			r.InternalAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Hidden)
 			r.Hidden = r.InternalAttribute.Hidden
 			r.InternalAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.HideLabel)
@@ -1058,7 +1055,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInternalAttribute.InfoHelpers == nil {
 				r.InternalAttribute.InfoHelpers = nil
 			} else {
-				r.InternalAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.InternalAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.InternalAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.InfoHelpers.HintCustomComponent)
 				r.InternalAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.InfoHelpers.HintText)
 				r.InternalAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.InfoHelpers.HintTextKey)
@@ -1080,8 +1077,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.InternalAttribute.Protected
 			r.InternalAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Readonly)
 			r.Readonly = r.InternalAttribute.Readonly
+			if resp.AttributeWithCompositeIDInternalAttribute.RelationAffinityMode != nil {
+				r.InternalAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDInternalAttribute.RelationAffinityMode))
+			} else {
+				r.InternalAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.InternalAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.RenderCondition)
 			r.RenderCondition = r.InternalAttribute.RenderCondition
+			r.InternalAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Repeatable)
+			r.Repeatable = r.InternalAttribute.Repeatable
 			r.InternalAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Required)
 			r.Required = r.InternalAttribute.Required
 			r.InternalAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Schema)
@@ -1090,15 +1094,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.InternalAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag) {
 				r.InternalAttribute.SettingsFlag = r.InternalAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount10, settingsFlagItem10 := range resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag {
-				var settingsFlag21 tfTypes.SettingFlag
-				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
-				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
-				if settingsFlagCount10+1 > len(r.InternalAttribute.SettingsFlag) {
-					r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag21)
+			for settingsFlagCount9, settingsFlagItem9 := range resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag {
+				var settingsFlag19 tfTypes.SettingFlag
+				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
+				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
+				if settingsFlagCount9+1 > len(r.InternalAttribute.SettingsFlag) {
+					r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag19)
 				} else {
-					r.InternalAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
-					r.InternalAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
+					r.InternalAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
+					r.InternalAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
 				}
 			}
 			r.InternalAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ShowInTable)
@@ -1114,7 +1118,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.InternalAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalUserAttribute != nil {
-			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.InternalUserAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
 				r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
@@ -1133,17 +1137,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue == nil {
 				r.InternalUserAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult11, _ := json.Marshal(resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue)
-				r.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult11))
+				defaultValueResult10, _ := json.Marshal(resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue)
+				r.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult10))
 			}
 			r.InternalUserAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Deprecated)
 			r.Deprecated = r.InternalUserAttribute.Deprecated
+			r.InternalUserAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.InternalUserAttribute.EnableRelationPicker
 			r.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalUserAttribute.EntityBuilderDisableEdit
 			r.InternalUserAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalUserAttribute.FeatureFlag
 			r.InternalUserAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Group)
 			r.Group = r.InternalUserAttribute.Group
+			r.InternalUserAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.HasPrimary)
+			r.HasPrimary = r.InternalUserAttribute.HasPrimary
 			r.InternalUserAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Hidden)
 			r.Hidden = r.InternalUserAttribute.Hidden
 			r.InternalUserAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.HideLabel)
@@ -1155,7 +1163,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInternalUserAttribute.InfoHelpers == nil {
 				r.InternalUserAttribute.InfoHelpers = nil
 			} else {
-				r.InternalUserAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.InternalUserAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.InternalUserAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.InfoHelpers.HintCustomComponent)
 				r.InternalUserAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.InfoHelpers.HintText)
 				r.InternalUserAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.InfoHelpers.HintTextKey)
@@ -1177,8 +1185,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.InternalUserAttribute.Protected
 			r.InternalUserAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Readonly)
 			r.Readonly = r.InternalUserAttribute.Readonly
+			if resp.AttributeWithCompositeIDInternalUserAttribute.RelationAffinityMode != nil {
+				r.InternalUserAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDInternalUserAttribute.RelationAffinityMode))
+			} else {
+				r.InternalUserAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.InternalUserAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.RenderCondition)
 			r.RenderCondition = r.InternalUserAttribute.RenderCondition
+			r.InternalUserAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Repeatable)
+			r.Repeatable = r.InternalUserAttribute.Repeatable
 			r.InternalUserAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Required)
 			r.Required = r.InternalUserAttribute.Required
 			r.InternalUserAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Schema)
@@ -1187,15 +1202,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.InternalUserAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag) {
 				r.InternalUserAttribute.SettingsFlag = r.InternalUserAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount11, settingsFlagItem11 := range resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag {
-				var settingsFlag23 tfTypes.SettingFlag
-				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
-				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
-				if settingsFlagCount11+1 > len(r.InternalUserAttribute.SettingsFlag) {
-					r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag23)
+			for settingsFlagCount10, settingsFlagItem10 := range resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag {
+				var settingsFlag21 tfTypes.SettingFlag
+				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
+				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
+				if settingsFlagCount10+1 > len(r.InternalUserAttribute.SettingsFlag) {
+					r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag21)
 				} else {
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
+					r.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
+					r.InternalUserAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
 				}
 			}
 			r.InternalUserAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ShowInTable)
@@ -1211,7 +1226,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.InternalUserAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInvitationEmailAttribute != nil {
-			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.InvitationEmailAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
 				r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
@@ -1230,17 +1245,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue == nil {
 				r.InvitationEmailAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult12, _ := json.Marshal(resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue)
-				r.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult12))
+				defaultValueResult11, _ := json.Marshal(resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue)
+				r.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult11))
 			}
 			r.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Deprecated)
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
+			r.InvitationEmailAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.InvitationEmailAttribute.EnableRelationPicker
 			r.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InvitationEmailAttribute.EntityBuilderDisableEdit
 			r.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.FeatureFlag)
 			r.FeatureFlag = r.InvitationEmailAttribute.FeatureFlag
 			r.InvitationEmailAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Group)
 			r.Group = r.InvitationEmailAttribute.Group
+			r.InvitationEmailAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.HasPrimary)
+			r.HasPrimary = r.InvitationEmailAttribute.HasPrimary
 			r.InvitationEmailAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Hidden)
 			r.Hidden = r.InvitationEmailAttribute.Hidden
 			r.InvitationEmailAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.HideLabel)
@@ -1252,7 +1271,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.InfoHelpers == nil {
 				r.InvitationEmailAttribute.InfoHelpers = nil
 			} else {
-				r.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.InvitationEmailAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.InfoHelpers.HintCustomComponent)
 				r.InvitationEmailAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.InfoHelpers.HintText)
 				r.InvitationEmailAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.InfoHelpers.HintTextKey)
@@ -1274,8 +1293,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.InvitationEmailAttribute.Protected
 			r.InvitationEmailAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Readonly)
 			r.Readonly = r.InvitationEmailAttribute.Readonly
+			if resp.AttributeWithCompositeIDInvitationEmailAttribute.RelationAffinityMode != nil {
+				r.InvitationEmailAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDInvitationEmailAttribute.RelationAffinityMode))
+			} else {
+				r.InvitationEmailAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.InvitationEmailAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.RenderCondition)
 			r.RenderCondition = r.InvitationEmailAttribute.RenderCondition
+			r.InvitationEmailAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Repeatable)
+			r.Repeatable = r.InvitationEmailAttribute.Repeatable
 			r.InvitationEmailAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Required)
 			r.Required = r.InvitationEmailAttribute.Required
 			r.InvitationEmailAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Schema)
@@ -1284,15 +1310,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.InvitationEmailAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag) {
 				r.InvitationEmailAttribute.SettingsFlag = r.InvitationEmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount12, settingsFlagItem12 := range resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag {
-				var settingsFlag25 tfTypes.SettingFlag
-				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
-				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
-				if settingsFlagCount12+1 > len(r.InvitationEmailAttribute.SettingsFlag) {
-					r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag25)
+			for settingsFlagCount11, settingsFlagItem11 := range resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag {
+				var settingsFlag23 tfTypes.SettingFlag
+				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
+				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
+				if settingsFlagCount11+1 > len(r.InvitationEmailAttribute.SettingsFlag) {
+					r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag23)
 				} else {
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
+					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
+					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
 				}
 			}
 			r.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ShowInTable)
@@ -1308,7 +1334,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.InvitationEmailAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDLinkAttribute != nil {
-			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.LinkAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
 				r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
@@ -1327,17 +1353,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDLinkAttribute.DefaultValue == nil {
 				r.LinkAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult13, _ := json.Marshal(resp.AttributeWithCompositeIDLinkAttribute.DefaultValue)
-				r.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult13))
+				defaultValueResult12, _ := json.Marshal(resp.AttributeWithCompositeIDLinkAttribute.DefaultValue)
+				r.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult12))
 			}
 			r.LinkAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Deprecated)
 			r.Deprecated = r.LinkAttribute.Deprecated
+			r.LinkAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.LinkAttribute.EnableRelationPicker
 			r.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.LinkAttribute.EntityBuilderDisableEdit
 			r.LinkAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.FeatureFlag)
 			r.FeatureFlag = r.LinkAttribute.FeatureFlag
 			r.LinkAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Group)
 			r.Group = r.LinkAttribute.Group
+			r.LinkAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.HasPrimary)
+			r.HasPrimary = r.LinkAttribute.HasPrimary
 			r.LinkAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Hidden)
 			r.Hidden = r.LinkAttribute.Hidden
 			r.LinkAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.HideLabel)
@@ -1349,7 +1379,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDLinkAttribute.InfoHelpers == nil {
 				r.LinkAttribute.InfoHelpers = nil
 			} else {
-				r.LinkAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.LinkAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.LinkAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.InfoHelpers.HintCustomComponent)
 				r.LinkAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.InfoHelpers.HintText)
 				r.LinkAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.InfoHelpers.HintTextKey)
@@ -1371,8 +1401,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.LinkAttribute.Protected
 			r.LinkAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Readonly)
 			r.Readonly = r.LinkAttribute.Readonly
+			if resp.AttributeWithCompositeIDLinkAttribute.RelationAffinityMode != nil {
+				r.LinkAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDLinkAttribute.RelationAffinityMode))
+			} else {
+				r.LinkAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.LinkAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.RenderCondition)
 			r.RenderCondition = r.LinkAttribute.RenderCondition
+			r.LinkAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Repeatable)
+			r.Repeatable = r.LinkAttribute.Repeatable
 			r.LinkAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Required)
 			r.Required = r.LinkAttribute.Required
 			r.LinkAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Schema)
@@ -1381,15 +1418,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.LinkAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag) {
 				r.LinkAttribute.SettingsFlag = r.LinkAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount13, settingsFlagItem13 := range resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag {
-				var settingsFlag27 tfTypes.SettingFlag
-				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
-				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
-				if settingsFlagCount13+1 > len(r.LinkAttribute.SettingsFlag) {
-					r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag27)
+			for settingsFlagCount12, settingsFlagItem12 := range resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag {
+				var settingsFlag25 tfTypes.SettingFlag
+				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
+				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
+				if settingsFlagCount12+1 > len(r.LinkAttribute.SettingsFlag) {
+					r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag25)
 				} else {
-					r.LinkAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
-					r.LinkAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
+					r.LinkAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
+					r.LinkAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
 				}
 			}
 			r.LinkAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ShowInTable)
@@ -1403,102 +1440,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			r.LinkAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ValueFormatter)
 			r.ValueFormatter = r.LinkAttribute.ValueFormatter
-		}
-		if resp.AttributeWithCompositeIDMessageEmailAddressAttribute != nil {
-			r.MessageEmailAddressAttribute = &tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute{}
-			r.MessageEmailAddressAttribute.Manifest = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Manifest {
-				r.MessageEmailAddressAttribute.Manifest = append(r.MessageEmailAddressAttribute.Manifest, types.StringValue(v))
-			}
-			r.MessageEmailAddressAttribute.Purpose = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose {
-				r.MessageEmailAddressAttribute.Purpose = append(r.MessageEmailAddressAttribute.Purpose, types.StringValue(v))
-			}
-			r.MessageEmailAddressAttribute.Address = types.StringValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Address)
-			r.MessageEmailAddressAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.CompositeID)
-			r.CompositeID = r.MessageEmailAddressAttribute.CompositeID
-			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Constraints == nil {
-				r.MessageEmailAddressAttribute.Constraints = nil
-			} else {
-				r.MessageEmailAddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
-			}
-			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue == nil {
-				r.MessageEmailAddressAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult14, _ := json.Marshal(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue)
-				r.MessageEmailAddressAttribute.DefaultValue = types.StringValue(string(defaultValueResult14))
-			}
-			r.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Deprecated)
-			r.Deprecated = r.MessageEmailAddressAttribute.Deprecated
-			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
-			r.MessageEmailAddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EntityBuilderDisableEdit)
-			r.EntityBuilderDisableEdit = r.MessageEmailAddressAttribute.EntityBuilderDisableEdit
-			r.MessageEmailAddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.FeatureFlag)
-			r.FeatureFlag = r.MessageEmailAddressAttribute.FeatureFlag
-			r.MessageEmailAddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Group)
-			r.Group = r.MessageEmailAddressAttribute.Group
-			r.MessageEmailAddressAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Hidden)
-			r.Hidden = r.MessageEmailAddressAttribute.Hidden
-			r.MessageEmailAddressAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.HideLabel)
-			r.HideLabel = r.MessageEmailAddressAttribute.HideLabel
-			r.MessageEmailAddressAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Icon)
-			r.Icon = r.MessageEmailAddressAttribute.Icon
-			r.MessageEmailAddressAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ID)
-			r.ID = r.MessageEmailAddressAttribute.ID
-			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers == nil {
-				r.MessageEmailAddressAttribute.InfoHelpers = nil
-			} else {
-				r.MessageEmailAddressAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
-				r.MessageEmailAddressAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintCustomComponent)
-				r.MessageEmailAddressAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintText)
-				r.MessageEmailAddressAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintTextKey)
-				r.MessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			r.MessageEmailAddressAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Label)
-			r.Label = r.MessageEmailAddressAttribute.Label
-			r.MessageEmailAddressAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Layout)
-			r.Layout = r.MessageEmailAddressAttribute.Layout
-			r.MessageEmailAddressAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Name)
-			r.Name = r.MessageEmailAddressAttribute.Name
-			r.MessageEmailAddressAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Order)
-			r.Order = r.MessageEmailAddressAttribute.Order
-			r.MessageEmailAddressAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Placeholder)
-			r.Placeholder = r.MessageEmailAddressAttribute.Placeholder
-			r.MessageEmailAddressAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.PreviewValueFormatter)
-			r.PreviewValueFormatter = r.MessageEmailAddressAttribute.PreviewValueFormatter
-			r.MessageEmailAddressAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Protected)
-			r.Protected = r.MessageEmailAddressAttribute.Protected
-			r.MessageEmailAddressAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Readonly)
-			r.Readonly = r.MessageEmailAddressAttribute.Readonly
-			r.MessageEmailAddressAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.RenderCondition)
-			r.RenderCondition = r.MessageEmailAddressAttribute.RenderCondition
-			r.MessageEmailAddressAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Required)
-			r.Required = r.MessageEmailAddressAttribute.Required
-			r.MessageEmailAddressAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Schema)
-			r.Schema = r.MessageEmailAddressAttribute.Schema
-			r.MessageEmailAddressAttribute.SendStatus = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SendStatus)
-			r.MessageEmailAddressAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.MessageEmailAddressAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag) {
-				r.MessageEmailAddressAttribute.SettingsFlag = r.MessageEmailAddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount14, settingsFlagItem14 := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag {
-				var settingsFlag29 tfTypes.SettingFlag
-				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
-				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
-				if settingsFlagCount14+1 > len(r.MessageEmailAddressAttribute.SettingsFlag) {
-					r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag29)
-				} else {
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
-				}
-			}
-			r.MessageEmailAddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ShowInTable)
-			r.ShowInTable = r.MessageEmailAddressAttribute.ShowInTable
-			r.MessageEmailAddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Sortable)
-			r.Sortable = r.MessageEmailAddressAttribute.Sortable
-			r.MessageEmailAddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Type))
-			r.MessageEmailAddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ValueFormatter)
-			r.ValueFormatter = r.MessageEmailAddressAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDMultiSelectAttribute != nil {
 			r.MultiSelectAttribute = &tfTypes.AttributeWithCompositeIDMultiSelectAttribute{}
@@ -1522,18 +1463,22 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue == nil {
 				r.MultiSelectAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
-				r.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
+				defaultValueResult13, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
+				r.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult13))
 			}
 			r.MultiSelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Deprecated)
 			r.Deprecated = r.MultiSelectAttribute.Deprecated
 			r.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.DisableCaseSensitive)
+			r.MultiSelectAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.MultiSelectAttribute.EnableRelationPicker
 			r.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.MultiSelectAttribute.EntityBuilderDisableEdit
 			r.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.MultiSelectAttribute.FeatureFlag
 			r.MultiSelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Group)
 			r.Group = r.MultiSelectAttribute.Group
+			r.MultiSelectAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.HasPrimary)
+			r.HasPrimary = r.MultiSelectAttribute.HasPrimary
 			r.MultiSelectAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Hidden)
 			r.Hidden = r.MultiSelectAttribute.Hidden
 			r.MultiSelectAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.HideLabel)
@@ -1545,7 +1490,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.InfoHelpers == nil {
 				r.MultiSelectAttribute.InfoHelpers = nil
 			} else {
-				r.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.MultiSelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.MultiSelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.InfoHelpers.HintCustomComponent)
 				r.MultiSelectAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.InfoHelpers.HintText)
 				r.MultiSelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.InfoHelpers.HintTextKey)
@@ -1588,8 +1533,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.MultiSelectAttribute.Protected
 			r.MultiSelectAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Readonly)
 			r.Readonly = r.MultiSelectAttribute.Readonly
+			if resp.AttributeWithCompositeIDMultiSelectAttribute.RelationAffinityMode != nil {
+				r.MultiSelectAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDMultiSelectAttribute.RelationAffinityMode))
+			} else {
+				r.MultiSelectAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.MultiSelectAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.RenderCondition)
 			r.RenderCondition = r.MultiSelectAttribute.RenderCondition
+			r.MultiSelectAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Repeatable)
+			r.Repeatable = r.MultiSelectAttribute.Repeatable
 			r.MultiSelectAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Required)
 			r.Required = r.MultiSelectAttribute.Required
 			r.MultiSelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Schema)
@@ -1598,15 +1550,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.MultiSelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag) {
 				r.MultiSelectAttribute.SettingsFlag = r.MultiSelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
-				var settingsFlag31 tfTypes.SettingFlag
-				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
-				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
-				if settingsFlagCount15+1 > len(r.MultiSelectAttribute.SettingsFlag) {
-					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag31)
+			for settingsFlagCount13, settingsFlagItem13 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
+				var settingsFlag27 tfTypes.SettingFlag
+				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
+				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
+				if settingsFlagCount13+1 > len(r.MultiSelectAttribute.SettingsFlag) {
+					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag27)
 				} else {
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
 				}
 			}
 			r.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ShowInTable)
@@ -1641,11 +1593,13 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDNumberAttribute.DefaultValue == nil {
 				r.NumberAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
-				r.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
+				defaultValueResult14, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
+				r.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult14))
 			}
 			r.NumberAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Deprecated)
 			r.Deprecated = r.NumberAttribute.Deprecated
+			r.NumberAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.NumberAttribute.EnableRelationPicker
 			r.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.NumberAttribute.EntityBuilderDisableEdit
 			r.NumberAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.FeatureFlag)
@@ -1653,6 +1607,8 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.NumberAttribute.Format = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Format)
 			r.NumberAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Group)
 			r.Group = r.NumberAttribute.Group
+			r.NumberAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.HasPrimary)
+			r.HasPrimary = r.NumberAttribute.HasPrimary
 			r.NumberAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Hidden)
 			r.Hidden = r.NumberAttribute.Hidden
 			r.NumberAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.HideLabel)
@@ -1664,7 +1620,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDNumberAttribute.InfoHelpers == nil {
 				r.NumberAttribute.InfoHelpers = nil
 			} else {
-				r.NumberAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.NumberAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.NumberAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.InfoHelpers.HintCustomComponent)
 				r.NumberAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.InfoHelpers.HintText)
 				r.NumberAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.InfoHelpers.HintTextKey)
@@ -1686,8 +1642,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.NumberAttribute.Protected
 			r.NumberAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Readonly)
 			r.Readonly = r.NumberAttribute.Readonly
+			if resp.AttributeWithCompositeIDNumberAttribute.RelationAffinityMode != nil {
+				r.NumberAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDNumberAttribute.RelationAffinityMode))
+			} else {
+				r.NumberAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.NumberAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.RenderCondition)
 			r.RenderCondition = r.NumberAttribute.RenderCondition
+			r.NumberAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Repeatable)
+			r.Repeatable = r.NumberAttribute.Repeatable
 			r.NumberAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Required)
 			r.Required = r.NumberAttribute.Required
 			r.NumberAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Schema)
@@ -1696,15 +1659,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.NumberAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag) {
 				r.NumberAttribute.SettingsFlag = r.NumberAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
-				var settingsFlag33 tfTypes.SettingFlag
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
-				if settingsFlagCount16+1 > len(r.NumberAttribute.SettingsFlag) {
-					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag33)
+			for settingsFlagCount14, settingsFlagItem14 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
+				var settingsFlag29 tfTypes.SettingFlag
+				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
+				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
+				if settingsFlagCount14+1 > len(r.NumberAttribute.SettingsFlag) {
+					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag29)
 				} else {
-					r.NumberAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
-					r.NumberAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
+					r.NumberAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
+					r.NumberAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
 				}
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
@@ -1721,7 +1684,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.NumberAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDOrderedListAttribute != nil {
-			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.OrderedListAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
 				r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
@@ -1740,17 +1703,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue == nil {
 				r.OrderedListAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
-				r.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
+				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
+				r.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
 			}
 			r.OrderedListAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Deprecated)
 			r.Deprecated = r.OrderedListAttribute.Deprecated
+			r.OrderedListAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.OrderedListAttribute.EnableRelationPicker
 			r.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.OrderedListAttribute.EntityBuilderDisableEdit
 			r.OrderedListAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.FeatureFlag)
 			r.FeatureFlag = r.OrderedListAttribute.FeatureFlag
 			r.OrderedListAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Group)
 			r.Group = r.OrderedListAttribute.Group
+			r.OrderedListAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.HasPrimary)
+			r.HasPrimary = r.OrderedListAttribute.HasPrimary
 			r.OrderedListAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Hidden)
 			r.Hidden = r.OrderedListAttribute.Hidden
 			r.OrderedListAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.HideLabel)
@@ -1762,7 +1729,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDOrderedListAttribute.InfoHelpers == nil {
 				r.OrderedListAttribute.InfoHelpers = nil
 			} else {
-				r.OrderedListAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.OrderedListAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.OrderedListAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.InfoHelpers.HintCustomComponent)
 				r.OrderedListAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.InfoHelpers.HintText)
 				r.OrderedListAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.InfoHelpers.HintTextKey)
@@ -1784,8 +1751,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.OrderedListAttribute.Protected
 			r.OrderedListAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Readonly)
 			r.Readonly = r.OrderedListAttribute.Readonly
+			if resp.AttributeWithCompositeIDOrderedListAttribute.RelationAffinityMode != nil {
+				r.OrderedListAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDOrderedListAttribute.RelationAffinityMode))
+			} else {
+				r.OrderedListAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.OrderedListAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.RenderCondition)
 			r.RenderCondition = r.OrderedListAttribute.RenderCondition
+			r.OrderedListAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Repeatable)
+			r.Repeatable = r.OrderedListAttribute.Repeatable
 			r.OrderedListAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Required)
 			r.Required = r.OrderedListAttribute.Required
 			r.OrderedListAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Schema)
@@ -1794,15 +1768,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.OrderedListAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag) {
 				r.OrderedListAttribute.SettingsFlag = r.OrderedListAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
-				var settingsFlag35 tfTypes.SettingFlag
-				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
-				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
-				if settingsFlagCount17+1 > len(r.OrderedListAttribute.SettingsFlag) {
-					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag35)
+			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
+				var settingsFlag31 tfTypes.SettingFlag
+				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
+				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
+				if settingsFlagCount15+1 > len(r.OrderedListAttribute.SettingsFlag) {
+					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag31)
 				} else {
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
 				}
 			}
 			r.OrderedListAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ShowInTable)
@@ -1818,7 +1792,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.OrderedListAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
-			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.PartnerOrganisationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
 				r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
@@ -1837,17 +1811,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue == nil {
 				r.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
-				r.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
+				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
+				r.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
 			}
 			r.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Deprecated)
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
+			r.PartnerOrganisationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.PartnerOrganisationAttribute.EnableRelationPicker
 			r.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerOrganisationAttribute.EntityBuilderDisableEdit
 			r.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerOrganisationAttribute.FeatureFlag
 			r.PartnerOrganisationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Group)
 			r.Group = r.PartnerOrganisationAttribute.Group
+			r.PartnerOrganisationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.HasPrimary)
+			r.HasPrimary = r.PartnerOrganisationAttribute.HasPrimary
 			r.PartnerOrganisationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Hidden)
 			r.Hidden = r.PartnerOrganisationAttribute.Hidden
 			r.PartnerOrganisationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.HideLabel)
@@ -1859,7 +1837,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.InfoHelpers == nil {
 				r.PartnerOrganisationAttribute.InfoHelpers = nil
 			} else {
-				r.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.PartnerOrganisationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.InfoHelpers.HintCustomComponent)
 				r.PartnerOrganisationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.InfoHelpers.HintText)
 				r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.InfoHelpers.HintTextKey)
@@ -1881,8 +1859,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.PartnerOrganisationAttribute.Protected
 			r.PartnerOrganisationAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Readonly)
 			r.Readonly = r.PartnerOrganisationAttribute.Readonly
+			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.RelationAffinityMode != nil {
+				r.PartnerOrganisationAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDPartnerOrganisationAttribute.RelationAffinityMode))
+			} else {
+				r.PartnerOrganisationAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.PartnerOrganisationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.RenderCondition)
 			r.RenderCondition = r.PartnerOrganisationAttribute.RenderCondition
+			r.PartnerOrganisationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Repeatable)
+			r.Repeatable = r.PartnerOrganisationAttribute.Repeatable
 			r.PartnerOrganisationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Required)
 			r.Required = r.PartnerOrganisationAttribute.Required
 			r.PartnerOrganisationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Schema)
@@ -1891,15 +1876,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.PartnerOrganisationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag) {
 				r.PartnerOrganisationAttribute.SettingsFlag = r.PartnerOrganisationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
-				var settingsFlag37 tfTypes.SettingFlag
-				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
-				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
-				if settingsFlagCount18+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
-					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag37)
+			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
+				var settingsFlag33 tfTypes.SettingFlag
+				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
+				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
+				if settingsFlagCount16+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
+					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag33)
 				} else {
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
 				}
 			}
 			r.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ShowInTable)
@@ -1915,7 +1900,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.PartnerOrganisationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerStatusAttribute != nil {
-			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.PartnerStatusAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
 				r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
@@ -1934,17 +1919,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue == nil {
 				r.PartnerStatusAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
-				r.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
+				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
+				r.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
 			}
 			r.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Deprecated)
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
+			r.PartnerStatusAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.PartnerStatusAttribute.EnableRelationPicker
 			r.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerStatusAttribute.EntityBuilderDisableEdit
 			r.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerStatusAttribute.FeatureFlag
 			r.PartnerStatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Group)
 			r.Group = r.PartnerStatusAttribute.Group
+			r.PartnerStatusAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.HasPrimary)
+			r.HasPrimary = r.PartnerStatusAttribute.HasPrimary
 			r.PartnerStatusAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Hidden)
 			r.Hidden = r.PartnerStatusAttribute.Hidden
 			r.PartnerStatusAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.HideLabel)
@@ -1956,7 +1945,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.InfoHelpers == nil {
 				r.PartnerStatusAttribute.InfoHelpers = nil
 			} else {
-				r.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.PartnerStatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.InfoHelpers.HintCustomComponent)
 				r.PartnerStatusAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.InfoHelpers.HintText)
 				r.PartnerStatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.InfoHelpers.HintTextKey)
@@ -1978,8 +1967,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.PartnerStatusAttribute.Protected
 			r.PartnerStatusAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Readonly)
 			r.Readonly = r.PartnerStatusAttribute.Readonly
+			if resp.AttributeWithCompositeIDPartnerStatusAttribute.RelationAffinityMode != nil {
+				r.PartnerStatusAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDPartnerStatusAttribute.RelationAffinityMode))
+			} else {
+				r.PartnerStatusAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.PartnerStatusAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.RenderCondition)
 			r.RenderCondition = r.PartnerStatusAttribute.RenderCondition
+			r.PartnerStatusAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Repeatable)
+			r.Repeatable = r.PartnerStatusAttribute.Repeatable
 			r.PartnerStatusAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Required)
 			r.Required = r.PartnerStatusAttribute.Required
 			r.PartnerStatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Schema)
@@ -1988,15 +1984,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.PartnerStatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag) {
 				r.PartnerStatusAttribute.SettingsFlag = r.PartnerStatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
-				var settingsFlag39 tfTypes.SettingFlag
-				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
-				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
-				if settingsFlagCount19+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
-					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag39)
+			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
+				var settingsFlag35 tfTypes.SettingFlag
+				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
+				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
+				if settingsFlagCount17+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
+					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag35)
 				} else {
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
 				}
 			}
 			r.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ShowInTable)
@@ -2012,7 +2008,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.PartnerStatusAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute != nil {
-			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.PaymentMethodRelationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
 				r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
@@ -2031,11 +2027,13 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue == nil {
 				r.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
-				r.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
+				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
+				r.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
 			}
 			r.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Deprecated)
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
+			r.PaymentMethodRelationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.PaymentMethodRelationAttribute.EnableRelationPicker
 			r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit
 			r.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.FeatureFlag)
@@ -2043,6 +2041,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PaymentMethodRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Group)
 			r.Group = r.PaymentMethodRelationAttribute.Group
 			r.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.HasPrimary)
+			r.HasPrimary = r.PaymentMethodRelationAttribute.HasPrimary
 			r.PaymentMethodRelationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Hidden)
 			r.Hidden = r.PaymentMethodRelationAttribute.Hidden
 			r.PaymentMethodRelationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.HideLabel)
@@ -2054,7 +2053,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.InfoHelpers == nil {
 				r.PaymentMethodRelationAttribute.InfoHelpers = nil
 			} else {
-				r.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.PaymentMethodRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent)
 				r.PaymentMethodRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.InfoHelpers.HintText)
 				r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.InfoHelpers.HintTextKey)
@@ -2076,8 +2075,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.PaymentMethodRelationAttribute.Protected
 			r.PaymentMethodRelationAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Readonly)
 			r.Readonly = r.PaymentMethodRelationAttribute.Readonly
+			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.RelationAffinityMode != nil {
+				r.PaymentMethodRelationAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.RelationAffinityMode))
+			} else {
+				r.PaymentMethodRelationAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.PaymentMethodRelationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.RenderCondition)
 			r.RenderCondition = r.PaymentMethodRelationAttribute.RenderCondition
+			r.PaymentMethodRelationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Repeatable)
+			r.Repeatable = r.PaymentMethodRelationAttribute.Repeatable
 			r.PaymentMethodRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Required)
 			r.Required = r.PaymentMethodRelationAttribute.Required
 			r.PaymentMethodRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Schema)
@@ -2086,15 +2092,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.PaymentMethodRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag) {
 				r.PaymentMethodRelationAttribute.SettingsFlag = r.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount20, settingsFlagItem20 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
-				var settingsFlag41 tfTypes.SettingFlag
-				settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
-				settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
-				if settingsFlagCount20+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
-					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag41)
+			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
+				var settingsFlag37 tfTypes.SettingFlag
+				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
+				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
+				if settingsFlagCount18+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
+					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag37)
 				} else {
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
 				}
 			}
 			r.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ShowInTable)
@@ -2119,7 +2125,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
 			}
-			r.PurposeAttribute.Archived = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Archived)
 			r.PurposeAttribute.Color = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Color)
 			r.PurposeAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.CompositeID)
 			r.CompositeID = r.PurposeAttribute.CompositeID
@@ -2136,17 +2141,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue == nil {
 				r.PurposeAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
-				r.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
+				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
+				r.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
 			}
 			r.PurposeAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Deprecated)
 			r.Deprecated = r.PurposeAttribute.Deprecated
+			r.PurposeAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.PurposeAttribute.EnableRelationPicker
 			r.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PurposeAttribute.EntityBuilderDisableEdit
 			r.PurposeAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.FeatureFlag)
 			r.FeatureFlag = r.PurposeAttribute.FeatureFlag
 			r.PurposeAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Group)
 			r.Group = r.PurposeAttribute.Group
+			r.PurposeAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.HasPrimary)
+			r.HasPrimary = r.PurposeAttribute.HasPrimary
 			r.PurposeAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Hidden)
 			r.Hidden = r.PurposeAttribute.Hidden
 			r.PurposeAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.HideLabel)
@@ -2158,7 +2167,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDPurposeAttribute.InfoHelpers == nil {
 				r.PurposeAttribute.InfoHelpers = nil
 			} else {
-				r.PurposeAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.PurposeAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.PurposeAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.InfoHelpers.HintCustomComponent)
 				r.PurposeAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.InfoHelpers.HintText)
 				r.PurposeAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.InfoHelpers.HintTextKey)
@@ -2184,8 +2193,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.PurposeAttribute.Protected
 			r.PurposeAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Readonly)
 			r.Readonly = r.PurposeAttribute.Readonly
+			if resp.AttributeWithCompositeIDPurposeAttribute.RelationAffinityMode != nil {
+				r.PurposeAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDPurposeAttribute.RelationAffinityMode))
+			} else {
+				r.PurposeAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.PurposeAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.RenderCondition)
 			r.RenderCondition = r.PurposeAttribute.RenderCondition
+			r.PurposeAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Repeatable)
+			r.Repeatable = r.PurposeAttribute.Repeatable
 			r.PurposeAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Required)
 			r.Required = r.PurposeAttribute.Required
 			r.PurposeAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Schema)
@@ -2194,15 +2210,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.PurposeAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag) {
 				r.PurposeAttribute.SettingsFlag = r.PurposeAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
-				var settingsFlag43 tfTypes.SettingFlag
-				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
-				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
-				if settingsFlagCount21+1 > len(r.PurposeAttribute.SettingsFlag) {
-					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag43)
+			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
+				var settingsFlag39 tfTypes.SettingFlag
+				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
+				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
+				if settingsFlagCount19+1 > len(r.PurposeAttribute.SettingsFlag) {
+					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag39)
 				} else {
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
 				}
 			}
 			r.PurposeAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ShowInTable)
@@ -2279,11 +2295,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 					} else {
 						actions1.NewEntityItem.CreatedAt = types.StringNull()
 					}
-					if actionsItem.NewEntityItem.DeletedAt != nil {
-						actions1.NewEntityItem.DeletedAt = types.StringValue(actionsItem.NewEntityItem.DeletedAt.Format(time.RFC3339Nano))
-					} else {
-						actions1.NewEntityItem.DeletedAt = types.StringNull()
-					}
 					actions1.NewEntityItem.ID = types.StringValue(actionsItem.NewEntityItem.ID)
 					actions1.NewEntityItem.Manifest = []types.String{}
 					for _, v := range actionsItem.NewEntityItem.Manifest {
@@ -2325,15 +2336,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 					}
 				}
 				actions1.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount22, settingsFlagItem22 := range actionsItem.SettingsFlag {
-					var settingsFlag45 tfTypes.SettingFlag
-					settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-					settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
-					if settingsFlagCount22+1 > len(actions1.SettingsFlag) {
-						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag45)
+				for settingsFlagCount20, settingsFlagItem20 := range actionsItem.SettingsFlag {
+					var settingsFlag41 tfTypes.SettingFlag
+					settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
+					settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
+					if settingsFlagCount20+1 > len(actions1.SettingsFlag) {
+						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag41)
 					} else {
-						actions1.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-						actions1.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
+						actions1.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
+						actions1.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
 					}
 				}
 				if actionsCount+1 > len(r.RelationAttribute.Actions) {
@@ -2362,8 +2373,8 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDRelationAttribute.DefaultValue == nil {
 				r.RelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
-				r.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
+				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
+				r.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
 			}
 			r.RelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Deprecated)
 			r.Deprecated = r.RelationAttribute.Deprecated
@@ -2379,6 +2390,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.RelationAttribute.EditMode = types.StringNull()
 			}
 			r.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.RelationAttribute.EnableRelationPicker
 			r.RelationAttribute.EnableRelationTags = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EnableRelationTags)
 			r.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.RelationAttribute.EntityBuilderDisableEdit
@@ -2387,6 +2399,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.RelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Group)
 			r.Group = r.RelationAttribute.Group
 			r.RelationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.HasPrimary)
+			r.HasPrimary = r.RelationAttribute.HasPrimary
 			r.RelationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Hidden)
 			r.Hidden = r.RelationAttribute.Hidden
 			r.RelationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.HideLabel)
@@ -2398,7 +2411,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDRelationAttribute.InfoHelpers == nil {
 				r.RelationAttribute.InfoHelpers = nil
 			} else {
-				r.RelationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.RelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.RelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.InfoHelpers.HintCustomComponent)
 				r.RelationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.InfoHelpers.HintText)
 				r.RelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.InfoHelpers.HintTextKey)
@@ -2432,6 +2445,8 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			r.RelationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.RenderCondition)
 			r.RenderCondition = r.RelationAttribute.RenderCondition
+			r.RelationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Repeatable)
+			r.Repeatable = r.RelationAttribute.Repeatable
 			r.RelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Required)
 			r.Required = r.RelationAttribute.Required
 			if len(resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes) > 0 {
@@ -2447,15 +2462,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.RelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag) {
 				r.RelationAttribute.SettingsFlag = r.RelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
-				var settingsFlag47 tfTypes.SettingFlag
-				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
-				if settingsFlagCount23+1 > len(r.RelationAttribute.SettingsFlag) {
-					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag47)
+			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
+				var settingsFlag43 tfTypes.SettingFlag
+				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
+				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
+				if settingsFlagCount21+1 > len(r.RelationAttribute.SettingsFlag) {
+					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag43)
 				} else {
-					r.RelationAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-					r.RelationAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
+					r.RelationAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
+					r.RelationAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
 				}
 			}
 			r.RelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ShowInTable)
@@ -2491,111 +2506,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.RelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ValueFormatter)
 			r.ValueFormatter = r.RelationAttribute.ValueFormatter
 		}
-		if resp.AttributeWithCompositeIDRepeatableAttribute != nil {
-			r.RepeatableAttribute = &tfTypes.AttributeWithCompositeIDRepeatableAttribute{}
-			r.RepeatableAttribute.Manifest = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Manifest {
-				r.RepeatableAttribute.Manifest = append(r.RepeatableAttribute.Manifest, types.StringValue(v))
-			}
-			r.RepeatableAttribute.Purpose = []types.String{}
-			for _, v := range resp.AttributeWithCompositeIDRepeatableAttribute.Purpose {
-				r.RepeatableAttribute.Purpose = append(r.RepeatableAttribute.Purpose, types.StringValue(v))
-			}
-			r.RepeatableAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.CompositeID)
-			r.CompositeID = r.RepeatableAttribute.CompositeID
-			if resp.AttributeWithCompositeIDRepeatableAttribute.Constraints == nil {
-				r.RepeatableAttribute.Constraints = nil
-			} else {
-				r.RepeatableAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
-			}
-			if resp.AttributeWithCompositeIDRepeatableAttribute.DefaultValue == nil {
-				r.RepeatableAttribute.DefaultValue = types.StringNull()
-			} else {
-				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDRepeatableAttribute.DefaultValue)
-				r.RepeatableAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
-			}
-			r.RepeatableAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Deprecated)
-			r.Deprecated = r.RepeatableAttribute.Deprecated
-			r.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.EnableRelationPicker)
-			r.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.EntityBuilderDisableEdit)
-			r.EntityBuilderDisableEdit = r.RepeatableAttribute.EntityBuilderDisableEdit
-			r.RepeatableAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.FeatureFlag)
-			r.FeatureFlag = r.RepeatableAttribute.FeatureFlag
-			r.RepeatableAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Group)
-			r.Group = r.RepeatableAttribute.Group
-			r.RepeatableAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.HasPrimary)
-			r.RepeatableAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Hidden)
-			r.Hidden = r.RepeatableAttribute.Hidden
-			r.RepeatableAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.HideLabel)
-			r.HideLabel = r.RepeatableAttribute.HideLabel
-			r.RepeatableAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Icon)
-			r.Icon = r.RepeatableAttribute.Icon
-			r.RepeatableAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.ID)
-			r.ID = r.RepeatableAttribute.ID
-			if resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers == nil {
-				r.RepeatableAttribute.InfoHelpers = nil
-			} else {
-				r.RepeatableAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
-				r.RepeatableAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers.HintCustomComponent)
-				r.RepeatableAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers.HintText)
-				r.RepeatableAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers.HintTextKey)
-				r.RepeatableAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.InfoHelpers.HintTooltipPlacement)
-			}
-			r.RepeatableAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDRepeatableAttribute.Label)
-			r.Label = r.RepeatableAttribute.Label
-			r.RepeatableAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Layout)
-			r.Layout = r.RepeatableAttribute.Layout
-			r.RepeatableAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDRepeatableAttribute.Name)
-			r.Name = r.RepeatableAttribute.Name
-			r.RepeatableAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Order)
-			r.Order = r.RepeatableAttribute.Order
-			r.RepeatableAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Placeholder)
-			r.Placeholder = r.RepeatableAttribute.Placeholder
-			r.RepeatableAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.PreviewValueFormatter)
-			r.PreviewValueFormatter = r.RepeatableAttribute.PreviewValueFormatter
-			r.RepeatableAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Protected)
-			r.Protected = r.RepeatableAttribute.Protected
-			r.RepeatableAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Readonly)
-			r.Readonly = r.RepeatableAttribute.Readonly
-			if resp.AttributeWithCompositeIDRepeatableAttribute.RelationAffinityMode != nil {
-				r.RepeatableAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDRepeatableAttribute.RelationAffinityMode))
-			} else {
-				r.RepeatableAttribute.RelationAffinityMode = types.StringNull()
-			}
-			r.RepeatableAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.RenderCondition)
-			r.RenderCondition = r.RepeatableAttribute.RenderCondition
-			r.RepeatableAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Repeatable)
-			r.RepeatableAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Required)
-			r.Required = r.RepeatableAttribute.Required
-			r.RepeatableAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Schema)
-			r.Schema = r.RepeatableAttribute.Schema
-			r.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.RepeatableAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag) {
-				r.RepeatableAttribute.SettingsFlag = r.RepeatableAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDRepeatableAttribute.SettingsFlag {
-				var settingsFlag49 tfTypes.SettingFlag
-				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
-				if settingsFlagCount24+1 > len(r.RepeatableAttribute.SettingsFlag) {
-					r.RepeatableAttribute.SettingsFlag = append(r.RepeatableAttribute.SettingsFlag, settingsFlag49)
-				} else {
-					r.RepeatableAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-					r.RepeatableAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
-				}
-			}
-			r.RepeatableAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.ShowInTable)
-			r.ShowInTable = r.RepeatableAttribute.ShowInTable
-			r.RepeatableAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.Sortable)
-			r.Sortable = r.RepeatableAttribute.Sortable
-			if resp.AttributeWithCompositeIDRepeatableAttribute.Type != nil {
-				r.RepeatableAttribute.Type = types.StringValue(string(*resp.AttributeWithCompositeIDRepeatableAttribute.Type))
-			} else {
-				r.RepeatableAttribute.Type = types.StringNull()
-			}
-			r.RepeatableAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRepeatableAttribute.ValueFormatter)
-			r.ValueFormatter = r.RepeatableAttribute.ValueFormatter
-		}
 		if resp.AttributeWithCompositeIDSelectAttribute != nil {
 			r.SelectAttribute = &tfTypes.AttributeWithCompositeIDSelectAttribute{}
 			r.SelectAttribute.Manifest = []types.String{}
@@ -2617,17 +2527,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDSelectAttribute.DefaultValue == nil {
 				r.SelectAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
-				r.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
+				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
+				r.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
 			}
 			r.SelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Deprecated)
 			r.Deprecated = r.SelectAttribute.Deprecated
+			r.SelectAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.SelectAttribute.EnableRelationPicker
 			r.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SelectAttribute.EntityBuilderDisableEdit
 			r.SelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.SelectAttribute.FeatureFlag
 			r.SelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Group)
 			r.Group = r.SelectAttribute.Group
+			r.SelectAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.HasPrimary)
+			r.HasPrimary = r.SelectAttribute.HasPrimary
 			r.SelectAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Hidden)
 			r.Hidden = r.SelectAttribute.Hidden
 			r.SelectAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.HideLabel)
@@ -2639,7 +2553,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDSelectAttribute.InfoHelpers == nil {
 				r.SelectAttribute.InfoHelpers = nil
 			} else {
-				r.SelectAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.SelectAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.SelectAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.InfoHelpers.HintCustomComponent)
 				r.SelectAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.InfoHelpers.HintText)
 				r.SelectAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.InfoHelpers.HintTextKey)
@@ -2667,8 +2581,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.SelectAttribute.Protected
 			r.SelectAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Readonly)
 			r.Readonly = r.SelectAttribute.Readonly
+			if resp.AttributeWithCompositeIDSelectAttribute.RelationAffinityMode != nil {
+				r.SelectAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDSelectAttribute.RelationAffinityMode))
+			} else {
+				r.SelectAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.SelectAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.RenderCondition)
 			r.RenderCondition = r.SelectAttribute.RenderCondition
+			r.SelectAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Repeatable)
+			r.Repeatable = r.SelectAttribute.Repeatable
 			r.SelectAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Required)
 			r.Required = r.SelectAttribute.Required
 			r.SelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Schema)
@@ -2677,15 +2598,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.SelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag) {
 				r.SelectAttribute.SettingsFlag = r.SelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount25, settingsFlagItem25 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
-				var settingsFlag51 tfTypes.SettingFlag
-				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
-				if settingsFlagCount25+1 > len(r.SelectAttribute.SettingsFlag) {
-					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag51)
+			for settingsFlagCount22, settingsFlagItem22 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
+				var settingsFlag45 tfTypes.SettingFlag
+				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
+				if settingsFlagCount22+1 > len(r.SelectAttribute.SettingsFlag) {
+					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag45)
 				} else {
-					r.SelectAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-					r.SelectAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
+					r.SelectAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
+					r.SelectAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
 				}
 			}
 			r.SelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ShowInTable)
@@ -2720,17 +2641,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue == nil {
 				r.SequenceAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
-				r.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
+				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
+				r.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
 			}
 			r.SequenceAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Deprecated)
 			r.Deprecated = r.SequenceAttribute.Deprecated
+			r.SequenceAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.SequenceAttribute.EnableRelationPicker
 			r.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SequenceAttribute.EntityBuilderDisableEdit
 			r.SequenceAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.FeatureFlag)
 			r.FeatureFlag = r.SequenceAttribute.FeatureFlag
 			r.SequenceAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Group)
 			r.Group = r.SequenceAttribute.Group
+			r.SequenceAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.HasPrimary)
+			r.HasPrimary = r.SequenceAttribute.HasPrimary
 			r.SequenceAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Hidden)
 			r.Hidden = r.SequenceAttribute.Hidden
 			r.SequenceAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.HideLabel)
@@ -2742,7 +2667,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDSequenceAttribute.InfoHelpers == nil {
 				r.SequenceAttribute.InfoHelpers = nil
 			} else {
-				r.SequenceAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.SequenceAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.SequenceAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.InfoHelpers.HintCustomComponent)
 				r.SequenceAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.InfoHelpers.HintText)
 				r.SequenceAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.InfoHelpers.HintTextKey)
@@ -2765,8 +2690,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.SequenceAttribute.Protected
 			r.SequenceAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Readonly)
 			r.Readonly = r.SequenceAttribute.Readonly
+			if resp.AttributeWithCompositeIDSequenceAttribute.RelationAffinityMode != nil {
+				r.SequenceAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDSequenceAttribute.RelationAffinityMode))
+			} else {
+				r.SequenceAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.SequenceAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.RenderCondition)
 			r.RenderCondition = r.SequenceAttribute.RenderCondition
+			r.SequenceAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Repeatable)
+			r.Repeatable = r.SequenceAttribute.Repeatable
 			r.SequenceAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Required)
 			r.Required = r.SequenceAttribute.Required
 			r.SequenceAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Schema)
@@ -2775,15 +2707,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.SequenceAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag) {
 				r.SequenceAttribute.SettingsFlag = r.SequenceAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount26, settingsFlagItem26 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
-				var settingsFlag53 tfTypes.SettingFlag
-				settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-				settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-				if settingsFlagCount26+1 > len(r.SequenceAttribute.SettingsFlag) {
-					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag53)
+			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
+				var settingsFlag47 tfTypes.SettingFlag
+				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
+				if settingsFlagCount23+1 > len(r.SequenceAttribute.SettingsFlag) {
+					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag47)
 				} else {
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
 				}
 			}
 			r.SequenceAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ShowInTable)
@@ -2819,17 +2751,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDStatusAttribute.DefaultValue == nil {
 				r.StatusAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
-				r.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
+				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
+				r.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
 			}
 			r.StatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Deprecated)
 			r.Deprecated = r.StatusAttribute.Deprecated
+			r.StatusAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.StatusAttribute.EnableRelationPicker
 			r.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.StatusAttribute.EntityBuilderDisableEdit
 			r.StatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.StatusAttribute.FeatureFlag
 			r.StatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Group)
 			r.Group = r.StatusAttribute.Group
+			r.StatusAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.HasPrimary)
+			r.HasPrimary = r.StatusAttribute.HasPrimary
 			r.StatusAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Hidden)
 			r.Hidden = r.StatusAttribute.Hidden
 			r.StatusAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.HideLabel)
@@ -2841,7 +2777,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDStatusAttribute.InfoHelpers == nil {
 				r.StatusAttribute.InfoHelpers = nil
 			} else {
-				r.StatusAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.StatusAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.StatusAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.InfoHelpers.HintCustomComponent)
 				r.StatusAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.InfoHelpers.HintText)
 				r.StatusAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.InfoHelpers.HintTextKey)
@@ -2884,8 +2820,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.StatusAttribute.Protected
 			r.StatusAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Readonly)
 			r.Readonly = r.StatusAttribute.Readonly
+			if resp.AttributeWithCompositeIDStatusAttribute.RelationAffinityMode != nil {
+				r.StatusAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDStatusAttribute.RelationAffinityMode))
+			} else {
+				r.StatusAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.StatusAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.RenderCondition)
 			r.RenderCondition = r.StatusAttribute.RenderCondition
+			r.StatusAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Repeatable)
+			r.Repeatable = r.StatusAttribute.Repeatable
 			r.StatusAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Required)
 			r.Required = r.StatusAttribute.Required
 			r.StatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Schema)
@@ -2894,15 +2837,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.StatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag) {
 				r.StatusAttribute.SettingsFlag = r.StatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
-				var settingsFlag55 tfTypes.SettingFlag
-				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
-				if settingsFlagCount27+1 > len(r.StatusAttribute.SettingsFlag) {
-					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag55)
+			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
+				var settingsFlag49 tfTypes.SettingFlag
+				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
+				if settingsFlagCount24+1 > len(r.StatusAttribute.SettingsFlag) {
+					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag49)
 				} else {
-					r.StatusAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-					r.StatusAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
+					r.StatusAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
+					r.StatusAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
 				}
 			}
 			r.StatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ShowInTable)
@@ -2937,17 +2880,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTagsAttribute.DefaultValue == nil {
 				r.TagsAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
-				r.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
+				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
+				r.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
 			}
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
+			r.TagsAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.TagsAttribute.EnableRelationPicker
 			r.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TagsAttribute.EntityBuilderDisableEdit
 			r.TagsAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.FeatureFlag)
 			r.FeatureFlag = r.TagsAttribute.FeatureFlag
 			r.TagsAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Group)
 			r.Group = r.TagsAttribute.Group
+			r.TagsAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.HasPrimary)
+			r.HasPrimary = r.TagsAttribute.HasPrimary
 			r.TagsAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Hidden)
 			r.Hidden = r.TagsAttribute.Hidden
 			r.TagsAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.HideLabel)
@@ -2959,7 +2906,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTagsAttribute.InfoHelpers == nil {
 				r.TagsAttribute.InfoHelpers = nil
 			} else {
-				r.TagsAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.TagsAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.TagsAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.InfoHelpers.HintCustomComponent)
 				r.TagsAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.InfoHelpers.HintText)
 				r.TagsAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.InfoHelpers.HintTextKey)
@@ -2985,8 +2932,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.TagsAttribute.Protected
 			r.TagsAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Readonly)
 			r.Readonly = r.TagsAttribute.Readonly
+			if resp.AttributeWithCompositeIDTagsAttribute.RelationAffinityMode != nil {
+				r.TagsAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDTagsAttribute.RelationAffinityMode))
+			} else {
+				r.TagsAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.TagsAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.RenderCondition)
 			r.RenderCondition = r.TagsAttribute.RenderCondition
+			r.TagsAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Repeatable)
+			r.Repeatable = r.TagsAttribute.Repeatable
 			r.TagsAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Required)
 			r.Required = r.TagsAttribute.Required
 			r.TagsAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Schema)
@@ -2995,15 +2949,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.TagsAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag) {
 				r.TagsAttribute.SettingsFlag = r.TagsAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount28, settingsFlagItem28 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
-				var settingsFlag57 tfTypes.SettingFlag
-				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
-				if settingsFlagCount28+1 > len(r.TagsAttribute.SettingsFlag) {
-					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag57)
+			for settingsFlagCount25, settingsFlagItem25 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
+				var settingsFlag51 tfTypes.SettingFlag
+				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
+				if settingsFlagCount25+1 > len(r.TagsAttribute.SettingsFlag) {
+					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag51)
 				} else {
-					r.TagsAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-					r.TagsAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
+					r.TagsAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
+					r.TagsAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
 				}
 			}
 			r.TagsAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ShowInTable)
@@ -3042,17 +2996,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTextAttribute.DefaultValue == nil {
 				r.TextAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
-				r.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
+				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
+				r.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
 			}
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
+			r.TextAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.TextAttribute.EnableRelationPicker
 			r.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TextAttribute.EntityBuilderDisableEdit
 			r.TextAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.FeatureFlag)
 			r.FeatureFlag = r.TextAttribute.FeatureFlag
 			r.TextAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Group)
 			r.Group = r.TextAttribute.Group
+			r.TextAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.HasPrimary)
+			r.HasPrimary = r.TextAttribute.HasPrimary
 			r.TextAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Hidden)
 			r.Hidden = r.TextAttribute.Hidden
 			r.TextAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.HideLabel)
@@ -3064,7 +3022,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDTextAttribute.InfoHelpers == nil {
 				r.TextAttribute.InfoHelpers = nil
 			} else {
-				r.TextAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.TextAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.TextAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.InfoHelpers.HintCustomComponent)
 				r.TextAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.InfoHelpers.HintText)
 				r.TextAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.InfoHelpers.HintTextKey)
@@ -3087,8 +3045,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.TextAttribute.Protected
 			r.TextAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Readonly)
 			r.Readonly = r.TextAttribute.Readonly
+			if resp.AttributeWithCompositeIDTextAttribute.RelationAffinityMode != nil {
+				r.TextAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDTextAttribute.RelationAffinityMode))
+			} else {
+				r.TextAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.TextAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.RenderCondition)
 			r.RenderCondition = r.TextAttribute.RenderCondition
+			r.TextAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Repeatable)
+			r.Repeatable = r.TextAttribute.Repeatable
 			r.TextAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Required)
 			r.Required = r.TextAttribute.Required
 			r.TextAttribute.RichText = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.RichText)
@@ -3098,15 +3063,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.TextAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag) {
 				r.TextAttribute.SettingsFlag = r.TextAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount29, settingsFlagItem29 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
-				var settingsFlag59 tfTypes.SettingFlag
-				settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-				settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
-				if settingsFlagCount29+1 > len(r.TextAttribute.SettingsFlag) {
-					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag59)
+			for settingsFlagCount26, settingsFlagItem26 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
+				var settingsFlag53 tfTypes.SettingFlag
+				settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+				settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
+				if settingsFlagCount26+1 > len(r.TextAttribute.SettingsFlag) {
+					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag53)
 				} else {
-					r.TextAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-					r.TextAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
+					r.TextAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
+					r.TextAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
 				}
 			}
 			r.TextAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ShowInTable)
@@ -3141,17 +3106,21 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue == nil {
 				r.UserRelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
-				r.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
+				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
+				r.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
 			}
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
+			r.UserRelationAttribute.EnableRelationPicker = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EnableRelationPicker)
+			r.EnableRelationPicker = r.UserRelationAttribute.EnableRelationPicker
 			r.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.UserRelationAttribute.EntityBuilderDisableEdit
 			r.UserRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.UserRelationAttribute.FeatureFlag
 			r.UserRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Group)
 			r.Group = r.UserRelationAttribute.Group
+			r.UserRelationAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.HasPrimary)
+			r.HasPrimary = r.UserRelationAttribute.HasPrimary
 			r.UserRelationAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Hidden)
 			r.Hidden = r.UserRelationAttribute.Hidden
 			r.UserRelationAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.HideLabel)
@@ -3163,7 +3132,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if resp.AttributeWithCompositeIDUserRelationAttribute.InfoHelpers == nil {
 				r.UserRelationAttribute.InfoHelpers = nil
 			} else {
-				r.UserRelationAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.UserRelationAttribute.InfoHelpers = &tfTypes.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{}
 				r.UserRelationAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.InfoHelpers.HintCustomComponent)
 				r.UserRelationAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.InfoHelpers.HintText)
 				r.UserRelationAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.InfoHelpers.HintTextKey)
@@ -3186,8 +3155,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Protected = r.UserRelationAttribute.Protected
 			r.UserRelationAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Readonly)
 			r.Readonly = r.UserRelationAttribute.Readonly
+			if resp.AttributeWithCompositeIDUserRelationAttribute.RelationAffinityMode != nil {
+				r.UserRelationAttribute.RelationAffinityMode = types.StringValue(string(*resp.AttributeWithCompositeIDUserRelationAttribute.RelationAffinityMode))
+			} else {
+				r.UserRelationAttribute.RelationAffinityMode = types.StringNull()
+			}
 			r.UserRelationAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.RenderCondition)
 			r.RenderCondition = r.UserRelationAttribute.RenderCondition
+			r.UserRelationAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Repeatable)
+			r.Repeatable = r.UserRelationAttribute.Repeatable
 			r.UserRelationAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Required)
 			r.Required = r.UserRelationAttribute.Required
 			r.UserRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Schema)
@@ -3196,15 +3172,15 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			if len(r.UserRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag) {
 				r.UserRelationAttribute.SettingsFlag = r.UserRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount30, settingsFlagItem30 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
-				var settingsFlag61 tfTypes.SettingFlag
-				settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-				settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
-				if settingsFlagCount30+1 > len(r.UserRelationAttribute.SettingsFlag) {
-					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag61)
+			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
+				var settingsFlag55 tfTypes.SettingFlag
+				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
+				if settingsFlagCount27+1 > len(r.UserRelationAttribute.SettingsFlag) {
+					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag55)
 				} else {
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
 				}
 			}
 			r.UserRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ShowInTable)

@@ -3,9 +3,7 @@
 package shared
 
 type RelationItem struct {
-	EntityID string `json:"entity_id"`
-	// Organization Id the entity belongs to
-	OrgID     *string  `json:"org_id,omitempty"`
+	EntityID  string   `json:"entity_id"`
 	Attribute string   `json:"attribute"`
 	Tags      []string `json:"_tags,omitempty"`
 	// Whether this is a reverse relation
@@ -17,13 +15,6 @@ func (o *RelationItem) GetEntityID() string {
 		return ""
 	}
 	return o.EntityID
-}
-
-func (o *RelationItem) GetOrgID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OrgID
 }
 
 func (o *RelationItem) GetAttribute() string {

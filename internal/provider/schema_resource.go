@@ -95,8 +95,20 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				},
 			},
 			"category": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
+				Computed:    true,
+				Optional:    true,
+				Description: `must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]`,
+				Validators: []validator.String{
+					stringvalidator.OneOf(
+						"customer_relations",
+						"sales",
+						"product_hub",
+						"contracts",
+						"journeys",
+						"messaging",
+						"system",
+					),
+				},
 			},
 			"created_at": schema.StringAttribute{
 				Computed: true,
@@ -478,53 +490,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.NumberAttribute{
-													Computed: true,
-													Optional: true,
-													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
-														`For instance, When set to 1, the content will be displayed in a single line.`,
-												},
-												"content_wrap": schema.StringAttribute{
-													Computed:    true,
-													Optional:    true,
-													Description: `Defines white-space of the content. must be one of ["normal", "nowrap", "pre", "pre-wrap"]`,
-													Validators: []validator.String{
-														stringvalidator.OneOf(
-															"normal",
-															"nowrap",
-															"pre",
-															"pre-wrap",
-														),
-													},
-												},
-												"display_mode": schema.StringAttribute{
-													Computed: true,
-													Optional: true,
-													MarkdownDescription: `Defines the display mode of the summary attribute.` + "\n" +
-														`When set to ` + "`" + `inline` + "`" + `, the label and value will be displayed in the same line.` + "\n" +
-														`When set to ` + "`" + `block` + "`" + `, the label and value will be displayed in separate lines.` + "\n" +
-														`must be one of ["inline", "block"]`,
-													Validators: []validator.String{
-														stringvalidator.OneOf(
-															"inline",
-															"block",
-														),
-													},
-												},
 												"feature_flag": schema.StringAttribute{
 													Computed:    true,
 													Optional:    true,
 													Description: `Binds summary field visibility to the feature flag state.`,
-												},
-												"hide_label": schema.BoolAttribute{
-													Computed:    true,
-													Optional:    true,
-													Description: `When set to true, will hide the label of the field.`,
-												},
-												"highlight_container": schema.BoolAttribute{
-													Computed:    true,
-													Optional:    true,
-													Description: `When set to true, will highlight the container of the field.`,
 												},
 												"label": schema.StringAttribute{
 													Computed:    true,
@@ -598,23 +567,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													path.MatchRelative().AtParent().AtName("str"),
 												}...),
 											},
-										},
-									},
-								},
-							},
-							"ui_config": schema.SingleNestedAttribute{
-								Computed: true,
-								Optional: true,
-								Attributes: map[string]schema.Attribute{
-									"content_direction": schema.StringAttribute{
-										Computed:    true,
-										Optional:    true,
-										Description: `Show attributes in a row or column. must be one of ["row", "column"]`,
-										Validators: []validator.String{
-											stringvalidator.OneOf(
-												"row",
-												"column",
-											),
 										},
 									},
 								},

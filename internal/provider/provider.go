@@ -44,7 +44,7 @@ func (p *EpilotSchemaProvider) Schema(ctx context.Context, req provider.SchemaRe
 			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)`,
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to https://entity.dev.sls.epilot.io)",
+				MarkdownDescription: "Server URL (defaults to https://entity.sls.epilot.io)",
 				Optional:            true,
 				Required:            false,
 			},
@@ -72,7 +72,7 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "https://entity.dev.sls.epilot.io"
+		ServerURL = "https://entity.sls.epilot.io"
 	}
 
 	epilotAuth := new(string)

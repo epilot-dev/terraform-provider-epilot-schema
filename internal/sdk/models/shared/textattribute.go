@@ -62,6 +62,33 @@ func (o *InfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// RelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type RelationAffinityMode string
+
+const (
+	RelationAffinityModeWeak   RelationAffinityMode = "weak"
+	RelationAffinityModeStrong RelationAffinityMode = "strong"
+)
+
+func (e RelationAffinityMode) ToPointer() *RelationAffinityMode {
+	return &e
+}
+func (e *RelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = RelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RelationAffinityMode: %v", v)
+	}
+}
+
 type TextAttributeType string
 
 const (
@@ -136,10 +163,16 @@ type TextAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *InfoHelpers       `json:"info_helpers,omitempty"`
-	Type        *TextAttributeType `json:"type,omitempty"`
-	Multiline   *bool              `json:"multiline,omitempty"`
-	RichText    *bool              `json:"rich_text,omitempty"`
+	InfoHelpers *InfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool        `json:"repeatable,omitempty"`
+	HasPrimary  *bool        `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *RelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool              `default:"true" json:"enable_relation_picker"`
+	Type                 *TextAttributeType `json:"type,omitempty"`
+	Multiline            *bool              `json:"multiline,omitempty"`
+	RichText             *bool              `json:"rich_text,omitempty"`
 }
 
 func (t TextAttribute) MarshalJSON() ([]byte, error) {
@@ -340,6 +373,34 @@ func (o *TextAttribute) GetInfoHelpers() *InfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *TextAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *TextAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *TextAttribute) GetRelationAffinityMode() *RelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *TextAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *TextAttribute) GetType() *TextAttributeType {

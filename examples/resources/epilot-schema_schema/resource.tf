@@ -85,14 +85,9 @@ resource "epilot-schema_schema" "my_schema" {
         {
           str = "email"
           summary_attribute = {
-            content_line_cap    = 1.23
-            content_wrap        = "normal"
-            display_mode        = "inline"
-            feature_flag        = "...my_feature_flag..."
-            hide_label          = true
-            highlight_container = true
-            label               = "...my_label..."
-            render_condition    = "...my_render_condition..."
+            feature_flag     = "...my_feature_flag..."
+            label            = "...my_label..."
+            render_condition = "...my_render_condition..."
             settings_flag = [
               {
                 enabled = true
@@ -105,9 +100,6 @@ resource "epilot-schema_schema" "my_schema" {
           }
         }
       ]
-      ui_config = {
-        content_direction = "row"
-      }
     }
     sharing = {
       show_sharing_button = true

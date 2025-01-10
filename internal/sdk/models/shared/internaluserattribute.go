@@ -62,6 +62,33 @@ func (o *InternalUserAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// InternalUserAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type InternalUserAttributeRelationAffinityMode string
+
+const (
+	InternalUserAttributeRelationAffinityModeWeak   InternalUserAttributeRelationAffinityMode = "weak"
+	InternalUserAttributeRelationAffinityModeStrong InternalUserAttributeRelationAffinityMode = "strong"
+)
+
+func (e InternalUserAttributeRelationAffinityMode) ToPointer() *InternalUserAttributeRelationAffinityMode {
+	return &e
+}
+func (e *InternalUserAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = InternalUserAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InternalUserAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type InternalUserAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type InternalUserAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InternalUserAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InternalUserAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
+	Type                 *InternalUserAttributeType `json:"type,omitempty"`
 }
 
 func (i InternalUserAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *InternalUserAttribute) GetInfoHelpers() *InternalUserAttributeInfoHelpe
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *InternalUserAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *InternalUserAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *InternalUserAttribute) GetRelationAffinityMode() *InternalUserAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *InternalUserAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *InternalUserAttribute) GetType() *InternalUserAttributeType {

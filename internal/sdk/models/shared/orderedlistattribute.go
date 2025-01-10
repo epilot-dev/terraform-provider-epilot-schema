@@ -62,6 +62,33 @@ func (o *OrderedListAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// OrderedListAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type OrderedListAttributeRelationAffinityMode string
+
+const (
+	OrderedListAttributeRelationAffinityModeWeak   OrderedListAttributeRelationAffinityMode = "weak"
+	OrderedListAttributeRelationAffinityModeStrong OrderedListAttributeRelationAffinityMode = "strong"
+)
+
+func (e OrderedListAttributeRelationAffinityMode) ToPointer() *OrderedListAttributeRelationAffinityMode {
+	return &e
+}
+func (e *OrderedListAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = OrderedListAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OrderedListAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type OrderedListAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type OrderedListAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *OrderedListAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                            `json:"repeatable,omitempty"`
+	HasPrimary  *bool                            `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *OrderedListAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                     `default:"true" json:"enable_relation_picker"`
+	Type                 *OrderedListAttributeType `json:"type,omitempty"`
 }
 
 func (o OrderedListAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *OrderedListAttribute) GetInfoHelpers() *OrderedListAttributeInfoHelpers
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *OrderedListAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *OrderedListAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *OrderedListAttribute) GetRelationAffinityMode() *OrderedListAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *OrderedListAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *OrderedListAttribute) GetType() *OrderedListAttributeType {

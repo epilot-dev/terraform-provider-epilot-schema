@@ -63,6 +63,33 @@ func (o *PurposeAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// PurposeAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PurposeAttributeRelationAffinityMode string
+
+const (
+	PurposeAttributeRelationAffinityModeWeak   PurposeAttributeRelationAffinityMode = "weak"
+	PurposeAttributeRelationAffinityModeStrong PurposeAttributeRelationAffinityMode = "strong"
+)
+
+func (e PurposeAttributeRelationAffinityMode) ToPointer() *PurposeAttributeRelationAffinityMode {
+	return &e
+}
+func (e *PurposeAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PurposeAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PurposeAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type PurposeAttributeType string
 
 const (
@@ -137,16 +164,20 @@ type PurposeAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                        `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PurposeAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 	// URL-friendly identifier for the classification
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                 `default:"false" json:"archived"`
-	Type     *PurposeAttributeType `json:"type,omitempty"`
+	Color     *string               `json:"color,omitempty"`
+	CreatedAt *time.Time            `json:"created_at,omitempty"`
+	UpdatedAt *time.Time            `json:"updated_at,omitempty"`
+	Type      *PurposeAttributeType `json:"type,omitempty"`
 }
 
 func (p PurposeAttribute) MarshalJSON() ([]byte, error) {
@@ -349,6 +380,34 @@ func (o *PurposeAttribute) GetInfoHelpers() *PurposeAttributeInfoHelpers {
 	return o.InfoHelpers
 }
 
+func (o *PurposeAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *PurposeAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *PurposeAttribute) GetRelationAffinityMode() *PurposeAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *PurposeAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *PurposeAttribute) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -382,13 +441,6 @@ func (o *PurposeAttribute) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *PurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *PurposeAttribute) GetType() *PurposeAttributeType {

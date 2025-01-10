@@ -22,9 +22,7 @@ type TaxonomiesClassificationsSearchRequest struct {
 	// Taxonomy slug
 	TaxonomySlug *string `queryParam:"style=form,explode=true,name=taxonomySlug"`
 	// Input to search
-	Query *string `queryParam:"style=form,explode=true,name=query"`
-	// Filter by archived status
-	Archived    *bool                                       `queryParam:"style=form,explode=true,name=archived"`
+	Query       *string                                     `queryParam:"style=form,explode=true,name=query"`
 	RequestBody *TaxonomiesClassificationsSearchRequestBody `request:"mediaType=application/json"`
 }
 
@@ -40,13 +38,6 @@ func (o *TaxonomiesClassificationsSearchRequest) GetQuery() *string {
 		return nil
 	}
 	return o.Query
-}
-
-func (o *TaxonomiesClassificationsSearchRequest) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesClassificationsSearchRequestBody {

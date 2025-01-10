@@ -7,7 +7,6 @@ import (
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"math/big"
 )
 
 func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaItem {
@@ -72,9 +71,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 	} else {
 		docsURL = nil
 	}
-	category := new(string)
+	category := new(shared.Category)
 	if !r.Category.IsUnknown() && !r.Category.IsNull() {
-		*category = r.Category.ValueString()
+		*category = shared.Category(r.Category.ValueString())
 	} else {
 		category = nil
 	}
@@ -550,49 +549,14 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 							Enabled: enabled,
 						})
 					}
-					displayMode := new(shared.DisplayMode)
-					if !summaryAttributesItem2.SummaryAttribute.DisplayMode.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.DisplayMode.IsNull() {
-						*displayMode = shared.DisplayMode(summaryAttributesItem2.SummaryAttribute.DisplayMode.ValueString())
-					} else {
-						displayMode = nil
-					}
-					contentLineCap := new(float64)
-					if !summaryAttributesItem2.SummaryAttribute.ContentLineCap.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.ContentLineCap.IsNull() {
-						*contentLineCap, _ = summaryAttributesItem2.SummaryAttribute.ContentLineCap.ValueBigFloat().Float64()
-					} else {
-						contentLineCap = nil
-					}
-					contentWrap := new(shared.ContentWrap)
-					if !summaryAttributesItem2.SummaryAttribute.ContentWrap.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.ContentWrap.IsNull() {
-						*contentWrap = shared.ContentWrap(summaryAttributesItem2.SummaryAttribute.ContentWrap.ValueString())
-					} else {
-						contentWrap = nil
-					}
-					hideLabel := new(bool)
-					if !summaryAttributesItem2.SummaryAttribute.HideLabel.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.HideLabel.IsNull() {
-						*hideLabel = summaryAttributesItem2.SummaryAttribute.HideLabel.ValueBool()
-					} else {
-						hideLabel = nil
-					}
-					highlightContainer := new(bool)
-					if !summaryAttributesItem2.SummaryAttribute.HighlightContainer.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.HighlightContainer.IsNull() {
-						*highlightContainer = summaryAttributesItem2.SummaryAttribute.HighlightContainer.ValueBool()
-					} else {
-						highlightContainer = nil
-					}
 					summaryAttribute := shared.SummaryAttribute{
-						Label:              label3,
-						Value:              value,
-						ShowAsTag:          showAsTag,
-						TagColor:           tagColor,
-						RenderCondition:    renderCondition,
-						FeatureFlag:        featureFlag1,
-						SettingsFlag:       settingsFlag,
-						DisplayMode:        displayMode,
-						ContentLineCap:     contentLineCap,
-						ContentWrap:        contentWrap,
-						HideLabel:          hideLabel,
-						HighlightContainer: highlightContainer,
+						Label:           label3,
+						Value:           value,
+						ShowAsTag:       showAsTag,
+						TagColor:        tagColor,
+						RenderCondition: renderCondition,
+						FeatureFlag:     featureFlag1,
+						SettingsFlag:    settingsFlag,
 					}
 					summaryAttributes2 = append(summaryAttributes2, shared.SummaryAttributes{
 						SummaryAttribute: &summaryAttribute,
@@ -634,22 +598,9 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					Permission: permission2,
 				})
 			}
-			var uiConfig1 *shared.EntitySchemaItemUIConfig
-			if r.UIConfig.ListItem.UIConfig != nil {
-				contentDirection := new(shared.ContentDirection)
-				if !r.UIConfig.ListItem.UIConfig.ContentDirection.IsUnknown() && !r.UIConfig.ListItem.UIConfig.ContentDirection.IsNull() {
-					*contentDirection = shared.ContentDirection(r.UIConfig.ListItem.UIConfig.ContentDirection.ValueString())
-				} else {
-					contentDirection = nil
-				}
-				uiConfig1 = &shared.EntitySchemaItemUIConfig{
-					ContentDirection: contentDirection,
-				}
-			}
 			listItem = &shared.ListItem{
 				SummaryAttributes: summaryAttributes2,
 				QuickActions:      quickActions,
-				UIConfig:          uiConfig1,
 			}
 		}
 		var sharing *shared.Sharing
@@ -788,7 +739,11 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		r.Blueprint = types.StringPointerValue(resp.Blueprint)
 		capabilitiesResult, _ := json.Marshal(resp.Capabilities)
 		r.Capabilities = types.StringValue(string(capabilitiesResult))
-		r.Category = types.StringPointerValue(resp.Category)
+		if resp.Category != nil {
+			r.Category = types.StringValue(string(*resp.Category))
+		} else {
+			r.Category = types.StringNull()
+		}
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		r.Description = types.StringPointerValue(resp.Description)
 		if len(resp.DialogConfig) > 0 {
@@ -971,24 +926,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					}
 					if summaryAttributesItem.SummaryAttribute != nil {
 						summaryAttributes2.SummaryAttribute = &tfTypes.SummaryAttribute{}
-						if summaryAttributesItem.SummaryAttribute.ContentLineCap != nil {
-							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberValue(big.NewFloat(float64(*summaryAttributesItem.SummaryAttribute.ContentLineCap)))
-						} else {
-							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberNull()
-						}
-						if summaryAttributesItem.SummaryAttribute.ContentWrap != nil {
-							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.ContentWrap))
-						} else {
-							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringNull()
-						}
-						if summaryAttributesItem.SummaryAttribute.DisplayMode != nil {
-							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.DisplayMode))
-						} else {
-							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringNull()
-						}
 						summaryAttributes2.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
-						summaryAttributes2.SummaryAttribute.HideLabel = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HideLabel)
-						summaryAttributes2.SummaryAttribute.HighlightContainer = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HighlightContainer)
 						summaryAttributes2.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
 						summaryAttributes2.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
 						summaryAttributes2.SummaryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
@@ -1012,16 +950,6 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					} else {
 						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].Str = summaryAttributes2.Str
 						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].SummaryAttribute = summaryAttributes2.SummaryAttribute
-					}
-				}
-				if resp.UIConfig.ListItem.UIConfig == nil {
-					r.UIConfig.ListItem.UIConfig = nil
-				} else {
-					r.UIConfig.ListItem.UIConfig = &tfTypes.EntitySchemaItemUIConfig{}
-					if resp.UIConfig.ListItem.UIConfig.ContentDirection != nil {
-						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringValue(string(*resp.UIConfig.ListItem.UIConfig.ContentDirection))
-					} else {
-						r.UIConfig.ListItem.UIConfig.ContentDirection = types.StringNull()
 					}
 				}
 			}

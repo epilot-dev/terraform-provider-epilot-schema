@@ -62,6 +62,33 @@ func (o *TagsAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// TagsAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type TagsAttributeRelationAffinityMode string
+
+const (
+	TagsAttributeRelationAffinityModeWeak   TagsAttributeRelationAffinityMode = "weak"
+	TagsAttributeRelationAffinityModeStrong TagsAttributeRelationAffinityMode = "strong"
+)
+
+func (e TagsAttributeRelationAffinityMode) ToPointer() *TagsAttributeRelationAffinityMode {
+	return &e
+}
+func (e *TagsAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = TagsAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TagsAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type TagsAttributeType string
 
 const (
@@ -137,9 +164,15 @@ type TagsAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *TagsAttributeType        `json:"type,omitempty"`
-	Options     []string                  `json:"options,omitempty"`
-	Suggestions []string                  `json:"suggestions,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *TagsAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool              `default:"true" json:"enable_relation_picker"`
+	Type                 *TagsAttributeType `json:"type,omitempty"`
+	Options              []string           `json:"options,omitempty"`
+	Suggestions          []string           `json:"suggestions,omitempty"`
 }
 
 func (t TagsAttribute) MarshalJSON() ([]byte, error) {
@@ -340,6 +373,34 @@ func (o *TagsAttribute) GetInfoHelpers() *TagsAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *TagsAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *TagsAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *TagsAttribute) GetRelationAffinityMode() *TagsAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *TagsAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *TagsAttribute) GetType() *TagsAttributeType {

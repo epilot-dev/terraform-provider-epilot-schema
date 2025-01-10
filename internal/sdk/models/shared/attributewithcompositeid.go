@@ -64,6 +64,33 @@ func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHin
 	return o.HintTooltipPlacement
 }
 
+// PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityModeStrong PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type PartnerOrganisationAttributeAttributeWithCompositeIDType string
 
 const (
@@ -139,8 +166,14 @@ type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerOrganisationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                          `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                            `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                            `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                     `default:"true" json:"enable_relation_picker"`
+	Type                 *PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                                   `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -345,6 +378,34 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetInfoHelpers() 
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRelationAffinityMode() *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetType() *PartnerOrganisationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -418,6 +479,33 @@ func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlac
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// PurposeAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PurposeAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	PurposeAttributeAttributeWithCompositeIDRelationAffinityModeWeak   PurposeAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	PurposeAttributeAttributeWithCompositeIDRelationAffinityModeStrong PurposeAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e PurposeAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PurposeAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PurposeAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type PurposeAttributeAttributeWithCompositeIDType string
@@ -494,15 +582,19 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 	// URL-friendly identifier for the classification
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived    *bool                                         `default:"false" json:"archived"`
+	Color       *string                                       `json:"color,omitempty"`
+	CreatedAt   *time.Time                                    `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time                                    `json:"updated_at,omitempty"`
 	Type        *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	CompositeID *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
@@ -709,6 +801,34 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetInfoHelpers() *PurposeAttr
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPurposeAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetRelationAffinityMode() *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPurposeAttribute) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -742,13 +862,6 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *AttributeWithCompositeIDPurposeAttribute) GetType() *PurposeAttributeAttributeWithCompositeIDType {
@@ -826,6 +939,33 @@ func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintToolti
 	return o.HintTooltipPlacement
 }
 
+// InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	InternalUserAttributeAttributeWithCompositeIDRelationAffinityModeWeak   InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	InternalUserAttributeAttributeWithCompositeIDRelationAffinityModeStrong InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type InternalUserAttributeAttributeWithCompositeIDType string
 
 const (
@@ -901,8 +1041,14 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InternalUserAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                   `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                              `default:"true" json:"enable_relation_picker"`
+	Type                 *InternalUserAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                            `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1107,6 +1253,34 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetInfoHelpers() *Intern
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetRelationAffinityMode() *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInternalUserAttribute) GetType() *InternalUserAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -1180,6 +1354,33 @@ func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipP
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// AutomationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type AutomationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	AutomationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   AutomationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	AutomationAttributeAttributeWithCompositeIDRelationAffinityModeStrong AutomationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e AutomationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = AutomationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AutomationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type AutomationAttributeAttributeWithCompositeIDType string
@@ -1257,8 +1458,14 @@ type AttributeWithCompositeIDAutomationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AutomationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                 `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                   `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                            `default:"true" json:"enable_relation_picker"`
+	Type                 *AutomationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                          `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1463,6 +1670,34 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetInfoHelpers() *Automati
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDAutomationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDAutomationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDAutomationAttribute) GetRelationAffinityMode() *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDAutomationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDAutomationAttribute) GetType() *AutomationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -1536,6 +1771,33 @@ func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintToo
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityModeWeak   InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityModeStrong InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type InvitationEmailAttributeAttributeWithCompositeIDType string
@@ -1613,8 +1875,14 @@ type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InvitationEmailAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                      `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                 `default:"true" json:"enable_relation_picker"`
+	Type                 *InvitationEmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                               `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1819,6 +2087,34 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetInfoHelpers() *Inv
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetRelationAffinityMode() *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetType() *InvitationEmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -1892,6 +2188,33 @@ func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintToolt
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityModeWeak   PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityModeStrong PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type PartnerStatusAttributeAttributeWithCompositeIDType string
@@ -1969,8 +2292,14 @@ type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerStatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                    `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                      `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                      `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                               `default:"true" json:"enable_relation_picker"`
+	Type                 *PartnerStatusAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                             `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -2175,6 +2504,34 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetInfoHelpers() *Partn
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetRelationAffinityMode() *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetType() *PartnerStatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -2248,6 +2605,33 @@ func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPla
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// ComputedAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type ComputedAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	ComputedAttributeAttributeWithCompositeIDRelationAffinityModeWeak   ComputedAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	ComputedAttributeAttributeWithCompositeIDRelationAffinityModeStrong ComputedAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e ComputedAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = ComputedAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ComputedAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type ComputedAttributeAttributeWithCompositeIDType string
@@ -2325,8 +2709,14 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *ComputedAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                               `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                        `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -2531,6 +2921,34 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetInfoHelpers() *ComputedAt
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDComputedAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetRelationAffinityMode() *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDComputedAttribute) GetType() *ComputedAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -2604,6 +3022,33 @@ func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlaceme
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// FileAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type FileAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	FileAttributeAttributeWithCompositeIDRelationAffinityModeWeak   FileAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	FileAttributeAttributeWithCompositeIDRelationAffinityModeStrong FileAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e FileAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *FileAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *FileAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = FileAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FileAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type FileAttributeAttributeWithCompositeIDType string
@@ -2710,8 +3155,14 @@ type AttributeWithCompositeIDFileAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *FileAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        FileAttributeAttributeWithCompositeIDType         `json:"type"`
-	Multiple    *bool                                             `json:"multiple,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *FileAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                     `default:"true" json:"enable_relation_picker"`
+	Type                 FileAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiple             *bool                                     `json:"multiple,omitempty"`
 	// List of file extensions (without the dot suffix)
 	AllowedExtensions []string `json:"allowed_extensions,omitempty"`
 	// Controls how the images are presented to the user during upload on the Entity Details view.
@@ -2926,6 +3377,34 @@ func (o *AttributeWithCompositeIDFileAttribute) GetInfoHelpers() *FileAttributeA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDFileAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDFileAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDFileAttribute) GetRelationAffinityMode() *FileAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDFileAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDFileAttribute) GetType() FileAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return FileAttributeAttributeWithCompositeIDType("")
@@ -3036,6 +3515,33 @@ func (o *OrderedListAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltip
 	return o.HintTooltipPlacement
 }
 
+// OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	OrderedListAttributeAttributeWithCompositeIDRelationAffinityModeWeak   OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	OrderedListAttributeAttributeWithCompositeIDRelationAffinityModeStrong OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type OrderedListAttributeAttributeWithCompositeIDType string
 
 const (
@@ -3111,8 +3617,14 @@ type AttributeWithCompositeIDOrderedListAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *OrderedListAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                                  `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                             `default:"true" json:"enable_relation_picker"`
+	Type                 *OrderedListAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                           `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -3317,6 +3829,34 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetInfoHelpers() *Ordered
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetRelationAffinityMode() *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDOrderedListAttribute) GetType() *OrderedListAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -3390,6 +3930,33 @@ func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPla
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// InternalAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type InternalAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	InternalAttributeAttributeWithCompositeIDRelationAffinityModeWeak   InternalAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	InternalAttributeAttributeWithCompositeIDRelationAffinityModeStrong InternalAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e InternalAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *InternalAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *InternalAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = InternalAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InternalAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type InternalAttributeAttributeWithCompositeIDType string
@@ -3467,8 +4034,14 @@ type AttributeWithCompositeIDInternalAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InternalAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                               `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InternalAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *InternalAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                        `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -3673,6 +4246,34 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetInfoHelpers() *InternalAt
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInternalAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInternalAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInternalAttribute) GetRelationAffinityMode() *InternalAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInternalAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInternalAttribute) GetType() *InternalAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -3746,6 +4347,33 @@ func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlac
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// ConsentAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type ConsentAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	ConsentAttributeAttributeWithCompositeIDRelationAffinityModeWeak   ConsentAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	ConsentAttributeAttributeWithCompositeIDRelationAffinityModeStrong ConsentAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e ConsentAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = ConsentAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ConsentAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type ConsentAttributeAttributeWithCompositeIDType string
@@ -3823,10 +4451,16 @@ type AttributeWithCompositeIDConsentAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ConsentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        ConsentAttributeAttributeWithCompositeIDType         `json:"type"`
-	Topic       string                                               `json:"topic"`
-	Identifiers []string                                             `json:"identifiers,omitempty"`
-	CompositeID *string                                              `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 ConsentAttributeAttributeWithCompositeIDType `json:"type"`
+	Topic                string                                       `json:"topic"`
+	Identifiers          []string                                     `json:"identifiers,omitempty"`
+	CompositeID          *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -4031,6 +4665,34 @@ func (o *AttributeWithCompositeIDConsentAttribute) GetInfoHelpers() *ConsentAttr
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDConsentAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDConsentAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDConsentAttribute) GetRelationAffinityMode() *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDConsentAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDConsentAttribute) GetType() ConsentAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return ConsentAttributeAttributeWithCompositeIDType("")
@@ -4120,6 +4782,33 @@ func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlace
 	return o.HintTooltipPlacement
 }
 
+// NumberAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type NumberAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	NumberAttributeAttributeWithCompositeIDRelationAffinityModeWeak   NumberAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	NumberAttributeAttributeWithCompositeIDRelationAffinityModeStrong NumberAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e NumberAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *NumberAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *NumberAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = NumberAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for NumberAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type NumberAttributeAttributeWithCompositeIDType string
 
 const (
@@ -4195,8 +4884,14 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *NumberAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Format      *string                                             `json:"format,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *NumberAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 *NumberAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Format               *string                                      `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool   `default:"true" json:"show_separator"`
 	CompositeID   *string `json:"composite_id,omitempty"`
@@ -4404,6 +5099,34 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetInfoHelpers() *NumberAttrib
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDNumberAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetRelationAffinityMode() *NumberAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDNumberAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDNumberAttribute) GetType() *NumberAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -4433,386 +5156,6 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetCompositeID() *string {
 }
 
 func (o *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// MessageEmailAddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
-// These constraints should and will be enforced by the attribute renderer.
-type MessageEmailAddressAttributeAttributeWithCompositeIDConstraints struct {
-}
-
-// MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers struct {
-	// The text to be displayed in the attribute hint helper.
-	// When specified it overrides the `hint_text_key` configuration.
-	//
-	HintText *string `json:"hint_text,omitempty"`
-	// The key of the hint text to be displayed in the attribute hint helper.
-	// The key should be a valid i18n key.
-	//
-	HintTextKey *string `json:"hint_text_key,omitempty"`
-	// The name of the custom component to be used as the hint helper.
-	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
-	//
-	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
-	// The placement of the hint tooltip.
-	// The value should be a valid `@mui/core` tooltip placement.
-	//
-	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
-}
-
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTextKey
-}
-
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintCustomComponent
-}
-
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTooltipPlacement
-}
-
-type MessageEmailAddressAttributeAttributeWithCompositeIDType string
-
-const (
-	MessageEmailAddressAttributeAttributeWithCompositeIDTypeMessageEmailAddress MessageEmailAddressAttributeAttributeWithCompositeIDType = "message_email_address"
-)
-
-func (e MessageEmailAddressAttributeAttributeWithCompositeIDType) ToPointer() *MessageEmailAddressAttributeAttributeWithCompositeIDType {
-	return &e
-}
-func (e *MessageEmailAddressAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "message_email_address":
-		*e = MessageEmailAddressAttributeAttributeWithCompositeIDType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MessageEmailAddressAttributeAttributeWithCompositeIDType: %v", v)
-	}
-}
-
-// AttributeWithCompositeIDMessageEmailAddressAttribute - Message emil address
-type AttributeWithCompositeIDMessageEmailAddressAttribute struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        MessageEmailAddressAttributeAttributeWithCompositeIDType         `json:"type"`
-	Address     string                                                           `json:"address"`
-	SendStatus  *string                                                          `json:"send_status,omitempty"`
-	EmailType   *string                                                          `json:"email_type,omitempty"`
-	CompositeID *string                                                          `json:"composite_id,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDMessageEmailAddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetAddress() string {
-	if o == nil {
-		return ""
-	}
-	return o.Address
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSendStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SendStatus
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEmailType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.EmailType
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetCompositeID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CompositeID
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -4871,6 +5214,33 @@ func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlaceme
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// TagsAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type TagsAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	TagsAttributeAttributeWithCompositeIDRelationAffinityModeWeak   TagsAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	TagsAttributeAttributeWithCompositeIDRelationAffinityModeStrong TagsAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e TagsAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *TagsAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *TagsAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = TagsAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TagsAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type TagsAttributeAttributeWithCompositeIDType string
@@ -4948,10 +5318,16 @@ type AttributeWithCompositeIDTagsAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *TagsAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []string                                          `json:"options,omitempty"`
-	Suggestions []string                                          `json:"suggestions,omitempty"`
-	CompositeID *string                                           `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *TagsAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *TagsAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Options              []string                                   `json:"options,omitempty"`
+	Suggestions          []string                                   `json:"suggestions,omitempty"`
+	CompositeID          *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -5156,6 +5532,34 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetInfoHelpers() *TagsAttributeA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDTagsAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDTagsAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDTagsAttribute) GetRelationAffinityMode() *TagsAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDTagsAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDTagsAttribute) GetType() *TagsAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -5185,447 +5589,6 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetCompositeID() *string {
 }
 
 func (o *AttributeWithCompositeIDTagsAttribute) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// RepeatableAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
-// These constraints should and will be enforced by the attribute renderer.
-type RepeatableAttributeAttributeWithCompositeIDConstraints struct {
-}
-
-// RepeatableAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type RepeatableAttributeAttributeWithCompositeIDInfoHelpers struct {
-	// The text to be displayed in the attribute hint helper.
-	// When specified it overrides the `hint_text_key` configuration.
-	//
-	HintText *string `json:"hint_text,omitempty"`
-	// The key of the hint text to be displayed in the attribute hint helper.
-	// The key should be a valid i18n key.
-	//
-	HintTextKey *string `json:"hint_text_key,omitempty"`
-	// The name of the custom component to be used as the hint helper.
-	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
-	//
-	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
-	// The placement of the hint tooltip.
-	// The value should be a valid `@mui/core` tooltip placement.
-	//
-	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (o *RepeatableAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
-}
-
-func (o *RepeatableAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTextKey
-}
-
-func (o *RepeatableAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintCustomComponent
-}
-
-func (o *RepeatableAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTooltipPlacement
-}
-
-// RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-type RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode string
-
-const (
-	RepeatableAttributeAttributeWithCompositeIDRelationAffinityModeWeak   RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
-	RepeatableAttributeAttributeWithCompositeIDRelationAffinityModeStrong RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
-)
-
-func (e RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode {
-	return &e
-}
-func (e *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "weak":
-		fallthrough
-	case "strong":
-		*e = RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
-	}
-}
-
-type RepeatableAttributeAttributeWithCompositeIDType string
-
-const (
-	RepeatableAttributeAttributeWithCompositeIDTypeString              RepeatableAttributeAttributeWithCompositeIDType = "string"
-	RepeatableAttributeAttributeWithCompositeIDTypePhone               RepeatableAttributeAttributeWithCompositeIDType = "phone"
-	RepeatableAttributeAttributeWithCompositeIDTypeEmail               RepeatableAttributeAttributeWithCompositeIDType = "email"
-	RepeatableAttributeAttributeWithCompositeIDTypeAddress             RepeatableAttributeAttributeWithCompositeIDType = "address"
-	RepeatableAttributeAttributeWithCompositeIDTypeRelation            RepeatableAttributeAttributeWithCompositeIDType = "relation"
-	RepeatableAttributeAttributeWithCompositeIDTypePayment             RepeatableAttributeAttributeWithCompositeIDType = "payment"
-	RepeatableAttributeAttributeWithCompositeIDTypePriceComponent      RepeatableAttributeAttributeWithCompositeIDType = "price_component"
-	RepeatableAttributeAttributeWithCompositeIDTypeDate                RepeatableAttributeAttributeWithCompositeIDType = "date"
-	RepeatableAttributeAttributeWithCompositeIDTypeMessageEmailAddress RepeatableAttributeAttributeWithCompositeIDType = "message_email_address"
-)
-
-func (e RepeatableAttributeAttributeWithCompositeIDType) ToPointer() *RepeatableAttributeAttributeWithCompositeIDType {
-	return &e
-}
-func (e *RepeatableAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "string":
-		fallthrough
-	case "phone":
-		fallthrough
-	case "email":
-		fallthrough
-	case "address":
-		fallthrough
-	case "relation":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "price_component":
-		fallthrough
-	case "date":
-		fallthrough
-	case "message_email_address":
-		*e = RepeatableAttributeAttributeWithCompositeIDType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RepeatableAttributeAttributeWithCompositeIDType: %v", v)
-	}
-}
-
-// AttributeWithCompositeIDRepeatableAttribute - Repeatable (add N number of fields)
-type AttributeWithCompositeIDRepeatableAttribute struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *RepeatableAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *RepeatableAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Repeatable  *bool                                                   `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
-	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *RepeatableAttributeAttributeWithCompositeIDType                 `json:"type,omitempty"`
-	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool   `default:"true" json:"enable_relation_picker"`
-	CompositeID          *string `json:"composite_id,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDRepeatableAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDRepeatableAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetConstraints() *RepeatableAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetInfoHelpers() *RepeatableAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetRepeatable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Repeatable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetRelationAffinityMode() *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetType() *RepeatableAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetCompositeID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CompositeID
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttribute) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -5684,6 +5647,33 @@ func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPla
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	CurrencyAttributeAttributeWithCompositeIDRelationAffinityModeWeak   CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	CurrencyAttributeAttributeWithCompositeIDRelationAffinityModeStrong CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type CurrencyAttributeAttributeWithCompositeIDType string
@@ -5837,9 +5827,15 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers          *CurrencyAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type                 CurrencyAttributeAttributeWithCompositeIDType         `json:"type"`
-	CurrencySelectorOnly *bool                                                 `default:"false" json:"currency_selector_only"`
+	InfoHelpers *CurrencyAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 CurrencyAttributeAttributeWithCompositeIDType `json:"type"`
+	CurrencySelectorOnly *bool                                         `default:"false" json:"currency_selector_only"`
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency    []CurrencyAttributeCurrency `json:"currency"`
 	CompositeID *string                     `json:"composite_id,omitempty"`
@@ -6047,6 +6043,34 @@ func (o *AttributeWithCompositeIDCurrencyAttribute) GetInfoHelpers() *CurrencyAt
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetRelationAffinityMode() *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDCurrencyAttribute) GetType() CurrencyAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return CurrencyAttributeAttributeWithCompositeIDType("")
@@ -6136,6 +6160,33 @@ func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetH
 	return o.HintTooltipPlacement
 }
 
+// PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityModeStrong PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type PaymentMethodRelationAttributeAttributeWithCompositeIDType string
 
 const (
@@ -6211,9 +6262,14 @@ type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PaymentMethodRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                              `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                                              `json:"has_primary,omitempty"`
-	CompositeID *string                                                            `json:"composite_id,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                       `default:"true" json:"enable_relation_picker"`
+	Type                 *PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                                     `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -6418,11 +6474,11 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetInfoHelpers(
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHasPrimary() *bool {
@@ -6430,6 +6486,27 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHasPrimary()
 		return nil
 	}
 	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRelationAffinityMode() *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetCompositeID() *string {
@@ -6498,6 +6575,33 @@ func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintToo
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	AddressRelationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	AddressRelationAttributeAttributeWithCompositeIDRelationAffinityModeStrong AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type AddressRelationAttributeAttributeWithCompositeIDType string
@@ -6575,11 +6679,14 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                        `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
-	CompositeID          *string                `json:"composite_id,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                 `default:"true" json:"enable_relation_picker"`
+	Type                 *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                               `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -6784,11 +6891,11 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetInfoHelpers() *Add
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHasPrimary() *bool {
@@ -6798,11 +6905,25 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHasPrimary() *bool
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetRelationAffinityMode() *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
 	if o == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *string {
@@ -6813,371 +6934,6 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *str
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// AddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
-// These constraints should and will be enforced by the attribute renderer.
-type AddressAttributeAttributeWithCompositeIDConstraints struct {
-}
-
-// AddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
-	// The text to be displayed in the attribute hint helper.
-	// When specified it overrides the `hint_text_key` configuration.
-	//
-	HintText *string `json:"hint_text,omitempty"`
-	// The key of the hint text to be displayed in the attribute hint helper.
-	// The key should be a valid i18n key.
-	//
-	HintTextKey *string `json:"hint_text_key,omitempty"`
-	// The name of the custom component to be used as the hint helper.
-	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
-	//
-	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
-	// The placement of the hint tooltip.
-	// The value should be a valid `@mui/core` tooltip placement.
-	//
-	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTextKey
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintCustomComponent
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTooltipPlacement
-}
-
-type AddressAttributeAttributeWithCompositeIDType string
-
-const (
-	AddressAttributeAttributeWithCompositeIDTypeAddress AddressAttributeAttributeWithCompositeIDType = "address"
-)
-
-func (e AddressAttributeAttributeWithCompositeIDType) ToPointer() *AddressAttributeAttributeWithCompositeIDType {
-	return &e
-}
-func (e *AddressAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "address":
-		*e = AddressAttributeAttributeWithCompositeIDType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AddressAttributeAttributeWithCompositeIDType: %v", v)
-	}
-}
-
-// AttributeWithCompositeIDAddressAttribute - Address attribute
-type AttributeWithCompositeIDAddressAttribute struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
-	CompositeID          *string                `json:"composite_id,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDAddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetType() *AddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultAddressFields() []DefaultAddressFields {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultAddressFields
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetCompositeID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CompositeID
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -7236,6 +6992,33 @@ func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintToolti
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	UserRelationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	UserRelationAttributeAttributeWithCompositeIDRelationAffinityModeStrong UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type UserRelationAttributeAttributeWithCompositeIDType string
@@ -7313,9 +7096,15 @@ type AttributeWithCompositeIDUserRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *UserRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Multiple    *bool                                                     `default:"false" json:"multiple"`
-	CompositeID *string                                                   `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                              `default:"true" json:"enable_relation_picker"`
+	Type                 *UserRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiple             *bool                                              `default:"false" json:"multiple"`
+	CompositeID          *string                                            `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -7520,6 +7309,34 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetInfoHelpers() *UserRe
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetRelationAffinityMode() *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDUserRelationAttribute) GetType() *UserRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -7602,6 +7419,33 @@ func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPla
 	return o.HintTooltipPlacement
 }
 
+// RelationAttributeAttributeWithCompositeIDRelationAffinityMode - Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
+type RelationAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	RelationAttributeAttributeWithCompositeIDRelationAffinityModeWeak   RelationAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	RelationAttributeAttributeWithCompositeIDRelationAffinityModeStrong RelationAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e RelationAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *RelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *RelationAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = RelationAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RelationAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type RelationAttributeAttributeWithCompositeIDType string
 
 const (
@@ -7648,33 +7492,6 @@ func (e *RelationAttributeRelationType) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for RelationAttributeRelationType: %v", v)
-	}
-}
-
-// RelationAttributeRelationAffinityMode - Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-type RelationAttributeRelationAffinityMode string
-
-const (
-	RelationAttributeRelationAffinityModeWeak   RelationAttributeRelationAffinityMode = "weak"
-	RelationAttributeRelationAffinityModeStrong RelationAttributeRelationAffinityMode = "strong"
-)
-
-func (e RelationAttributeRelationAffinityMode) ToPointer() *RelationAttributeRelationAffinityMode {
-	return &e
-}
-func (e *RelationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "weak":
-		fallthrough
-	case "strong":
-		*e = RelationAttributeRelationAffinityMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RelationAttributeRelationAffinityMode: %v", v)
 	}
 }
 
@@ -7749,7 +7566,6 @@ type RelationAttributeAttributeWithCompositeIDNewEntityItem struct {
 	Tags      []string   `json:"_tags,omitempty"`
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
-	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
 	ACL     *EntityACL `json:"_acl,omitempty"`
 	Purpose []string   `json:"_purpose,omitempty"`
@@ -7823,13 +7639,6 @@ func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetUpdatedAt() 
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetDeletedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.DeletedAt
 }
 
 func (o *RelationAttributeAttributeWithCompositeIDNewEntityItem) GetACL() *EntityACL {
@@ -8063,22 +7872,23 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	RelationType *RelationAttributeRelationType                        `json:"relation_type,omitempty"`
-	// Map of schema slug to target relation attribute
-	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
+	InfoHelpers *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	RelationAffinityMode *RelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
 	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
-	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *RelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	RelationType         *RelationAttributeRelationType                 `json:"relation_type,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string          `json:"reverse_attributes,omitempty"`
+	EditMode          *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
 	DetailsViewModeEnabled *bool                                              `default:"false" json:"details_view_mode_enabled"`
 	Actions                []RelationAttributeAttributeWithCompositeIDActions `json:"actions,omitempty"`
 	DrawerSize             *RelationAttributeDrawerSize                       `json:"drawer_size,omitempty"`
 	SummaryFields          []RelationAttributeSummaryFields                   `json:"summary_fields,omitempty"`
-	HasPrimary             *bool                                              `json:"has_primary,omitempty"`
 	AllowedSchemas         []string                                           `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
@@ -8291,6 +8101,34 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetInfoHelpers() *RelationAt
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDRelationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetRelationAffinityMode() *RelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDRelationAttribute) GetType() *RelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -8310,20 +8148,6 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetReverseAttributes() map[s
 		return nil
 	}
 	return o.ReverseAttributes
-}
-
-func (o *AttributeWithCompositeIDRelationAttribute) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *AttributeWithCompositeIDRelationAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
 }
 
 func (o *AttributeWithCompositeIDRelationAttribute) GetEditMode() *RelationAttributeEditMode {
@@ -8359,13 +8183,6 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetSummaryFields() []Relatio
 		return nil
 	}
 	return o.SummaryFields
-}
-
-func (o *AttributeWithCompositeIDRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
 }
 
 func (o *AttributeWithCompositeIDRelationAttribute) GetAllowedSchemas() []string {
@@ -8464,6 +8281,33 @@ func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPla
 	return o.HintTooltipPlacement
 }
 
+// SequenceAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type SequenceAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	SequenceAttributeAttributeWithCompositeIDRelationAffinityModeWeak   SequenceAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	SequenceAttributeAttributeWithCompositeIDRelationAffinityModeStrong SequenceAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e SequenceAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = SequenceAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SequenceAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type SequenceAttributeAttributeWithCompositeIDType string
 
 const (
@@ -8539,7 +8383,13 @@ type AttributeWithCompositeIDSequenceAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *SequenceAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *SequenceAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -8748,6 +8598,34 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetInfoHelpers() *SequenceAt
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDSequenceAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDSequenceAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDSequenceAttribute) GetRelationAffinityMode() *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDSequenceAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDSequenceAttribute) GetType() *SequenceAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -8835,6 +8713,33 @@ func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlace
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// StatusAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type StatusAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	StatusAttributeAttributeWithCompositeIDRelationAffinityModeWeak   StatusAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	StatusAttributeAttributeWithCompositeIDRelationAffinityModeStrong StatusAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e StatusAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *StatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *StatusAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = StatusAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for StatusAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type StatusAttributeAttributeWithCompositeIDType string
@@ -8996,9 +8901,15 @@ type AttributeWithCompositeIDStatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *StatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []StatusAttributeAttributeWithCompositeIDOptions    `json:"options,omitempty"`
-	CompositeID *string                                             `json:"composite_id,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *StatusAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                            `default:"true" json:"enable_relation_picker"`
+	Type                 *StatusAttributeAttributeWithCompositeIDType     `json:"type,omitempty"`
+	Options              []StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
+	CompositeID          *string                                          `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -9203,6 +9114,34 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetInfoHelpers() *StatusAttrib
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDStatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetRelationAffinityMode() *StatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDStatusAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDStatusAttribute) GetType() *StatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -9283,6 +9222,33 @@ func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltip
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	MultiSelectAttributeAttributeWithCompositeIDRelationAffinityModeWeak   MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	MultiSelectAttributeAttributeWithCompositeIDRelationAffinityModeStrong MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type MultiSelectAttributeAttributeWithCompositeIDType string
@@ -9445,7 +9411,13 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *MultiSelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                             `default:"true" json:"enable_relation_picker"`
+	Type                 *MultiSelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
@@ -9658,6 +9630,34 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetInfoHelpers() *MultiSe
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetRelationAffinityMode() *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDMultiSelectAttribute) GetType() *MultiSelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -9761,6 +9761,33 @@ func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlace
 	return o.HintTooltipPlacement
 }
 
+// SelectAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type SelectAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	SelectAttributeAttributeWithCompositeIDRelationAffinityModeWeak   SelectAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	SelectAttributeAttributeWithCompositeIDRelationAffinityModeStrong SelectAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e SelectAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *SelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *SelectAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = SelectAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SelectAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type SelectAttributeAttributeWithCompositeIDType string
 
 const (
@@ -9839,8 +9866,14 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *SelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     any                                                 `json:"options,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *SelectAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 *SelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Options              any                                          `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
@@ -10048,6 +10081,34 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetInfoHelpers() *SelectAttrib
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDSelectAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDSelectAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDSelectAttribute) GetRelationAffinityMode() *SelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDSelectAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDSelectAttribute) GetType() *SelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -10137,6 +10198,33 @@ func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlac
 	return o.HintTooltipPlacement
 }
 
+// BooleanAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type BooleanAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	BooleanAttributeAttributeWithCompositeIDRelationAffinityModeWeak   BooleanAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	BooleanAttributeAttributeWithCompositeIDRelationAffinityModeStrong BooleanAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e BooleanAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = BooleanAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BooleanAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
+}
+
 type BooleanAttributeAttributeWithCompositeIDType string
 
 const (
@@ -10212,8 +10300,14 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *BooleanAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                              `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -10418,6 +10512,34 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetInfoHelpers() *BooleanAttr
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDBooleanAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetRelationAffinityMode() *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDBooleanAttribute) GetType() *BooleanAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -10491,6 +10613,33 @@ func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlac
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// CountryAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type CountryAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	CountryAttributeAttributeWithCompositeIDRelationAffinityModeWeak   CountryAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	CountryAttributeAttributeWithCompositeIDRelationAffinityModeStrong CountryAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e CountryAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *CountryAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *CountryAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = CountryAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CountryAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type CountryAttributeAttributeWithCompositeIDType string
@@ -10568,8 +10717,14 @@ type AttributeWithCompositeIDCountryAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *CountryAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                              `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *CountryAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 *CountryAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -10774,6 +10929,34 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetInfoHelpers() *CountryAttr
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDCountryAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDCountryAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDCountryAttribute) GetRelationAffinityMode() *CountryAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDCountryAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDCountryAttribute) GetType() *CountryAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -10847,6 +11030,33 @@ func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlaceme
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// DateAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type DateAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	DateAttributeAttributeWithCompositeIDRelationAffinityModeWeak   DateAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	DateAttributeAttributeWithCompositeIDRelationAffinityModeStrong DateAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e DateAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *DateAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *DateAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = DateAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DateAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type DateAttributeAttributeWithCompositeIDType string
@@ -10927,8 +11137,14 @@ type AttributeWithCompositeIDDateAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *DateAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                           `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *DateAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *DateAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -11133,6 +11349,34 @@ func (o *AttributeWithCompositeIDDateAttribute) GetInfoHelpers() *DateAttributeA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDDateAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDDateAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDDateAttribute) GetRelationAffinityMode() *DateAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDDateAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDDateAttribute) GetType() *DateAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -11206,6 +11450,33 @@ func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlaceme
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// LinkAttributeAttributeWithCompositeIDRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type LinkAttributeAttributeWithCompositeIDRelationAffinityMode string
+
+const (
+	LinkAttributeAttributeWithCompositeIDRelationAffinityModeWeak   LinkAttributeAttributeWithCompositeIDRelationAffinityMode = "weak"
+	LinkAttributeAttributeWithCompositeIDRelationAffinityModeStrong LinkAttributeAttributeWithCompositeIDRelationAffinityMode = "strong"
+)
+
+func (e LinkAttributeAttributeWithCompositeIDRelationAffinityMode) ToPointer() *LinkAttributeAttributeWithCompositeIDRelationAffinityMode {
+	return &e
+}
+func (e *LinkAttributeAttributeWithCompositeIDRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = LinkAttributeAttributeWithCompositeIDRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for LinkAttributeAttributeWithCompositeIDRelationAffinityMode: %v", v)
+	}
 }
 
 type LinkAttributeAttributeWithCompositeIDType string
@@ -11283,8 +11554,14 @@ type AttributeWithCompositeIDLinkAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *LinkAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	CompositeID *string                                           `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *LinkAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *LinkAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	CompositeID          *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -11489,6 +11766,34 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetInfoHelpers() *LinkAttributeA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDLinkAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDLinkAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDLinkAttribute) GetRelationAffinityMode() *LinkAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDLinkAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDLinkAttribute) GetType() *LinkAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -11562,6 +11867,33 @@ func (o *TextAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 		return nil
 	}
 	return o.HintTooltipPlacement
+}
+
+// TextAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type TextAttributeRelationAffinityMode string
+
+const (
+	TextAttributeRelationAffinityModeWeak   TextAttributeRelationAffinityMode = "weak"
+	TextAttributeRelationAffinityModeStrong TextAttributeRelationAffinityMode = "strong"
+)
+
+func (e TextAttributeRelationAffinityMode) ToPointer() *TextAttributeRelationAffinityMode {
+	return &e
+}
+func (e *TextAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = TextAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TextAttributeRelationAffinityMode: %v", v)
+	}
 }
 
 type TextAttributeAttributeWithCompositeIDType string
@@ -11638,11 +11970,17 @@ type AttributeWithCompositeIDTextAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
-	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiline   *bool                                      `json:"multiline,omitempty"`
-	RichText    *bool                                      `json:"rich_text,omitempty"`
-	CompositeID *string                                    `json:"composite_id,omitempty"`
+	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *TextAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiline            *bool                                      `json:"multiline,omitempty"`
+	RichText             *bool                                      `json:"rich_text,omitempty"`
+	CompositeID          *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -11847,6 +12185,34 @@ func (o *AttributeWithCompositeIDTextAttribute) GetInfoHelpers() *TextAttributeI
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDTextAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetRelationAffinityMode() *TextAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDTextAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDTextAttribute) GetType() *TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -11896,13 +12262,10 @@ const (
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_SequenceAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_RelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_UserRelationAttribute"
-	AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_AddressAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute       AttributeWithCompositeIDType = "AttributeWithCompositeID_AddressRelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDType = "AttributeWithCompositeID_PaymentMethodRelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_CurrencyAttribute"
-	AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute            AttributeWithCompositeIDType = "AttributeWithCompositeID_RepeatableAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute                  AttributeWithCompositeIDType = "AttributeWithCompositeID_TagsAttribute"
-	AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute   AttributeWithCompositeIDType = "AttributeWithCompositeID_MessageEmailAddressAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute                AttributeWithCompositeIDType = "AttributeWithCompositeID_NumberAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_ConsentAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_InternalAttribute"
@@ -11930,13 +12293,10 @@ type AttributeWithCompositeID struct {
 	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
 	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
 	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
 	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
 	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
 	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDRepeatableAttribute            *AttributeWithCompositeIDRepeatableAttribute            `queryParam:"inline"`
 	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline"`
 	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
 	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
 	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
@@ -12052,15 +12412,6 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDUserRelationAttribute
 	}
 }
 
-func CreateAttributeWithCompositeIDAttributeWithCompositeIDAddressAttribute(attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute) AttributeWithCompositeID {
-	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
-
-	return AttributeWithCompositeID{
-		AttributeWithCompositeIDAddressAttribute: &attributeWithCompositeIDAddressAttribute,
-		Type:                                     typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDAddressRelationAttribute(attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 
@@ -12088,30 +12439,12 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDCurrencyAttribute(att
 	}
 }
 
-func CreateAttributeWithCompositeIDAttributeWithCompositeIDRepeatableAttribute(attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute) AttributeWithCompositeID {
-	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
-
-	return AttributeWithCompositeID{
-		AttributeWithCompositeIDRepeatableAttribute: &attributeWithCompositeIDRepeatableAttribute,
-		Type: typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDTagsAttribute(attributeWithCompositeIDTagsAttribute AttributeWithCompositeIDTagsAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
 
 	return AttributeWithCompositeID{
 		AttributeWithCompositeIDTagsAttribute: &attributeWithCompositeIDTagsAttribute,
 		Type:                                  typ,
-	}
-}
-
-func CreateAttributeWithCompositeIDAttributeWithCompositeIDMessageEmailAddressAttribute(attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute) AttributeWithCompositeID {
-	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
-
-	return AttributeWithCompositeID{
-		AttributeWithCompositeIDMessageEmailAddressAttribute: &attributeWithCompositeIDMessageEmailAddressAttribute,
-		Type: typ,
 	}
 }
 
@@ -12225,10 +12558,10 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 
 func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
 		return nil
 	}
 
@@ -12239,10 +12572,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
@@ -12260,13 +12593,6 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
@@ -12281,17 +12607,17 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
 		return nil
 	}
 
@@ -12302,10 +12628,31 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
+	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
 		return nil
 	}
 
@@ -12316,38 +12663,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute = AttributeWithCompositeIDAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressAttribute = &attributeWithCompositeIDAddressAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
@@ -12365,10 +12684,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
@@ -12376,6 +12695,13 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTagsAttribute = &attributeWithCompositeIDTagsAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
 		return nil
 	}
 
@@ -12390,20 +12716,6 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute = AttributeWithCompositeIDMessageEmailAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMessageEmailAddressAttribute = &attributeWithCompositeIDMessageEmailAddressAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDRepeatableAttribute AttributeWithCompositeIDRepeatableAttribute = AttributeWithCompositeIDRepeatableAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRepeatableAttribute = &attributeWithCompositeIDRepeatableAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRepeatableAttribute
 		return nil
 	}
 
@@ -12483,10 +12795,6 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDUserRelationAttribute, "", true)
 	}
 
-	if u.AttributeWithCompositeIDAddressAttribute != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttribute, "", true)
-	}
-
 	if u.AttributeWithCompositeIDAddressRelationAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressRelationAttribute, "", true)
 	}
@@ -12499,16 +12807,8 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDCurrencyAttribute, "", true)
 	}
 
-	if u.AttributeWithCompositeIDRepeatableAttribute != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDRepeatableAttribute, "", true)
-	}
-
 	if u.AttributeWithCompositeIDTagsAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDTagsAttribute, "", true)
-	}
-
-	if u.AttributeWithCompositeIDMessageEmailAddressAttribute != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDMessageEmailAddressAttribute, "", true)
 	}
 
 	if u.AttributeWithCompositeIDNumberAttribute != nil {
@@ -12614,7 +12914,13 @@ type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerOrganisationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                            `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                            `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                     `default:"true" json:"enable_relation_picker"`
+	Type                 *PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -12819,6 +13125,34 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetInfoHelpe
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRelationAffinityMode() *PartnerOrganisationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() *PartnerOrganisationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -12884,16 +13218,20 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
 	// URL-friendly identifier for the classification
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                                         `default:"false" json:"archived"`
-	Type     *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Color     *string                                       `json:"color,omitempty"`
+	CreatedAt *time.Time                                    `json:"created_at,omitempty"`
+	UpdatedAt *time.Time                                    `json:"updated_at,omitempty"`
+	Type      *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -13098,6 +13436,34 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetInfoHelpers() *Purpos
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetRelationAffinityMode() *PurposeAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -13131,13 +13497,6 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetUpdatedAt() *time.Tim
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttributeAttributeWithCompositeIDType {
@@ -13206,7 +13565,13 @@ type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InternalUserAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                              `default:"true" json:"enable_relation_picker"`
+	Type                 *InternalUserAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -13411,6 +13776,34 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetInfoHelpers() *I
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetRelationAffinityMode() *InternalUserAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() *InternalUserAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -13477,7 +13870,13 @@ type AttributeWithCompositeIDAutomationAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AutomationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                   `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                            `default:"true" json:"enable_relation_picker"`
+	Type                 *AutomationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -13682,6 +14081,34 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetInfoHelpers() *Aut
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetRelationAffinityMode() *AutomationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() *AutomationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -13748,7 +14175,13 @@ type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InvitationEmailAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                 `default:"true" json:"enable_relation_picker"`
+	Type                 *InvitationEmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -13953,6 +14386,34 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetInfoHelpers()
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRelationAffinityMode() *InvitationEmailAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() *InvitationEmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -14019,7 +14480,13 @@ type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerStatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                      `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                      `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                               `default:"true" json:"enable_relation_picker"`
+	Type                 *PartnerStatusAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -14224,6 +14691,34 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetInfoHelpers() *
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRelationAffinityMode() *PartnerStatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() *PartnerStatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -14290,7 +14785,13 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *ComputedAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -14495,6 +14996,34 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetInfoHelpers() *Compu
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetRelationAffinityMode() *ComputedAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -14561,8 +15090,14 @@ type AttributeWithCompositeIDFileAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *FileAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        FileAttributeAttributeWithCompositeIDType         `json:"type"`
-	Multiple    *bool                                             `json:"multiple,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *FileAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                     `default:"true" json:"enable_relation_picker"`
+	Type                 FileAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiple             *bool                                     `json:"multiple,omitempty"`
 	// List of file extensions (without the dot suffix)
 	AllowedExtensions []string `json:"allowed_extensions,omitempty"`
 	// Controls how the images are presented to the user during upload on the Entity Details view.
@@ -14776,6 +15311,34 @@ func (o *AttributeWithCompositeIDFileAttributeInput) GetInfoHelpers() *FileAttri
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDFileAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDFileAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDFileAttributeInput) GetRelationAffinityMode() *FileAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDFileAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDFileAttributeInput) GetType() FileAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return FileAttributeAttributeWithCompositeIDType("")
@@ -14877,7 +15440,13 @@ type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *OrderedListAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                             `default:"true" json:"enable_relation_picker"`
+	Type                 *OrderedListAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15082,6 +15651,34 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetInfoHelpers() *Or
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetRelationAffinityMode() *OrderedListAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() *OrderedListAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -15148,7 +15745,13 @@ type AttributeWithCompositeIDInternalAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InternalAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InternalAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *InternalAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15353,6 +15956,34 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetInfoHelpers() *Inter
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetRelationAffinityMode() *InternalAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() *InternalAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -15419,9 +16050,15 @@ type AttributeWithCompositeIDConsentAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ConsentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        ConsentAttributeAttributeWithCompositeIDType         `json:"type"`
-	Topic       string                                               `json:"topic"`
-	Identifiers []string                                             `json:"identifiers,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 ConsentAttributeAttributeWithCompositeIDType `json:"type"`
+	Topic                string                                       `json:"topic"`
+	Identifiers          []string                                     `json:"identifiers,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15626,6 +16263,34 @@ func (o *AttributeWithCompositeIDConsentAttributeInput) GetInfoHelpers() *Consen
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetRelationAffinityMode() *ConsentAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDConsentAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDConsentAttributeInput) GetType() ConsentAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return ConsentAttributeAttributeWithCompositeIDType("")
@@ -15706,8 +16371,14 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *NumberAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Format      *string                                             `json:"format,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *NumberAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 *NumberAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Format               *string                                      `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool `default:"true" json:"show_separator"`
 	// Schema slug the attribute belongs to
@@ -15914,6 +16585,34 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetInfoHelpers() *NumberA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetRelationAffinityMode() *NumberAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDNumberAttributeInput) GetType() *NumberAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -15936,301 +16635,6 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetShowSeparator() *bool 
 }
 
 func (o *AttributeWithCompositeIDNumberAttributeInput) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// AttributeWithCompositeIDMessageEmailAddressAttributeInput - Message emil address
-type AttributeWithCompositeIDMessageEmailAddressAttributeInput struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        MessageEmailAddressAttributeAttributeWithCompositeIDType         `json:"type"`
-	Address     string                                                           `json:"address"`
-	SendStatus  *string                                                          `json:"send_status,omitempty"`
-	EmailType   *string                                                          `json:"email_type,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDMessageEmailAddressAttributeInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetAddress() string {
-	if o == nil {
-		return ""
-	}
-	return o.Address
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSendStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SendStatus
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEmailType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.EmailType
-}
-
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -16289,9 +16693,15 @@ type AttributeWithCompositeIDTagsAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *TagsAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []string                                          `json:"options,omitempty"`
-	Suggestions []string                                          `json:"suggestions,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *TagsAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *TagsAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Options              []string                                   `json:"options,omitempty"`
+	Suggestions          []string                                   `json:"suggestions,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -16496,6 +16906,34 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetInfoHelpers() *TagsAttri
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetRelationAffinityMode() *TagsAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDTagsAttributeInput) GetType() *TagsAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -16518,311 +16956,6 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
 }
 
 func (o *AttributeWithCompositeIDTagsAttributeInput) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// AttributeWithCompositeIDRepeatableAttributeInput - Repeatable (add N number of fields)
-type AttributeWithCompositeIDRepeatableAttributeInput struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *RepeatableAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *RepeatableAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Repeatable  *bool                                                   `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                   `json:"has_primary,omitempty"`
-	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	Type                 *RepeatableAttributeAttributeWithCompositeIDType                 `json:"type,omitempty"`
-	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool `default:"true" json:"enable_relation_picker"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDRepeatableAttributeInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDRepeatableAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetConstraints() *RepeatableAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetInfoHelpers() *RepeatableAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRepeatable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Repeatable
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetRelationAffinityMode() *RepeatableAttributeAttributeWithCompositeIDRelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetType() *RepeatableAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
-}
-
-func (o *AttributeWithCompositeIDRepeatableAttributeInput) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -16880,9 +17013,15 @@ type AttributeWithCompositeIDCurrencyAttributeInput struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers          *CurrencyAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type                 CurrencyAttributeAttributeWithCompositeIDType         `json:"type"`
-	CurrencySelectorOnly *bool                                                 `default:"false" json:"currency_selector_only"`
+	InfoHelpers *CurrencyAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 CurrencyAttributeAttributeWithCompositeIDType `json:"type"`
+	CurrencySelectorOnly *bool                                         `default:"false" json:"currency_selector_only"`
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency []CurrencyAttributeCurrency `json:"currency"`
 	// Schema slug the attribute belongs to
@@ -17089,6 +17228,34 @@ func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetInfoHelpers() *Curre
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetRelationAffinityMode() *CurrencyAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetType() CurrencyAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return CurrencyAttributeAttributeWithCompositeIDType("")
@@ -17169,8 +17336,13 @@ type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PaymentMethodRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                              `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                                              `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                       `default:"true" json:"enable_relation_picker"`
+	Type                 *PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -17375,11 +17547,11 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetInfoHel
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrimary() *bool {
@@ -17387,6 +17559,27 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrim
 		return nil
 	}
 	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRelationAffinityMode() *PaymentMethodRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSchema() *string {
@@ -17448,10 +17641,13 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                        `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                                        `json:"has_primary,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                                 `default:"true" json:"enable_relation_picker"`
+	Type                 *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -17656,11 +17852,11 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetInfoHelpers()
 	return o.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() *bool {
@@ -17670,294 +17866,28 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() 
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultAddressFields() []DefaultAddressFields {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetRelationAffinityMode() *AddressRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
 	if o == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return o.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetEnableRelationPicker() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Schema
+	return o.EnableRelationPicker
 }
 
-// AttributeWithCompositeIDAddressAttributeInput - Address attribute
-type AttributeWithCompositeIDAddressAttributeInput struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDAddressAttributeInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() *AddressAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultAddressFields() []DefaultAddressFields {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultAddressFields
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSchema() *string {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -18016,8 +17946,14 @@ type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *UserRelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Multiple    *bool                                                     `default:"false" json:"multiple"`
+	Repeatable  *bool                                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                              `default:"true" json:"enable_relation_picker"`
+	Type                 *UserRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiple             *bool                                              `default:"false" json:"multiple"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -18220,6 +18156,34 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetInfoHelpers() *U
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetRelationAffinityMode() *UserRelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetType() *UserRelationAttributeAttributeWithCompositeIDType {
@@ -18436,22 +18400,23 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	RelationType *RelationAttributeRelationType                        `json:"relation_type,omitempty"`
-	// Map of schema slug to target relation attribute
-	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
+	InfoHelpers *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	RelationAffinityMode *RelationAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
 	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
-	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *RelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	RelationType         *RelationAttributeRelationType                 `json:"relation_type,omitempty"`
+	// Map of schema slug to target relation attribute
+	ReverseAttributes map[string]string          `json:"reverse_attributes,omitempty"`
+	EditMode          *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
 	DetailsViewModeEnabled *bool                            `default:"false" json:"details_view_mode_enabled"`
 	Actions                []RelationAttributeActionsInput  `json:"actions,omitempty"`
 	DrawerSize             *RelationAttributeDrawerSize     `json:"drawer_size,omitempty"`
 	SummaryFields          []RelationAttributeSummaryFields `json:"summary_fields,omitempty"`
-	HasPrimary             *bool                            `json:"has_primary,omitempty"`
 	AllowedSchemas         []string                         `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
@@ -18663,6 +18628,34 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetInfoHelpers() *Relat
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationAffinityMode() *RelationAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetType() *RelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -18682,20 +18675,6 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetReverseAttributes() 
 		return nil
 	}
 	return o.ReverseAttributes
-}
-
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
 }
 
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetEditMode() *RelationAttributeEditMode {
@@ -18731,13 +18710,6 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetSummaryFields() []Re
 		return nil
 	}
 	return o.SummaryFields
-}
-
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
 }
 
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetAllowedSchemas() []string {
@@ -18827,7 +18799,13 @@ type AttributeWithCompositeIDSequenceAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *SequenceAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                          `default:"true" json:"enable_relation_picker"`
+	Type                 *SequenceAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -19035,6 +19013,34 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetInfoHelpers() *Seque
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetRelationAffinityMode() *SequenceAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDSequenceAttributeInput) GetType() *SequenceAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -19115,8 +19121,14 @@ type AttributeWithCompositeIDStatusAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *StatusAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     []StatusAttributeAttributeWithCompositeIDOptions    `json:"options,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *StatusAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                            `default:"true" json:"enable_relation_picker"`
+	Type                 *StatusAttributeAttributeWithCompositeIDType     `json:"type,omitempty"`
+	Options              []StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -19321,6 +19333,34 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetInfoHelpers() *StatusA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetRelationAffinityMode() *StatusAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDStatusAttributeInput) GetType() *StatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -19394,7 +19434,13 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *MultiSelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                             `default:"true" json:"enable_relation_picker"`
+	Type                 *MultiSelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
@@ -19606,6 +19652,34 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetInfoHelpers() *Mu
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetRelationAffinityMode() *MultiSelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetType() *MultiSelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -19700,8 +19774,14 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *SelectAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
-	Options     any                                                 `json:"options,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *SelectAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                        `default:"true" json:"enable_relation_picker"`
+	Type                 *SelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Options              any                                          `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 	// Schema slug the attribute belongs to
@@ -19908,6 +19988,34 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetInfoHelpers() *SelectA
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetRelationAffinityMode() *SelectAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDSelectAttributeInput) GetType() *SelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -19988,7 +20096,13 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *BooleanAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -20193,6 +20307,34 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetInfoHelpers() *Boolea
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetRelationAffinityMode() *BooleanAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -20259,7 +20401,13 @@ type AttributeWithCompositeIDCountryAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *CountryAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *CountryAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                         `default:"true" json:"enable_relation_picker"`
+	Type                 *CountryAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -20464,6 +20612,34 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetInfoHelpers() *Countr
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetRelationAffinityMode() *CountryAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() *CountryAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -20530,7 +20706,13 @@ type AttributeWithCompositeIDDateAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *DateAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *DateAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *DateAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -20735,6 +20917,34 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetInfoHelpers() *DateAttri
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDDateAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDDateAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDDateAttributeInput) GetRelationAffinityMode() *DateAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDDateAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDDateAttributeInput) GetType() *DateAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -20801,7 +21011,13 @@ type AttributeWithCompositeIDLinkAttributeInput struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *LinkAttributeAttributeWithCompositeIDType        `json:"type,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *LinkAttributeAttributeWithCompositeIDRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *LinkAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -21006,6 +21222,34 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetInfoHelpers() *LinkAttri
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetRelationAffinityMode() *LinkAttributeAttributeWithCompositeIDRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() *LinkAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -21071,10 +21315,16 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *TextAttributeInfoHelpers                  `json:"info_helpers,omitempty"`
-	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiline   *bool                                      `json:"multiline,omitempty"`
-	RichText    *bool                                      `json:"rich_text,omitempty"`
+	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *TextAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                                      `default:"true" json:"enable_relation_picker"`
+	Type                 *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiline            *bool                                      `json:"multiline,omitempty"`
+	RichText             *bool                                      `json:"rich_text,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -21279,6 +21529,34 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetInfoHelpers() *TextAttri
 	return o.InfoHelpers
 }
 
+func (o *AttributeWithCompositeIDTextAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetRelationAffinityMode() *TextAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AttributeWithCompositeIDTextAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *AttributeWithCompositeIDTextAttributeInput) GetType() *TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return nil
@@ -21321,13 +21599,10 @@ const (
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_SequenceAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_RelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_UserRelationAttribute_input"
-	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_AddressAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput       AttributeWithCompositeIDInputType = "AttributeWithCompositeID_AddressRelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PaymentMethodRelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_CurrencyAttribute_input"
-	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput            AttributeWithCompositeIDInputType = "AttributeWithCompositeID_RepeatableAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput                  AttributeWithCompositeIDInputType = "AttributeWithCompositeID_TagsAttribute_input"
-	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput   AttributeWithCompositeIDInputType = "AttributeWithCompositeID_MessageEmailAddressAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput                AttributeWithCompositeIDInputType = "AttributeWithCompositeID_NumberAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_ConsentAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_InternalAttribute_input"
@@ -21355,13 +21630,10 @@ type AttributeWithCompositeIDInput struct {
 	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
 	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
 	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
 	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
 	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
 	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDRepeatableAttributeInput            *AttributeWithCompositeIDRepeatableAttributeInput            `queryParam:"inline"`
 	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline"`
 	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
 	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
 	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
@@ -21477,15 +21749,6 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDUserRelationAttr
 	}
 }
 
-func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDAddressAttributeInput(attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput) AttributeWithCompositeIDInput {
-	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
-
-	return AttributeWithCompositeIDInput{
-		AttributeWithCompositeIDAddressAttributeInput: &attributeWithCompositeIDAddressAttributeInput,
-		Type: typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDAddressRelationAttributeInput(attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 
@@ -21513,29 +21776,11 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDCurrencyAttribut
 	}
 }
 
-func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDRepeatableAttributeInput(attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput) AttributeWithCompositeIDInput {
-	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
-
-	return AttributeWithCompositeIDInput{
-		AttributeWithCompositeIDRepeatableAttributeInput: &attributeWithCompositeIDRepeatableAttributeInput,
-		Type: typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDTagsAttributeInput(attributeWithCompositeIDTagsAttributeInput AttributeWithCompositeIDTagsAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
 
 	return AttributeWithCompositeIDInput{
 		AttributeWithCompositeIDTagsAttributeInput: &attributeWithCompositeIDTagsAttributeInput,
-		Type: typ,
-	}
-}
-
-func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDMessageEmailAddressAttributeInput(attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput) AttributeWithCompositeIDInput {
-	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
-
-	return AttributeWithCompositeIDInput{
-		AttributeWithCompositeIDMessageEmailAddressAttributeInput: &attributeWithCompositeIDMessageEmailAddressAttributeInput,
 		Type: typ,
 	}
 }
@@ -21650,10 +21895,10 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 
 func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
 		return nil
 	}
 
@@ -21664,10 +21909,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
@@ -21685,13 +21930,6 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
@@ -21706,17 +21944,17 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
 		return nil
 	}
 
@@ -21727,10 +21965,31 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
+	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
 		return nil
 	}
 
@@ -21741,38 +22000,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput = AttributeWithCompositeIDAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressAttributeInput = &attributeWithCompositeIDAddressAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
@@ -21790,10 +22021,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
@@ -21801,6 +22032,13 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDTagsAttributeInput = &attributeWithCompositeIDTagsAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
 		return nil
 	}
 
@@ -21815,20 +22053,6 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput = AttributeWithCompositeIDMessageEmailAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMessageEmailAddressAttributeInput = &attributeWithCompositeIDMessageEmailAddressAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDRepeatableAttributeInput AttributeWithCompositeIDRepeatableAttributeInput = AttributeWithCompositeIDRepeatableAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRepeatableAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRepeatableAttributeInput = &attributeWithCompositeIDRepeatableAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRepeatableAttributeInput
 		return nil
 	}
 
@@ -21908,10 +22132,6 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDUserRelationAttributeInput, "", true)
 	}
 
-	if u.AttributeWithCompositeIDAddressAttributeInput != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttributeInput, "", true)
-	}
-
 	if u.AttributeWithCompositeIDAddressRelationAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressRelationAttributeInput, "", true)
 	}
@@ -21924,16 +22144,8 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDCurrencyAttributeInput, "", true)
 	}
 
-	if u.AttributeWithCompositeIDRepeatableAttributeInput != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDRepeatableAttributeInput, "", true)
-	}
-
 	if u.AttributeWithCompositeIDTagsAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDTagsAttributeInput, "", true)
-	}
-
-	if u.AttributeWithCompositeIDMessageEmailAddressAttributeInput != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDMessageEmailAddressAttributeInput, "", true)
 	}
 
 	if u.AttributeWithCompositeIDNumberAttributeInput != nil {

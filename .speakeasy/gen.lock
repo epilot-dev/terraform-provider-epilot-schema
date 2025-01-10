@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 074153dfb6e7fb4434ad53ab905b5c74
+  docChecksum: 3c33bd438cfdad845820472edeabfa9d
   docVersion: 1.0.0
   speakeasyVersion: 1.465.1
   generationVersion: 2.488.4
-  releaseVersion: 0.11.14
-  configChecksum: 1a843b0e75a2eb3eab66e348dd3963ba
+  releaseVersion: 0.11.15
+  configChecksum: 0a46e6755fe2bfeb490962fdfdecf5f9
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -93,30 +93,23 @@ generatedFiles:
   - internal/provider/schemagroupheadline_data_source_sdk.go
   - internal/provider/schemagroupheadline_resource.go
   - internal/provider/schemagroupheadline_resource_sdk.go
-  - internal/provider/types/address_attribute.go
-  - internal/provider/types/address_attribute_attribute_with_composite_id_info_helpers.go
   - internal/provider/types/address_relation_attribute.go
+  - internal/provider/types/address_relation_attribute_attribute_with_composite_id_info_helpers.go
   - internal/provider/types/attribute.go
-  - internal/provider/types/attribute_with_composite_id_address_attribute.go
   - internal/provider/types/attribute_with_composite_id_address_relation_attribute.go
-  - internal/provider/types/attribute_with_composite_id_automation_attribute.go
   - internal/provider/types/attribute_with_composite_id_consent_attribute.go
   - internal/provider/types/attribute_with_composite_id_currency_attribute.go
   - internal/provider/types/attribute_with_composite_id_file_attribute.go
-  - internal/provider/types/attribute_with_composite_id_message_email_address_attribute.go
   - internal/provider/types/attribute_with_composite_id_multi_select_attribute.go
   - internal/provider/types/attribute_with_composite_id_number_attribute.go
-  - internal/provider/types/attribute_with_composite_id_payment_method_relation_attribute.go
   - internal/provider/types/attribute_with_composite_id_purpose_attribute.go
   - internal/provider/types/attribute_with_composite_id_relation_attribute.go
-  - internal/provider/types/attribute_with_composite_id_repeatable_attribute.go
   - internal/provider/types/attribute_with_composite_id_select_attribute.go
   - internal/provider/types/attribute_with_composite_id_sequence_attribute.go
   - internal/provider/types/attribute_with_composite_id_status_attribute.go
   - internal/provider/types/attribute_with_composite_id_tags_attribute.go
   - internal/provider/types/attribute_with_composite_id_text_attribute.go
   - internal/provider/types/attribute_with_composite_id_user_relation_attribute.go
-  - internal/provider/types/automation_attribute.go
   - internal/provider/types/bulk_actions.go
   - internal/provider/types/consent_attribute.go
   - internal/provider/types/create_view.go
@@ -132,26 +125,22 @@ generatedFiles:
   - internal/provider/types/entity_default_table_options.go
   - internal/provider/types/entity_default_table_params.go
   - internal/provider/types/entity_owner.go
-  - internal/provider/types/entity_schema_item_ui_config.go
   - internal/provider/types/entity_view_disabled.go
   - internal/provider/types/file_attribute.go
   - internal/provider/types/info_tooltip_title.go
   - internal/provider/types/layout_settings.go
   - internal/provider/types/list_item.go
-  - internal/provider/types/message_email_address_attribute.go
   - internal/provider/types/multi_select_attribute.go
   - internal/provider/types/multi_select_attribute_options.go
   - internal/provider/types/multi_select_attribute_options2.go
   - internal/provider/types/navbar_actions.go
   - internal/provider/types/number_attribute.go
-  - internal/provider/types/payment_method_relation_attribute.go
   - internal/provider/types/purpose_attribute.go
   - internal/provider/types/redirect_entity_view.go
   - internal/provider/types/relation_attribute.go
   - internal/provider/types/relation_attribute_actions.go
   - internal/provider/types/relation_attribute_new_entity_item.go
   - internal/provider/types/relation_attribute_summary_fields.go
-  - internal/provider/types/repeatable_attribute.go
   - internal/provider/types/required_permission.go
   - internal/provider/types/search_mappings.go
   - internal/provider/types/select_attribute.go
@@ -266,7 +255,6 @@ generatedFiles:
   - internal/sdk/models/shared/activitycallercontext.go
   - internal/sdk/models/shared/activityidqueryparam.go
   - internal/sdk/models/shared/activityitem.go
-  - internal/sdk/models/shared/addressattribute.go
   - internal/sdk/models/shared/addressrelationattribute.go
   - internal/sdk/models/shared/attribute.go
   - internal/sdk/models/shared/attributeinput.go
@@ -280,7 +268,6 @@ generatedFiles:
   - internal/sdk/models/shared/countryattribute.go
   - internal/sdk/models/shared/currencyattribute.go
   - internal/sdk/models/shared/dateattribute.go
-  - internal/sdk/models/shared/defaultaddressfields.go
   - internal/sdk/models/shared/entity.go
   - internal/sdk/models/shared/entityacl.go
   - internal/sdk/models/shared/entityaction.go
@@ -317,9 +304,7 @@ generatedFiles:
   - internal/sdk/models/shared/invitationemailattribute.go
   - internal/sdk/models/shared/linkattribute.go
   - internal/sdk/models/shared/listsavedviewsresults.go
-  - internal/sdk/models/shared/messageemailaddressattribute.go
   - internal/sdk/models/shared/multiselectattribute.go
-  - internal/sdk/models/shared/notfounderror.go
   - internal/sdk/models/shared/numberattribute.go
   - internal/sdk/models/shared/orderedlistattribute.go
   - internal/sdk/models/shared/partnerorganisationattribute.go
@@ -330,7 +315,6 @@ generatedFiles:
   - internal/sdk/models/shared/relationattribute.go
   - internal/sdk/models/shared/relationentity.go
   - internal/sdk/models/shared/relationitem.go
-  - internal/sdk/models/shared/repeatableattribute.go
   - internal/sdk/models/shared/savedview.go
   - internal/sdk/models/shared/savedviewitem.go
   - internal/sdk/models/shared/searchfilter.go
