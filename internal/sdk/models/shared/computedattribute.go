@@ -62,6 +62,33 @@ func (o *ComputedAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// ComputedAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type ComputedAttributeRelationAffinityMode string
+
+const (
+	ComputedAttributeRelationAffinityModeWeak   ComputedAttributeRelationAffinityMode = "weak"
+	ComputedAttributeRelationAffinityModeStrong ComputedAttributeRelationAffinityMode = "strong"
+)
+
+func (e ComputedAttributeRelationAffinityMode) ToPointer() *ComputedAttributeRelationAffinityMode {
+	return &e
+}
+func (e *ComputedAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = ComputedAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ComputedAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type ComputedAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type ComputedAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *ComputedAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                         `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ComputedAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                  `default:"true" json:"enable_relation_picker"`
+	Type                 *ComputedAttributeType `json:"type,omitempty"`
 }
 
 func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *ComputedAttribute) GetInfoHelpers() *ComputedAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ComputedAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *ComputedAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *ComputedAttribute) GetRelationAffinityMode() *ComputedAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *ComputedAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *ComputedAttribute) GetType() *ComputedAttributeType {

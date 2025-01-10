@@ -62,6 +62,33 @@ func (o *DateAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// DateAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type DateAttributeRelationAffinityMode string
+
+const (
+	DateAttributeRelationAffinityModeWeak   DateAttributeRelationAffinityMode = "weak"
+	DateAttributeRelationAffinityModeStrong DateAttributeRelationAffinityMode = "strong"
+)
+
+func (e DateAttributeRelationAffinityMode) ToPointer() *DateAttributeRelationAffinityMode {
+	return &e
+}
+func (e *DateAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = DateAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DateAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type DateAttributeType string
 
 const (
@@ -140,7 +167,13 @@ type DateAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *DateAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *DateAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool              `default:"true" json:"enable_relation_picker"`
+	Type                 *DateAttributeType `json:"type,omitempty"`
 }
 
 func (d DateAttribute) MarshalJSON() ([]byte, error) {
@@ -341,6 +374,34 @@ func (o *DateAttribute) GetInfoHelpers() *DateAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *DateAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *DateAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *DateAttribute) GetRelationAffinityMode() *DateAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *DateAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *DateAttribute) GetType() *DateAttributeType {

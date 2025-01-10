@@ -67,8 +67,6 @@ type UpdateClassificationsForTaxonomyResponse struct {
 	RawResponse *http.Response
 	// Taxonomies classifications
 	Object *UpdateClassificationsForTaxonomyResponseBody
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *UpdateClassificationsForTaxonomyResponse) GetContentType() string {
@@ -97,11 +95,4 @@ func (o *UpdateClassificationsForTaxonomyResponse) GetObject() *UpdateClassifica
 		return nil
 	}
 	return o.Object
-}
-
-func (o *UpdateClassificationsForTaxonomyResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

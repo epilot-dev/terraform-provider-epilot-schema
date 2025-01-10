@@ -62,6 +62,33 @@ func (o *PartnerStatusAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// PartnerStatusAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PartnerStatusAttributeRelationAffinityMode string
+
+const (
+	PartnerStatusAttributeRelationAffinityModeWeak   PartnerStatusAttributeRelationAffinityMode = "weak"
+	PartnerStatusAttributeRelationAffinityModeStrong PartnerStatusAttributeRelationAffinityMode = "strong"
+)
+
+func (e PartnerStatusAttributeRelationAffinityMode) ToPointer() *PartnerStatusAttributeRelationAffinityMode {
+	return &e
+}
+func (e *PartnerStatusAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PartnerStatusAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PartnerStatusAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type PartnerStatusAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type PartnerStatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerStatusAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                              `json:"repeatable,omitempty"`
+	HasPrimary  *bool                              `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PartnerStatusAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                       `default:"true" json:"enable_relation_picker"`
+	Type                 *PartnerStatusAttributeType `json:"type,omitempty"`
 }
 
 func (p PartnerStatusAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *PartnerStatusAttribute) GetInfoHelpers() *PartnerStatusAttributeInfoHel
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *PartnerStatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *PartnerStatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *PartnerStatusAttribute) GetRelationAffinityMode() *PartnerStatusAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *PartnerStatusAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *PartnerStatusAttribute) GetType() *PartnerStatusAttributeType {

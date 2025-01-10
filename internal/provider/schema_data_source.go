@@ -298,32 +298,9 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										"summary_attribute": schema.SingleNestedAttribute{
 											Computed: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.NumberAttribute{
-													Computed: true,
-													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
-														`For instance, When set to 1, the content will be displayed in a single line.`,
-												},
-												"content_wrap": schema.StringAttribute{
-													Computed:    true,
-													Description: `Defines white-space of the content.`,
-												},
-												"display_mode": schema.StringAttribute{
-													Computed: true,
-													MarkdownDescription: `Defines the display mode of the summary attribute.` + "\n" +
-														`When set to ` + "`" + `inline` + "`" + `, the label and value will be displayed in the same line.` + "\n" +
-														`When set to ` + "`" + `block` + "`" + `, the label and value will be displayed in separate lines.`,
-												},
 												"feature_flag": schema.StringAttribute{
 													Computed:    true,
 													Description: `Binds summary field visibility to the feature flag state.`,
-												},
-												"hide_label": schema.BoolAttribute{
-													Computed:    true,
-													Description: `When set to true, will hide the label of the field.`,
-												},
-												"highlight_container": schema.BoolAttribute{
-													Computed:    true,
-													Description: `When set to true, will highlight the container of the field.`,
 												},
 												"label": schema.StringAttribute{
 													Computed:    true,
@@ -376,15 +353,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												`` + "```" + `` + "\n" +
 												`The value field supports handlebar expressions from which you can pick any field from the entity state.`,
 										},
-									},
-								},
-							},
-							"ui_config": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"content_direction": schema.StringAttribute{
-										Computed:    true,
-										Description: `Show attributes in a row or column`,
 									},
 								},
 							},

@@ -73,8 +73,6 @@ type RemoveRelationsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *RemoveRelationsResponse) GetContentType() string {
@@ -96,11 +94,4 @@ func (o *RemoveRelationsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RemoveRelationsResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

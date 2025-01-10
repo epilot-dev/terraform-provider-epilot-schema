@@ -62,6 +62,33 @@ func (o *SequenceAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// SequenceAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type SequenceAttributeRelationAffinityMode string
+
+const (
+	SequenceAttributeRelationAffinityModeWeak   SequenceAttributeRelationAffinityMode = "weak"
+	SequenceAttributeRelationAffinityModeStrong SequenceAttributeRelationAffinityMode = "strong"
+)
+
+func (e SequenceAttributeRelationAffinityMode) ToPointer() *SequenceAttributeRelationAffinityMode {
+	return &e
+}
+func (e *SequenceAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = SequenceAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SequenceAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type SequenceAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type SequenceAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *SequenceAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                         `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *SequenceAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                  `default:"true" json:"enable_relation_picker"`
+	Type                 *SequenceAttributeType `json:"type,omitempty"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -341,6 +374,34 @@ func (o *SequenceAttribute) GetInfoHelpers() *SequenceAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *SequenceAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *SequenceAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *SequenceAttribute) GetRelationAffinityMode() *SequenceAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *SequenceAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *SequenceAttribute) GetType() *SequenceAttributeType {

@@ -124,8 +124,6 @@ type GetEntityActivityFeedResponse struct {
 	RawResponse *http.Response
 	// Success
 	Object *GetEntityActivityFeedResponseBody
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetEntityActivityFeedResponse) GetContentType() string {
@@ -154,11 +152,4 @@ func (o *GetEntityActivityFeedResponse) GetObject() *GetEntityActivityFeedRespon
 		return nil
 	}
 	return o.Object
-}
-
-func (o *GetEntityActivityFeedResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

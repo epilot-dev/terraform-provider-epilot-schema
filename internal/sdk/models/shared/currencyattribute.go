@@ -63,6 +63,33 @@ func (o *CurrencyAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// CurrencyAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type CurrencyAttributeRelationAffinityMode string
+
+const (
+	CurrencyAttributeRelationAffinityModeWeak   CurrencyAttributeRelationAffinityMode = "weak"
+	CurrencyAttributeRelationAffinityModeStrong CurrencyAttributeRelationAffinityMode = "strong"
+)
+
+func (e CurrencyAttributeRelationAffinityMode) ToPointer() *CurrencyAttributeRelationAffinityMode {
+	return &e
+}
+func (e *CurrencyAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = CurrencyAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CurrencyAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type CurrencyAttributeType string
 
 const (
@@ -214,9 +241,15 @@ type CurrencyAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers          *CurrencyAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type                 CurrencyAttributeType         `json:"type"`
-	CurrencySelectorOnly *bool                         `default:"false" json:"currency_selector_only"`
+	InfoHelpers *CurrencyAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                         `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *CurrencyAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                 `default:"true" json:"enable_relation_picker"`
+	Type                 CurrencyAttributeType `json:"type"`
+	CurrencySelectorOnly *bool                 `default:"false" json:"currency_selector_only"`
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency []Currency `json:"currency"`
 }
@@ -419,6 +452,34 @@ func (o *CurrencyAttribute) GetInfoHelpers() *CurrencyAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *CurrencyAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *CurrencyAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *CurrencyAttribute) GetRelationAffinityMode() *CurrencyAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *CurrencyAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *CurrencyAttribute) GetType() CurrencyAttributeType {

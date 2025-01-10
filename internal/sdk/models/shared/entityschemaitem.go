@@ -9,6 +9,47 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
+type Category string
+
+const (
+	CategoryCustomerRelations Category = "customer_relations"
+	CategorySales             Category = "sales"
+	CategoryProductHub        Category = "product_hub"
+	CategoryContracts         Category = "contracts"
+	CategoryJourneys          Category = "journeys"
+	CategoryMessaging         Category = "messaging"
+	CategorySystem            Category = "system"
+)
+
+func (e Category) ToPointer() *Category {
+	return &e
+}
+func (e *Category) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "customer_relations":
+		fallthrough
+	case "sales":
+		fallthrough
+	case "product_hub":
+		fallthrough
+	case "contracts":
+		fallthrough
+	case "journeys":
+		fallthrough
+	case "messaging":
+		fallthrough
+	case "system":
+		*e = Category(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Category: %v", v)
+	}
+}
+
 type TableViewType string
 
 const (
@@ -412,49 +453,9 @@ func (u SummaryAttributes) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type SummaryAttributes: all fields are null")
 }
 
-// ContentDirection - Show attributes in a row or column
-type ContentDirection string
-
-const (
-	ContentDirectionRow    ContentDirection = "row"
-	ContentDirectionColumn ContentDirection = "column"
-)
-
-func (e ContentDirection) ToPointer() *ContentDirection {
-	return &e
-}
-func (e *ContentDirection) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "row":
-		fallthrough
-	case "column":
-		*e = ContentDirection(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ContentDirection: %v", v)
-	}
-}
-
-type EntitySchemaItemUIConfig struct {
-	// Show attributes in a row or column
-	ContentDirection *ContentDirection `json:"content_direction,omitempty"`
-}
-
-func (o *EntitySchemaItemUIConfig) GetContentDirection() *ContentDirection {
-	if o == nil {
-		return nil
-	}
-	return o.ContentDirection
-}
-
 type ListItem struct {
-	SummaryAttributes []SummaryAttributes       `json:"summary_attributes,omitempty"`
-	QuickActions      []EntityAction            `json:"quick_actions,omitempty"`
-	UIConfig          *EntitySchemaItemUIConfig `json:"ui_config,omitempty"`
+	SummaryAttributes []SummaryAttributes `json:"summary_attributes,omitempty"`
+	QuickActions      []EntityAction      `json:"quick_actions,omitempty"`
 }
 
 func (o *ListItem) GetSummaryAttributes() []SummaryAttributes {
@@ -469,13 +470,6 @@ func (o *ListItem) GetQuickActions() []EntityAction {
 		return nil
 	}
 	return o.QuickActions
-}
-
-func (o *ListItem) GetUIConfig() *EntitySchemaItemUIConfig {
-	if o == nil {
-		return nil
-	}
-	return o.UIConfig
 }
 
 type Sharing struct {
@@ -600,14 +594,14 @@ type EntitySchemaItem struct {
 	// This schema should only be active when one of the organization settings is enabled
 	EnableSetting []string `json:"enable_setting,omitempty"`
 	// User-friendly identifier for the entity schema
-	Name        string  `json:"name"`
-	Plural      string  `json:"plural"`
-	Description *string `json:"description,omitempty"`
-	DocsURL     *string `json:"docs_url,omitempty"`
-	Category    *string `json:"category,omitempty"`
-	Published   *bool   `json:"published,omitempty"`
-	Draft       *bool   `json:"draft,omitempty"`
-	Icon        *string `json:"icon,omitempty"`
+	Name        string    `json:"name"`
+	Plural      string    `json:"plural"`
+	Description *string   `json:"description,omitempty"`
+	DocsURL     *string   `json:"docs_url,omitempty"`
+	Category    *Category `json:"category,omitempty"`
+	Published   *bool     `json:"published,omitempty"`
+	Draft       *bool     `json:"draft,omitempty"`
+	Icon        *string   `json:"icon,omitempty"`
 	// Template for rendering the title field. Uses handlebars
 	TitleTemplate *string   `json:"title_template,omitempty"`
 	UIConfig      *UIConfig `json:"ui_config,omitempty"`
@@ -711,7 +705,7 @@ func (o *EntitySchemaItem) GetDocsURL() *string {
 	return o.DocsURL
 }
 
-func (o *EntitySchemaItem) GetCategory() *string {
+func (o *EntitySchemaItem) GetCategory() *Category {
 	if o == nil {
 		return nil
 	}

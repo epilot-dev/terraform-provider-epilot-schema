@@ -63,6 +63,33 @@ func (o *StatusAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// StatusAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type StatusAttributeRelationAffinityMode string
+
+const (
+	StatusAttributeRelationAffinityModeWeak   StatusAttributeRelationAffinityMode = "weak"
+	StatusAttributeRelationAffinityModeStrong StatusAttributeRelationAffinityMode = "strong"
+)
+
+func (e StatusAttributeRelationAffinityMode) ToPointer() *StatusAttributeRelationAffinityMode {
+	return &e
+}
+func (e *StatusAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = StatusAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for StatusAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type StatusAttributeType string
 
 const (
@@ -222,8 +249,14 @@ type StatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *StatusAttributeType        `json:"type,omitempty"`
-	Options     []StatusAttributeOptions    `json:"options,omitempty"`
+	Repeatable  *bool                       `json:"repeatable,omitempty"`
+	HasPrimary  *bool                       `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *StatusAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                    `default:"true" json:"enable_relation_picker"`
+	Type                 *StatusAttributeType     `json:"type,omitempty"`
+	Options              []StatusAttributeOptions `json:"options,omitempty"`
 }
 
 func (s StatusAttribute) MarshalJSON() ([]byte, error) {
@@ -424,6 +457,34 @@ func (o *StatusAttribute) GetInfoHelpers() *StatusAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *StatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *StatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *StatusAttribute) GetRelationAffinityMode() *StatusAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *StatusAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *StatusAttribute) GetType() *StatusAttributeType {

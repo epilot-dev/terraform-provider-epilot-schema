@@ -43,7 +43,6 @@ data "epilot-schema_schema_capability" "my_schemacapability" {
 
 Read-Only:
 
-- `address_attribute` (Attributes) Address attribute (see [below for nested schema](#nestedatt--attributes--address_attribute))
 - `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--attributes--address_relation_attribute))
 - `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--attributes--automation_attribute))
 - `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--attributes--boolean_attribute))
@@ -57,7 +56,6 @@ Read-Only:
 - `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--attributes--internal_user_attribute))
 - `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute))
 - `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--attributes--link_attribute))
-- `message_email_address_attribute` (Attributes) Message emil address (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute))
 - `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--attributes--multi_select_attribute))
 - `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--attributes--number_attribute))
 - `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute))
@@ -66,82 +64,12 @@ Read-Only:
 - `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute))
 - `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--attributes--purpose_attribute))
 - `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--attributes--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--attributes--repeatable_attribute))
 - `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--attributes--select_attribute))
 - `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--attributes--sequence_attribute))
 - `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--attributes--status_attribute))
 - `tags_attribute` (Attributes) Tags (see [below for nested schema](#nestedatt--attributes--tags_attribute))
 - `text_attribute` (Attributes) Textarea or text input (see [below for nested schema](#nestedatt--attributes--text_attribute))
 - `user_relation_attribute` (Attributes) User Relationship (see [below for nested schema](#nestedatt--attributes--user_relation_attribute))
-
-<a id="nestedatt--attributes--address_attribute"></a>
-### Nested Schema for `attributes.address_attribute`
-
-Read-Only:
-
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_attribute--constraints))
-- `default_address_fields` (List of String) Default fields visible on addresses
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean)
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `hidden` (Boolean) Do not render attribute in entity views
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--address_attribute--info_helpers))
-- `label` (String)
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String)
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean)
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `type` (String)
-- `value_formatter` (String)
-
-<a id="nestedatt--attributes--address_attribute--constraints"></a>
-### Nested Schema for `attributes.address_attribute.constraints`
-
-
-<a id="nestedatt--attributes--address_attribute--info_helpers"></a>
-### Nested Schema for `attributes.address_attribute.info_helpers`
-
-Read-Only:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--attributes--address_attribute--settings_flag"></a>
-### Nested Schema for `attributes.address_attribute.settings_flag`
-
-Read-Only:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
 
 <a id="nestedatt--attributes--address_relation_attribute"></a>
 ### Nested Schema for `attributes.address_relation_attribute`
@@ -150,9 +78,9 @@ Read-Only:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--constraints))
-- `default_address_fields` (List of String) Default fields visible on addresses
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -173,9 +101,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -222,9 +152,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -241,9 +173,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -290,9 +224,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -309,9 +245,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -358,9 +296,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -377,9 +317,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -426,9 +368,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -446,9 +390,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -496,9 +442,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -515,9 +463,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -566,9 +516,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `currency_selector_only` (Boolean)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -585,9 +537,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -653,9 +607,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -672,9 +628,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -726,9 +684,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view.
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -746,9 +706,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -795,9 +757,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -814,9 +778,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -863,9 +829,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -882,9 +850,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -931,9 +901,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -950,9 +922,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -999,9 +973,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1018,9 +994,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1058,77 +1036,6 @@ Read-Only:
 
 
 
-<a id="nestedatt--attributes--message_email_address_attribute"></a>
-### Nested Schema for `attributes.message_email_address_attribute`
-
-Read-Only:
-
-- `address` (String)
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--constraints))
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean)
-- `email_type` (String)
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `hidden` (Boolean) Do not render attribute in entity views
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--info_helpers))
-- `label` (String)
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String)
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean)
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `required` (Boolean)
-- `send_status` (String)
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `type` (String)
-- `value_formatter` (String)
-
-<a id="nestedatt--attributes--message_email_address_attribute--constraints"></a>
-### Nested Schema for `attributes.message_email_address_attribute.constraints`
-
-
-<a id="nestedatt--attributes--message_email_address_attribute--info_helpers"></a>
-### Nested Schema for `attributes.message_email_address_attribute.info_helpers`
-
-Read-Only:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--attributes--message_email_address_attribute--settings_flag"></a>
-### Nested Schema for `attributes.message_email_address_attribute.settings_flag`
-
-Read-Only:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
-
 <a id="nestedatt--attributes--multi_select_attribute"></a>
 ### Nested Schema for `attributes.multi_select_attribute`
 
@@ -1141,9 +1048,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1161,9 +1070,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1228,10 +1139,12 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `format` (String)
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1248,9 +1161,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1298,9 +1213,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1317,9 +1234,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1366,9 +1285,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1385,9 +1306,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1434,9 +1357,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1453,9 +1378,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1502,6 +1429,7 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -1522,9 +1450,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1567,16 +1497,17 @@ Read-Only:
 
 Read-Only:
 
-- `archived` (Boolean) Archived classification are not visible in the UI
 - `color` (String) Color of the classification
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--constraints))
 - `created_at` (String)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1594,9 +1525,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1677,6 +1610,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
@@ -1713,7 +1647,6 @@ Read-Only:
 - `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--acl))
 - `additional_properties` (String) Parsed as JSON.
 - `created_at` (String)
-- `deleted_at` (String)
 - `id` (String)
 - `manifest` (List of String) Manifest ID used to create/update the entity
 - `org` (String) Organization Id the entity belongs to
@@ -1803,78 +1736,6 @@ Read-Only:
 
 
 
-<a id="nestedatt--attributes--repeatable_attribute"></a>
-### Nested Schema for `attributes.repeatable_attribute`
-
-Read-Only:
-
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--constraints))
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean)
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `has_primary` (Boolean)
-- `hidden` (Boolean) Do not render attribute in entity views
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
-- `label` (String)
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String)
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean)
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `repeatable` (Boolean)
-- `required` (Boolean)
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
-- `type` (String)
-- `value_formatter` (String)
-
-<a id="nestedatt--attributes--repeatable_attribute--constraints"></a>
-### Nested Schema for `attributes.repeatable_attribute.constraints`
-
-
-<a id="nestedatt--attributes--repeatable_attribute--info_helpers"></a>
-### Nested Schema for `attributes.repeatable_attribute.info_helpers`
-
-Read-Only:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--attributes--repeatable_attribute--settings_flag"></a>
-### Nested Schema for `attributes.repeatable_attribute.settings_flag`
-
-Read-Only:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
-
 <a id="nestedatt--attributes--select_attribute"></a>
 ### Nested Schema for `attributes.select_attribute`
 
@@ -1885,9 +1746,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1905,9 +1768,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1954,9 +1819,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1974,9 +1841,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2024,9 +1893,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2044,9 +1915,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2111,9 +1984,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2131,9 +2006,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2181,9 +2058,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2201,9 +2080,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `rich_text` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
@@ -2251,9 +2132,11 @@ Read-Only:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2271,9 +2154,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean)
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`

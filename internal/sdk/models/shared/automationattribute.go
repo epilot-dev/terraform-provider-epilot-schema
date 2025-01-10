@@ -62,6 +62,33 @@ func (o *AutomationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// AutomationAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type AutomationAttributeRelationAffinityMode string
+
+const (
+	AutomationAttributeRelationAffinityModeWeak   AutomationAttributeRelationAffinityMode = "weak"
+	AutomationAttributeRelationAffinityModeStrong AutomationAttributeRelationAffinityMode = "strong"
+)
+
+func (e AutomationAttributeRelationAffinityMode) ToPointer() *AutomationAttributeRelationAffinityMode {
+	return &e
+}
+func (e *AutomationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = AutomationAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AutomationAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type AutomationAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type AutomationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AutomationAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                           `json:"repeatable,omitempty"`
+	HasPrimary  *bool                           `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *AutomationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                    `default:"true" json:"enable_relation_picker"`
+	Type                 *AutomationAttributeType `json:"type,omitempty"`
 }
 
 func (a AutomationAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *AutomationAttribute) GetInfoHelpers() *AutomationAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *AutomationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AutomationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AutomationAttribute) GetRelationAffinityMode() *AutomationAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *AutomationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *AutomationAttribute) GetType() *AutomationAttributeType {

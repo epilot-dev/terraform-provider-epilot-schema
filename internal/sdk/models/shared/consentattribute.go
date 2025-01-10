@@ -62,6 +62,33 @@ func (o *ConsentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// ConsentAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type ConsentAttributeRelationAffinityMode string
+
+const (
+	ConsentAttributeRelationAffinityModeWeak   ConsentAttributeRelationAffinityMode = "weak"
+	ConsentAttributeRelationAffinityModeStrong ConsentAttributeRelationAffinityMode = "strong"
+)
+
+func (e ConsentAttributeRelationAffinityMode) ToPointer() *ConsentAttributeRelationAffinityMode {
+	return &e
+}
+func (e *ConsentAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = ConsentAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ConsentAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type ConsentAttributeType string
 
 const (
@@ -137,9 +164,15 @@ type ConsentAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ConsentAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        ConsentAttributeType         `json:"type"`
-	Topic       string                       `json:"topic"`
-	Identifiers []string                     `json:"identifiers,omitempty"`
+	Repeatable  *bool                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                        `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *ConsentAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                `default:"true" json:"enable_relation_picker"`
+	Type                 ConsentAttributeType `json:"type"`
+	Topic                string               `json:"topic"`
+	Identifiers          []string             `json:"identifiers,omitempty"`
 }
 
 func (c ConsentAttribute) MarshalJSON() ([]byte, error) {
@@ -340,6 +373,34 @@ func (o *ConsentAttribute) GetInfoHelpers() *ConsentAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ConsentAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *ConsentAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *ConsentAttribute) GetRelationAffinityMode() *ConsentAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *ConsentAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *ConsentAttribute) GetType() ConsentAttributeType {

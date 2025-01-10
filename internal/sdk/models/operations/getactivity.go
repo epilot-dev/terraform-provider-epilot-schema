@@ -60,8 +60,6 @@ type GetActivityResponse struct {
 	RawResponse *http.Response
 	// Success
 	ActivityItem *shared.ActivityItem
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetActivityResponse) GetContentType() string {
@@ -90,11 +88,4 @@ func (o *GetActivityResponse) GetActivityItem() *shared.ActivityItem {
 		return nil
 	}
 	return o.ActivityItem
-}
-
-func (o *GetActivityResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

@@ -36,8 +36,6 @@ type GetSchemaResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntitySchemaItem *shared.EntitySchemaItem
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSchemaResponse) GetContentType() string {
@@ -66,11 +64,4 @@ func (o *GetSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
 		return nil
 	}
 	return o.EntitySchemaItem
-}
-
-func (o *GetSchemaResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

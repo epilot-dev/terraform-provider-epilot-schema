@@ -14,65 +14,13 @@ SchemaAttribute Resource
 
 ```terraform
 resource "epilot-schema_schema_attribute" "my_schemaattribute" {
-  address_attribute = {
-    constraints = {
-      # ...
-    }
-    default_address_fields = [
-      "start_date"
-    ]
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "address"
-    value_formatter = "...my_value_formatter..."
-  }
   address_relation_attribute = {
     constraints = {
       # ...
     }
-    default_address_fields = [
-      "plot_of_land"
-    ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
@@ -100,10 +48,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -121,9 +71,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -147,10 +99,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -168,9 +122,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -194,10 +150,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -215,9 +173,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -241,10 +201,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -262,9 +224,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -291,10 +255,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -313,9 +279,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -339,10 +307,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -371,9 +341,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     currency_selector_only      = false
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -397,10 +369,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -418,9 +392,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -444,10 +420,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -471,9 +449,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     deprecated                  = false
     display_images_landscaped   = true
     enable_description          = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -498,10 +478,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -519,9 +501,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -545,10 +529,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -566,9 +552,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -592,10 +580,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = false
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -613,9 +603,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -639,10 +631,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -660,9 +654,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -686,10 +682,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -701,56 +699,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "link"
     value_formatter = "...my_value_formatter..."
   }
-  message_email_address_attribute = {
-    address = "...my_address..."
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    email_type                  = "...my_email_type..."
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
-    send_status      = "...my_send_status..."
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "message_email_address"
-    value_formatter = "...my_value_formatter..."
-  }
   multi_select_attribute = {
     allow_any           = true
     allow_extra_options = true
@@ -760,9 +708,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     disable_case_sensitive      = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -795,10 +745,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -816,10 +768,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     format                      = "...my_format..."
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -843,10 +797,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -865,9 +821,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -891,10 +849,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -912,9 +872,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -938,10 +900,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = false
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -959,9 +923,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -985,10 +951,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = false
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -1006,6 +974,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
@@ -1033,10 +1002,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1049,17 +1020,18 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   purpose_attribute = {
-    archived = false
-    color    = "#FF5733"
+    color = "#FF5733"
     constraints = {
       # ...
     }
     created_at                  = "2022-04-09T15:18:01.781Z"
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1086,10 +1058,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1190,6 +1164,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     relation_affinity_mode = "strong"
     relation_type          = "has_one"
     render_condition       = "...my_render_condition..."
+    repeatable             = true
     required               = false
     reverse_attributes = {
       key = "value",
@@ -1216,57 +1191,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "relation"
     value_formatter = "...my_value_formatter..."
   }
-  repeatable_attribute = {
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    enable_relation_picker      = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly               = false
-    relation_affinity_mode = "weak"
-    render_condition       = "...my_render_condition..."
-    repeatable             = false
-    required               = false
-    schema                 = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "date"
-    value_formatter = "...my_value_formatter..."
-  }
   select_attribute = {
     allow_any = false
     constraints = {
@@ -1274,9 +1198,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1301,10 +1227,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -1322,9 +1250,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = false
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1349,10 +1279,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1371,9 +1303,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1406,10 +1340,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1427,9 +1363,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1456,10 +1394,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1480,9 +1420,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
+    enable_relation_picker      = true
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1507,11 +1449,13 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = false
-    rich_text        = true
-    schema           = "contact"
+    readonly               = false
+    relation_affinity_mode = "weak"
+    render_condition       = "...my_render_condition..."
+    repeatable             = true
+    required               = false
+    rich_text              = true
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = true
@@ -1529,9 +1473,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     }
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
+    enable_relation_picker      = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1556,10 +1502,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     purpose = [
       "taxonomy-slug:classification-slug"
     ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    required         = false
-    schema           = "contact"
+    readonly               = true
+    relation_affinity_mode = "strong"
+    render_condition       = "...my_render_condition..."
+    repeatable             = false
+    required               = false
+    schema                 = "contact"
     settings_flag = [
       {
         enabled = false
@@ -1579,7 +1527,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 
 ### Optional
 
-- `address_attribute` (Attributes) Address attribute (see [below for nested schema](#nestedatt--address_attribute))
 - `address_relation_attribute` (Attributes) Reference to an address attribute of another entity (see [below for nested schema](#nestedatt--address_relation_attribute))
 - `automation_attribute` (Attributes) Automation entity (see [below for nested schema](#nestedatt--automation_attribute))
 - `boolean_attribute` (Attributes) Yes / No Toggle (see [below for nested schema](#nestedatt--boolean_attribute))
@@ -1593,7 +1540,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--internal_user_attribute))
 - `invitation_email_attribute` (Attributes) Email address for send invitation (see [below for nested schema](#nestedatt--invitation_email_attribute))
 - `link_attribute` (Attributes) Link with title and href (see [below for nested schema](#nestedatt--link_attribute))
-- `message_email_address_attribute` (Attributes) Message emil address (see [below for nested schema](#nestedatt--message_email_address_attribute))
 - `multi_select_attribute` (Attributes) Multi Choice Selection (see [below for nested schema](#nestedatt--multi_select_attribute))
 - `number_attribute` (Attributes) Numeric input (see [below for nested schema](#nestedatt--number_attribute))
 - `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--ordered_list_attribute))
@@ -1602,7 +1548,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--payment_method_relation_attribute))
 - `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--purpose_attribute))
 - `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--repeatable_attribute))
 - `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--select_attribute))
 - `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--sequence_attribute))
 - `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--status_attribute))
@@ -1614,9 +1559,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 
 - `composite_id` (String) Schema Slug and the Attribute ID
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1633,85 +1580,12 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `value_formatter` (String)
-
-<a id="nestedatt--address_attribute"></a>
-### Nested Schema for `address_attribute`
-
-Optional:
-
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_attribute--constraints))
-- `default_address_fields` (List of String) Default fields visible on addresses
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Default: false
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--address_attribute--info_helpers))
-- `label` (String) Not Null
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String) Not Null
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean) Default: false
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `required` (Boolean) Default: false
-- `schema` (String) Schema slug the attribute belongs to
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--address_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "address"
-- `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
-
-<a id="nestedatt--address_attribute--constraints"></a>
-### Nested Schema for `address_attribute.constraints`
-
-
-<a id="nestedatt--address_attribute--info_helpers"></a>
-### Nested Schema for `address_attribute.info_helpers`
-
-Optional:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--address_attribute--settings_flag"></a>
-### Nested Schema for `address_attribute.settings_flag`
-
-Optional:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
 
 <a id="nestedatt--address_relation_attribute"></a>
 ### Nested Schema for `address_relation_attribute`
@@ -1720,9 +1594,9 @@ Optional:
 
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_relation_attribute--constraints))
-- `default_address_fields` (List of String) Default fields visible on addresses
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -1743,9 +1617,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--address_relation_attribute--settings_flag))
@@ -1797,9 +1673,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1816,9 +1694,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--automation_attribute--settings_flag))
@@ -1870,9 +1750,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1889,9 +1771,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--boolean_attribute--settings_flag))
@@ -1943,9 +1827,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--computed_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1962,9 +1848,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--computed_attribute--settings_flag))
@@ -2016,9 +1904,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2036,9 +1926,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--consent_attribute--settings_flag))
@@ -2091,9 +1983,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2110,9 +2004,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--country_attribute--settings_flag))
@@ -2166,9 +2062,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `currency_selector_only` (Boolean) Default: false
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2185,9 +2083,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--currency_attribute--settings_flag))
@@ -2258,9 +2158,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2277,9 +2179,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--date_attribute--settings_flag))
@@ -2336,9 +2240,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `display_images_landscaped` (Boolean) Controls how the images are presented to the user during upload on the Entity Details view.
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2356,9 +2262,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--file_attribute--settings_flag))
@@ -2410,9 +2318,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2429,9 +2339,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--internal_attribute--settings_flag))
@@ -2483,9 +2395,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2502,9 +2416,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--internal_user_attribute--settings_flag))
@@ -2556,9 +2472,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2575,9 +2493,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--invitation_email_attribute--settings_flag))
@@ -2629,9 +2549,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2648,9 +2570,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--link_attribute--settings_flag))
@@ -2693,82 +2617,6 @@ Optional:
 
 
 
-<a id="nestedatt--message_email_address_attribute"></a>
-### Nested Schema for `message_email_address_attribute`
-
-Optional:
-
-- `address` (String) Not Null
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--message_email_address_attribute--constraints))
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Default: false
-- `email_type` (String)
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--message_email_address_attribute--info_helpers))
-- `label` (String) Not Null
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String) Not Null
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean) Default: false
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `required` (Boolean) Default: false
-- `schema` (String) Schema slug the attribute belongs to
-- `send_status` (String)
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--message_email_address_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) Not Null; must be "message_email_address"
-- `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
-
-<a id="nestedatt--message_email_address_attribute--constraints"></a>
-### Nested Schema for `message_email_address_attribute.constraints`
-
-
-<a id="nestedatt--message_email_address_attribute--info_helpers"></a>
-### Nested Schema for `message_email_address_attribute.info_helpers`
-
-Optional:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--message_email_address_attribute--settings_flag"></a>
-### Nested Schema for `message_email_address_attribute.settings_flag`
-
-Optional:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
-
 <a id="nestedatt--multi_select_attribute"></a>
 ### Nested Schema for `multi_select_attribute`
 
@@ -2781,9 +2629,11 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2801,9 +2651,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--multi_select_attribute--settings_flag))
@@ -2873,10 +2725,12 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `format` (String)
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2893,9 +2747,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--number_attribute--settings_flag))
@@ -2948,9 +2804,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2967,9 +2825,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--ordered_list_attribute--settings_flag))
@@ -3021,9 +2881,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3040,9 +2902,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--partner_organisation_attribute--settings_flag))
@@ -3094,9 +2958,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3113,9 +2979,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--partner_status_attribute--settings_flag))
@@ -3167,6 +3035,7 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -3187,9 +3056,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--payment_method_relation_attribute--settings_flag))
@@ -3237,16 +3108,17 @@ Optional:
 
 Optional:
 
-- `archived` (Boolean) Archived classification are not visible in the UI. Default: false
 - `color` (String) Color of the classification
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
 - `created_at` (String)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3264,9 +3136,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--purpose_attribute--settings_flag))
@@ -3352,6 +3226,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `schema` (String) Schema slug the attribute belongs to
@@ -3403,7 +3278,6 @@ Optional:
 Read-Only:
 
 - `created_at` (String)
-- `deleted_at` (String)
 - `org` (String) Organization Id the entity belongs to
 - `owners` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions--new_entity_item--owners))
 - `updated_at` (String)
@@ -3487,83 +3361,6 @@ Optional:
 
 
 
-<a id="nestedatt--repeatable_attribute"></a>
-### Nested Schema for `repeatable_attribute`
-
-Optional:
-
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--repeatable_attribute--constraints))
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Default: false
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `has_primary` (Boolean)
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--repeatable_attribute--info_helpers))
-- `label` (String) Not Null
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String) Not Null
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean) Default: false
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `repeatable` (Boolean)
-- `required` (Boolean) Default: false
-- `schema` (String) Schema slug the attribute belongs to
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--repeatable_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date", "message_email_address"]
-- `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
-
-<a id="nestedatt--repeatable_attribute--constraints"></a>
-### Nested Schema for `repeatable_attribute.constraints`
-
-
-<a id="nestedatt--repeatable_attribute--info_helpers"></a>
-### Nested Schema for `repeatable_attribute.info_helpers`
-
-Optional:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--repeatable_attribute--settings_flag"></a>
-### Nested Schema for `repeatable_attribute.settings_flag`
-
-Optional:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
-
 <a id="nestedatt--select_attribute"></a>
 ### Nested Schema for `select_attribute`
 
@@ -3574,9 +3371,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3594,9 +3393,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--select_attribute--settings_flag))
@@ -3648,9 +3449,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3668,9 +3471,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--sequence_attribute--settings_flag))
@@ -3723,9 +3528,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3743,9 +3550,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--status_attribute--settings_flag))
@@ -3815,9 +3624,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3835,9 +3646,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--tags_attribute--settings_flag))
@@ -3890,9 +3703,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3910,9 +3725,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `rich_text` (Boolean)
 - `schema` (String) Schema slug the attribute belongs to
@@ -3965,9 +3782,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -3985,9 +3804,11 @@ The value must be a valid @epilot/base-elements Icon name
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
+- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean)
 - `required` (Boolean) Default: false
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--user_relation_attribute--settings_flag))

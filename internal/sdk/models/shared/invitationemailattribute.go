@@ -62,6 +62,33 @@ func (o *InvitationEmailAttributeInfoHelpers) GetHintTooltipPlacement() *string 
 	return o.HintTooltipPlacement
 }
 
+// InvitationEmailAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type InvitationEmailAttributeRelationAffinityMode string
+
+const (
+	InvitationEmailAttributeRelationAffinityModeWeak   InvitationEmailAttributeRelationAffinityMode = "weak"
+	InvitationEmailAttributeRelationAffinityModeStrong InvitationEmailAttributeRelationAffinityMode = "strong"
+)
+
+func (e InvitationEmailAttributeRelationAffinityMode) ToPointer() *InvitationEmailAttributeRelationAffinityMode {
+	return &e
+}
+func (e *InvitationEmailAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = InvitationEmailAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InvitationEmailAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type InvitationEmailAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type InvitationEmailAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *InvitationEmailAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *InvitationEmailAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                         `default:"true" json:"enable_relation_picker"`
+	Type                 *InvitationEmailAttributeType `json:"type,omitempty"`
 }
 
 func (i InvitationEmailAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *InvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeInf
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *InvitationEmailAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *InvitationEmailAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *InvitationEmailAttribute) GetRelationAffinityMode() *InvitationEmailAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *InvitationEmailAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *InvitationEmailAttribute) GetType() *InvitationEmailAttributeType {

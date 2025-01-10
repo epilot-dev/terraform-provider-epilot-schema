@@ -64,6 +64,33 @@ func (o *RelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// RelationAttributeRelationAffinityMode - Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
+type RelationAttributeRelationAffinityMode string
+
+const (
+	RelationAttributeRelationAffinityModeWeak   RelationAttributeRelationAffinityMode = "weak"
+	RelationAttributeRelationAffinityModeStrong RelationAttributeRelationAffinityMode = "strong"
+)
+
+func (e RelationAttributeRelationAffinityMode) ToPointer() *RelationAttributeRelationAffinityMode {
+	return &e
+}
+func (e *RelationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = RelationAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RelationAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type RelationAttributeType string
 
 const (
@@ -110,33 +137,6 @@ func (e *RelationType) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for RelationType: %v", v)
-	}
-}
-
-// RelationAffinityMode - Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-type RelationAffinityMode string
-
-const (
-	RelationAffinityModeWeak   RelationAffinityMode = "weak"
-	RelationAffinityModeStrong RelationAffinityMode = "strong"
-)
-
-func (e RelationAffinityMode) ToPointer() *RelationAffinityMode {
-	return &e
-}
-func (e *RelationAffinityMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "weak":
-		fallthrough
-	case "strong":
-		*e = RelationAffinityMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RelationAffinityMode: %v", v)
 	}
 }
 
@@ -211,7 +211,6 @@ type NewEntityItem struct {
 	Tags      []string   `json:"_tags,omitempty"`
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
-	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
 	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
 	ACL     *EntityACL `json:"_acl,omitempty"`
 	Purpose []string   `json:"_purpose,omitempty"`
@@ -285,13 +284,6 @@ func (o *NewEntityItem) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *NewEntityItem) GetDeletedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.DeletedAt
 }
 
 func (o *NewEntityItem) GetACL() *EntityACL {
@@ -525,22 +517,23 @@ type RelationAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeType        `json:"type,omitempty"`
-	RelationType *RelationType                 `json:"relation_type,omitempty"`
+	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                         `json:"has_primary,omitempty"`
+	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
+	RelationAffinityMode *RelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                  `default:"true" json:"enable_relation_picker"`
+	Type                 *RelationAttributeType `json:"type,omitempty"`
+	RelationType         *RelationType          `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
-	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool     `default:"true" json:"enable_relation_picker"`
-	EditMode             *EditMode `json:"edit_mode,omitempty"`
+	EditMode          *EditMode         `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
 	DetailsViewModeEnabled *bool           `default:"false" json:"details_view_mode_enabled"`
 	Actions                []Actions       `json:"actions,omitempty"`
 	DrawerSize             *DrawerSize     `json:"drawer_size,omitempty"`
 	SummaryFields          []SummaryFields `json:"summary_fields,omitempty"`
-	HasPrimary             *bool           `json:"has_primary,omitempty"`
 	AllowedSchemas         []string        `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
@@ -750,6 +743,34 @@ func (o *RelationAttribute) GetInfoHelpers() *RelationAttributeInfoHelpers {
 	return o.InfoHelpers
 }
 
+func (o *RelationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *RelationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *RelationAttribute) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *RelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *RelationAttribute) GetType() *RelationAttributeType {
 	if o == nil {
 		return nil
@@ -769,20 +790,6 @@ func (o *RelationAttribute) GetReverseAttributes() map[string]string {
 		return nil
 	}
 	return o.ReverseAttributes
-}
-
-func (o *RelationAttribute) GetRelationAffinityMode() *RelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *RelationAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
 }
 
 func (o *RelationAttribute) GetEditMode() *EditMode {
@@ -818,13 +825,6 @@ func (o *RelationAttribute) GetSummaryFields() []SummaryFields {
 		return nil
 	}
 	return o.SummaryFields
-}
-
-func (o *RelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
 }
 
 func (o *RelationAttribute) GetAllowedSchemas() []string {
@@ -1048,22 +1048,23 @@ type RelationAttributeInput struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeType        `json:"type,omitempty"`
-	RelationType *RelationType                 `json:"relation_type,omitempty"`
+	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	Repeatable  *bool                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                         `json:"has_primary,omitempty"`
+	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
+	RelationAffinityMode *RelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                  `default:"true" json:"enable_relation_picker"`
+	Type                 *RelationAttributeType `json:"type,omitempty"`
+	RelationType         *RelationType          `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
-	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool     `default:"true" json:"enable_relation_picker"`
-	EditMode             *EditMode `json:"edit_mode,omitempty"`
+	EditMode          *EditMode         `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
 	DetailsViewModeEnabled *bool                      `default:"false" json:"details_view_mode_enabled"`
 	Actions                []RelationAttributeActions `json:"actions,omitempty"`
 	DrawerSize             *DrawerSize                `json:"drawer_size,omitempty"`
 	SummaryFields          []SummaryFields            `json:"summary_fields,omitempty"`
-	HasPrimary             *bool                      `json:"has_primary,omitempty"`
 	AllowedSchemas         []string                   `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
@@ -1273,6 +1274,34 @@ func (o *RelationAttributeInput) GetInfoHelpers() *RelationAttributeInfoHelpers 
 	return o.InfoHelpers
 }
 
+func (o *RelationAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *RelationAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *RelationAttributeInput) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *RelationAttributeInput) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
 func (o *RelationAttributeInput) GetType() *RelationAttributeType {
 	if o == nil {
 		return nil
@@ -1292,20 +1321,6 @@ func (o *RelationAttributeInput) GetReverseAttributes() map[string]string {
 		return nil
 	}
 	return o.ReverseAttributes
-}
-
-func (o *RelationAttributeInput) GetRelationAffinityMode() *RelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *RelationAttributeInput) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
 }
 
 func (o *RelationAttributeInput) GetEditMode() *EditMode {
@@ -1341,13 +1356,6 @@ func (o *RelationAttributeInput) GetSummaryFields() []SummaryFields {
 		return nil
 	}
 	return o.SummaryFields
-}
-
-func (o *RelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
 }
 
 func (o *RelationAttributeInput) GetAllowedSchemas() []string {

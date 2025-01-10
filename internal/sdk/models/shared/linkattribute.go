@@ -62,6 +62,33 @@ func (o *LinkAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// LinkAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type LinkAttributeRelationAffinityMode string
+
+const (
+	LinkAttributeRelationAffinityModeWeak   LinkAttributeRelationAffinityMode = "weak"
+	LinkAttributeRelationAffinityModeStrong LinkAttributeRelationAffinityMode = "strong"
+)
+
+func (e LinkAttributeRelationAffinityMode) ToPointer() *LinkAttributeRelationAffinityMode {
+	return &e
+}
+func (e *LinkAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = LinkAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for LinkAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type LinkAttributeType string
 
 const (
@@ -137,7 +164,13 @@ type LinkAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *LinkAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *LinkAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool              `default:"true" json:"enable_relation_picker"`
+	Type                 *LinkAttributeType `json:"type,omitempty"`
 }
 
 func (l LinkAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +371,34 @@ func (o *LinkAttribute) GetInfoHelpers() *LinkAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *LinkAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *LinkAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *LinkAttribute) GetRelationAffinityMode() *LinkAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *LinkAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *LinkAttribute) GetType() *LinkAttributeType {

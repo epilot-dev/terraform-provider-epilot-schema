@@ -62,6 +62,33 @@ func (o *PaymentMethodRelationAttributeInfoHelpers) GetHintTooltipPlacement() *s
 	return o.HintTooltipPlacement
 }
 
+// PaymentMethodRelationAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type PaymentMethodRelationAttributeRelationAffinityMode string
+
+const (
+	PaymentMethodRelationAttributeRelationAffinityModeWeak   PaymentMethodRelationAttributeRelationAffinityMode = "weak"
+	PaymentMethodRelationAttributeRelationAffinityModeStrong PaymentMethodRelationAttributeRelationAffinityMode = "strong"
+)
+
+func (e PaymentMethodRelationAttributeRelationAffinityMode) ToPointer() *PaymentMethodRelationAttributeRelationAffinityMode {
+	return &e
+}
+func (e *PaymentMethodRelationAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = PaymentMethodRelationAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentMethodRelationAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type PaymentMethodRelationAttributeType string
 
 const (
@@ -137,8 +164,13 @@ type PaymentMethodRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PaymentMethodRelationAttributeType        `json:"type,omitempty"`
+	Repeatable  *bool                                      `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *PaymentMethodRelationAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool                               `default:"true" json:"enable_relation_picker"`
+	Type                 *PaymentMethodRelationAttributeType `json:"type,omitempty"`
 }
 
 func (p PaymentMethodRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -341,11 +373,11 @@ func (o *PaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelation
 	return o.InfoHelpers
 }
 
-func (o *PaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeType {
+func (o *PaymentMethodRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
@@ -353,4 +385,25 @@ func (o *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
 		return nil
 	}
 	return o.HasPrimary
+}
+
+func (o *PaymentMethodRelationAttribute) GetRelationAffinityMode() *PaymentMethodRelationAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *PaymentMethodRelationAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
+}
+
+func (o *PaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

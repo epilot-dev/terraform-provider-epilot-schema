@@ -62,6 +62,33 @@ func (o *FileAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	return o.HintTooltipPlacement
 }
 
+// FileAttributeRelationAffinityMode - Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+type FileAttributeRelationAffinityMode string
+
+const (
+	FileAttributeRelationAffinityModeWeak   FileAttributeRelationAffinityMode = "weak"
+	FileAttributeRelationAffinityModeStrong FileAttributeRelationAffinityMode = "strong"
+)
+
+func (e FileAttributeRelationAffinityMode) ToPointer() *FileAttributeRelationAffinityMode {
+	return &e
+}
+func (e *FileAttributeRelationAffinityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "weak":
+		fallthrough
+	case "strong":
+		*e = FileAttributeRelationAffinityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FileAttributeRelationAffinityMode: %v", v)
+	}
+}
+
 type FileAttributeType string
 
 const (
@@ -166,8 +193,14 @@ type FileAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *FileAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        FileAttributeType         `json:"type"`
-	Multiple    *bool                     `json:"multiple,omitempty"`
+	Repeatable  *bool                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                     `json:"has_primary,omitempty"`
+	// Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+	RelationAffinityMode *FileAttributeRelationAffinityMode `json:"relation_affinity_mode,omitempty"`
+	// when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
+	EnableRelationPicker *bool             `default:"true" json:"enable_relation_picker"`
+	Type                 FileAttributeType `json:"type"`
+	Multiple             *bool             `json:"multiple,omitempty"`
 	// List of file extensions (without the dot suffix)
 	AllowedExtensions []string `json:"allowed_extensions,omitempty"`
 	// Controls how the images are presented to the user during upload on the Entity Details view.
@@ -377,6 +410,34 @@ func (o *FileAttribute) GetInfoHelpers() *FileAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *FileAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *FileAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *FileAttribute) GetRelationAffinityMode() *FileAttributeRelationAffinityMode {
+	if o == nil {
+		return nil
+	}
+	return o.RelationAffinityMode
+}
+
+func (o *FileAttribute) GetEnableRelationPicker() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableRelationPicker
 }
 
 func (o *FileAttribute) GetType() FileAttributeType {

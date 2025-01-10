@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
+type AddressRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintCustomComponent  types.String `tfsdk:"hint_custom_component"`
 	HintText             types.String `tfsdk:"hint_text"`
 	HintTextKey          types.String `tfsdk:"hint_text_key"`
