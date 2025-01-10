@@ -7,14 +7,11 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 type AttributeWithCompositeIDRepeatableAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	AddButtonLabel           types.String                                         `tfsdk:"add_button_label"`
-	AllowedSchemas           []types.String                                       `tfsdk:"allowed_schemas"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EnableRelationPicker     types.Bool                                           `tfsdk:"enable_relation_picker"`
-	EnableRelationTags       types.Bool                                           `tfsdk:"enable_relation_tags"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
@@ -36,9 +33,7 @@ type AttributeWithCompositeIDRepeatableAttribute struct {
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
 	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
-	ReverseAttributes        map[string]types.String                              `tfsdk:"reverse_attributes"`
 	Schema                   types.String                                         `tfsdk:"schema"`
-	SearchPlaceholder        types.String                                         `tfsdk:"search_placeholder"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`
 	Sortable                 types.Bool                                           `tfsdk:"sortable"`

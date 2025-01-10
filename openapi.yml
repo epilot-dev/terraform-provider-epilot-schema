@@ -2930,7 +2930,6 @@ components:
       - $ref: '#/components/schemas/AddressRelationAttribute'
       - $ref: '#/components/schemas/PaymentMethodRelationAttribute'
       - $ref: '#/components/schemas/CurrencyAttribute'
-      - $ref: '#/components/schemas/RepeatableAttribute'
       - $ref: '#/components/schemas/TagsAttribute'
       - $ref: '#/components/schemas/NumberAttribute'
       - $ref: '#/components/schemas/ConsentAttribute'
@@ -3081,6 +3080,32 @@ components:
                 The placement of the hint tooltip.
                 The value should be a valid `@mui/core` tooltip placement.
               example: top
+      # Repeatable attribute added to base attribute
+        repeatable:
+          type: boolean
+        has_primary:
+          type: boolean
+        relation_affinity_mode:
+          description: Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
+          type: string
+          enum:
+          - weak
+          - strong
+        type:
+          type: string
+          enum:
+          - string
+          - phone
+          - email
+          - address
+          - relation
+          - payment
+          - price_component
+          - date
+        enable_relation_picker:
+          type: boolean
+          default: true
+          description: when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. 
       required:
       - name
       - label
@@ -3602,10 +3627,6 @@ components:
             type: boolean
             default: true
             description: when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-          allowedSchemas:
-            type: array
-            items:
-              $ref: '#/components/schemas/EntitySlug'
     TagsAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'

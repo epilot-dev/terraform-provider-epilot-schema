@@ -1196,17 +1196,12 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         value_formatter = "...my_value_formatter..."
       }
       repeatable_attribute = {
-        add_button_label = "...my_add_button_label..."
-        allowed_schemas = [
-          "contact"
-        ]
         constraints = {
           # ...
         }
         default_value               = "{ \"see\": \"documentation\" }"
         deprecated                  = true
         enable_relation_picker      = true
-        enable_relation_tags        = true
         entity_builder_disable_edit = false
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
@@ -1239,10 +1234,6 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         render_condition       = "...my_render_condition..."
         repeatable             = true
         required               = false
-        reverse_attributes = {
-          key = "value",
-        }
-        search_placeholder = "...my_search_placeholder..."
         settings_flag = [
           {
             enabled = false
@@ -3391,14 +3382,11 @@ Optional:
 
 Optional:
 
-- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
-- `allowed_schemas` (List of String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
-- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -3425,8 +3413,6 @@ When a valid expression is parsed, their evaluation defines the visibility of th
 Note: Empty or invalid expression have no effect on the field visibility.
 - `repeatable` (Boolean)
 - `required` (Boolean) Default: false
-- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
-- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true

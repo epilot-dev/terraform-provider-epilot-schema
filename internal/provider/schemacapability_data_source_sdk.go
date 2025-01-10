@@ -1859,11 +1859,6 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				for _, v := range attributesItem.RepeatableAttribute.Purpose {
 					attributes1.RepeatableAttribute.Purpose = append(attributes1.RepeatableAttribute.Purpose, types.StringValue(v))
 				}
-				attributes1.RepeatableAttribute.AddButtonLabel = types.StringPointerValue(attributesItem.RepeatableAttribute.AddButtonLabel)
-				attributes1.RepeatableAttribute.AllowedSchemas = []types.String{}
-				for _, v := range attributesItem.RepeatableAttribute.AllowedSchemas {
-					attributes1.RepeatableAttribute.AllowedSchemas = append(attributes1.RepeatableAttribute.AllowedSchemas, types.StringValue(v))
-				}
 				if attributesItem.RepeatableAttribute.Constraints == nil {
 					attributes1.RepeatableAttribute.Constraints = nil
 				} else {
@@ -1877,7 +1872,6 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes1.RepeatableAttribute.Deprecated = types.BoolPointerValue(attributesItem.RepeatableAttribute.Deprecated)
 				attributes1.RepeatableAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RepeatableAttribute.EnableRelationPicker)
-				attributes1.RepeatableAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem.RepeatableAttribute.EnableRelationTags)
 				attributes1.RepeatableAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RepeatableAttribute.EntityBuilderDisableEdit)
 				attributes1.RepeatableAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RepeatableAttribute.FeatureFlag)
 				attributes1.RepeatableAttribute.Group = types.StringPointerValue(attributesItem.RepeatableAttribute.Group)
@@ -1911,13 +1905,6 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes1.RepeatableAttribute.RenderCondition = types.StringPointerValue(attributesItem.RepeatableAttribute.RenderCondition)
 				attributes1.RepeatableAttribute.Repeatable = types.BoolPointerValue(attributesItem.RepeatableAttribute.Repeatable)
 				attributes1.RepeatableAttribute.Required = types.BoolPointerValue(attributesItem.RepeatableAttribute.Required)
-				if len(attributesItem.RepeatableAttribute.ReverseAttributes) > 0 {
-					attributes1.RepeatableAttribute.ReverseAttributes = make(map[string]types.String)
-					for key1, value2 := range attributesItem.RepeatableAttribute.ReverseAttributes {
-						attributes1.RepeatableAttribute.ReverseAttributes[key1] = types.StringValue(value2)
-					}
-				}
-				attributes1.RepeatableAttribute.SearchPlaceholder = types.StringPointerValue(attributesItem.RepeatableAttribute.SearchPlaceholder)
 				attributes1.RepeatableAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount24, settingsFlagItem24 := range attributesItem.RepeatableAttribute.SettingsFlag {
 					var settingsFlag49 tfTypes.SettingFlag
