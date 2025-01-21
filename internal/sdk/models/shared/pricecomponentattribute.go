@@ -8,13 +8,13 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// MessageEmailAddressAttributeConstraints - A set of constraints applicable to the attribute.
+// PriceComponentAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
-type MessageEmailAddressAttributeConstraints struct {
+type PriceComponentAttributeConstraints struct {
 }
 
-// MessageEmailAddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type MessageEmailAddressAttributeInfoHelpers struct {
+// PriceComponentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type PriceComponentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
 	// When specified it overrides the `hint_text_key` configuration.
 	//
@@ -34,59 +34,59 @@ type MessageEmailAddressAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *MessageEmailAddressAttributeInfoHelpers) GetHintText() *string {
+func (o *PriceComponentAttributeInfoHelpers) GetHintText() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintText
 }
 
-func (o *MessageEmailAddressAttributeInfoHelpers) GetHintTextKey() *string {
+func (o *PriceComponentAttributeInfoHelpers) GetHintTextKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTextKey
 }
 
-func (o *MessageEmailAddressAttributeInfoHelpers) GetHintCustomComponent() *string {
+func (o *PriceComponentAttributeInfoHelpers) GetHintCustomComponent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintCustomComponent
 }
 
-func (o *MessageEmailAddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+func (o *PriceComponentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTooltipPlacement
 }
 
-type MessageEmailAddressAttributeType string
+type PriceComponentAttributeType string
 
 const (
-	MessageEmailAddressAttributeTypeMessageEmailAddress MessageEmailAddressAttributeType = "message_email_address"
+	PriceComponentAttributeTypePriceComponent PriceComponentAttributeType = "price_component"
 )
 
-func (e MessageEmailAddressAttributeType) ToPointer() *MessageEmailAddressAttributeType {
+func (e PriceComponentAttributeType) ToPointer() *PriceComponentAttributeType {
 	return &e
 }
-func (e *MessageEmailAddressAttributeType) UnmarshalJSON(data []byte) error {
+func (e *PriceComponentAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "message_email_address":
-		*e = MessageEmailAddressAttributeType(v)
+	case "price_component":
+		*e = PriceComponentAttributeType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MessageEmailAddressAttributeType: %v", v)
+		return fmt.Errorf("invalid value for PriceComponentAttributeType: %v", v)
 	}
 }
 
-// MessageEmailAddressAttribute - Message emil address
-type MessageEmailAddressAttribute struct {
+// PriceComponentAttribute - Price component
+type PriceComponentAttribute struct {
 	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
@@ -124,7 +124,7 @@ type MessageEmailAddressAttribute struct {
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
-	Constraints *MessageEmailAddressAttributeConstraints `json:"constraints,omitempty"`
+	Constraints *PriceComponentAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
@@ -136,237 +136,230 @@ type MessageEmailAddressAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *MessageEmailAddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        MessageEmailAddressAttributeType         `json:"type"`
-	Address     string                                   `json:"address"`
-	SendStatus  *string                                  `json:"send_status,omitempty"`
-	EmailType   *string                                  `json:"email_type,omitempty"`
+	InfoHelpers *PriceComponentAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                        `json:"has_primary,omitempty"`
+	Type       *PriceComponentAttributeType `json:"type,omitempty"`
 }
 
-func (m MessageEmailAddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
+func (p PriceComponentAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (m *MessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+func (p *PriceComponentAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MessageEmailAddressAttribute) GetID() *string {
+func (o *PriceComponentAttribute) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *MessageEmailAddressAttribute) GetName() string {
+func (o *PriceComponentAttribute) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *MessageEmailAddressAttribute) GetLabel() string {
+func (o *PriceComponentAttribute) GetLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.Label
 }
 
-func (o *MessageEmailAddressAttribute) GetPlaceholder() *string {
+func (o *PriceComponentAttribute) GetPlaceholder() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Placeholder
 }
 
-func (o *MessageEmailAddressAttribute) GetHidden() *bool {
+func (o *PriceComponentAttribute) GetHidden() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *MessageEmailAddressAttribute) GetShowInTable() *bool {
+func (o *PriceComponentAttribute) GetShowInTable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowInTable
 }
 
-func (o *MessageEmailAddressAttribute) GetSortable() *bool {
+func (o *PriceComponentAttribute) GetSortable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Sortable
 }
 
-func (o *MessageEmailAddressAttribute) GetRequired() *bool {
+func (o *PriceComponentAttribute) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *MessageEmailAddressAttribute) GetReadonly() *bool {
+func (o *PriceComponentAttribute) GetReadonly() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Readonly
 }
 
-func (o *MessageEmailAddressAttribute) GetDeprecated() *bool {
+func (o *PriceComponentAttribute) GetDeprecated() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Deprecated
 }
 
-func (o *MessageEmailAddressAttribute) GetDefaultValue() any {
+func (o *PriceComponentAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultValue
 }
 
-func (o *MessageEmailAddressAttribute) GetGroup() *string {
+func (o *PriceComponentAttribute) GetGroup() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Group
 }
 
-func (o *MessageEmailAddressAttribute) GetOrder() *int64 {
+func (o *PriceComponentAttribute) GetOrder() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *MessageEmailAddressAttribute) GetLayout() *string {
+func (o *PriceComponentAttribute) GetLayout() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Layout
 }
 
-func (o *MessageEmailAddressAttribute) GetHideLabel() *bool {
+func (o *PriceComponentAttribute) GetHideLabel() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideLabel
 }
 
-func (o *MessageEmailAddressAttribute) GetIcon() *string {
+func (o *PriceComponentAttribute) GetIcon() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Icon
 }
 
-func (o *MessageEmailAddressAttribute) GetRenderCondition() *string {
+func (o *PriceComponentAttribute) GetRenderCondition() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RenderCondition
 }
 
-func (o *MessageEmailAddressAttribute) GetPurpose() []string {
+func (o *PriceComponentAttribute) GetPurpose() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Purpose
 }
 
-func (o *MessageEmailAddressAttribute) GetManifest() []string {
+func (o *PriceComponentAttribute) GetManifest() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Manifest
 }
 
-func (o *MessageEmailAddressAttribute) GetConstraints() *MessageEmailAddressAttributeConstraints {
+func (o *PriceComponentAttribute) GetConstraints() *PriceComponentAttributeConstraints {
 	if o == nil {
 		return nil
 	}
 	return o.Constraints
 }
 
-func (o *MessageEmailAddressAttribute) GetFeatureFlag() *string {
+func (o *PriceComponentAttribute) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureFlag
 }
 
-func (o *MessageEmailAddressAttribute) GetSettingsFlag() []SettingFlag {
+func (o *PriceComponentAttribute) GetSettingsFlag() []SettingFlag {
 	if o == nil {
 		return nil
 	}
 	return o.SettingsFlag
 }
 
-func (o *MessageEmailAddressAttribute) GetValueFormatter() *string {
+func (o *PriceComponentAttribute) GetValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ValueFormatter
 }
 
-func (o *MessageEmailAddressAttribute) GetPreviewValueFormatter() *string {
+func (o *PriceComponentAttribute) GetPreviewValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PreviewValueFormatter
 }
 
-func (o *MessageEmailAddressAttribute) GetEntityBuilderDisableEdit() *bool {
+func (o *PriceComponentAttribute) GetEntityBuilderDisableEdit() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.EntityBuilderDisableEdit
 }
 
-func (o *MessageEmailAddressAttribute) GetProtected() *bool {
+func (o *PriceComponentAttribute) GetProtected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Protected
 }
 
-func (o *MessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttributeInfoHelpers {
+func (o *PriceComponentAttribute) GetInfoHelpers() *PriceComponentAttributeInfoHelpers {
 	if o == nil {
 		return nil
 	}
 	return o.InfoHelpers
 }
 
-func (o *MessageEmailAddressAttribute) GetType() MessageEmailAddressAttributeType {
+func (o *PriceComponentAttribute) GetRepeatable() *bool {
 	if o == nil {
-		return MessageEmailAddressAttributeType("")
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *PriceComponentAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *PriceComponentAttribute) GetType() *PriceComponentAttributeType {
+	if o == nil {
+		return nil
 	}
 	return o.Type
-}
-
-func (o *MessageEmailAddressAttribute) GetAddress() string {
-	if o == nil {
-		return ""
-	}
-	return o.Address
-}
-
-func (o *MessageEmailAddressAttribute) GetSendStatus() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SendStatus
-}
-
-func (o *MessageEmailAddressAttribute) GetEmailType() *string {
-	if o == nil {
-		return nil
-	}
-	return o.EmailType
 }

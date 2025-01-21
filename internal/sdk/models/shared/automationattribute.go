@@ -137,7 +137,10 @@ type AutomationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AutomationAttributeType        `json:"type,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                    `json:"has_primary,omitempty"`
+	Type       *AutomationAttributeType `json:"type,omitempty"`
 }
 
 func (a AutomationAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +341,20 @@ func (o *AutomationAttribute) GetInfoHelpers() *AutomationAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *AutomationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AutomationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *AutomationAttribute) GetType() *AutomationAttributeType {

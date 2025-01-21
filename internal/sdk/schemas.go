@@ -411,27 +411,6 @@ func (s *Schemas) GetSchema(ctx context.Context, request operations.GetSchemaReq
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -499,7 +478,9 @@ func (s *Schemas) PutSchema(ctx context.Context, request operations.PutSchemaReq
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1855,7 +1836,9 @@ func (s *Schemas) CreateSchemaAttribute(ctx context.Context, request *shared.Att
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2182,27 +2165,6 @@ func (s *Schemas) GetSchemaAttribute(ctx context.Context, request operations.Get
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -2270,7 +2232,9 @@ func (s *Schemas) PutSchemaAttribute(ctx context.Context, request operations.Put
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2664,7 +2628,9 @@ func (s *Schemas) CreateSchemaCapability(ctx context.Context, request *shared.En
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2991,27 +2957,6 @@ func (s *Schemas) GetSchemaCapability(ctx context.Context, request operations.Ge
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -3079,7 +3024,9 @@ func (s *Schemas) PutSchemaCapability(ctx context.Context, request operations.Pu
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -3473,7 +3420,9 @@ func (s *Schemas) CreateSchemaGroup(ctx context.Context, request *shared.EntityS
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -3800,27 +3749,6 @@ func (s *Schemas) GetSchemaGroup(ctx context.Context, request operations.GetSche
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -3888,7 +3816,9 @@ func (s *Schemas) PutSchemaGroup(ctx context.Context, request operations.PutSche
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -4282,7 +4212,9 @@ func (s *Schemas) CreateSchemaGroupHeadline(ctx context.Context, request *shared
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -4609,27 +4541,6 @@ func (s *Schemas) GetSchemaGroupHeadline(ctx context.Context, request operations
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -4697,7 +4608,9 @@ func (s *Schemas) PutSchemaGroupHeadline(ctx context.Context, request operations
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

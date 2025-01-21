@@ -8,13 +8,13 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// AddressAttributeConstraints - A set of constraints applicable to the attribute.
+// PaymentAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
-type AddressAttributeConstraints struct {
+type PaymentAttributeConstraints struct {
 }
 
-// AddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type AddressAttributeInfoHelpers struct {
+// PaymentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type PaymentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
 	// When specified it overrides the `hint_text_key` configuration.
 	//
@@ -34,59 +34,59 @@ type AddressAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintText() *string {
+func (o *PaymentAttributeInfoHelpers) GetHintText() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintText
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTextKey() *string {
+func (o *PaymentAttributeInfoHelpers) GetHintTextKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTextKey
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintCustomComponent() *string {
+func (o *PaymentAttributeInfoHelpers) GetHintCustomComponent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintCustomComponent
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+func (o *PaymentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTooltipPlacement
 }
 
-type AddressAttributeType string
+type PaymentAttributeType string
 
 const (
-	AddressAttributeTypeAddress AddressAttributeType = "address"
+	PaymentAttributeTypePayment PaymentAttributeType = "payment"
 )
 
-func (e AddressAttributeType) ToPointer() *AddressAttributeType {
+func (e PaymentAttributeType) ToPointer() *PaymentAttributeType {
 	return &e
 }
-func (e *AddressAttributeType) UnmarshalJSON(data []byte) error {
+func (e *PaymentAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "address":
-		*e = AddressAttributeType(v)
+	case "payment":
+		*e = PaymentAttributeType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddressAttributeType: %v", v)
+		return fmt.Errorf("invalid value for PaymentAttributeType: %v", v)
 	}
 }
 
-// AddressAttribute - Physical Address
-type AddressAttribute struct {
+// PaymentAttribute - Payment method
+type PaymentAttribute struct {
 	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
@@ -124,7 +124,7 @@ type AddressAttribute struct {
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
-	Constraints *AddressAttributeConstraints `json:"constraints,omitempty"`
+	Constraints *PaymentAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
@@ -136,228 +136,228 @@ type AddressAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	InfoHelpers *PaymentAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *AddressAttributeType `json:"type,omitempty"`
+	Type       *PaymentAttributeType `json:"type,omitempty"`
 }
 
-func (a AddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (p PaymentAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (a *AddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+func (p *PaymentAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AddressAttribute) GetID() *string {
+func (o *PaymentAttribute) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddressAttribute) GetName() string {
+func (o *PaymentAttribute) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *AddressAttribute) GetLabel() string {
+func (o *PaymentAttribute) GetLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.Label
 }
 
-func (o *AddressAttribute) GetPlaceholder() *string {
+func (o *PaymentAttribute) GetPlaceholder() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Placeholder
 }
 
-func (o *AddressAttribute) GetHidden() *bool {
+func (o *PaymentAttribute) GetHidden() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *AddressAttribute) GetShowInTable() *bool {
+func (o *PaymentAttribute) GetShowInTable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowInTable
 }
 
-func (o *AddressAttribute) GetSortable() *bool {
+func (o *PaymentAttribute) GetSortable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Sortable
 }
 
-func (o *AddressAttribute) GetRequired() *bool {
+func (o *PaymentAttribute) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *AddressAttribute) GetReadonly() *bool {
+func (o *PaymentAttribute) GetReadonly() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Readonly
 }
 
-func (o *AddressAttribute) GetDeprecated() *bool {
+func (o *PaymentAttribute) GetDeprecated() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Deprecated
 }
 
-func (o *AddressAttribute) GetDefaultValue() any {
+func (o *PaymentAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultValue
 }
 
-func (o *AddressAttribute) GetGroup() *string {
+func (o *PaymentAttribute) GetGroup() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Group
 }
 
-func (o *AddressAttribute) GetOrder() *int64 {
+func (o *PaymentAttribute) GetOrder() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *AddressAttribute) GetLayout() *string {
+func (o *PaymentAttribute) GetLayout() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Layout
 }
 
-func (o *AddressAttribute) GetHideLabel() *bool {
+func (o *PaymentAttribute) GetHideLabel() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideLabel
 }
 
-func (o *AddressAttribute) GetIcon() *string {
+func (o *PaymentAttribute) GetIcon() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Icon
 }
 
-func (o *AddressAttribute) GetRenderCondition() *string {
+func (o *PaymentAttribute) GetRenderCondition() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RenderCondition
 }
 
-func (o *AddressAttribute) GetPurpose() []string {
+func (o *PaymentAttribute) GetPurpose() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Purpose
 }
 
-func (o *AddressAttribute) GetManifest() []string {
+func (o *PaymentAttribute) GetManifest() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Manifest
 }
 
-func (o *AddressAttribute) GetConstraints() *AddressAttributeConstraints {
+func (o *PaymentAttribute) GetConstraints() *PaymentAttributeConstraints {
 	if o == nil {
 		return nil
 	}
 	return o.Constraints
 }
 
-func (o *AddressAttribute) GetFeatureFlag() *string {
+func (o *PaymentAttribute) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureFlag
 }
 
-func (o *AddressAttribute) GetSettingsFlag() []SettingFlag {
+func (o *PaymentAttribute) GetSettingsFlag() []SettingFlag {
 	if o == nil {
 		return nil
 	}
 	return o.SettingsFlag
 }
 
-func (o *AddressAttribute) GetValueFormatter() *string {
+func (o *PaymentAttribute) GetValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ValueFormatter
 }
 
-func (o *AddressAttribute) GetPreviewValueFormatter() *string {
+func (o *PaymentAttribute) GetPreviewValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PreviewValueFormatter
 }
 
-func (o *AddressAttribute) GetEntityBuilderDisableEdit() *bool {
+func (o *PaymentAttribute) GetEntityBuilderDisableEdit() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.EntityBuilderDisableEdit
 }
 
-func (o *AddressAttribute) GetProtected() *bool {
+func (o *PaymentAttribute) GetProtected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Protected
 }
 
-func (o *AddressAttribute) GetInfoHelpers() *AddressAttributeInfoHelpers {
+func (o *PaymentAttribute) GetInfoHelpers() *PaymentAttributeInfoHelpers {
 	if o == nil {
 		return nil
 	}
 	return o.InfoHelpers
 }
 
-func (o *AddressAttribute) GetRepeatable() *bool {
+func (o *PaymentAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Repeatable
 }
 
-func (o *AddressAttribute) GetHasPrimary() *bool {
+func (o *PaymentAttribute) GetHasPrimary() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() *AddressAttributeType {
+func (o *PaymentAttribute) GetType() *PaymentAttributeType {
 	if o == nil {
 		return nil
 	}

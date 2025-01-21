@@ -28,8 +28,6 @@ type GetSchemaGroupResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntitySchemaGroupWithCompositeID *shared.EntitySchemaGroupWithCompositeID
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSchemaGroupResponse) GetContentType() string {
@@ -58,11 +56,4 @@ func (o *GetSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.E
 		return nil
 	}
 	return o.EntitySchemaGroupWithCompositeID
-}
-
-func (o *GetSchemaGroupResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

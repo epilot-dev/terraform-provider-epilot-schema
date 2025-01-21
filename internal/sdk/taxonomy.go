@@ -280,7 +280,9 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -608,27 +610,6 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -696,7 +677,9 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1074,7 +1057,9 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1200,27 +1185,6 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 			}
 
 			res.Object = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1423,26 +1387,6 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1510,7 +1454,9 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2103,7 +2049,9 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -2704,7 +2652,9 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2906,7 +2856,9 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

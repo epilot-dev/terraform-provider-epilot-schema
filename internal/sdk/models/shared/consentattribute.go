@@ -137,9 +137,12 @@ type ConsentAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ConsentAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        ConsentAttributeType         `json:"type"`
-	Topic       string                       `json:"topic"`
-	Identifiers []string                     `json:"identifiers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable  *bool                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                `json:"has_primary,omitempty"`
+	Type        ConsentAttributeType `json:"type"`
+	Topic       string               `json:"topic"`
+	Identifiers []string             `json:"identifiers,omitempty"`
 }
 
 func (c ConsentAttribute) MarshalJSON() ([]byte, error) {
@@ -340,6 +343,20 @@ func (o *ConsentAttribute) GetInfoHelpers() *ConsentAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ConsentAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *ConsentAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *ConsentAttribute) GetType() ConsentAttributeType {

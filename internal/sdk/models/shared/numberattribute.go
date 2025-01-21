@@ -137,8 +137,11 @@ type NumberAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *NumberAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *NumberAttributeType        `json:"type,omitempty"`
-	Format      *string                     `json:"format,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                `json:"repeatable,omitempty"`
+	HasPrimary *bool                `json:"has_primary,omitempty"`
+	Type       *NumberAttributeType `json:"type,omitempty"`
+	Format     *string              `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool `default:"true" json:"show_separator"`
 }
@@ -341,6 +344,20 @@ func (o *NumberAttribute) GetInfoHelpers() *NumberAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *NumberAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *NumberAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *NumberAttribute) GetType() *NumberAttributeType {

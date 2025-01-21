@@ -2916,6 +2916,7 @@ components:
             example: contact
     Attribute:
       anyOf:
+      # @TODO: order these
       - $ref: '#/components/schemas/TextAttribute'
       - $ref: '#/components/schemas/LinkAttribute'
       - $ref: '#/components/schemas/DateAttribute'
@@ -2930,7 +2931,6 @@ components:
       - $ref: '#/components/schemas/AddressRelationAttribute'
       - $ref: '#/components/schemas/PaymentMethodRelationAttribute'
       - $ref: '#/components/schemas/CurrencyAttribute'
-      - $ref: '#/components/schemas/RepeatableAttribute'
       - $ref: '#/components/schemas/TagsAttribute'
       - $ref: '#/components/schemas/NumberAttribute'
       - $ref: '#/components/schemas/ConsentAttribute'
@@ -2944,6 +2944,11 @@ components:
       - $ref: '#/components/schemas/InternalUserAttribute'
       - $ref: '#/components/schemas/PurposeAttribute'
       - $ref: '#/components/schemas/PartnerOrganisationAttribute'
+      - $ref: '#/components/schemas/AddressAttribute'
+      - $ref: '#/components/schemas/PhoneAttribute'
+      - $ref: '#/components/schemas/EmailAttribute'
+      - $ref: '#/components/schemas/PaymentAttribute'
+      - $ref: '#/components/schemas/PriceComponentAttribute'
     AttributeWithCompositeID:
       allOf:
       - $ref: '#/components/schemas/Attribute'
@@ -3081,6 +3086,12 @@ components:
                 The placement of the hint tooltip.
                 The value should be a valid `@mui/core` tooltip placement.
               example: top
+        # repeatable properties  
+        repeatable:
+          description: The attribute is a repeatable
+          type: boolean
+        has_primary:
+          type: boolean
       required:
       - name
       - label
@@ -3441,6 +3452,7 @@ components:
                     $ref: '#/components/schemas/SettingFlag'
                 new_entity_item:
                   type: object
+                  nullable: true
                   allOf:
                   - $ref: '#/components/schemas/EntityItem'
             example:
@@ -3483,6 +3495,11 @@ components:
           search_placeholder:
             type: string
             description: Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
+          repeatable:
+            description: Relations are always repeatables
+            type: boolean
+            # const: true
+            default: true
     UserRelationAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
@@ -3581,31 +3598,6 @@ components:
             type: boolean
           has_primary:
             type: boolean
-          relation_affinity_mode:
-            description: Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity.
-            type: string
-            enum:
-            - weak
-            - strong
-          type:
-            type: string
-            enum:
-            - string
-            - phone
-            - email
-            - address
-            - relation
-            - payment
-            - price_component
-            - date
-          enable_relation_picker:
-            type: boolean
-            default: true
-            description: when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-          allowedSchemas:
-            type: array
-            items:
-              $ref: '#/components/schemas/EntitySlug'
     TagsAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
@@ -3669,6 +3661,56 @@ components:
             type: string
             enum:
             - ordered_list
+    EmailAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Email address
+        properties:
+          type:
+            type: string
+            enum:
+            - email
+    PhoneAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Phone number
+        properties:
+          type:
+            type: string
+            enum:
+            - phone
+    AddressAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Physical Address
+        properties:
+          type:
+            type: string
+            enum:
+            - address
+    PaymentAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Payment method
+        properties:
+          type:
+            type: string
+            enum:
+            - payment
+    PriceComponentAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Price component
+        properties:
+          type:
+            type: string
+            enum:
+            - price_component
     ComputedAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'

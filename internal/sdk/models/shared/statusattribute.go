@@ -222,8 +222,11 @@ type StatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *StatusAttributeType        `json:"type,omitempty"`
-	Options     []StatusAttributeOptions    `json:"options,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                    `json:"has_primary,omitempty"`
+	Type       *StatusAttributeType     `json:"type,omitempty"`
+	Options    []StatusAttributeOptions `json:"options,omitempty"`
 }
 
 func (s StatusAttribute) MarshalJSON() ([]byte, error) {
@@ -424,6 +427,20 @@ func (o *StatusAttribute) GetInfoHelpers() *StatusAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *StatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *StatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *StatusAttribute) GetType() *StatusAttributeType {

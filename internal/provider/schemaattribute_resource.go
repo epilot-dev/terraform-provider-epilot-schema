@@ -39,59 +39,63 @@ type SchemaAttributeResource struct {
 
 // SchemaAttributeResourceModel describes the resource data model.
 type SchemaAttributeResourceModel struct {
-	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute               `tfsdk:"address_attribute" tfPlanOnly:"true"`
-	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressRelationAttribute       `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
-	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"automation_attribute" tfPlanOnly:"true"`
-	BooleanAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
-	CompositeID                    types.String                                                    `tfsdk:"composite_id"`
-	ComputedAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"computed_attribute" tfPlanOnly:"true"`
-	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute               `tfsdk:"consent_attribute" tfPlanOnly:"true"`
-	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"country_attribute" tfPlanOnly:"true"`
-	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute              `tfsdk:"currency_attribute" tfPlanOnly:"true"`
-	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"date_attribute" tfPlanOnly:"true"`
-	Deprecated                     types.Bool                                                      `tfsdk:"deprecated"`
-	EntityBuilderDisableEdit       types.Bool                                                      `tfsdk:"entity_builder_disable_edit"`
-	FeatureFlag                    types.String                                                    `tfsdk:"feature_flag"`
-	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                  `tfsdk:"file_attribute" tfPlanOnly:"true"`
-	Group                          types.String                                                    `tfsdk:"group"`
-	Hidden                         types.Bool                                                      `tfsdk:"hidden"`
-	HideLabel                      types.Bool                                                      `tfsdk:"hide_label"`
-	Icon                           types.String                                                    `tfsdk:"icon"`
-	ID                             types.String                                                    `tfsdk:"id"`
-	InternalAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"internal_attribute" tfPlanOnly:"true"`
-	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
-	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
-	Label                          types.String                                                    `tfsdk:"label"`
-	Layout                         types.String                                                    `tfsdk:"layout"`
-	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"link_attribute" tfPlanOnly:"true"`
-	MessageEmailAddressAttribute   *tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute   `tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
-	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute           `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
-	Name                           types.String                                                    `tfsdk:"name"`
-	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute                `tfsdk:"number_attribute" tfPlanOnly:"true"`
-	Order                          types.Int64                                                     `tfsdk:"order"`
-	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
-	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
-	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAutomationAttribute            `tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
-	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
-	Placeholder                    types.String                                                    `tfsdk:"placeholder"`
-	PreviewValueFormatter          types.String                                                    `tfsdk:"preview_value_formatter"`
-	Protected                      types.Bool                                                      `tfsdk:"protected"`
-	PurposeAttribute               *tfTypes.AttributeWithCompositeIDPurposeAttribute               `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
-	Readonly                       types.Bool                                                      `tfsdk:"readonly"`
-	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute              `tfsdk:"relation_attribute" tfPlanOnly:"true"`
-	RenderCondition                types.String                                                    `tfsdk:"render_condition"`
-	RepeatableAttribute            *tfTypes.AttributeWithCompositeIDRepeatableAttribute            `tfsdk:"repeatable_attribute" tfPlanOnly:"true"`
-	Required                       types.Bool                                                      `tfsdk:"required"`
-	Schema                         types.String                                                    `tfsdk:"schema"`
-	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute                `tfsdk:"select_attribute" tfPlanOnly:"true"`
-	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute              `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
-	ShowInTable                    types.Bool                                                      `tfsdk:"show_in_table"`
-	Sortable                       types.Bool                                                      `tfsdk:"sortable"`
-	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute                `tfsdk:"status_attribute" tfPlanOnly:"true"`
-	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                  `tfsdk:"tags_attribute" tfPlanOnly:"true"`
-	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                  `tfsdk:"text_attribute" tfPlanOnly:"true"`
-	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute          `tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
-	ValueFormatter                 types.String                                                    `tfsdk:"value_formatter"`
+	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"address_attribute" tfPlanOnly:"true"`
+	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
+	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"automation_attribute" tfPlanOnly:"true"`
+	BooleanAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
+	CompositeID                    types.String                                           `tfsdk:"composite_id"`
+	ComputedAttribute              *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"computed_attribute" tfPlanOnly:"true"`
+	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute      `tfsdk:"consent_attribute" tfPlanOnly:"true"`
+	CountryAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"country_attribute" tfPlanOnly:"true"`
+	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute     `tfsdk:"currency_attribute" tfPlanOnly:"true"`
+	DateAttribute                  *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"date_attribute" tfPlanOnly:"true"`
+	Deprecated                     types.Bool                                             `tfsdk:"deprecated"`
+	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"email_attribute" tfPlanOnly:"true"`
+	EntityBuilderDisableEdit       types.Bool                                             `tfsdk:"entity_builder_disable_edit"`
+	FeatureFlag                    types.String                                           `tfsdk:"feature_flag"`
+	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute         `tfsdk:"file_attribute" tfPlanOnly:"true"`
+	Group                          types.String                                           `tfsdk:"group"`
+	HasPrimary                     types.Bool                                             `tfsdk:"has_primary"`
+	Hidden                         types.Bool                                             `tfsdk:"hidden"`
+	HideLabel                      types.Bool                                             `tfsdk:"hide_label"`
+	Icon                           types.String                                           `tfsdk:"icon"`
+	ID                             types.String                                           `tfsdk:"id"`
+	InternalAttribute              *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"internal_attribute" tfPlanOnly:"true"`
+	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
+	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
+	Label                          types.String                                           `tfsdk:"label"`
+	Layout                         types.String                                           `tfsdk:"layout"`
+	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"link_attribute" tfPlanOnly:"true"`
+	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute  `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
+	Name                           types.String                                           `tfsdk:"name"`
+	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute       `tfsdk:"number_attribute" tfPlanOnly:"true"`
+	Order                          types.Int64                                            `tfsdk:"order"`
+	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
+	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
+	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
+	PaymentAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"payment_attribute" tfPlanOnly:"true"`
+	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
+	PhoneAttribute                 *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"phone_attribute" tfPlanOnly:"true"`
+	Placeholder                    types.String                                           `tfsdk:"placeholder"`
+	PreviewValueFormatter          types.String                                           `tfsdk:"preview_value_formatter"`
+	PriceComponentAttribute        *tfTypes.AttributeWithCompositeIDAddressAttribute      `tfsdk:"price_component_attribute" tfPlanOnly:"true"`
+	Protected                      types.Bool                                             `tfsdk:"protected"`
+	PurposeAttribute               *tfTypes.AttributeWithCompositeIDPurposeAttribute      `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
+	Readonly                       types.Bool                                             `tfsdk:"readonly"`
+	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute     `tfsdk:"relation_attribute" tfPlanOnly:"true"`
+	RenderCondition                types.String                                           `tfsdk:"render_condition"`
+	Repeatable                     types.Bool                                             `tfsdk:"repeatable"`
+	Required                       types.Bool                                             `tfsdk:"required"`
+	Schema                         types.String                                           `tfsdk:"schema"`
+	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute       `tfsdk:"select_attribute" tfPlanOnly:"true"`
+	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute     `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
+	ShowInTable                    types.Bool                                             `tfsdk:"show_in_table"`
+	Sortable                       types.Bool                                             `tfsdk:"sortable"`
+	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute       `tfsdk:"status_attribute" tfPlanOnly:"true"`
+	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute         `tfsdk:"tags_attribute" tfPlanOnly:"true"`
+	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute         `tfsdk:"text_attribute" tfPlanOnly:"true"`
+	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute `tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	ValueFormatter                 types.String                                           `tfsdk:"value_formatter"`
 }
 
 func (r *SchemaAttributeResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -114,269 +118,6 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional: true,
 						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 							`These constraints should and will be enforced by the attribute renderer.`,
-					},
-					"default_address_fields": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Default fields visible on addresses`,
-					},
-					"default_value": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Parsed as JSON.`,
-						Validators: []validator.String{
-							validators.IsValidJSON(),
-						},
-					},
-					"deprecated": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"entity_builder_disable_edit": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
-					},
-					"feature_flag": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `This attribute should only be active when the feature flag is enabled`,
-					},
-					"group": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-					},
-					"hidden": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Do not render attribute in entity views. Default: false`,
-					},
-					"hide_label": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `When set to true, will hide the label of the field.`,
-					},
-					"icon": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-							`The value must be a valid @epilot/base-elements Icon name`,
-					},
-					"id": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `ID for the entity attribute`,
-					},
-					"info_helpers": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"hint_custom_component": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text_key": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-									`The key should be a valid i18n key.`,
-							},
-							"hint_tooltip_placement": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
-							},
-						},
-						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-					},
-					"label": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"layout": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"manifest": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Manifest ID used to create/update the schema attribute`,
-					},
-					"name": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"order": schema.Int64Attribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Attribute sort order (ascending) in group`,
-					},
-					"placeholder": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"preview_value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"protected": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-					},
-					"purpose": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					"readonly": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"render_condition": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-							`Note: Empty or invalid expression have no effect on the field visibility.`,
-					},
-					"required": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"schema": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Schema slug the attribute belongs to`,
-					},
-					"settings_flag": schema.ListNestedAttribute{
-						Computed: true,
-						Optional: true,
-						NestedObject: schema.NestedAttributeObject{
-							Validators: []validator.Object{
-								speakeasy_objectvalidators.NotNull(),
-							},
-							Attributes: map[string]schema.Attribute{
-								"enabled": schema.BoolAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `Whether the setting should be enabled or not`,
-								},
-								"name": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `The name of the organization setting to check`,
-								},
-							},
-						},
-						Description: `This attribute should only be active when one of the provided settings have the correct value`,
-					},
-					"show_in_table": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-					},
-					"sortable": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(true),
-						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
-					},
-					"type": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `must be "address"`,
-						Validators: []validator.String{
-							stringvalidator.OneOf("address"),
-						},
-					},
-					"value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-				},
-				Description: `Address attribute`,
-				Validators: []validator.Object{
-					objectvalidator.ConflictsWith(path.Expressions{
-						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("automation_attribute"),
-						path.MatchRelative().AtParent().AtName("boolean_attribute"),
-						path.MatchRelative().AtParent().AtName("computed_attribute"),
-						path.MatchRelative().AtParent().AtName("consent_attribute"),
-						path.MatchRelative().AtParent().AtName("country_attribute"),
-						path.MatchRelative().AtParent().AtName("currency_attribute"),
-						path.MatchRelative().AtParent().AtName("date_attribute"),
-						path.MatchRelative().AtParent().AtName("file_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
-						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
-						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
-						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
-						path.MatchRelative().AtParent().AtName("number_attribute"),
-						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
-						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("purpose_attribute"),
-						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
-						path.MatchRelative().AtParent().AtName("select_attribute"),
-						path.MatchRelative().AtParent().AtName("sequence_attribute"),
-						path.MatchRelative().AtParent().AtName("status_attribute"),
-						path.MatchRelative().AtParent().AtName("tags_attribute"),
-						path.MatchRelative().AtParent().AtName("text_attribute"),
-						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
-					}...),
-				},
-			},
-			"address_relation_attribute": schema.SingleNestedAttribute{
-				Computed: true,
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"composite_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"constraints": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-							`These constraints should and will be enforced by the attribute renderer.`,
-					},
-					"default_address_fields": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Default fields visible on addresses`,
 					},
 					"default_value": schema.StringAttribute{
 						Computed:    true,
@@ -528,6 +269,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -575,11 +321,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "relation_address"`,
+						Description: `must be "address"`,
 						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"relation_address",
-							),
+							stringvalidator.OneOf("address"),
 						},
 					},
 					"value_formatter": schema.StringAttribute{
@@ -587,10 +331,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional: true,
 					},
 				},
-				Description: `Reference to an address attribute of another entity`,
+				Description: `Physical Address`,
 				Validators: []validator.Object{
 					objectvalidator.ConflictsWith(path.Expressions{
-						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
 						path.MatchRelative().AtParent().AtName("automation_attribute"),
 						path.MatchRelative().AtParent().AtName("boolean_attribute"),
 						path.MatchRelative().AtParent().AtName("computed_attribute"),
@@ -598,21 +342,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -622,7 +368,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					}...),
 				},
 			},
-			"automation_attribute": schema.SingleNestedAttribute{
+			"address_relation_attribute": schema.SingleNestedAttribute{
 				Computed: true,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
@@ -664,6 +410,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -780,6 +530,275 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `must be "relation_address"`,
+						Validators: []validator.String{
+							stringvalidator.OneOf(
+								"relation_address",
+							),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Reference to an address attribute of another entity`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
+			},
+			"automation_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+						Validators: []validator.String{
+							validators.IsValidJSON(),
+						},
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -851,21 +870,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -917,6 +938,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -1033,6 +1058,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -1102,21 +1132,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -1175,6 +1207,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -1292,6 +1328,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -1360,21 +1401,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -1426,6 +1469,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -1548,6 +1595,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -1625,21 +1677,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -1691,6 +1745,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -1808,6 +1866,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -1876,21 +1939,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("consent_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -1999,6 +2064,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
 					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -2114,6 +2183,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -2184,21 +2258,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("consent_attribute"),
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -2250,6 +2326,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -2366,6 +2446,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -2438,21 +2523,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("consent_attribute"),
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -2466,6 +2553,268 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed:    true,
 				Default:     booldefault.StaticBool(false),
 				Description: `Default: false`,
+			},
+			"email_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+						Validators: []validator.String{
+							validators.IsValidJSON(),
+						},
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `must be "email"`,
+						Validators: []validator.String{
+							stringvalidator.OneOf("email"),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Email address`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
 			},
 			"entity_builder_disable_edit": schema.BoolAttribute{
 				Computed:    true,
@@ -2546,6 +2895,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -2667,6 +3020,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -2740,20 +3098,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -2766,6 +3126,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 			"group": schema.StringAttribute{
 				Computed:    true,
 				Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+			},
+			"has_primary": schema.BoolAttribute{
+				Computed: true,
 			},
 			"hidden": schema.BoolAttribute{
 				Computed:    true,
@@ -2827,6 +3190,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -2943,6 +3310,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -3013,20 +3385,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -3078,6 +3452,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -3194,6 +3572,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -3266,20 +3649,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -3331,6 +3716,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -3447,6 +3836,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -3519,20 +3913,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -3590,6 +3986,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -3706,6 +4106,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -3776,290 +4181,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
-						path.MatchRelative().AtParent().AtName("select_attribute"),
-						path.MatchRelative().AtParent().AtName("sequence_attribute"),
-						path.MatchRelative().AtParent().AtName("status_attribute"),
-						path.MatchRelative().AtParent().AtName("tags_attribute"),
-						path.MatchRelative().AtParent().AtName("text_attribute"),
-						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
-					}...),
-				},
-			},
-			"message_email_address_attribute": schema.SingleNestedAttribute{
-				Computed: true,
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"address": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"composite_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"constraints": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-							`These constraints should and will be enforced by the attribute renderer.`,
-					},
-					"default_value": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Parsed as JSON.`,
-						Validators: []validator.String{
-							validators.IsValidJSON(),
-						},
-					},
-					"deprecated": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"email_type": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"entity_builder_disable_edit": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
-					},
-					"feature_flag": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `This attribute should only be active when the feature flag is enabled`,
-					},
-					"group": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-					},
-					"hidden": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Do not render attribute in entity views. Default: false`,
-					},
-					"hide_label": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `When set to true, will hide the label of the field.`,
-					},
-					"icon": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-							`The value must be a valid @epilot/base-elements Icon name`,
-					},
-					"id": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `ID for the entity attribute`,
-					},
-					"info_helpers": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"hint_custom_component": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text_key": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-									`The key should be a valid i18n key.`,
-							},
-							"hint_tooltip_placement": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
-							},
-						},
-						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-					},
-					"label": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"layout": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"manifest": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Manifest ID used to create/update the schema attribute`,
-					},
-					"name": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"order": schema.Int64Attribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Attribute sort order (ascending) in group`,
-					},
-					"placeholder": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"preview_value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"protected": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-					},
-					"purpose": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					"readonly": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"render_condition": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-							`Note: Empty or invalid expression have no effect on the field visibility.`,
-					},
-					"required": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"schema": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Schema slug the attribute belongs to`,
-					},
-					"send_status": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"settings_flag": schema.ListNestedAttribute{
-						Computed: true,
-						Optional: true,
-						NestedObject: schema.NestedAttributeObject{
-							Validators: []validator.Object{
-								speakeasy_objectvalidators.NotNull(),
-							},
-							Attributes: map[string]schema.Attribute{
-								"enabled": schema.BoolAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `Whether the setting should be enabled or not`,
-								},
-								"name": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `The name of the organization setting to check`,
-								},
-							},
-						},
-						Description: `This attribute should only be active when one of the provided settings have the correct value`,
-					},
-					"show_in_table": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-					},
-					"sortable": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(true),
-						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
-					},
-					"type": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null; must be "message_email_address"`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-							stringvalidator.OneOf(
-								"message_email_address",
-							),
-						},
-					},
-					"value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-				},
-				Description: `Message emil address`,
-				Validators: []validator.Object{
-					objectvalidator.ConflictsWith(path.Expressions{
-						path.MatchRelative().AtParent().AtName("address_attribute"),
-						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("automation_attribute"),
-						path.MatchRelative().AtParent().AtName("boolean_attribute"),
-						path.MatchRelative().AtParent().AtName("computed_attribute"),
-						path.MatchRelative().AtParent().AtName("consent_attribute"),
-						path.MatchRelative().AtParent().AtName("country_attribute"),
-						path.MatchRelative().AtParent().AtName("currency_attribute"),
-						path.MatchRelative().AtParent().AtName("date_attribute"),
-						path.MatchRelative().AtParent().AtName("file_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
-						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
-						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
-						path.MatchRelative().AtParent().AtName("number_attribute"),
-						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
-						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("purpose_attribute"),
-						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -4126,6 +4263,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -4286,6 +4427,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -4358,20 +4504,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -4430,6 +4578,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -4546,6 +4698,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -4622,20 +4779,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -4691,6 +4850,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -4807,6 +4970,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -4879,20 +5047,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -4944,6 +5114,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -5060,6 +5234,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
 					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
@@ -5132,20 +5311,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -5197,6 +5378,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -5314,6 +5499,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -5385,20 +5575,284 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
+			},
+			"payment_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+						Validators: []validator.String{
+							validators.IsValidJSON(),
+						},
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `must be "payment"`,
+						Validators: []validator.String{
+							stringvalidator.OneOf("payment"),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Payment method`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -5571,6 +6025,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -5642,20 +6101,284 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
+			},
+			"phone_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+						Validators: []validator.String{
+							validators.IsValidJSON(),
+						},
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `must be "phone"`,
+						Validators: []validator.String{
+							stringvalidator.OneOf("phone"),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Phone number`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -5671,6 +6394,270 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 			"preview_value_formatter": schema.StringAttribute{
 				Computed: true,
 			},
+			"price_component_attribute": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"composite_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"constraints": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+							`These constraints should and will be enforced by the attribute renderer.`,
+					},
+					"default_value": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Parsed as JSON.`,
+						Validators: []validator.String{
+							validators.IsValidJSON(),
+						},
+					},
+					"deprecated": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"entity_builder_disable_edit": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+					},
+					"feature_flag": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `This attribute should only be active when the feature flag is enabled`,
+					},
+					"group": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"hidden": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Do not render attribute in entity views. Default: false`,
+					},
+					"hide_label": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `When set to true, will hide the label of the field.`,
+					},
+					"icon": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+							`The value must be a valid @epilot/base-elements Icon name`,
+					},
+					"id": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `ID for the entity attribute`,
+					},
+					"info_helpers": schema.SingleNestedAttribute{
+						Computed: true,
+						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"hint_custom_component": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+							},
+							"hint_text_key": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+									`The key should be a valid i18n key.`,
+							},
+							"hint_tooltip_placement": schema.StringAttribute{
+								Computed: true,
+								Optional: true,
+								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+							},
+						},
+						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+					},
+					"label": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"layout": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"manifest": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+						Description: `Manifest ID used to create/update the schema attribute`,
+					},
+					"name": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Not Null`,
+						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
+						},
+					},
+					"order": schema.Int64Attribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Attribute sort order (ascending) in group`,
+					},
+					"placeholder": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"preview_value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+					"protected": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+					},
+					"purpose": schema.ListAttribute{
+						Computed:    true,
+						Optional:    true,
+						ElementType: types.StringType,
+					},
+					"readonly": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"render_condition": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+							`Note: Empty or invalid expression have no effect on the field visibility.`,
+					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
+					"required": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Default: false`,
+					},
+					"schema": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Schema slug the attribute belongs to`,
+					},
+					"settings_flag": schema.ListNestedAttribute{
+						Computed: true,
+						Optional: true,
+						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
+							Attributes: map[string]schema.Attribute{
+								"enabled": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Whether the setting should be enabled or not`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The name of the organization setting to check`,
+								},
+							},
+						},
+						Description: `This attribute should only be active when one of the provided settings have the correct value`,
+					},
+					"show_in_table": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+					},
+					"sortable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+					},
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `must be "price_component"`,
+						Validators: []validator.String{
+							stringvalidator.OneOf(
+								"price_component",
+							),
+						},
+					},
+					"value_formatter": schema.StringAttribute{
+						Computed: true,
+						Optional: true,
+					},
+				},
+				Description: `Price component`,
+				Validators: []validator.Object{
+					objectvalidator.ConflictsWith(path.Expressions{
+						path.MatchRelative().AtParent().AtName("address_attribute"),
+						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("automation_attribute"),
+						path.MatchRelative().AtParent().AtName("boolean_attribute"),
+						path.MatchRelative().AtParent().AtName("computed_attribute"),
+						path.MatchRelative().AtParent().AtName("consent_attribute"),
+						path.MatchRelative().AtParent().AtName("country_attribute"),
+						path.MatchRelative().AtParent().AtName("currency_attribute"),
+						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
+						path.MatchRelative().AtParent().AtName("file_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_attribute"),
+						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+						path.MatchRelative().AtParent().AtName("link_attribute"),
+						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+						path.MatchRelative().AtParent().AtName("number_attribute"),
+						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("purpose_attribute"),
+						path.MatchRelative().AtParent().AtName("relation_attribute"),
+						path.MatchRelative().AtParent().AtName("select_attribute"),
+						path.MatchRelative().AtParent().AtName("sequence_attribute"),
+						path.MatchRelative().AtParent().AtName("status_attribute"),
+						path.MatchRelative().AtParent().AtName("tags_attribute"),
+						path.MatchRelative().AtParent().AtName("text_attribute"),
+						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+					}...),
+				},
+			},
 			"protected": schema.BoolAttribute{
 				Computed:    true,
 				Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
@@ -5679,12 +6666,6 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Computed: true,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"archived": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Archived classification are not visible in the UI. Default: false`,
-					},
 					"color": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -5735,6 +6716,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -5856,6 +6841,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -5937,20 +6927,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -6011,120 +7003,12 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 									Optional:    true,
 									Description: `The action label or action translation key (i18n)`,
 								},
-								"new_entity_item": schema.SingleNestedAttribute{
-									Computed: true,
-									Optional: true,
-									Attributes: map[string]schema.Attribute{
-										"acl": schema.SingleNestedAttribute{
-											Computed: true,
-											Optional: true,
-											Attributes: map[string]schema.Attribute{
-												"additional_properties": schema.StringAttribute{
-													Computed:    true,
-													Optional:    true,
-													Description: `Parsed as JSON.`,
-													Validators: []validator.String{
-														validators.IsValidJSON(),
-													},
-												},
-												"delete": schema.ListAttribute{
-													Computed:    true,
-													Optional:    true,
-													ElementType: types.StringType,
-												},
-												"edit": schema.ListAttribute{
-													Computed:    true,
-													Optional:    true,
-													ElementType: types.StringType,
-												},
-												"view": schema.ListAttribute{
-													Computed:    true,
-													Optional:    true,
-													ElementType: types.StringType,
-												},
-											},
-											Description: `Access control list (ACL) for an entity. Defines sharing access to external orgs or users.`,
-										},
-										"additional_properties": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Parsed as JSON.`,
-											Validators: []validator.String{
-												validators.IsValidJSON(),
-											},
-										},
-										"created_at": schema.StringAttribute{
-											Computed: true,
-											Validators: []validator.String{
-												validators.IsRFC3339(),
-											},
-										},
-										"deleted_at": schema.StringAttribute{
-											Computed: true,
-											Validators: []validator.String{
-												validators.IsRFC3339(),
-											},
-										},
-										"id": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Not Null`,
-											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
-											},
-										},
-										"manifest": schema.ListAttribute{
-											Computed:    true,
-											Optional:    true,
-											ElementType: types.StringType,
-											Description: `Manifest ID used to create/update the entity`,
-										},
-										"org": schema.StringAttribute{
-											Computed:    true,
-											Description: `Organization Id the entity belongs to`,
-										},
-										"owners": schema.ListNestedAttribute{
-											Computed: true,
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"org_id": schema.StringAttribute{
-														Computed: true,
-													},
-													"user_id": schema.StringAttribute{
-														Computed: true,
-													},
-												},
-											},
-										},
-										"purpose": schema.ListAttribute{
-											Computed:    true,
-											Optional:    true,
-											ElementType: types.StringType,
-										},
-										"schema": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `URL-friendly identifier for the entity schema. Not Null`,
-											Validators: []validator.String{
-												speakeasy_stringvalidators.NotNull(),
-											},
-										},
-										"tags": schema.ListAttribute{
-											Computed:    true,
-											Optional:    true,
-											ElementType: types.StringType,
-										},
-										"title": schema.StringAttribute{
-											Computed:    true,
-											Optional:    true,
-											Description: `Title of entity`,
-										},
-										"updated_at": schema.StringAttribute{
-											Computed: true,
-											Validators: []validator.String{
-												validators.IsRFC3339(),
-											},
-										},
+								"new_entity_item": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+									Validators: []validator.String{
+										validators.IsValidJSON(),
 									},
 								},
 								"settings_flag": schema.ListNestedAttribute{
@@ -6381,6 +7265,12 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(true),
+						Description: `Relations are always repeatables. Default: true`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -6503,20 +7393,22 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -6532,318 +7424,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 					`Note: Empty or invalid expression have no effect on the field visibility.`,
 			},
-			"repeatable_attribute": schema.SingleNestedAttribute{
-				Computed: true,
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"add_button_label": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.`,
-					},
-					"allowed_schemas": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					"composite_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"constraints": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
-							`These constraints should and will be enforced by the attribute renderer.`,
-					},
-					"default_value": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Parsed as JSON.`,
-						Validators: []validator.String{
-							validators.IsValidJSON(),
-						},
-					},
-					"deprecated": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"enable_relation_picker": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(true),
-						Description: `when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true`,
-					},
-					"enable_relation_tags": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(true),
-						Description: `When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true`,
-					},
-					"entity_builder_disable_edit": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
-					},
-					"feature_flag": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `This attribute should only be active when the feature flag is enabled`,
-					},
-					"group": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
-					},
-					"has_primary": schema.BoolAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"hidden": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Do not render attribute in entity views. Default: false`,
-					},
-					"hide_label": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `When set to true, will hide the label of the field.`,
-					},
-					"icon": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
-							`The value must be a valid @epilot/base-elements Icon name`,
-					},
-					"id": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `ID for the entity attribute`,
-					},
-					"info_helpers": schema.SingleNestedAttribute{
-						Computed: true,
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"hint_custom_component": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
-									`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
-									`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
-							},
-							"hint_text_key": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
-									`The key should be a valid i18n key.`,
-							},
-							"hint_tooltip_placement": schema.StringAttribute{
-								Computed: true,
-								Optional: true,
-								MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
-									`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
-							},
-						},
-						Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
-					},
-					"label": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"layout": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"manifest": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Manifest ID used to create/update the schema attribute`,
-					},
-					"name": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Not Null`,
-						Validators: []validator.String{
-							speakeasy_stringvalidators.NotNull(),
-						},
-					},
-					"order": schema.Int64Attribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Attribute sort order (ascending) in group`,
-					},
-					"placeholder": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"preview_value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"protected": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
-					},
-					"purpose": schema.ListAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-					},
-					"readonly": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"relation_affinity_mode": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]`,
-						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"weak",
-								"strong",
-							),
-						},
-					},
-					"render_condition": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-						MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
-							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-							`Note: Empty or invalid expression have no effect on the field visibility.`,
-					},
-					"repeatable": schema.BoolAttribute{
-						Computed: true,
-						Optional: true,
-					},
-					"required": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(false),
-						Description: `Default: false`,
-					},
-					"reverse_attributes": schema.MapAttribute{
-						Computed:    true,
-						Optional:    true,
-						ElementType: types.StringType,
-						Description: `Map of schema slug to target relation attribute`,
-					},
-					"schema": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Schema slug the attribute belongs to`,
-					},
-					"search_placeholder": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.`,
-					},
-					"settings_flag": schema.ListNestedAttribute{
-						Computed: true,
-						Optional: true,
-						NestedObject: schema.NestedAttributeObject{
-							Validators: []validator.Object{
-								speakeasy_objectvalidators.NotNull(),
-							},
-							Attributes: map[string]schema.Attribute{
-								"enabled": schema.BoolAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `Whether the setting should be enabled or not`,
-								},
-								"name": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `The name of the organization setting to check`,
-								},
-							},
-						},
-						Description: `This attribute should only be active when one of the provided settings have the correct value`,
-					},
-					"show_in_table": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
-					},
-					"sortable": schema.BoolAttribute{
-						Computed:    true,
-						Optional:    true,
-						Default:     booldefault.StaticBool(true),
-						Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
-					},
-					"type": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date", "message_email_address"]`,
-						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"string",
-								"phone",
-								"email",
-								"address",
-								"relation",
-								"payment",
-								"price_component",
-								"date",
-								"message_email_address",
-							),
-						},
-					},
-					"value_formatter": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
-				},
-				Description: `Repeatable (add N number of fields)`,
-				Validators: []validator.Object{
-					objectvalidator.ConflictsWith(path.Expressions{
-						path.MatchRelative().AtParent().AtName("address_attribute"),
-						path.MatchRelative().AtParent().AtName("address_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("automation_attribute"),
-						path.MatchRelative().AtParent().AtName("boolean_attribute"),
-						path.MatchRelative().AtParent().AtName("computed_attribute"),
-						path.MatchRelative().AtParent().AtName("consent_attribute"),
-						path.MatchRelative().AtParent().AtName("country_attribute"),
-						path.MatchRelative().AtParent().AtName("currency_attribute"),
-						path.MatchRelative().AtParent().AtName("date_attribute"),
-						path.MatchRelative().AtParent().AtName("file_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_attribute"),
-						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
-						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
-						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
-						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
-						path.MatchRelative().AtParent().AtName("number_attribute"),
-						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
-						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
-						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
-						path.MatchRelative().AtParent().AtName("purpose_attribute"),
-						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("select_attribute"),
-						path.MatchRelative().AtParent().AtName("sequence_attribute"),
-						path.MatchRelative().AtParent().AtName("status_attribute"),
-						path.MatchRelative().AtParent().AtName("tags_attribute"),
-						path.MatchRelative().AtParent().AtName("text_attribute"),
-						path.MatchRelative().AtParent().AtName("user_relation_attribute"),
-					}...),
-				},
+			"repeatable": schema.BoolAttribute{
+				Computed:    true,
+				Description: `The attribute is a repeatable`,
 			},
 			"required": schema.BoolAttribute{
 				Computed:    true,
@@ -6901,6 +7484,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -7026,6 +7613,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -7098,21 +7690,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
@@ -7163,6 +7757,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -7285,6 +7883,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -7358,21 +7961,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
@@ -7432,6 +8037,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -7593,6 +8202,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -7662,21 +8276,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("tags_attribute"),
@@ -7727,6 +8343,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -7849,6 +8469,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -7923,21 +8548,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -7988,6 +8615,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -8109,6 +8740,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -8182,21 +8818,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),
@@ -8247,6 +8885,10 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+					},
+					"has_primary": schema.BoolAttribute{
+						Computed: true,
+						Optional: true,
 					},
 					"hidden": schema.BoolAttribute{
 						Computed:    true,
@@ -8370,6 +9012,11 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 							`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
 							`Note: Empty or invalid expression have no effect on the field visibility.`,
 					},
+					"repeatable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `The attribute is a repeatable`,
+					},
 					"required": schema.BoolAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -8441,21 +9088,23 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						path.MatchRelative().AtParent().AtName("country_attribute"),
 						path.MatchRelative().AtParent().AtName("currency_attribute"),
 						path.MatchRelative().AtParent().AtName("date_attribute"),
+						path.MatchRelative().AtParent().AtName("email_attribute"),
 						path.MatchRelative().AtParent().AtName("file_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_attribute"),
 						path.MatchRelative().AtParent().AtName("internal_user_attribute"),
 						path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
 						path.MatchRelative().AtParent().AtName("link_attribute"),
-						path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
 						path.MatchRelative().AtParent().AtName("multi_select_attribute"),
 						path.MatchRelative().AtParent().AtName("number_attribute"),
 						path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
 						path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+						path.MatchRelative().AtParent().AtName("payment_attribute"),
 						path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+						path.MatchRelative().AtParent().AtName("phone_attribute"),
+						path.MatchRelative().AtParent().AtName("price_component_attribute"),
 						path.MatchRelative().AtParent().AtName("purpose_attribute"),
 						path.MatchRelative().AtParent().AtName("relation_attribute"),
-						path.MatchRelative().AtParent().AtName("repeatable_attribute"),
 						path.MatchRelative().AtParent().AtName("select_attribute"),
 						path.MatchRelative().AtParent().AtName("sequence_attribute"),
 						path.MatchRelative().AtParent().AtName("status_attribute"),

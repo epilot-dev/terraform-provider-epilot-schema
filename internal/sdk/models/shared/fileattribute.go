@@ -166,8 +166,11 @@ type FileAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *FileAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        FileAttributeType         `json:"type"`
-	Multiple    *bool                     `json:"multiple,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool             `json:"repeatable,omitempty"`
+	HasPrimary *bool             `json:"has_primary,omitempty"`
+	Type       FileAttributeType `json:"type"`
+	Multiple   *bool             `json:"multiple,omitempty"`
 	// List of file extensions (without the dot suffix)
 	AllowedExtensions []string `json:"allowed_extensions,omitempty"`
 	// Controls how the images are presented to the user during upload on the Entity Details view.
@@ -377,6 +380,20 @@ func (o *FileAttribute) GetInfoHelpers() *FileAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *FileAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *FileAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *FileAttribute) GetType() FileAttributeType {

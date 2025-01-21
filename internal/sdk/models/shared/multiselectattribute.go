@@ -223,7 +223,10 @@ type MultiSelectAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *MultiSelectAttributeType        `json:"type,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                     `json:"has_primary,omitempty"`
+	Type       *MultiSelectAttributeType `json:"type,omitempty"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
@@ -431,6 +434,20 @@ func (o *MultiSelectAttribute) GetInfoHelpers() *MultiSelectAttributeInfoHelpers
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *MultiSelectAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *MultiSelectAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *MultiSelectAttribute) GetType() *MultiSelectAttributeType {

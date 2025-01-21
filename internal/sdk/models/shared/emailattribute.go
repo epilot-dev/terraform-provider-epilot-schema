@@ -8,13 +8,13 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// AddressAttributeConstraints - A set of constraints applicable to the attribute.
+// EmailAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
-type AddressAttributeConstraints struct {
+type EmailAttributeConstraints struct {
 }
 
-// AddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type AddressAttributeInfoHelpers struct {
+// EmailAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type EmailAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
 	// When specified it overrides the `hint_text_key` configuration.
 	//
@@ -34,59 +34,59 @@ type AddressAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintText() *string {
+func (o *EmailAttributeInfoHelpers) GetHintText() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintText
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTextKey() *string {
+func (o *EmailAttributeInfoHelpers) GetHintTextKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTextKey
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintCustomComponent() *string {
+func (o *EmailAttributeInfoHelpers) GetHintCustomComponent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintCustomComponent
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+func (o *EmailAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTooltipPlacement
 }
 
-type AddressAttributeType string
+type EmailAttributeType string
 
 const (
-	AddressAttributeTypeAddress AddressAttributeType = "address"
+	EmailAttributeTypeEmail EmailAttributeType = "email"
 )
 
-func (e AddressAttributeType) ToPointer() *AddressAttributeType {
+func (e EmailAttributeType) ToPointer() *EmailAttributeType {
 	return &e
 }
-func (e *AddressAttributeType) UnmarshalJSON(data []byte) error {
+func (e *EmailAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "address":
-		*e = AddressAttributeType(v)
+	case "email":
+		*e = EmailAttributeType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddressAttributeType: %v", v)
+		return fmt.Errorf("invalid value for EmailAttributeType: %v", v)
 	}
 }
 
-// AddressAttribute - Physical Address
-type AddressAttribute struct {
+// EmailAttribute - Email address
+type EmailAttribute struct {
 	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
@@ -124,7 +124,7 @@ type AddressAttribute struct {
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
-	Constraints *AddressAttributeConstraints `json:"constraints,omitempty"`
+	Constraints *EmailAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
@@ -136,228 +136,228 @@ type AddressAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	InfoHelpers *EmailAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *AddressAttributeType `json:"type,omitempty"`
+	Repeatable *bool               `json:"repeatable,omitempty"`
+	HasPrimary *bool               `json:"has_primary,omitempty"`
+	Type       *EmailAttributeType `json:"type,omitempty"`
 }
 
-func (a AddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (e EmailAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (a *AddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+func (e *EmailAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AddressAttribute) GetID() *string {
+func (o *EmailAttribute) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddressAttribute) GetName() string {
+func (o *EmailAttribute) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *AddressAttribute) GetLabel() string {
+func (o *EmailAttribute) GetLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.Label
 }
 
-func (o *AddressAttribute) GetPlaceholder() *string {
+func (o *EmailAttribute) GetPlaceholder() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Placeholder
 }
 
-func (o *AddressAttribute) GetHidden() *bool {
+func (o *EmailAttribute) GetHidden() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *AddressAttribute) GetShowInTable() *bool {
+func (o *EmailAttribute) GetShowInTable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowInTable
 }
 
-func (o *AddressAttribute) GetSortable() *bool {
+func (o *EmailAttribute) GetSortable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Sortable
 }
 
-func (o *AddressAttribute) GetRequired() *bool {
+func (o *EmailAttribute) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *AddressAttribute) GetReadonly() *bool {
+func (o *EmailAttribute) GetReadonly() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Readonly
 }
 
-func (o *AddressAttribute) GetDeprecated() *bool {
+func (o *EmailAttribute) GetDeprecated() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Deprecated
 }
 
-func (o *AddressAttribute) GetDefaultValue() any {
+func (o *EmailAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultValue
 }
 
-func (o *AddressAttribute) GetGroup() *string {
+func (o *EmailAttribute) GetGroup() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Group
 }
 
-func (o *AddressAttribute) GetOrder() *int64 {
+func (o *EmailAttribute) GetOrder() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *AddressAttribute) GetLayout() *string {
+func (o *EmailAttribute) GetLayout() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Layout
 }
 
-func (o *AddressAttribute) GetHideLabel() *bool {
+func (o *EmailAttribute) GetHideLabel() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideLabel
 }
 
-func (o *AddressAttribute) GetIcon() *string {
+func (o *EmailAttribute) GetIcon() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Icon
 }
 
-func (o *AddressAttribute) GetRenderCondition() *string {
+func (o *EmailAttribute) GetRenderCondition() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RenderCondition
 }
 
-func (o *AddressAttribute) GetPurpose() []string {
+func (o *EmailAttribute) GetPurpose() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Purpose
 }
 
-func (o *AddressAttribute) GetManifest() []string {
+func (o *EmailAttribute) GetManifest() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Manifest
 }
 
-func (o *AddressAttribute) GetConstraints() *AddressAttributeConstraints {
+func (o *EmailAttribute) GetConstraints() *EmailAttributeConstraints {
 	if o == nil {
 		return nil
 	}
 	return o.Constraints
 }
 
-func (o *AddressAttribute) GetFeatureFlag() *string {
+func (o *EmailAttribute) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureFlag
 }
 
-func (o *AddressAttribute) GetSettingsFlag() []SettingFlag {
+func (o *EmailAttribute) GetSettingsFlag() []SettingFlag {
 	if o == nil {
 		return nil
 	}
 	return o.SettingsFlag
 }
 
-func (o *AddressAttribute) GetValueFormatter() *string {
+func (o *EmailAttribute) GetValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ValueFormatter
 }
 
-func (o *AddressAttribute) GetPreviewValueFormatter() *string {
+func (o *EmailAttribute) GetPreviewValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PreviewValueFormatter
 }
 
-func (o *AddressAttribute) GetEntityBuilderDisableEdit() *bool {
+func (o *EmailAttribute) GetEntityBuilderDisableEdit() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.EntityBuilderDisableEdit
 }
 
-func (o *AddressAttribute) GetProtected() *bool {
+func (o *EmailAttribute) GetProtected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Protected
 }
 
-func (o *AddressAttribute) GetInfoHelpers() *AddressAttributeInfoHelpers {
+func (o *EmailAttribute) GetInfoHelpers() *EmailAttributeInfoHelpers {
 	if o == nil {
 		return nil
 	}
 	return o.InfoHelpers
 }
 
-func (o *AddressAttribute) GetRepeatable() *bool {
+func (o *EmailAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Repeatable
 }
 
-func (o *AddressAttribute) GetHasPrimary() *bool {
+func (o *EmailAttribute) GetHasPrimary() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() *AddressAttributeType {
+func (o *EmailAttribute) GetType() *EmailAttributeType {
 	if o == nil {
 		return nil
 	}

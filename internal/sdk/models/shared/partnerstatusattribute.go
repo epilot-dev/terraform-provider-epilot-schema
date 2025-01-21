@@ -137,7 +137,10 @@ type PartnerStatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PartnerStatusAttributeType        `json:"type,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                       `json:"repeatable,omitempty"`
+	HasPrimary *bool                       `json:"has_primary,omitempty"`
+	Type       *PartnerStatusAttributeType `json:"type,omitempty"`
 }
 
 func (p PartnerStatusAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +341,20 @@ func (o *PartnerStatusAttribute) GetInfoHelpers() *PartnerStatusAttributeInfoHel
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *PartnerStatusAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *PartnerStatusAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *PartnerStatusAttribute) GetType() *PartnerStatusAttributeType {

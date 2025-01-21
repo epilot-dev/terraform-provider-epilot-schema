@@ -214,9 +214,12 @@ type CurrencyAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers          *CurrencyAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type                 CurrencyAttributeType         `json:"type"`
-	CurrencySelectorOnly *bool                         `default:"false" json:"currency_selector_only"`
+	InfoHelpers *CurrencyAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable           *bool                 `json:"repeatable,omitempty"`
+	HasPrimary           *bool                 `json:"has_primary,omitempty"`
+	Type                 CurrencyAttributeType `json:"type"`
+	CurrencySelectorOnly *bool                 `default:"false" json:"currency_selector_only"`
 	// An array of currency configurations with a country code (ISO-4217)
 	Currency []Currency `json:"currency"`
 }
@@ -419,6 +422,20 @@ func (o *CurrencyAttribute) GetInfoHelpers() *CurrencyAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *CurrencyAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *CurrencyAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *CurrencyAttribute) GetType() CurrencyAttributeType {

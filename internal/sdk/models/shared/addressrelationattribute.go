@@ -137,10 +137,10 @@ type AddressRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *AddressRelationAttributeType        `json:"type,omitempty"`
-	HasPrimary  *bool                                `json:"has_primary,omitempty"`
-	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                         `json:"has_primary,omitempty"`
+	Type       *AddressRelationAttributeType `json:"type,omitempty"`
 }
 
 func (a AddressRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -343,11 +343,11 @@ func (o *AddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeInf
 	return o.InfoHelpers
 }
 
-func (o *AddressRelationAttribute) GetType() *AddressRelationAttributeType {
+func (o *AddressRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *AddressRelationAttribute) GetHasPrimary() *bool {
@@ -357,9 +357,9 @@ func (o *AddressRelationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AddressRelationAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+func (o *AddressRelationAttribute) GetType() *AddressRelationAttributeType {
 	if o == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return o.Type
 }

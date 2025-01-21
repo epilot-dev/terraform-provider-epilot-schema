@@ -7,7 +7,6 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 type PurposeAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	Archived                 types.Bool                                           `tfsdk:"archived"`
 	Color                    types.String                                         `tfsdk:"color"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	CreatedAt                types.String                                         `tfsdk:"created_at"`
@@ -16,6 +15,7 @@ type PurposeAttribute struct {
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
+	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
 	Hidden                   types.Bool                                           `tfsdk:"hidden"`
 	HideLabel                types.Bool                                           `tfsdk:"hide_label"`
 	Icon                     types.String                                         `tfsdk:"icon"`
@@ -31,6 +31,7 @@ type PurposeAttribute struct {
 	Protected                types.Bool                                           `tfsdk:"protected"`
 	Readonly                 types.Bool                                           `tfsdk:"readonly"`
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
+	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`

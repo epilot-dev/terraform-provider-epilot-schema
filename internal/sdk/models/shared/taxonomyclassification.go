@@ -17,8 +17,6 @@ type TaxonomyClassification struct {
 	Color     *string    `json:"color,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool `default:"false" json:"archived"`
 	// Manifest ID used to create/update the taxonomy classification
 	Manifest []string `json:"_manifest,omitempty"`
 }
@@ -81,13 +79,6 @@ func (o *TaxonomyClassification) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *TaxonomyClassification) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *TaxonomyClassification) GetManifest() []string {

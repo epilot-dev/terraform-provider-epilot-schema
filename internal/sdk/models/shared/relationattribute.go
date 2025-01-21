@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-	"time"
 )
 
 // RelationAttributeConstraints - A set of constraints applicable to the attribute.
@@ -199,129 +198,6 @@ func (e *ActionType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type NewEntityItem struct {
-	ID string `json:"_id"`
-	// Organization Id the entity belongs to
-	Org    string        `json:"_org"`
-	Owners []EntityOwner `json:"_owners,omitempty"`
-	// URL-friendly identifier for the entity schema
-	Schema string `json:"_schema"`
-	// Title of entity
-	Title     *string    `json:"_title"`
-	Tags      []string   `json:"_tags,omitempty"`
-	CreatedAt *time.Time `json:"_created_at"`
-	UpdatedAt *time.Time `json:"_updated_at"`
-	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the entity
-	Manifest             []string `json:"_manifest,omitempty"`
-	AdditionalProperties any      `additionalProperties:"true" json:"-"`
-}
-
-func (n NewEntityItem) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(n, "", false)
-}
-
-func (n *NewEntityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *NewEntityItem) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *NewEntityItem) GetOrg() string {
-	if o == nil {
-		return ""
-	}
-	return o.Org
-}
-
-func (o *NewEntityItem) GetOwners() []EntityOwner {
-	if o == nil {
-		return nil
-	}
-	return o.Owners
-}
-
-func (o *NewEntityItem) GetSchema() string {
-	if o == nil {
-		return ""
-	}
-	return o.Schema
-}
-
-func (o *NewEntityItem) GetTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Title
-}
-
-func (o *NewEntityItem) GetTags() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Tags
-}
-
-func (o *NewEntityItem) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *NewEntityItem) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *NewEntityItem) GetDeletedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.DeletedAt
-}
-
-func (o *NewEntityItem) GetACL() *EntityACL {
-	if o == nil {
-		return nil
-	}
-	return o.ACL
-}
-
-func (o *NewEntityItem) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *NewEntityItem) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *NewEntityItem) GetAdditionalProperties() any {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
-}
-
 type Actions struct {
 	// The action type. Currently supported actions:
 	//
@@ -339,8 +215,8 @@ type Actions struct {
 	// Name of the feature flag that enables this action
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This action should only be active when all the settings have the correct value
-	SettingsFlag  []SettingFlag  `json:"settings_flag,omitempty"`
-	NewEntityItem *NewEntityItem `json:"new_entity_item,omitempty"`
+	SettingsFlag  []SettingFlag `json:"settings_flag,omitempty"`
+	NewEntityItem any           `json:"new_entity_item,omitempty"`
 }
 
 func (o *Actions) GetActionType() *ActionType {
@@ -378,7 +254,7 @@ func (o *Actions) GetSettingsFlag() []SettingFlag {
 	return o.SettingsFlag
 }
 
-func (o *Actions) GetNewEntityItem() *NewEntityItem {
+func (o *Actions) GetNewEntityItem() any {
 	if o == nil {
 		return nil
 	}
@@ -525,9 +401,12 @@ type RelationAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeType        `json:"type,omitempty"`
-	RelationType *RelationType                 `json:"relation_type,omitempty"`
+	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// Relations are always repeatables
+	Repeatable   *bool                  `default:"true" json:"repeatable"`
+	HasPrimary   *bool                  `json:"has_primary,omitempty"`
+	Type         *RelationAttributeType `json:"type,omitempty"`
+	RelationType *RelationType          `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
@@ -540,7 +419,6 @@ type RelationAttribute struct {
 	Actions                []Actions       `json:"actions,omitempty"`
 	DrawerSize             *DrawerSize     `json:"drawer_size,omitempty"`
 	SummaryFields          []SummaryFields `json:"summary_fields,omitempty"`
-	HasPrimary             *bool           `json:"has_primary,omitempty"`
 	AllowedSchemas         []string        `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
@@ -750,6 +628,20 @@ func (o *RelationAttribute) GetInfoHelpers() *RelationAttributeInfoHelpers {
 	return o.InfoHelpers
 }
 
+func (o *RelationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *RelationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
 func (o *RelationAttribute) GetType() *RelationAttributeType {
 	if o == nil {
 		return nil
@@ -820,13 +712,6 @@ func (o *RelationAttribute) GetSummaryFields() []SummaryFields {
 	return o.SummaryFields
 }
 
-func (o *RelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
 func (o *RelationAttribute) GetAllowedSchemas() []string {
 	if o == nil {
 		return nil
@@ -849,529 +734,6 @@ func (o *RelationAttribute) GetAddButtonLabel() *string {
 }
 
 func (o *RelationAttribute) GetSearchPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SearchPlaceholder
-}
-
-type RelationAttributeNewEntityItem struct {
-	ID string `json:"_id"`
-	// URL-friendly identifier for the entity schema
-	Schema string `json:"_schema"`
-	// Title of entity
-	Title *string  `json:"_title"`
-	Tags  []string `json:"_tags,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the entity
-	Manifest             []string `json:"_manifest,omitempty"`
-	AdditionalProperties any      `additionalProperties:"true" json:"-"`
-}
-
-func (r RelationAttributeNewEntityItem) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RelationAttributeNewEntityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *RelationAttributeNewEntityItem) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *RelationAttributeNewEntityItem) GetSchema() string {
-	if o == nil {
-		return ""
-	}
-	return o.Schema
-}
-
-func (o *RelationAttributeNewEntityItem) GetTitle() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Title
-}
-
-func (o *RelationAttributeNewEntityItem) GetTags() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Tags
-}
-
-func (o *RelationAttributeNewEntityItem) GetACL() *EntityACL {
-	if o == nil {
-		return nil
-	}
-	return o.ACL
-}
-
-func (o *RelationAttributeNewEntityItem) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *RelationAttributeNewEntityItem) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *RelationAttributeNewEntityItem) GetAdditionalProperties() any {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
-}
-
-type RelationAttributeActions struct {
-	// The action type. Currently supported actions:
-	//
-	// | action | description |
-	// |--------|-------------|
-	// | add_existing | Enables the user to pick an existing entity to link as relation |
-	// | create_new | Enables the user to create a new entity using the first/main `allowed_schemas` schema
-	// | create_from_existing | Enables the user to pick an existing entity to clone from, while creating a blank new entity to link as relation |
-	//
-	ActionType *ActionType `json:"action_type,omitempty"`
-	// The action label or action translation key (i18n)
-	Label *string `json:"label,omitempty"`
-	// Sets the action as the default action, visible as the main action button.
-	Default *bool `json:"default,omitempty"`
-	// Name of the feature flag that enables this action
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This action should only be active when all the settings have the correct value
-	SettingsFlag  []SettingFlag                   `json:"settings_flag,omitempty"`
-	NewEntityItem *RelationAttributeNewEntityItem `json:"new_entity_item,omitempty"`
-}
-
-func (o *RelationAttributeActions) GetActionType() *ActionType {
-	if o == nil {
-		return nil
-	}
-	return o.ActionType
-}
-
-func (o *RelationAttributeActions) GetLabel() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Label
-}
-
-func (o *RelationAttributeActions) GetDefault() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Default
-}
-
-func (o *RelationAttributeActions) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *RelationAttributeActions) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *RelationAttributeActions) GetNewEntityItem() *RelationAttributeNewEntityItem {
-	if o == nil {
-		return nil
-	}
-	return o.NewEntityItem
-}
-
-// RelationAttributeInput - Entity Relationship
-type RelationAttributeInput struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool   `json:"hide_label,omitempty"`
-	Icon      *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *RelationAttributeConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers  *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type         *RelationAttributeType        `json:"type,omitempty"`
-	RelationType *RelationType                 `json:"relation_type,omitempty"`
-	// Map of schema slug to target relation attribute
-	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
-	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
-	RelationAffinityMode *RelationAffinityMode `json:"relation_affinity_mode,omitempty"`
-	// When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link.
-	EnableRelationPicker *bool     `default:"true" json:"enable_relation_picker"`
-	EditMode             *EditMode `json:"edit_mode,omitempty"`
-	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-	DetailsViewModeEnabled *bool                      `default:"false" json:"details_view_mode_enabled"`
-	Actions                []RelationAttributeActions `json:"actions,omitempty"`
-	DrawerSize             *DrawerSize                `json:"drawer_size,omitempty"`
-	SummaryFields          []SummaryFields            `json:"summary_fields,omitempty"`
-	HasPrimary             *bool                      `json:"has_primary,omitempty"`
-	AllowedSchemas         []string                   `json:"allowedSchemas,omitempty"`
-	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
-	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
-	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
-	AddButtonLabel *string `json:"add_button_label,omitempty"`
-	// Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
-	SearchPlaceholder *string `json:"search_placeholder,omitempty"`
-}
-
-func (r RelationAttributeInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *RelationAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *RelationAttributeInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *RelationAttributeInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *RelationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *RelationAttributeInput) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *RelationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *RelationAttributeInput) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *RelationAttributeInput) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *RelationAttributeInput) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *RelationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *RelationAttributeInput) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *RelationAttributeInput) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *RelationAttributeInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *RelationAttributeInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *RelationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *RelationAttributeInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *RelationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *RelationAttributeInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *RelationAttributeInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *RelationAttributeInput) GetConstraints() *RelationAttributeConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *RelationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *RelationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *RelationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *RelationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *RelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *RelationAttributeInput) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *RelationAttributeInput) GetInfoHelpers() *RelationAttributeInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *RelationAttributeInput) GetType() *RelationAttributeType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *RelationAttributeInput) GetRelationType() *RelationType {
-	if o == nil {
-		return nil
-	}
-	return o.RelationType
-}
-
-func (o *RelationAttributeInput) GetReverseAttributes() map[string]string {
-	if o == nil {
-		return nil
-	}
-	return o.ReverseAttributes
-}
-
-func (o *RelationAttributeInput) GetRelationAffinityMode() *RelationAffinityMode {
-	if o == nil {
-		return nil
-	}
-	return o.RelationAffinityMode
-}
-
-func (o *RelationAttributeInput) GetEnableRelationPicker() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationPicker
-}
-
-func (o *RelationAttributeInput) GetEditMode() *EditMode {
-	if o == nil {
-		return nil
-	}
-	return o.EditMode
-}
-
-func (o *RelationAttributeInput) GetDetailsViewModeEnabled() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.DetailsViewModeEnabled
-}
-
-func (o *RelationAttributeInput) GetActions() []RelationAttributeActions {
-	if o == nil {
-		return nil
-	}
-	return o.Actions
-}
-
-func (o *RelationAttributeInput) GetDrawerSize() *DrawerSize {
-	if o == nil {
-		return nil
-	}
-	return o.DrawerSize
-}
-
-func (o *RelationAttributeInput) GetSummaryFields() []SummaryFields {
-	if o == nil {
-		return nil
-	}
-	return o.SummaryFields
-}
-
-func (o *RelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *RelationAttributeInput) GetAllowedSchemas() []string {
-	if o == nil {
-		return nil
-	}
-	return o.AllowedSchemas
-}
-
-func (o *RelationAttributeInput) GetEnableRelationTags() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableRelationTags
-}
-
-func (o *RelationAttributeInput) GetAddButtonLabel() *string {
-	if o == nil {
-		return nil
-	}
-	return o.AddButtonLabel
-}
-
-func (o *RelationAttributeInput) GetSearchPlaceholder() *string {
 	if o == nil {
 		return nil
 	}

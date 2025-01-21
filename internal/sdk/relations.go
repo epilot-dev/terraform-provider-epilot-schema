@@ -216,27 +216,6 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -304,7 +283,9 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -441,27 +422,6 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -527,9 +487,11 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "*/*")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -646,27 +608,6 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 
 	switch {
 	case httpRes.StatusCode == 204:
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -862,27 +803,6 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 			}
 
 			res.GetRelationsRespWithPagination = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1092,27 +1012,6 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1311,27 +1210,6 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1399,7 +1277,9 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1536,27 +1416,6 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1617,7 +1476,7 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "*/*")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
@@ -1735,27 +1594,6 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 
 	switch {
 	case httpRes.StatusCode == 204:
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {

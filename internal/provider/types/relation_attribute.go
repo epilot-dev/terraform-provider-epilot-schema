@@ -38,6 +38,7 @@ type RelationAttribute struct {
 	RelationAffinityMode     types.String                                         `tfsdk:"relation_affinity_mode"`
 	RelationType             types.String                                         `tfsdk:"relation_type"`
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
+	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	ReverseAttributes        map[string]types.String                              `tfsdk:"reverse_attributes"`
 	SearchPlaceholder        types.String                                         `tfsdk:"search_placeholder"`

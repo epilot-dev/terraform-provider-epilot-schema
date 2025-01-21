@@ -137,7 +137,10 @@ type LinkAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *LinkAttributeType        `json:"type,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool              `json:"repeatable,omitempty"`
+	HasPrimary *bool              `json:"has_primary,omitempty"`
+	Type       *LinkAttributeType `json:"type,omitempty"`
 }
 
 func (l LinkAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +341,20 @@ func (o *LinkAttribute) GetInfoHelpers() *LinkAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *LinkAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *LinkAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *LinkAttribute) GetType() *LinkAttributeType {

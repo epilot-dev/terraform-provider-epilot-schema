@@ -104,8 +104,6 @@ type UpdateRelationResponse struct {
 	RawResponse *http.Response
 	// Success
 	RelationItem *shared.RelationItem
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *UpdateRelationResponse) GetContentType() string {
@@ -134,11 +132,4 @@ func (o *UpdateRelationResponse) GetRelationItem() *shared.RelationItem {
 		return nil
 	}
 	return o.RelationItem
-}
-
-func (o *UpdateRelationResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

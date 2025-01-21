@@ -142,6 +142,15 @@ actions:
     update:
       x-speakeasy-type-override: any
   
+  # jsonencode relation attribute action.new_entity_item
+  - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]["properties"]["actions"]["items"]["properties"]["new_entity_item"]
+    remove: true
+  - target: $["components"]["schemas"]["RelationAttribute"]["allOf"][1]["properties"]["actions"]
+    update:
+      items:
+        properties:
+          new_entity_item: {}
+
   # Add relation fields to repeatable type of relation
   - target: $["components"]["schemas"]["RepeatableAttribute"]["allOf"][1]["properties"]
     update:

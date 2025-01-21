@@ -8,13 +8,13 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// AddressAttributeConstraints - A set of constraints applicable to the attribute.
+// PhoneAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
-type AddressAttributeConstraints struct {
+type PhoneAttributeConstraints struct {
 }
 
-// AddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type AddressAttributeInfoHelpers struct {
+// PhoneAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type PhoneAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
 	// When specified it overrides the `hint_text_key` configuration.
 	//
@@ -34,59 +34,59 @@ type AddressAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintText() *string {
+func (o *PhoneAttributeInfoHelpers) GetHintText() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintText
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTextKey() *string {
+func (o *PhoneAttributeInfoHelpers) GetHintTextKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTextKey
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintCustomComponent() *string {
+func (o *PhoneAttributeInfoHelpers) GetHintCustomComponent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintCustomComponent
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+func (o *PhoneAttributeInfoHelpers) GetHintTooltipPlacement() *string {
 	if o == nil {
 		return nil
 	}
 	return o.HintTooltipPlacement
 }
 
-type AddressAttributeType string
+type PhoneAttributeType string
 
 const (
-	AddressAttributeTypeAddress AddressAttributeType = "address"
+	PhoneAttributeTypePhone PhoneAttributeType = "phone"
 )
 
-func (e AddressAttributeType) ToPointer() *AddressAttributeType {
+func (e PhoneAttributeType) ToPointer() *PhoneAttributeType {
 	return &e
 }
-func (e *AddressAttributeType) UnmarshalJSON(data []byte) error {
+func (e *PhoneAttributeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "address":
-		*e = AddressAttributeType(v)
+	case "phone":
+		*e = PhoneAttributeType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddressAttributeType: %v", v)
+		return fmt.Errorf("invalid value for PhoneAttributeType: %v", v)
 	}
 }
 
-// AddressAttribute - Physical Address
-type AddressAttribute struct {
+// PhoneAttribute - Phone number
+type PhoneAttribute struct {
 	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
@@ -124,7 +124,7 @@ type AddressAttribute struct {
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
 	//
-	Constraints *AddressAttributeConstraints `json:"constraints,omitempty"`
+	Constraints *PhoneAttributeConstraints `json:"constraints,omitempty"`
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
@@ -136,228 +136,228 @@ type AddressAttribute struct {
 	// Setting to `true` prevents the attribute from being modified / deleted
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	InfoHelpers *PhoneAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *AddressAttributeType `json:"type,omitempty"`
+	Repeatable *bool               `json:"repeatable,omitempty"`
+	HasPrimary *bool               `json:"has_primary,omitempty"`
+	Type       *PhoneAttributeType `json:"type,omitempty"`
 }
 
-func (a AddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (p PhoneAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (a *AddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+func (p *PhoneAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AddressAttribute) GetID() *string {
+func (o *PhoneAttribute) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddressAttribute) GetName() string {
+func (o *PhoneAttribute) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *AddressAttribute) GetLabel() string {
+func (o *PhoneAttribute) GetLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.Label
 }
 
-func (o *AddressAttribute) GetPlaceholder() *string {
+func (o *PhoneAttribute) GetPlaceholder() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Placeholder
 }
 
-func (o *AddressAttribute) GetHidden() *bool {
+func (o *PhoneAttribute) GetHidden() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *AddressAttribute) GetShowInTable() *bool {
+func (o *PhoneAttribute) GetShowInTable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowInTable
 }
 
-func (o *AddressAttribute) GetSortable() *bool {
+func (o *PhoneAttribute) GetSortable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Sortable
 }
 
-func (o *AddressAttribute) GetRequired() *bool {
+func (o *PhoneAttribute) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *AddressAttribute) GetReadonly() *bool {
+func (o *PhoneAttribute) GetReadonly() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Readonly
 }
 
-func (o *AddressAttribute) GetDeprecated() *bool {
+func (o *PhoneAttribute) GetDeprecated() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Deprecated
 }
 
-func (o *AddressAttribute) GetDefaultValue() any {
+func (o *PhoneAttribute) GetDefaultValue() any {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultValue
 }
 
-func (o *AddressAttribute) GetGroup() *string {
+func (o *PhoneAttribute) GetGroup() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Group
 }
 
-func (o *AddressAttribute) GetOrder() *int64 {
+func (o *PhoneAttribute) GetOrder() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *AddressAttribute) GetLayout() *string {
+func (o *PhoneAttribute) GetLayout() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Layout
 }
 
-func (o *AddressAttribute) GetHideLabel() *bool {
+func (o *PhoneAttribute) GetHideLabel() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideLabel
 }
 
-func (o *AddressAttribute) GetIcon() *string {
+func (o *PhoneAttribute) GetIcon() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Icon
 }
 
-func (o *AddressAttribute) GetRenderCondition() *string {
+func (o *PhoneAttribute) GetRenderCondition() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RenderCondition
 }
 
-func (o *AddressAttribute) GetPurpose() []string {
+func (o *PhoneAttribute) GetPurpose() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Purpose
 }
 
-func (o *AddressAttribute) GetManifest() []string {
+func (o *PhoneAttribute) GetManifest() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Manifest
 }
 
-func (o *AddressAttribute) GetConstraints() *AddressAttributeConstraints {
+func (o *PhoneAttribute) GetConstraints() *PhoneAttributeConstraints {
 	if o == nil {
 		return nil
 	}
 	return o.Constraints
 }
 
-func (o *AddressAttribute) GetFeatureFlag() *string {
+func (o *PhoneAttribute) GetFeatureFlag() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FeatureFlag
 }
 
-func (o *AddressAttribute) GetSettingsFlag() []SettingFlag {
+func (o *PhoneAttribute) GetSettingsFlag() []SettingFlag {
 	if o == nil {
 		return nil
 	}
 	return o.SettingsFlag
 }
 
-func (o *AddressAttribute) GetValueFormatter() *string {
+func (o *PhoneAttribute) GetValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ValueFormatter
 }
 
-func (o *AddressAttribute) GetPreviewValueFormatter() *string {
+func (o *PhoneAttribute) GetPreviewValueFormatter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PreviewValueFormatter
 }
 
-func (o *AddressAttribute) GetEntityBuilderDisableEdit() *bool {
+func (o *PhoneAttribute) GetEntityBuilderDisableEdit() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.EntityBuilderDisableEdit
 }
 
-func (o *AddressAttribute) GetProtected() *bool {
+func (o *PhoneAttribute) GetProtected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Protected
 }
 
-func (o *AddressAttribute) GetInfoHelpers() *AddressAttributeInfoHelpers {
+func (o *PhoneAttribute) GetInfoHelpers() *PhoneAttributeInfoHelpers {
 	if o == nil {
 		return nil
 	}
 	return o.InfoHelpers
 }
 
-func (o *AddressAttribute) GetRepeatable() *bool {
+func (o *PhoneAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Repeatable
 }
 
-func (o *AddressAttribute) GetHasPrimary() *bool {
+func (o *PhoneAttribute) GetHasPrimary() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() *AddressAttributeType {
+func (o *PhoneAttribute) GetType() *PhoneAttributeType {
 	if o == nil {
 		return nil
 	}

@@ -14,7 +14,7 @@ Schema DataSource
 
 ```terraform
 data "epilot-schema_schema" "my_schema" {
-  id   = "89868668-91fd-45da-ba4d-b78cf9b60131"
+  id   = "6fb42fdf-f5a6-4a16-a18e-d5ee61469436"
   slug = "contact"
 }
 ```
@@ -63,7 +63,7 @@ Read-Only:
 
 - `fields` (Map of String)
 - `index` (Boolean)
-- `type` (String)
+- `type` (String) must be one of ["keyword", "text", "boolean", "integer", "long", "float", "date", "flattened", "nested"]
 
 
 <a id="nestedatt--layout_settings"></a>
@@ -103,7 +103,7 @@ Read-Only:
 Read-Only:
 
 - `search_params` (Map of String)
-- `view_type` (String)
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--create_view--entity_view_disabled"></a>
@@ -111,7 +111,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String)
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--create_view--redirect_entity_view"></a>
@@ -120,7 +120,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -140,7 +140,7 @@ Read-Only:
 
 - `search_params` (Map of String)
 - `summary_attributes` (List of String) List of attribute names that we show in the summary header
-- `view_type` (String)
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--edit_view--entity_view_disabled"></a>
@@ -148,7 +148,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String)
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--edit_view--redirect_entity_view"></a>
@@ -157,7 +157,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -208,9 +208,13 @@ Read-Only:
 - `content_line_cap` (Number) Defines the line numbers of the content.
 For instance, When set to 1, the content will be displayed in a single line.
 - `content_wrap` (String) Defines white-space of the content.
+
+must be one of ["normal", "nowrap", "pre", "pre-wrap"]
 - `display_mode` (String) Defines the display mode of the summary attribute.
 When set to `inline`, the label and value will be displayed in the same line.
 When set to `block`, the label and value will be displayed in separate lines.
+
+must be one of ["inline", "block"]
 - `feature_flag` (String) Binds summary field visibility to the feature flag state.
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `highlight_container` (Boolean) When set to true, will highlight the container of the field.
@@ -239,7 +243,7 @@ Read-Only:
 
 Read-Only:
 
-- `content_direction` (String) Show attributes in a row or column
+- `content_direction` (String) Show attributes in a row or column. must be one of ["row", "column"]
 
 
 
@@ -267,7 +271,7 @@ Read-Only:
 
 - `search_params` (Map of String)
 - `summary_attributes` (List of String) List of attribute names that we show in the summary header
-- `view_type` (String)
+- `view_type` (String) must be one of ["default"]
 
 
 <a id="nestedatt--ui_config--single_view--entity_view_disabled"></a>
@@ -275,7 +279,7 @@ Read-Only:
 
 Read-Only:
 
-- `view_type` (String)
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--single_view--redirect_entity_view"></a>
@@ -284,7 +288,7 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String)
+- `view_type` (String) must be one of ["redirect"]
 
 
 
@@ -306,7 +310,7 @@ Read-Only:
 - `enable_thumbnails` (Boolean) Enable the thumbnail column
 - `navbar_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--navbar_actions))
 - `row_actions` (Attributes List) (see [below for nested schema](#nestedatt--ui_config--table_view--entity_default_table--row_actions))
-- `view_type` (String)
+- `view_type` (String) must be one of ["default"]
 
 <a id="nestedatt--ui_config--table_view--entity_default_table--bulk_actions"></a>
 ### Nested Schema for `ui_config.table_view.entity_default_table.bulk_actions`
@@ -378,7 +382,7 @@ If not provided, the action will be shown to all users.
 
 Read-Only:
 
-- `view_type` (String)
+- `view_type` (String) must be one of ["disabled"]
 
 
 <a id="nestedatt--ui_config--table_view--redirect_entity_view"></a>
@@ -387,4 +391,4 @@ Read-Only:
 Read-Only:
 
 - `route` (String)
-- `view_type` (String)
+- `view_type` (String) must be one of ["redirect"]

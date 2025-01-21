@@ -3,14 +3,12 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     constraints = {
       # ...
     }
-    default_address_fields = [
-      "start_date"
-    ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -36,6 +34,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -53,9 +52,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     constraints = {
       # ...
     }
-    default_address_fields = [
-      "plot_of_land"
-    ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
@@ -87,6 +83,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -109,6 +106,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -134,6 +132,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -156,6 +155,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -181,6 +181,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -203,6 +204,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -228,6 +230,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -250,6 +253,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -278,6 +282,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -301,6 +306,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -326,6 +332,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -359,6 +366,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -384,6 +392,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -406,6 +415,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -431,6 +441,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -442,6 +453,55 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     show_in_table   = false
     sortable        = true
     type            = "date"
+    value_formatter = "...my_value_formatter..."
+  }
+  email_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = true
+    entity_builder_disable_edit = true
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = true
+    hidden                      = true
+    hide_label                  = false
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = true
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = false
+    render_condition = "...my_render_condition..."
+    repeatable       = false
+    required         = true
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = true
+    sortable        = true
+    type            = "email"
     value_formatter = "...my_value_formatter..."
   }
   file_attribute = {
@@ -459,6 +519,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -485,6 +546,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -507,6 +569,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -532,6 +595,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -554,6 +618,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -579,6 +644,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = false
     schema           = "contact"
     settings_flag = [
@@ -601,6 +667,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -626,6 +693,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -648,6 +716,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -673,6 +742,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -684,56 +754,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     show_in_table   = true
     sortable        = false
     type            = "link"
-    value_formatter = "...my_value_formatter..."
-  }
-  message_email_address_attribute = {
-    address = "...my_address..."
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    email_type                  = "...my_email_type..."
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    required         = true
-    schema           = "contact"
-    send_status      = "...my_send_status..."
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "message_email_address"
     value_formatter = "...my_value_formatter..."
   }
   multi_select_attribute = {
@@ -748,6 +768,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -782,6 +803,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -805,6 +827,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     feature_flag                = "FF_MY_FEATURE_FLAG"
     format                      = "...my_format..."
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -830,6 +853,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -853,6 +877,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -878,6 +903,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -900,6 +926,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -925,6 +952,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = false
     schema           = "contact"
     settings_flag = [
@@ -947,6 +975,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -972,6 +1001,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = false
     schema           = "contact"
     settings_flag = [
@@ -983,6 +1013,55 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     show_in_table   = false
     sortable        = true
     type            = "partner_status"
+    value_formatter = "...my_value_formatter..."
+  }
+  payment_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = false
+    entity_builder_disable_edit = false
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = true
+    hidden                      = false
+    hide_label                  = false
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = true
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = true
+    render_condition = "...my_render_condition..."
+    repeatable       = false
+    required         = true
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = true
+    sortable        = false
+    type            = "payment"
     value_formatter = "...my_value_formatter..."
   }
   payment_method_relation_attribute = {
@@ -1020,6 +1099,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1033,9 +1113,106 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "relation_payment_method"
     value_formatter = "...my_value_formatter..."
   }
+  phone_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = true
+    entity_builder_disable_edit = false
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = true
+    hidden                      = false
+    hide_label                  = true
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = false
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = true
+    render_condition = "...my_render_condition..."
+    repeatable       = true
+    required         = true
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = true
+    sortable        = false
+    type            = "phone"
+    value_formatter = "...my_value_formatter..."
+  }
+  price_component_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = false
+    entity_builder_disable_edit = false
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = false
+    hidden                      = true
+    hide_label                  = false
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = true
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = false
+    render_condition = "...my_render_condition..."
+    repeatable       = true
+    required         = true
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = false
+    sortable        = false
+    type            = "price_component"
+    value_formatter = "...my_value_formatter..."
+  }
   purpose_attribute = {
-    archived = false
-    color    = "#FF5733"
+    color = "#FF5733"
     constraints = {
       # ...
     }
@@ -1045,6 +1222,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1073,6 +1251,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1091,37 +1270,11 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   relation_attribute = {
     actions = [
       {
-        action_type  = "create_new"
-        default      = false
-        feature_flag = "...my_feature_flag..."
-        label        = "...my_label..."
-        new_entity_item = {
-          acl = {
-            additional_properties = "{ \"see\": \"documentation\" }"
-            delete = [
-              "org:456"
-            ]
-            edit = [
-              "org:456"
-            ]
-            view = [
-              "org:456"
-            ]
-          }
-          additional_properties = { "_id" : "3fa85f64-5717-4562-b3fc-2c963f66afa6", "_org" : "123", "_owners" : [{ "org_id" : "123", "user_id" : "123" }], "_schema" : "contact", "_tags" : ["example", "mock"], "_created_at" : "2021-02-09T12:41:43.662Z", "_updated_at" : "2021-02-09T12:41:43.662Z", "_acl" : { "view" : ["org:456", "org:789"], "edit" : ["org:456"], "delete" : ["org:456"] }, "_manifest" : ["123e4567-e89b-12d3-a456-426614174000"] }
-          id                    = "094dd5ad-d4b4-4ace-a195-70b490540f31"
-          manifest = [
-            "123e4567-e89b-12d3-a456-426614174000"
-          ]
-          purpose = [
-            "..."
-          ]
-          schema = "contact"
-          tags = [
-            "..."
-          ]
-          title = "...my_title..."
-        }
+        action_type     = "create_new"
+        default         = false
+        feature_flag    = "...my_feature_flag..."
+        label           = "...my_label..."
+        new_entity_item = "{ \"see\": \"documentation\" }"
         settings_flag = [
           {
             enabled = true
@@ -1175,6 +1328,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     relation_affinity_mode = "strong"
     relation_type          = "has_one"
     render_condition       = "...my_render_condition..."
+    repeatable             = true
     required               = false
     reverse_attributes = {
       key = "value",
@@ -1201,66 +1355,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "relation"
     value_formatter = "...my_value_formatter..."
   }
-  repeatable_attribute = {
-    add_button_label = "...my_add_button_label..."
-    allowed_schemas = [
-      "contact"
-    ]
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    enable_relation_picker      = false
-    enable_relation_tags        = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly               = false
-    relation_affinity_mode = "weak"
-    render_condition       = "...my_render_condition..."
-    repeatable             = false
-    required               = false
-    reverse_attributes = {
-      key = "value",
-    }
-    schema             = "contact"
-    search_placeholder = "...my_search_placeholder..."
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "date"
-    value_formatter = "...my_value_formatter..."
-  }
   select_attribute = {
     allow_any = false
     constraints = {
@@ -1271,6 +1365,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1297,6 +1392,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1319,6 +1415,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1345,6 +1442,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1368,6 +1466,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1402,6 +1501,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1424,6 +1524,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1452,6 +1553,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = true
     schema           = "contact"
     settings_flag = [
@@ -1477,6 +1579,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = false
     hidden                      = true
     hide_label                  = false
     icon                        = "...my_icon..."
@@ -1503,6 +1606,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = false
     render_condition = "...my_render_condition..."
+    repeatable       = true
     required         = false
     rich_text        = true
     schema           = "contact"
@@ -1526,6 +1630,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     entity_builder_disable_edit = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
+    has_primary                 = true
     hidden                      = true
     hide_label                  = true
     icon                        = "...my_icon..."
@@ -1552,6 +1657,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     ]
     readonly         = true
     render_condition = "...my_render_condition..."
+    repeatable       = false
     required         = false
     schema           = "contact"
     settings_flag = [

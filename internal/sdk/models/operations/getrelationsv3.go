@@ -19,7 +19,7 @@ type GetRelationsV3Request struct {
 	// *It gets overriden by mode query parameter.*
 	//
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IncludeReverse *bool `default:"false" queryParam:"style=form,explode=true,name=include_reverse"`
 	// Starting page number
 	From *int64 `default:"0" queryParam:"style=form,explode=true,name=from"`
@@ -122,8 +122,6 @@ type GetRelationsV3Response struct {
 	RawResponse *http.Response
 	// Success
 	GetRelationsRespWithPagination *shared.GetRelationsRespWithPagination
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetRelationsV3Response) GetContentType() string {
@@ -152,11 +150,4 @@ func (o *GetRelationsV3Response) GetGetRelationsRespWithPagination() *shared.Get
 		return nil
 	}
 	return o.GetRelationsRespWithPagination
-}
-
-func (o *GetRelationsV3Response) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

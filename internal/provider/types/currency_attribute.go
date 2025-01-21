@@ -15,6 +15,7 @@ type CurrencyAttribute struct {
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
+	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
 	Hidden                   types.Bool                                           `tfsdk:"hidden"`
 	HideLabel                types.Bool                                           `tfsdk:"hide_label"`
 	Icon                     types.String                                         `tfsdk:"icon"`
@@ -29,6 +30,7 @@ type CurrencyAttribute struct {
 	Protected                types.Bool                                           `tfsdk:"protected"`
 	Readonly                 types.Bool                                           `tfsdk:"readonly"`
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
+	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`

@@ -137,16 +137,17 @@ type PurposeAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool `json:"repeatable,omitempty"`
+	HasPrimary *bool `json:"has_primary,omitempty"`
 	// URL-friendly identifier for the classification
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                 `default:"false" json:"archived"`
-	Type     *PurposeAttributeType `json:"type,omitempty"`
+	Color     *string               `json:"color,omitempty"`
+	CreatedAt *time.Time            `json:"created_at,omitempty"`
+	UpdatedAt *time.Time            `json:"updated_at,omitempty"`
+	Type      *PurposeAttributeType `json:"type,omitempty"`
 }
 
 func (p PurposeAttribute) MarshalJSON() ([]byte, error) {
@@ -349,6 +350,20 @@ func (o *PurposeAttribute) GetInfoHelpers() *PurposeAttributeInfoHelpers {
 	return o.InfoHelpers
 }
 
+func (o *PurposeAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *PurposeAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
 func (o *PurposeAttribute) GetSlug() *string {
 	if o == nil {
 		return nil
@@ -382,13 +397,6 @@ func (o *PurposeAttribute) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *PurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *PurposeAttribute) GetType() *PurposeAttributeType {

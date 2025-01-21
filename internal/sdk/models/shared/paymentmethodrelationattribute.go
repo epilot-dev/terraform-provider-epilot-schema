@@ -137,8 +137,10 @@ type PaymentMethodRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *PaymentMethodRelationAttributeType        `json:"type,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                               `json:"repeatable,omitempty"`
+	HasPrimary *bool                               `json:"has_primary,omitempty"`
+	Type       *PaymentMethodRelationAttributeType `json:"type,omitempty"`
 }
 
 func (p PaymentMethodRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -341,11 +343,11 @@ func (o *PaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelation
 	return o.InfoHelpers
 }
 
-func (o *PaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeType {
+func (o *PaymentMethodRelationAttribute) GetRepeatable() *bool {
 	if o == nil {
 		return nil
 	}
-	return o.Type
+	return o.Repeatable
 }
 
 func (o *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
@@ -353,4 +355,11 @@ func (o *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
 		return nil
 	}
 	return o.HasPrimary
+}
+
+func (o *PaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

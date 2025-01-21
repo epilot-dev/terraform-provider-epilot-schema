@@ -7,7 +7,6 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 type AttributeWithCompositeIDPurposeAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
-	Archived                 types.Bool                                           `tfsdk:"archived"`
 	Color                    types.String                                         `tfsdk:"color"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
@@ -17,6 +16,7 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
+	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
 	Hidden                   types.Bool                                           `tfsdk:"hidden"`
 	HideLabel                types.Bool                                           `tfsdk:"hide_label"`
 	Icon                     types.String                                         `tfsdk:"icon"`
@@ -32,6 +32,7 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	Protected                types.Bool                                           `tfsdk:"protected"`
 	Readonly                 types.Bool                                           `tfsdk:"readonly"`
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
+	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	Schema                   types.String                                         `tfsdk:"schema"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`

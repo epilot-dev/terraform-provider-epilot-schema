@@ -137,8 +137,11 @@ type UserRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *UserRelationAttributeType        `json:"type,omitempty"`
-	Multiple    *bool                             `default:"false" json:"multiple"`
+	// The attribute is a repeatable
+	Repeatable *bool                      `json:"repeatable,omitempty"`
+	HasPrimary *bool                      `json:"has_primary,omitempty"`
+	Type       *UserRelationAttributeType `json:"type,omitempty"`
+	Multiple   *bool                      `default:"false" json:"multiple"`
 }
 
 func (u UserRelationAttribute) MarshalJSON() ([]byte, error) {
@@ -339,6 +342,20 @@ func (o *UserRelationAttribute) GetInfoHelpers() *UserRelationAttributeInfoHelpe
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *UserRelationAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *UserRelationAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *UserRelationAttribute) GetType() *UserRelationAttributeType {

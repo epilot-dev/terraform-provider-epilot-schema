@@ -137,7 +137,10 @@ type ComputedAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeInfoHelpers `json:"info_helpers,omitempty"`
-	Type        *ComputedAttributeType        `json:"type,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                  `json:"repeatable,omitempty"`
+	HasPrimary *bool                  `json:"has_primary,omitempty"`
+	Type       *ComputedAttributeType `json:"type,omitempty"`
 }
 
 func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
@@ -338,6 +341,20 @@ func (o *ComputedAttribute) GetInfoHelpers() *ComputedAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ComputedAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *ComputedAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
 }
 
 func (o *ComputedAttribute) GetType() *ComputedAttributeType {

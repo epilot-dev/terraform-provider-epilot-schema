@@ -156,7 +156,9 @@ func (s *Entities) SearchEntities(ctx context.Context, request *shared.EntitySea
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -372,7 +374,9 @@ func (s *Entities) ListEntities(ctx context.Context, request *shared.EntityListP
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -606,7 +610,9 @@ func (s *Entities) CreateEntity(ctx context.Context, request operations.CreateEn
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -831,7 +837,9 @@ func (s *Entities) ValidateEntity(ctx context.Context, request operations.Valida
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1052,7 +1060,9 @@ func (s *Entities) ValidateEntityV2(ctx context.Context, request operations.Vali
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1280,7 +1290,9 @@ func (s *Entities) UpsertEntity(ctx context.Context, request operations.UpsertEn
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1643,27 +1655,6 @@ func (s *Entities) GetEntityV2(ctx context.Context, request operations.GetEntity
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1735,7 +1726,9 @@ func (s *Entities) RestoreEntity(ctx context.Context, request operations.Restore
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -2139,27 +2132,6 @@ func (s *Entities) GetEntity(ctx context.Context, request operations.GetEntityRe
 			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out shared.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.NotFoundError = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	default:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -2253,7 +2225,9 @@ func (s *Entities) UpdateEntity(ctx context.Context, request operations.UpdateEn
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -2506,7 +2480,9 @@ func (s *Entities) PatchEntity(ctx context.Context, request operations.PatchEnti
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)

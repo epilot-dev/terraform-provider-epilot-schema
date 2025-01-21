@@ -28,8 +28,6 @@ type GetSavedViewResponse struct {
 	RawResponse *http.Response
 	// Success
 	SavedViewItem *shared.SavedViewItem
-	// The requested resource was not found
-	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSavedViewResponse) GetContentType() string {
@@ -58,11 +56,4 @@ func (o *GetSavedViewResponse) GetSavedViewItem() *shared.SavedViewItem {
 		return nil
 	}
 	return o.SavedViewItem
-}
-
-func (o *GetSavedViewResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
-		return nil
-	}
-	return o.NotFoundError
 }

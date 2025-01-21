@@ -260,9 +260,9 @@ type EntityCapabilityWithCompositeIDInput struct {
 	// Unique name for the capability
 	Name string `json:"name"`
 	// Human readable title of the capability
-	Title      *string          `json:"title,omitempty"`
-	Attributes []AttributeInput `json:"attributes,omitempty"`
-	Purpose    []string         `json:"_purpose,omitempty"`
+	Title      *string     `json:"title,omitempty"`
+	Attributes []Attribute `json:"attributes,omitempty"`
+	Purpose    []string    `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema capabilility
 	Manifest []string  `json:"_manifest,omitempty"`
 	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
@@ -295,7 +295,7 @@ func (o *EntityCapabilityWithCompositeIDInput) GetTitle() *string {
 	return o.Title
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetAttributes() []AttributeInput {
+func (o *EntityCapabilityWithCompositeIDInput) GetAttributes() []Attribute {
 	if o == nil {
 		return nil
 	}
