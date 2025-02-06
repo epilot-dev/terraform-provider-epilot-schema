@@ -3,9 +3,37 @@
 package operations
 
 import (
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
+
+// CreateSavedViewResponseBody - A saved entity view
+type CreateSavedViewResponseBody struct {
+	// Generated uuid for a saved view
+	ID        *string `json:"id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+}
+
+func (o *CreateSavedViewResponseBody) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *CreateSavedViewResponseBody) GetCreatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *CreateSavedViewResponseBody) GetUpdatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
 
 type CreateSavedViewResponse struct {
 	// HTTP response content type for this operation
@@ -15,7 +43,7 @@ type CreateSavedViewResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	SavedViewItem *shared.SavedViewItem
+	Object *CreateSavedViewResponseBody
 }
 
 func (o *CreateSavedViewResponse) GetContentType() string {
@@ -39,9 +67,9 @@ func (o *CreateSavedViewResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CreateSavedViewResponse) GetSavedViewItem() *shared.SavedViewItem {
+func (o *CreateSavedViewResponse) GetObject() *CreateSavedViewResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.SavedViewItem
+	return o.Object
 }

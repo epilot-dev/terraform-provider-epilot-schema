@@ -2,9 +2,38 @@
 
 package shared
 
+// Results - A saved entity view
+type Results struct {
+	// Generated uuid for a saved view
+	ID        *string `json:"id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+}
+
+func (o *Results) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Results) GetCreatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *Results) GetUpdatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
 type ListSavedViewsResults struct {
-	Hits    *float64        `json:"hits,omitempty"`
-	Results []SavedViewItem `json:"results,omitempty"`
+	Hits    *float64  `json:"hits,omitempty"`
+	Results []Results `json:"results,omitempty"`
 }
 
 func (o *ListSavedViewsResults) GetHits() *float64 {
@@ -14,7 +43,7 @@ func (o *ListSavedViewsResults) GetHits() *float64 {
 	return o.Hits
 }
 
-func (o *ListSavedViewsResults) GetResults() []SavedViewItem {
+func (o *ListSavedViewsResults) GetResults() []Results {
 	if o == nil {
 		return nil
 	}

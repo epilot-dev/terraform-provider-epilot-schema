@@ -5,11 +5,16 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SummaryAttribute struct {
-	FeatureFlag     types.String  `tfsdk:"feature_flag"`
-	Label           types.String  `tfsdk:"label"`
-	RenderCondition types.String  `tfsdk:"render_condition"`
-	SettingsFlag    []SettingFlag `tfsdk:"settings_flag"`
-	ShowAsTag       types.Bool    `tfsdk:"show_as_tag"`
-	TagColor        types.String  `tfsdk:"tag_color"`
-	Value           types.String  `tfsdk:"value"`
+	ContentLineCap     types.Number  `tfsdk:"content_line_cap"`
+	ContentWrap        types.String  `tfsdk:"content_wrap"`
+	DisplayMode        types.String  `tfsdk:"display_mode"`
+	FeatureFlag        types.String  `tfsdk:"feature_flag"`
+	HideLabel          types.Bool    `tfsdk:"hide_label"`
+	HighlightContainer types.Bool    `tfsdk:"highlight_container"`
+	Label              types.String  `tfsdk:"label"`
+	RenderCondition    types.String  `tfsdk:"render_condition"`
+	SettingsFlag       []SettingFlag `tfsdk:"settings_flag"`
+	ShowAsTag          types.Bool    `tfsdk:"show_as_tag"`
+	TagColor           types.String  `tfsdk:"tag_color"`
+	Value              types.String  `tfsdk:"value"`
 }

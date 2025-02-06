@@ -9,7 +9,6 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
-	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
@@ -95,20 +94,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				},
 			},
 			"category": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `must be one of ["customer_relations", "sales", "product_hub", "contracts", "journeys", "messaging", "system"]`,
-				Validators: []validator.String{
-					stringvalidator.OneOf(
-						"customer_relations",
-						"sales",
-						"product_hub",
-						"contracts",
-						"journeys",
-						"messaging",
-						"system",
-					),
-				},
+				Computed: true,
+				Optional: true,
 			},
 			"created_at": schema.StringAttribute{
 				Computed: true,
@@ -146,9 +133,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Computed: true,
 				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"fields": schema.MapAttribute{
 							Computed:    true,
@@ -184,7 +168,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						},
 					},
 				},
-				Description: `Advanced: explicit Elasticsearch index mapping definitions for entity data`,
+				MarkdownDescription: `Advanced: explicit Elasticsearch index mapping definitions for entity data` + "\n" +
+					``,
 			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
@@ -241,7 +226,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				},
 				MarkdownDescription: `Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:` + "\n" +
 					`- Managed Properties: are interpreted and transformed into layout styles` + "\n" +
-					`- Un-managed Properties: are appended as styles into the attribute mounting node`,
+					`- Un-managed Properties: are appended as styles into the attribute mounting node` + "\n" +
+					``,
 			},
 			"name": schema.StringAttribute{
 				Required:    true,
@@ -288,9 +274,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "default"`,
+										Description: `must be one of ["default"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("default"),
+											stringvalidator.OneOf(
+												"default",
+											),
 										},
 									},
 								},
@@ -308,9 +296,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "disabled"`,
+										Description: `must be one of ["disabled"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("disabled"),
+											stringvalidator.OneOf(
+												"disabled",
+											),
 										},
 									},
 								},
@@ -332,9 +322,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "redirect"`,
+										Description: `must be one of ["redirect"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("redirect"),
+											stringvalidator.OneOf(
+												"redirect",
+											),
 										},
 									},
 								},
@@ -345,6 +337,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									}...),
 								},
 							},
+						},
+						Validators: []validator.Object{
+							validators.ExactlyOneChild(),
 						},
 					},
 					"edit_view": schema.SingleNestedAttribute{
@@ -369,9 +364,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "default"`,
+										Description: `must be one of ["default"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("default"),
+											stringvalidator.OneOf(
+												"default",
+											),
 										},
 									},
 								},
@@ -389,9 +386,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "disabled"`,
+										Description: `must be one of ["disabled"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("disabled"),
+											stringvalidator.OneOf(
+												"disabled",
+											),
 										},
 									},
 								},
@@ -413,9 +412,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "redirect"`,
+										Description: `must be one of ["redirect"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("redirect"),
+											stringvalidator.OneOf(
+												"redirect",
+											),
 										},
 									},
 								},
@@ -427,6 +428,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								},
 							},
 						},
+						Validators: []validator.Object{
+							validators.ExactlyOneChild(),
+						},
 					},
 					"list_item": schema.SingleNestedAttribute{
 						Computed: true,
@@ -436,9 +440,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Computed: true,
 								Optional: true,
 								NestedObject: schema.NestedAttributeObject{
-									Validators: []validator.Object{
-										speakeasy_objectvalidators.NotNull(),
-									},
 									Attributes: map[string]schema.Attribute{
 										"action": schema.StringAttribute{
 											Computed:    true,
@@ -464,7 +465,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											MarkdownDescription: `Permission required to show the action.` + "\n" +
-												`If not provided, the action will be shown to all users.`,
+												`If not provided, the action will be shown to all users.` + "\n" +
+												``,
 										},
 									},
 								},
@@ -473,9 +475,6 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Computed: true,
 								Optional: true,
 								NestedObject: schema.NestedAttributeObject{
-									Validators: []validator.Object{
-										speakeasy_objectvalidators.NotNull(),
-									},
 									Attributes: map[string]schema.Attribute{
 										"str": schema.StringAttribute{
 											Computed: true,
@@ -490,10 +489,57 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											Attributes: map[string]schema.Attribute{
+												"content_line_cap": schema.NumberAttribute{
+													Computed: true,
+													Optional: true,
+													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
+														`For instance, When set to 1, the content will be displayed in a single line.` + "\n" +
+														``,
+												},
+												"content_wrap": schema.StringAttribute{
+													Computed: true,
+													Optional: true,
+													MarkdownDescription: `Defines white-space of the content.` + "\n" +
+														`` + "\n" +
+														`must be one of ["normal", "nowrap", "pre", "pre-wrap"]`,
+													Validators: []validator.String{
+														stringvalidator.OneOf(
+															"normal",
+															"nowrap",
+															"pre",
+															"pre-wrap",
+														),
+													},
+												},
+												"display_mode": schema.StringAttribute{
+													Computed: true,
+													Optional: true,
+													MarkdownDescription: `Defines the display mode of the summary attribute.` + "\n" +
+														`When set to ` + "`" + `inline` + "`" + `, the label and value will be displayed in the same line.` + "\n" +
+														`When set to ` + "`" + `block` + "`" + `, the label and value will be displayed in separate lines.` + "\n" +
+														`` + "\n" +
+														`must be one of ["inline", "block"]`,
+													Validators: []validator.String{
+														stringvalidator.OneOf(
+															"inline",
+															"block",
+														),
+													},
+												},
 												"feature_flag": schema.StringAttribute{
 													Computed:    true,
 													Optional:    true,
 													Description: `Binds summary field visibility to the feature flag state.`,
+												},
+												"hide_label": schema.BoolAttribute{
+													Computed:    true,
+													Optional:    true,
+													Description: `When set to true, will hide the label of the field.`,
+												},
+												"highlight_container": schema.BoolAttribute{
+													Computed:    true,
+													Optional:    true,
+													Description: `When set to true, will highlight the container of the field.`,
 												},
 												"label": schema.StringAttribute{
 													Computed:    true,
@@ -508,15 +554,13 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													Optional: true,
 													MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
 														`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
-														`Note: Empty or invalid expression have no effect on the field visibility.`,
+														`Note: Empty or invalid expression have no effect on the field visibility.` + "\n" +
+														``,
 												},
 												"settings_flag": schema.ListNestedAttribute{
 													Computed: true,
 													Optional: true,
 													NestedObject: schema.NestedAttributeObject{
-														Validators: []validator.Object{
-															speakeasy_objectvalidators.NotNull(),
-														},
 														Attributes: map[string]schema.Attribute{
 															"enabled": schema.BoolAttribute{
 																Computed:    true,
@@ -561,12 +605,33 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 												`  "render_condition": "is_composite_price = "true""` + "\n" +
 												`}` + "\n" +
 												`` + "```" + `` + "\n" +
-												`The value field supports handlebar expressions from which you can pick any field from the entity state.`,
+												`The value field supports handlebar expressions from which you can pick any field from the entity state.` + "\n" +
+												``,
 											Validators: []validator.Object{
 												objectvalidator.ConflictsWith(path.Expressions{
 													path.MatchRelative().AtParent().AtName("str"),
 												}...),
 											},
+										},
+									},
+									Validators: []validator.Object{
+										validators.ExactlyOneChild(),
+									},
+								},
+							},
+							"ui_config": schema.SingleNestedAttribute{
+								Computed: true,
+								Optional: true,
+								Attributes: map[string]schema.Attribute{
+									"content_direction": schema.StringAttribute{
+										Computed:    true,
+										Optional:    true,
+										Description: `Show attributes in a row or column. must be one of ["row", "column"]`,
+										Validators: []validator.String{
+											stringvalidator.OneOf(
+												"row",
+												"column",
+											),
 										},
 									},
 								},
@@ -606,9 +671,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "default"`,
+										Description: `must be one of ["default"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("default"),
+											stringvalidator.OneOf(
+												"default",
+											),
 										},
 									},
 								},
@@ -626,9 +693,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "disabled"`,
+										Description: `must be one of ["disabled"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("disabled"),
+											stringvalidator.OneOf(
+												"disabled",
+											),
 										},
 									},
 								},
@@ -650,9 +719,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "redirect"`,
+										Description: `must be one of ["redirect"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("redirect"),
+											stringvalidator.OneOf(
+												"redirect",
+											),
 										},
 									},
 								},
@@ -663,6 +734,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									}...),
 								},
 							},
+						},
+						Validators: []validator.Object{
+							validators.ExactlyOneChild(),
 						},
 					},
 					"table_view": schema.SingleNestedAttribute{
@@ -677,10 +751,16 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										Computed: true,
 										Optional: true,
 										NestedObject: schema.NestedAttributeObject{
-											Validators: []validator.Object{
-												speakeasy_objectvalidators.NotNull(),
-											},
 											Attributes: map[string]schema.Attribute{
+												"str": schema.StringAttribute{
+													Computed: true,
+													Optional: true,
+													Validators: []validator.String{
+														stringvalidator.ConflictsWith(path.Expressions{
+															path.MatchRelative().AtParent().AtName("entity_action"),
+														}...),
+													},
+												},
 												"entity_action": schema.SingleNestedAttribute{
 													Computed: true,
 													Optional: true,
@@ -709,7 +789,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 															Computed: true,
 															Optional: true,
 															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.`,
+																`If not provided, the action will be shown to all users.` + "\n" +
+																``,
 														},
 													},
 													Description: `An entity action configured from the entity schema`,
@@ -719,15 +800,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 														}...),
 													},
 												},
-												"str": schema.StringAttribute{
-													Computed: true,
-													Optional: true,
-													Validators: []validator.String{
-														stringvalidator.ConflictsWith(path.Expressions{
-															path.MatchRelative().AtParent().AtName("entity_action"),
-														}...),
-													},
-												},
+											},
+											Validators: []validator.Object{
+												validators.ExactlyOneChild(),
 											},
 										},
 									},
@@ -741,17 +816,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										Computed: true,
 										Optional: true,
 										NestedObject: schema.NestedAttributeObject{
-											Validators: []validator.Object{
-												speakeasy_objectvalidators.NotNull(),
-											},
 											Attributes: map[string]schema.Attribute{
 												"options": schema.ListNestedAttribute{
 													Computed: true,
 													Optional: true,
 													NestedObject: schema.NestedAttributeObject{
-														Validators: []validator.Object{
-															speakeasy_objectvalidators.NotNull(),
-														},
 														Attributes: map[string]schema.Attribute{
 															"label": schema.StringAttribute{
 																Computed:    true,
@@ -762,8 +831,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 																},
 															},
 															"params": schema.SingleNestedAttribute{
-																Computed: true,
-																Optional: true,
+																Computed:   true,
+																Optional:   true,
+																Attributes: map[string]schema.Attribute{},
 															},
 														},
 													},
@@ -783,10 +853,16 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										Computed: true,
 										Optional: true,
 										NestedObject: schema.NestedAttributeObject{
-											Validators: []validator.Object{
-												speakeasy_objectvalidators.NotNull(),
-											},
 											Attributes: map[string]schema.Attribute{
+												"str": schema.StringAttribute{
+													Computed: true,
+													Optional: true,
+													Validators: []validator.String{
+														stringvalidator.ConflictsWith(path.Expressions{
+															path.MatchRelative().AtParent().AtName("entity_action"),
+														}...),
+													},
+												},
 												"entity_action": schema.SingleNestedAttribute{
 													Computed: true,
 													Optional: true,
@@ -815,7 +891,8 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 															Computed: true,
 															Optional: true,
 															MarkdownDescription: `Permission required to show the action.` + "\n" +
-																`If not provided, the action will be shown to all users.`,
+																`If not provided, the action will be shown to all users.` + "\n" +
+																``,
 														},
 													},
 													Description: `An entity action configured from the entity schema`,
@@ -825,24 +902,20 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 														}...),
 													},
 												},
-												"str": schema.StringAttribute{
-													Computed: true,
-													Optional: true,
-													Validators: []validator.String{
-														stringvalidator.ConflictsWith(path.Expressions{
-															path.MatchRelative().AtParent().AtName("entity_action"),
-														}...),
-													},
-												},
+											},
+											Validators: []validator.Object{
+												validators.ExactlyOneChild(),
 											},
 										},
 									},
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "default"`,
+										Description: `must be one of ["default"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("default"),
+											stringvalidator.OneOf(
+												"default",
+											),
 										},
 									},
 								},
@@ -860,9 +933,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "disabled"`,
+										Description: `must be one of ["disabled"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("disabled"),
+											stringvalidator.OneOf(
+												"disabled",
+											),
 										},
 									},
 								},
@@ -884,9 +959,11 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									"view_type": schema.StringAttribute{
 										Computed:    true,
 										Optional:    true,
-										Description: `must be "redirect"`,
+										Description: `must be one of ["redirect"]`,
 										Validators: []validator.String{
-											stringvalidator.OneOf("redirect"),
+											stringvalidator.OneOf(
+												"redirect",
+											),
 										},
 									},
 								},
@@ -897,6 +974,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									}...),
 								},
 							},
+						},
+						Validators: []validator.Object{
+							validators.ExactlyOneChild(),
 						},
 					},
 				},

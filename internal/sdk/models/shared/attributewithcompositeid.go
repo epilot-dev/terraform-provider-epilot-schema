@@ -1502,379 +1502,6 @@ func (o *AttributeWithCompositeIDPhoneAttribute) GetSchema() *string {
 	return o.Schema
 }
 
-// AddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
-// These constraints should and will be enforced by the attribute renderer.
-type AddressAttributeAttributeWithCompositeIDConstraints struct {
-}
-
-// AddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
-type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
-	// The text to be displayed in the attribute hint helper.
-	// When specified it overrides the `hint_text_key` configuration.
-	//
-	HintText *string `json:"hint_text,omitempty"`
-	// The key of the hint text to be displayed in the attribute hint helper.
-	// The key should be a valid i18n key.
-	//
-	HintTextKey *string `json:"hint_text_key,omitempty"`
-	// The name of the custom component to be used as the hint helper.
-	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
-	//
-	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
-	// The placement of the hint tooltip.
-	// The value should be a valid `@mui/core` tooltip placement.
-	//
-	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTextKey
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintCustomComponent
-}
-
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintTooltipPlacement
-}
-
-type AddressAttributeAttributeWithCompositeIDType string
-
-const (
-	AddressAttributeAttributeWithCompositeIDTypeAddress AddressAttributeAttributeWithCompositeIDType = "address"
-)
-
-func (e AddressAttributeAttributeWithCompositeIDType) ToPointer() *AddressAttributeAttributeWithCompositeIDType {
-	return &e
-}
-func (e *AddressAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "address":
-		*e = AddressAttributeAttributeWithCompositeIDType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AddressAttributeAttributeWithCompositeIDType: %v", v)
-	}
-}
-
-// AttributeWithCompositeIDAddressAttribute - Physical Address
-type AttributeWithCompositeIDAddressAttribute struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	// The attribute is a repeatable
-	Repeatable  *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
-	Type        *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                       `json:"composite_id,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDAddressAttribute) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetRepeatable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Repeatable
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetType() *AddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetCompositeID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CompositeID
-}
-
-func (o *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
 // PartnerOrganisationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PartnerOrganisationAttributeAttributeWithCompositeIDConstraints struct {
@@ -2383,9 +2010,11 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color       *string                                       `json:"color,omitempty"`
-	CreatedAt   *time.Time                                    `json:"created_at,omitempty"`
-	UpdatedAt   *time.Time                                    `json:"updated_at,omitempty"`
+	Color     *string    `json:"color,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Archived classification are not visible in the UI
+	Archived    *bool                                         `default:"false" json:"archived"`
 	Type        *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	CompositeID *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
@@ -2639,6 +2268,13 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *AttributeWithCompositeIDPurposeAttribute) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
 }
 
 func (o *AttributeWithCompositeIDPurposeAttribute) GetType() *PurposeAttributeAttributeWithCompositeIDType {
@@ -4274,9 +3910,11 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+	// Variable template used to format the computed value
+	ValueFormatter string `json:"value_formatter"`
+	// Variable template used to format a preview for the computed value
+	PreviewValueFormatter *string `json:"preview_value_formatter,omitempty"`
 	// Setting to `true` disables editing the attribute on the entity builder UI
 	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
 	// Setting to `true` prevents the attribute from being modified / deleted
@@ -4284,10 +3922,15 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                          `json:"has_primary,omitempty"`
-	Type        *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                        `json:"composite_id,omitempty"`
+	Repeatable *bool                                          `json:"repeatable,omitempty"`
+	HasPrimary *bool                                          `json:"has_primary,omitempty"`
+	Type       *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Computed   *bool                                          `default:"true" json:"computed"`
+	// A source amount field that is used to compute the value of the attribute
+	AmountField *string `json:"amount_field,omitempty"`
+	// A currency field used to format a computed currency value
+	CurrencyField *string `json:"currency_field,omitempty"`
+	CompositeID   *string `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -4457,9 +4100,9 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetSettingsFlag() []SettingF
 	return o.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetValueFormatter() *string {
+func (o *AttributeWithCompositeIDComputedAttribute) GetValueFormatter() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ValueFormatter
 }
@@ -4511,6 +4154,27 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetType() *ComputedAttribute
 		return nil
 	}
 	return o.Type
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetComputed() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Computed
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetAmountField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AmountField
+}
+
+func (o *AttributeWithCompositeIDComputedAttribute) GetCurrencyField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyField
 }
 
 func (o *AttributeWithCompositeIDComputedAttribute) GetCompositeID() *string {
@@ -6499,6 +6163,403 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
 	return o.Schema
 }
 
+// MessageEmailAddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
+// These constraints should and will be enforced by the attribute renderer.
+type MessageEmailAddressAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+// MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers struct {
+	// The text to be displayed in the attribute hint helper.
+	// When specified it overrides the `hint_text_key` configuration.
+	//
+	HintText *string `json:"hint_text,omitempty"`
+	// The key of the hint text to be displayed in the attribute hint helper.
+	// The key should be a valid i18n key.
+	//
+	HintTextKey *string `json:"hint_text_key,omitempty"`
+	// The name of the custom component to be used as the hint helper.
+	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
+	//
+	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
+	// The placement of the hint tooltip.
+	// The value should be a valid `@mui/core` tooltip placement.
+	//
+	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintText
+}
+
+func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTextKey
+}
+
+func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintCustomComponent
+}
+
+func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTooltipPlacement
+}
+
+type MessageEmailAddressAttributeAttributeWithCompositeIDType string
+
+const (
+	MessageEmailAddressAttributeAttributeWithCompositeIDTypeMessageEmailAddress MessageEmailAddressAttributeAttributeWithCompositeIDType = "message_email_address"
+)
+
+func (e MessageEmailAddressAttributeAttributeWithCompositeIDType) ToPointer() *MessageEmailAddressAttributeAttributeWithCompositeIDType {
+	return &e
+}
+func (e *MessageEmailAddressAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "message_email_address":
+		*e = MessageEmailAddressAttributeAttributeWithCompositeIDType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MessageEmailAddressAttributeAttributeWithCompositeIDType: %v", v)
+	}
+}
+
+// AttributeWithCompositeIDMessageEmailAddressAttribute - Message emil address
+type AttributeWithCompositeIDMessageEmailAddressAttribute struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	Type        MessageEmailAddressAttributeAttributeWithCompositeIDType `json:"type"`
+	Address     *string                                                  `json:"address,omitempty"`
+	SendStatus  *string                                                  `json:"send_status,omitempty"`
+	EmailType   *string                                                  `json:"email_type,omitempty"`
+	CompositeID *string                                                  `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDMessageEmailAddressAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSendStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SendStatus
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEmailType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailType
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetCompositeID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // TagsAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type TagsAttributeAttributeWithCompositeIDConstraints struct {
@@ -7008,7 +7069,7 @@ const (
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1 `queryParam:"inline"`
+	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1
 
 	Type CurrencyAttributeCurrencyType
 }
@@ -7858,10 +7919,12 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
-	Type        *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                               `json:"composite_id,omitempty"`
+	Repeatable *bool                                                 `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                 `json:"has_primary,omitempty"`
+	Type       *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	CompositeID          *string                `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -8087,6 +8150,13 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() *AddressRel
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
+}
+
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *string {
 	if o == nil {
 		return nil
@@ -8095,6 +8165,388 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *str
 }
 
 func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
+// AddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
+// These constraints should and will be enforced by the attribute renderer.
+type AddressAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+// AddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
+	// The text to be displayed in the attribute hint helper.
+	// When specified it overrides the `hint_text_key` configuration.
+	//
+	HintText *string `json:"hint_text,omitempty"`
+	// The key of the hint text to be displayed in the attribute hint helper.
+	// The key should be a valid i18n key.
+	//
+	HintTextKey *string `json:"hint_text_key,omitempty"`
+	// The name of the custom component to be used as the hint helper.
+	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
+	//
+	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
+	// The placement of the hint tooltip.
+	// The value should be a valid `@mui/core` tooltip placement.
+	//
+	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintText
+}
+
+func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTextKey
+}
+
+func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintCustomComponent
+}
+
+func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTooltipPlacement
+}
+
+type AddressAttributeAttributeWithCompositeIDType string
+
+const (
+	AddressAttributeAttributeWithCompositeIDTypeAddress AddressAttributeAttributeWithCompositeIDType = "address"
+)
+
+func (e AddressAttributeAttributeWithCompositeIDType) ToPointer() *AddressAttributeAttributeWithCompositeIDType {
+	return &e
+}
+func (e *AddressAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "address":
+		*e = AddressAttributeAttributeWithCompositeIDType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AddressAttributeAttributeWithCompositeIDType: %v", v)
+	}
+}
+
+// AttributeWithCompositeIDAddressAttribute - Address attribute
+type AttributeWithCompositeIDAddressAttribute struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	CompositeID          *string                `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDAddressAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDAddressAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetType() *AddressAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetCompositeID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -8635,6 +9087,18 @@ func (e *RelationAttributeEditMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// RelationAttributeRelationPickerFilter - Additional entity search filter for relation picker
+type RelationAttributeRelationPickerFilter struct {
+	Q string `json:"q"`
+}
+
+func (o *RelationAttributeRelationPickerFilter) GetQ() string {
+	if o == nil {
+		return ""
+	}
+	return o.Q
+}
+
 // RelationAttributeActionType - The action type. Currently supported actions:
 //
 // | action | description |
@@ -8771,8 +9235,8 @@ const (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          *string       `queryParam:"inline"`
-	SummaryField *SummaryField `queryParam:"inline"`
+	Str          *string
+	SummaryField *SummaryField
 
 	Type RelationAttributeSummaryFieldsType
 }
@@ -8888,11 +9352,13 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
 	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-	DetailsViewModeEnabled *bool                            `default:"false" json:"details_view_mode_enabled"`
-	Actions                []RelationAttributeActions       `json:"actions,omitempty"`
-	DrawerSize             *RelationAttributeDrawerSize     `json:"drawer_size,omitempty"`
-	SummaryFields          []RelationAttributeSummaryFields `json:"summary_fields,omitempty"`
-	AllowedSchemas         []string                         `json:"allowedSchemas,omitempty"`
+	DetailsViewModeEnabled *bool `default:"false" json:"details_view_mode_enabled"`
+	// Additional entity search filter for relation picker
+	RelationPickerFilter *RelationAttributeRelationPickerFilter `json:"relation_picker_filter,omitempty"`
+	Actions              []RelationAttributeActions             `json:"actions,omitempty"`
+	DrawerSize           *RelationAttributeDrawerSize           `json:"drawer_size,omitempty"`
+	SummaryFields        []RelationAttributeSummaryFields       `json:"summary_fields,omitempty"`
+	AllowedSchemas       []string                               `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
 	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
@@ -9165,6 +9631,13 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetDetailsViewModeEnabled() 
 		return nil
 	}
 	return o.DetailsViewModeEnabled
+}
+
+func (o *AttributeWithCompositeIDRelationAttribute) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
+	if o == nil {
+		return nil
+	}
+	return o.RelationPickerFilter
 }
 
 func (o *AttributeWithCompositeIDRelationAttribute) GetActions() []RelationAttributeActions {
@@ -9726,8 +10199,8 @@ const (
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                                             *string                                          `queryParam:"inline"`
-	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2 `queryParam:"inline"`
+	Str                                             *string
+	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -10192,8 +10665,8 @@ const (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str                          *string                       `queryParam:"inline"`
-	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline"`
+	Str                          *string
+	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2
 
 	Type MultiSelectAttributeOptionsType
 }
@@ -11048,6 +11521,32 @@ func (e *BooleanAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 	}
 }
 
+type BooleanAttributeDisplayType string
+
+const (
+	BooleanAttributeDisplayTypeSwitch   BooleanAttributeDisplayType = "switch"
+	BooleanAttributeDisplayTypeCheckbox BooleanAttributeDisplayType = "checkbox"
+)
+
+func (e BooleanAttributeDisplayType) ToPointer() *BooleanAttributeDisplayType {
+	return &e
+}
+func (e *BooleanAttributeDisplayType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "switch":
+		fallthrough
+	case "checkbox":
+		*e = BooleanAttributeDisplayType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BooleanAttributeDisplayType: %v", v)
+	}
+}
+
 // AttributeWithCompositeIDBooleanAttribute - Yes / No Toggle
 type AttributeWithCompositeIDBooleanAttribute struct {
 	// ID for the entity attribute
@@ -11104,6 +11603,7 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	Repeatable  *bool                                         `json:"repeatable,omitempty"`
 	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
 	Type        *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	DisplayType *BooleanAttributeDisplayType                  `default:"switch" json:"display_type"`
 	CompositeID *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
@@ -11328,6 +11828,13 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetType() *BooleanAttributeAt
 		return nil
 	}
 	return o.Type
+}
+
+func (o *AttributeWithCompositeIDBooleanAttribute) GetDisplayType() *BooleanAttributeDisplayType {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayType
 }
 
 func (o *AttributeWithCompositeIDBooleanAttribute) GetCompositeID() *string {
@@ -12543,6 +13050,70 @@ func (e *TextAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) e
 	}
 }
 
+type TextAttributeRowsType string
+
+const (
+	TextAttributeRowsTypeInteger TextAttributeRowsType = "integer"
+	TextAttributeRowsTypeStr     TextAttributeRowsType = "str"
+)
+
+// TextAttributeRows - Number of rows for rich_text textarea
+type TextAttributeRows struct {
+	Integer *int64
+	Str     *string
+
+	Type TextAttributeRowsType
+}
+
+func CreateTextAttributeRowsInteger(integer int64) TextAttributeRows {
+	typ := TextAttributeRowsTypeInteger
+
+	return TextAttributeRows{
+		Integer: &integer,
+		Type:    typ,
+	}
+}
+
+func CreateTextAttributeRowsStr(str string) TextAttributeRows {
+	typ := TextAttributeRowsTypeStr
+
+	return TextAttributeRows{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *TextAttributeRows) UnmarshalJSON(data []byte) error {
+
+	var integer int64 = int64(0)
+	if err := utils.UnmarshalJSON(data, &integer, "", true, false); err == nil {
+		u.Integer = &integer
+		u.Type = TextAttributeRowsTypeInteger
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = TextAttributeRowsTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TextAttributeRows", string(data))
+}
+
+func (u TextAttributeRows) MarshalJSON() ([]byte, error) {
+	if u.Integer != nil {
+		return utils.MarshalJSON(u.Integer, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type TextAttributeRows: all fields are null")
+}
+
 // AttributeWithCompositeIDTextAttribute - Textarea or text input
 type AttributeWithCompositeIDTextAttribute struct {
 	// ID for the entity attribute
@@ -12596,12 +13167,14 @@ type AttributeWithCompositeIDTextAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
-	Type        *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiline   *bool                                      `json:"multiline,omitempty"`
-	RichText    *bool                                      `json:"rich_text,omitempty"`
-	CompositeID *string                                    `json:"composite_id,omitempty"`
+	Repeatable *bool                                      `json:"repeatable,omitempty"`
+	HasPrimary *bool                                      `json:"has_primary,omitempty"`
+	Type       *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Multiline  *bool                                      `json:"multiline,omitempty"`
+	RichText   *bool                                      `json:"rich_text,omitempty"`
+	// Number of rows for rich_text textarea
+	Rows        *TextAttributeRows `json:"rows,omitempty"`
+	CompositeID *string            `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -12841,6 +13414,13 @@ func (o *AttributeWithCompositeIDTextAttribute) GetRichText() *bool {
 	return o.RichText
 }
 
+func (o *AttributeWithCompositeIDTextAttribute) GetRows() *TextAttributeRows {
+	if o == nil {
+		return nil
+	}
+	return o.Rows
+}
+
 func (o *AttributeWithCompositeIDTextAttribute) GetCompositeID() *string {
 	if o == nil {
 		return nil
@@ -12869,10 +13449,12 @@ const (
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_SequenceAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_RelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_UserRelationAttribute"
+	AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_AddressAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute       AttributeWithCompositeIDType = "AttributeWithCompositeID_AddressRelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDType = "AttributeWithCompositeID_PaymentMethodRelationAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_CurrencyAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute                  AttributeWithCompositeIDType = "AttributeWithCompositeID_TagsAttribute"
+	AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute   AttributeWithCompositeIDType = "AttributeWithCompositeID_MessageEmailAddressAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute                AttributeWithCompositeIDType = "AttributeWithCompositeID_NumberAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_ConsentAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute              AttributeWithCompositeIDType = "AttributeWithCompositeID_InternalAttribute"
@@ -12885,7 +13467,6 @@ const (
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_InternalUserAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PurposeAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute   AttributeWithCompositeIDType = "AttributeWithCompositeID_PartnerOrganisationAttribute"
-	AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_AddressAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_PhoneAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_EmailAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PaymentAttribute"
@@ -12894,38 +13475,39 @@ const (
 
 // AttributeWithCompositeID - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeID struct {
-	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute
+	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute
+	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute
+	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute
+	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute
+	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute
+	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute
+	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute
+	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute
+	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute
+	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute
+	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute
+	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute
+	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute
+	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute
+	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute
+	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute
+	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute
+	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute
+	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute
+	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute
+	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute
+	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute
+	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute
+	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute
+	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute
+	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute
+	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute
+	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute
+	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute
+	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute
+	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute
+	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute
 
 	Type AttributeWithCompositeIDType
 }
@@ -13029,6 +13611,15 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDUserRelationAttribute
 	}
 }
 
+func CreateAttributeWithCompositeIDAttributeWithCompositeIDAddressAttribute(attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute) AttributeWithCompositeID {
+	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
+
+	return AttributeWithCompositeID{
+		AttributeWithCompositeIDAddressAttribute: &attributeWithCompositeIDAddressAttribute,
+		Type:                                     typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDAddressRelationAttribute(attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 
@@ -13062,6 +13653,15 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDTagsAttribute(attribu
 	return AttributeWithCompositeID{
 		AttributeWithCompositeIDTagsAttribute: &attributeWithCompositeIDTagsAttribute,
 		Type:                                  typ,
+	}
+}
+
+func CreateAttributeWithCompositeIDAttributeWithCompositeIDMessageEmailAddressAttribute(attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute) AttributeWithCompositeID {
+	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
+
+	return AttributeWithCompositeID{
+		AttributeWithCompositeIDMessageEmailAddressAttribute: &attributeWithCompositeIDMessageEmailAddressAttribute,
+		Type: typ,
 	}
 }
 
@@ -13173,15 +13773,6 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 	}
 }
 
-func CreateAttributeWithCompositeIDAttributeWithCompositeIDAddressAttribute(attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute) AttributeWithCompositeID {
-	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
-
-	return AttributeWithCompositeID{
-		AttributeWithCompositeIDAddressAttribute: &attributeWithCompositeIDAddressAttribute,
-		Type:                                     typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDPhoneAttribute(attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
 
@@ -13227,31 +13818,31 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
+	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
+	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
 		return nil
 	}
 
@@ -13269,73 +13860,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute = AttributeWithCompositeIDAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressAttribute = &attributeWithCompositeIDAddressAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
 		return nil
 	}
 
@@ -13346,10 +13874,59 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute = AttributeWithCompositeIDAddressAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressAttribute = &attributeWithCompositeIDAddressAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
 		return nil
 	}
 
@@ -13364,6 +13941,13 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
 		return nil
 	}
 
@@ -13402,17 +13986,31 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute = AttributeWithCompositeIDMessageEmailAddressAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDMessageEmailAddressAttribute = &attributeWithCompositeIDMessageEmailAddressAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
@@ -13492,6 +14090,10 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDUserRelationAttribute, "", true)
 	}
 
+	if u.AttributeWithCompositeIDAddressAttribute != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttribute, "", true)
+	}
+
 	if u.AttributeWithCompositeIDAddressRelationAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressRelationAttribute, "", true)
 	}
@@ -13506,6 +14108,10 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDTagsAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDTagsAttribute, "", true)
+	}
+
+	if u.AttributeWithCompositeIDMessageEmailAddressAttribute != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDMessageEmailAddressAttribute, "", true)
 	}
 
 	if u.AttributeWithCompositeIDNumberAttribute != nil {
@@ -13554,10 +14160,6 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttribute, "", true)
-	}
-
-	if u.AttributeWithCompositeIDAddressAttribute != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttribute, "", true)
 	}
 
 	if u.AttributeWithCompositeIDPhoneAttribute != nil {
@@ -14731,294 +15333,6 @@ func (o *AttributeWithCompositeIDPhoneAttributeInput) GetSchema() *string {
 	return o.Schema
 }
 
-// AttributeWithCompositeIDAddressAttributeInput - Physical Address
-type AttributeWithCompositeIDAddressAttributeInput struct {
-	// ID for the entity attribute
-	ID          *string `json:"id,omitempty"`
-	Name        string  `json:"name"`
-	Label       string  `json:"label"`
-	Placeholder *string `json:"placeholder,omitempty"`
-	// Do not render attribute in entity views
-	Hidden *bool `default:"false" json:"hidden"`
-	// Render as a column in table views. When defined, overrides `hidden`
-	ShowInTable *bool `json:"show_in_table,omitempty"`
-	// Allow sorting by this attribute in table views if `show_in_table` is true
-	Sortable     *bool `default:"true" json:"sortable"`
-	Required     *bool `default:"false" json:"required"`
-	Readonly     *bool `default:"false" json:"readonly"`
-	Deprecated   *bool `default:"false" json:"deprecated"`
-	DefaultValue any   `json:"default_value,omitempty"`
-	// Which group the attribute should appear in. Accepts group ID or group name
-	Group *string `json:"group,omitempty"`
-	// Attribute sort order (ascending) in group
-	Order  *int64  `json:"order,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	// When set to true, will hide the label of the field.
-	HideLabel *bool `json:"hide_label,omitempty"`
-	// Code name of the icon to used to represent this attribute.
-	// The value must be a valid @epilot/base-elements Icon name
-	//
-	Icon *string `json:"icon,omitempty"`
-	// Defines the conditional rendering expression for showing this field.
-	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-	// Note: Empty or invalid expression have no effect on the field visibility.
-	//
-	RenderCondition *string  `json:"render_condition,omitempty"`
-	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema attribute
-	Manifest []string `json:"_manifest,omitempty"`
-	// A set of constraints applicable to the attribute.
-	// These constraints should and will be enforced by the attribute renderer.
-	//
-	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
-	// This attribute should only be active when the feature flag is enabled
-	FeatureFlag *string `json:"feature_flag,omitempty"`
-	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
-	// Setting to `true` disables editing the attribute on the entity builder UI
-	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
-	// Setting to `true` prevents the attribute from being modified / deleted
-	Protected *bool `json:"protected,omitempty"`
-	// A set of configurations meant to document and assist the user in filling the attribute.
-	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
-	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	// Schema slug the attribute belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (a AttributeWithCompositeIDAddressAttributeInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AttributeWithCompositeIDAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPlaceholder() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Placeholder
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHidden() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Hidden
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetShowInTable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.ShowInTable
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSortable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Sortable
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRequired() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Required
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetReadonly() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Readonly
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDeprecated() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Deprecated
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultValue() any {
-	if o == nil {
-		return nil
-	}
-	return o.DefaultValue
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetGroup() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Group
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHideLabel() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HideLabel
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetIcon() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Icon
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRenderCondition() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RenderCondition
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
-		return nil
-	}
-	return o.Constraints
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
-		return nil
-	}
-	return o.FeatureFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
-		return nil
-	}
-	return o.SettingsFlag
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PreviewValueFormatter
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EntityBuilderDisableEdit
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetProtected() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Protected
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
-		return nil
-	}
-	return o.InfoHelpers
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRepeatable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Repeatable
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.HasPrimary
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() *AddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
-}
-
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
 // AttributeWithCompositeIDPartnerOrganisationAttributeInput - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// ID for the entity attribute
@@ -15365,10 +15679,12 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	Slug    *string  `json:"slug,omitempty"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
-	Color     *string                                       `json:"color,omitempty"`
-	CreatedAt *time.Time                                    `json:"created_at,omitempty"`
-	UpdatedAt *time.Time                                    `json:"updated_at,omitempty"`
-	Type      *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Color     *string    `json:"color,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Archived classification are not visible in the UI
+	Archived *bool                                         `default:"false" json:"archived"`
+	Type     *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15620,6 +15936,13 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetUpdatedAt() *time.Tim
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
 }
 
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttributeAttributeWithCompositeIDType {
@@ -16831,9 +17154,11 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+	// Variable template used to format the computed value
+	ValueFormatter string `json:"value_formatter"`
+	// Variable template used to format a preview for the computed value
+	PreviewValueFormatter *string `json:"preview_value_formatter,omitempty"`
 	// Setting to `true` disables editing the attribute on the entity builder UI
 	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
 	// Setting to `true` prevents the attribute from being modified / deleted
@@ -16844,6 +17169,11 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	Repeatable *bool                                          `json:"repeatable,omitempty"`
 	HasPrimary *bool                                          `json:"has_primary,omitempty"`
 	Type       *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Computed   *bool                                          `default:"true" json:"computed"`
+	// A source amount field that is used to compute the value of the attribute
+	AmountField *string `json:"amount_field,omitempty"`
+	// A currency field used to format a computed currency value
+	CurrencyField *string `json:"currency_field,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -17013,9 +17343,9 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetSettingsFlag() []Set
 	return o.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetValueFormatter() *string {
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetValueFormatter() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ValueFormatter
 }
@@ -17067,6 +17397,27 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttr
 		return nil
 	}
 	return o.Type
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetComputed() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Computed
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetAmountField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AmountField
+}
+
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetCurrencyField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyField
 }
 
 func (o *AttributeWithCompositeIDComputedAttributeInput) GetSchema() *string {
@@ -18594,6 +18945,318 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetSchema() *string {
 	return o.Schema
 }
 
+// AttributeWithCompositeIDMessageEmailAddressAttributeInput - Message emil address
+type AttributeWithCompositeIDMessageEmailAddressAttributeInput struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                    `json:"has_primary,omitempty"`
+	Type       MessageEmailAddressAttributeAttributeWithCompositeIDType `json:"type"`
+	Address    *string                                                  `json:"address,omitempty"`
+	SendStatus *string                                                  `json:"send_status,omitempty"`
+	EmailType  *string                                                  `json:"email_type,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDMessageEmailAddressAttributeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetAddress() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Address
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSendStatus() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SendStatus
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEmailType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EmailType
+}
+
+func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDTagsAttributeInput - Tags
 type AttributeWithCompositeIDTagsAttributeInput struct {
 	// ID for the entity attribute
@@ -19547,6 +20210,8 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	Repeatable *bool                                                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                                                 `json:"has_primary,omitempty"`
 	Type       *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -19772,7 +20437,311 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() *Addre
 	return o.Type
 }
 
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
+}
+
 func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
+// AttributeWithCompositeIDAddressAttributeInput - Address attribute
+type AttributeWithCompositeIDAddressAttributeInput struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *AddressAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDAddressAttributeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDAddressAttributeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() *AddressAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
+}
+
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetSchema() *string {
 	if o == nil {
 		return nil
 	}
@@ -20137,11 +21106,13 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	EnableRelationPicker *bool                      `default:"true" json:"enable_relation_picker"`
 	EditMode             *RelationAttributeEditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-	DetailsViewModeEnabled *bool                            `default:"false" json:"details_view_mode_enabled"`
-	Actions                []RelationAttributeActions       `json:"actions,omitempty"`
-	DrawerSize             *RelationAttributeDrawerSize     `json:"drawer_size,omitempty"`
-	SummaryFields          []RelationAttributeSummaryFields `json:"summary_fields,omitempty"`
-	AllowedSchemas         []string                         `json:"allowedSchemas,omitempty"`
+	DetailsViewModeEnabled *bool `default:"false" json:"details_view_mode_enabled"`
+	// Additional entity search filter for relation picker
+	RelationPickerFilter *RelationAttributeRelationPickerFilter `json:"relation_picker_filter,omitempty"`
+	Actions              []RelationAttributeActions             `json:"actions,omitempty"`
+	DrawerSize           *RelationAttributeDrawerSize           `json:"drawer_size,omitempty"`
+	SummaryFields        []RelationAttributeSummaryFields       `json:"summary_fields,omitempty"`
+	AllowedSchemas       []string                               `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
 	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
@@ -20413,6 +21384,13 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetDetailsViewModeEnabl
 		return nil
 	}
 	return o.DetailsViewModeEnabled
+}
+
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
+	if o == nil {
+		return nil
+	}
+	return o.RelationPickerFilter
 }
 
 func (o *AttributeWithCompositeIDRelationAttributeInput) GetActions() []RelationAttributeActions {
@@ -21753,9 +22731,10 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable  *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
+	Type        *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	DisplayType *BooleanAttributeDisplayType                  `default:"switch" json:"display_type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -21979,6 +22958,13 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttrib
 		return nil
 	}
 	return o.Type
+}
+
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDisplayType() *BooleanAttributeDisplayType {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayType
 }
 
 func (o *AttributeWithCompositeIDBooleanAttributeInput) GetSchema() *string {
@@ -22910,6 +23896,8 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	Type       *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
 	Multiline  *bool                                      `json:"multiline,omitempty"`
 	RichText   *bool                                      `json:"rich_text,omitempty"`
+	// Number of rows for rich_text textarea
+	Rows *TextAttributeRows `json:"rows,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -23149,6 +24137,13 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetRichText() *bool {
 	return o.RichText
 }
 
+func (o *AttributeWithCompositeIDTextAttributeInput) GetRows() *TextAttributeRows {
+	if o == nil {
+		return nil
+	}
+	return o.Rows
+}
+
 func (o *AttributeWithCompositeIDTextAttributeInput) GetSchema() *string {
 	if o == nil {
 		return nil
@@ -23170,10 +24165,12 @@ const (
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_SequenceAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_RelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_UserRelationAttribute_input"
+	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_AddressAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput       AttributeWithCompositeIDInputType = "AttributeWithCompositeID_AddressRelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PaymentMethodRelationAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_CurrencyAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput                  AttributeWithCompositeIDInputType = "AttributeWithCompositeID_TagsAttribute_input"
+	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput   AttributeWithCompositeIDInputType = "AttributeWithCompositeID_MessageEmailAddressAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput                AttributeWithCompositeIDInputType = "AttributeWithCompositeID_NumberAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_ConsentAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput              AttributeWithCompositeIDInputType = "AttributeWithCompositeID_InternalAttribute_input"
@@ -23186,7 +24183,6 @@ const (
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_InternalUserAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PurposeAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput   AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PartnerOrganisationAttribute_input"
-	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_AddressAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PhoneAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_EmailAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PaymentAttribute_input"
@@ -23195,38 +24191,39 @@ const (
 
 // AttributeWithCompositeIDInput - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeIDInput struct {
-	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput
+	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput
+	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput
+	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput
+	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput
+	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput
+	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput
+	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput
+	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput
+	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput
+	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput
+	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput
+	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput
+	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput
+	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput
+	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput
+	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput
+	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput
+	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput
+	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput
+	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput
+	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput
+	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput
+	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput
+	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput
+	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput
+	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput
+	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput
+	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput
+	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput
+	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput
+	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput
+	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput
 
 	Type AttributeWithCompositeIDInputType
 }
@@ -23330,6 +24327,15 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDUserRelationAttr
 	}
 }
 
+func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDAddressAttributeInput(attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput) AttributeWithCompositeIDInput {
+	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
+
+	return AttributeWithCompositeIDInput{
+		AttributeWithCompositeIDAddressAttributeInput: &attributeWithCompositeIDAddressAttributeInput,
+		Type: typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDAddressRelationAttributeInput(attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 
@@ -23362,6 +24368,15 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDTagsAttributeInp
 
 	return AttributeWithCompositeIDInput{
 		AttributeWithCompositeIDTagsAttributeInput: &attributeWithCompositeIDTagsAttributeInput,
+		Type: typ,
+	}
+}
+
+func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDMessageEmailAddressAttributeInput(attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput) AttributeWithCompositeIDInput {
+	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
+
+	return AttributeWithCompositeIDInput{
+		AttributeWithCompositeIDMessageEmailAddressAttributeInput: &attributeWithCompositeIDMessageEmailAddressAttributeInput,
 		Type: typ,
 	}
 }
@@ -23474,15 +24489,6 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 	}
 }
 
-func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDAddressAttributeInput(attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput) AttributeWithCompositeIDInput {
-	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
-
-	return AttributeWithCompositeIDInput{
-		AttributeWithCompositeIDAddressAttributeInput: &attributeWithCompositeIDAddressAttributeInput,
-		Type: typ,
-	}
-}
-
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPhoneAttributeInput(attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
 
@@ -23528,31 +24534,31 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
+	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
+	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
 		return nil
 	}
 
@@ -23570,73 +24576,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput = AttributeWithCompositeIDAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressAttributeInput = &attributeWithCompositeIDAddressAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
 		return nil
 	}
 
@@ -23647,10 +24590,59 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput = AttributeWithCompositeIDAddressAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressAttributeInput = &attributeWithCompositeIDAddressAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
 		return nil
 	}
 
@@ -23665,6 +24657,13 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
 		return nil
 	}
 
@@ -23703,17 +24702,31 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput = AttributeWithCompositeIDMessageEmailAddressAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDMessageEmailAddressAttributeInput = &attributeWithCompositeIDMessageEmailAddressAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
@@ -23793,6 +24806,10 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDUserRelationAttributeInput, "", true)
 	}
 
+	if u.AttributeWithCompositeIDAddressAttributeInput != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttributeInput, "", true)
+	}
+
 	if u.AttributeWithCompositeIDAddressRelationAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressRelationAttributeInput, "", true)
 	}
@@ -23807,6 +24824,10 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDTagsAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDTagsAttributeInput, "", true)
+	}
+
+	if u.AttributeWithCompositeIDMessageEmailAddressAttributeInput != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDMessageEmailAddressAttributeInput, "", true)
 	}
 
 	if u.AttributeWithCompositeIDNumberAttributeInput != nil {
@@ -23855,10 +24876,6 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttributeInput, "", true)
-	}
-
-	if u.AttributeWithCompositeIDAddressAttributeInput != nil {
-		return utils.MarshalJSON(u.AttributeWithCompositeIDAddressAttributeInput, "", true)
 	}
 
 	if u.AttributeWithCompositeIDPhoneAttributeInput != nil {

@@ -7,6 +7,7 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 type PurposeAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
+	Archived                 types.Bool                                           `tfsdk:"archived"`
 	Color                    types.String                                         `tfsdk:"color"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	CreatedAt                types.String                                         `tfsdk:"created_at"`

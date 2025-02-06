@@ -33,6 +33,7 @@ type AttributeWithCompositeIDTextAttribute struct {
 	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	RichText                 types.Bool                                           `tfsdk:"rich_text"`
+	Rows                     *TextAttributeRows                                   `tfsdk:"rows"`
 	Schema                   types.String                                         `tfsdk:"schema"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`

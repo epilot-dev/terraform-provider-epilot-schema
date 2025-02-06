@@ -103,6 +103,8 @@ type GetRelationsResponse struct {
 	RawResponse *http.Response
 	// Success
 	GetRelationsResp []shared.GetRelationsResp
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetRelationsResponse) GetContentType() string {
@@ -131,4 +133,11 @@ func (o *GetRelationsResponse) GetGetRelationsResp() []shared.GetRelationsResp {
 		return nil
 	}
 	return o.GetRelationsResp
+}
+
+func (o *GetRelationsResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

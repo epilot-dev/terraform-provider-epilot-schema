@@ -3,7 +3,9 @@ speakeasyVersion: latest
 sources:
     schema:
         inputs:
-            - location: schema.yaml
+            - location: https://docs.api.epilot.io/entity.yaml
+        overlays:
+            - location: overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/epilot/epilot/schema
 targets:

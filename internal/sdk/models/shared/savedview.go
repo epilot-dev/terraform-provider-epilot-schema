@@ -9,17 +9,17 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-type CreatedBySource string
+type Source string
 
 const (
-	CreatedBySourceSystem    CreatedBySource = "SYSTEM"
-	CreatedBySourceBlueprint CreatedBySource = "BLUEPRINT"
+	SourceSystem    Source = "SYSTEM"
+	SourceBlueprint Source = "BLUEPRINT"
 )
 
-func (e CreatedBySource) ToPointer() *CreatedBySource {
+func (e Source) ToPointer() *Source {
 	return &e
 }
-func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
+func (e *Source) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,117 +28,117 @@ func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
 	case "SYSTEM":
 		fallthrough
 	case "BLUEPRINT":
-		*e = CreatedBySource(v)
+		*e = Source(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreatedBySource: %v", v)
+		return fmt.Errorf("invalid value for Source: %v", v)
 	}
 }
 
-// CreatedBy2 - A system-created view
-type CreatedBy2 struct {
-	Source               *CreatedBySource `json:"source,omitempty"`
-	AdditionalProperties any              `additionalProperties:"true" json:"-"`
+// Two - A system-created view
+type Two struct {
+	Source               *Source `json:"source,omitempty"`
+	AdditionalProperties any     `additionalProperties:"true" json:"-"`
 }
 
-func (c CreatedBy2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (t Two) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+func (t *Two) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreatedBy2) GetSource() *CreatedBySource {
+func (o *Two) GetSource() *Source {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *CreatedBy2) GetAdditionalProperties() any {
+func (o *Two) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalProperties
 }
 
-// CreatedBy1 - A user that created the view
-type CreatedBy1 struct {
+// One - A user that created the view
+type One struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (o *CreatedBy1) GetUserID() *string {
+func (o *One) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-type SavedViewCreatedByType string
+type CreatedByType string
 
 const (
-	SavedViewCreatedByTypeCreatedBy1 SavedViewCreatedByType = "created_by_1"
-	SavedViewCreatedByTypeCreatedBy2 SavedViewCreatedByType = "created_by_2"
+	CreatedByTypeOne CreatedByType = "1"
+	CreatedByTypeTwo CreatedByType = "2"
 )
 
-type SavedViewCreatedBy struct {
-	CreatedBy1 *CreatedBy1 `queryParam:"inline"`
-	CreatedBy2 *CreatedBy2 `queryParam:"inline"`
+type CreatedBy struct {
+	One *One
+	Two *Two
 
-	Type SavedViewCreatedByType
+	Type CreatedByType
 }
 
-func CreateSavedViewCreatedByCreatedBy1(createdBy1 CreatedBy1) SavedViewCreatedBy {
-	typ := SavedViewCreatedByTypeCreatedBy1
+func CreateCreatedByOne(one One) CreatedBy {
+	typ := CreatedByTypeOne
 
-	return SavedViewCreatedBy{
-		CreatedBy1: &createdBy1,
-		Type:       typ,
+	return CreatedBy{
+		One:  &one,
+		Type: typ,
 	}
 }
 
-func CreateSavedViewCreatedByCreatedBy2(createdBy2 CreatedBy2) SavedViewCreatedBy {
-	typ := SavedViewCreatedByTypeCreatedBy2
+func CreateCreatedByTwo(two Two) CreatedBy {
+	typ := CreatedByTypeTwo
 
-	return SavedViewCreatedBy{
-		CreatedBy2: &createdBy2,
-		Type:       typ,
+	return CreatedBy{
+		Two:  &two,
+		Type: typ,
 	}
 }
 
-func (u *SavedViewCreatedBy) UnmarshalJSON(data []byte) error {
+func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 
-	var createdBy1 CreatedBy1 = CreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, false); err == nil {
-		u.CreatedBy1 = &createdBy1
-		u.Type = SavedViewCreatedByTypeCreatedBy1
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+		u.One = &one
+		u.Type = CreatedByTypeOne
 		return nil
 	}
 
-	var createdBy2 CreatedBy2 = CreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, false); err == nil {
-		u.CreatedBy2 = &createdBy2
-		u.Type = SavedViewCreatedByTypeCreatedBy2
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
+		u.Two = &two
+		u.Type = CreatedByTypeTwo
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SavedViewCreatedBy", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreatedBy", string(data))
 }
 
-func (u SavedViewCreatedBy) MarshalJSON() ([]byte, error) {
-	if u.CreatedBy1 != nil {
-		return utils.MarshalJSON(u.CreatedBy1, "", true)
+func (u CreatedBy) MarshalJSON() ([]byte, error) {
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
 	}
 
-	if u.CreatedBy2 != nil {
-		return utils.MarshalJSON(u.CreatedBy2, "", true)
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type SavedViewCreatedBy: all fields are null")
+	return nil, errors.New("could not marshal union type CreatedBy: all fields are null")
 }
 
 // SavedView - A saved entity view
@@ -152,9 +152,11 @@ type SavedView struct {
 	// boolean property for if a view is shared with organisation
 	Shared *bool `json:"shared,omitempty"`
 	// List of users (IDs) that have favorited the view
-	IsFavoritedBy []string           `json:"isFavoritedBy,omitempty"`
-	CreatedBy     SavedViewCreatedBy `json:"created_by"`
-	UIConfig      map[string]any     `json:"ui_config"`
+	IsFavoritedBy []string       `json:"isFavoritedBy,omitempty"`
+	CreatedBy     CreatedBy      `json:"created_by"`
+	UIConfig      map[string]any `json:"ui_config"`
+	// List of users ('${userId}'), user groups ('group_${groupId}'), or partner users ('${partnerOrgId}_${partnerUserId}') that the view is shared with
+	SharedWith []string `json:"shared_with,omitempty"`
 }
 
 func (o *SavedView) GetSlug() []string {
@@ -192,9 +194,9 @@ func (o *SavedView) GetIsFavoritedBy() []string {
 	return o.IsFavoritedBy
 }
 
-func (o *SavedView) GetCreatedBy() SavedViewCreatedBy {
+func (o *SavedView) GetCreatedBy() CreatedBy {
 	if o == nil {
-		return SavedViewCreatedBy{}
+		return CreatedBy{}
 	}
 	return o.CreatedBy
 }
@@ -204,4 +206,11 @@ func (o *SavedView) GetUIConfig() map[string]any {
 		return map[string]any{}
 	}
 	return o.UIConfig
+}
+
+func (o *SavedView) GetSharedWith() []string {
+	if o == nil {
+		return nil
+	}
+	return o.SharedWith
 }

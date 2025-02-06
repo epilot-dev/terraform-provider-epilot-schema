@@ -129,7 +129,7 @@ const (
 )
 
 type Currency struct {
-	Currency1 *Currency1 `queryParam:"inline"`
+	Currency1 *Currency1
 
 	Type CurrencyType
 }

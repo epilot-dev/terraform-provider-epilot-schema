@@ -28,6 +28,8 @@ type GetSchemaCapabilityResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSchemaCapabilityResponse) GetContentType() string {
@@ -56,4 +58,11 @@ func (o *GetSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shar
 		return nil
 	}
 	return o.EntityCapabilityWithCompositeID
+}
+
+func (o *GetSchemaCapabilityResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

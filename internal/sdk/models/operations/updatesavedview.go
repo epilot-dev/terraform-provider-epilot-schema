@@ -3,14 +3,42 @@
 package operations
 
 import (
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
+// UpdateSavedViewRequestBody - A saved entity view
+type UpdateSavedViewRequestBody struct {
+	// Generated uuid for a saved view
+	ID        *string `json:"id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+}
+
+func (o *UpdateSavedViewRequestBody) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSavedViewRequestBody) GetCreatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *UpdateSavedViewRequestBody) GetUpdatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
 type UpdateSavedViewRequest struct {
 	// View id
-	ID            string                `pathParam:"style=simple,explode=false,name=id"`
-	SavedViewItem *shared.SavedViewItem `request:"mediaType=application/json"`
+	ID          string                      `pathParam:"style=simple,explode=false,name=id"`
+	RequestBody *UpdateSavedViewRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdateSavedViewRequest) GetID() string {
@@ -20,11 +48,40 @@ func (o *UpdateSavedViewRequest) GetID() string {
 	return o.ID
 }
 
-func (o *UpdateSavedViewRequest) GetSavedViewItem() *shared.SavedViewItem {
+func (o *UpdateSavedViewRequest) GetRequestBody() *UpdateSavedViewRequestBody {
 	if o == nil {
 		return nil
 	}
-	return o.SavedViewItem
+	return o.RequestBody
+}
+
+// UpdateSavedViewResponseBody - A saved entity view
+type UpdateSavedViewResponseBody struct {
+	// Generated uuid for a saved view
+	ID        *string `json:"id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+}
+
+func (o *UpdateSavedViewResponseBody) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *UpdateSavedViewResponseBody) GetCreatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *UpdateSavedViewResponseBody) GetUpdatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
 }
 
 type UpdateSavedViewResponse struct {
@@ -35,7 +92,7 @@ type UpdateSavedViewResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	SavedViewItem *shared.SavedViewItem
+	Object *UpdateSavedViewResponseBody
 }
 
 func (o *UpdateSavedViewResponse) GetContentType() string {
@@ -59,9 +116,9 @@ func (o *UpdateSavedViewResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateSavedViewResponse) GetSavedViewItem() *shared.SavedViewItem {
+func (o *UpdateSavedViewResponse) GetObject() *UpdateSavedViewResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.SavedViewItem
+	return o.Object
 }

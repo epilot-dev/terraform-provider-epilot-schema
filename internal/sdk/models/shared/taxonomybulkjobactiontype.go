@@ -11,6 +11,7 @@ type TaxonomyBulkJobActionType string
 
 const (
 	TaxonomyBulkJobActionTypeMoveClassifications   TaxonomyBulkJobActionType = "MOVE_CLASSIFICATIONS"
+	TaxonomyBulkJobActionTypeMergeClassifications  TaxonomyBulkJobActionType = "MERGE_CLASSIFICATIONS"
 	TaxonomyBulkJobActionTypeDeleteClassifications TaxonomyBulkJobActionType = "DELETE_CLASSIFICATIONS"
 )
 
@@ -24,6 +25,8 @@ func (e *TaxonomyBulkJobActionType) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "MOVE_CLASSIFICATIONS":
+		fallthrough
+	case "MERGE_CLASSIFICATIONS":
 		fallthrough
 	case "DELETE_CLASSIFICATIONS":
 		*e = TaxonomyBulkJobActionType(v)

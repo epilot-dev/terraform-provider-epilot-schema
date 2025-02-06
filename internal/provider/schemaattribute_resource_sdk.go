@@ -232,6 +232,31 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			richText = nil
 		}
+		var rows *shared.TextAttributeRows
+		if r.TextAttribute.Rows != nil {
+			integer := new(int64)
+			if !r.TextAttribute.Rows.Integer.IsUnknown() && !r.TextAttribute.Rows.Integer.IsNull() {
+				*integer = r.TextAttribute.Rows.Integer.ValueInt64()
+			} else {
+				integer = nil
+			}
+			if integer != nil {
+				rows = &shared.TextAttributeRows{
+					Integer: integer,
+				}
+			}
+			str := new(string)
+			if !r.TextAttribute.Rows.Str.IsUnknown() && !r.TextAttribute.Rows.Str.IsNull() {
+				*str = r.TextAttribute.Rows.Str.ValueString()
+			} else {
+				str = nil
+			}
+			if str != nil {
+				rows = &shared.TextAttributeRows{
+					Str: str,
+				}
+			}
+		}
 		schema := new(string)
 		if !r.TextAttribute.Schema.IsUnknown() && !r.TextAttribute.Schema.IsNull() {
 			*schema = r.TextAttribute.Schema.ValueString()
@@ -271,6 +296,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Type:                     typeVar,
 			Multiline:                multiline,
 			RichText:                 richText,
+			Rows:                     rows,
 			Schema:                   schema,
 		}
 	}
@@ -1246,6 +1272,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			typeVar4 = nil
 		}
+		displayType := new(shared.BooleanAttributeDisplayType)
+		if !r.BooleanAttribute.DisplayType.IsUnknown() && !r.BooleanAttribute.DisplayType.IsNull() {
+			*displayType = shared.BooleanAttributeDisplayType(r.BooleanAttribute.DisplayType.ValueString())
+		} else {
+			displayType = nil
+		}
 		schema4 := new(string)
 		if !r.BooleanAttribute.Schema.IsUnknown() && !r.BooleanAttribute.Schema.IsNull() {
 			*schema4 = r.BooleanAttribute.Schema.ValueString()
@@ -1283,6 +1315,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable4,
 			HasPrimary:               hasPrimary4,
 			Type:                     typeVar4,
+			DisplayType:              displayType,
 			Schema:                   schema4,
 		}
 	}
@@ -1779,11 +1812,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var optionsVar1 []shared.MultiSelectAttributeOptions = []shared.MultiSelectAttributeOptions{}
 		for _, optionsItem := range r.MultiSelectAttribute.Options {
 			if !optionsItem.Str.IsUnknown() && !optionsItem.Str.IsNull() {
-				var str string
-				str = optionsItem.Str.ValueString()
+				var str1 string
+				str1 = optionsItem.Str.ValueString()
 
 				optionsVar1 = append(optionsVar1, shared.MultiSelectAttributeOptions{
-					Str: &str,
+					Str: &str1,
 				})
 			}
 			if optionsItem.Two != nil {
@@ -2071,11 +2104,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var optionsVar2 []shared.StatusAttributeAttributeWithCompositeIDOptions = []shared.StatusAttributeAttributeWithCompositeIDOptions{}
 		for _, optionsItem1 := range r.StatusAttribute.Options {
 			if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
-				var str1 string
-				str1 = optionsItem1.Str.ValueString()
+				var str2 string
+				str2 = optionsItem1.Str.ValueString()
 
 				optionsVar2 = append(optionsVar2, shared.StatusAttributeAttributeWithCompositeIDOptions{
-					Str: &str1,
+					Str: &str2,
 				})
 			}
 			if optionsItem1.Two != nil {
@@ -2655,6 +2688,15 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			detailsViewModeEnabled = nil
 		}
+		var relationPickerFilter *shared.RelationAttributeRelationPickerFilter
+		if r.RelationAttribute.RelationPickerFilter != nil {
+			var q string
+			q = r.RelationAttribute.RelationPickerFilter.Q.ValueString()
+
+			relationPickerFilter = &shared.RelationAttributeRelationPickerFilter{
+				Q: q,
+			}
+		}
 		var actions []shared.RelationAttributeActions = []shared.RelationAttributeActions{}
 		for _, actionsItem := range r.RelationAttribute.Actions {
 			actionType := new(shared.RelationAttributeActionType)
@@ -2722,11 +2764,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var summaryFields []shared.RelationAttributeSummaryFields = []shared.RelationAttributeSummaryFields{}
 		for _, summaryFieldsItem := range r.RelationAttribute.SummaryFields {
 			if !summaryFieldsItem.Str.IsUnknown() && !summaryFieldsItem.Str.IsNull() {
-				var str2 string
-				str2 = summaryFieldsItem.Str.ValueString()
+				var str3 string
+				str3 = summaryFieldsItem.Str.ValueString()
 
 				summaryFields = append(summaryFields, shared.RelationAttributeSummaryFields{
-					Str: &str2,
+					Str: &str3,
 				})
 			}
 			if summaryFieldsItem.SummaryField != nil {
@@ -2816,6 +2858,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			EnableRelationPicker:     enableRelationPicker,
 			EditMode:                 editMode,
 			DetailsViewModeEnabled:   detailsViewModeEnabled,
+			RelationPickerFilter:     relationPickerFilter,
 			Actions:                  actions,
 			DrawerSize:               drawerSize,
 			SummaryFields:            summaryFields,
@@ -3091,122 +3134,122 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			AttributeWithCompositeIDUserRelationAttributeInput: attributeWithCompositeIDUserRelationAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDAddressRelationAttributeInput *shared.AttributeWithCompositeIDAddressRelationAttributeInput
-	if r.AddressRelationAttribute != nil {
+	var attributeWithCompositeIDAddressAttributeInput *shared.AttributeWithCompositeIDAddressAttributeInput
+	if r.AddressAttribute != nil {
 		id11 := new(string)
-		if !r.AddressRelationAttribute.ID.IsUnknown() && !r.AddressRelationAttribute.ID.IsNull() {
-			*id11 = r.AddressRelationAttribute.ID.ValueString()
+		if !r.AddressAttribute.ID.IsUnknown() && !r.AddressAttribute.ID.IsNull() {
+			*id11 = r.AddressAttribute.ID.ValueString()
 		} else {
 			id11 = nil
 		}
 		var name23 string
-		name23 = r.AddressRelationAttribute.Name.ValueString()
+		name23 = r.AddressAttribute.Name.ValueString()
 
 		var label12 string
-		label12 = r.AddressRelationAttribute.Label.ValueString()
+		label12 = r.AddressAttribute.Label.ValueString()
 
 		placeholder11 := new(string)
-		if !r.AddressRelationAttribute.Placeholder.IsUnknown() && !r.AddressRelationAttribute.Placeholder.IsNull() {
-			*placeholder11 = r.AddressRelationAttribute.Placeholder.ValueString()
+		if !r.AddressAttribute.Placeholder.IsUnknown() && !r.AddressAttribute.Placeholder.IsNull() {
+			*placeholder11 = r.AddressAttribute.Placeholder.ValueString()
 		} else {
 			placeholder11 = nil
 		}
 		hidden11 := new(bool)
-		if !r.AddressRelationAttribute.Hidden.IsUnknown() && !r.AddressRelationAttribute.Hidden.IsNull() {
-			*hidden11 = r.AddressRelationAttribute.Hidden.ValueBool()
+		if !r.AddressAttribute.Hidden.IsUnknown() && !r.AddressAttribute.Hidden.IsNull() {
+			*hidden11 = r.AddressAttribute.Hidden.ValueBool()
 		} else {
 			hidden11 = nil
 		}
 		showInTable11 := new(bool)
-		if !r.AddressRelationAttribute.ShowInTable.IsUnknown() && !r.AddressRelationAttribute.ShowInTable.IsNull() {
-			*showInTable11 = r.AddressRelationAttribute.ShowInTable.ValueBool()
+		if !r.AddressAttribute.ShowInTable.IsUnknown() && !r.AddressAttribute.ShowInTable.IsNull() {
+			*showInTable11 = r.AddressAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable11 = nil
 		}
 		sortable11 := new(bool)
-		if !r.AddressRelationAttribute.Sortable.IsUnknown() && !r.AddressRelationAttribute.Sortable.IsNull() {
-			*sortable11 = r.AddressRelationAttribute.Sortable.ValueBool()
+		if !r.AddressAttribute.Sortable.IsUnknown() && !r.AddressAttribute.Sortable.IsNull() {
+			*sortable11 = r.AddressAttribute.Sortable.ValueBool()
 		} else {
 			sortable11 = nil
 		}
 		required11 := new(bool)
-		if !r.AddressRelationAttribute.Required.IsUnknown() && !r.AddressRelationAttribute.Required.IsNull() {
-			*required11 = r.AddressRelationAttribute.Required.ValueBool()
+		if !r.AddressAttribute.Required.IsUnknown() && !r.AddressAttribute.Required.IsNull() {
+			*required11 = r.AddressAttribute.Required.ValueBool()
 		} else {
 			required11 = nil
 		}
 		readonly11 := new(bool)
-		if !r.AddressRelationAttribute.Readonly.IsUnknown() && !r.AddressRelationAttribute.Readonly.IsNull() {
-			*readonly11 = r.AddressRelationAttribute.Readonly.ValueBool()
+		if !r.AddressAttribute.Readonly.IsUnknown() && !r.AddressAttribute.Readonly.IsNull() {
+			*readonly11 = r.AddressAttribute.Readonly.ValueBool()
 		} else {
 			readonly11 = nil
 		}
 		deprecated11 := new(bool)
-		if !r.AddressRelationAttribute.Deprecated.IsUnknown() && !r.AddressRelationAttribute.Deprecated.IsNull() {
-			*deprecated11 = r.AddressRelationAttribute.Deprecated.ValueBool()
+		if !r.AddressAttribute.Deprecated.IsUnknown() && !r.AddressAttribute.Deprecated.IsNull() {
+			*deprecated11 = r.AddressAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated11 = nil
 		}
 		var defaultValue11 interface{}
-		if !r.AddressRelationAttribute.DefaultValue.IsUnknown() && !r.AddressRelationAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.AddressRelationAttribute.DefaultValue.ValueString()), &defaultValue11)
+		if !r.AddressAttribute.DefaultValue.IsUnknown() && !r.AddressAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.AddressAttribute.DefaultValue.ValueString()), &defaultValue11)
 		}
 		group11 := new(string)
-		if !r.AddressRelationAttribute.Group.IsUnknown() && !r.AddressRelationAttribute.Group.IsNull() {
-			*group11 = r.AddressRelationAttribute.Group.ValueString()
+		if !r.AddressAttribute.Group.IsUnknown() && !r.AddressAttribute.Group.IsNull() {
+			*group11 = r.AddressAttribute.Group.ValueString()
 		} else {
 			group11 = nil
 		}
 		order11 := new(int64)
-		if !r.AddressRelationAttribute.Order.IsUnknown() && !r.AddressRelationAttribute.Order.IsNull() {
-			*order11 = r.AddressRelationAttribute.Order.ValueInt64()
+		if !r.AddressAttribute.Order.IsUnknown() && !r.AddressAttribute.Order.IsNull() {
+			*order11 = r.AddressAttribute.Order.ValueInt64()
 		} else {
 			order11 = nil
 		}
 		layout11 := new(string)
-		if !r.AddressRelationAttribute.Layout.IsUnknown() && !r.AddressRelationAttribute.Layout.IsNull() {
-			*layout11 = r.AddressRelationAttribute.Layout.ValueString()
+		if !r.AddressAttribute.Layout.IsUnknown() && !r.AddressAttribute.Layout.IsNull() {
+			*layout11 = r.AddressAttribute.Layout.ValueString()
 		} else {
 			layout11 = nil
 		}
 		hideLabel11 := new(bool)
-		if !r.AddressRelationAttribute.HideLabel.IsUnknown() && !r.AddressRelationAttribute.HideLabel.IsNull() {
-			*hideLabel11 = r.AddressRelationAttribute.HideLabel.ValueBool()
+		if !r.AddressAttribute.HideLabel.IsUnknown() && !r.AddressAttribute.HideLabel.IsNull() {
+			*hideLabel11 = r.AddressAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel11 = nil
 		}
 		icon11 := new(string)
-		if !r.AddressRelationAttribute.Icon.IsUnknown() && !r.AddressRelationAttribute.Icon.IsNull() {
-			*icon11 = r.AddressRelationAttribute.Icon.ValueString()
+		if !r.AddressAttribute.Icon.IsUnknown() && !r.AddressAttribute.Icon.IsNull() {
+			*icon11 = r.AddressAttribute.Icon.ValueString()
 		} else {
 			icon11 = nil
 		}
 		renderCondition11 := new(string)
-		if !r.AddressRelationAttribute.RenderCondition.IsUnknown() && !r.AddressRelationAttribute.RenderCondition.IsNull() {
-			*renderCondition11 = r.AddressRelationAttribute.RenderCondition.ValueString()
+		if !r.AddressAttribute.RenderCondition.IsUnknown() && !r.AddressAttribute.RenderCondition.IsNull() {
+			*renderCondition11 = r.AddressAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition11 = nil
 		}
 		var purpose11 []string = []string{}
-		for _, purposeItem11 := range r.AddressRelationAttribute.Purpose {
+		for _, purposeItem11 := range r.AddressAttribute.Purpose {
 			purpose11 = append(purpose11, purposeItem11.ValueString())
 		}
 		var manifest11 []string = []string{}
-		for _, manifestItem11 := range r.AddressRelationAttribute.Manifest {
+		for _, manifestItem11 := range r.AddressAttribute.Manifest {
 			manifest11 = append(manifest11, manifestItem11.ValueString())
 		}
-		var constraints11 *shared.AddressRelationAttributeAttributeWithCompositeIDConstraints
-		if r.AddressRelationAttribute.Constraints != nil {
-			constraints11 = &shared.AddressRelationAttributeAttributeWithCompositeIDConstraints{}
+		var constraints11 *shared.AddressAttributeAttributeWithCompositeIDConstraints
+		if r.AddressAttribute.Constraints != nil {
+			constraints11 = &shared.AddressAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag12 := new(string)
-		if !r.AddressRelationAttribute.FeatureFlag.IsUnknown() && !r.AddressRelationAttribute.FeatureFlag.IsNull() {
-			*featureFlag12 = r.AddressRelationAttribute.FeatureFlag.ValueString()
+		if !r.AddressAttribute.FeatureFlag.IsUnknown() && !r.AddressAttribute.FeatureFlag.IsNull() {
+			*featureFlag12 = r.AddressAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag12 = nil
 		}
 		var settingsFlag12 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem12 := range r.AddressRelationAttribute.SettingsFlag {
+		for _, settingsFlagItem12 := range r.AddressAttribute.SettingsFlag {
 			name24 := new(string)
 			if !settingsFlagItem12.Name.IsUnknown() && !settingsFlagItem12.Name.IsNull() {
 				*name24 = settingsFlagItem12.Name.ValueString()
@@ -3225,56 +3268,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter11 := new(string)
-		if !r.AddressRelationAttribute.ValueFormatter.IsUnknown() && !r.AddressRelationAttribute.ValueFormatter.IsNull() {
-			*valueFormatter11 = r.AddressRelationAttribute.ValueFormatter.ValueString()
+		if !r.AddressAttribute.ValueFormatter.IsUnknown() && !r.AddressAttribute.ValueFormatter.IsNull() {
+			*valueFormatter11 = r.AddressAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter11 = nil
 		}
 		previewValueFormatter11 := new(string)
-		if !r.AddressRelationAttribute.PreviewValueFormatter.IsUnknown() && !r.AddressRelationAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter11 = r.AddressRelationAttribute.PreviewValueFormatter.ValueString()
+		if !r.AddressAttribute.PreviewValueFormatter.IsUnknown() && !r.AddressAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter11 = r.AddressAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter11 = nil
 		}
 		entityBuilderDisableEdit11 := new(bool)
-		if !r.AddressRelationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AddressRelationAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit11 = r.AddressRelationAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.AddressAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AddressAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit11 = r.AddressAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit11 = nil
 		}
 		protected11 := new(bool)
-		if !r.AddressRelationAttribute.Protected.IsUnknown() && !r.AddressRelationAttribute.Protected.IsNull() {
-			*protected11 = r.AddressRelationAttribute.Protected.ValueBool()
+		if !r.AddressAttribute.Protected.IsUnknown() && !r.AddressAttribute.Protected.IsNull() {
+			*protected11 = r.AddressAttribute.Protected.ValueBool()
 		} else {
 			protected11 = nil
 		}
-		var infoHelpers11 *shared.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers
-		if r.AddressRelationAttribute.InfoHelpers != nil {
+		var infoHelpers11 *shared.AddressAttributeAttributeWithCompositeIDInfoHelpers
+		if r.AddressAttribute.InfoHelpers != nil {
 			hintText11 := new(string)
-			if !r.AddressRelationAttribute.InfoHelpers.HintText.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText11 = r.AddressRelationAttribute.InfoHelpers.HintText.ValueString()
+			if !r.AddressAttribute.InfoHelpers.HintText.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText11 = r.AddressAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText11 = nil
 			}
 			hintTextKey11 := new(string)
-			if !r.AddressRelationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey11 = r.AddressRelationAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.AddressAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey11 = r.AddressAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey11 = nil
 			}
 			hintCustomComponent11 := new(string)
-			if !r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent11 = r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.AddressAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent11 = r.AddressAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent11 = nil
 			}
 			hintTooltipPlacement11 := new(string)
-			if !r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement11 = r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.AddressAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement11 = r.AddressAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement11 = nil
 			}
-			infoHelpers11 = &shared.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers11 = &shared.AddressAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText11,
 				HintTextKey:          hintTextKey11,
 				HintCustomComponent:  hintCustomComponent11,
@@ -3282,30 +3325,34 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable11 := new(bool)
-		if !r.AddressRelationAttribute.Repeatable.IsUnknown() && !r.AddressRelationAttribute.Repeatable.IsNull() {
-			*repeatable11 = r.AddressRelationAttribute.Repeatable.ValueBool()
+		if !r.AddressAttribute.Repeatable.IsUnknown() && !r.AddressAttribute.Repeatable.IsNull() {
+			*repeatable11 = r.AddressAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable11 = nil
 		}
 		hasPrimary11 := new(bool)
-		if !r.AddressRelationAttribute.HasPrimary.IsUnknown() && !r.AddressRelationAttribute.HasPrimary.IsNull() {
-			*hasPrimary11 = r.AddressRelationAttribute.HasPrimary.ValueBool()
+		if !r.AddressAttribute.HasPrimary.IsUnknown() && !r.AddressAttribute.HasPrimary.IsNull() {
+			*hasPrimary11 = r.AddressAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary11 = nil
 		}
-		typeVar11 := new(shared.AddressRelationAttributeAttributeWithCompositeIDType)
-		if !r.AddressRelationAttribute.Type.IsUnknown() && !r.AddressRelationAttribute.Type.IsNull() {
-			*typeVar11 = shared.AddressRelationAttributeAttributeWithCompositeIDType(r.AddressRelationAttribute.Type.ValueString())
+		typeVar11 := new(shared.AddressAttributeAttributeWithCompositeIDType)
+		if !r.AddressAttribute.Type.IsUnknown() && !r.AddressAttribute.Type.IsNull() {
+			*typeVar11 = shared.AddressAttributeAttributeWithCompositeIDType(r.AddressAttribute.Type.ValueString())
 		} else {
 			typeVar11 = nil
 		}
+		var defaultAddressFields []shared.DefaultAddressFields = []shared.DefaultAddressFields{}
+		for _, defaultAddressFieldsItem := range r.AddressAttribute.DefaultAddressFields {
+			defaultAddressFields = append(defaultAddressFields, shared.DefaultAddressFields(defaultAddressFieldsItem.ValueString()))
+		}
 		schema11 := new(string)
-		if !r.AddressRelationAttribute.Schema.IsUnknown() && !r.AddressRelationAttribute.Schema.IsNull() {
-			*schema11 = r.AddressRelationAttribute.Schema.ValueString()
+		if !r.AddressAttribute.Schema.IsUnknown() && !r.AddressAttribute.Schema.IsNull() {
+			*schema11 = r.AddressAttribute.Schema.ValueString()
 		} else {
 			schema11 = nil
 		}
-		attributeWithCompositeIDAddressRelationAttributeInput = &shared.AttributeWithCompositeIDAddressRelationAttributeInput{
+		attributeWithCompositeIDAddressAttributeInput = &shared.AttributeWithCompositeIDAddressAttributeInput{
 			ID:                       id11,
 			Name:                     name23,
 			Label:                    label12,
@@ -3336,130 +3383,131 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable11,
 			HasPrimary:               hasPrimary11,
 			Type:                     typeVar11,
+			DefaultAddressFields:     defaultAddressFields,
 			Schema:                   schema11,
 		}
 	}
-	if attributeWithCompositeIDAddressRelationAttributeInput != nil {
+	if attributeWithCompositeIDAddressAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAddressRelationAttributeInput: attributeWithCompositeIDAddressRelationAttributeInput,
+			AttributeWithCompositeIDAddressAttributeInput: attributeWithCompositeIDAddressAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput *shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput
-	if r.PaymentMethodRelationAttribute != nil {
+	var attributeWithCompositeIDAddressRelationAttributeInput *shared.AttributeWithCompositeIDAddressRelationAttributeInput
+	if r.AddressRelationAttribute != nil {
 		id12 := new(string)
-		if !r.PaymentMethodRelationAttribute.ID.IsUnknown() && !r.PaymentMethodRelationAttribute.ID.IsNull() {
-			*id12 = r.PaymentMethodRelationAttribute.ID.ValueString()
+		if !r.AddressRelationAttribute.ID.IsUnknown() && !r.AddressRelationAttribute.ID.IsNull() {
+			*id12 = r.AddressRelationAttribute.ID.ValueString()
 		} else {
 			id12 = nil
 		}
 		var name25 string
-		name25 = r.PaymentMethodRelationAttribute.Name.ValueString()
+		name25 = r.AddressRelationAttribute.Name.ValueString()
 
 		var label13 string
-		label13 = r.PaymentMethodRelationAttribute.Label.ValueString()
+		label13 = r.AddressRelationAttribute.Label.ValueString()
 
 		placeholder12 := new(string)
-		if !r.PaymentMethodRelationAttribute.Placeholder.IsUnknown() && !r.PaymentMethodRelationAttribute.Placeholder.IsNull() {
-			*placeholder12 = r.PaymentMethodRelationAttribute.Placeholder.ValueString()
+		if !r.AddressRelationAttribute.Placeholder.IsUnknown() && !r.AddressRelationAttribute.Placeholder.IsNull() {
+			*placeholder12 = r.AddressRelationAttribute.Placeholder.ValueString()
 		} else {
 			placeholder12 = nil
 		}
 		hidden12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Hidden.IsUnknown() && !r.PaymentMethodRelationAttribute.Hidden.IsNull() {
-			*hidden12 = r.PaymentMethodRelationAttribute.Hidden.ValueBool()
+		if !r.AddressRelationAttribute.Hidden.IsUnknown() && !r.AddressRelationAttribute.Hidden.IsNull() {
+			*hidden12 = r.AddressRelationAttribute.Hidden.ValueBool()
 		} else {
 			hidden12 = nil
 		}
 		showInTable12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.ShowInTable.IsUnknown() && !r.PaymentMethodRelationAttribute.ShowInTable.IsNull() {
-			*showInTable12 = r.PaymentMethodRelationAttribute.ShowInTable.ValueBool()
+		if !r.AddressRelationAttribute.ShowInTable.IsUnknown() && !r.AddressRelationAttribute.ShowInTable.IsNull() {
+			*showInTable12 = r.AddressRelationAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable12 = nil
 		}
 		sortable12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Sortable.IsUnknown() && !r.PaymentMethodRelationAttribute.Sortable.IsNull() {
-			*sortable12 = r.PaymentMethodRelationAttribute.Sortable.ValueBool()
+		if !r.AddressRelationAttribute.Sortable.IsUnknown() && !r.AddressRelationAttribute.Sortable.IsNull() {
+			*sortable12 = r.AddressRelationAttribute.Sortable.ValueBool()
 		} else {
 			sortable12 = nil
 		}
 		required12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Required.IsUnknown() && !r.PaymentMethodRelationAttribute.Required.IsNull() {
-			*required12 = r.PaymentMethodRelationAttribute.Required.ValueBool()
+		if !r.AddressRelationAttribute.Required.IsUnknown() && !r.AddressRelationAttribute.Required.IsNull() {
+			*required12 = r.AddressRelationAttribute.Required.ValueBool()
 		} else {
 			required12 = nil
 		}
 		readonly12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Readonly.IsUnknown() && !r.PaymentMethodRelationAttribute.Readonly.IsNull() {
-			*readonly12 = r.PaymentMethodRelationAttribute.Readonly.ValueBool()
+		if !r.AddressRelationAttribute.Readonly.IsUnknown() && !r.AddressRelationAttribute.Readonly.IsNull() {
+			*readonly12 = r.AddressRelationAttribute.Readonly.ValueBool()
 		} else {
 			readonly12 = nil
 		}
 		deprecated12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Deprecated.IsUnknown() && !r.PaymentMethodRelationAttribute.Deprecated.IsNull() {
-			*deprecated12 = r.PaymentMethodRelationAttribute.Deprecated.ValueBool()
+		if !r.AddressRelationAttribute.Deprecated.IsUnknown() && !r.AddressRelationAttribute.Deprecated.IsNull() {
+			*deprecated12 = r.AddressRelationAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated12 = nil
 		}
 		var defaultValue12 interface{}
-		if !r.PaymentMethodRelationAttribute.DefaultValue.IsUnknown() && !r.PaymentMethodRelationAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PaymentMethodRelationAttribute.DefaultValue.ValueString()), &defaultValue12)
+		if !r.AddressRelationAttribute.DefaultValue.IsUnknown() && !r.AddressRelationAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.AddressRelationAttribute.DefaultValue.ValueString()), &defaultValue12)
 		}
 		group12 := new(string)
-		if !r.PaymentMethodRelationAttribute.Group.IsUnknown() && !r.PaymentMethodRelationAttribute.Group.IsNull() {
-			*group12 = r.PaymentMethodRelationAttribute.Group.ValueString()
+		if !r.AddressRelationAttribute.Group.IsUnknown() && !r.AddressRelationAttribute.Group.IsNull() {
+			*group12 = r.AddressRelationAttribute.Group.ValueString()
 		} else {
 			group12 = nil
 		}
 		order12 := new(int64)
-		if !r.PaymentMethodRelationAttribute.Order.IsUnknown() && !r.PaymentMethodRelationAttribute.Order.IsNull() {
-			*order12 = r.PaymentMethodRelationAttribute.Order.ValueInt64()
+		if !r.AddressRelationAttribute.Order.IsUnknown() && !r.AddressRelationAttribute.Order.IsNull() {
+			*order12 = r.AddressRelationAttribute.Order.ValueInt64()
 		} else {
 			order12 = nil
 		}
 		layout12 := new(string)
-		if !r.PaymentMethodRelationAttribute.Layout.IsUnknown() && !r.PaymentMethodRelationAttribute.Layout.IsNull() {
-			*layout12 = r.PaymentMethodRelationAttribute.Layout.ValueString()
+		if !r.AddressRelationAttribute.Layout.IsUnknown() && !r.AddressRelationAttribute.Layout.IsNull() {
+			*layout12 = r.AddressRelationAttribute.Layout.ValueString()
 		} else {
 			layout12 = nil
 		}
 		hideLabel12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.HideLabel.IsUnknown() && !r.PaymentMethodRelationAttribute.HideLabel.IsNull() {
-			*hideLabel12 = r.PaymentMethodRelationAttribute.HideLabel.ValueBool()
+		if !r.AddressRelationAttribute.HideLabel.IsUnknown() && !r.AddressRelationAttribute.HideLabel.IsNull() {
+			*hideLabel12 = r.AddressRelationAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel12 = nil
 		}
 		icon12 := new(string)
-		if !r.PaymentMethodRelationAttribute.Icon.IsUnknown() && !r.PaymentMethodRelationAttribute.Icon.IsNull() {
-			*icon12 = r.PaymentMethodRelationAttribute.Icon.ValueString()
+		if !r.AddressRelationAttribute.Icon.IsUnknown() && !r.AddressRelationAttribute.Icon.IsNull() {
+			*icon12 = r.AddressRelationAttribute.Icon.ValueString()
 		} else {
 			icon12 = nil
 		}
 		renderCondition12 := new(string)
-		if !r.PaymentMethodRelationAttribute.RenderCondition.IsUnknown() && !r.PaymentMethodRelationAttribute.RenderCondition.IsNull() {
-			*renderCondition12 = r.PaymentMethodRelationAttribute.RenderCondition.ValueString()
+		if !r.AddressRelationAttribute.RenderCondition.IsUnknown() && !r.AddressRelationAttribute.RenderCondition.IsNull() {
+			*renderCondition12 = r.AddressRelationAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition12 = nil
 		}
 		var purpose12 []string = []string{}
-		for _, purposeItem12 := range r.PaymentMethodRelationAttribute.Purpose {
+		for _, purposeItem12 := range r.AddressRelationAttribute.Purpose {
 			purpose12 = append(purpose12, purposeItem12.ValueString())
 		}
 		var manifest12 []string = []string{}
-		for _, manifestItem12 := range r.PaymentMethodRelationAttribute.Manifest {
+		for _, manifestItem12 := range r.AddressRelationAttribute.Manifest {
 			manifest12 = append(manifest12, manifestItem12.ValueString())
 		}
-		var constraints12 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints
-		if r.PaymentMethodRelationAttribute.Constraints != nil {
-			constraints12 = &shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints{}
+		var constraints12 *shared.AddressRelationAttributeAttributeWithCompositeIDConstraints
+		if r.AddressRelationAttribute.Constraints != nil {
+			constraints12 = &shared.AddressRelationAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag13 := new(string)
-		if !r.PaymentMethodRelationAttribute.FeatureFlag.IsUnknown() && !r.PaymentMethodRelationAttribute.FeatureFlag.IsNull() {
-			*featureFlag13 = r.PaymentMethodRelationAttribute.FeatureFlag.ValueString()
+		if !r.AddressRelationAttribute.FeatureFlag.IsUnknown() && !r.AddressRelationAttribute.FeatureFlag.IsNull() {
+			*featureFlag13 = r.AddressRelationAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag13 = nil
 		}
 		var settingsFlag13 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem13 := range r.PaymentMethodRelationAttribute.SettingsFlag {
+		for _, settingsFlagItem13 := range r.AddressRelationAttribute.SettingsFlag {
 			name26 := new(string)
 			if !settingsFlagItem13.Name.IsUnknown() && !settingsFlagItem13.Name.IsNull() {
 				*name26 = settingsFlagItem13.Name.ValueString()
@@ -3478,56 +3526,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter12 := new(string)
-		if !r.PaymentMethodRelationAttribute.ValueFormatter.IsUnknown() && !r.PaymentMethodRelationAttribute.ValueFormatter.IsNull() {
-			*valueFormatter12 = r.PaymentMethodRelationAttribute.ValueFormatter.ValueString()
+		if !r.AddressRelationAttribute.ValueFormatter.IsUnknown() && !r.AddressRelationAttribute.ValueFormatter.IsNull() {
+			*valueFormatter12 = r.AddressRelationAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter12 = nil
 		}
 		previewValueFormatter12 := new(string)
-		if !r.PaymentMethodRelationAttribute.PreviewValueFormatter.IsUnknown() && !r.PaymentMethodRelationAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter12 = r.PaymentMethodRelationAttribute.PreviewValueFormatter.ValueString()
+		if !r.AddressRelationAttribute.PreviewValueFormatter.IsUnknown() && !r.AddressRelationAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter12 = r.AddressRelationAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter12 = nil
 		}
 		entityBuilderDisableEdit12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit12 = r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.AddressRelationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AddressRelationAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit12 = r.AddressRelationAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit12 = nil
 		}
 		protected12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Protected.IsUnknown() && !r.PaymentMethodRelationAttribute.Protected.IsNull() {
-			*protected12 = r.PaymentMethodRelationAttribute.Protected.ValueBool()
+		if !r.AddressRelationAttribute.Protected.IsUnknown() && !r.AddressRelationAttribute.Protected.IsNull() {
+			*protected12 = r.AddressRelationAttribute.Protected.ValueBool()
 		} else {
 			protected12 = nil
 		}
-		var infoHelpers12 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PaymentMethodRelationAttribute.InfoHelpers != nil {
+		var infoHelpers12 *shared.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers
+		if r.AddressRelationAttribute.InfoHelpers != nil {
 			hintText12 := new(string)
-			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintText.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText12 = r.PaymentMethodRelationAttribute.InfoHelpers.HintText.ValueString()
+			if !r.AddressRelationAttribute.InfoHelpers.HintText.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText12 = r.AddressRelationAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText12 = nil
 			}
 			hintTextKey12 := new(string)
-			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey12 = r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.AddressRelationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey12 = r.AddressRelationAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey12 = nil
 			}
 			hintCustomComponent12 := new(string)
-			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent12 = r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent12 = r.AddressRelationAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent12 = nil
 			}
 			hintTooltipPlacement12 := new(string)
-			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement12 = r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement12 = r.AddressRelationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement12 = nil
 			}
-			infoHelpers12 = &shared.PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers12 = &shared.AddressRelationAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText12,
 				HintTextKey:          hintTextKey12,
 				HintCustomComponent:  hintCustomComponent12,
@@ -3535,30 +3583,34 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.Repeatable.IsUnknown() && !r.PaymentMethodRelationAttribute.Repeatable.IsNull() {
-			*repeatable12 = r.PaymentMethodRelationAttribute.Repeatable.ValueBool()
+		if !r.AddressRelationAttribute.Repeatable.IsUnknown() && !r.AddressRelationAttribute.Repeatable.IsNull() {
+			*repeatable12 = r.AddressRelationAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable12 = nil
 		}
 		hasPrimary12 := new(bool)
-		if !r.PaymentMethodRelationAttribute.HasPrimary.IsUnknown() && !r.PaymentMethodRelationAttribute.HasPrimary.IsNull() {
-			*hasPrimary12 = r.PaymentMethodRelationAttribute.HasPrimary.ValueBool()
+		if !r.AddressRelationAttribute.HasPrimary.IsUnknown() && !r.AddressRelationAttribute.HasPrimary.IsNull() {
+			*hasPrimary12 = r.AddressRelationAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary12 = nil
 		}
-		typeVar12 := new(shared.PaymentMethodRelationAttributeAttributeWithCompositeIDType)
-		if !r.PaymentMethodRelationAttribute.Type.IsUnknown() && !r.PaymentMethodRelationAttribute.Type.IsNull() {
-			*typeVar12 = shared.PaymentMethodRelationAttributeAttributeWithCompositeIDType(r.PaymentMethodRelationAttribute.Type.ValueString())
+		typeVar12 := new(shared.AddressRelationAttributeAttributeWithCompositeIDType)
+		if !r.AddressRelationAttribute.Type.IsUnknown() && !r.AddressRelationAttribute.Type.IsNull() {
+			*typeVar12 = shared.AddressRelationAttributeAttributeWithCompositeIDType(r.AddressRelationAttribute.Type.ValueString())
 		} else {
 			typeVar12 = nil
 		}
+		var defaultAddressFields1 []shared.DefaultAddressFields = []shared.DefaultAddressFields{}
+		for _, defaultAddressFieldsItem1 := range r.AddressRelationAttribute.DefaultAddressFields {
+			defaultAddressFields1 = append(defaultAddressFields1, shared.DefaultAddressFields(defaultAddressFieldsItem1.ValueString()))
+		}
 		schema12 := new(string)
-		if !r.PaymentMethodRelationAttribute.Schema.IsUnknown() && !r.PaymentMethodRelationAttribute.Schema.IsNull() {
-			*schema12 = r.PaymentMethodRelationAttribute.Schema.ValueString()
+		if !r.AddressRelationAttribute.Schema.IsUnknown() && !r.AddressRelationAttribute.Schema.IsNull() {
+			*schema12 = r.AddressRelationAttribute.Schema.ValueString()
 		} else {
 			schema12 = nil
 		}
-		attributeWithCompositeIDPaymentMethodRelationAttributeInput = &shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput{
+		attributeWithCompositeIDAddressRelationAttributeInput = &shared.AttributeWithCompositeIDAddressRelationAttributeInput{
 			ID:                       id12,
 			Name:                     name25,
 			Label:                    label13,
@@ -3589,130 +3641,131 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable12,
 			HasPrimary:               hasPrimary12,
 			Type:                     typeVar12,
+			DefaultAddressFields:     defaultAddressFields1,
 			Schema:                   schema12,
 		}
 	}
-	if attributeWithCompositeIDPaymentMethodRelationAttributeInput != nil {
+	if attributeWithCompositeIDAddressRelationAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPaymentMethodRelationAttributeInput: attributeWithCompositeIDPaymentMethodRelationAttributeInput,
+			AttributeWithCompositeIDAddressRelationAttributeInput: attributeWithCompositeIDAddressRelationAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDCurrencyAttributeInput *shared.AttributeWithCompositeIDCurrencyAttributeInput
-	if r.CurrencyAttribute != nil {
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput *shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput
+	if r.PaymentMethodRelationAttribute != nil {
 		id13 := new(string)
-		if !r.CurrencyAttribute.ID.IsUnknown() && !r.CurrencyAttribute.ID.IsNull() {
-			*id13 = r.CurrencyAttribute.ID.ValueString()
+		if !r.PaymentMethodRelationAttribute.ID.IsUnknown() && !r.PaymentMethodRelationAttribute.ID.IsNull() {
+			*id13 = r.PaymentMethodRelationAttribute.ID.ValueString()
 		} else {
 			id13 = nil
 		}
 		var name27 string
-		name27 = r.CurrencyAttribute.Name.ValueString()
+		name27 = r.PaymentMethodRelationAttribute.Name.ValueString()
 
 		var label14 string
-		label14 = r.CurrencyAttribute.Label.ValueString()
+		label14 = r.PaymentMethodRelationAttribute.Label.ValueString()
 
 		placeholder13 := new(string)
-		if !r.CurrencyAttribute.Placeholder.IsUnknown() && !r.CurrencyAttribute.Placeholder.IsNull() {
-			*placeholder13 = r.CurrencyAttribute.Placeholder.ValueString()
+		if !r.PaymentMethodRelationAttribute.Placeholder.IsUnknown() && !r.PaymentMethodRelationAttribute.Placeholder.IsNull() {
+			*placeholder13 = r.PaymentMethodRelationAttribute.Placeholder.ValueString()
 		} else {
 			placeholder13 = nil
 		}
 		hidden13 := new(bool)
-		if !r.CurrencyAttribute.Hidden.IsUnknown() && !r.CurrencyAttribute.Hidden.IsNull() {
-			*hidden13 = r.CurrencyAttribute.Hidden.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Hidden.IsUnknown() && !r.PaymentMethodRelationAttribute.Hidden.IsNull() {
+			*hidden13 = r.PaymentMethodRelationAttribute.Hidden.ValueBool()
 		} else {
 			hidden13 = nil
 		}
 		showInTable13 := new(bool)
-		if !r.CurrencyAttribute.ShowInTable.IsUnknown() && !r.CurrencyAttribute.ShowInTable.IsNull() {
-			*showInTable13 = r.CurrencyAttribute.ShowInTable.ValueBool()
+		if !r.PaymentMethodRelationAttribute.ShowInTable.IsUnknown() && !r.PaymentMethodRelationAttribute.ShowInTable.IsNull() {
+			*showInTable13 = r.PaymentMethodRelationAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable13 = nil
 		}
 		sortable13 := new(bool)
-		if !r.CurrencyAttribute.Sortable.IsUnknown() && !r.CurrencyAttribute.Sortable.IsNull() {
-			*sortable13 = r.CurrencyAttribute.Sortable.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Sortable.IsUnknown() && !r.PaymentMethodRelationAttribute.Sortable.IsNull() {
+			*sortable13 = r.PaymentMethodRelationAttribute.Sortable.ValueBool()
 		} else {
 			sortable13 = nil
 		}
 		required13 := new(bool)
-		if !r.CurrencyAttribute.Required.IsUnknown() && !r.CurrencyAttribute.Required.IsNull() {
-			*required13 = r.CurrencyAttribute.Required.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Required.IsUnknown() && !r.PaymentMethodRelationAttribute.Required.IsNull() {
+			*required13 = r.PaymentMethodRelationAttribute.Required.ValueBool()
 		} else {
 			required13 = nil
 		}
 		readonly13 := new(bool)
-		if !r.CurrencyAttribute.Readonly.IsUnknown() && !r.CurrencyAttribute.Readonly.IsNull() {
-			*readonly13 = r.CurrencyAttribute.Readonly.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Readonly.IsUnknown() && !r.PaymentMethodRelationAttribute.Readonly.IsNull() {
+			*readonly13 = r.PaymentMethodRelationAttribute.Readonly.ValueBool()
 		} else {
 			readonly13 = nil
 		}
 		deprecated13 := new(bool)
-		if !r.CurrencyAttribute.Deprecated.IsUnknown() && !r.CurrencyAttribute.Deprecated.IsNull() {
-			*deprecated13 = r.CurrencyAttribute.Deprecated.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Deprecated.IsUnknown() && !r.PaymentMethodRelationAttribute.Deprecated.IsNull() {
+			*deprecated13 = r.PaymentMethodRelationAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated13 = nil
 		}
 		var defaultValue13 interface{}
-		if !r.CurrencyAttribute.DefaultValue.IsUnknown() && !r.CurrencyAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.CurrencyAttribute.DefaultValue.ValueString()), &defaultValue13)
+		if !r.PaymentMethodRelationAttribute.DefaultValue.IsUnknown() && !r.PaymentMethodRelationAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PaymentMethodRelationAttribute.DefaultValue.ValueString()), &defaultValue13)
 		}
 		group13 := new(string)
-		if !r.CurrencyAttribute.Group.IsUnknown() && !r.CurrencyAttribute.Group.IsNull() {
-			*group13 = r.CurrencyAttribute.Group.ValueString()
+		if !r.PaymentMethodRelationAttribute.Group.IsUnknown() && !r.PaymentMethodRelationAttribute.Group.IsNull() {
+			*group13 = r.PaymentMethodRelationAttribute.Group.ValueString()
 		} else {
 			group13 = nil
 		}
 		order13 := new(int64)
-		if !r.CurrencyAttribute.Order.IsUnknown() && !r.CurrencyAttribute.Order.IsNull() {
-			*order13 = r.CurrencyAttribute.Order.ValueInt64()
+		if !r.PaymentMethodRelationAttribute.Order.IsUnknown() && !r.PaymentMethodRelationAttribute.Order.IsNull() {
+			*order13 = r.PaymentMethodRelationAttribute.Order.ValueInt64()
 		} else {
 			order13 = nil
 		}
 		layout13 := new(string)
-		if !r.CurrencyAttribute.Layout.IsUnknown() && !r.CurrencyAttribute.Layout.IsNull() {
-			*layout13 = r.CurrencyAttribute.Layout.ValueString()
+		if !r.PaymentMethodRelationAttribute.Layout.IsUnknown() && !r.PaymentMethodRelationAttribute.Layout.IsNull() {
+			*layout13 = r.PaymentMethodRelationAttribute.Layout.ValueString()
 		} else {
 			layout13 = nil
 		}
 		hideLabel13 := new(bool)
-		if !r.CurrencyAttribute.HideLabel.IsUnknown() && !r.CurrencyAttribute.HideLabel.IsNull() {
-			*hideLabel13 = r.CurrencyAttribute.HideLabel.ValueBool()
+		if !r.PaymentMethodRelationAttribute.HideLabel.IsUnknown() && !r.PaymentMethodRelationAttribute.HideLabel.IsNull() {
+			*hideLabel13 = r.PaymentMethodRelationAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel13 = nil
 		}
 		icon13 := new(string)
-		if !r.CurrencyAttribute.Icon.IsUnknown() && !r.CurrencyAttribute.Icon.IsNull() {
-			*icon13 = r.CurrencyAttribute.Icon.ValueString()
+		if !r.PaymentMethodRelationAttribute.Icon.IsUnknown() && !r.PaymentMethodRelationAttribute.Icon.IsNull() {
+			*icon13 = r.PaymentMethodRelationAttribute.Icon.ValueString()
 		} else {
 			icon13 = nil
 		}
 		renderCondition13 := new(string)
-		if !r.CurrencyAttribute.RenderCondition.IsUnknown() && !r.CurrencyAttribute.RenderCondition.IsNull() {
-			*renderCondition13 = r.CurrencyAttribute.RenderCondition.ValueString()
+		if !r.PaymentMethodRelationAttribute.RenderCondition.IsUnknown() && !r.PaymentMethodRelationAttribute.RenderCondition.IsNull() {
+			*renderCondition13 = r.PaymentMethodRelationAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition13 = nil
 		}
 		var purpose13 []string = []string{}
-		for _, purposeItem13 := range r.CurrencyAttribute.Purpose {
+		for _, purposeItem13 := range r.PaymentMethodRelationAttribute.Purpose {
 			purpose13 = append(purpose13, purposeItem13.ValueString())
 		}
 		var manifest13 []string = []string{}
-		for _, manifestItem13 := range r.CurrencyAttribute.Manifest {
+		for _, manifestItem13 := range r.PaymentMethodRelationAttribute.Manifest {
 			manifest13 = append(manifest13, manifestItem13.ValueString())
 		}
-		var constraints13 *shared.CurrencyAttributeAttributeWithCompositeIDConstraints
-		if r.CurrencyAttribute.Constraints != nil {
-			constraints13 = &shared.CurrencyAttributeAttributeWithCompositeIDConstraints{}
+		var constraints13 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints
+		if r.PaymentMethodRelationAttribute.Constraints != nil {
+			constraints13 = &shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag14 := new(string)
-		if !r.CurrencyAttribute.FeatureFlag.IsUnknown() && !r.CurrencyAttribute.FeatureFlag.IsNull() {
-			*featureFlag14 = r.CurrencyAttribute.FeatureFlag.ValueString()
+		if !r.PaymentMethodRelationAttribute.FeatureFlag.IsUnknown() && !r.PaymentMethodRelationAttribute.FeatureFlag.IsNull() {
+			*featureFlag14 = r.PaymentMethodRelationAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag14 = nil
 		}
 		var settingsFlag14 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem14 := range r.CurrencyAttribute.SettingsFlag {
+		for _, settingsFlagItem14 := range r.PaymentMethodRelationAttribute.SettingsFlag {
 			name28 := new(string)
 			if !settingsFlagItem14.Name.IsUnknown() && !settingsFlagItem14.Name.IsNull() {
 				*name28 = settingsFlagItem14.Name.ValueString()
@@ -3731,56 +3784,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter13 := new(string)
-		if !r.CurrencyAttribute.ValueFormatter.IsUnknown() && !r.CurrencyAttribute.ValueFormatter.IsNull() {
-			*valueFormatter13 = r.CurrencyAttribute.ValueFormatter.ValueString()
+		if !r.PaymentMethodRelationAttribute.ValueFormatter.IsUnknown() && !r.PaymentMethodRelationAttribute.ValueFormatter.IsNull() {
+			*valueFormatter13 = r.PaymentMethodRelationAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter13 = nil
 		}
 		previewValueFormatter13 := new(string)
-		if !r.CurrencyAttribute.PreviewValueFormatter.IsUnknown() && !r.CurrencyAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter13 = r.CurrencyAttribute.PreviewValueFormatter.ValueString()
+		if !r.PaymentMethodRelationAttribute.PreviewValueFormatter.IsUnknown() && !r.PaymentMethodRelationAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter13 = r.PaymentMethodRelationAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter13 = nil
 		}
 		entityBuilderDisableEdit13 := new(bool)
-		if !r.CurrencyAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.CurrencyAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit13 = r.CurrencyAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit13 = r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit13 = nil
 		}
 		protected13 := new(bool)
-		if !r.CurrencyAttribute.Protected.IsUnknown() && !r.CurrencyAttribute.Protected.IsNull() {
-			*protected13 = r.CurrencyAttribute.Protected.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Protected.IsUnknown() && !r.PaymentMethodRelationAttribute.Protected.IsNull() {
+			*protected13 = r.PaymentMethodRelationAttribute.Protected.ValueBool()
 		} else {
 			protected13 = nil
 		}
-		var infoHelpers13 *shared.CurrencyAttributeAttributeWithCompositeIDInfoHelpers
-		if r.CurrencyAttribute.InfoHelpers != nil {
+		var infoHelpers13 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PaymentMethodRelationAttribute.InfoHelpers != nil {
 			hintText13 := new(string)
-			if !r.CurrencyAttribute.InfoHelpers.HintText.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText13 = r.CurrencyAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintText.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText13 = r.PaymentMethodRelationAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText13 = nil
 			}
 			hintTextKey13 := new(string)
-			if !r.CurrencyAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey13 = r.CurrencyAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey13 = r.PaymentMethodRelationAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey13 = nil
 			}
 			hintCustomComponent13 := new(string)
-			if !r.CurrencyAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent13 = r.CurrencyAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent13 = r.PaymentMethodRelationAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent13 = nil
 			}
 			hintTooltipPlacement13 := new(string)
-			if !r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement13 = r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement13 = r.PaymentMethodRelationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement13 = nil
 			}
-			infoHelpers13 = &shared.CurrencyAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers13 = &shared.PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText13,
 				HintTextKey:          hintTextKey13,
 				HintCustomComponent:  hintCustomComponent13,
@@ -3788,18 +3841,271 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable13 := new(bool)
-		if !r.CurrencyAttribute.Repeatable.IsUnknown() && !r.CurrencyAttribute.Repeatable.IsNull() {
-			*repeatable13 = r.CurrencyAttribute.Repeatable.ValueBool()
+		if !r.PaymentMethodRelationAttribute.Repeatable.IsUnknown() && !r.PaymentMethodRelationAttribute.Repeatable.IsNull() {
+			*repeatable13 = r.PaymentMethodRelationAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable13 = nil
 		}
 		hasPrimary13 := new(bool)
-		if !r.CurrencyAttribute.HasPrimary.IsUnknown() && !r.CurrencyAttribute.HasPrimary.IsNull() {
-			*hasPrimary13 = r.CurrencyAttribute.HasPrimary.ValueBool()
+		if !r.PaymentMethodRelationAttribute.HasPrimary.IsUnknown() && !r.PaymentMethodRelationAttribute.HasPrimary.IsNull() {
+			*hasPrimary13 = r.PaymentMethodRelationAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary13 = nil
 		}
-		typeVar13 := shared.CurrencyAttributeAttributeWithCompositeIDType(r.CurrencyAttribute.Type.ValueString())
+		typeVar13 := new(shared.PaymentMethodRelationAttributeAttributeWithCompositeIDType)
+		if !r.PaymentMethodRelationAttribute.Type.IsUnknown() && !r.PaymentMethodRelationAttribute.Type.IsNull() {
+			*typeVar13 = shared.PaymentMethodRelationAttributeAttributeWithCompositeIDType(r.PaymentMethodRelationAttribute.Type.ValueString())
+		} else {
+			typeVar13 = nil
+		}
+		schema13 := new(string)
+		if !r.PaymentMethodRelationAttribute.Schema.IsUnknown() && !r.PaymentMethodRelationAttribute.Schema.IsNull() {
+			*schema13 = r.PaymentMethodRelationAttribute.Schema.ValueString()
+		} else {
+			schema13 = nil
+		}
+		attributeWithCompositeIDPaymentMethodRelationAttributeInput = &shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput{
+			ID:                       id13,
+			Name:                     name27,
+			Label:                    label14,
+			Placeholder:              placeholder13,
+			Hidden:                   hidden13,
+			ShowInTable:              showInTable13,
+			Sortable:                 sortable13,
+			Required:                 required13,
+			Readonly:                 readonly13,
+			Deprecated:               deprecated13,
+			DefaultValue:             defaultValue13,
+			Group:                    group13,
+			Order:                    order13,
+			Layout:                   layout13,
+			HideLabel:                hideLabel13,
+			Icon:                     icon13,
+			RenderCondition:          renderCondition13,
+			Purpose:                  purpose13,
+			Manifest:                 manifest13,
+			Constraints:              constraints13,
+			FeatureFlag:              featureFlag14,
+			SettingsFlag:             settingsFlag14,
+			ValueFormatter:           valueFormatter13,
+			PreviewValueFormatter:    previewValueFormatter13,
+			EntityBuilderDisableEdit: entityBuilderDisableEdit13,
+			Protected:                protected13,
+			InfoHelpers:              infoHelpers13,
+			Repeatable:               repeatable13,
+			HasPrimary:               hasPrimary13,
+			Type:                     typeVar13,
+			Schema:                   schema13,
+		}
+	}
+	if attributeWithCompositeIDPaymentMethodRelationAttributeInput != nil {
+		out = shared.AttributeWithCompositeIDInput{
+			AttributeWithCompositeIDPaymentMethodRelationAttributeInput: attributeWithCompositeIDPaymentMethodRelationAttributeInput,
+		}
+	}
+	var attributeWithCompositeIDCurrencyAttributeInput *shared.AttributeWithCompositeIDCurrencyAttributeInput
+	if r.CurrencyAttribute != nil {
+		id14 := new(string)
+		if !r.CurrencyAttribute.ID.IsUnknown() && !r.CurrencyAttribute.ID.IsNull() {
+			*id14 = r.CurrencyAttribute.ID.ValueString()
+		} else {
+			id14 = nil
+		}
+		var name29 string
+		name29 = r.CurrencyAttribute.Name.ValueString()
+
+		var label15 string
+		label15 = r.CurrencyAttribute.Label.ValueString()
+
+		placeholder14 := new(string)
+		if !r.CurrencyAttribute.Placeholder.IsUnknown() && !r.CurrencyAttribute.Placeholder.IsNull() {
+			*placeholder14 = r.CurrencyAttribute.Placeholder.ValueString()
+		} else {
+			placeholder14 = nil
+		}
+		hidden14 := new(bool)
+		if !r.CurrencyAttribute.Hidden.IsUnknown() && !r.CurrencyAttribute.Hidden.IsNull() {
+			*hidden14 = r.CurrencyAttribute.Hidden.ValueBool()
+		} else {
+			hidden14 = nil
+		}
+		showInTable14 := new(bool)
+		if !r.CurrencyAttribute.ShowInTable.IsUnknown() && !r.CurrencyAttribute.ShowInTable.IsNull() {
+			*showInTable14 = r.CurrencyAttribute.ShowInTable.ValueBool()
+		} else {
+			showInTable14 = nil
+		}
+		sortable14 := new(bool)
+		if !r.CurrencyAttribute.Sortable.IsUnknown() && !r.CurrencyAttribute.Sortable.IsNull() {
+			*sortable14 = r.CurrencyAttribute.Sortable.ValueBool()
+		} else {
+			sortable14 = nil
+		}
+		required14 := new(bool)
+		if !r.CurrencyAttribute.Required.IsUnknown() && !r.CurrencyAttribute.Required.IsNull() {
+			*required14 = r.CurrencyAttribute.Required.ValueBool()
+		} else {
+			required14 = nil
+		}
+		readonly14 := new(bool)
+		if !r.CurrencyAttribute.Readonly.IsUnknown() && !r.CurrencyAttribute.Readonly.IsNull() {
+			*readonly14 = r.CurrencyAttribute.Readonly.ValueBool()
+		} else {
+			readonly14 = nil
+		}
+		deprecated14 := new(bool)
+		if !r.CurrencyAttribute.Deprecated.IsUnknown() && !r.CurrencyAttribute.Deprecated.IsNull() {
+			*deprecated14 = r.CurrencyAttribute.Deprecated.ValueBool()
+		} else {
+			deprecated14 = nil
+		}
+		var defaultValue14 interface{}
+		if !r.CurrencyAttribute.DefaultValue.IsUnknown() && !r.CurrencyAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.CurrencyAttribute.DefaultValue.ValueString()), &defaultValue14)
+		}
+		group14 := new(string)
+		if !r.CurrencyAttribute.Group.IsUnknown() && !r.CurrencyAttribute.Group.IsNull() {
+			*group14 = r.CurrencyAttribute.Group.ValueString()
+		} else {
+			group14 = nil
+		}
+		order14 := new(int64)
+		if !r.CurrencyAttribute.Order.IsUnknown() && !r.CurrencyAttribute.Order.IsNull() {
+			*order14 = r.CurrencyAttribute.Order.ValueInt64()
+		} else {
+			order14 = nil
+		}
+		layout14 := new(string)
+		if !r.CurrencyAttribute.Layout.IsUnknown() && !r.CurrencyAttribute.Layout.IsNull() {
+			*layout14 = r.CurrencyAttribute.Layout.ValueString()
+		} else {
+			layout14 = nil
+		}
+		hideLabel14 := new(bool)
+		if !r.CurrencyAttribute.HideLabel.IsUnknown() && !r.CurrencyAttribute.HideLabel.IsNull() {
+			*hideLabel14 = r.CurrencyAttribute.HideLabel.ValueBool()
+		} else {
+			hideLabel14 = nil
+		}
+		icon14 := new(string)
+		if !r.CurrencyAttribute.Icon.IsUnknown() && !r.CurrencyAttribute.Icon.IsNull() {
+			*icon14 = r.CurrencyAttribute.Icon.ValueString()
+		} else {
+			icon14 = nil
+		}
+		renderCondition14 := new(string)
+		if !r.CurrencyAttribute.RenderCondition.IsUnknown() && !r.CurrencyAttribute.RenderCondition.IsNull() {
+			*renderCondition14 = r.CurrencyAttribute.RenderCondition.ValueString()
+		} else {
+			renderCondition14 = nil
+		}
+		var purpose14 []string = []string{}
+		for _, purposeItem14 := range r.CurrencyAttribute.Purpose {
+			purpose14 = append(purpose14, purposeItem14.ValueString())
+		}
+		var manifest14 []string = []string{}
+		for _, manifestItem14 := range r.CurrencyAttribute.Manifest {
+			manifest14 = append(manifest14, manifestItem14.ValueString())
+		}
+		var constraints14 *shared.CurrencyAttributeAttributeWithCompositeIDConstraints
+		if r.CurrencyAttribute.Constraints != nil {
+			constraints14 = &shared.CurrencyAttributeAttributeWithCompositeIDConstraints{}
+		}
+		featureFlag15 := new(string)
+		if !r.CurrencyAttribute.FeatureFlag.IsUnknown() && !r.CurrencyAttribute.FeatureFlag.IsNull() {
+			*featureFlag15 = r.CurrencyAttribute.FeatureFlag.ValueString()
+		} else {
+			featureFlag15 = nil
+		}
+		var settingsFlag15 []shared.SettingFlag = []shared.SettingFlag{}
+		for _, settingsFlagItem15 := range r.CurrencyAttribute.SettingsFlag {
+			name30 := new(string)
+			if !settingsFlagItem15.Name.IsUnknown() && !settingsFlagItem15.Name.IsNull() {
+				*name30 = settingsFlagItem15.Name.ValueString()
+			} else {
+				name30 = nil
+			}
+			enabled15 := new(bool)
+			if !settingsFlagItem15.Enabled.IsUnknown() && !settingsFlagItem15.Enabled.IsNull() {
+				*enabled15 = settingsFlagItem15.Enabled.ValueBool()
+			} else {
+				enabled15 = nil
+			}
+			settingsFlag15 = append(settingsFlag15, shared.SettingFlag{
+				Name:    name30,
+				Enabled: enabled15,
+			})
+		}
+		valueFormatter14 := new(string)
+		if !r.CurrencyAttribute.ValueFormatter.IsUnknown() && !r.CurrencyAttribute.ValueFormatter.IsNull() {
+			*valueFormatter14 = r.CurrencyAttribute.ValueFormatter.ValueString()
+		} else {
+			valueFormatter14 = nil
+		}
+		previewValueFormatter14 := new(string)
+		if !r.CurrencyAttribute.PreviewValueFormatter.IsUnknown() && !r.CurrencyAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter14 = r.CurrencyAttribute.PreviewValueFormatter.ValueString()
+		} else {
+			previewValueFormatter14 = nil
+		}
+		entityBuilderDisableEdit14 := new(bool)
+		if !r.CurrencyAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.CurrencyAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit14 = r.CurrencyAttribute.EntityBuilderDisableEdit.ValueBool()
+		} else {
+			entityBuilderDisableEdit14 = nil
+		}
+		protected14 := new(bool)
+		if !r.CurrencyAttribute.Protected.IsUnknown() && !r.CurrencyAttribute.Protected.IsNull() {
+			*protected14 = r.CurrencyAttribute.Protected.ValueBool()
+		} else {
+			protected14 = nil
+		}
+		var infoHelpers14 *shared.CurrencyAttributeAttributeWithCompositeIDInfoHelpers
+		if r.CurrencyAttribute.InfoHelpers != nil {
+			hintText14 := new(string)
+			if !r.CurrencyAttribute.InfoHelpers.HintText.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText14 = r.CurrencyAttribute.InfoHelpers.HintText.ValueString()
+			} else {
+				hintText14 = nil
+			}
+			hintTextKey14 := new(string)
+			if !r.CurrencyAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey14 = r.CurrencyAttribute.InfoHelpers.HintTextKey.ValueString()
+			} else {
+				hintTextKey14 = nil
+			}
+			hintCustomComponent14 := new(string)
+			if !r.CurrencyAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent14 = r.CurrencyAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			} else {
+				hintCustomComponent14 = nil
+			}
+			hintTooltipPlacement14 := new(string)
+			if !r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement14 = r.CurrencyAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			} else {
+				hintTooltipPlacement14 = nil
+			}
+			infoHelpers14 = &shared.CurrencyAttributeAttributeWithCompositeIDInfoHelpers{
+				HintText:             hintText14,
+				HintTextKey:          hintTextKey14,
+				HintCustomComponent:  hintCustomComponent14,
+				HintTooltipPlacement: hintTooltipPlacement14,
+			}
+		}
+		repeatable14 := new(bool)
+		if !r.CurrencyAttribute.Repeatable.IsUnknown() && !r.CurrencyAttribute.Repeatable.IsNull() {
+			*repeatable14 = r.CurrencyAttribute.Repeatable.ValueBool()
+		} else {
+			repeatable14 = nil
+		}
+		hasPrimary14 := new(bool)
+		if !r.CurrencyAttribute.HasPrimary.IsUnknown() && !r.CurrencyAttribute.HasPrimary.IsNull() {
+			*hasPrimary14 = r.CurrencyAttribute.HasPrimary.ValueBool()
+		} else {
+			hasPrimary14 = nil
+		}
+		typeVar14 := shared.CurrencyAttributeAttributeWithCompositeIDType(r.CurrencyAttribute.Type.ValueString())
 		currencySelectorOnly := new(bool)
 		if !r.CurrencyAttribute.CurrencySelectorOnly.IsUnknown() && !r.CurrencyAttribute.CurrencySelectorOnly.IsNull() {
 			*currencySelectorOnly = r.CurrencyAttribute.CurrencySelectorOnly.ValueBool()
@@ -3835,276 +4141,13 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				})
 			}
 		}
-		schema13 := new(string)
-		if !r.CurrencyAttribute.Schema.IsUnknown() && !r.CurrencyAttribute.Schema.IsNull() {
-			*schema13 = r.CurrencyAttribute.Schema.ValueString()
-		} else {
-			schema13 = nil
-		}
-		attributeWithCompositeIDCurrencyAttributeInput = &shared.AttributeWithCompositeIDCurrencyAttributeInput{
-			ID:                       id13,
-			Name:                     name27,
-			Label:                    label14,
-			Placeholder:              placeholder13,
-			Hidden:                   hidden13,
-			ShowInTable:              showInTable13,
-			Sortable:                 sortable13,
-			Required:                 required13,
-			Readonly:                 readonly13,
-			Deprecated:               deprecated13,
-			DefaultValue:             defaultValue13,
-			Group:                    group13,
-			Order:                    order13,
-			Layout:                   layout13,
-			HideLabel:                hideLabel13,
-			Icon:                     icon13,
-			RenderCondition:          renderCondition13,
-			Purpose:                  purpose13,
-			Manifest:                 manifest13,
-			Constraints:              constraints13,
-			FeatureFlag:              featureFlag14,
-			SettingsFlag:             settingsFlag14,
-			ValueFormatter:           valueFormatter13,
-			PreviewValueFormatter:    previewValueFormatter13,
-			EntityBuilderDisableEdit: entityBuilderDisableEdit13,
-			Protected:                protected13,
-			InfoHelpers:              infoHelpers13,
-			Repeatable:               repeatable13,
-			HasPrimary:               hasPrimary13,
-			Type:                     typeVar13,
-			CurrencySelectorOnly:     currencySelectorOnly,
-			Currency:                 currency,
-			Schema:                   schema13,
-		}
-	}
-	if attributeWithCompositeIDCurrencyAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDCurrencyAttributeInput: attributeWithCompositeIDCurrencyAttributeInput,
-		}
-	}
-	var attributeWithCompositeIDTagsAttributeInput *shared.AttributeWithCompositeIDTagsAttributeInput
-	if r.TagsAttribute != nil {
-		id14 := new(string)
-		if !r.TagsAttribute.ID.IsUnknown() && !r.TagsAttribute.ID.IsNull() {
-			*id14 = r.TagsAttribute.ID.ValueString()
-		} else {
-			id14 = nil
-		}
-		var name29 string
-		name29 = r.TagsAttribute.Name.ValueString()
-
-		var label15 string
-		label15 = r.TagsAttribute.Label.ValueString()
-
-		placeholder14 := new(string)
-		if !r.TagsAttribute.Placeholder.IsUnknown() && !r.TagsAttribute.Placeholder.IsNull() {
-			*placeholder14 = r.TagsAttribute.Placeholder.ValueString()
-		} else {
-			placeholder14 = nil
-		}
-		hidden14 := new(bool)
-		if !r.TagsAttribute.Hidden.IsUnknown() && !r.TagsAttribute.Hidden.IsNull() {
-			*hidden14 = r.TagsAttribute.Hidden.ValueBool()
-		} else {
-			hidden14 = nil
-		}
-		showInTable14 := new(bool)
-		if !r.TagsAttribute.ShowInTable.IsUnknown() && !r.TagsAttribute.ShowInTable.IsNull() {
-			*showInTable14 = r.TagsAttribute.ShowInTable.ValueBool()
-		} else {
-			showInTable14 = nil
-		}
-		sortable14 := new(bool)
-		if !r.TagsAttribute.Sortable.IsUnknown() && !r.TagsAttribute.Sortable.IsNull() {
-			*sortable14 = r.TagsAttribute.Sortable.ValueBool()
-		} else {
-			sortable14 = nil
-		}
-		required14 := new(bool)
-		if !r.TagsAttribute.Required.IsUnknown() && !r.TagsAttribute.Required.IsNull() {
-			*required14 = r.TagsAttribute.Required.ValueBool()
-		} else {
-			required14 = nil
-		}
-		readonly14 := new(bool)
-		if !r.TagsAttribute.Readonly.IsUnknown() && !r.TagsAttribute.Readonly.IsNull() {
-			*readonly14 = r.TagsAttribute.Readonly.ValueBool()
-		} else {
-			readonly14 = nil
-		}
-		deprecated14 := new(bool)
-		if !r.TagsAttribute.Deprecated.IsUnknown() && !r.TagsAttribute.Deprecated.IsNull() {
-			*deprecated14 = r.TagsAttribute.Deprecated.ValueBool()
-		} else {
-			deprecated14 = nil
-		}
-		var defaultValue14 interface{}
-		if !r.TagsAttribute.DefaultValue.IsUnknown() && !r.TagsAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.TagsAttribute.DefaultValue.ValueString()), &defaultValue14)
-		}
-		group14 := new(string)
-		if !r.TagsAttribute.Group.IsUnknown() && !r.TagsAttribute.Group.IsNull() {
-			*group14 = r.TagsAttribute.Group.ValueString()
-		} else {
-			group14 = nil
-		}
-		order14 := new(int64)
-		if !r.TagsAttribute.Order.IsUnknown() && !r.TagsAttribute.Order.IsNull() {
-			*order14 = r.TagsAttribute.Order.ValueInt64()
-		} else {
-			order14 = nil
-		}
-		layout14 := new(string)
-		if !r.TagsAttribute.Layout.IsUnknown() && !r.TagsAttribute.Layout.IsNull() {
-			*layout14 = r.TagsAttribute.Layout.ValueString()
-		} else {
-			layout14 = nil
-		}
-		hideLabel14 := new(bool)
-		if !r.TagsAttribute.HideLabel.IsUnknown() && !r.TagsAttribute.HideLabel.IsNull() {
-			*hideLabel14 = r.TagsAttribute.HideLabel.ValueBool()
-		} else {
-			hideLabel14 = nil
-		}
-		icon14 := new(string)
-		if !r.TagsAttribute.Icon.IsUnknown() && !r.TagsAttribute.Icon.IsNull() {
-			*icon14 = r.TagsAttribute.Icon.ValueString()
-		} else {
-			icon14 = nil
-		}
-		renderCondition14 := new(string)
-		if !r.TagsAttribute.RenderCondition.IsUnknown() && !r.TagsAttribute.RenderCondition.IsNull() {
-			*renderCondition14 = r.TagsAttribute.RenderCondition.ValueString()
-		} else {
-			renderCondition14 = nil
-		}
-		var purpose14 []string = []string{}
-		for _, purposeItem14 := range r.TagsAttribute.Purpose {
-			purpose14 = append(purpose14, purposeItem14.ValueString())
-		}
-		var manifest14 []string = []string{}
-		for _, manifestItem14 := range r.TagsAttribute.Manifest {
-			manifest14 = append(manifest14, manifestItem14.ValueString())
-		}
-		var constraints14 *shared.TagsAttributeAttributeWithCompositeIDConstraints
-		if r.TagsAttribute.Constraints != nil {
-			constraints14 = &shared.TagsAttributeAttributeWithCompositeIDConstraints{}
-		}
-		featureFlag15 := new(string)
-		if !r.TagsAttribute.FeatureFlag.IsUnknown() && !r.TagsAttribute.FeatureFlag.IsNull() {
-			*featureFlag15 = r.TagsAttribute.FeatureFlag.ValueString()
-		} else {
-			featureFlag15 = nil
-		}
-		var settingsFlag15 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem15 := range r.TagsAttribute.SettingsFlag {
-			name30 := new(string)
-			if !settingsFlagItem15.Name.IsUnknown() && !settingsFlagItem15.Name.IsNull() {
-				*name30 = settingsFlagItem15.Name.ValueString()
-			} else {
-				name30 = nil
-			}
-			enabled15 := new(bool)
-			if !settingsFlagItem15.Enabled.IsUnknown() && !settingsFlagItem15.Enabled.IsNull() {
-				*enabled15 = settingsFlagItem15.Enabled.ValueBool()
-			} else {
-				enabled15 = nil
-			}
-			settingsFlag15 = append(settingsFlag15, shared.SettingFlag{
-				Name:    name30,
-				Enabled: enabled15,
-			})
-		}
-		valueFormatter14 := new(string)
-		if !r.TagsAttribute.ValueFormatter.IsUnknown() && !r.TagsAttribute.ValueFormatter.IsNull() {
-			*valueFormatter14 = r.TagsAttribute.ValueFormatter.ValueString()
-		} else {
-			valueFormatter14 = nil
-		}
-		previewValueFormatter14 := new(string)
-		if !r.TagsAttribute.PreviewValueFormatter.IsUnknown() && !r.TagsAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter14 = r.TagsAttribute.PreviewValueFormatter.ValueString()
-		} else {
-			previewValueFormatter14 = nil
-		}
-		entityBuilderDisableEdit14 := new(bool)
-		if !r.TagsAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.TagsAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit14 = r.TagsAttribute.EntityBuilderDisableEdit.ValueBool()
-		} else {
-			entityBuilderDisableEdit14 = nil
-		}
-		protected14 := new(bool)
-		if !r.TagsAttribute.Protected.IsUnknown() && !r.TagsAttribute.Protected.IsNull() {
-			*protected14 = r.TagsAttribute.Protected.ValueBool()
-		} else {
-			protected14 = nil
-		}
-		var infoHelpers14 *shared.TagsAttributeAttributeWithCompositeIDInfoHelpers
-		if r.TagsAttribute.InfoHelpers != nil {
-			hintText14 := new(string)
-			if !r.TagsAttribute.InfoHelpers.HintText.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText14 = r.TagsAttribute.InfoHelpers.HintText.ValueString()
-			} else {
-				hintText14 = nil
-			}
-			hintTextKey14 := new(string)
-			if !r.TagsAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey14 = r.TagsAttribute.InfoHelpers.HintTextKey.ValueString()
-			} else {
-				hintTextKey14 = nil
-			}
-			hintCustomComponent14 := new(string)
-			if !r.TagsAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent14 = r.TagsAttribute.InfoHelpers.HintCustomComponent.ValueString()
-			} else {
-				hintCustomComponent14 = nil
-			}
-			hintTooltipPlacement14 := new(string)
-			if !r.TagsAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement14 = r.TagsAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
-			} else {
-				hintTooltipPlacement14 = nil
-			}
-			infoHelpers14 = &shared.TagsAttributeAttributeWithCompositeIDInfoHelpers{
-				HintText:             hintText14,
-				HintTextKey:          hintTextKey14,
-				HintCustomComponent:  hintCustomComponent14,
-				HintTooltipPlacement: hintTooltipPlacement14,
-			}
-		}
-		repeatable14 := new(bool)
-		if !r.TagsAttribute.Repeatable.IsUnknown() && !r.TagsAttribute.Repeatable.IsNull() {
-			*repeatable14 = r.TagsAttribute.Repeatable.ValueBool()
-		} else {
-			repeatable14 = nil
-		}
-		hasPrimary14 := new(bool)
-		if !r.TagsAttribute.HasPrimary.IsUnknown() && !r.TagsAttribute.HasPrimary.IsNull() {
-			*hasPrimary14 = r.TagsAttribute.HasPrimary.ValueBool()
-		} else {
-			hasPrimary14 = nil
-		}
-		typeVar14 := new(shared.TagsAttributeAttributeWithCompositeIDType)
-		if !r.TagsAttribute.Type.IsUnknown() && !r.TagsAttribute.Type.IsNull() {
-			*typeVar14 = shared.TagsAttributeAttributeWithCompositeIDType(r.TagsAttribute.Type.ValueString())
-		} else {
-			typeVar14 = nil
-		}
-		var optionsVar3 []string = []string{}
-		for _, optionsItem2 := range r.TagsAttribute.Options {
-			optionsVar3 = append(optionsVar3, optionsItem2.ValueString())
-		}
-		var suggestions []string = []string{}
-		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
-			suggestions = append(suggestions, suggestionsItem.ValueString())
-		}
 		schema14 := new(string)
-		if !r.TagsAttribute.Schema.IsUnknown() && !r.TagsAttribute.Schema.IsNull() {
-			*schema14 = r.TagsAttribute.Schema.ValueString()
+		if !r.CurrencyAttribute.Schema.IsUnknown() && !r.CurrencyAttribute.Schema.IsNull() {
+			*schema14 = r.CurrencyAttribute.Schema.ValueString()
 		} else {
 			schema14 = nil
 		}
-		attributeWithCompositeIDTagsAttributeInput = &shared.AttributeWithCompositeIDTagsAttributeInput{
+		attributeWithCompositeIDCurrencyAttributeInput = &shared.AttributeWithCompositeIDCurrencyAttributeInput{
 			ID:                       id14,
 			Name:                     name29,
 			Label:                    label15,
@@ -4135,132 +4178,132 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable14,
 			HasPrimary:               hasPrimary14,
 			Type:                     typeVar14,
-			Options:                  optionsVar3,
-			Suggestions:              suggestions,
+			CurrencySelectorOnly:     currencySelectorOnly,
+			Currency:                 currency,
 			Schema:                   schema14,
 		}
 	}
-	if attributeWithCompositeIDTagsAttributeInput != nil {
+	if attributeWithCompositeIDCurrencyAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDTagsAttributeInput: attributeWithCompositeIDTagsAttributeInput,
+			AttributeWithCompositeIDCurrencyAttributeInput: attributeWithCompositeIDCurrencyAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDNumberAttributeInput *shared.AttributeWithCompositeIDNumberAttributeInput
-	if r.NumberAttribute != nil {
+	var attributeWithCompositeIDTagsAttributeInput *shared.AttributeWithCompositeIDTagsAttributeInput
+	if r.TagsAttribute != nil {
 		id15 := new(string)
-		if !r.NumberAttribute.ID.IsUnknown() && !r.NumberAttribute.ID.IsNull() {
-			*id15 = r.NumberAttribute.ID.ValueString()
+		if !r.TagsAttribute.ID.IsUnknown() && !r.TagsAttribute.ID.IsNull() {
+			*id15 = r.TagsAttribute.ID.ValueString()
 		} else {
 			id15 = nil
 		}
 		var name31 string
-		name31 = r.NumberAttribute.Name.ValueString()
+		name31 = r.TagsAttribute.Name.ValueString()
 
 		var label16 string
-		label16 = r.NumberAttribute.Label.ValueString()
+		label16 = r.TagsAttribute.Label.ValueString()
 
 		placeholder15 := new(string)
-		if !r.NumberAttribute.Placeholder.IsUnknown() && !r.NumberAttribute.Placeholder.IsNull() {
-			*placeholder15 = r.NumberAttribute.Placeholder.ValueString()
+		if !r.TagsAttribute.Placeholder.IsUnknown() && !r.TagsAttribute.Placeholder.IsNull() {
+			*placeholder15 = r.TagsAttribute.Placeholder.ValueString()
 		} else {
 			placeholder15 = nil
 		}
 		hidden15 := new(bool)
-		if !r.NumberAttribute.Hidden.IsUnknown() && !r.NumberAttribute.Hidden.IsNull() {
-			*hidden15 = r.NumberAttribute.Hidden.ValueBool()
+		if !r.TagsAttribute.Hidden.IsUnknown() && !r.TagsAttribute.Hidden.IsNull() {
+			*hidden15 = r.TagsAttribute.Hidden.ValueBool()
 		} else {
 			hidden15 = nil
 		}
 		showInTable15 := new(bool)
-		if !r.NumberAttribute.ShowInTable.IsUnknown() && !r.NumberAttribute.ShowInTable.IsNull() {
-			*showInTable15 = r.NumberAttribute.ShowInTable.ValueBool()
+		if !r.TagsAttribute.ShowInTable.IsUnknown() && !r.TagsAttribute.ShowInTable.IsNull() {
+			*showInTable15 = r.TagsAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable15 = nil
 		}
 		sortable15 := new(bool)
-		if !r.NumberAttribute.Sortable.IsUnknown() && !r.NumberAttribute.Sortable.IsNull() {
-			*sortable15 = r.NumberAttribute.Sortable.ValueBool()
+		if !r.TagsAttribute.Sortable.IsUnknown() && !r.TagsAttribute.Sortable.IsNull() {
+			*sortable15 = r.TagsAttribute.Sortable.ValueBool()
 		} else {
 			sortable15 = nil
 		}
 		required15 := new(bool)
-		if !r.NumberAttribute.Required.IsUnknown() && !r.NumberAttribute.Required.IsNull() {
-			*required15 = r.NumberAttribute.Required.ValueBool()
+		if !r.TagsAttribute.Required.IsUnknown() && !r.TagsAttribute.Required.IsNull() {
+			*required15 = r.TagsAttribute.Required.ValueBool()
 		} else {
 			required15 = nil
 		}
 		readonly15 := new(bool)
-		if !r.NumberAttribute.Readonly.IsUnknown() && !r.NumberAttribute.Readonly.IsNull() {
-			*readonly15 = r.NumberAttribute.Readonly.ValueBool()
+		if !r.TagsAttribute.Readonly.IsUnknown() && !r.TagsAttribute.Readonly.IsNull() {
+			*readonly15 = r.TagsAttribute.Readonly.ValueBool()
 		} else {
 			readonly15 = nil
 		}
 		deprecated15 := new(bool)
-		if !r.NumberAttribute.Deprecated.IsUnknown() && !r.NumberAttribute.Deprecated.IsNull() {
-			*deprecated15 = r.NumberAttribute.Deprecated.ValueBool()
+		if !r.TagsAttribute.Deprecated.IsUnknown() && !r.TagsAttribute.Deprecated.IsNull() {
+			*deprecated15 = r.TagsAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated15 = nil
 		}
 		var defaultValue15 interface{}
-		if !r.NumberAttribute.DefaultValue.IsUnknown() && !r.NumberAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.NumberAttribute.DefaultValue.ValueString()), &defaultValue15)
+		if !r.TagsAttribute.DefaultValue.IsUnknown() && !r.TagsAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.TagsAttribute.DefaultValue.ValueString()), &defaultValue15)
 		}
 		group15 := new(string)
-		if !r.NumberAttribute.Group.IsUnknown() && !r.NumberAttribute.Group.IsNull() {
-			*group15 = r.NumberAttribute.Group.ValueString()
+		if !r.TagsAttribute.Group.IsUnknown() && !r.TagsAttribute.Group.IsNull() {
+			*group15 = r.TagsAttribute.Group.ValueString()
 		} else {
 			group15 = nil
 		}
 		order15 := new(int64)
-		if !r.NumberAttribute.Order.IsUnknown() && !r.NumberAttribute.Order.IsNull() {
-			*order15 = r.NumberAttribute.Order.ValueInt64()
+		if !r.TagsAttribute.Order.IsUnknown() && !r.TagsAttribute.Order.IsNull() {
+			*order15 = r.TagsAttribute.Order.ValueInt64()
 		} else {
 			order15 = nil
 		}
 		layout15 := new(string)
-		if !r.NumberAttribute.Layout.IsUnknown() && !r.NumberAttribute.Layout.IsNull() {
-			*layout15 = r.NumberAttribute.Layout.ValueString()
+		if !r.TagsAttribute.Layout.IsUnknown() && !r.TagsAttribute.Layout.IsNull() {
+			*layout15 = r.TagsAttribute.Layout.ValueString()
 		} else {
 			layout15 = nil
 		}
 		hideLabel15 := new(bool)
-		if !r.NumberAttribute.HideLabel.IsUnknown() && !r.NumberAttribute.HideLabel.IsNull() {
-			*hideLabel15 = r.NumberAttribute.HideLabel.ValueBool()
+		if !r.TagsAttribute.HideLabel.IsUnknown() && !r.TagsAttribute.HideLabel.IsNull() {
+			*hideLabel15 = r.TagsAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel15 = nil
 		}
 		icon15 := new(string)
-		if !r.NumberAttribute.Icon.IsUnknown() && !r.NumberAttribute.Icon.IsNull() {
-			*icon15 = r.NumberAttribute.Icon.ValueString()
+		if !r.TagsAttribute.Icon.IsUnknown() && !r.TagsAttribute.Icon.IsNull() {
+			*icon15 = r.TagsAttribute.Icon.ValueString()
 		} else {
 			icon15 = nil
 		}
 		renderCondition15 := new(string)
-		if !r.NumberAttribute.RenderCondition.IsUnknown() && !r.NumberAttribute.RenderCondition.IsNull() {
-			*renderCondition15 = r.NumberAttribute.RenderCondition.ValueString()
+		if !r.TagsAttribute.RenderCondition.IsUnknown() && !r.TagsAttribute.RenderCondition.IsNull() {
+			*renderCondition15 = r.TagsAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition15 = nil
 		}
 		var purpose15 []string = []string{}
-		for _, purposeItem15 := range r.NumberAttribute.Purpose {
+		for _, purposeItem15 := range r.TagsAttribute.Purpose {
 			purpose15 = append(purpose15, purposeItem15.ValueString())
 		}
 		var manifest15 []string = []string{}
-		for _, manifestItem15 := range r.NumberAttribute.Manifest {
+		for _, manifestItem15 := range r.TagsAttribute.Manifest {
 			manifest15 = append(manifest15, manifestItem15.ValueString())
 		}
-		var constraints15 *shared.NumberAttributeAttributeWithCompositeIDConstraints
-		if r.NumberAttribute.Constraints != nil {
-			constraints15 = &shared.NumberAttributeAttributeWithCompositeIDConstraints{}
+		var constraints15 *shared.TagsAttributeAttributeWithCompositeIDConstraints
+		if r.TagsAttribute.Constraints != nil {
+			constraints15 = &shared.TagsAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag16 := new(string)
-		if !r.NumberAttribute.FeatureFlag.IsUnknown() && !r.NumberAttribute.FeatureFlag.IsNull() {
-			*featureFlag16 = r.NumberAttribute.FeatureFlag.ValueString()
+		if !r.TagsAttribute.FeatureFlag.IsUnknown() && !r.TagsAttribute.FeatureFlag.IsNull() {
+			*featureFlag16 = r.TagsAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag16 = nil
 		}
 		var settingsFlag16 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem16 := range r.NumberAttribute.SettingsFlag {
+		for _, settingsFlagItem16 := range r.TagsAttribute.SettingsFlag {
 			name32 := new(string)
 			if !settingsFlagItem16.Name.IsUnknown() && !settingsFlagItem16.Name.IsNull() {
 				*name32 = settingsFlagItem16.Name.ValueString()
@@ -4279,56 +4322,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter15 := new(string)
-		if !r.NumberAttribute.ValueFormatter.IsUnknown() && !r.NumberAttribute.ValueFormatter.IsNull() {
-			*valueFormatter15 = r.NumberAttribute.ValueFormatter.ValueString()
+		if !r.TagsAttribute.ValueFormatter.IsUnknown() && !r.TagsAttribute.ValueFormatter.IsNull() {
+			*valueFormatter15 = r.TagsAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter15 = nil
 		}
 		previewValueFormatter15 := new(string)
-		if !r.NumberAttribute.PreviewValueFormatter.IsUnknown() && !r.NumberAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter15 = r.NumberAttribute.PreviewValueFormatter.ValueString()
+		if !r.TagsAttribute.PreviewValueFormatter.IsUnknown() && !r.TagsAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter15 = r.TagsAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter15 = nil
 		}
 		entityBuilderDisableEdit15 := new(bool)
-		if !r.NumberAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.NumberAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit15 = r.NumberAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.TagsAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.TagsAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit15 = r.TagsAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit15 = nil
 		}
 		protected15 := new(bool)
-		if !r.NumberAttribute.Protected.IsUnknown() && !r.NumberAttribute.Protected.IsNull() {
-			*protected15 = r.NumberAttribute.Protected.ValueBool()
+		if !r.TagsAttribute.Protected.IsUnknown() && !r.TagsAttribute.Protected.IsNull() {
+			*protected15 = r.TagsAttribute.Protected.ValueBool()
 		} else {
 			protected15 = nil
 		}
-		var infoHelpers15 *shared.NumberAttributeAttributeWithCompositeIDInfoHelpers
-		if r.NumberAttribute.InfoHelpers != nil {
+		var infoHelpers15 *shared.TagsAttributeAttributeWithCompositeIDInfoHelpers
+		if r.TagsAttribute.InfoHelpers != nil {
 			hintText15 := new(string)
-			if !r.NumberAttribute.InfoHelpers.HintText.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText15 = r.NumberAttribute.InfoHelpers.HintText.ValueString()
+			if !r.TagsAttribute.InfoHelpers.HintText.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText15 = r.TagsAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText15 = nil
 			}
 			hintTextKey15 := new(string)
-			if !r.NumberAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey15 = r.NumberAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.TagsAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey15 = r.TagsAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey15 = nil
 			}
 			hintCustomComponent15 := new(string)
-			if !r.NumberAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent15 = r.NumberAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.TagsAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent15 = r.TagsAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent15 = nil
 			}
 			hintTooltipPlacement15 := new(string)
-			if !r.NumberAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement15 = r.NumberAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.TagsAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.TagsAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement15 = r.TagsAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement15 = nil
 			}
-			infoHelpers15 = &shared.NumberAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers15 = &shared.TagsAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText15,
 				HintTextKey:          hintTextKey15,
 				HintCustomComponent:  hintCustomComponent15,
@@ -4336,42 +4379,38 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable15 := new(bool)
-		if !r.NumberAttribute.Repeatable.IsUnknown() && !r.NumberAttribute.Repeatable.IsNull() {
-			*repeatable15 = r.NumberAttribute.Repeatable.ValueBool()
+		if !r.TagsAttribute.Repeatable.IsUnknown() && !r.TagsAttribute.Repeatable.IsNull() {
+			*repeatable15 = r.TagsAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable15 = nil
 		}
 		hasPrimary15 := new(bool)
-		if !r.NumberAttribute.HasPrimary.IsUnknown() && !r.NumberAttribute.HasPrimary.IsNull() {
-			*hasPrimary15 = r.NumberAttribute.HasPrimary.ValueBool()
+		if !r.TagsAttribute.HasPrimary.IsUnknown() && !r.TagsAttribute.HasPrimary.IsNull() {
+			*hasPrimary15 = r.TagsAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary15 = nil
 		}
-		typeVar15 := new(shared.NumberAttributeAttributeWithCompositeIDType)
-		if !r.NumberAttribute.Type.IsUnknown() && !r.NumberAttribute.Type.IsNull() {
-			*typeVar15 = shared.NumberAttributeAttributeWithCompositeIDType(r.NumberAttribute.Type.ValueString())
+		typeVar15 := new(shared.TagsAttributeAttributeWithCompositeIDType)
+		if !r.TagsAttribute.Type.IsUnknown() && !r.TagsAttribute.Type.IsNull() {
+			*typeVar15 = shared.TagsAttributeAttributeWithCompositeIDType(r.TagsAttribute.Type.ValueString())
 		} else {
 			typeVar15 = nil
 		}
-		format := new(string)
-		if !r.NumberAttribute.Format.IsUnknown() && !r.NumberAttribute.Format.IsNull() {
-			*format = r.NumberAttribute.Format.ValueString()
-		} else {
-			format = nil
+		var optionsVar3 []string = []string{}
+		for _, optionsItem2 := range r.TagsAttribute.Options {
+			optionsVar3 = append(optionsVar3, optionsItem2.ValueString())
 		}
-		showSeparator := new(bool)
-		if !r.NumberAttribute.ShowSeparator.IsUnknown() && !r.NumberAttribute.ShowSeparator.IsNull() {
-			*showSeparator = r.NumberAttribute.ShowSeparator.ValueBool()
-		} else {
-			showSeparator = nil
+		var suggestions []string = []string{}
+		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
+			suggestions = append(suggestions, suggestionsItem.ValueString())
 		}
 		schema15 := new(string)
-		if !r.NumberAttribute.Schema.IsUnknown() && !r.NumberAttribute.Schema.IsNull() {
-			*schema15 = r.NumberAttribute.Schema.ValueString()
+		if !r.TagsAttribute.Schema.IsUnknown() && !r.TagsAttribute.Schema.IsNull() {
+			*schema15 = r.TagsAttribute.Schema.ValueString()
 		} else {
 			schema15 = nil
 		}
-		attributeWithCompositeIDNumberAttributeInput = &shared.AttributeWithCompositeIDNumberAttributeInput{
+		attributeWithCompositeIDTagsAttributeInput = &shared.AttributeWithCompositeIDTagsAttributeInput{
 			ID:                       id15,
 			Name:                     name31,
 			Label:                    label16,
@@ -4402,132 +4441,132 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable15,
 			HasPrimary:               hasPrimary15,
 			Type:                     typeVar15,
-			Format:                   format,
-			ShowSeparator:            showSeparator,
+			Options:                  optionsVar3,
+			Suggestions:              suggestions,
 			Schema:                   schema15,
 		}
 	}
-	if attributeWithCompositeIDNumberAttributeInput != nil {
+	if attributeWithCompositeIDTagsAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDNumberAttributeInput: attributeWithCompositeIDNumberAttributeInput,
+			AttributeWithCompositeIDTagsAttributeInput: attributeWithCompositeIDTagsAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDConsentAttributeInput *shared.AttributeWithCompositeIDConsentAttributeInput
-	if r.ConsentAttribute != nil {
+	var attributeWithCompositeIDMessageEmailAddressAttributeInput *shared.AttributeWithCompositeIDMessageEmailAddressAttributeInput
+	if r.MessageEmailAddressAttribute != nil {
 		id16 := new(string)
-		if !r.ConsentAttribute.ID.IsUnknown() && !r.ConsentAttribute.ID.IsNull() {
-			*id16 = r.ConsentAttribute.ID.ValueString()
+		if !r.MessageEmailAddressAttribute.ID.IsUnknown() && !r.MessageEmailAddressAttribute.ID.IsNull() {
+			*id16 = r.MessageEmailAddressAttribute.ID.ValueString()
 		} else {
 			id16 = nil
 		}
 		var name33 string
-		name33 = r.ConsentAttribute.Name.ValueString()
+		name33 = r.MessageEmailAddressAttribute.Name.ValueString()
 
 		var label17 string
-		label17 = r.ConsentAttribute.Label.ValueString()
+		label17 = r.MessageEmailAddressAttribute.Label.ValueString()
 
 		placeholder16 := new(string)
-		if !r.ConsentAttribute.Placeholder.IsUnknown() && !r.ConsentAttribute.Placeholder.IsNull() {
-			*placeholder16 = r.ConsentAttribute.Placeholder.ValueString()
+		if !r.MessageEmailAddressAttribute.Placeholder.IsUnknown() && !r.MessageEmailAddressAttribute.Placeholder.IsNull() {
+			*placeholder16 = r.MessageEmailAddressAttribute.Placeholder.ValueString()
 		} else {
 			placeholder16 = nil
 		}
 		hidden16 := new(bool)
-		if !r.ConsentAttribute.Hidden.IsUnknown() && !r.ConsentAttribute.Hidden.IsNull() {
-			*hidden16 = r.ConsentAttribute.Hidden.ValueBool()
+		if !r.MessageEmailAddressAttribute.Hidden.IsUnknown() && !r.MessageEmailAddressAttribute.Hidden.IsNull() {
+			*hidden16 = r.MessageEmailAddressAttribute.Hidden.ValueBool()
 		} else {
 			hidden16 = nil
 		}
 		showInTable16 := new(bool)
-		if !r.ConsentAttribute.ShowInTable.IsUnknown() && !r.ConsentAttribute.ShowInTable.IsNull() {
-			*showInTable16 = r.ConsentAttribute.ShowInTable.ValueBool()
+		if !r.MessageEmailAddressAttribute.ShowInTable.IsUnknown() && !r.MessageEmailAddressAttribute.ShowInTable.IsNull() {
+			*showInTable16 = r.MessageEmailAddressAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable16 = nil
 		}
 		sortable16 := new(bool)
-		if !r.ConsentAttribute.Sortable.IsUnknown() && !r.ConsentAttribute.Sortable.IsNull() {
-			*sortable16 = r.ConsentAttribute.Sortable.ValueBool()
+		if !r.MessageEmailAddressAttribute.Sortable.IsUnknown() && !r.MessageEmailAddressAttribute.Sortable.IsNull() {
+			*sortable16 = r.MessageEmailAddressAttribute.Sortable.ValueBool()
 		} else {
 			sortable16 = nil
 		}
 		required16 := new(bool)
-		if !r.ConsentAttribute.Required.IsUnknown() && !r.ConsentAttribute.Required.IsNull() {
-			*required16 = r.ConsentAttribute.Required.ValueBool()
+		if !r.MessageEmailAddressAttribute.Required.IsUnknown() && !r.MessageEmailAddressAttribute.Required.IsNull() {
+			*required16 = r.MessageEmailAddressAttribute.Required.ValueBool()
 		} else {
 			required16 = nil
 		}
 		readonly16 := new(bool)
-		if !r.ConsentAttribute.Readonly.IsUnknown() && !r.ConsentAttribute.Readonly.IsNull() {
-			*readonly16 = r.ConsentAttribute.Readonly.ValueBool()
+		if !r.MessageEmailAddressAttribute.Readonly.IsUnknown() && !r.MessageEmailAddressAttribute.Readonly.IsNull() {
+			*readonly16 = r.MessageEmailAddressAttribute.Readonly.ValueBool()
 		} else {
 			readonly16 = nil
 		}
 		deprecated16 := new(bool)
-		if !r.ConsentAttribute.Deprecated.IsUnknown() && !r.ConsentAttribute.Deprecated.IsNull() {
-			*deprecated16 = r.ConsentAttribute.Deprecated.ValueBool()
+		if !r.MessageEmailAddressAttribute.Deprecated.IsUnknown() && !r.MessageEmailAddressAttribute.Deprecated.IsNull() {
+			*deprecated16 = r.MessageEmailAddressAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated16 = nil
 		}
 		var defaultValue16 interface{}
-		if !r.ConsentAttribute.DefaultValue.IsUnknown() && !r.ConsentAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.ConsentAttribute.DefaultValue.ValueString()), &defaultValue16)
+		if !r.MessageEmailAddressAttribute.DefaultValue.IsUnknown() && !r.MessageEmailAddressAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.MessageEmailAddressAttribute.DefaultValue.ValueString()), &defaultValue16)
 		}
 		group16 := new(string)
-		if !r.ConsentAttribute.Group.IsUnknown() && !r.ConsentAttribute.Group.IsNull() {
-			*group16 = r.ConsentAttribute.Group.ValueString()
+		if !r.MessageEmailAddressAttribute.Group.IsUnknown() && !r.MessageEmailAddressAttribute.Group.IsNull() {
+			*group16 = r.MessageEmailAddressAttribute.Group.ValueString()
 		} else {
 			group16 = nil
 		}
 		order16 := new(int64)
-		if !r.ConsentAttribute.Order.IsUnknown() && !r.ConsentAttribute.Order.IsNull() {
-			*order16 = r.ConsentAttribute.Order.ValueInt64()
+		if !r.MessageEmailAddressAttribute.Order.IsUnknown() && !r.MessageEmailAddressAttribute.Order.IsNull() {
+			*order16 = r.MessageEmailAddressAttribute.Order.ValueInt64()
 		} else {
 			order16 = nil
 		}
 		layout16 := new(string)
-		if !r.ConsentAttribute.Layout.IsUnknown() && !r.ConsentAttribute.Layout.IsNull() {
-			*layout16 = r.ConsentAttribute.Layout.ValueString()
+		if !r.MessageEmailAddressAttribute.Layout.IsUnknown() && !r.MessageEmailAddressAttribute.Layout.IsNull() {
+			*layout16 = r.MessageEmailAddressAttribute.Layout.ValueString()
 		} else {
 			layout16 = nil
 		}
 		hideLabel16 := new(bool)
-		if !r.ConsentAttribute.HideLabel.IsUnknown() && !r.ConsentAttribute.HideLabel.IsNull() {
-			*hideLabel16 = r.ConsentAttribute.HideLabel.ValueBool()
+		if !r.MessageEmailAddressAttribute.HideLabel.IsUnknown() && !r.MessageEmailAddressAttribute.HideLabel.IsNull() {
+			*hideLabel16 = r.MessageEmailAddressAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel16 = nil
 		}
 		icon16 := new(string)
-		if !r.ConsentAttribute.Icon.IsUnknown() && !r.ConsentAttribute.Icon.IsNull() {
-			*icon16 = r.ConsentAttribute.Icon.ValueString()
+		if !r.MessageEmailAddressAttribute.Icon.IsUnknown() && !r.MessageEmailAddressAttribute.Icon.IsNull() {
+			*icon16 = r.MessageEmailAddressAttribute.Icon.ValueString()
 		} else {
 			icon16 = nil
 		}
 		renderCondition16 := new(string)
-		if !r.ConsentAttribute.RenderCondition.IsUnknown() && !r.ConsentAttribute.RenderCondition.IsNull() {
-			*renderCondition16 = r.ConsentAttribute.RenderCondition.ValueString()
+		if !r.MessageEmailAddressAttribute.RenderCondition.IsUnknown() && !r.MessageEmailAddressAttribute.RenderCondition.IsNull() {
+			*renderCondition16 = r.MessageEmailAddressAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition16 = nil
 		}
 		var purpose16 []string = []string{}
-		for _, purposeItem16 := range r.ConsentAttribute.Purpose {
+		for _, purposeItem16 := range r.MessageEmailAddressAttribute.Purpose {
 			purpose16 = append(purpose16, purposeItem16.ValueString())
 		}
 		var manifest16 []string = []string{}
-		for _, manifestItem16 := range r.ConsentAttribute.Manifest {
+		for _, manifestItem16 := range r.MessageEmailAddressAttribute.Manifest {
 			manifest16 = append(manifest16, manifestItem16.ValueString())
 		}
-		var constraints16 *shared.ConsentAttributeAttributeWithCompositeIDConstraints
-		if r.ConsentAttribute.Constraints != nil {
-			constraints16 = &shared.ConsentAttributeAttributeWithCompositeIDConstraints{}
+		var constraints16 *shared.MessageEmailAddressAttributeAttributeWithCompositeIDConstraints
+		if r.MessageEmailAddressAttribute.Constraints != nil {
+			constraints16 = &shared.MessageEmailAddressAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag17 := new(string)
-		if !r.ConsentAttribute.FeatureFlag.IsUnknown() && !r.ConsentAttribute.FeatureFlag.IsNull() {
-			*featureFlag17 = r.ConsentAttribute.FeatureFlag.ValueString()
+		if !r.MessageEmailAddressAttribute.FeatureFlag.IsUnknown() && !r.MessageEmailAddressAttribute.FeatureFlag.IsNull() {
+			*featureFlag17 = r.MessageEmailAddressAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag17 = nil
 		}
 		var settingsFlag17 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem17 := range r.ConsentAttribute.SettingsFlag {
+		for _, settingsFlagItem17 := range r.MessageEmailAddressAttribute.SettingsFlag {
 			name34 := new(string)
 			if !settingsFlagItem17.Name.IsUnknown() && !settingsFlagItem17.Name.IsNull() {
 				*name34 = settingsFlagItem17.Name.ValueString()
@@ -4546,56 +4585,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter16 := new(string)
-		if !r.ConsentAttribute.ValueFormatter.IsUnknown() && !r.ConsentAttribute.ValueFormatter.IsNull() {
-			*valueFormatter16 = r.ConsentAttribute.ValueFormatter.ValueString()
+		if !r.MessageEmailAddressAttribute.ValueFormatter.IsUnknown() && !r.MessageEmailAddressAttribute.ValueFormatter.IsNull() {
+			*valueFormatter16 = r.MessageEmailAddressAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter16 = nil
 		}
 		previewValueFormatter16 := new(string)
-		if !r.ConsentAttribute.PreviewValueFormatter.IsUnknown() && !r.ConsentAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter16 = r.ConsentAttribute.PreviewValueFormatter.ValueString()
+		if !r.MessageEmailAddressAttribute.PreviewValueFormatter.IsUnknown() && !r.MessageEmailAddressAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter16 = r.MessageEmailAddressAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter16 = nil
 		}
 		entityBuilderDisableEdit16 := new(bool)
-		if !r.ConsentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.ConsentAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit16 = r.ConsentAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.MessageEmailAddressAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.MessageEmailAddressAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit16 = r.MessageEmailAddressAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit16 = nil
 		}
 		protected16 := new(bool)
-		if !r.ConsentAttribute.Protected.IsUnknown() && !r.ConsentAttribute.Protected.IsNull() {
-			*protected16 = r.ConsentAttribute.Protected.ValueBool()
+		if !r.MessageEmailAddressAttribute.Protected.IsUnknown() && !r.MessageEmailAddressAttribute.Protected.IsNull() {
+			*protected16 = r.MessageEmailAddressAttribute.Protected.ValueBool()
 		} else {
 			protected16 = nil
 		}
-		var infoHelpers16 *shared.ConsentAttributeAttributeWithCompositeIDInfoHelpers
-		if r.ConsentAttribute.InfoHelpers != nil {
+		var infoHelpers16 *shared.MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers
+		if r.MessageEmailAddressAttribute.InfoHelpers != nil {
 			hintText16 := new(string)
-			if !r.ConsentAttribute.InfoHelpers.HintText.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText16 = r.ConsentAttribute.InfoHelpers.HintText.ValueString()
+			if !r.MessageEmailAddressAttribute.InfoHelpers.HintText.IsUnknown() && !r.MessageEmailAddressAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText16 = r.MessageEmailAddressAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText16 = nil
 			}
 			hintTextKey16 := new(string)
-			if !r.ConsentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey16 = r.ConsentAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.MessageEmailAddressAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.MessageEmailAddressAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey16 = r.MessageEmailAddressAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey16 = nil
 			}
 			hintCustomComponent16 := new(string)
-			if !r.ConsentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent16 = r.ConsentAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.MessageEmailAddressAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.MessageEmailAddressAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent16 = r.MessageEmailAddressAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent16 = nil
 			}
 			hintTooltipPlacement16 := new(string)
-			if !r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement16 = r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.MessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.MessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement16 = r.MessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement16 = nil
 			}
-			infoHelpers16 = &shared.ConsentAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers16 = &shared.MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText16,
 				HintTextKey:          hintTextKey16,
 				HintCustomComponent:  hintCustomComponent16,
@@ -4603,32 +4642,43 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable16 := new(bool)
-		if !r.ConsentAttribute.Repeatable.IsUnknown() && !r.ConsentAttribute.Repeatable.IsNull() {
-			*repeatable16 = r.ConsentAttribute.Repeatable.ValueBool()
+		if !r.MessageEmailAddressAttribute.Repeatable.IsUnknown() && !r.MessageEmailAddressAttribute.Repeatable.IsNull() {
+			*repeatable16 = r.MessageEmailAddressAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable16 = nil
 		}
 		hasPrimary16 := new(bool)
-		if !r.ConsentAttribute.HasPrimary.IsUnknown() && !r.ConsentAttribute.HasPrimary.IsNull() {
-			*hasPrimary16 = r.ConsentAttribute.HasPrimary.ValueBool()
+		if !r.MessageEmailAddressAttribute.HasPrimary.IsUnknown() && !r.MessageEmailAddressAttribute.HasPrimary.IsNull() {
+			*hasPrimary16 = r.MessageEmailAddressAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary16 = nil
 		}
-		typeVar16 := shared.ConsentAttributeAttributeWithCompositeIDType(r.ConsentAttribute.Type.ValueString())
-		var topic string
-		topic = r.ConsentAttribute.Topic.ValueString()
-
-		var identifiers []string = []string{}
-		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
-			identifiers = append(identifiers, identifiersItem.ValueString())
+		typeVar16 := shared.MessageEmailAddressAttributeAttributeWithCompositeIDType(r.MessageEmailAddressAttribute.Type.ValueString())
+		address := new(string)
+		if !r.MessageEmailAddressAttribute.Address.IsUnknown() && !r.MessageEmailAddressAttribute.Address.IsNull() {
+			*address = r.MessageEmailAddressAttribute.Address.ValueString()
+		} else {
+			address = nil
+		}
+		sendStatus := new(string)
+		if !r.MessageEmailAddressAttribute.SendStatus.IsUnknown() && !r.MessageEmailAddressAttribute.SendStatus.IsNull() {
+			*sendStatus = r.MessageEmailAddressAttribute.SendStatus.ValueString()
+		} else {
+			sendStatus = nil
+		}
+		emailType := new(string)
+		if !r.MessageEmailAddressAttribute.EmailType.IsUnknown() && !r.MessageEmailAddressAttribute.EmailType.IsNull() {
+			*emailType = r.MessageEmailAddressAttribute.EmailType.ValueString()
+		} else {
+			emailType = nil
 		}
 		schema16 := new(string)
-		if !r.ConsentAttribute.Schema.IsUnknown() && !r.ConsentAttribute.Schema.IsNull() {
-			*schema16 = r.ConsentAttribute.Schema.ValueString()
+		if !r.MessageEmailAddressAttribute.Schema.IsUnknown() && !r.MessageEmailAddressAttribute.Schema.IsNull() {
+			*schema16 = r.MessageEmailAddressAttribute.Schema.ValueString()
 		} else {
 			schema16 = nil
 		}
-		attributeWithCompositeIDConsentAttributeInput = &shared.AttributeWithCompositeIDConsentAttributeInput{
+		attributeWithCompositeIDMessageEmailAddressAttributeInput = &shared.AttributeWithCompositeIDMessageEmailAddressAttributeInput{
 			ID:                       id16,
 			Name:                     name33,
 			Label:                    label17,
@@ -4659,132 +4709,133 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable16,
 			HasPrimary:               hasPrimary16,
 			Type:                     typeVar16,
-			Topic:                    topic,
-			Identifiers:              identifiers,
+			Address:                  address,
+			SendStatus:               sendStatus,
+			EmailType:                emailType,
 			Schema:                   schema16,
 		}
 	}
-	if attributeWithCompositeIDConsentAttributeInput != nil {
+	if attributeWithCompositeIDMessageEmailAddressAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDConsentAttributeInput: attributeWithCompositeIDConsentAttributeInput,
+			AttributeWithCompositeIDMessageEmailAddressAttributeInput: attributeWithCompositeIDMessageEmailAddressAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDInternalAttributeInput *shared.AttributeWithCompositeIDInternalAttributeInput
-	if r.InternalAttribute != nil {
+	var attributeWithCompositeIDNumberAttributeInput *shared.AttributeWithCompositeIDNumberAttributeInput
+	if r.NumberAttribute != nil {
 		id17 := new(string)
-		if !r.InternalAttribute.ID.IsUnknown() && !r.InternalAttribute.ID.IsNull() {
-			*id17 = r.InternalAttribute.ID.ValueString()
+		if !r.NumberAttribute.ID.IsUnknown() && !r.NumberAttribute.ID.IsNull() {
+			*id17 = r.NumberAttribute.ID.ValueString()
 		} else {
 			id17 = nil
 		}
 		var name35 string
-		name35 = r.InternalAttribute.Name.ValueString()
+		name35 = r.NumberAttribute.Name.ValueString()
 
 		var label18 string
-		label18 = r.InternalAttribute.Label.ValueString()
+		label18 = r.NumberAttribute.Label.ValueString()
 
 		placeholder17 := new(string)
-		if !r.InternalAttribute.Placeholder.IsUnknown() && !r.InternalAttribute.Placeholder.IsNull() {
-			*placeholder17 = r.InternalAttribute.Placeholder.ValueString()
+		if !r.NumberAttribute.Placeholder.IsUnknown() && !r.NumberAttribute.Placeholder.IsNull() {
+			*placeholder17 = r.NumberAttribute.Placeholder.ValueString()
 		} else {
 			placeholder17 = nil
 		}
 		hidden17 := new(bool)
-		if !r.InternalAttribute.Hidden.IsUnknown() && !r.InternalAttribute.Hidden.IsNull() {
-			*hidden17 = r.InternalAttribute.Hidden.ValueBool()
+		if !r.NumberAttribute.Hidden.IsUnknown() && !r.NumberAttribute.Hidden.IsNull() {
+			*hidden17 = r.NumberAttribute.Hidden.ValueBool()
 		} else {
 			hidden17 = nil
 		}
 		showInTable17 := new(bool)
-		if !r.InternalAttribute.ShowInTable.IsUnknown() && !r.InternalAttribute.ShowInTable.IsNull() {
-			*showInTable17 = r.InternalAttribute.ShowInTable.ValueBool()
+		if !r.NumberAttribute.ShowInTable.IsUnknown() && !r.NumberAttribute.ShowInTable.IsNull() {
+			*showInTable17 = r.NumberAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable17 = nil
 		}
 		sortable17 := new(bool)
-		if !r.InternalAttribute.Sortable.IsUnknown() && !r.InternalAttribute.Sortable.IsNull() {
-			*sortable17 = r.InternalAttribute.Sortable.ValueBool()
+		if !r.NumberAttribute.Sortable.IsUnknown() && !r.NumberAttribute.Sortable.IsNull() {
+			*sortable17 = r.NumberAttribute.Sortable.ValueBool()
 		} else {
 			sortable17 = nil
 		}
 		required17 := new(bool)
-		if !r.InternalAttribute.Required.IsUnknown() && !r.InternalAttribute.Required.IsNull() {
-			*required17 = r.InternalAttribute.Required.ValueBool()
+		if !r.NumberAttribute.Required.IsUnknown() && !r.NumberAttribute.Required.IsNull() {
+			*required17 = r.NumberAttribute.Required.ValueBool()
 		} else {
 			required17 = nil
 		}
 		readonly17 := new(bool)
-		if !r.InternalAttribute.Readonly.IsUnknown() && !r.InternalAttribute.Readonly.IsNull() {
-			*readonly17 = r.InternalAttribute.Readonly.ValueBool()
+		if !r.NumberAttribute.Readonly.IsUnknown() && !r.NumberAttribute.Readonly.IsNull() {
+			*readonly17 = r.NumberAttribute.Readonly.ValueBool()
 		} else {
 			readonly17 = nil
 		}
 		deprecated17 := new(bool)
-		if !r.InternalAttribute.Deprecated.IsUnknown() && !r.InternalAttribute.Deprecated.IsNull() {
-			*deprecated17 = r.InternalAttribute.Deprecated.ValueBool()
+		if !r.NumberAttribute.Deprecated.IsUnknown() && !r.NumberAttribute.Deprecated.IsNull() {
+			*deprecated17 = r.NumberAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated17 = nil
 		}
 		var defaultValue17 interface{}
-		if !r.InternalAttribute.DefaultValue.IsUnknown() && !r.InternalAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.InternalAttribute.DefaultValue.ValueString()), &defaultValue17)
+		if !r.NumberAttribute.DefaultValue.IsUnknown() && !r.NumberAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.NumberAttribute.DefaultValue.ValueString()), &defaultValue17)
 		}
 		group17 := new(string)
-		if !r.InternalAttribute.Group.IsUnknown() && !r.InternalAttribute.Group.IsNull() {
-			*group17 = r.InternalAttribute.Group.ValueString()
+		if !r.NumberAttribute.Group.IsUnknown() && !r.NumberAttribute.Group.IsNull() {
+			*group17 = r.NumberAttribute.Group.ValueString()
 		} else {
 			group17 = nil
 		}
 		order17 := new(int64)
-		if !r.InternalAttribute.Order.IsUnknown() && !r.InternalAttribute.Order.IsNull() {
-			*order17 = r.InternalAttribute.Order.ValueInt64()
+		if !r.NumberAttribute.Order.IsUnknown() && !r.NumberAttribute.Order.IsNull() {
+			*order17 = r.NumberAttribute.Order.ValueInt64()
 		} else {
 			order17 = nil
 		}
 		layout17 := new(string)
-		if !r.InternalAttribute.Layout.IsUnknown() && !r.InternalAttribute.Layout.IsNull() {
-			*layout17 = r.InternalAttribute.Layout.ValueString()
+		if !r.NumberAttribute.Layout.IsUnknown() && !r.NumberAttribute.Layout.IsNull() {
+			*layout17 = r.NumberAttribute.Layout.ValueString()
 		} else {
 			layout17 = nil
 		}
 		hideLabel17 := new(bool)
-		if !r.InternalAttribute.HideLabel.IsUnknown() && !r.InternalAttribute.HideLabel.IsNull() {
-			*hideLabel17 = r.InternalAttribute.HideLabel.ValueBool()
+		if !r.NumberAttribute.HideLabel.IsUnknown() && !r.NumberAttribute.HideLabel.IsNull() {
+			*hideLabel17 = r.NumberAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel17 = nil
 		}
 		icon17 := new(string)
-		if !r.InternalAttribute.Icon.IsUnknown() && !r.InternalAttribute.Icon.IsNull() {
-			*icon17 = r.InternalAttribute.Icon.ValueString()
+		if !r.NumberAttribute.Icon.IsUnknown() && !r.NumberAttribute.Icon.IsNull() {
+			*icon17 = r.NumberAttribute.Icon.ValueString()
 		} else {
 			icon17 = nil
 		}
 		renderCondition17 := new(string)
-		if !r.InternalAttribute.RenderCondition.IsUnknown() && !r.InternalAttribute.RenderCondition.IsNull() {
-			*renderCondition17 = r.InternalAttribute.RenderCondition.ValueString()
+		if !r.NumberAttribute.RenderCondition.IsUnknown() && !r.NumberAttribute.RenderCondition.IsNull() {
+			*renderCondition17 = r.NumberAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition17 = nil
 		}
 		var purpose17 []string = []string{}
-		for _, purposeItem17 := range r.InternalAttribute.Purpose {
+		for _, purposeItem17 := range r.NumberAttribute.Purpose {
 			purpose17 = append(purpose17, purposeItem17.ValueString())
 		}
 		var manifest17 []string = []string{}
-		for _, manifestItem17 := range r.InternalAttribute.Manifest {
+		for _, manifestItem17 := range r.NumberAttribute.Manifest {
 			manifest17 = append(manifest17, manifestItem17.ValueString())
 		}
-		var constraints17 *shared.InternalAttributeAttributeWithCompositeIDConstraints
-		if r.InternalAttribute.Constraints != nil {
-			constraints17 = &shared.InternalAttributeAttributeWithCompositeIDConstraints{}
+		var constraints17 *shared.NumberAttributeAttributeWithCompositeIDConstraints
+		if r.NumberAttribute.Constraints != nil {
+			constraints17 = &shared.NumberAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag18 := new(string)
-		if !r.InternalAttribute.FeatureFlag.IsUnknown() && !r.InternalAttribute.FeatureFlag.IsNull() {
-			*featureFlag18 = r.InternalAttribute.FeatureFlag.ValueString()
+		if !r.NumberAttribute.FeatureFlag.IsUnknown() && !r.NumberAttribute.FeatureFlag.IsNull() {
+			*featureFlag18 = r.NumberAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag18 = nil
 		}
 		var settingsFlag18 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem18 := range r.InternalAttribute.SettingsFlag {
+		for _, settingsFlagItem18 := range r.NumberAttribute.SettingsFlag {
 			name36 := new(string)
 			if !settingsFlagItem18.Name.IsUnknown() && !settingsFlagItem18.Name.IsNull() {
 				*name36 = settingsFlagItem18.Name.ValueString()
@@ -4803,56 +4854,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter17 := new(string)
-		if !r.InternalAttribute.ValueFormatter.IsUnknown() && !r.InternalAttribute.ValueFormatter.IsNull() {
-			*valueFormatter17 = r.InternalAttribute.ValueFormatter.ValueString()
+		if !r.NumberAttribute.ValueFormatter.IsUnknown() && !r.NumberAttribute.ValueFormatter.IsNull() {
+			*valueFormatter17 = r.NumberAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter17 = nil
 		}
 		previewValueFormatter17 := new(string)
-		if !r.InternalAttribute.PreviewValueFormatter.IsUnknown() && !r.InternalAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter17 = r.InternalAttribute.PreviewValueFormatter.ValueString()
+		if !r.NumberAttribute.PreviewValueFormatter.IsUnknown() && !r.NumberAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter17 = r.NumberAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter17 = nil
 		}
 		entityBuilderDisableEdit17 := new(bool)
-		if !r.InternalAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InternalAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit17 = r.InternalAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.NumberAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.NumberAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit17 = r.NumberAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit17 = nil
 		}
 		protected17 := new(bool)
-		if !r.InternalAttribute.Protected.IsUnknown() && !r.InternalAttribute.Protected.IsNull() {
-			*protected17 = r.InternalAttribute.Protected.ValueBool()
+		if !r.NumberAttribute.Protected.IsUnknown() && !r.NumberAttribute.Protected.IsNull() {
+			*protected17 = r.NumberAttribute.Protected.ValueBool()
 		} else {
 			protected17 = nil
 		}
-		var infoHelpers17 *shared.InternalAttributeAttributeWithCompositeIDInfoHelpers
-		if r.InternalAttribute.InfoHelpers != nil {
+		var infoHelpers17 *shared.NumberAttributeAttributeWithCompositeIDInfoHelpers
+		if r.NumberAttribute.InfoHelpers != nil {
 			hintText17 := new(string)
-			if !r.InternalAttribute.InfoHelpers.HintText.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText17 = r.InternalAttribute.InfoHelpers.HintText.ValueString()
+			if !r.NumberAttribute.InfoHelpers.HintText.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText17 = r.NumberAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText17 = nil
 			}
 			hintTextKey17 := new(string)
-			if !r.InternalAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey17 = r.InternalAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.NumberAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey17 = r.NumberAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey17 = nil
 			}
 			hintCustomComponent17 := new(string)
-			if !r.InternalAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent17 = r.InternalAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.NumberAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent17 = r.NumberAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent17 = nil
 			}
 			hintTooltipPlacement17 := new(string)
-			if !r.InternalAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement17 = r.InternalAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.NumberAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.NumberAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement17 = r.NumberAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement17 = nil
 			}
-			infoHelpers17 = &shared.InternalAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers17 = &shared.NumberAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText17,
 				HintTextKey:          hintTextKey17,
 				HintCustomComponent:  hintCustomComponent17,
@@ -4860,30 +4911,42 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable17 := new(bool)
-		if !r.InternalAttribute.Repeatable.IsUnknown() && !r.InternalAttribute.Repeatable.IsNull() {
-			*repeatable17 = r.InternalAttribute.Repeatable.ValueBool()
+		if !r.NumberAttribute.Repeatable.IsUnknown() && !r.NumberAttribute.Repeatable.IsNull() {
+			*repeatable17 = r.NumberAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable17 = nil
 		}
 		hasPrimary17 := new(bool)
-		if !r.InternalAttribute.HasPrimary.IsUnknown() && !r.InternalAttribute.HasPrimary.IsNull() {
-			*hasPrimary17 = r.InternalAttribute.HasPrimary.ValueBool()
+		if !r.NumberAttribute.HasPrimary.IsUnknown() && !r.NumberAttribute.HasPrimary.IsNull() {
+			*hasPrimary17 = r.NumberAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary17 = nil
 		}
-		typeVar17 := new(shared.InternalAttributeAttributeWithCompositeIDType)
-		if !r.InternalAttribute.Type.IsUnknown() && !r.InternalAttribute.Type.IsNull() {
-			*typeVar17 = shared.InternalAttributeAttributeWithCompositeIDType(r.InternalAttribute.Type.ValueString())
+		typeVar17 := new(shared.NumberAttributeAttributeWithCompositeIDType)
+		if !r.NumberAttribute.Type.IsUnknown() && !r.NumberAttribute.Type.IsNull() {
+			*typeVar17 = shared.NumberAttributeAttributeWithCompositeIDType(r.NumberAttribute.Type.ValueString())
 		} else {
 			typeVar17 = nil
 		}
+		format := new(string)
+		if !r.NumberAttribute.Format.IsUnknown() && !r.NumberAttribute.Format.IsNull() {
+			*format = r.NumberAttribute.Format.ValueString()
+		} else {
+			format = nil
+		}
+		showSeparator := new(bool)
+		if !r.NumberAttribute.ShowSeparator.IsUnknown() && !r.NumberAttribute.ShowSeparator.IsNull() {
+			*showSeparator = r.NumberAttribute.ShowSeparator.ValueBool()
+		} else {
+			showSeparator = nil
+		}
 		schema17 := new(string)
-		if !r.InternalAttribute.Schema.IsUnknown() && !r.InternalAttribute.Schema.IsNull() {
-			*schema17 = r.InternalAttribute.Schema.ValueString()
+		if !r.NumberAttribute.Schema.IsUnknown() && !r.NumberAttribute.Schema.IsNull() {
+			*schema17 = r.NumberAttribute.Schema.ValueString()
 		} else {
 			schema17 = nil
 		}
-		attributeWithCompositeIDInternalAttributeInput = &shared.AttributeWithCompositeIDInternalAttributeInput{
+		attributeWithCompositeIDNumberAttributeInput = &shared.AttributeWithCompositeIDNumberAttributeInput{
 			ID:                       id17,
 			Name:                     name35,
 			Label:                    label18,
@@ -4914,130 +4977,132 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable17,
 			HasPrimary:               hasPrimary17,
 			Type:                     typeVar17,
+			Format:                   format,
+			ShowSeparator:            showSeparator,
 			Schema:                   schema17,
 		}
 	}
-	if attributeWithCompositeIDInternalAttributeInput != nil {
+	if attributeWithCompositeIDNumberAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInternalAttributeInput: attributeWithCompositeIDInternalAttributeInput,
+			AttributeWithCompositeIDNumberAttributeInput: attributeWithCompositeIDNumberAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDOrderedListAttributeInput *shared.AttributeWithCompositeIDOrderedListAttributeInput
-	if r.OrderedListAttribute != nil {
+	var attributeWithCompositeIDConsentAttributeInput *shared.AttributeWithCompositeIDConsentAttributeInput
+	if r.ConsentAttribute != nil {
 		id18 := new(string)
-		if !r.OrderedListAttribute.ID.IsUnknown() && !r.OrderedListAttribute.ID.IsNull() {
-			*id18 = r.OrderedListAttribute.ID.ValueString()
+		if !r.ConsentAttribute.ID.IsUnknown() && !r.ConsentAttribute.ID.IsNull() {
+			*id18 = r.ConsentAttribute.ID.ValueString()
 		} else {
 			id18 = nil
 		}
 		var name37 string
-		name37 = r.OrderedListAttribute.Name.ValueString()
+		name37 = r.ConsentAttribute.Name.ValueString()
 
 		var label19 string
-		label19 = r.OrderedListAttribute.Label.ValueString()
+		label19 = r.ConsentAttribute.Label.ValueString()
 
 		placeholder18 := new(string)
-		if !r.OrderedListAttribute.Placeholder.IsUnknown() && !r.OrderedListAttribute.Placeholder.IsNull() {
-			*placeholder18 = r.OrderedListAttribute.Placeholder.ValueString()
+		if !r.ConsentAttribute.Placeholder.IsUnknown() && !r.ConsentAttribute.Placeholder.IsNull() {
+			*placeholder18 = r.ConsentAttribute.Placeholder.ValueString()
 		} else {
 			placeholder18 = nil
 		}
 		hidden18 := new(bool)
-		if !r.OrderedListAttribute.Hidden.IsUnknown() && !r.OrderedListAttribute.Hidden.IsNull() {
-			*hidden18 = r.OrderedListAttribute.Hidden.ValueBool()
+		if !r.ConsentAttribute.Hidden.IsUnknown() && !r.ConsentAttribute.Hidden.IsNull() {
+			*hidden18 = r.ConsentAttribute.Hidden.ValueBool()
 		} else {
 			hidden18 = nil
 		}
 		showInTable18 := new(bool)
-		if !r.OrderedListAttribute.ShowInTable.IsUnknown() && !r.OrderedListAttribute.ShowInTable.IsNull() {
-			*showInTable18 = r.OrderedListAttribute.ShowInTable.ValueBool()
+		if !r.ConsentAttribute.ShowInTable.IsUnknown() && !r.ConsentAttribute.ShowInTable.IsNull() {
+			*showInTable18 = r.ConsentAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable18 = nil
 		}
 		sortable18 := new(bool)
-		if !r.OrderedListAttribute.Sortable.IsUnknown() && !r.OrderedListAttribute.Sortable.IsNull() {
-			*sortable18 = r.OrderedListAttribute.Sortable.ValueBool()
+		if !r.ConsentAttribute.Sortable.IsUnknown() && !r.ConsentAttribute.Sortable.IsNull() {
+			*sortable18 = r.ConsentAttribute.Sortable.ValueBool()
 		} else {
 			sortable18 = nil
 		}
 		required18 := new(bool)
-		if !r.OrderedListAttribute.Required.IsUnknown() && !r.OrderedListAttribute.Required.IsNull() {
-			*required18 = r.OrderedListAttribute.Required.ValueBool()
+		if !r.ConsentAttribute.Required.IsUnknown() && !r.ConsentAttribute.Required.IsNull() {
+			*required18 = r.ConsentAttribute.Required.ValueBool()
 		} else {
 			required18 = nil
 		}
 		readonly18 := new(bool)
-		if !r.OrderedListAttribute.Readonly.IsUnknown() && !r.OrderedListAttribute.Readonly.IsNull() {
-			*readonly18 = r.OrderedListAttribute.Readonly.ValueBool()
+		if !r.ConsentAttribute.Readonly.IsUnknown() && !r.ConsentAttribute.Readonly.IsNull() {
+			*readonly18 = r.ConsentAttribute.Readonly.ValueBool()
 		} else {
 			readonly18 = nil
 		}
 		deprecated18 := new(bool)
-		if !r.OrderedListAttribute.Deprecated.IsUnknown() && !r.OrderedListAttribute.Deprecated.IsNull() {
-			*deprecated18 = r.OrderedListAttribute.Deprecated.ValueBool()
+		if !r.ConsentAttribute.Deprecated.IsUnknown() && !r.ConsentAttribute.Deprecated.IsNull() {
+			*deprecated18 = r.ConsentAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated18 = nil
 		}
 		var defaultValue18 interface{}
-		if !r.OrderedListAttribute.DefaultValue.IsUnknown() && !r.OrderedListAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.OrderedListAttribute.DefaultValue.ValueString()), &defaultValue18)
+		if !r.ConsentAttribute.DefaultValue.IsUnknown() && !r.ConsentAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.ConsentAttribute.DefaultValue.ValueString()), &defaultValue18)
 		}
 		group18 := new(string)
-		if !r.OrderedListAttribute.Group.IsUnknown() && !r.OrderedListAttribute.Group.IsNull() {
-			*group18 = r.OrderedListAttribute.Group.ValueString()
+		if !r.ConsentAttribute.Group.IsUnknown() && !r.ConsentAttribute.Group.IsNull() {
+			*group18 = r.ConsentAttribute.Group.ValueString()
 		} else {
 			group18 = nil
 		}
 		order18 := new(int64)
-		if !r.OrderedListAttribute.Order.IsUnknown() && !r.OrderedListAttribute.Order.IsNull() {
-			*order18 = r.OrderedListAttribute.Order.ValueInt64()
+		if !r.ConsentAttribute.Order.IsUnknown() && !r.ConsentAttribute.Order.IsNull() {
+			*order18 = r.ConsentAttribute.Order.ValueInt64()
 		} else {
 			order18 = nil
 		}
 		layout18 := new(string)
-		if !r.OrderedListAttribute.Layout.IsUnknown() && !r.OrderedListAttribute.Layout.IsNull() {
-			*layout18 = r.OrderedListAttribute.Layout.ValueString()
+		if !r.ConsentAttribute.Layout.IsUnknown() && !r.ConsentAttribute.Layout.IsNull() {
+			*layout18 = r.ConsentAttribute.Layout.ValueString()
 		} else {
 			layout18 = nil
 		}
 		hideLabel18 := new(bool)
-		if !r.OrderedListAttribute.HideLabel.IsUnknown() && !r.OrderedListAttribute.HideLabel.IsNull() {
-			*hideLabel18 = r.OrderedListAttribute.HideLabel.ValueBool()
+		if !r.ConsentAttribute.HideLabel.IsUnknown() && !r.ConsentAttribute.HideLabel.IsNull() {
+			*hideLabel18 = r.ConsentAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel18 = nil
 		}
 		icon18 := new(string)
-		if !r.OrderedListAttribute.Icon.IsUnknown() && !r.OrderedListAttribute.Icon.IsNull() {
-			*icon18 = r.OrderedListAttribute.Icon.ValueString()
+		if !r.ConsentAttribute.Icon.IsUnknown() && !r.ConsentAttribute.Icon.IsNull() {
+			*icon18 = r.ConsentAttribute.Icon.ValueString()
 		} else {
 			icon18 = nil
 		}
 		renderCondition18 := new(string)
-		if !r.OrderedListAttribute.RenderCondition.IsUnknown() && !r.OrderedListAttribute.RenderCondition.IsNull() {
-			*renderCondition18 = r.OrderedListAttribute.RenderCondition.ValueString()
+		if !r.ConsentAttribute.RenderCondition.IsUnknown() && !r.ConsentAttribute.RenderCondition.IsNull() {
+			*renderCondition18 = r.ConsentAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition18 = nil
 		}
 		var purpose18 []string = []string{}
-		for _, purposeItem18 := range r.OrderedListAttribute.Purpose {
+		for _, purposeItem18 := range r.ConsentAttribute.Purpose {
 			purpose18 = append(purpose18, purposeItem18.ValueString())
 		}
 		var manifest18 []string = []string{}
-		for _, manifestItem18 := range r.OrderedListAttribute.Manifest {
+		for _, manifestItem18 := range r.ConsentAttribute.Manifest {
 			manifest18 = append(manifest18, manifestItem18.ValueString())
 		}
-		var constraints18 *shared.OrderedListAttributeAttributeWithCompositeIDConstraints
-		if r.OrderedListAttribute.Constraints != nil {
-			constraints18 = &shared.OrderedListAttributeAttributeWithCompositeIDConstraints{}
+		var constraints18 *shared.ConsentAttributeAttributeWithCompositeIDConstraints
+		if r.ConsentAttribute.Constraints != nil {
+			constraints18 = &shared.ConsentAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag19 := new(string)
-		if !r.OrderedListAttribute.FeatureFlag.IsUnknown() && !r.OrderedListAttribute.FeatureFlag.IsNull() {
-			*featureFlag19 = r.OrderedListAttribute.FeatureFlag.ValueString()
+		if !r.ConsentAttribute.FeatureFlag.IsUnknown() && !r.ConsentAttribute.FeatureFlag.IsNull() {
+			*featureFlag19 = r.ConsentAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag19 = nil
 		}
 		var settingsFlag19 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem19 := range r.OrderedListAttribute.SettingsFlag {
+		for _, settingsFlagItem19 := range r.ConsentAttribute.SettingsFlag {
 			name38 := new(string)
 			if !settingsFlagItem19.Name.IsUnknown() && !settingsFlagItem19.Name.IsNull() {
 				*name38 = settingsFlagItem19.Name.ValueString()
@@ -5056,56 +5121,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter18 := new(string)
-		if !r.OrderedListAttribute.ValueFormatter.IsUnknown() && !r.OrderedListAttribute.ValueFormatter.IsNull() {
-			*valueFormatter18 = r.OrderedListAttribute.ValueFormatter.ValueString()
+		if !r.ConsentAttribute.ValueFormatter.IsUnknown() && !r.ConsentAttribute.ValueFormatter.IsNull() {
+			*valueFormatter18 = r.ConsentAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter18 = nil
 		}
 		previewValueFormatter18 := new(string)
-		if !r.OrderedListAttribute.PreviewValueFormatter.IsUnknown() && !r.OrderedListAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter18 = r.OrderedListAttribute.PreviewValueFormatter.ValueString()
+		if !r.ConsentAttribute.PreviewValueFormatter.IsUnknown() && !r.ConsentAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter18 = r.ConsentAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter18 = nil
 		}
 		entityBuilderDisableEdit18 := new(bool)
-		if !r.OrderedListAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.OrderedListAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit18 = r.OrderedListAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.ConsentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.ConsentAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit18 = r.ConsentAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit18 = nil
 		}
 		protected18 := new(bool)
-		if !r.OrderedListAttribute.Protected.IsUnknown() && !r.OrderedListAttribute.Protected.IsNull() {
-			*protected18 = r.OrderedListAttribute.Protected.ValueBool()
+		if !r.ConsentAttribute.Protected.IsUnknown() && !r.ConsentAttribute.Protected.IsNull() {
+			*protected18 = r.ConsentAttribute.Protected.ValueBool()
 		} else {
 			protected18 = nil
 		}
-		var infoHelpers18 *shared.OrderedListAttributeAttributeWithCompositeIDInfoHelpers
-		if r.OrderedListAttribute.InfoHelpers != nil {
+		var infoHelpers18 *shared.ConsentAttributeAttributeWithCompositeIDInfoHelpers
+		if r.ConsentAttribute.InfoHelpers != nil {
 			hintText18 := new(string)
-			if !r.OrderedListAttribute.InfoHelpers.HintText.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText18 = r.OrderedListAttribute.InfoHelpers.HintText.ValueString()
+			if !r.ConsentAttribute.InfoHelpers.HintText.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText18 = r.ConsentAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText18 = nil
 			}
 			hintTextKey18 := new(string)
-			if !r.OrderedListAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey18 = r.OrderedListAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.ConsentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey18 = r.ConsentAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey18 = nil
 			}
 			hintCustomComponent18 := new(string)
-			if !r.OrderedListAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent18 = r.OrderedListAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.ConsentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent18 = r.ConsentAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent18 = nil
 			}
 			hintTooltipPlacement18 := new(string)
-			if !r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement18 = r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement18 = r.ConsentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement18 = nil
 			}
-			infoHelpers18 = &shared.OrderedListAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers18 = &shared.ConsentAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText18,
 				HintTextKey:          hintTextKey18,
 				HintCustomComponent:  hintCustomComponent18,
@@ -5113,30 +5178,32 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable18 := new(bool)
-		if !r.OrderedListAttribute.Repeatable.IsUnknown() && !r.OrderedListAttribute.Repeatable.IsNull() {
-			*repeatable18 = r.OrderedListAttribute.Repeatable.ValueBool()
+		if !r.ConsentAttribute.Repeatable.IsUnknown() && !r.ConsentAttribute.Repeatable.IsNull() {
+			*repeatable18 = r.ConsentAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable18 = nil
 		}
 		hasPrimary18 := new(bool)
-		if !r.OrderedListAttribute.HasPrimary.IsUnknown() && !r.OrderedListAttribute.HasPrimary.IsNull() {
-			*hasPrimary18 = r.OrderedListAttribute.HasPrimary.ValueBool()
+		if !r.ConsentAttribute.HasPrimary.IsUnknown() && !r.ConsentAttribute.HasPrimary.IsNull() {
+			*hasPrimary18 = r.ConsentAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary18 = nil
 		}
-		typeVar18 := new(shared.OrderedListAttributeAttributeWithCompositeIDType)
-		if !r.OrderedListAttribute.Type.IsUnknown() && !r.OrderedListAttribute.Type.IsNull() {
-			*typeVar18 = shared.OrderedListAttributeAttributeWithCompositeIDType(r.OrderedListAttribute.Type.ValueString())
-		} else {
-			typeVar18 = nil
+		typeVar18 := shared.ConsentAttributeAttributeWithCompositeIDType(r.ConsentAttribute.Type.ValueString())
+		var topic string
+		topic = r.ConsentAttribute.Topic.ValueString()
+
+		var identifiers []string = []string{}
+		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
+			identifiers = append(identifiers, identifiersItem.ValueString())
 		}
 		schema18 := new(string)
-		if !r.OrderedListAttribute.Schema.IsUnknown() && !r.OrderedListAttribute.Schema.IsNull() {
-			*schema18 = r.OrderedListAttribute.Schema.ValueString()
+		if !r.ConsentAttribute.Schema.IsUnknown() && !r.ConsentAttribute.Schema.IsNull() {
+			*schema18 = r.ConsentAttribute.Schema.ValueString()
 		} else {
 			schema18 = nil
 		}
-		attributeWithCompositeIDOrderedListAttributeInput = &shared.AttributeWithCompositeIDOrderedListAttributeInput{
+		attributeWithCompositeIDConsentAttributeInput = &shared.AttributeWithCompositeIDConsentAttributeInput{
 			ID:                       id18,
 			Name:                     name37,
 			Label:                    label19,
@@ -5167,130 +5234,132 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable18,
 			HasPrimary:               hasPrimary18,
 			Type:                     typeVar18,
+			Topic:                    topic,
+			Identifiers:              identifiers,
 			Schema:                   schema18,
 		}
 	}
-	if attributeWithCompositeIDOrderedListAttributeInput != nil {
+	if attributeWithCompositeIDConsentAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDOrderedListAttributeInput: attributeWithCompositeIDOrderedListAttributeInput,
+			AttributeWithCompositeIDConsentAttributeInput: attributeWithCompositeIDConsentAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDFileAttributeInput *shared.AttributeWithCompositeIDFileAttributeInput
-	if r.FileAttribute != nil {
+	var attributeWithCompositeIDInternalAttributeInput *shared.AttributeWithCompositeIDInternalAttributeInput
+	if r.InternalAttribute != nil {
 		id19 := new(string)
-		if !r.FileAttribute.ID.IsUnknown() && !r.FileAttribute.ID.IsNull() {
-			*id19 = r.FileAttribute.ID.ValueString()
+		if !r.InternalAttribute.ID.IsUnknown() && !r.InternalAttribute.ID.IsNull() {
+			*id19 = r.InternalAttribute.ID.ValueString()
 		} else {
 			id19 = nil
 		}
 		var name39 string
-		name39 = r.FileAttribute.Name.ValueString()
+		name39 = r.InternalAttribute.Name.ValueString()
 
 		var label20 string
-		label20 = r.FileAttribute.Label.ValueString()
+		label20 = r.InternalAttribute.Label.ValueString()
 
 		placeholder19 := new(string)
-		if !r.FileAttribute.Placeholder.IsUnknown() && !r.FileAttribute.Placeholder.IsNull() {
-			*placeholder19 = r.FileAttribute.Placeholder.ValueString()
+		if !r.InternalAttribute.Placeholder.IsUnknown() && !r.InternalAttribute.Placeholder.IsNull() {
+			*placeholder19 = r.InternalAttribute.Placeholder.ValueString()
 		} else {
 			placeholder19 = nil
 		}
 		hidden19 := new(bool)
-		if !r.FileAttribute.Hidden.IsUnknown() && !r.FileAttribute.Hidden.IsNull() {
-			*hidden19 = r.FileAttribute.Hidden.ValueBool()
+		if !r.InternalAttribute.Hidden.IsUnknown() && !r.InternalAttribute.Hidden.IsNull() {
+			*hidden19 = r.InternalAttribute.Hidden.ValueBool()
 		} else {
 			hidden19 = nil
 		}
 		showInTable19 := new(bool)
-		if !r.FileAttribute.ShowInTable.IsUnknown() && !r.FileAttribute.ShowInTable.IsNull() {
-			*showInTable19 = r.FileAttribute.ShowInTable.ValueBool()
+		if !r.InternalAttribute.ShowInTable.IsUnknown() && !r.InternalAttribute.ShowInTable.IsNull() {
+			*showInTable19 = r.InternalAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable19 = nil
 		}
 		sortable19 := new(bool)
-		if !r.FileAttribute.Sortable.IsUnknown() && !r.FileAttribute.Sortable.IsNull() {
-			*sortable19 = r.FileAttribute.Sortable.ValueBool()
+		if !r.InternalAttribute.Sortable.IsUnknown() && !r.InternalAttribute.Sortable.IsNull() {
+			*sortable19 = r.InternalAttribute.Sortable.ValueBool()
 		} else {
 			sortable19 = nil
 		}
 		required19 := new(bool)
-		if !r.FileAttribute.Required.IsUnknown() && !r.FileAttribute.Required.IsNull() {
-			*required19 = r.FileAttribute.Required.ValueBool()
+		if !r.InternalAttribute.Required.IsUnknown() && !r.InternalAttribute.Required.IsNull() {
+			*required19 = r.InternalAttribute.Required.ValueBool()
 		} else {
 			required19 = nil
 		}
 		readonly19 := new(bool)
-		if !r.FileAttribute.Readonly.IsUnknown() && !r.FileAttribute.Readonly.IsNull() {
-			*readonly19 = r.FileAttribute.Readonly.ValueBool()
+		if !r.InternalAttribute.Readonly.IsUnknown() && !r.InternalAttribute.Readonly.IsNull() {
+			*readonly19 = r.InternalAttribute.Readonly.ValueBool()
 		} else {
 			readonly19 = nil
 		}
 		deprecated19 := new(bool)
-		if !r.FileAttribute.Deprecated.IsUnknown() && !r.FileAttribute.Deprecated.IsNull() {
-			*deprecated19 = r.FileAttribute.Deprecated.ValueBool()
+		if !r.InternalAttribute.Deprecated.IsUnknown() && !r.InternalAttribute.Deprecated.IsNull() {
+			*deprecated19 = r.InternalAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated19 = nil
 		}
 		var defaultValue19 interface{}
-		if !r.FileAttribute.DefaultValue.IsUnknown() && !r.FileAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.FileAttribute.DefaultValue.ValueString()), &defaultValue19)
+		if !r.InternalAttribute.DefaultValue.IsUnknown() && !r.InternalAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.InternalAttribute.DefaultValue.ValueString()), &defaultValue19)
 		}
 		group19 := new(string)
-		if !r.FileAttribute.Group.IsUnknown() && !r.FileAttribute.Group.IsNull() {
-			*group19 = r.FileAttribute.Group.ValueString()
+		if !r.InternalAttribute.Group.IsUnknown() && !r.InternalAttribute.Group.IsNull() {
+			*group19 = r.InternalAttribute.Group.ValueString()
 		} else {
 			group19 = nil
 		}
 		order19 := new(int64)
-		if !r.FileAttribute.Order.IsUnknown() && !r.FileAttribute.Order.IsNull() {
-			*order19 = r.FileAttribute.Order.ValueInt64()
+		if !r.InternalAttribute.Order.IsUnknown() && !r.InternalAttribute.Order.IsNull() {
+			*order19 = r.InternalAttribute.Order.ValueInt64()
 		} else {
 			order19 = nil
 		}
 		layout19 := new(string)
-		if !r.FileAttribute.Layout.IsUnknown() && !r.FileAttribute.Layout.IsNull() {
-			*layout19 = r.FileAttribute.Layout.ValueString()
+		if !r.InternalAttribute.Layout.IsUnknown() && !r.InternalAttribute.Layout.IsNull() {
+			*layout19 = r.InternalAttribute.Layout.ValueString()
 		} else {
 			layout19 = nil
 		}
 		hideLabel19 := new(bool)
-		if !r.FileAttribute.HideLabel.IsUnknown() && !r.FileAttribute.HideLabel.IsNull() {
-			*hideLabel19 = r.FileAttribute.HideLabel.ValueBool()
+		if !r.InternalAttribute.HideLabel.IsUnknown() && !r.InternalAttribute.HideLabel.IsNull() {
+			*hideLabel19 = r.InternalAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel19 = nil
 		}
 		icon19 := new(string)
-		if !r.FileAttribute.Icon.IsUnknown() && !r.FileAttribute.Icon.IsNull() {
-			*icon19 = r.FileAttribute.Icon.ValueString()
+		if !r.InternalAttribute.Icon.IsUnknown() && !r.InternalAttribute.Icon.IsNull() {
+			*icon19 = r.InternalAttribute.Icon.ValueString()
 		} else {
 			icon19 = nil
 		}
 		renderCondition19 := new(string)
-		if !r.FileAttribute.RenderCondition.IsUnknown() && !r.FileAttribute.RenderCondition.IsNull() {
-			*renderCondition19 = r.FileAttribute.RenderCondition.ValueString()
+		if !r.InternalAttribute.RenderCondition.IsUnknown() && !r.InternalAttribute.RenderCondition.IsNull() {
+			*renderCondition19 = r.InternalAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition19 = nil
 		}
 		var purpose19 []string = []string{}
-		for _, purposeItem19 := range r.FileAttribute.Purpose {
+		for _, purposeItem19 := range r.InternalAttribute.Purpose {
 			purpose19 = append(purpose19, purposeItem19.ValueString())
 		}
 		var manifest19 []string = []string{}
-		for _, manifestItem19 := range r.FileAttribute.Manifest {
+		for _, manifestItem19 := range r.InternalAttribute.Manifest {
 			manifest19 = append(manifest19, manifestItem19.ValueString())
 		}
-		var constraints19 *shared.FileAttributeAttributeWithCompositeIDConstraints
-		if r.FileAttribute.Constraints != nil {
-			constraints19 = &shared.FileAttributeAttributeWithCompositeIDConstraints{}
+		var constraints19 *shared.InternalAttributeAttributeWithCompositeIDConstraints
+		if r.InternalAttribute.Constraints != nil {
+			constraints19 = &shared.InternalAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag20 := new(string)
-		if !r.FileAttribute.FeatureFlag.IsUnknown() && !r.FileAttribute.FeatureFlag.IsNull() {
-			*featureFlag20 = r.FileAttribute.FeatureFlag.ValueString()
+		if !r.InternalAttribute.FeatureFlag.IsUnknown() && !r.InternalAttribute.FeatureFlag.IsNull() {
+			*featureFlag20 = r.InternalAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag20 = nil
 		}
 		var settingsFlag20 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem20 := range r.FileAttribute.SettingsFlag {
+		for _, settingsFlagItem20 := range r.InternalAttribute.SettingsFlag {
 			name40 := new(string)
 			if !settingsFlagItem20.Name.IsUnknown() && !settingsFlagItem20.Name.IsNull() {
 				*name40 = settingsFlagItem20.Name.ValueString()
@@ -5309,56 +5378,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter19 := new(string)
-		if !r.FileAttribute.ValueFormatter.IsUnknown() && !r.FileAttribute.ValueFormatter.IsNull() {
-			*valueFormatter19 = r.FileAttribute.ValueFormatter.ValueString()
+		if !r.InternalAttribute.ValueFormatter.IsUnknown() && !r.InternalAttribute.ValueFormatter.IsNull() {
+			*valueFormatter19 = r.InternalAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter19 = nil
 		}
 		previewValueFormatter19 := new(string)
-		if !r.FileAttribute.PreviewValueFormatter.IsUnknown() && !r.FileAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter19 = r.FileAttribute.PreviewValueFormatter.ValueString()
+		if !r.InternalAttribute.PreviewValueFormatter.IsUnknown() && !r.InternalAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter19 = r.InternalAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter19 = nil
 		}
 		entityBuilderDisableEdit19 := new(bool)
-		if !r.FileAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.FileAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit19 = r.FileAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.InternalAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InternalAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit19 = r.InternalAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit19 = nil
 		}
 		protected19 := new(bool)
-		if !r.FileAttribute.Protected.IsUnknown() && !r.FileAttribute.Protected.IsNull() {
-			*protected19 = r.FileAttribute.Protected.ValueBool()
+		if !r.InternalAttribute.Protected.IsUnknown() && !r.InternalAttribute.Protected.IsNull() {
+			*protected19 = r.InternalAttribute.Protected.ValueBool()
 		} else {
 			protected19 = nil
 		}
-		var infoHelpers19 *shared.FileAttributeAttributeWithCompositeIDInfoHelpers
-		if r.FileAttribute.InfoHelpers != nil {
+		var infoHelpers19 *shared.InternalAttributeAttributeWithCompositeIDInfoHelpers
+		if r.InternalAttribute.InfoHelpers != nil {
 			hintText19 := new(string)
-			if !r.FileAttribute.InfoHelpers.HintText.IsUnknown() && !r.FileAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText19 = r.FileAttribute.InfoHelpers.HintText.ValueString()
+			if !r.InternalAttribute.InfoHelpers.HintText.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText19 = r.InternalAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText19 = nil
 			}
 			hintTextKey19 := new(string)
-			if !r.FileAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.FileAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey19 = r.FileAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.InternalAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey19 = r.InternalAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey19 = nil
 			}
 			hintCustomComponent19 := new(string)
-			if !r.FileAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.FileAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent19 = r.FileAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.InternalAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent19 = r.InternalAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent19 = nil
 			}
 			hintTooltipPlacement19 := new(string)
-			if !r.FileAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.FileAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement19 = r.FileAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.InternalAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InternalAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement19 = r.InternalAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement19 = nil
 			}
-			infoHelpers19 = &shared.FileAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers19 = &shared.InternalAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText19,
 				HintTextKey:          hintTextKey19,
 				HintCustomComponent:  hintCustomComponent19,
@@ -5366,53 +5435,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable19 := new(bool)
-		if !r.FileAttribute.Repeatable.IsUnknown() && !r.FileAttribute.Repeatable.IsNull() {
-			*repeatable19 = r.FileAttribute.Repeatable.ValueBool()
+		if !r.InternalAttribute.Repeatable.IsUnknown() && !r.InternalAttribute.Repeatable.IsNull() {
+			*repeatable19 = r.InternalAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable19 = nil
 		}
 		hasPrimary19 := new(bool)
-		if !r.FileAttribute.HasPrimary.IsUnknown() && !r.FileAttribute.HasPrimary.IsNull() {
-			*hasPrimary19 = r.FileAttribute.HasPrimary.ValueBool()
+		if !r.InternalAttribute.HasPrimary.IsUnknown() && !r.InternalAttribute.HasPrimary.IsNull() {
+			*hasPrimary19 = r.InternalAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary19 = nil
 		}
-		typeVar19 := shared.FileAttributeAttributeWithCompositeIDType(r.FileAttribute.Type.ValueString())
-		multiple1 := new(bool)
-		if !r.FileAttribute.Multiple.IsUnknown() && !r.FileAttribute.Multiple.IsNull() {
-			*multiple1 = r.FileAttribute.Multiple.ValueBool()
+		typeVar19 := new(shared.InternalAttributeAttributeWithCompositeIDType)
+		if !r.InternalAttribute.Type.IsUnknown() && !r.InternalAttribute.Type.IsNull() {
+			*typeVar19 = shared.InternalAttributeAttributeWithCompositeIDType(r.InternalAttribute.Type.ValueString())
 		} else {
-			multiple1 = nil
-		}
-		var allowedExtensions []string = []string{}
-		for _, allowedExtensionsItem := range r.FileAttribute.AllowedExtensions {
-			allowedExtensions = append(allowedExtensions, allowedExtensionsItem.ValueString())
-		}
-		displayImagesLandscaped := new(bool)
-		if !r.FileAttribute.DisplayImagesLandscaped.IsUnknown() && !r.FileAttribute.DisplayImagesLandscaped.IsNull() {
-			*displayImagesLandscaped = r.FileAttribute.DisplayImagesLandscaped.ValueBool()
-		} else {
-			displayImagesLandscaped = nil
-		}
-		enableDescription := new(bool)
-		if !r.FileAttribute.EnableDescription.IsUnknown() && !r.FileAttribute.EnableDescription.IsNull() {
-			*enableDescription = r.FileAttribute.EnableDescription.ValueBool()
-		} else {
-			enableDescription = nil
-		}
-		defaultAccessControl := new(shared.FileAttributeDefaultAccessControl)
-		if !r.FileAttribute.DefaultAccessControl.IsUnknown() && !r.FileAttribute.DefaultAccessControl.IsNull() {
-			*defaultAccessControl = shared.FileAttributeDefaultAccessControl(r.FileAttribute.DefaultAccessControl.ValueString())
-		} else {
-			defaultAccessControl = nil
+			typeVar19 = nil
 		}
 		schema19 := new(string)
-		if !r.FileAttribute.Schema.IsUnknown() && !r.FileAttribute.Schema.IsNull() {
-			*schema19 = r.FileAttribute.Schema.ValueString()
+		if !r.InternalAttribute.Schema.IsUnknown() && !r.InternalAttribute.Schema.IsNull() {
+			*schema19 = r.InternalAttribute.Schema.ValueString()
 		} else {
 			schema19 = nil
 		}
-		attributeWithCompositeIDFileAttributeInput = &shared.AttributeWithCompositeIDFileAttributeInput{
+		attributeWithCompositeIDInternalAttributeInput = &shared.AttributeWithCompositeIDInternalAttributeInput{
 			ID:                       id19,
 			Name:                     name39,
 			Label:                    label20,
@@ -5443,135 +5489,130 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable19,
 			HasPrimary:               hasPrimary19,
 			Type:                     typeVar19,
-			Multiple:                 multiple1,
-			AllowedExtensions:        allowedExtensions,
-			DisplayImagesLandscaped:  displayImagesLandscaped,
-			EnableDescription:        enableDescription,
-			DefaultAccessControl:     defaultAccessControl,
 			Schema:                   schema19,
 		}
 	}
-	if attributeWithCompositeIDFileAttributeInput != nil {
+	if attributeWithCompositeIDInternalAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDFileAttributeInput: attributeWithCompositeIDFileAttributeInput,
+			AttributeWithCompositeIDInternalAttributeInput: attributeWithCompositeIDInternalAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDComputedAttributeInput *shared.AttributeWithCompositeIDComputedAttributeInput
-	if r.ComputedAttribute != nil {
+	var attributeWithCompositeIDOrderedListAttributeInput *shared.AttributeWithCompositeIDOrderedListAttributeInput
+	if r.OrderedListAttribute != nil {
 		id20 := new(string)
-		if !r.ComputedAttribute.ID.IsUnknown() && !r.ComputedAttribute.ID.IsNull() {
-			*id20 = r.ComputedAttribute.ID.ValueString()
+		if !r.OrderedListAttribute.ID.IsUnknown() && !r.OrderedListAttribute.ID.IsNull() {
+			*id20 = r.OrderedListAttribute.ID.ValueString()
 		} else {
 			id20 = nil
 		}
 		var name41 string
-		name41 = r.ComputedAttribute.Name.ValueString()
+		name41 = r.OrderedListAttribute.Name.ValueString()
 
 		var label21 string
-		label21 = r.ComputedAttribute.Label.ValueString()
+		label21 = r.OrderedListAttribute.Label.ValueString()
 
 		placeholder20 := new(string)
-		if !r.ComputedAttribute.Placeholder.IsUnknown() && !r.ComputedAttribute.Placeholder.IsNull() {
-			*placeholder20 = r.ComputedAttribute.Placeholder.ValueString()
+		if !r.OrderedListAttribute.Placeholder.IsUnknown() && !r.OrderedListAttribute.Placeholder.IsNull() {
+			*placeholder20 = r.OrderedListAttribute.Placeholder.ValueString()
 		} else {
 			placeholder20 = nil
 		}
 		hidden20 := new(bool)
-		if !r.ComputedAttribute.Hidden.IsUnknown() && !r.ComputedAttribute.Hidden.IsNull() {
-			*hidden20 = r.ComputedAttribute.Hidden.ValueBool()
+		if !r.OrderedListAttribute.Hidden.IsUnknown() && !r.OrderedListAttribute.Hidden.IsNull() {
+			*hidden20 = r.OrderedListAttribute.Hidden.ValueBool()
 		} else {
 			hidden20 = nil
 		}
 		showInTable20 := new(bool)
-		if !r.ComputedAttribute.ShowInTable.IsUnknown() && !r.ComputedAttribute.ShowInTable.IsNull() {
-			*showInTable20 = r.ComputedAttribute.ShowInTable.ValueBool()
+		if !r.OrderedListAttribute.ShowInTable.IsUnknown() && !r.OrderedListAttribute.ShowInTable.IsNull() {
+			*showInTable20 = r.OrderedListAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable20 = nil
 		}
 		sortable20 := new(bool)
-		if !r.ComputedAttribute.Sortable.IsUnknown() && !r.ComputedAttribute.Sortable.IsNull() {
-			*sortable20 = r.ComputedAttribute.Sortable.ValueBool()
+		if !r.OrderedListAttribute.Sortable.IsUnknown() && !r.OrderedListAttribute.Sortable.IsNull() {
+			*sortable20 = r.OrderedListAttribute.Sortable.ValueBool()
 		} else {
 			sortable20 = nil
 		}
 		required20 := new(bool)
-		if !r.ComputedAttribute.Required.IsUnknown() && !r.ComputedAttribute.Required.IsNull() {
-			*required20 = r.ComputedAttribute.Required.ValueBool()
+		if !r.OrderedListAttribute.Required.IsUnknown() && !r.OrderedListAttribute.Required.IsNull() {
+			*required20 = r.OrderedListAttribute.Required.ValueBool()
 		} else {
 			required20 = nil
 		}
 		readonly20 := new(bool)
-		if !r.ComputedAttribute.Readonly.IsUnknown() && !r.ComputedAttribute.Readonly.IsNull() {
-			*readonly20 = r.ComputedAttribute.Readonly.ValueBool()
+		if !r.OrderedListAttribute.Readonly.IsUnknown() && !r.OrderedListAttribute.Readonly.IsNull() {
+			*readonly20 = r.OrderedListAttribute.Readonly.ValueBool()
 		} else {
 			readonly20 = nil
 		}
 		deprecated20 := new(bool)
-		if !r.ComputedAttribute.Deprecated.IsUnknown() && !r.ComputedAttribute.Deprecated.IsNull() {
-			*deprecated20 = r.ComputedAttribute.Deprecated.ValueBool()
+		if !r.OrderedListAttribute.Deprecated.IsUnknown() && !r.OrderedListAttribute.Deprecated.IsNull() {
+			*deprecated20 = r.OrderedListAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated20 = nil
 		}
 		var defaultValue20 interface{}
-		if !r.ComputedAttribute.DefaultValue.IsUnknown() && !r.ComputedAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.ComputedAttribute.DefaultValue.ValueString()), &defaultValue20)
+		if !r.OrderedListAttribute.DefaultValue.IsUnknown() && !r.OrderedListAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.OrderedListAttribute.DefaultValue.ValueString()), &defaultValue20)
 		}
 		group20 := new(string)
-		if !r.ComputedAttribute.Group.IsUnknown() && !r.ComputedAttribute.Group.IsNull() {
-			*group20 = r.ComputedAttribute.Group.ValueString()
+		if !r.OrderedListAttribute.Group.IsUnknown() && !r.OrderedListAttribute.Group.IsNull() {
+			*group20 = r.OrderedListAttribute.Group.ValueString()
 		} else {
 			group20 = nil
 		}
 		order20 := new(int64)
-		if !r.ComputedAttribute.Order.IsUnknown() && !r.ComputedAttribute.Order.IsNull() {
-			*order20 = r.ComputedAttribute.Order.ValueInt64()
+		if !r.OrderedListAttribute.Order.IsUnknown() && !r.OrderedListAttribute.Order.IsNull() {
+			*order20 = r.OrderedListAttribute.Order.ValueInt64()
 		} else {
 			order20 = nil
 		}
 		layout20 := new(string)
-		if !r.ComputedAttribute.Layout.IsUnknown() && !r.ComputedAttribute.Layout.IsNull() {
-			*layout20 = r.ComputedAttribute.Layout.ValueString()
+		if !r.OrderedListAttribute.Layout.IsUnknown() && !r.OrderedListAttribute.Layout.IsNull() {
+			*layout20 = r.OrderedListAttribute.Layout.ValueString()
 		} else {
 			layout20 = nil
 		}
 		hideLabel20 := new(bool)
-		if !r.ComputedAttribute.HideLabel.IsUnknown() && !r.ComputedAttribute.HideLabel.IsNull() {
-			*hideLabel20 = r.ComputedAttribute.HideLabel.ValueBool()
+		if !r.OrderedListAttribute.HideLabel.IsUnknown() && !r.OrderedListAttribute.HideLabel.IsNull() {
+			*hideLabel20 = r.OrderedListAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel20 = nil
 		}
 		icon20 := new(string)
-		if !r.ComputedAttribute.Icon.IsUnknown() && !r.ComputedAttribute.Icon.IsNull() {
-			*icon20 = r.ComputedAttribute.Icon.ValueString()
+		if !r.OrderedListAttribute.Icon.IsUnknown() && !r.OrderedListAttribute.Icon.IsNull() {
+			*icon20 = r.OrderedListAttribute.Icon.ValueString()
 		} else {
 			icon20 = nil
 		}
 		renderCondition20 := new(string)
-		if !r.ComputedAttribute.RenderCondition.IsUnknown() && !r.ComputedAttribute.RenderCondition.IsNull() {
-			*renderCondition20 = r.ComputedAttribute.RenderCondition.ValueString()
+		if !r.OrderedListAttribute.RenderCondition.IsUnknown() && !r.OrderedListAttribute.RenderCondition.IsNull() {
+			*renderCondition20 = r.OrderedListAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition20 = nil
 		}
 		var purpose20 []string = []string{}
-		for _, purposeItem20 := range r.ComputedAttribute.Purpose {
+		for _, purposeItem20 := range r.OrderedListAttribute.Purpose {
 			purpose20 = append(purpose20, purposeItem20.ValueString())
 		}
 		var manifest20 []string = []string{}
-		for _, manifestItem20 := range r.ComputedAttribute.Manifest {
+		for _, manifestItem20 := range r.OrderedListAttribute.Manifest {
 			manifest20 = append(manifest20, manifestItem20.ValueString())
 		}
-		var constraints20 *shared.ComputedAttributeAttributeWithCompositeIDConstraints
-		if r.ComputedAttribute.Constraints != nil {
-			constraints20 = &shared.ComputedAttributeAttributeWithCompositeIDConstraints{}
+		var constraints20 *shared.OrderedListAttributeAttributeWithCompositeIDConstraints
+		if r.OrderedListAttribute.Constraints != nil {
+			constraints20 = &shared.OrderedListAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag21 := new(string)
-		if !r.ComputedAttribute.FeatureFlag.IsUnknown() && !r.ComputedAttribute.FeatureFlag.IsNull() {
-			*featureFlag21 = r.ComputedAttribute.FeatureFlag.ValueString()
+		if !r.OrderedListAttribute.FeatureFlag.IsUnknown() && !r.OrderedListAttribute.FeatureFlag.IsNull() {
+			*featureFlag21 = r.OrderedListAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag21 = nil
 		}
 		var settingsFlag21 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem21 := range r.ComputedAttribute.SettingsFlag {
+		for _, settingsFlagItem21 := range r.OrderedListAttribute.SettingsFlag {
 			name42 := new(string)
 			if !settingsFlagItem21.Name.IsUnknown() && !settingsFlagItem21.Name.IsNull() {
 				*name42 = settingsFlagItem21.Name.ValueString()
@@ -5590,56 +5631,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter20 := new(string)
-		if !r.ComputedAttribute.ValueFormatter.IsUnknown() && !r.ComputedAttribute.ValueFormatter.IsNull() {
-			*valueFormatter20 = r.ComputedAttribute.ValueFormatter.ValueString()
+		if !r.OrderedListAttribute.ValueFormatter.IsUnknown() && !r.OrderedListAttribute.ValueFormatter.IsNull() {
+			*valueFormatter20 = r.OrderedListAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter20 = nil
 		}
 		previewValueFormatter20 := new(string)
-		if !r.ComputedAttribute.PreviewValueFormatter.IsUnknown() && !r.ComputedAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter20 = r.ComputedAttribute.PreviewValueFormatter.ValueString()
+		if !r.OrderedListAttribute.PreviewValueFormatter.IsUnknown() && !r.OrderedListAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter20 = r.OrderedListAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter20 = nil
 		}
 		entityBuilderDisableEdit20 := new(bool)
-		if !r.ComputedAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.ComputedAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit20 = r.ComputedAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.OrderedListAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.OrderedListAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit20 = r.OrderedListAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit20 = nil
 		}
 		protected20 := new(bool)
-		if !r.ComputedAttribute.Protected.IsUnknown() && !r.ComputedAttribute.Protected.IsNull() {
-			*protected20 = r.ComputedAttribute.Protected.ValueBool()
+		if !r.OrderedListAttribute.Protected.IsUnknown() && !r.OrderedListAttribute.Protected.IsNull() {
+			*protected20 = r.OrderedListAttribute.Protected.ValueBool()
 		} else {
 			protected20 = nil
 		}
-		var infoHelpers20 *shared.ComputedAttributeAttributeWithCompositeIDInfoHelpers
-		if r.ComputedAttribute.InfoHelpers != nil {
+		var infoHelpers20 *shared.OrderedListAttributeAttributeWithCompositeIDInfoHelpers
+		if r.OrderedListAttribute.InfoHelpers != nil {
 			hintText20 := new(string)
-			if !r.ComputedAttribute.InfoHelpers.HintText.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText20 = r.ComputedAttribute.InfoHelpers.HintText.ValueString()
+			if !r.OrderedListAttribute.InfoHelpers.HintText.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText20 = r.OrderedListAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText20 = nil
 			}
 			hintTextKey20 := new(string)
-			if !r.ComputedAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey20 = r.ComputedAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.OrderedListAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey20 = r.OrderedListAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey20 = nil
 			}
 			hintCustomComponent20 := new(string)
-			if !r.ComputedAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent20 = r.ComputedAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.OrderedListAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent20 = r.OrderedListAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent20 = nil
 			}
 			hintTooltipPlacement20 := new(string)
-			if !r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement20 = r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement20 = r.OrderedListAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement20 = nil
 			}
-			infoHelpers20 = &shared.ComputedAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers20 = &shared.OrderedListAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText20,
 				HintTextKey:          hintTextKey20,
 				HintCustomComponent:  hintCustomComponent20,
@@ -5647,30 +5688,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable20 := new(bool)
-		if !r.ComputedAttribute.Repeatable.IsUnknown() && !r.ComputedAttribute.Repeatable.IsNull() {
-			*repeatable20 = r.ComputedAttribute.Repeatable.ValueBool()
+		if !r.OrderedListAttribute.Repeatable.IsUnknown() && !r.OrderedListAttribute.Repeatable.IsNull() {
+			*repeatable20 = r.OrderedListAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable20 = nil
 		}
 		hasPrimary20 := new(bool)
-		if !r.ComputedAttribute.HasPrimary.IsUnknown() && !r.ComputedAttribute.HasPrimary.IsNull() {
-			*hasPrimary20 = r.ComputedAttribute.HasPrimary.ValueBool()
+		if !r.OrderedListAttribute.HasPrimary.IsUnknown() && !r.OrderedListAttribute.HasPrimary.IsNull() {
+			*hasPrimary20 = r.OrderedListAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary20 = nil
 		}
-		typeVar20 := new(shared.ComputedAttributeAttributeWithCompositeIDType)
-		if !r.ComputedAttribute.Type.IsUnknown() && !r.ComputedAttribute.Type.IsNull() {
-			*typeVar20 = shared.ComputedAttributeAttributeWithCompositeIDType(r.ComputedAttribute.Type.ValueString())
+		typeVar20 := new(shared.OrderedListAttributeAttributeWithCompositeIDType)
+		if !r.OrderedListAttribute.Type.IsUnknown() && !r.OrderedListAttribute.Type.IsNull() {
+			*typeVar20 = shared.OrderedListAttributeAttributeWithCompositeIDType(r.OrderedListAttribute.Type.ValueString())
 		} else {
 			typeVar20 = nil
 		}
 		schema20 := new(string)
-		if !r.ComputedAttribute.Schema.IsUnknown() && !r.ComputedAttribute.Schema.IsNull() {
-			*schema20 = r.ComputedAttribute.Schema.ValueString()
+		if !r.OrderedListAttribute.Schema.IsUnknown() && !r.OrderedListAttribute.Schema.IsNull() {
+			*schema20 = r.OrderedListAttribute.Schema.ValueString()
 		} else {
 			schema20 = nil
 		}
-		attributeWithCompositeIDComputedAttributeInput = &shared.AttributeWithCompositeIDComputedAttributeInput{
+		attributeWithCompositeIDOrderedListAttributeInput = &shared.AttributeWithCompositeIDOrderedListAttributeInput{
 			ID:                       id20,
 			Name:                     name41,
 			Label:                    label21,
@@ -5704,127 +5745,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema20,
 		}
 	}
-	if attributeWithCompositeIDComputedAttributeInput != nil {
+	if attributeWithCompositeIDOrderedListAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDComputedAttributeInput: attributeWithCompositeIDComputedAttributeInput,
+			AttributeWithCompositeIDOrderedListAttributeInput: attributeWithCompositeIDOrderedListAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPartnerStatusAttributeInput *shared.AttributeWithCompositeIDPartnerStatusAttributeInput
-	if r.PartnerStatusAttribute != nil {
+	var attributeWithCompositeIDFileAttributeInput *shared.AttributeWithCompositeIDFileAttributeInput
+	if r.FileAttribute != nil {
 		id21 := new(string)
-		if !r.PartnerStatusAttribute.ID.IsUnknown() && !r.PartnerStatusAttribute.ID.IsNull() {
-			*id21 = r.PartnerStatusAttribute.ID.ValueString()
+		if !r.FileAttribute.ID.IsUnknown() && !r.FileAttribute.ID.IsNull() {
+			*id21 = r.FileAttribute.ID.ValueString()
 		} else {
 			id21 = nil
 		}
 		var name43 string
-		name43 = r.PartnerStatusAttribute.Name.ValueString()
+		name43 = r.FileAttribute.Name.ValueString()
 
 		var label22 string
-		label22 = r.PartnerStatusAttribute.Label.ValueString()
+		label22 = r.FileAttribute.Label.ValueString()
 
 		placeholder21 := new(string)
-		if !r.PartnerStatusAttribute.Placeholder.IsUnknown() && !r.PartnerStatusAttribute.Placeholder.IsNull() {
-			*placeholder21 = r.PartnerStatusAttribute.Placeholder.ValueString()
+		if !r.FileAttribute.Placeholder.IsUnknown() && !r.FileAttribute.Placeholder.IsNull() {
+			*placeholder21 = r.FileAttribute.Placeholder.ValueString()
 		} else {
 			placeholder21 = nil
 		}
 		hidden21 := new(bool)
-		if !r.PartnerStatusAttribute.Hidden.IsUnknown() && !r.PartnerStatusAttribute.Hidden.IsNull() {
-			*hidden21 = r.PartnerStatusAttribute.Hidden.ValueBool()
+		if !r.FileAttribute.Hidden.IsUnknown() && !r.FileAttribute.Hidden.IsNull() {
+			*hidden21 = r.FileAttribute.Hidden.ValueBool()
 		} else {
 			hidden21 = nil
 		}
 		showInTable21 := new(bool)
-		if !r.PartnerStatusAttribute.ShowInTable.IsUnknown() && !r.PartnerStatusAttribute.ShowInTable.IsNull() {
-			*showInTable21 = r.PartnerStatusAttribute.ShowInTable.ValueBool()
+		if !r.FileAttribute.ShowInTable.IsUnknown() && !r.FileAttribute.ShowInTable.IsNull() {
+			*showInTable21 = r.FileAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable21 = nil
 		}
 		sortable21 := new(bool)
-		if !r.PartnerStatusAttribute.Sortable.IsUnknown() && !r.PartnerStatusAttribute.Sortable.IsNull() {
-			*sortable21 = r.PartnerStatusAttribute.Sortable.ValueBool()
+		if !r.FileAttribute.Sortable.IsUnknown() && !r.FileAttribute.Sortable.IsNull() {
+			*sortable21 = r.FileAttribute.Sortable.ValueBool()
 		} else {
 			sortable21 = nil
 		}
 		required21 := new(bool)
-		if !r.PartnerStatusAttribute.Required.IsUnknown() && !r.PartnerStatusAttribute.Required.IsNull() {
-			*required21 = r.PartnerStatusAttribute.Required.ValueBool()
+		if !r.FileAttribute.Required.IsUnknown() && !r.FileAttribute.Required.IsNull() {
+			*required21 = r.FileAttribute.Required.ValueBool()
 		} else {
 			required21 = nil
 		}
 		readonly21 := new(bool)
-		if !r.PartnerStatusAttribute.Readonly.IsUnknown() && !r.PartnerStatusAttribute.Readonly.IsNull() {
-			*readonly21 = r.PartnerStatusAttribute.Readonly.ValueBool()
+		if !r.FileAttribute.Readonly.IsUnknown() && !r.FileAttribute.Readonly.IsNull() {
+			*readonly21 = r.FileAttribute.Readonly.ValueBool()
 		} else {
 			readonly21 = nil
 		}
 		deprecated21 := new(bool)
-		if !r.PartnerStatusAttribute.Deprecated.IsUnknown() && !r.PartnerStatusAttribute.Deprecated.IsNull() {
-			*deprecated21 = r.PartnerStatusAttribute.Deprecated.ValueBool()
+		if !r.FileAttribute.Deprecated.IsUnknown() && !r.FileAttribute.Deprecated.IsNull() {
+			*deprecated21 = r.FileAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated21 = nil
 		}
 		var defaultValue21 interface{}
-		if !r.PartnerStatusAttribute.DefaultValue.IsUnknown() && !r.PartnerStatusAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PartnerStatusAttribute.DefaultValue.ValueString()), &defaultValue21)
+		if !r.FileAttribute.DefaultValue.IsUnknown() && !r.FileAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.FileAttribute.DefaultValue.ValueString()), &defaultValue21)
 		}
 		group21 := new(string)
-		if !r.PartnerStatusAttribute.Group.IsUnknown() && !r.PartnerStatusAttribute.Group.IsNull() {
-			*group21 = r.PartnerStatusAttribute.Group.ValueString()
+		if !r.FileAttribute.Group.IsUnknown() && !r.FileAttribute.Group.IsNull() {
+			*group21 = r.FileAttribute.Group.ValueString()
 		} else {
 			group21 = nil
 		}
 		order21 := new(int64)
-		if !r.PartnerStatusAttribute.Order.IsUnknown() && !r.PartnerStatusAttribute.Order.IsNull() {
-			*order21 = r.PartnerStatusAttribute.Order.ValueInt64()
+		if !r.FileAttribute.Order.IsUnknown() && !r.FileAttribute.Order.IsNull() {
+			*order21 = r.FileAttribute.Order.ValueInt64()
 		} else {
 			order21 = nil
 		}
 		layout21 := new(string)
-		if !r.PartnerStatusAttribute.Layout.IsUnknown() && !r.PartnerStatusAttribute.Layout.IsNull() {
-			*layout21 = r.PartnerStatusAttribute.Layout.ValueString()
+		if !r.FileAttribute.Layout.IsUnknown() && !r.FileAttribute.Layout.IsNull() {
+			*layout21 = r.FileAttribute.Layout.ValueString()
 		} else {
 			layout21 = nil
 		}
 		hideLabel21 := new(bool)
-		if !r.PartnerStatusAttribute.HideLabel.IsUnknown() && !r.PartnerStatusAttribute.HideLabel.IsNull() {
-			*hideLabel21 = r.PartnerStatusAttribute.HideLabel.ValueBool()
+		if !r.FileAttribute.HideLabel.IsUnknown() && !r.FileAttribute.HideLabel.IsNull() {
+			*hideLabel21 = r.FileAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel21 = nil
 		}
 		icon21 := new(string)
-		if !r.PartnerStatusAttribute.Icon.IsUnknown() && !r.PartnerStatusAttribute.Icon.IsNull() {
-			*icon21 = r.PartnerStatusAttribute.Icon.ValueString()
+		if !r.FileAttribute.Icon.IsUnknown() && !r.FileAttribute.Icon.IsNull() {
+			*icon21 = r.FileAttribute.Icon.ValueString()
 		} else {
 			icon21 = nil
 		}
 		renderCondition21 := new(string)
-		if !r.PartnerStatusAttribute.RenderCondition.IsUnknown() && !r.PartnerStatusAttribute.RenderCondition.IsNull() {
-			*renderCondition21 = r.PartnerStatusAttribute.RenderCondition.ValueString()
+		if !r.FileAttribute.RenderCondition.IsUnknown() && !r.FileAttribute.RenderCondition.IsNull() {
+			*renderCondition21 = r.FileAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition21 = nil
 		}
 		var purpose21 []string = []string{}
-		for _, purposeItem21 := range r.PartnerStatusAttribute.Purpose {
+		for _, purposeItem21 := range r.FileAttribute.Purpose {
 			purpose21 = append(purpose21, purposeItem21.ValueString())
 		}
 		var manifest21 []string = []string{}
-		for _, manifestItem21 := range r.PartnerStatusAttribute.Manifest {
+		for _, manifestItem21 := range r.FileAttribute.Manifest {
 			manifest21 = append(manifest21, manifestItem21.ValueString())
 		}
-		var constraints21 *shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints
-		if r.PartnerStatusAttribute.Constraints != nil {
-			constraints21 = &shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints{}
+		var constraints21 *shared.FileAttributeAttributeWithCompositeIDConstraints
+		if r.FileAttribute.Constraints != nil {
+			constraints21 = &shared.FileAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag22 := new(string)
-		if !r.PartnerStatusAttribute.FeatureFlag.IsUnknown() && !r.PartnerStatusAttribute.FeatureFlag.IsNull() {
-			*featureFlag22 = r.PartnerStatusAttribute.FeatureFlag.ValueString()
+		if !r.FileAttribute.FeatureFlag.IsUnknown() && !r.FileAttribute.FeatureFlag.IsNull() {
+			*featureFlag22 = r.FileAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag22 = nil
 		}
 		var settingsFlag22 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem22 := range r.PartnerStatusAttribute.SettingsFlag {
+		for _, settingsFlagItem22 := range r.FileAttribute.SettingsFlag {
 			name44 := new(string)
 			if !settingsFlagItem22.Name.IsUnknown() && !settingsFlagItem22.Name.IsNull() {
 				*name44 = settingsFlagItem22.Name.ValueString()
@@ -5843,56 +5884,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter21 := new(string)
-		if !r.PartnerStatusAttribute.ValueFormatter.IsUnknown() && !r.PartnerStatusAttribute.ValueFormatter.IsNull() {
-			*valueFormatter21 = r.PartnerStatusAttribute.ValueFormatter.ValueString()
+		if !r.FileAttribute.ValueFormatter.IsUnknown() && !r.FileAttribute.ValueFormatter.IsNull() {
+			*valueFormatter21 = r.FileAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter21 = nil
 		}
 		previewValueFormatter21 := new(string)
-		if !r.PartnerStatusAttribute.PreviewValueFormatter.IsUnknown() && !r.PartnerStatusAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter21 = r.PartnerStatusAttribute.PreviewValueFormatter.ValueString()
+		if !r.FileAttribute.PreviewValueFormatter.IsUnknown() && !r.FileAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter21 = r.FileAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter21 = nil
 		}
 		entityBuilderDisableEdit21 := new(bool)
-		if !r.PartnerStatusAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PartnerStatusAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit21 = r.PartnerStatusAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.FileAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.FileAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit21 = r.FileAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit21 = nil
 		}
 		protected21 := new(bool)
-		if !r.PartnerStatusAttribute.Protected.IsUnknown() && !r.PartnerStatusAttribute.Protected.IsNull() {
-			*protected21 = r.PartnerStatusAttribute.Protected.ValueBool()
+		if !r.FileAttribute.Protected.IsUnknown() && !r.FileAttribute.Protected.IsNull() {
+			*protected21 = r.FileAttribute.Protected.ValueBool()
 		} else {
 			protected21 = nil
 		}
-		var infoHelpers21 *shared.PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PartnerStatusAttribute.InfoHelpers != nil {
+		var infoHelpers21 *shared.FileAttributeAttributeWithCompositeIDInfoHelpers
+		if r.FileAttribute.InfoHelpers != nil {
 			hintText21 := new(string)
-			if !r.PartnerStatusAttribute.InfoHelpers.HintText.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText21 = r.PartnerStatusAttribute.InfoHelpers.HintText.ValueString()
+			if !r.FileAttribute.InfoHelpers.HintText.IsUnknown() && !r.FileAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText21 = r.FileAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText21 = nil
 			}
 			hintTextKey21 := new(string)
-			if !r.PartnerStatusAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey21 = r.PartnerStatusAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.FileAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.FileAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey21 = r.FileAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey21 = nil
 			}
 			hintCustomComponent21 := new(string)
-			if !r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent21 = r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.FileAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.FileAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent21 = r.FileAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent21 = nil
 			}
 			hintTooltipPlacement21 := new(string)
-			if !r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement21 = r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.FileAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.FileAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement21 = r.FileAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement21 = nil
 			}
-			infoHelpers21 = &shared.PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers21 = &shared.FileAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText21,
 				HintTextKey:          hintTextKey21,
 				HintCustomComponent:  hintCustomComponent21,
@@ -5900,30 +5941,53 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable21 := new(bool)
-		if !r.PartnerStatusAttribute.Repeatable.IsUnknown() && !r.PartnerStatusAttribute.Repeatable.IsNull() {
-			*repeatable21 = r.PartnerStatusAttribute.Repeatable.ValueBool()
+		if !r.FileAttribute.Repeatable.IsUnknown() && !r.FileAttribute.Repeatable.IsNull() {
+			*repeatable21 = r.FileAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable21 = nil
 		}
 		hasPrimary21 := new(bool)
-		if !r.PartnerStatusAttribute.HasPrimary.IsUnknown() && !r.PartnerStatusAttribute.HasPrimary.IsNull() {
-			*hasPrimary21 = r.PartnerStatusAttribute.HasPrimary.ValueBool()
+		if !r.FileAttribute.HasPrimary.IsUnknown() && !r.FileAttribute.HasPrimary.IsNull() {
+			*hasPrimary21 = r.FileAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary21 = nil
 		}
-		typeVar21 := new(shared.PartnerStatusAttributeAttributeWithCompositeIDType)
-		if !r.PartnerStatusAttribute.Type.IsUnknown() && !r.PartnerStatusAttribute.Type.IsNull() {
-			*typeVar21 = shared.PartnerStatusAttributeAttributeWithCompositeIDType(r.PartnerStatusAttribute.Type.ValueString())
+		typeVar21 := shared.FileAttributeAttributeWithCompositeIDType(r.FileAttribute.Type.ValueString())
+		multiple1 := new(bool)
+		if !r.FileAttribute.Multiple.IsUnknown() && !r.FileAttribute.Multiple.IsNull() {
+			*multiple1 = r.FileAttribute.Multiple.ValueBool()
 		} else {
-			typeVar21 = nil
+			multiple1 = nil
+		}
+		var allowedExtensions []string = []string{}
+		for _, allowedExtensionsItem := range r.FileAttribute.AllowedExtensions {
+			allowedExtensions = append(allowedExtensions, allowedExtensionsItem.ValueString())
+		}
+		displayImagesLandscaped := new(bool)
+		if !r.FileAttribute.DisplayImagesLandscaped.IsUnknown() && !r.FileAttribute.DisplayImagesLandscaped.IsNull() {
+			*displayImagesLandscaped = r.FileAttribute.DisplayImagesLandscaped.ValueBool()
+		} else {
+			displayImagesLandscaped = nil
+		}
+		enableDescription := new(bool)
+		if !r.FileAttribute.EnableDescription.IsUnknown() && !r.FileAttribute.EnableDescription.IsNull() {
+			*enableDescription = r.FileAttribute.EnableDescription.ValueBool()
+		} else {
+			enableDescription = nil
+		}
+		defaultAccessControl := new(shared.FileAttributeDefaultAccessControl)
+		if !r.FileAttribute.DefaultAccessControl.IsUnknown() && !r.FileAttribute.DefaultAccessControl.IsNull() {
+			*defaultAccessControl = shared.FileAttributeDefaultAccessControl(r.FileAttribute.DefaultAccessControl.ValueString())
+		} else {
+			defaultAccessControl = nil
 		}
 		schema21 := new(string)
-		if !r.PartnerStatusAttribute.Schema.IsUnknown() && !r.PartnerStatusAttribute.Schema.IsNull() {
-			*schema21 = r.PartnerStatusAttribute.Schema.ValueString()
+		if !r.FileAttribute.Schema.IsUnknown() && !r.FileAttribute.Schema.IsNull() {
+			*schema21 = r.FileAttribute.Schema.ValueString()
 		} else {
 			schema21 = nil
 		}
-		attributeWithCompositeIDPartnerStatusAttributeInput = &shared.AttributeWithCompositeIDPartnerStatusAttributeInput{
+		attributeWithCompositeIDFileAttributeInput = &shared.AttributeWithCompositeIDFileAttributeInput{
 			ID:                       id21,
 			Name:                     name43,
 			Label:                    label22,
@@ -5954,130 +6018,135 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable21,
 			HasPrimary:               hasPrimary21,
 			Type:                     typeVar21,
+			Multiple:                 multiple1,
+			AllowedExtensions:        allowedExtensions,
+			DisplayImagesLandscaped:  displayImagesLandscaped,
+			EnableDescription:        enableDescription,
+			DefaultAccessControl:     defaultAccessControl,
 			Schema:                   schema21,
 		}
 	}
-	if attributeWithCompositeIDPartnerStatusAttributeInput != nil {
+	if attributeWithCompositeIDFileAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPartnerStatusAttributeInput: attributeWithCompositeIDPartnerStatusAttributeInput,
+			AttributeWithCompositeIDFileAttributeInput: attributeWithCompositeIDFileAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDInvitationEmailAttributeInput *shared.AttributeWithCompositeIDInvitationEmailAttributeInput
-	if r.InvitationEmailAttribute != nil {
+	var attributeWithCompositeIDComputedAttributeInput *shared.AttributeWithCompositeIDComputedAttributeInput
+	if r.ComputedAttribute != nil {
 		id22 := new(string)
-		if !r.InvitationEmailAttribute.ID.IsUnknown() && !r.InvitationEmailAttribute.ID.IsNull() {
-			*id22 = r.InvitationEmailAttribute.ID.ValueString()
+		if !r.ComputedAttribute.ID.IsUnknown() && !r.ComputedAttribute.ID.IsNull() {
+			*id22 = r.ComputedAttribute.ID.ValueString()
 		} else {
 			id22 = nil
 		}
 		var name45 string
-		name45 = r.InvitationEmailAttribute.Name.ValueString()
+		name45 = r.ComputedAttribute.Name.ValueString()
 
 		var label23 string
-		label23 = r.InvitationEmailAttribute.Label.ValueString()
+		label23 = r.ComputedAttribute.Label.ValueString()
 
 		placeholder22 := new(string)
-		if !r.InvitationEmailAttribute.Placeholder.IsUnknown() && !r.InvitationEmailAttribute.Placeholder.IsNull() {
-			*placeholder22 = r.InvitationEmailAttribute.Placeholder.ValueString()
+		if !r.ComputedAttribute.Placeholder.IsUnknown() && !r.ComputedAttribute.Placeholder.IsNull() {
+			*placeholder22 = r.ComputedAttribute.Placeholder.ValueString()
 		} else {
 			placeholder22 = nil
 		}
 		hidden22 := new(bool)
-		if !r.InvitationEmailAttribute.Hidden.IsUnknown() && !r.InvitationEmailAttribute.Hidden.IsNull() {
-			*hidden22 = r.InvitationEmailAttribute.Hidden.ValueBool()
+		if !r.ComputedAttribute.Hidden.IsUnknown() && !r.ComputedAttribute.Hidden.IsNull() {
+			*hidden22 = r.ComputedAttribute.Hidden.ValueBool()
 		} else {
 			hidden22 = nil
 		}
 		showInTable22 := new(bool)
-		if !r.InvitationEmailAttribute.ShowInTable.IsUnknown() && !r.InvitationEmailAttribute.ShowInTable.IsNull() {
-			*showInTable22 = r.InvitationEmailAttribute.ShowInTable.ValueBool()
+		if !r.ComputedAttribute.ShowInTable.IsUnknown() && !r.ComputedAttribute.ShowInTable.IsNull() {
+			*showInTable22 = r.ComputedAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable22 = nil
 		}
 		sortable22 := new(bool)
-		if !r.InvitationEmailAttribute.Sortable.IsUnknown() && !r.InvitationEmailAttribute.Sortable.IsNull() {
-			*sortable22 = r.InvitationEmailAttribute.Sortable.ValueBool()
+		if !r.ComputedAttribute.Sortable.IsUnknown() && !r.ComputedAttribute.Sortable.IsNull() {
+			*sortable22 = r.ComputedAttribute.Sortable.ValueBool()
 		} else {
 			sortable22 = nil
 		}
 		required22 := new(bool)
-		if !r.InvitationEmailAttribute.Required.IsUnknown() && !r.InvitationEmailAttribute.Required.IsNull() {
-			*required22 = r.InvitationEmailAttribute.Required.ValueBool()
+		if !r.ComputedAttribute.Required.IsUnknown() && !r.ComputedAttribute.Required.IsNull() {
+			*required22 = r.ComputedAttribute.Required.ValueBool()
 		} else {
 			required22 = nil
 		}
 		readonly22 := new(bool)
-		if !r.InvitationEmailAttribute.Readonly.IsUnknown() && !r.InvitationEmailAttribute.Readonly.IsNull() {
-			*readonly22 = r.InvitationEmailAttribute.Readonly.ValueBool()
+		if !r.ComputedAttribute.Readonly.IsUnknown() && !r.ComputedAttribute.Readonly.IsNull() {
+			*readonly22 = r.ComputedAttribute.Readonly.ValueBool()
 		} else {
 			readonly22 = nil
 		}
 		deprecated22 := new(bool)
-		if !r.InvitationEmailAttribute.Deprecated.IsUnknown() && !r.InvitationEmailAttribute.Deprecated.IsNull() {
-			*deprecated22 = r.InvitationEmailAttribute.Deprecated.ValueBool()
+		if !r.ComputedAttribute.Deprecated.IsUnknown() && !r.ComputedAttribute.Deprecated.IsNull() {
+			*deprecated22 = r.ComputedAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated22 = nil
 		}
 		var defaultValue22 interface{}
-		if !r.InvitationEmailAttribute.DefaultValue.IsUnknown() && !r.InvitationEmailAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.InvitationEmailAttribute.DefaultValue.ValueString()), &defaultValue22)
+		if !r.ComputedAttribute.DefaultValue.IsUnknown() && !r.ComputedAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.ComputedAttribute.DefaultValue.ValueString()), &defaultValue22)
 		}
 		group22 := new(string)
-		if !r.InvitationEmailAttribute.Group.IsUnknown() && !r.InvitationEmailAttribute.Group.IsNull() {
-			*group22 = r.InvitationEmailAttribute.Group.ValueString()
+		if !r.ComputedAttribute.Group.IsUnknown() && !r.ComputedAttribute.Group.IsNull() {
+			*group22 = r.ComputedAttribute.Group.ValueString()
 		} else {
 			group22 = nil
 		}
 		order22 := new(int64)
-		if !r.InvitationEmailAttribute.Order.IsUnknown() && !r.InvitationEmailAttribute.Order.IsNull() {
-			*order22 = r.InvitationEmailAttribute.Order.ValueInt64()
+		if !r.ComputedAttribute.Order.IsUnknown() && !r.ComputedAttribute.Order.IsNull() {
+			*order22 = r.ComputedAttribute.Order.ValueInt64()
 		} else {
 			order22 = nil
 		}
 		layout22 := new(string)
-		if !r.InvitationEmailAttribute.Layout.IsUnknown() && !r.InvitationEmailAttribute.Layout.IsNull() {
-			*layout22 = r.InvitationEmailAttribute.Layout.ValueString()
+		if !r.ComputedAttribute.Layout.IsUnknown() && !r.ComputedAttribute.Layout.IsNull() {
+			*layout22 = r.ComputedAttribute.Layout.ValueString()
 		} else {
 			layout22 = nil
 		}
 		hideLabel22 := new(bool)
-		if !r.InvitationEmailAttribute.HideLabel.IsUnknown() && !r.InvitationEmailAttribute.HideLabel.IsNull() {
-			*hideLabel22 = r.InvitationEmailAttribute.HideLabel.ValueBool()
+		if !r.ComputedAttribute.HideLabel.IsUnknown() && !r.ComputedAttribute.HideLabel.IsNull() {
+			*hideLabel22 = r.ComputedAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel22 = nil
 		}
 		icon22 := new(string)
-		if !r.InvitationEmailAttribute.Icon.IsUnknown() && !r.InvitationEmailAttribute.Icon.IsNull() {
-			*icon22 = r.InvitationEmailAttribute.Icon.ValueString()
+		if !r.ComputedAttribute.Icon.IsUnknown() && !r.ComputedAttribute.Icon.IsNull() {
+			*icon22 = r.ComputedAttribute.Icon.ValueString()
 		} else {
 			icon22 = nil
 		}
 		renderCondition22 := new(string)
-		if !r.InvitationEmailAttribute.RenderCondition.IsUnknown() && !r.InvitationEmailAttribute.RenderCondition.IsNull() {
-			*renderCondition22 = r.InvitationEmailAttribute.RenderCondition.ValueString()
+		if !r.ComputedAttribute.RenderCondition.IsUnknown() && !r.ComputedAttribute.RenderCondition.IsNull() {
+			*renderCondition22 = r.ComputedAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition22 = nil
 		}
 		var purpose22 []string = []string{}
-		for _, purposeItem22 := range r.InvitationEmailAttribute.Purpose {
+		for _, purposeItem22 := range r.ComputedAttribute.Purpose {
 			purpose22 = append(purpose22, purposeItem22.ValueString())
 		}
 		var manifest22 []string = []string{}
-		for _, manifestItem22 := range r.InvitationEmailAttribute.Manifest {
+		for _, manifestItem22 := range r.ComputedAttribute.Manifest {
 			manifest22 = append(manifest22, manifestItem22.ValueString())
 		}
-		var constraints22 *shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints
-		if r.InvitationEmailAttribute.Constraints != nil {
-			constraints22 = &shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints{}
+		var constraints22 *shared.ComputedAttributeAttributeWithCompositeIDConstraints
+		if r.ComputedAttribute.Constraints != nil {
+			constraints22 = &shared.ComputedAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag23 := new(string)
-		if !r.InvitationEmailAttribute.FeatureFlag.IsUnknown() && !r.InvitationEmailAttribute.FeatureFlag.IsNull() {
-			*featureFlag23 = r.InvitationEmailAttribute.FeatureFlag.ValueString()
+		if !r.ComputedAttribute.FeatureFlag.IsUnknown() && !r.ComputedAttribute.FeatureFlag.IsNull() {
+			*featureFlag23 = r.ComputedAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag23 = nil
 		}
 		var settingsFlag23 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem23 := range r.InvitationEmailAttribute.SettingsFlag {
+		for _, settingsFlagItem23 := range r.ComputedAttribute.SettingsFlag {
 			name46 := new(string)
 			if !settingsFlagItem23.Name.IsUnknown() && !settingsFlagItem23.Name.IsNull() {
 				*name46 = settingsFlagItem23.Name.ValueString()
@@ -6095,57 +6164,54 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				Enabled: enabled23,
 			})
 		}
-		valueFormatter22 := new(string)
-		if !r.InvitationEmailAttribute.ValueFormatter.IsUnknown() && !r.InvitationEmailAttribute.ValueFormatter.IsNull() {
-			*valueFormatter22 = r.InvitationEmailAttribute.ValueFormatter.ValueString()
-		} else {
-			valueFormatter22 = nil
-		}
+		var valueFormatter22 string
+		valueFormatter22 = r.ComputedAttribute.ValueFormatter.ValueString()
+
 		previewValueFormatter22 := new(string)
-		if !r.InvitationEmailAttribute.PreviewValueFormatter.IsUnknown() && !r.InvitationEmailAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter22 = r.InvitationEmailAttribute.PreviewValueFormatter.ValueString()
+		if !r.ComputedAttribute.PreviewValueFormatter.IsUnknown() && !r.ComputedAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter22 = r.ComputedAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter22 = nil
 		}
 		entityBuilderDisableEdit22 := new(bool)
-		if !r.InvitationEmailAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InvitationEmailAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit22 = r.InvitationEmailAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.ComputedAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.ComputedAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit22 = r.ComputedAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit22 = nil
 		}
 		protected22 := new(bool)
-		if !r.InvitationEmailAttribute.Protected.IsUnknown() && !r.InvitationEmailAttribute.Protected.IsNull() {
-			*protected22 = r.InvitationEmailAttribute.Protected.ValueBool()
+		if !r.ComputedAttribute.Protected.IsUnknown() && !r.ComputedAttribute.Protected.IsNull() {
+			*protected22 = r.ComputedAttribute.Protected.ValueBool()
 		} else {
 			protected22 = nil
 		}
-		var infoHelpers22 *shared.InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers
-		if r.InvitationEmailAttribute.InfoHelpers != nil {
+		var infoHelpers22 *shared.ComputedAttributeAttributeWithCompositeIDInfoHelpers
+		if r.ComputedAttribute.InfoHelpers != nil {
 			hintText22 := new(string)
-			if !r.InvitationEmailAttribute.InfoHelpers.HintText.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText22 = r.InvitationEmailAttribute.InfoHelpers.HintText.ValueString()
+			if !r.ComputedAttribute.InfoHelpers.HintText.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText22 = r.ComputedAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText22 = nil
 			}
 			hintTextKey22 := new(string)
-			if !r.InvitationEmailAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey22 = r.InvitationEmailAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.ComputedAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey22 = r.ComputedAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey22 = nil
 			}
 			hintCustomComponent22 := new(string)
-			if !r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent22 = r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.ComputedAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent22 = r.ComputedAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent22 = nil
 			}
 			hintTooltipPlacement22 := new(string)
-			if !r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement22 = r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement22 = r.ComputedAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement22 = nil
 			}
-			infoHelpers22 = &shared.InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers22 = &shared.ComputedAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText22,
 				HintTextKey:          hintTextKey22,
 				HintCustomComponent:  hintCustomComponent22,
@@ -6153,30 +6219,48 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable22 := new(bool)
-		if !r.InvitationEmailAttribute.Repeatable.IsUnknown() && !r.InvitationEmailAttribute.Repeatable.IsNull() {
-			*repeatable22 = r.InvitationEmailAttribute.Repeatable.ValueBool()
+		if !r.ComputedAttribute.Repeatable.IsUnknown() && !r.ComputedAttribute.Repeatable.IsNull() {
+			*repeatable22 = r.ComputedAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable22 = nil
 		}
 		hasPrimary22 := new(bool)
-		if !r.InvitationEmailAttribute.HasPrimary.IsUnknown() && !r.InvitationEmailAttribute.HasPrimary.IsNull() {
-			*hasPrimary22 = r.InvitationEmailAttribute.HasPrimary.ValueBool()
+		if !r.ComputedAttribute.HasPrimary.IsUnknown() && !r.ComputedAttribute.HasPrimary.IsNull() {
+			*hasPrimary22 = r.ComputedAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary22 = nil
 		}
-		typeVar22 := new(shared.InvitationEmailAttributeAttributeWithCompositeIDType)
-		if !r.InvitationEmailAttribute.Type.IsUnknown() && !r.InvitationEmailAttribute.Type.IsNull() {
-			*typeVar22 = shared.InvitationEmailAttributeAttributeWithCompositeIDType(r.InvitationEmailAttribute.Type.ValueString())
+		typeVar22 := new(shared.ComputedAttributeAttributeWithCompositeIDType)
+		if !r.ComputedAttribute.Type.IsUnknown() && !r.ComputedAttribute.Type.IsNull() {
+			*typeVar22 = shared.ComputedAttributeAttributeWithCompositeIDType(r.ComputedAttribute.Type.ValueString())
 		} else {
 			typeVar22 = nil
 		}
+		computed := new(bool)
+		if !r.ComputedAttribute.Computed.IsUnknown() && !r.ComputedAttribute.Computed.IsNull() {
+			*computed = r.ComputedAttribute.Computed.ValueBool()
+		} else {
+			computed = nil
+		}
+		amountField := new(string)
+		if !r.ComputedAttribute.AmountField.IsUnknown() && !r.ComputedAttribute.AmountField.IsNull() {
+			*amountField = r.ComputedAttribute.AmountField.ValueString()
+		} else {
+			amountField = nil
+		}
+		currencyField := new(string)
+		if !r.ComputedAttribute.CurrencyField.IsUnknown() && !r.ComputedAttribute.CurrencyField.IsNull() {
+			*currencyField = r.ComputedAttribute.CurrencyField.ValueString()
+		} else {
+			currencyField = nil
+		}
 		schema22 := new(string)
-		if !r.InvitationEmailAttribute.Schema.IsUnknown() && !r.InvitationEmailAttribute.Schema.IsNull() {
-			*schema22 = r.InvitationEmailAttribute.Schema.ValueString()
+		if !r.ComputedAttribute.Schema.IsUnknown() && !r.ComputedAttribute.Schema.IsNull() {
+			*schema22 = r.ComputedAttribute.Schema.ValueString()
 		} else {
 			schema22 = nil
 		}
-		attributeWithCompositeIDInvitationEmailAttributeInput = &shared.AttributeWithCompositeIDInvitationEmailAttributeInput{
+		attributeWithCompositeIDComputedAttributeInput = &shared.AttributeWithCompositeIDComputedAttributeInput{
 			ID:                       id22,
 			Name:                     name45,
 			Label:                    label23,
@@ -6207,130 +6291,133 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Repeatable:               repeatable22,
 			HasPrimary:               hasPrimary22,
 			Type:                     typeVar22,
+			Computed:                 computed,
+			AmountField:              amountField,
+			CurrencyField:            currencyField,
 			Schema:                   schema22,
 		}
 	}
-	if attributeWithCompositeIDInvitationEmailAttributeInput != nil {
+	if attributeWithCompositeIDComputedAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInvitationEmailAttributeInput: attributeWithCompositeIDInvitationEmailAttributeInput,
+			AttributeWithCompositeIDComputedAttributeInput: attributeWithCompositeIDComputedAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDAutomationAttributeInput *shared.AttributeWithCompositeIDAutomationAttributeInput
-	if r.AutomationAttribute != nil {
+	var attributeWithCompositeIDPartnerStatusAttributeInput *shared.AttributeWithCompositeIDPartnerStatusAttributeInput
+	if r.PartnerStatusAttribute != nil {
 		id23 := new(string)
-		if !r.AutomationAttribute.ID.IsUnknown() && !r.AutomationAttribute.ID.IsNull() {
-			*id23 = r.AutomationAttribute.ID.ValueString()
+		if !r.PartnerStatusAttribute.ID.IsUnknown() && !r.PartnerStatusAttribute.ID.IsNull() {
+			*id23 = r.PartnerStatusAttribute.ID.ValueString()
 		} else {
 			id23 = nil
 		}
 		var name47 string
-		name47 = r.AutomationAttribute.Name.ValueString()
+		name47 = r.PartnerStatusAttribute.Name.ValueString()
 
 		var label24 string
-		label24 = r.AutomationAttribute.Label.ValueString()
+		label24 = r.PartnerStatusAttribute.Label.ValueString()
 
 		placeholder23 := new(string)
-		if !r.AutomationAttribute.Placeholder.IsUnknown() && !r.AutomationAttribute.Placeholder.IsNull() {
-			*placeholder23 = r.AutomationAttribute.Placeholder.ValueString()
+		if !r.PartnerStatusAttribute.Placeholder.IsUnknown() && !r.PartnerStatusAttribute.Placeholder.IsNull() {
+			*placeholder23 = r.PartnerStatusAttribute.Placeholder.ValueString()
 		} else {
 			placeholder23 = nil
 		}
 		hidden23 := new(bool)
-		if !r.AutomationAttribute.Hidden.IsUnknown() && !r.AutomationAttribute.Hidden.IsNull() {
-			*hidden23 = r.AutomationAttribute.Hidden.ValueBool()
+		if !r.PartnerStatusAttribute.Hidden.IsUnknown() && !r.PartnerStatusAttribute.Hidden.IsNull() {
+			*hidden23 = r.PartnerStatusAttribute.Hidden.ValueBool()
 		} else {
 			hidden23 = nil
 		}
 		showInTable23 := new(bool)
-		if !r.AutomationAttribute.ShowInTable.IsUnknown() && !r.AutomationAttribute.ShowInTable.IsNull() {
-			*showInTable23 = r.AutomationAttribute.ShowInTable.ValueBool()
+		if !r.PartnerStatusAttribute.ShowInTable.IsUnknown() && !r.PartnerStatusAttribute.ShowInTable.IsNull() {
+			*showInTable23 = r.PartnerStatusAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable23 = nil
 		}
 		sortable23 := new(bool)
-		if !r.AutomationAttribute.Sortable.IsUnknown() && !r.AutomationAttribute.Sortable.IsNull() {
-			*sortable23 = r.AutomationAttribute.Sortable.ValueBool()
+		if !r.PartnerStatusAttribute.Sortable.IsUnknown() && !r.PartnerStatusAttribute.Sortable.IsNull() {
+			*sortable23 = r.PartnerStatusAttribute.Sortable.ValueBool()
 		} else {
 			sortable23 = nil
 		}
 		required23 := new(bool)
-		if !r.AutomationAttribute.Required.IsUnknown() && !r.AutomationAttribute.Required.IsNull() {
-			*required23 = r.AutomationAttribute.Required.ValueBool()
+		if !r.PartnerStatusAttribute.Required.IsUnknown() && !r.PartnerStatusAttribute.Required.IsNull() {
+			*required23 = r.PartnerStatusAttribute.Required.ValueBool()
 		} else {
 			required23 = nil
 		}
 		readonly23 := new(bool)
-		if !r.AutomationAttribute.Readonly.IsUnknown() && !r.AutomationAttribute.Readonly.IsNull() {
-			*readonly23 = r.AutomationAttribute.Readonly.ValueBool()
+		if !r.PartnerStatusAttribute.Readonly.IsUnknown() && !r.PartnerStatusAttribute.Readonly.IsNull() {
+			*readonly23 = r.PartnerStatusAttribute.Readonly.ValueBool()
 		} else {
 			readonly23 = nil
 		}
 		deprecated23 := new(bool)
-		if !r.AutomationAttribute.Deprecated.IsUnknown() && !r.AutomationAttribute.Deprecated.IsNull() {
-			*deprecated23 = r.AutomationAttribute.Deprecated.ValueBool()
+		if !r.PartnerStatusAttribute.Deprecated.IsUnknown() && !r.PartnerStatusAttribute.Deprecated.IsNull() {
+			*deprecated23 = r.PartnerStatusAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated23 = nil
 		}
 		var defaultValue23 interface{}
-		if !r.AutomationAttribute.DefaultValue.IsUnknown() && !r.AutomationAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.AutomationAttribute.DefaultValue.ValueString()), &defaultValue23)
+		if !r.PartnerStatusAttribute.DefaultValue.IsUnknown() && !r.PartnerStatusAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PartnerStatusAttribute.DefaultValue.ValueString()), &defaultValue23)
 		}
 		group23 := new(string)
-		if !r.AutomationAttribute.Group.IsUnknown() && !r.AutomationAttribute.Group.IsNull() {
-			*group23 = r.AutomationAttribute.Group.ValueString()
+		if !r.PartnerStatusAttribute.Group.IsUnknown() && !r.PartnerStatusAttribute.Group.IsNull() {
+			*group23 = r.PartnerStatusAttribute.Group.ValueString()
 		} else {
 			group23 = nil
 		}
 		order23 := new(int64)
-		if !r.AutomationAttribute.Order.IsUnknown() && !r.AutomationAttribute.Order.IsNull() {
-			*order23 = r.AutomationAttribute.Order.ValueInt64()
+		if !r.PartnerStatusAttribute.Order.IsUnknown() && !r.PartnerStatusAttribute.Order.IsNull() {
+			*order23 = r.PartnerStatusAttribute.Order.ValueInt64()
 		} else {
 			order23 = nil
 		}
 		layout23 := new(string)
-		if !r.AutomationAttribute.Layout.IsUnknown() && !r.AutomationAttribute.Layout.IsNull() {
-			*layout23 = r.AutomationAttribute.Layout.ValueString()
+		if !r.PartnerStatusAttribute.Layout.IsUnknown() && !r.PartnerStatusAttribute.Layout.IsNull() {
+			*layout23 = r.PartnerStatusAttribute.Layout.ValueString()
 		} else {
 			layout23 = nil
 		}
 		hideLabel23 := new(bool)
-		if !r.AutomationAttribute.HideLabel.IsUnknown() && !r.AutomationAttribute.HideLabel.IsNull() {
-			*hideLabel23 = r.AutomationAttribute.HideLabel.ValueBool()
+		if !r.PartnerStatusAttribute.HideLabel.IsUnknown() && !r.PartnerStatusAttribute.HideLabel.IsNull() {
+			*hideLabel23 = r.PartnerStatusAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel23 = nil
 		}
 		icon23 := new(string)
-		if !r.AutomationAttribute.Icon.IsUnknown() && !r.AutomationAttribute.Icon.IsNull() {
-			*icon23 = r.AutomationAttribute.Icon.ValueString()
+		if !r.PartnerStatusAttribute.Icon.IsUnknown() && !r.PartnerStatusAttribute.Icon.IsNull() {
+			*icon23 = r.PartnerStatusAttribute.Icon.ValueString()
 		} else {
 			icon23 = nil
 		}
 		renderCondition23 := new(string)
-		if !r.AutomationAttribute.RenderCondition.IsUnknown() && !r.AutomationAttribute.RenderCondition.IsNull() {
-			*renderCondition23 = r.AutomationAttribute.RenderCondition.ValueString()
+		if !r.PartnerStatusAttribute.RenderCondition.IsUnknown() && !r.PartnerStatusAttribute.RenderCondition.IsNull() {
+			*renderCondition23 = r.PartnerStatusAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition23 = nil
 		}
 		var purpose23 []string = []string{}
-		for _, purposeItem23 := range r.AutomationAttribute.Purpose {
+		for _, purposeItem23 := range r.PartnerStatusAttribute.Purpose {
 			purpose23 = append(purpose23, purposeItem23.ValueString())
 		}
 		var manifest23 []string = []string{}
-		for _, manifestItem23 := range r.AutomationAttribute.Manifest {
+		for _, manifestItem23 := range r.PartnerStatusAttribute.Manifest {
 			manifest23 = append(manifest23, manifestItem23.ValueString())
 		}
-		var constraints23 *shared.AutomationAttributeAttributeWithCompositeIDConstraints
-		if r.AutomationAttribute.Constraints != nil {
-			constraints23 = &shared.AutomationAttributeAttributeWithCompositeIDConstraints{}
+		var constraints23 *shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints
+		if r.PartnerStatusAttribute.Constraints != nil {
+			constraints23 = &shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag24 := new(string)
-		if !r.AutomationAttribute.FeatureFlag.IsUnknown() && !r.AutomationAttribute.FeatureFlag.IsNull() {
-			*featureFlag24 = r.AutomationAttribute.FeatureFlag.ValueString()
+		if !r.PartnerStatusAttribute.FeatureFlag.IsUnknown() && !r.PartnerStatusAttribute.FeatureFlag.IsNull() {
+			*featureFlag24 = r.PartnerStatusAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag24 = nil
 		}
 		var settingsFlag24 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem24 := range r.AutomationAttribute.SettingsFlag {
+		for _, settingsFlagItem24 := range r.PartnerStatusAttribute.SettingsFlag {
 			name48 := new(string)
 			if !settingsFlagItem24.Name.IsUnknown() && !settingsFlagItem24.Name.IsNull() {
 				*name48 = settingsFlagItem24.Name.ValueString()
@@ -6349,56 +6436,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter23 := new(string)
-		if !r.AutomationAttribute.ValueFormatter.IsUnknown() && !r.AutomationAttribute.ValueFormatter.IsNull() {
-			*valueFormatter23 = r.AutomationAttribute.ValueFormatter.ValueString()
+		if !r.PartnerStatusAttribute.ValueFormatter.IsUnknown() && !r.PartnerStatusAttribute.ValueFormatter.IsNull() {
+			*valueFormatter23 = r.PartnerStatusAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter23 = nil
 		}
 		previewValueFormatter23 := new(string)
-		if !r.AutomationAttribute.PreviewValueFormatter.IsUnknown() && !r.AutomationAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter23 = r.AutomationAttribute.PreviewValueFormatter.ValueString()
+		if !r.PartnerStatusAttribute.PreviewValueFormatter.IsUnknown() && !r.PartnerStatusAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter23 = r.PartnerStatusAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter23 = nil
 		}
 		entityBuilderDisableEdit23 := new(bool)
-		if !r.AutomationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AutomationAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit23 = r.AutomationAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PartnerStatusAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PartnerStatusAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit23 = r.PartnerStatusAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit23 = nil
 		}
 		protected23 := new(bool)
-		if !r.AutomationAttribute.Protected.IsUnknown() && !r.AutomationAttribute.Protected.IsNull() {
-			*protected23 = r.AutomationAttribute.Protected.ValueBool()
+		if !r.PartnerStatusAttribute.Protected.IsUnknown() && !r.PartnerStatusAttribute.Protected.IsNull() {
+			*protected23 = r.PartnerStatusAttribute.Protected.ValueBool()
 		} else {
 			protected23 = nil
 		}
-		var infoHelpers23 *shared.AutomationAttributeAttributeWithCompositeIDInfoHelpers
-		if r.AutomationAttribute.InfoHelpers != nil {
+		var infoHelpers23 *shared.PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PartnerStatusAttribute.InfoHelpers != nil {
 			hintText23 := new(string)
-			if !r.AutomationAttribute.InfoHelpers.HintText.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText23 = r.AutomationAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PartnerStatusAttribute.InfoHelpers.HintText.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText23 = r.PartnerStatusAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText23 = nil
 			}
 			hintTextKey23 := new(string)
-			if !r.AutomationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey23 = r.AutomationAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PartnerStatusAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey23 = r.PartnerStatusAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey23 = nil
 			}
 			hintCustomComponent23 := new(string)
-			if !r.AutomationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent23 = r.AutomationAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent23 = r.PartnerStatusAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent23 = nil
 			}
 			hintTooltipPlacement23 := new(string)
-			if !r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement23 = r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement23 = r.PartnerStatusAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement23 = nil
 			}
-			infoHelpers23 = &shared.AutomationAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers23 = &shared.PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText23,
 				HintTextKey:          hintTextKey23,
 				HintCustomComponent:  hintCustomComponent23,
@@ -6406,30 +6493,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable23 := new(bool)
-		if !r.AutomationAttribute.Repeatable.IsUnknown() && !r.AutomationAttribute.Repeatable.IsNull() {
-			*repeatable23 = r.AutomationAttribute.Repeatable.ValueBool()
+		if !r.PartnerStatusAttribute.Repeatable.IsUnknown() && !r.PartnerStatusAttribute.Repeatable.IsNull() {
+			*repeatable23 = r.PartnerStatusAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable23 = nil
 		}
 		hasPrimary23 := new(bool)
-		if !r.AutomationAttribute.HasPrimary.IsUnknown() && !r.AutomationAttribute.HasPrimary.IsNull() {
-			*hasPrimary23 = r.AutomationAttribute.HasPrimary.ValueBool()
+		if !r.PartnerStatusAttribute.HasPrimary.IsUnknown() && !r.PartnerStatusAttribute.HasPrimary.IsNull() {
+			*hasPrimary23 = r.PartnerStatusAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary23 = nil
 		}
-		typeVar23 := new(shared.AutomationAttributeAttributeWithCompositeIDType)
-		if !r.AutomationAttribute.Type.IsUnknown() && !r.AutomationAttribute.Type.IsNull() {
-			*typeVar23 = shared.AutomationAttributeAttributeWithCompositeIDType(r.AutomationAttribute.Type.ValueString())
+		typeVar23 := new(shared.PartnerStatusAttributeAttributeWithCompositeIDType)
+		if !r.PartnerStatusAttribute.Type.IsUnknown() && !r.PartnerStatusAttribute.Type.IsNull() {
+			*typeVar23 = shared.PartnerStatusAttributeAttributeWithCompositeIDType(r.PartnerStatusAttribute.Type.ValueString())
 		} else {
 			typeVar23 = nil
 		}
 		schema23 := new(string)
-		if !r.AutomationAttribute.Schema.IsUnknown() && !r.AutomationAttribute.Schema.IsNull() {
-			*schema23 = r.AutomationAttribute.Schema.ValueString()
+		if !r.PartnerStatusAttribute.Schema.IsUnknown() && !r.PartnerStatusAttribute.Schema.IsNull() {
+			*schema23 = r.PartnerStatusAttribute.Schema.ValueString()
 		} else {
 			schema23 = nil
 		}
-		attributeWithCompositeIDAutomationAttributeInput = &shared.AttributeWithCompositeIDAutomationAttributeInput{
+		attributeWithCompositeIDPartnerStatusAttributeInput = &shared.AttributeWithCompositeIDPartnerStatusAttributeInput{
 			ID:                       id23,
 			Name:                     name47,
 			Label:                    label24,
@@ -6463,127 +6550,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema23,
 		}
 	}
-	if attributeWithCompositeIDAutomationAttributeInput != nil {
+	if attributeWithCompositeIDPartnerStatusAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAutomationAttributeInput: attributeWithCompositeIDAutomationAttributeInput,
+			AttributeWithCompositeIDPartnerStatusAttributeInput: attributeWithCompositeIDPartnerStatusAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDInternalUserAttributeInput *shared.AttributeWithCompositeIDInternalUserAttributeInput
-	if r.InternalUserAttribute != nil {
+	var attributeWithCompositeIDInvitationEmailAttributeInput *shared.AttributeWithCompositeIDInvitationEmailAttributeInput
+	if r.InvitationEmailAttribute != nil {
 		id24 := new(string)
-		if !r.InternalUserAttribute.ID.IsUnknown() && !r.InternalUserAttribute.ID.IsNull() {
-			*id24 = r.InternalUserAttribute.ID.ValueString()
+		if !r.InvitationEmailAttribute.ID.IsUnknown() && !r.InvitationEmailAttribute.ID.IsNull() {
+			*id24 = r.InvitationEmailAttribute.ID.ValueString()
 		} else {
 			id24 = nil
 		}
 		var name49 string
-		name49 = r.InternalUserAttribute.Name.ValueString()
+		name49 = r.InvitationEmailAttribute.Name.ValueString()
 
 		var label25 string
-		label25 = r.InternalUserAttribute.Label.ValueString()
+		label25 = r.InvitationEmailAttribute.Label.ValueString()
 
 		placeholder24 := new(string)
-		if !r.InternalUserAttribute.Placeholder.IsUnknown() && !r.InternalUserAttribute.Placeholder.IsNull() {
-			*placeholder24 = r.InternalUserAttribute.Placeholder.ValueString()
+		if !r.InvitationEmailAttribute.Placeholder.IsUnknown() && !r.InvitationEmailAttribute.Placeholder.IsNull() {
+			*placeholder24 = r.InvitationEmailAttribute.Placeholder.ValueString()
 		} else {
 			placeholder24 = nil
 		}
 		hidden24 := new(bool)
-		if !r.InternalUserAttribute.Hidden.IsUnknown() && !r.InternalUserAttribute.Hidden.IsNull() {
-			*hidden24 = r.InternalUserAttribute.Hidden.ValueBool()
+		if !r.InvitationEmailAttribute.Hidden.IsUnknown() && !r.InvitationEmailAttribute.Hidden.IsNull() {
+			*hidden24 = r.InvitationEmailAttribute.Hidden.ValueBool()
 		} else {
 			hidden24 = nil
 		}
 		showInTable24 := new(bool)
-		if !r.InternalUserAttribute.ShowInTable.IsUnknown() && !r.InternalUserAttribute.ShowInTable.IsNull() {
-			*showInTable24 = r.InternalUserAttribute.ShowInTable.ValueBool()
+		if !r.InvitationEmailAttribute.ShowInTable.IsUnknown() && !r.InvitationEmailAttribute.ShowInTable.IsNull() {
+			*showInTable24 = r.InvitationEmailAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable24 = nil
 		}
 		sortable24 := new(bool)
-		if !r.InternalUserAttribute.Sortable.IsUnknown() && !r.InternalUserAttribute.Sortable.IsNull() {
-			*sortable24 = r.InternalUserAttribute.Sortable.ValueBool()
+		if !r.InvitationEmailAttribute.Sortable.IsUnknown() && !r.InvitationEmailAttribute.Sortable.IsNull() {
+			*sortable24 = r.InvitationEmailAttribute.Sortable.ValueBool()
 		} else {
 			sortable24 = nil
 		}
 		required24 := new(bool)
-		if !r.InternalUserAttribute.Required.IsUnknown() && !r.InternalUserAttribute.Required.IsNull() {
-			*required24 = r.InternalUserAttribute.Required.ValueBool()
+		if !r.InvitationEmailAttribute.Required.IsUnknown() && !r.InvitationEmailAttribute.Required.IsNull() {
+			*required24 = r.InvitationEmailAttribute.Required.ValueBool()
 		} else {
 			required24 = nil
 		}
 		readonly24 := new(bool)
-		if !r.InternalUserAttribute.Readonly.IsUnknown() && !r.InternalUserAttribute.Readonly.IsNull() {
-			*readonly24 = r.InternalUserAttribute.Readonly.ValueBool()
+		if !r.InvitationEmailAttribute.Readonly.IsUnknown() && !r.InvitationEmailAttribute.Readonly.IsNull() {
+			*readonly24 = r.InvitationEmailAttribute.Readonly.ValueBool()
 		} else {
 			readonly24 = nil
 		}
 		deprecated24 := new(bool)
-		if !r.InternalUserAttribute.Deprecated.IsUnknown() && !r.InternalUserAttribute.Deprecated.IsNull() {
-			*deprecated24 = r.InternalUserAttribute.Deprecated.ValueBool()
+		if !r.InvitationEmailAttribute.Deprecated.IsUnknown() && !r.InvitationEmailAttribute.Deprecated.IsNull() {
+			*deprecated24 = r.InvitationEmailAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated24 = nil
 		}
 		var defaultValue24 interface{}
-		if !r.InternalUserAttribute.DefaultValue.IsUnknown() && !r.InternalUserAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.InternalUserAttribute.DefaultValue.ValueString()), &defaultValue24)
+		if !r.InvitationEmailAttribute.DefaultValue.IsUnknown() && !r.InvitationEmailAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.InvitationEmailAttribute.DefaultValue.ValueString()), &defaultValue24)
 		}
 		group24 := new(string)
-		if !r.InternalUserAttribute.Group.IsUnknown() && !r.InternalUserAttribute.Group.IsNull() {
-			*group24 = r.InternalUserAttribute.Group.ValueString()
+		if !r.InvitationEmailAttribute.Group.IsUnknown() && !r.InvitationEmailAttribute.Group.IsNull() {
+			*group24 = r.InvitationEmailAttribute.Group.ValueString()
 		} else {
 			group24 = nil
 		}
 		order24 := new(int64)
-		if !r.InternalUserAttribute.Order.IsUnknown() && !r.InternalUserAttribute.Order.IsNull() {
-			*order24 = r.InternalUserAttribute.Order.ValueInt64()
+		if !r.InvitationEmailAttribute.Order.IsUnknown() && !r.InvitationEmailAttribute.Order.IsNull() {
+			*order24 = r.InvitationEmailAttribute.Order.ValueInt64()
 		} else {
 			order24 = nil
 		}
 		layout24 := new(string)
-		if !r.InternalUserAttribute.Layout.IsUnknown() && !r.InternalUserAttribute.Layout.IsNull() {
-			*layout24 = r.InternalUserAttribute.Layout.ValueString()
+		if !r.InvitationEmailAttribute.Layout.IsUnknown() && !r.InvitationEmailAttribute.Layout.IsNull() {
+			*layout24 = r.InvitationEmailAttribute.Layout.ValueString()
 		} else {
 			layout24 = nil
 		}
 		hideLabel24 := new(bool)
-		if !r.InternalUserAttribute.HideLabel.IsUnknown() && !r.InternalUserAttribute.HideLabel.IsNull() {
-			*hideLabel24 = r.InternalUserAttribute.HideLabel.ValueBool()
+		if !r.InvitationEmailAttribute.HideLabel.IsUnknown() && !r.InvitationEmailAttribute.HideLabel.IsNull() {
+			*hideLabel24 = r.InvitationEmailAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel24 = nil
 		}
 		icon24 := new(string)
-		if !r.InternalUserAttribute.Icon.IsUnknown() && !r.InternalUserAttribute.Icon.IsNull() {
-			*icon24 = r.InternalUserAttribute.Icon.ValueString()
+		if !r.InvitationEmailAttribute.Icon.IsUnknown() && !r.InvitationEmailAttribute.Icon.IsNull() {
+			*icon24 = r.InvitationEmailAttribute.Icon.ValueString()
 		} else {
 			icon24 = nil
 		}
 		renderCondition24 := new(string)
-		if !r.InternalUserAttribute.RenderCondition.IsUnknown() && !r.InternalUserAttribute.RenderCondition.IsNull() {
-			*renderCondition24 = r.InternalUserAttribute.RenderCondition.ValueString()
+		if !r.InvitationEmailAttribute.RenderCondition.IsUnknown() && !r.InvitationEmailAttribute.RenderCondition.IsNull() {
+			*renderCondition24 = r.InvitationEmailAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition24 = nil
 		}
 		var purpose24 []string = []string{}
-		for _, purposeItem24 := range r.InternalUserAttribute.Purpose {
+		for _, purposeItem24 := range r.InvitationEmailAttribute.Purpose {
 			purpose24 = append(purpose24, purposeItem24.ValueString())
 		}
 		var manifest24 []string = []string{}
-		for _, manifestItem24 := range r.InternalUserAttribute.Manifest {
+		for _, manifestItem24 := range r.InvitationEmailAttribute.Manifest {
 			manifest24 = append(manifest24, manifestItem24.ValueString())
 		}
-		var constraints24 *shared.InternalUserAttributeAttributeWithCompositeIDConstraints
-		if r.InternalUserAttribute.Constraints != nil {
-			constraints24 = &shared.InternalUserAttributeAttributeWithCompositeIDConstraints{}
+		var constraints24 *shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints
+		if r.InvitationEmailAttribute.Constraints != nil {
+			constraints24 = &shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag25 := new(string)
-		if !r.InternalUserAttribute.FeatureFlag.IsUnknown() && !r.InternalUserAttribute.FeatureFlag.IsNull() {
-			*featureFlag25 = r.InternalUserAttribute.FeatureFlag.ValueString()
+		if !r.InvitationEmailAttribute.FeatureFlag.IsUnknown() && !r.InvitationEmailAttribute.FeatureFlag.IsNull() {
+			*featureFlag25 = r.InvitationEmailAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag25 = nil
 		}
 		var settingsFlag25 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem25 := range r.InternalUserAttribute.SettingsFlag {
+		for _, settingsFlagItem25 := range r.InvitationEmailAttribute.SettingsFlag {
 			name50 := new(string)
 			if !settingsFlagItem25.Name.IsUnknown() && !settingsFlagItem25.Name.IsNull() {
 				*name50 = settingsFlagItem25.Name.ValueString()
@@ -6602,56 +6689,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter24 := new(string)
-		if !r.InternalUserAttribute.ValueFormatter.IsUnknown() && !r.InternalUserAttribute.ValueFormatter.IsNull() {
-			*valueFormatter24 = r.InternalUserAttribute.ValueFormatter.ValueString()
+		if !r.InvitationEmailAttribute.ValueFormatter.IsUnknown() && !r.InvitationEmailAttribute.ValueFormatter.IsNull() {
+			*valueFormatter24 = r.InvitationEmailAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter24 = nil
 		}
 		previewValueFormatter24 := new(string)
-		if !r.InternalUserAttribute.PreviewValueFormatter.IsUnknown() && !r.InternalUserAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter24 = r.InternalUserAttribute.PreviewValueFormatter.ValueString()
+		if !r.InvitationEmailAttribute.PreviewValueFormatter.IsUnknown() && !r.InvitationEmailAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter24 = r.InvitationEmailAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter24 = nil
 		}
 		entityBuilderDisableEdit24 := new(bool)
-		if !r.InternalUserAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InternalUserAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit24 = r.InternalUserAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.InvitationEmailAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InvitationEmailAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit24 = r.InvitationEmailAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit24 = nil
 		}
 		protected24 := new(bool)
-		if !r.InternalUserAttribute.Protected.IsUnknown() && !r.InternalUserAttribute.Protected.IsNull() {
-			*protected24 = r.InternalUserAttribute.Protected.ValueBool()
+		if !r.InvitationEmailAttribute.Protected.IsUnknown() && !r.InvitationEmailAttribute.Protected.IsNull() {
+			*protected24 = r.InvitationEmailAttribute.Protected.ValueBool()
 		} else {
 			protected24 = nil
 		}
-		var infoHelpers24 *shared.InternalUserAttributeAttributeWithCompositeIDInfoHelpers
-		if r.InternalUserAttribute.InfoHelpers != nil {
+		var infoHelpers24 *shared.InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers
+		if r.InvitationEmailAttribute.InfoHelpers != nil {
 			hintText24 := new(string)
-			if !r.InternalUserAttribute.InfoHelpers.HintText.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText24 = r.InternalUserAttribute.InfoHelpers.HintText.ValueString()
+			if !r.InvitationEmailAttribute.InfoHelpers.HintText.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText24 = r.InvitationEmailAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText24 = nil
 			}
 			hintTextKey24 := new(string)
-			if !r.InternalUserAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey24 = r.InternalUserAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.InvitationEmailAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey24 = r.InvitationEmailAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey24 = nil
 			}
 			hintCustomComponent24 := new(string)
-			if !r.InternalUserAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent24 = r.InternalUserAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent24 = r.InvitationEmailAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent24 = nil
 			}
 			hintTooltipPlacement24 := new(string)
-			if !r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement24 = r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement24 = r.InvitationEmailAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement24 = nil
 			}
-			infoHelpers24 = &shared.InternalUserAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers24 = &shared.InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText24,
 				HintTextKey:          hintTextKey24,
 				HintCustomComponent:  hintCustomComponent24,
@@ -6659,30 +6746,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable24 := new(bool)
-		if !r.InternalUserAttribute.Repeatable.IsUnknown() && !r.InternalUserAttribute.Repeatable.IsNull() {
-			*repeatable24 = r.InternalUserAttribute.Repeatable.ValueBool()
+		if !r.InvitationEmailAttribute.Repeatable.IsUnknown() && !r.InvitationEmailAttribute.Repeatable.IsNull() {
+			*repeatable24 = r.InvitationEmailAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable24 = nil
 		}
 		hasPrimary24 := new(bool)
-		if !r.InternalUserAttribute.HasPrimary.IsUnknown() && !r.InternalUserAttribute.HasPrimary.IsNull() {
-			*hasPrimary24 = r.InternalUserAttribute.HasPrimary.ValueBool()
+		if !r.InvitationEmailAttribute.HasPrimary.IsUnknown() && !r.InvitationEmailAttribute.HasPrimary.IsNull() {
+			*hasPrimary24 = r.InvitationEmailAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary24 = nil
 		}
-		typeVar24 := new(shared.InternalUserAttributeAttributeWithCompositeIDType)
-		if !r.InternalUserAttribute.Type.IsUnknown() && !r.InternalUserAttribute.Type.IsNull() {
-			*typeVar24 = shared.InternalUserAttributeAttributeWithCompositeIDType(r.InternalUserAttribute.Type.ValueString())
+		typeVar24 := new(shared.InvitationEmailAttributeAttributeWithCompositeIDType)
+		if !r.InvitationEmailAttribute.Type.IsUnknown() && !r.InvitationEmailAttribute.Type.IsNull() {
+			*typeVar24 = shared.InvitationEmailAttributeAttributeWithCompositeIDType(r.InvitationEmailAttribute.Type.ValueString())
 		} else {
 			typeVar24 = nil
 		}
 		schema24 := new(string)
-		if !r.InternalUserAttribute.Schema.IsUnknown() && !r.InternalUserAttribute.Schema.IsNull() {
-			*schema24 = r.InternalUserAttribute.Schema.ValueString()
+		if !r.InvitationEmailAttribute.Schema.IsUnknown() && !r.InvitationEmailAttribute.Schema.IsNull() {
+			*schema24 = r.InvitationEmailAttribute.Schema.ValueString()
 		} else {
 			schema24 = nil
 		}
-		attributeWithCompositeIDInternalUserAttributeInput = &shared.AttributeWithCompositeIDInternalUserAttributeInput{
+		attributeWithCompositeIDInvitationEmailAttributeInput = &shared.AttributeWithCompositeIDInvitationEmailAttributeInput{
 			ID:                       id24,
 			Name:                     name49,
 			Label:                    label25,
@@ -6716,127 +6803,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema24,
 		}
 	}
-	if attributeWithCompositeIDInternalUserAttributeInput != nil {
+	if attributeWithCompositeIDInvitationEmailAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInternalUserAttributeInput: attributeWithCompositeIDInternalUserAttributeInput,
+			AttributeWithCompositeIDInvitationEmailAttributeInput: attributeWithCompositeIDInvitationEmailAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPurposeAttributeInput *shared.AttributeWithCompositeIDPurposeAttributeInput
-	if r.PurposeAttribute != nil {
+	var attributeWithCompositeIDAutomationAttributeInput *shared.AttributeWithCompositeIDAutomationAttributeInput
+	if r.AutomationAttribute != nil {
 		id25 := new(string)
-		if !r.PurposeAttribute.ID.IsUnknown() && !r.PurposeAttribute.ID.IsNull() {
-			*id25 = r.PurposeAttribute.ID.ValueString()
+		if !r.AutomationAttribute.ID.IsUnknown() && !r.AutomationAttribute.ID.IsNull() {
+			*id25 = r.AutomationAttribute.ID.ValueString()
 		} else {
 			id25 = nil
 		}
 		var name51 string
-		name51 = r.PurposeAttribute.Name.ValueString()
+		name51 = r.AutomationAttribute.Name.ValueString()
 
 		var label26 string
-		label26 = r.PurposeAttribute.Label.ValueString()
+		label26 = r.AutomationAttribute.Label.ValueString()
 
 		placeholder25 := new(string)
-		if !r.PurposeAttribute.Placeholder.IsUnknown() && !r.PurposeAttribute.Placeholder.IsNull() {
-			*placeholder25 = r.PurposeAttribute.Placeholder.ValueString()
+		if !r.AutomationAttribute.Placeholder.IsUnknown() && !r.AutomationAttribute.Placeholder.IsNull() {
+			*placeholder25 = r.AutomationAttribute.Placeholder.ValueString()
 		} else {
 			placeholder25 = nil
 		}
 		hidden25 := new(bool)
-		if !r.PurposeAttribute.Hidden.IsUnknown() && !r.PurposeAttribute.Hidden.IsNull() {
-			*hidden25 = r.PurposeAttribute.Hidden.ValueBool()
+		if !r.AutomationAttribute.Hidden.IsUnknown() && !r.AutomationAttribute.Hidden.IsNull() {
+			*hidden25 = r.AutomationAttribute.Hidden.ValueBool()
 		} else {
 			hidden25 = nil
 		}
 		showInTable25 := new(bool)
-		if !r.PurposeAttribute.ShowInTable.IsUnknown() && !r.PurposeAttribute.ShowInTable.IsNull() {
-			*showInTable25 = r.PurposeAttribute.ShowInTable.ValueBool()
+		if !r.AutomationAttribute.ShowInTable.IsUnknown() && !r.AutomationAttribute.ShowInTable.IsNull() {
+			*showInTable25 = r.AutomationAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable25 = nil
 		}
 		sortable25 := new(bool)
-		if !r.PurposeAttribute.Sortable.IsUnknown() && !r.PurposeAttribute.Sortable.IsNull() {
-			*sortable25 = r.PurposeAttribute.Sortable.ValueBool()
+		if !r.AutomationAttribute.Sortable.IsUnknown() && !r.AutomationAttribute.Sortable.IsNull() {
+			*sortable25 = r.AutomationAttribute.Sortable.ValueBool()
 		} else {
 			sortable25 = nil
 		}
 		required25 := new(bool)
-		if !r.PurposeAttribute.Required.IsUnknown() && !r.PurposeAttribute.Required.IsNull() {
-			*required25 = r.PurposeAttribute.Required.ValueBool()
+		if !r.AutomationAttribute.Required.IsUnknown() && !r.AutomationAttribute.Required.IsNull() {
+			*required25 = r.AutomationAttribute.Required.ValueBool()
 		} else {
 			required25 = nil
 		}
 		readonly25 := new(bool)
-		if !r.PurposeAttribute.Readonly.IsUnknown() && !r.PurposeAttribute.Readonly.IsNull() {
-			*readonly25 = r.PurposeAttribute.Readonly.ValueBool()
+		if !r.AutomationAttribute.Readonly.IsUnknown() && !r.AutomationAttribute.Readonly.IsNull() {
+			*readonly25 = r.AutomationAttribute.Readonly.ValueBool()
 		} else {
 			readonly25 = nil
 		}
 		deprecated25 := new(bool)
-		if !r.PurposeAttribute.Deprecated.IsUnknown() && !r.PurposeAttribute.Deprecated.IsNull() {
-			*deprecated25 = r.PurposeAttribute.Deprecated.ValueBool()
+		if !r.AutomationAttribute.Deprecated.IsUnknown() && !r.AutomationAttribute.Deprecated.IsNull() {
+			*deprecated25 = r.AutomationAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated25 = nil
 		}
 		var defaultValue25 interface{}
-		if !r.PurposeAttribute.DefaultValue.IsUnknown() && !r.PurposeAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PurposeAttribute.DefaultValue.ValueString()), &defaultValue25)
+		if !r.AutomationAttribute.DefaultValue.IsUnknown() && !r.AutomationAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.AutomationAttribute.DefaultValue.ValueString()), &defaultValue25)
 		}
 		group25 := new(string)
-		if !r.PurposeAttribute.Group.IsUnknown() && !r.PurposeAttribute.Group.IsNull() {
-			*group25 = r.PurposeAttribute.Group.ValueString()
+		if !r.AutomationAttribute.Group.IsUnknown() && !r.AutomationAttribute.Group.IsNull() {
+			*group25 = r.AutomationAttribute.Group.ValueString()
 		} else {
 			group25 = nil
 		}
 		order25 := new(int64)
-		if !r.PurposeAttribute.Order.IsUnknown() && !r.PurposeAttribute.Order.IsNull() {
-			*order25 = r.PurposeAttribute.Order.ValueInt64()
+		if !r.AutomationAttribute.Order.IsUnknown() && !r.AutomationAttribute.Order.IsNull() {
+			*order25 = r.AutomationAttribute.Order.ValueInt64()
 		} else {
 			order25 = nil
 		}
 		layout25 := new(string)
-		if !r.PurposeAttribute.Layout.IsUnknown() && !r.PurposeAttribute.Layout.IsNull() {
-			*layout25 = r.PurposeAttribute.Layout.ValueString()
+		if !r.AutomationAttribute.Layout.IsUnknown() && !r.AutomationAttribute.Layout.IsNull() {
+			*layout25 = r.AutomationAttribute.Layout.ValueString()
 		} else {
 			layout25 = nil
 		}
 		hideLabel25 := new(bool)
-		if !r.PurposeAttribute.HideLabel.IsUnknown() && !r.PurposeAttribute.HideLabel.IsNull() {
-			*hideLabel25 = r.PurposeAttribute.HideLabel.ValueBool()
+		if !r.AutomationAttribute.HideLabel.IsUnknown() && !r.AutomationAttribute.HideLabel.IsNull() {
+			*hideLabel25 = r.AutomationAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel25 = nil
 		}
 		icon25 := new(string)
-		if !r.PurposeAttribute.Icon.IsUnknown() && !r.PurposeAttribute.Icon.IsNull() {
-			*icon25 = r.PurposeAttribute.Icon.ValueString()
+		if !r.AutomationAttribute.Icon.IsUnknown() && !r.AutomationAttribute.Icon.IsNull() {
+			*icon25 = r.AutomationAttribute.Icon.ValueString()
 		} else {
 			icon25 = nil
 		}
 		renderCondition25 := new(string)
-		if !r.PurposeAttribute.RenderCondition.IsUnknown() && !r.PurposeAttribute.RenderCondition.IsNull() {
-			*renderCondition25 = r.PurposeAttribute.RenderCondition.ValueString()
+		if !r.AutomationAttribute.RenderCondition.IsUnknown() && !r.AutomationAttribute.RenderCondition.IsNull() {
+			*renderCondition25 = r.AutomationAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition25 = nil
 		}
 		var purpose25 []string = []string{}
-		for _, purposeItem25 := range r.PurposeAttribute.Purpose {
+		for _, purposeItem25 := range r.AutomationAttribute.Purpose {
 			purpose25 = append(purpose25, purposeItem25.ValueString())
 		}
 		var manifest25 []string = []string{}
-		for _, manifestItem25 := range r.PurposeAttribute.Manifest {
+		for _, manifestItem25 := range r.AutomationAttribute.Manifest {
 			manifest25 = append(manifest25, manifestItem25.ValueString())
 		}
-		var constraints25 *shared.PurposeAttributeAttributeWithCompositeIDConstraints
-		if r.PurposeAttribute.Constraints != nil {
-			constraints25 = &shared.PurposeAttributeAttributeWithCompositeIDConstraints{}
+		var constraints25 *shared.AutomationAttributeAttributeWithCompositeIDConstraints
+		if r.AutomationAttribute.Constraints != nil {
+			constraints25 = &shared.AutomationAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag26 := new(string)
-		if !r.PurposeAttribute.FeatureFlag.IsUnknown() && !r.PurposeAttribute.FeatureFlag.IsNull() {
-			*featureFlag26 = r.PurposeAttribute.FeatureFlag.ValueString()
+		if !r.AutomationAttribute.FeatureFlag.IsUnknown() && !r.AutomationAttribute.FeatureFlag.IsNull() {
+			*featureFlag26 = r.AutomationAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag26 = nil
 		}
 		var settingsFlag26 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem26 := range r.PurposeAttribute.SettingsFlag {
+		for _, settingsFlagItem26 := range r.AutomationAttribute.SettingsFlag {
 			name52 := new(string)
 			if !settingsFlagItem26.Name.IsUnknown() && !settingsFlagItem26.Name.IsNull() {
 				*name52 = settingsFlagItem26.Name.ValueString()
@@ -6855,56 +6942,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter25 := new(string)
-		if !r.PurposeAttribute.ValueFormatter.IsUnknown() && !r.PurposeAttribute.ValueFormatter.IsNull() {
-			*valueFormatter25 = r.PurposeAttribute.ValueFormatter.ValueString()
+		if !r.AutomationAttribute.ValueFormatter.IsUnknown() && !r.AutomationAttribute.ValueFormatter.IsNull() {
+			*valueFormatter25 = r.AutomationAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter25 = nil
 		}
 		previewValueFormatter25 := new(string)
-		if !r.PurposeAttribute.PreviewValueFormatter.IsUnknown() && !r.PurposeAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter25 = r.PurposeAttribute.PreviewValueFormatter.ValueString()
+		if !r.AutomationAttribute.PreviewValueFormatter.IsUnknown() && !r.AutomationAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter25 = r.AutomationAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter25 = nil
 		}
 		entityBuilderDisableEdit25 := new(bool)
-		if !r.PurposeAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PurposeAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit25 = r.PurposeAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.AutomationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AutomationAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit25 = r.AutomationAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit25 = nil
 		}
 		protected25 := new(bool)
-		if !r.PurposeAttribute.Protected.IsUnknown() && !r.PurposeAttribute.Protected.IsNull() {
-			*protected25 = r.PurposeAttribute.Protected.ValueBool()
+		if !r.AutomationAttribute.Protected.IsUnknown() && !r.AutomationAttribute.Protected.IsNull() {
+			*protected25 = r.AutomationAttribute.Protected.ValueBool()
 		} else {
 			protected25 = nil
 		}
-		var infoHelpers25 *shared.PurposeAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PurposeAttribute.InfoHelpers != nil {
+		var infoHelpers25 *shared.AutomationAttributeAttributeWithCompositeIDInfoHelpers
+		if r.AutomationAttribute.InfoHelpers != nil {
 			hintText25 := new(string)
-			if !r.PurposeAttribute.InfoHelpers.HintText.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText25 = r.PurposeAttribute.InfoHelpers.HintText.ValueString()
+			if !r.AutomationAttribute.InfoHelpers.HintText.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText25 = r.AutomationAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText25 = nil
 			}
 			hintTextKey25 := new(string)
-			if !r.PurposeAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey25 = r.PurposeAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.AutomationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey25 = r.AutomationAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey25 = nil
 			}
 			hintCustomComponent25 := new(string)
-			if !r.PurposeAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent25 = r.PurposeAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.AutomationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent25 = r.AutomationAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent25 = nil
 			}
 			hintTooltipPlacement25 := new(string)
-			if !r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement25 = r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement25 = r.AutomationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement25 = nil
 			}
-			infoHelpers25 = &shared.PurposeAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers25 = &shared.AutomationAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText25,
 				HintTextKey:          hintTextKey25,
 				HintCustomComponent:  hintCustomComponent25,
@@ -6912,58 +6999,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable25 := new(bool)
-		if !r.PurposeAttribute.Repeatable.IsUnknown() && !r.PurposeAttribute.Repeatable.IsNull() {
-			*repeatable25 = r.PurposeAttribute.Repeatable.ValueBool()
+		if !r.AutomationAttribute.Repeatable.IsUnknown() && !r.AutomationAttribute.Repeatable.IsNull() {
+			*repeatable25 = r.AutomationAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable25 = nil
 		}
 		hasPrimary25 := new(bool)
-		if !r.PurposeAttribute.HasPrimary.IsUnknown() && !r.PurposeAttribute.HasPrimary.IsNull() {
-			*hasPrimary25 = r.PurposeAttribute.HasPrimary.ValueBool()
+		if !r.AutomationAttribute.HasPrimary.IsUnknown() && !r.AutomationAttribute.HasPrimary.IsNull() {
+			*hasPrimary25 = r.AutomationAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary25 = nil
 		}
-		slug := new(string)
-		if !r.PurposeAttribute.Slug.IsUnknown() && !r.PurposeAttribute.Slug.IsNull() {
-			*slug = r.PurposeAttribute.Slug.ValueString()
-		} else {
-			slug = nil
-		}
-		var parents []string = []string{}
-		for _, parentsItem := range r.PurposeAttribute.Parents {
-			parents = append(parents, parentsItem.ValueString())
-		}
-		color := new(string)
-		if !r.PurposeAttribute.Color.IsUnknown() && !r.PurposeAttribute.Color.IsNull() {
-			*color = r.PurposeAttribute.Color.ValueString()
-		} else {
-			color = nil
-		}
-		createdAt := new(time.Time)
-		if !r.PurposeAttribute.CreatedAt.IsUnknown() && !r.PurposeAttribute.CreatedAt.IsNull() {
-			*createdAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.CreatedAt.ValueString())
-		} else {
-			createdAt = nil
-		}
-		updatedAt := new(time.Time)
-		if !r.PurposeAttribute.UpdatedAt.IsUnknown() && !r.PurposeAttribute.UpdatedAt.IsNull() {
-			*updatedAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.UpdatedAt.ValueString())
-		} else {
-			updatedAt = nil
-		}
-		typeVar25 := new(shared.PurposeAttributeAttributeWithCompositeIDType)
-		if !r.PurposeAttribute.Type.IsUnknown() && !r.PurposeAttribute.Type.IsNull() {
-			*typeVar25 = shared.PurposeAttributeAttributeWithCompositeIDType(r.PurposeAttribute.Type.ValueString())
+		typeVar25 := new(shared.AutomationAttributeAttributeWithCompositeIDType)
+		if !r.AutomationAttribute.Type.IsUnknown() && !r.AutomationAttribute.Type.IsNull() {
+			*typeVar25 = shared.AutomationAttributeAttributeWithCompositeIDType(r.AutomationAttribute.Type.ValueString())
 		} else {
 			typeVar25 = nil
 		}
 		schema25 := new(string)
-		if !r.PurposeAttribute.Schema.IsUnknown() && !r.PurposeAttribute.Schema.IsNull() {
-			*schema25 = r.PurposeAttribute.Schema.ValueString()
+		if !r.AutomationAttribute.Schema.IsUnknown() && !r.AutomationAttribute.Schema.IsNull() {
+			*schema25 = r.AutomationAttribute.Schema.ValueString()
 		} else {
 			schema25 = nil
 		}
-		attributeWithCompositeIDPurposeAttributeInput = &shared.AttributeWithCompositeIDPurposeAttributeInput{
+		attributeWithCompositeIDAutomationAttributeInput = &shared.AttributeWithCompositeIDAutomationAttributeInput{
 			ID:                       id25,
 			Name:                     name51,
 			Label:                    label26,
@@ -6993,136 +7052,131 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers25,
 			Repeatable:               repeatable25,
 			HasPrimary:               hasPrimary25,
-			Slug:                     slug,
-			Parents:                  parents,
-			Color:                    color,
-			CreatedAt:                createdAt,
-			UpdatedAt:                updatedAt,
 			Type:                     typeVar25,
 			Schema:                   schema25,
 		}
 	}
-	if attributeWithCompositeIDPurposeAttributeInput != nil {
+	if attributeWithCompositeIDAutomationAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPurposeAttributeInput: attributeWithCompositeIDPurposeAttributeInput,
+			AttributeWithCompositeIDAutomationAttributeInput: attributeWithCompositeIDAutomationAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput *shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput
-	if r.PartnerOrganisationAttribute != nil {
+	var attributeWithCompositeIDInternalUserAttributeInput *shared.AttributeWithCompositeIDInternalUserAttributeInput
+	if r.InternalUserAttribute != nil {
 		id26 := new(string)
-		if !r.PartnerOrganisationAttribute.ID.IsUnknown() && !r.PartnerOrganisationAttribute.ID.IsNull() {
-			*id26 = r.PartnerOrganisationAttribute.ID.ValueString()
+		if !r.InternalUserAttribute.ID.IsUnknown() && !r.InternalUserAttribute.ID.IsNull() {
+			*id26 = r.InternalUserAttribute.ID.ValueString()
 		} else {
 			id26 = nil
 		}
 		var name53 string
-		name53 = r.PartnerOrganisationAttribute.Name.ValueString()
+		name53 = r.InternalUserAttribute.Name.ValueString()
 
 		var label27 string
-		label27 = r.PartnerOrganisationAttribute.Label.ValueString()
+		label27 = r.InternalUserAttribute.Label.ValueString()
 
 		placeholder26 := new(string)
-		if !r.PartnerOrganisationAttribute.Placeholder.IsUnknown() && !r.PartnerOrganisationAttribute.Placeholder.IsNull() {
-			*placeholder26 = r.PartnerOrganisationAttribute.Placeholder.ValueString()
+		if !r.InternalUserAttribute.Placeholder.IsUnknown() && !r.InternalUserAttribute.Placeholder.IsNull() {
+			*placeholder26 = r.InternalUserAttribute.Placeholder.ValueString()
 		} else {
 			placeholder26 = nil
 		}
 		hidden26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Hidden.IsUnknown() && !r.PartnerOrganisationAttribute.Hidden.IsNull() {
-			*hidden26 = r.PartnerOrganisationAttribute.Hidden.ValueBool()
+		if !r.InternalUserAttribute.Hidden.IsUnknown() && !r.InternalUserAttribute.Hidden.IsNull() {
+			*hidden26 = r.InternalUserAttribute.Hidden.ValueBool()
 		} else {
 			hidden26 = nil
 		}
 		showInTable26 := new(bool)
-		if !r.PartnerOrganisationAttribute.ShowInTable.IsUnknown() && !r.PartnerOrganisationAttribute.ShowInTable.IsNull() {
-			*showInTable26 = r.PartnerOrganisationAttribute.ShowInTable.ValueBool()
+		if !r.InternalUserAttribute.ShowInTable.IsUnknown() && !r.InternalUserAttribute.ShowInTable.IsNull() {
+			*showInTable26 = r.InternalUserAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable26 = nil
 		}
 		sortable26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Sortable.IsUnknown() && !r.PartnerOrganisationAttribute.Sortable.IsNull() {
-			*sortable26 = r.PartnerOrganisationAttribute.Sortable.ValueBool()
+		if !r.InternalUserAttribute.Sortable.IsUnknown() && !r.InternalUserAttribute.Sortable.IsNull() {
+			*sortable26 = r.InternalUserAttribute.Sortable.ValueBool()
 		} else {
 			sortable26 = nil
 		}
 		required26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Required.IsUnknown() && !r.PartnerOrganisationAttribute.Required.IsNull() {
-			*required26 = r.PartnerOrganisationAttribute.Required.ValueBool()
+		if !r.InternalUserAttribute.Required.IsUnknown() && !r.InternalUserAttribute.Required.IsNull() {
+			*required26 = r.InternalUserAttribute.Required.ValueBool()
 		} else {
 			required26 = nil
 		}
 		readonly26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Readonly.IsUnknown() && !r.PartnerOrganisationAttribute.Readonly.IsNull() {
-			*readonly26 = r.PartnerOrganisationAttribute.Readonly.ValueBool()
+		if !r.InternalUserAttribute.Readonly.IsUnknown() && !r.InternalUserAttribute.Readonly.IsNull() {
+			*readonly26 = r.InternalUserAttribute.Readonly.ValueBool()
 		} else {
 			readonly26 = nil
 		}
 		deprecated26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Deprecated.IsUnknown() && !r.PartnerOrganisationAttribute.Deprecated.IsNull() {
-			*deprecated26 = r.PartnerOrganisationAttribute.Deprecated.ValueBool()
+		if !r.InternalUserAttribute.Deprecated.IsUnknown() && !r.InternalUserAttribute.Deprecated.IsNull() {
+			*deprecated26 = r.InternalUserAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated26 = nil
 		}
 		var defaultValue26 interface{}
-		if !r.PartnerOrganisationAttribute.DefaultValue.IsUnknown() && !r.PartnerOrganisationAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PartnerOrganisationAttribute.DefaultValue.ValueString()), &defaultValue26)
+		if !r.InternalUserAttribute.DefaultValue.IsUnknown() && !r.InternalUserAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.InternalUserAttribute.DefaultValue.ValueString()), &defaultValue26)
 		}
 		group26 := new(string)
-		if !r.PartnerOrganisationAttribute.Group.IsUnknown() && !r.PartnerOrganisationAttribute.Group.IsNull() {
-			*group26 = r.PartnerOrganisationAttribute.Group.ValueString()
+		if !r.InternalUserAttribute.Group.IsUnknown() && !r.InternalUserAttribute.Group.IsNull() {
+			*group26 = r.InternalUserAttribute.Group.ValueString()
 		} else {
 			group26 = nil
 		}
 		order26 := new(int64)
-		if !r.PartnerOrganisationAttribute.Order.IsUnknown() && !r.PartnerOrganisationAttribute.Order.IsNull() {
-			*order26 = r.PartnerOrganisationAttribute.Order.ValueInt64()
+		if !r.InternalUserAttribute.Order.IsUnknown() && !r.InternalUserAttribute.Order.IsNull() {
+			*order26 = r.InternalUserAttribute.Order.ValueInt64()
 		} else {
 			order26 = nil
 		}
 		layout26 := new(string)
-		if !r.PartnerOrganisationAttribute.Layout.IsUnknown() && !r.PartnerOrganisationAttribute.Layout.IsNull() {
-			*layout26 = r.PartnerOrganisationAttribute.Layout.ValueString()
+		if !r.InternalUserAttribute.Layout.IsUnknown() && !r.InternalUserAttribute.Layout.IsNull() {
+			*layout26 = r.InternalUserAttribute.Layout.ValueString()
 		} else {
 			layout26 = nil
 		}
 		hideLabel26 := new(bool)
-		if !r.PartnerOrganisationAttribute.HideLabel.IsUnknown() && !r.PartnerOrganisationAttribute.HideLabel.IsNull() {
-			*hideLabel26 = r.PartnerOrganisationAttribute.HideLabel.ValueBool()
+		if !r.InternalUserAttribute.HideLabel.IsUnknown() && !r.InternalUserAttribute.HideLabel.IsNull() {
+			*hideLabel26 = r.InternalUserAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel26 = nil
 		}
 		icon26 := new(string)
-		if !r.PartnerOrganisationAttribute.Icon.IsUnknown() && !r.PartnerOrganisationAttribute.Icon.IsNull() {
-			*icon26 = r.PartnerOrganisationAttribute.Icon.ValueString()
+		if !r.InternalUserAttribute.Icon.IsUnknown() && !r.InternalUserAttribute.Icon.IsNull() {
+			*icon26 = r.InternalUserAttribute.Icon.ValueString()
 		} else {
 			icon26 = nil
 		}
 		renderCondition26 := new(string)
-		if !r.PartnerOrganisationAttribute.RenderCondition.IsUnknown() && !r.PartnerOrganisationAttribute.RenderCondition.IsNull() {
-			*renderCondition26 = r.PartnerOrganisationAttribute.RenderCondition.ValueString()
+		if !r.InternalUserAttribute.RenderCondition.IsUnknown() && !r.InternalUserAttribute.RenderCondition.IsNull() {
+			*renderCondition26 = r.InternalUserAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition26 = nil
 		}
 		var purpose26 []string = []string{}
-		for _, purposeItem26 := range r.PartnerOrganisationAttribute.Purpose {
+		for _, purposeItem26 := range r.InternalUserAttribute.Purpose {
 			purpose26 = append(purpose26, purposeItem26.ValueString())
 		}
 		var manifest26 []string = []string{}
-		for _, manifestItem26 := range r.PartnerOrganisationAttribute.Manifest {
+		for _, manifestItem26 := range r.InternalUserAttribute.Manifest {
 			manifest26 = append(manifest26, manifestItem26.ValueString())
 		}
-		var constraints26 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints
-		if r.PartnerOrganisationAttribute.Constraints != nil {
-			constraints26 = &shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints{}
+		var constraints26 *shared.InternalUserAttributeAttributeWithCompositeIDConstraints
+		if r.InternalUserAttribute.Constraints != nil {
+			constraints26 = &shared.InternalUserAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag27 := new(string)
-		if !r.PartnerOrganisationAttribute.FeatureFlag.IsUnknown() && !r.PartnerOrganisationAttribute.FeatureFlag.IsNull() {
-			*featureFlag27 = r.PartnerOrganisationAttribute.FeatureFlag.ValueString()
+		if !r.InternalUserAttribute.FeatureFlag.IsUnknown() && !r.InternalUserAttribute.FeatureFlag.IsNull() {
+			*featureFlag27 = r.InternalUserAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag27 = nil
 		}
 		var settingsFlag27 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem27 := range r.PartnerOrganisationAttribute.SettingsFlag {
+		for _, settingsFlagItem27 := range r.InternalUserAttribute.SettingsFlag {
 			name54 := new(string)
 			if !settingsFlagItem27.Name.IsUnknown() && !settingsFlagItem27.Name.IsNull() {
 				*name54 = settingsFlagItem27.Name.ValueString()
@@ -7141,56 +7195,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter26 := new(string)
-		if !r.PartnerOrganisationAttribute.ValueFormatter.IsUnknown() && !r.PartnerOrganisationAttribute.ValueFormatter.IsNull() {
-			*valueFormatter26 = r.PartnerOrganisationAttribute.ValueFormatter.ValueString()
+		if !r.InternalUserAttribute.ValueFormatter.IsUnknown() && !r.InternalUserAttribute.ValueFormatter.IsNull() {
+			*valueFormatter26 = r.InternalUserAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter26 = nil
 		}
 		previewValueFormatter26 := new(string)
-		if !r.PartnerOrganisationAttribute.PreviewValueFormatter.IsUnknown() && !r.PartnerOrganisationAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter26 = r.PartnerOrganisationAttribute.PreviewValueFormatter.ValueString()
+		if !r.InternalUserAttribute.PreviewValueFormatter.IsUnknown() && !r.InternalUserAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter26 = r.InternalUserAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter26 = nil
 		}
 		entityBuilderDisableEdit26 := new(bool)
-		if !r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit26 = r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.InternalUserAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.InternalUserAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit26 = r.InternalUserAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit26 = nil
 		}
 		protected26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Protected.IsUnknown() && !r.PartnerOrganisationAttribute.Protected.IsNull() {
-			*protected26 = r.PartnerOrganisationAttribute.Protected.ValueBool()
+		if !r.InternalUserAttribute.Protected.IsUnknown() && !r.InternalUserAttribute.Protected.IsNull() {
+			*protected26 = r.InternalUserAttribute.Protected.ValueBool()
 		} else {
 			protected26 = nil
 		}
-		var infoHelpers26 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PartnerOrganisationAttribute.InfoHelpers != nil {
+		var infoHelpers26 *shared.InternalUserAttributeAttributeWithCompositeIDInfoHelpers
+		if r.InternalUserAttribute.InfoHelpers != nil {
 			hintText26 := new(string)
-			if !r.PartnerOrganisationAttribute.InfoHelpers.HintText.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText26 = r.PartnerOrganisationAttribute.InfoHelpers.HintText.ValueString()
+			if !r.InternalUserAttribute.InfoHelpers.HintText.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText26 = r.InternalUserAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText26 = nil
 			}
 			hintTextKey26 := new(string)
-			if !r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey26 = r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.InternalUserAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey26 = r.InternalUserAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey26 = nil
 			}
 			hintCustomComponent26 := new(string)
-			if !r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent26 = r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.InternalUserAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent26 = r.InternalUserAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent26 = nil
 			}
 			hintTooltipPlacement26 := new(string)
-			if !r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement26 = r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement26 = r.InternalUserAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement26 = nil
 			}
-			infoHelpers26 = &shared.PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers26 = &shared.InternalUserAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText26,
 				HintTextKey:          hintTextKey26,
 				HintCustomComponent:  hintCustomComponent26,
@@ -7198,30 +7252,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable26 := new(bool)
-		if !r.PartnerOrganisationAttribute.Repeatable.IsUnknown() && !r.PartnerOrganisationAttribute.Repeatable.IsNull() {
-			*repeatable26 = r.PartnerOrganisationAttribute.Repeatable.ValueBool()
+		if !r.InternalUserAttribute.Repeatable.IsUnknown() && !r.InternalUserAttribute.Repeatable.IsNull() {
+			*repeatable26 = r.InternalUserAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable26 = nil
 		}
 		hasPrimary26 := new(bool)
-		if !r.PartnerOrganisationAttribute.HasPrimary.IsUnknown() && !r.PartnerOrganisationAttribute.HasPrimary.IsNull() {
-			*hasPrimary26 = r.PartnerOrganisationAttribute.HasPrimary.ValueBool()
+		if !r.InternalUserAttribute.HasPrimary.IsUnknown() && !r.InternalUserAttribute.HasPrimary.IsNull() {
+			*hasPrimary26 = r.InternalUserAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary26 = nil
 		}
-		typeVar26 := new(shared.PartnerOrganisationAttributeAttributeWithCompositeIDType)
-		if !r.PartnerOrganisationAttribute.Type.IsUnknown() && !r.PartnerOrganisationAttribute.Type.IsNull() {
-			*typeVar26 = shared.PartnerOrganisationAttributeAttributeWithCompositeIDType(r.PartnerOrganisationAttribute.Type.ValueString())
+		typeVar26 := new(shared.InternalUserAttributeAttributeWithCompositeIDType)
+		if !r.InternalUserAttribute.Type.IsUnknown() && !r.InternalUserAttribute.Type.IsNull() {
+			*typeVar26 = shared.InternalUserAttributeAttributeWithCompositeIDType(r.InternalUserAttribute.Type.ValueString())
 		} else {
 			typeVar26 = nil
 		}
 		schema26 := new(string)
-		if !r.PartnerOrganisationAttribute.Schema.IsUnknown() && !r.PartnerOrganisationAttribute.Schema.IsNull() {
-			*schema26 = r.PartnerOrganisationAttribute.Schema.ValueString()
+		if !r.InternalUserAttribute.Schema.IsUnknown() && !r.InternalUserAttribute.Schema.IsNull() {
+			*schema26 = r.InternalUserAttribute.Schema.ValueString()
 		} else {
 			schema26 = nil
 		}
-		attributeWithCompositeIDPartnerOrganisationAttributeInput = &shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput{
+		attributeWithCompositeIDInternalUserAttributeInput = &shared.AttributeWithCompositeIDInternalUserAttributeInput{
 			ID:                       id26,
 			Name:                     name53,
 			Label:                    label27,
@@ -7255,127 +7309,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema26,
 		}
 	}
-	if attributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
+	if attributeWithCompositeIDInternalUserAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPartnerOrganisationAttributeInput: attributeWithCompositeIDPartnerOrganisationAttributeInput,
+			AttributeWithCompositeIDInternalUserAttributeInput: attributeWithCompositeIDInternalUserAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDAddressAttributeInput *shared.AttributeWithCompositeIDAddressAttributeInput
-	if r.AddressAttribute != nil {
+	var attributeWithCompositeIDPurposeAttributeInput *shared.AttributeWithCompositeIDPurposeAttributeInput
+	if r.PurposeAttribute != nil {
 		id27 := new(string)
-		if !r.AddressAttribute.ID.IsUnknown() && !r.AddressAttribute.ID.IsNull() {
-			*id27 = r.AddressAttribute.ID.ValueString()
+		if !r.PurposeAttribute.ID.IsUnknown() && !r.PurposeAttribute.ID.IsNull() {
+			*id27 = r.PurposeAttribute.ID.ValueString()
 		} else {
 			id27 = nil
 		}
 		var name55 string
-		name55 = r.AddressAttribute.Name.ValueString()
+		name55 = r.PurposeAttribute.Name.ValueString()
 
 		var label28 string
-		label28 = r.AddressAttribute.Label.ValueString()
+		label28 = r.PurposeAttribute.Label.ValueString()
 
 		placeholder27 := new(string)
-		if !r.AddressAttribute.Placeholder.IsUnknown() && !r.AddressAttribute.Placeholder.IsNull() {
-			*placeholder27 = r.AddressAttribute.Placeholder.ValueString()
+		if !r.PurposeAttribute.Placeholder.IsUnknown() && !r.PurposeAttribute.Placeholder.IsNull() {
+			*placeholder27 = r.PurposeAttribute.Placeholder.ValueString()
 		} else {
 			placeholder27 = nil
 		}
 		hidden27 := new(bool)
-		if !r.AddressAttribute.Hidden.IsUnknown() && !r.AddressAttribute.Hidden.IsNull() {
-			*hidden27 = r.AddressAttribute.Hidden.ValueBool()
+		if !r.PurposeAttribute.Hidden.IsUnknown() && !r.PurposeAttribute.Hidden.IsNull() {
+			*hidden27 = r.PurposeAttribute.Hidden.ValueBool()
 		} else {
 			hidden27 = nil
 		}
 		showInTable27 := new(bool)
-		if !r.AddressAttribute.ShowInTable.IsUnknown() && !r.AddressAttribute.ShowInTable.IsNull() {
-			*showInTable27 = r.AddressAttribute.ShowInTable.ValueBool()
+		if !r.PurposeAttribute.ShowInTable.IsUnknown() && !r.PurposeAttribute.ShowInTable.IsNull() {
+			*showInTable27 = r.PurposeAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable27 = nil
 		}
 		sortable27 := new(bool)
-		if !r.AddressAttribute.Sortable.IsUnknown() && !r.AddressAttribute.Sortable.IsNull() {
-			*sortable27 = r.AddressAttribute.Sortable.ValueBool()
+		if !r.PurposeAttribute.Sortable.IsUnknown() && !r.PurposeAttribute.Sortable.IsNull() {
+			*sortable27 = r.PurposeAttribute.Sortable.ValueBool()
 		} else {
 			sortable27 = nil
 		}
 		required27 := new(bool)
-		if !r.AddressAttribute.Required.IsUnknown() && !r.AddressAttribute.Required.IsNull() {
-			*required27 = r.AddressAttribute.Required.ValueBool()
+		if !r.PurposeAttribute.Required.IsUnknown() && !r.PurposeAttribute.Required.IsNull() {
+			*required27 = r.PurposeAttribute.Required.ValueBool()
 		} else {
 			required27 = nil
 		}
 		readonly27 := new(bool)
-		if !r.AddressAttribute.Readonly.IsUnknown() && !r.AddressAttribute.Readonly.IsNull() {
-			*readonly27 = r.AddressAttribute.Readonly.ValueBool()
+		if !r.PurposeAttribute.Readonly.IsUnknown() && !r.PurposeAttribute.Readonly.IsNull() {
+			*readonly27 = r.PurposeAttribute.Readonly.ValueBool()
 		} else {
 			readonly27 = nil
 		}
 		deprecated27 := new(bool)
-		if !r.AddressAttribute.Deprecated.IsUnknown() && !r.AddressAttribute.Deprecated.IsNull() {
-			*deprecated27 = r.AddressAttribute.Deprecated.ValueBool()
+		if !r.PurposeAttribute.Deprecated.IsUnknown() && !r.PurposeAttribute.Deprecated.IsNull() {
+			*deprecated27 = r.PurposeAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated27 = nil
 		}
 		var defaultValue27 interface{}
-		if !r.AddressAttribute.DefaultValue.IsUnknown() && !r.AddressAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.AddressAttribute.DefaultValue.ValueString()), &defaultValue27)
+		if !r.PurposeAttribute.DefaultValue.IsUnknown() && !r.PurposeAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PurposeAttribute.DefaultValue.ValueString()), &defaultValue27)
 		}
 		group27 := new(string)
-		if !r.AddressAttribute.Group.IsUnknown() && !r.AddressAttribute.Group.IsNull() {
-			*group27 = r.AddressAttribute.Group.ValueString()
+		if !r.PurposeAttribute.Group.IsUnknown() && !r.PurposeAttribute.Group.IsNull() {
+			*group27 = r.PurposeAttribute.Group.ValueString()
 		} else {
 			group27 = nil
 		}
 		order27 := new(int64)
-		if !r.AddressAttribute.Order.IsUnknown() && !r.AddressAttribute.Order.IsNull() {
-			*order27 = r.AddressAttribute.Order.ValueInt64()
+		if !r.PurposeAttribute.Order.IsUnknown() && !r.PurposeAttribute.Order.IsNull() {
+			*order27 = r.PurposeAttribute.Order.ValueInt64()
 		} else {
 			order27 = nil
 		}
 		layout27 := new(string)
-		if !r.AddressAttribute.Layout.IsUnknown() && !r.AddressAttribute.Layout.IsNull() {
-			*layout27 = r.AddressAttribute.Layout.ValueString()
+		if !r.PurposeAttribute.Layout.IsUnknown() && !r.PurposeAttribute.Layout.IsNull() {
+			*layout27 = r.PurposeAttribute.Layout.ValueString()
 		} else {
 			layout27 = nil
 		}
 		hideLabel27 := new(bool)
-		if !r.AddressAttribute.HideLabel.IsUnknown() && !r.AddressAttribute.HideLabel.IsNull() {
-			*hideLabel27 = r.AddressAttribute.HideLabel.ValueBool()
+		if !r.PurposeAttribute.HideLabel.IsUnknown() && !r.PurposeAttribute.HideLabel.IsNull() {
+			*hideLabel27 = r.PurposeAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel27 = nil
 		}
 		icon27 := new(string)
-		if !r.AddressAttribute.Icon.IsUnknown() && !r.AddressAttribute.Icon.IsNull() {
-			*icon27 = r.AddressAttribute.Icon.ValueString()
+		if !r.PurposeAttribute.Icon.IsUnknown() && !r.PurposeAttribute.Icon.IsNull() {
+			*icon27 = r.PurposeAttribute.Icon.ValueString()
 		} else {
 			icon27 = nil
 		}
 		renderCondition27 := new(string)
-		if !r.AddressAttribute.RenderCondition.IsUnknown() && !r.AddressAttribute.RenderCondition.IsNull() {
-			*renderCondition27 = r.AddressAttribute.RenderCondition.ValueString()
+		if !r.PurposeAttribute.RenderCondition.IsUnknown() && !r.PurposeAttribute.RenderCondition.IsNull() {
+			*renderCondition27 = r.PurposeAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition27 = nil
 		}
 		var purpose27 []string = []string{}
-		for _, purposeItem27 := range r.AddressAttribute.Purpose {
+		for _, purposeItem27 := range r.PurposeAttribute.Purpose {
 			purpose27 = append(purpose27, purposeItem27.ValueString())
 		}
 		var manifest27 []string = []string{}
-		for _, manifestItem27 := range r.AddressAttribute.Manifest {
+		for _, manifestItem27 := range r.PurposeAttribute.Manifest {
 			manifest27 = append(manifest27, manifestItem27.ValueString())
 		}
-		var constraints27 *shared.AddressAttributeAttributeWithCompositeIDConstraints
-		if r.AddressAttribute.Constraints != nil {
-			constraints27 = &shared.AddressAttributeAttributeWithCompositeIDConstraints{}
+		var constraints27 *shared.PurposeAttributeAttributeWithCompositeIDConstraints
+		if r.PurposeAttribute.Constraints != nil {
+			constraints27 = &shared.PurposeAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag28 := new(string)
-		if !r.AddressAttribute.FeatureFlag.IsUnknown() && !r.AddressAttribute.FeatureFlag.IsNull() {
-			*featureFlag28 = r.AddressAttribute.FeatureFlag.ValueString()
+		if !r.PurposeAttribute.FeatureFlag.IsUnknown() && !r.PurposeAttribute.FeatureFlag.IsNull() {
+			*featureFlag28 = r.PurposeAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag28 = nil
 		}
 		var settingsFlag28 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem28 := range r.AddressAttribute.SettingsFlag {
+		for _, settingsFlagItem28 := range r.PurposeAttribute.SettingsFlag {
 			name56 := new(string)
 			if !settingsFlagItem28.Name.IsUnknown() && !settingsFlagItem28.Name.IsNull() {
 				*name56 = settingsFlagItem28.Name.ValueString()
@@ -7394,56 +7448,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter27 := new(string)
-		if !r.AddressAttribute.ValueFormatter.IsUnknown() && !r.AddressAttribute.ValueFormatter.IsNull() {
-			*valueFormatter27 = r.AddressAttribute.ValueFormatter.ValueString()
+		if !r.PurposeAttribute.ValueFormatter.IsUnknown() && !r.PurposeAttribute.ValueFormatter.IsNull() {
+			*valueFormatter27 = r.PurposeAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter27 = nil
 		}
 		previewValueFormatter27 := new(string)
-		if !r.AddressAttribute.PreviewValueFormatter.IsUnknown() && !r.AddressAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter27 = r.AddressAttribute.PreviewValueFormatter.ValueString()
+		if !r.PurposeAttribute.PreviewValueFormatter.IsUnknown() && !r.PurposeAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter27 = r.PurposeAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter27 = nil
 		}
 		entityBuilderDisableEdit27 := new(bool)
-		if !r.AddressAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.AddressAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit27 = r.AddressAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PurposeAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PurposeAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit27 = r.PurposeAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit27 = nil
 		}
 		protected27 := new(bool)
-		if !r.AddressAttribute.Protected.IsUnknown() && !r.AddressAttribute.Protected.IsNull() {
-			*protected27 = r.AddressAttribute.Protected.ValueBool()
+		if !r.PurposeAttribute.Protected.IsUnknown() && !r.PurposeAttribute.Protected.IsNull() {
+			*protected27 = r.PurposeAttribute.Protected.ValueBool()
 		} else {
 			protected27 = nil
 		}
-		var infoHelpers27 *shared.AddressAttributeAttributeWithCompositeIDInfoHelpers
-		if r.AddressAttribute.InfoHelpers != nil {
+		var infoHelpers27 *shared.PurposeAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PurposeAttribute.InfoHelpers != nil {
 			hintText27 := new(string)
-			if !r.AddressAttribute.InfoHelpers.HintText.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText27 = r.AddressAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PurposeAttribute.InfoHelpers.HintText.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText27 = r.PurposeAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText27 = nil
 			}
 			hintTextKey27 := new(string)
-			if !r.AddressAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey27 = r.AddressAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PurposeAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey27 = r.PurposeAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey27 = nil
 			}
 			hintCustomComponent27 := new(string)
-			if !r.AddressAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent27 = r.AddressAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PurposeAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent27 = r.PurposeAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent27 = nil
 			}
 			hintTooltipPlacement27 := new(string)
-			if !r.AddressAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.AddressAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement27 = r.AddressAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement27 = r.PurposeAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement27 = nil
 			}
-			infoHelpers27 = &shared.AddressAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers27 = &shared.PurposeAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText27,
 				HintTextKey:          hintTextKey27,
 				HintCustomComponent:  hintCustomComponent27,
@@ -7451,30 +7505,64 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable27 := new(bool)
-		if !r.AddressAttribute.Repeatable.IsUnknown() && !r.AddressAttribute.Repeatable.IsNull() {
-			*repeatable27 = r.AddressAttribute.Repeatable.ValueBool()
+		if !r.PurposeAttribute.Repeatable.IsUnknown() && !r.PurposeAttribute.Repeatable.IsNull() {
+			*repeatable27 = r.PurposeAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable27 = nil
 		}
 		hasPrimary27 := new(bool)
-		if !r.AddressAttribute.HasPrimary.IsUnknown() && !r.AddressAttribute.HasPrimary.IsNull() {
-			*hasPrimary27 = r.AddressAttribute.HasPrimary.ValueBool()
+		if !r.PurposeAttribute.HasPrimary.IsUnknown() && !r.PurposeAttribute.HasPrimary.IsNull() {
+			*hasPrimary27 = r.PurposeAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary27 = nil
 		}
-		typeVar27 := new(shared.AddressAttributeAttributeWithCompositeIDType)
-		if !r.AddressAttribute.Type.IsUnknown() && !r.AddressAttribute.Type.IsNull() {
-			*typeVar27 = shared.AddressAttributeAttributeWithCompositeIDType(r.AddressAttribute.Type.ValueString())
+		slug := new(string)
+		if !r.PurposeAttribute.Slug.IsUnknown() && !r.PurposeAttribute.Slug.IsNull() {
+			*slug = r.PurposeAttribute.Slug.ValueString()
+		} else {
+			slug = nil
+		}
+		var parents []string = []string{}
+		for _, parentsItem := range r.PurposeAttribute.Parents {
+			parents = append(parents, parentsItem.ValueString())
+		}
+		color := new(string)
+		if !r.PurposeAttribute.Color.IsUnknown() && !r.PurposeAttribute.Color.IsNull() {
+			*color = r.PurposeAttribute.Color.ValueString()
+		} else {
+			color = nil
+		}
+		createdAt := new(time.Time)
+		if !r.PurposeAttribute.CreatedAt.IsUnknown() && !r.PurposeAttribute.CreatedAt.IsNull() {
+			*createdAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.CreatedAt.ValueString())
+		} else {
+			createdAt = nil
+		}
+		updatedAt := new(time.Time)
+		if !r.PurposeAttribute.UpdatedAt.IsUnknown() && !r.PurposeAttribute.UpdatedAt.IsNull() {
+			*updatedAt, _ = time.Parse(time.RFC3339Nano, r.PurposeAttribute.UpdatedAt.ValueString())
+		} else {
+			updatedAt = nil
+		}
+		archived := new(bool)
+		if !r.PurposeAttribute.Archived.IsUnknown() && !r.PurposeAttribute.Archived.IsNull() {
+			*archived = r.PurposeAttribute.Archived.ValueBool()
+		} else {
+			archived = nil
+		}
+		typeVar27 := new(shared.PurposeAttributeAttributeWithCompositeIDType)
+		if !r.PurposeAttribute.Type.IsUnknown() && !r.PurposeAttribute.Type.IsNull() {
+			*typeVar27 = shared.PurposeAttributeAttributeWithCompositeIDType(r.PurposeAttribute.Type.ValueString())
 		} else {
 			typeVar27 = nil
 		}
 		schema27 := new(string)
-		if !r.AddressAttribute.Schema.IsUnknown() && !r.AddressAttribute.Schema.IsNull() {
-			*schema27 = r.AddressAttribute.Schema.ValueString()
+		if !r.PurposeAttribute.Schema.IsUnknown() && !r.PurposeAttribute.Schema.IsNull() {
+			*schema27 = r.PurposeAttribute.Schema.ValueString()
 		} else {
 			schema27 = nil
 		}
-		attributeWithCompositeIDAddressAttributeInput = &shared.AttributeWithCompositeIDAddressAttributeInput{
+		attributeWithCompositeIDPurposeAttributeInput = &shared.AttributeWithCompositeIDPurposeAttributeInput{
 			ID:                       id27,
 			Name:                     name55,
 			Label:                    label28,
@@ -7504,131 +7592,137 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			InfoHelpers:              infoHelpers27,
 			Repeatable:               repeatable27,
 			HasPrimary:               hasPrimary27,
+			Slug:                     slug,
+			Parents:                  parents,
+			Color:                    color,
+			CreatedAt:                createdAt,
+			UpdatedAt:                updatedAt,
+			Archived:                 archived,
 			Type:                     typeVar27,
 			Schema:                   schema27,
 		}
 	}
-	if attributeWithCompositeIDAddressAttributeInput != nil {
+	if attributeWithCompositeIDPurposeAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAddressAttributeInput: attributeWithCompositeIDAddressAttributeInput,
+			AttributeWithCompositeIDPurposeAttributeInput: attributeWithCompositeIDPurposeAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPhoneAttributeInput *shared.AttributeWithCompositeIDPhoneAttributeInput
-	if r.PhoneAttribute != nil {
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput *shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput
+	if r.PartnerOrganisationAttribute != nil {
 		id28 := new(string)
-		if !r.PhoneAttribute.ID.IsUnknown() && !r.PhoneAttribute.ID.IsNull() {
-			*id28 = r.PhoneAttribute.ID.ValueString()
+		if !r.PartnerOrganisationAttribute.ID.IsUnknown() && !r.PartnerOrganisationAttribute.ID.IsNull() {
+			*id28 = r.PartnerOrganisationAttribute.ID.ValueString()
 		} else {
 			id28 = nil
 		}
 		var name57 string
-		name57 = r.PhoneAttribute.Name.ValueString()
+		name57 = r.PartnerOrganisationAttribute.Name.ValueString()
 
 		var label29 string
-		label29 = r.PhoneAttribute.Label.ValueString()
+		label29 = r.PartnerOrganisationAttribute.Label.ValueString()
 
 		placeholder28 := new(string)
-		if !r.PhoneAttribute.Placeholder.IsUnknown() && !r.PhoneAttribute.Placeholder.IsNull() {
-			*placeholder28 = r.PhoneAttribute.Placeholder.ValueString()
+		if !r.PartnerOrganisationAttribute.Placeholder.IsUnknown() && !r.PartnerOrganisationAttribute.Placeholder.IsNull() {
+			*placeholder28 = r.PartnerOrganisationAttribute.Placeholder.ValueString()
 		} else {
 			placeholder28 = nil
 		}
 		hidden28 := new(bool)
-		if !r.PhoneAttribute.Hidden.IsUnknown() && !r.PhoneAttribute.Hidden.IsNull() {
-			*hidden28 = r.PhoneAttribute.Hidden.ValueBool()
+		if !r.PartnerOrganisationAttribute.Hidden.IsUnknown() && !r.PartnerOrganisationAttribute.Hidden.IsNull() {
+			*hidden28 = r.PartnerOrganisationAttribute.Hidden.ValueBool()
 		} else {
 			hidden28 = nil
 		}
 		showInTable28 := new(bool)
-		if !r.PhoneAttribute.ShowInTable.IsUnknown() && !r.PhoneAttribute.ShowInTable.IsNull() {
-			*showInTable28 = r.PhoneAttribute.ShowInTable.ValueBool()
+		if !r.PartnerOrganisationAttribute.ShowInTable.IsUnknown() && !r.PartnerOrganisationAttribute.ShowInTable.IsNull() {
+			*showInTable28 = r.PartnerOrganisationAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable28 = nil
 		}
 		sortable28 := new(bool)
-		if !r.PhoneAttribute.Sortable.IsUnknown() && !r.PhoneAttribute.Sortable.IsNull() {
-			*sortable28 = r.PhoneAttribute.Sortable.ValueBool()
+		if !r.PartnerOrganisationAttribute.Sortable.IsUnknown() && !r.PartnerOrganisationAttribute.Sortable.IsNull() {
+			*sortable28 = r.PartnerOrganisationAttribute.Sortable.ValueBool()
 		} else {
 			sortable28 = nil
 		}
 		required28 := new(bool)
-		if !r.PhoneAttribute.Required.IsUnknown() && !r.PhoneAttribute.Required.IsNull() {
-			*required28 = r.PhoneAttribute.Required.ValueBool()
+		if !r.PartnerOrganisationAttribute.Required.IsUnknown() && !r.PartnerOrganisationAttribute.Required.IsNull() {
+			*required28 = r.PartnerOrganisationAttribute.Required.ValueBool()
 		} else {
 			required28 = nil
 		}
 		readonly28 := new(bool)
-		if !r.PhoneAttribute.Readonly.IsUnknown() && !r.PhoneAttribute.Readonly.IsNull() {
-			*readonly28 = r.PhoneAttribute.Readonly.ValueBool()
+		if !r.PartnerOrganisationAttribute.Readonly.IsUnknown() && !r.PartnerOrganisationAttribute.Readonly.IsNull() {
+			*readonly28 = r.PartnerOrganisationAttribute.Readonly.ValueBool()
 		} else {
 			readonly28 = nil
 		}
 		deprecated28 := new(bool)
-		if !r.PhoneAttribute.Deprecated.IsUnknown() && !r.PhoneAttribute.Deprecated.IsNull() {
-			*deprecated28 = r.PhoneAttribute.Deprecated.ValueBool()
+		if !r.PartnerOrganisationAttribute.Deprecated.IsUnknown() && !r.PartnerOrganisationAttribute.Deprecated.IsNull() {
+			*deprecated28 = r.PartnerOrganisationAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated28 = nil
 		}
 		var defaultValue28 interface{}
-		if !r.PhoneAttribute.DefaultValue.IsUnknown() && !r.PhoneAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PhoneAttribute.DefaultValue.ValueString()), &defaultValue28)
+		if !r.PartnerOrganisationAttribute.DefaultValue.IsUnknown() && !r.PartnerOrganisationAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PartnerOrganisationAttribute.DefaultValue.ValueString()), &defaultValue28)
 		}
 		group28 := new(string)
-		if !r.PhoneAttribute.Group.IsUnknown() && !r.PhoneAttribute.Group.IsNull() {
-			*group28 = r.PhoneAttribute.Group.ValueString()
+		if !r.PartnerOrganisationAttribute.Group.IsUnknown() && !r.PartnerOrganisationAttribute.Group.IsNull() {
+			*group28 = r.PartnerOrganisationAttribute.Group.ValueString()
 		} else {
 			group28 = nil
 		}
 		order28 := new(int64)
-		if !r.PhoneAttribute.Order.IsUnknown() && !r.PhoneAttribute.Order.IsNull() {
-			*order28 = r.PhoneAttribute.Order.ValueInt64()
+		if !r.PartnerOrganisationAttribute.Order.IsUnknown() && !r.PartnerOrganisationAttribute.Order.IsNull() {
+			*order28 = r.PartnerOrganisationAttribute.Order.ValueInt64()
 		} else {
 			order28 = nil
 		}
 		layout28 := new(string)
-		if !r.PhoneAttribute.Layout.IsUnknown() && !r.PhoneAttribute.Layout.IsNull() {
-			*layout28 = r.PhoneAttribute.Layout.ValueString()
+		if !r.PartnerOrganisationAttribute.Layout.IsUnknown() && !r.PartnerOrganisationAttribute.Layout.IsNull() {
+			*layout28 = r.PartnerOrganisationAttribute.Layout.ValueString()
 		} else {
 			layout28 = nil
 		}
 		hideLabel28 := new(bool)
-		if !r.PhoneAttribute.HideLabel.IsUnknown() && !r.PhoneAttribute.HideLabel.IsNull() {
-			*hideLabel28 = r.PhoneAttribute.HideLabel.ValueBool()
+		if !r.PartnerOrganisationAttribute.HideLabel.IsUnknown() && !r.PartnerOrganisationAttribute.HideLabel.IsNull() {
+			*hideLabel28 = r.PartnerOrganisationAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel28 = nil
 		}
 		icon28 := new(string)
-		if !r.PhoneAttribute.Icon.IsUnknown() && !r.PhoneAttribute.Icon.IsNull() {
-			*icon28 = r.PhoneAttribute.Icon.ValueString()
+		if !r.PartnerOrganisationAttribute.Icon.IsUnknown() && !r.PartnerOrganisationAttribute.Icon.IsNull() {
+			*icon28 = r.PartnerOrganisationAttribute.Icon.ValueString()
 		} else {
 			icon28 = nil
 		}
 		renderCondition28 := new(string)
-		if !r.PhoneAttribute.RenderCondition.IsUnknown() && !r.PhoneAttribute.RenderCondition.IsNull() {
-			*renderCondition28 = r.PhoneAttribute.RenderCondition.ValueString()
+		if !r.PartnerOrganisationAttribute.RenderCondition.IsUnknown() && !r.PartnerOrganisationAttribute.RenderCondition.IsNull() {
+			*renderCondition28 = r.PartnerOrganisationAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition28 = nil
 		}
 		var purpose28 []string = []string{}
-		for _, purposeItem28 := range r.PhoneAttribute.Purpose {
+		for _, purposeItem28 := range r.PartnerOrganisationAttribute.Purpose {
 			purpose28 = append(purpose28, purposeItem28.ValueString())
 		}
 		var manifest28 []string = []string{}
-		for _, manifestItem28 := range r.PhoneAttribute.Manifest {
+		for _, manifestItem28 := range r.PartnerOrganisationAttribute.Manifest {
 			manifest28 = append(manifest28, manifestItem28.ValueString())
 		}
-		var constraints28 *shared.PhoneAttributeAttributeWithCompositeIDConstraints
-		if r.PhoneAttribute.Constraints != nil {
-			constraints28 = &shared.PhoneAttributeAttributeWithCompositeIDConstraints{}
+		var constraints28 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints
+		if r.PartnerOrganisationAttribute.Constraints != nil {
+			constraints28 = &shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag29 := new(string)
-		if !r.PhoneAttribute.FeatureFlag.IsUnknown() && !r.PhoneAttribute.FeatureFlag.IsNull() {
-			*featureFlag29 = r.PhoneAttribute.FeatureFlag.ValueString()
+		if !r.PartnerOrganisationAttribute.FeatureFlag.IsUnknown() && !r.PartnerOrganisationAttribute.FeatureFlag.IsNull() {
+			*featureFlag29 = r.PartnerOrganisationAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag29 = nil
 		}
 		var settingsFlag29 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem29 := range r.PhoneAttribute.SettingsFlag {
+		for _, settingsFlagItem29 := range r.PartnerOrganisationAttribute.SettingsFlag {
 			name58 := new(string)
 			if !settingsFlagItem29.Name.IsUnknown() && !settingsFlagItem29.Name.IsNull() {
 				*name58 = settingsFlagItem29.Name.ValueString()
@@ -7647,56 +7741,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter28 := new(string)
-		if !r.PhoneAttribute.ValueFormatter.IsUnknown() && !r.PhoneAttribute.ValueFormatter.IsNull() {
-			*valueFormatter28 = r.PhoneAttribute.ValueFormatter.ValueString()
+		if !r.PartnerOrganisationAttribute.ValueFormatter.IsUnknown() && !r.PartnerOrganisationAttribute.ValueFormatter.IsNull() {
+			*valueFormatter28 = r.PartnerOrganisationAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter28 = nil
 		}
 		previewValueFormatter28 := new(string)
-		if !r.PhoneAttribute.PreviewValueFormatter.IsUnknown() && !r.PhoneAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter28 = r.PhoneAttribute.PreviewValueFormatter.ValueString()
+		if !r.PartnerOrganisationAttribute.PreviewValueFormatter.IsUnknown() && !r.PartnerOrganisationAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter28 = r.PartnerOrganisationAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter28 = nil
 		}
 		entityBuilderDisableEdit28 := new(bool)
-		if !r.PhoneAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PhoneAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit28 = r.PhoneAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit28 = r.PartnerOrganisationAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit28 = nil
 		}
 		protected28 := new(bool)
-		if !r.PhoneAttribute.Protected.IsUnknown() && !r.PhoneAttribute.Protected.IsNull() {
-			*protected28 = r.PhoneAttribute.Protected.ValueBool()
+		if !r.PartnerOrganisationAttribute.Protected.IsUnknown() && !r.PartnerOrganisationAttribute.Protected.IsNull() {
+			*protected28 = r.PartnerOrganisationAttribute.Protected.ValueBool()
 		} else {
 			protected28 = nil
 		}
-		var infoHelpers28 *shared.PhoneAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PhoneAttribute.InfoHelpers != nil {
+		var infoHelpers28 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PartnerOrganisationAttribute.InfoHelpers != nil {
 			hintText28 := new(string)
-			if !r.PhoneAttribute.InfoHelpers.HintText.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText28 = r.PhoneAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PartnerOrganisationAttribute.InfoHelpers.HintText.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText28 = r.PartnerOrganisationAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText28 = nil
 			}
 			hintTextKey28 := new(string)
-			if !r.PhoneAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey28 = r.PhoneAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey28 = r.PartnerOrganisationAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey28 = nil
 			}
 			hintCustomComponent28 := new(string)
-			if !r.PhoneAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent28 = r.PhoneAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent28 = r.PartnerOrganisationAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent28 = nil
 			}
 			hintTooltipPlacement28 := new(string)
-			if !r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement28 = r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement28 = r.PartnerOrganisationAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement28 = nil
 			}
-			infoHelpers28 = &shared.PhoneAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers28 = &shared.PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText28,
 				HintTextKey:          hintTextKey28,
 				HintCustomComponent:  hintCustomComponent28,
@@ -7704,30 +7798,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable28 := new(bool)
-		if !r.PhoneAttribute.Repeatable.IsUnknown() && !r.PhoneAttribute.Repeatable.IsNull() {
-			*repeatable28 = r.PhoneAttribute.Repeatable.ValueBool()
+		if !r.PartnerOrganisationAttribute.Repeatable.IsUnknown() && !r.PartnerOrganisationAttribute.Repeatable.IsNull() {
+			*repeatable28 = r.PartnerOrganisationAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable28 = nil
 		}
 		hasPrimary28 := new(bool)
-		if !r.PhoneAttribute.HasPrimary.IsUnknown() && !r.PhoneAttribute.HasPrimary.IsNull() {
-			*hasPrimary28 = r.PhoneAttribute.HasPrimary.ValueBool()
+		if !r.PartnerOrganisationAttribute.HasPrimary.IsUnknown() && !r.PartnerOrganisationAttribute.HasPrimary.IsNull() {
+			*hasPrimary28 = r.PartnerOrganisationAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary28 = nil
 		}
-		typeVar28 := new(shared.PhoneAttributeAttributeWithCompositeIDType)
-		if !r.PhoneAttribute.Type.IsUnknown() && !r.PhoneAttribute.Type.IsNull() {
-			*typeVar28 = shared.PhoneAttributeAttributeWithCompositeIDType(r.PhoneAttribute.Type.ValueString())
+		typeVar28 := new(shared.PartnerOrganisationAttributeAttributeWithCompositeIDType)
+		if !r.PartnerOrganisationAttribute.Type.IsUnknown() && !r.PartnerOrganisationAttribute.Type.IsNull() {
+			*typeVar28 = shared.PartnerOrganisationAttributeAttributeWithCompositeIDType(r.PartnerOrganisationAttribute.Type.ValueString())
 		} else {
 			typeVar28 = nil
 		}
 		schema28 := new(string)
-		if !r.PhoneAttribute.Schema.IsUnknown() && !r.PhoneAttribute.Schema.IsNull() {
-			*schema28 = r.PhoneAttribute.Schema.ValueString()
+		if !r.PartnerOrganisationAttribute.Schema.IsUnknown() && !r.PartnerOrganisationAttribute.Schema.IsNull() {
+			*schema28 = r.PartnerOrganisationAttribute.Schema.ValueString()
 		} else {
 			schema28 = nil
 		}
-		attributeWithCompositeIDPhoneAttributeInput = &shared.AttributeWithCompositeIDPhoneAttributeInput{
+		attributeWithCompositeIDPartnerOrganisationAttributeInput = &shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput{
 			ID:                       id28,
 			Name:                     name57,
 			Label:                    label29,
@@ -7761,127 +7855,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema28,
 		}
 	}
-	if attributeWithCompositeIDPhoneAttributeInput != nil {
+	if attributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPhoneAttributeInput: attributeWithCompositeIDPhoneAttributeInput,
+			AttributeWithCompositeIDPartnerOrganisationAttributeInput: attributeWithCompositeIDPartnerOrganisationAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDEmailAttributeInput *shared.AttributeWithCompositeIDEmailAttributeInput
-	if r.EmailAttribute != nil {
+	var attributeWithCompositeIDPhoneAttributeInput *shared.AttributeWithCompositeIDPhoneAttributeInput
+	if r.PhoneAttribute != nil {
 		id29 := new(string)
-		if !r.EmailAttribute.ID.IsUnknown() && !r.EmailAttribute.ID.IsNull() {
-			*id29 = r.EmailAttribute.ID.ValueString()
+		if !r.PhoneAttribute.ID.IsUnknown() && !r.PhoneAttribute.ID.IsNull() {
+			*id29 = r.PhoneAttribute.ID.ValueString()
 		} else {
 			id29 = nil
 		}
 		var name59 string
-		name59 = r.EmailAttribute.Name.ValueString()
+		name59 = r.PhoneAttribute.Name.ValueString()
 
 		var label30 string
-		label30 = r.EmailAttribute.Label.ValueString()
+		label30 = r.PhoneAttribute.Label.ValueString()
 
 		placeholder29 := new(string)
-		if !r.EmailAttribute.Placeholder.IsUnknown() && !r.EmailAttribute.Placeholder.IsNull() {
-			*placeholder29 = r.EmailAttribute.Placeholder.ValueString()
+		if !r.PhoneAttribute.Placeholder.IsUnknown() && !r.PhoneAttribute.Placeholder.IsNull() {
+			*placeholder29 = r.PhoneAttribute.Placeholder.ValueString()
 		} else {
 			placeholder29 = nil
 		}
 		hidden29 := new(bool)
-		if !r.EmailAttribute.Hidden.IsUnknown() && !r.EmailAttribute.Hidden.IsNull() {
-			*hidden29 = r.EmailAttribute.Hidden.ValueBool()
+		if !r.PhoneAttribute.Hidden.IsUnknown() && !r.PhoneAttribute.Hidden.IsNull() {
+			*hidden29 = r.PhoneAttribute.Hidden.ValueBool()
 		} else {
 			hidden29 = nil
 		}
 		showInTable29 := new(bool)
-		if !r.EmailAttribute.ShowInTable.IsUnknown() && !r.EmailAttribute.ShowInTable.IsNull() {
-			*showInTable29 = r.EmailAttribute.ShowInTable.ValueBool()
+		if !r.PhoneAttribute.ShowInTable.IsUnknown() && !r.PhoneAttribute.ShowInTable.IsNull() {
+			*showInTable29 = r.PhoneAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable29 = nil
 		}
 		sortable29 := new(bool)
-		if !r.EmailAttribute.Sortable.IsUnknown() && !r.EmailAttribute.Sortable.IsNull() {
-			*sortable29 = r.EmailAttribute.Sortable.ValueBool()
+		if !r.PhoneAttribute.Sortable.IsUnknown() && !r.PhoneAttribute.Sortable.IsNull() {
+			*sortable29 = r.PhoneAttribute.Sortable.ValueBool()
 		} else {
 			sortable29 = nil
 		}
 		required29 := new(bool)
-		if !r.EmailAttribute.Required.IsUnknown() && !r.EmailAttribute.Required.IsNull() {
-			*required29 = r.EmailAttribute.Required.ValueBool()
+		if !r.PhoneAttribute.Required.IsUnknown() && !r.PhoneAttribute.Required.IsNull() {
+			*required29 = r.PhoneAttribute.Required.ValueBool()
 		} else {
 			required29 = nil
 		}
 		readonly29 := new(bool)
-		if !r.EmailAttribute.Readonly.IsUnknown() && !r.EmailAttribute.Readonly.IsNull() {
-			*readonly29 = r.EmailAttribute.Readonly.ValueBool()
+		if !r.PhoneAttribute.Readonly.IsUnknown() && !r.PhoneAttribute.Readonly.IsNull() {
+			*readonly29 = r.PhoneAttribute.Readonly.ValueBool()
 		} else {
 			readonly29 = nil
 		}
 		deprecated29 := new(bool)
-		if !r.EmailAttribute.Deprecated.IsUnknown() && !r.EmailAttribute.Deprecated.IsNull() {
-			*deprecated29 = r.EmailAttribute.Deprecated.ValueBool()
+		if !r.PhoneAttribute.Deprecated.IsUnknown() && !r.PhoneAttribute.Deprecated.IsNull() {
+			*deprecated29 = r.PhoneAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated29 = nil
 		}
 		var defaultValue29 interface{}
-		if !r.EmailAttribute.DefaultValue.IsUnknown() && !r.EmailAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.EmailAttribute.DefaultValue.ValueString()), &defaultValue29)
+		if !r.PhoneAttribute.DefaultValue.IsUnknown() && !r.PhoneAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PhoneAttribute.DefaultValue.ValueString()), &defaultValue29)
 		}
 		group29 := new(string)
-		if !r.EmailAttribute.Group.IsUnknown() && !r.EmailAttribute.Group.IsNull() {
-			*group29 = r.EmailAttribute.Group.ValueString()
+		if !r.PhoneAttribute.Group.IsUnknown() && !r.PhoneAttribute.Group.IsNull() {
+			*group29 = r.PhoneAttribute.Group.ValueString()
 		} else {
 			group29 = nil
 		}
 		order29 := new(int64)
-		if !r.EmailAttribute.Order.IsUnknown() && !r.EmailAttribute.Order.IsNull() {
-			*order29 = r.EmailAttribute.Order.ValueInt64()
+		if !r.PhoneAttribute.Order.IsUnknown() && !r.PhoneAttribute.Order.IsNull() {
+			*order29 = r.PhoneAttribute.Order.ValueInt64()
 		} else {
 			order29 = nil
 		}
 		layout29 := new(string)
-		if !r.EmailAttribute.Layout.IsUnknown() && !r.EmailAttribute.Layout.IsNull() {
-			*layout29 = r.EmailAttribute.Layout.ValueString()
+		if !r.PhoneAttribute.Layout.IsUnknown() && !r.PhoneAttribute.Layout.IsNull() {
+			*layout29 = r.PhoneAttribute.Layout.ValueString()
 		} else {
 			layout29 = nil
 		}
 		hideLabel29 := new(bool)
-		if !r.EmailAttribute.HideLabel.IsUnknown() && !r.EmailAttribute.HideLabel.IsNull() {
-			*hideLabel29 = r.EmailAttribute.HideLabel.ValueBool()
+		if !r.PhoneAttribute.HideLabel.IsUnknown() && !r.PhoneAttribute.HideLabel.IsNull() {
+			*hideLabel29 = r.PhoneAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel29 = nil
 		}
 		icon29 := new(string)
-		if !r.EmailAttribute.Icon.IsUnknown() && !r.EmailAttribute.Icon.IsNull() {
-			*icon29 = r.EmailAttribute.Icon.ValueString()
+		if !r.PhoneAttribute.Icon.IsUnknown() && !r.PhoneAttribute.Icon.IsNull() {
+			*icon29 = r.PhoneAttribute.Icon.ValueString()
 		} else {
 			icon29 = nil
 		}
 		renderCondition29 := new(string)
-		if !r.EmailAttribute.RenderCondition.IsUnknown() && !r.EmailAttribute.RenderCondition.IsNull() {
-			*renderCondition29 = r.EmailAttribute.RenderCondition.ValueString()
+		if !r.PhoneAttribute.RenderCondition.IsUnknown() && !r.PhoneAttribute.RenderCondition.IsNull() {
+			*renderCondition29 = r.PhoneAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition29 = nil
 		}
 		var purpose29 []string = []string{}
-		for _, purposeItem29 := range r.EmailAttribute.Purpose {
+		for _, purposeItem29 := range r.PhoneAttribute.Purpose {
 			purpose29 = append(purpose29, purposeItem29.ValueString())
 		}
 		var manifest29 []string = []string{}
-		for _, manifestItem29 := range r.EmailAttribute.Manifest {
+		for _, manifestItem29 := range r.PhoneAttribute.Manifest {
 			manifest29 = append(manifest29, manifestItem29.ValueString())
 		}
-		var constraints29 *shared.EmailAttributeAttributeWithCompositeIDConstraints
-		if r.EmailAttribute.Constraints != nil {
-			constraints29 = &shared.EmailAttributeAttributeWithCompositeIDConstraints{}
+		var constraints29 *shared.PhoneAttributeAttributeWithCompositeIDConstraints
+		if r.PhoneAttribute.Constraints != nil {
+			constraints29 = &shared.PhoneAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag30 := new(string)
-		if !r.EmailAttribute.FeatureFlag.IsUnknown() && !r.EmailAttribute.FeatureFlag.IsNull() {
-			*featureFlag30 = r.EmailAttribute.FeatureFlag.ValueString()
+		if !r.PhoneAttribute.FeatureFlag.IsUnknown() && !r.PhoneAttribute.FeatureFlag.IsNull() {
+			*featureFlag30 = r.PhoneAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag30 = nil
 		}
 		var settingsFlag30 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem30 := range r.EmailAttribute.SettingsFlag {
+		for _, settingsFlagItem30 := range r.PhoneAttribute.SettingsFlag {
 			name60 := new(string)
 			if !settingsFlagItem30.Name.IsUnknown() && !settingsFlagItem30.Name.IsNull() {
 				*name60 = settingsFlagItem30.Name.ValueString()
@@ -7900,56 +7994,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter29 := new(string)
-		if !r.EmailAttribute.ValueFormatter.IsUnknown() && !r.EmailAttribute.ValueFormatter.IsNull() {
-			*valueFormatter29 = r.EmailAttribute.ValueFormatter.ValueString()
+		if !r.PhoneAttribute.ValueFormatter.IsUnknown() && !r.PhoneAttribute.ValueFormatter.IsNull() {
+			*valueFormatter29 = r.PhoneAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter29 = nil
 		}
 		previewValueFormatter29 := new(string)
-		if !r.EmailAttribute.PreviewValueFormatter.IsUnknown() && !r.EmailAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter29 = r.EmailAttribute.PreviewValueFormatter.ValueString()
+		if !r.PhoneAttribute.PreviewValueFormatter.IsUnknown() && !r.PhoneAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter29 = r.PhoneAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter29 = nil
 		}
 		entityBuilderDisableEdit29 := new(bool)
-		if !r.EmailAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.EmailAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit29 = r.EmailAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PhoneAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PhoneAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit29 = r.PhoneAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit29 = nil
 		}
 		protected29 := new(bool)
-		if !r.EmailAttribute.Protected.IsUnknown() && !r.EmailAttribute.Protected.IsNull() {
-			*protected29 = r.EmailAttribute.Protected.ValueBool()
+		if !r.PhoneAttribute.Protected.IsUnknown() && !r.PhoneAttribute.Protected.IsNull() {
+			*protected29 = r.PhoneAttribute.Protected.ValueBool()
 		} else {
 			protected29 = nil
 		}
-		var infoHelpers29 *shared.EmailAttributeAttributeWithCompositeIDInfoHelpers
-		if r.EmailAttribute.InfoHelpers != nil {
+		var infoHelpers29 *shared.PhoneAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PhoneAttribute.InfoHelpers != nil {
 			hintText29 := new(string)
-			if !r.EmailAttribute.InfoHelpers.HintText.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText29 = r.EmailAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PhoneAttribute.InfoHelpers.HintText.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText29 = r.PhoneAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText29 = nil
 			}
 			hintTextKey29 := new(string)
-			if !r.EmailAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey29 = r.EmailAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PhoneAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey29 = r.PhoneAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey29 = nil
 			}
 			hintCustomComponent29 := new(string)
-			if !r.EmailAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent29 = r.EmailAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PhoneAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent29 = r.PhoneAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent29 = nil
 			}
 			hintTooltipPlacement29 := new(string)
-			if !r.EmailAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement29 = r.EmailAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement29 = r.PhoneAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement29 = nil
 			}
-			infoHelpers29 = &shared.EmailAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers29 = &shared.PhoneAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText29,
 				HintTextKey:          hintTextKey29,
 				HintCustomComponent:  hintCustomComponent29,
@@ -7957,30 +8051,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable29 := new(bool)
-		if !r.EmailAttribute.Repeatable.IsUnknown() && !r.EmailAttribute.Repeatable.IsNull() {
-			*repeatable29 = r.EmailAttribute.Repeatable.ValueBool()
+		if !r.PhoneAttribute.Repeatable.IsUnknown() && !r.PhoneAttribute.Repeatable.IsNull() {
+			*repeatable29 = r.PhoneAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable29 = nil
 		}
 		hasPrimary29 := new(bool)
-		if !r.EmailAttribute.HasPrimary.IsUnknown() && !r.EmailAttribute.HasPrimary.IsNull() {
-			*hasPrimary29 = r.EmailAttribute.HasPrimary.ValueBool()
+		if !r.PhoneAttribute.HasPrimary.IsUnknown() && !r.PhoneAttribute.HasPrimary.IsNull() {
+			*hasPrimary29 = r.PhoneAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary29 = nil
 		}
-		typeVar29 := new(shared.EmailAttributeAttributeWithCompositeIDType)
-		if !r.EmailAttribute.Type.IsUnknown() && !r.EmailAttribute.Type.IsNull() {
-			*typeVar29 = shared.EmailAttributeAttributeWithCompositeIDType(r.EmailAttribute.Type.ValueString())
+		typeVar29 := new(shared.PhoneAttributeAttributeWithCompositeIDType)
+		if !r.PhoneAttribute.Type.IsUnknown() && !r.PhoneAttribute.Type.IsNull() {
+			*typeVar29 = shared.PhoneAttributeAttributeWithCompositeIDType(r.PhoneAttribute.Type.ValueString())
 		} else {
 			typeVar29 = nil
 		}
 		schema29 := new(string)
-		if !r.EmailAttribute.Schema.IsUnknown() && !r.EmailAttribute.Schema.IsNull() {
-			*schema29 = r.EmailAttribute.Schema.ValueString()
+		if !r.PhoneAttribute.Schema.IsUnknown() && !r.PhoneAttribute.Schema.IsNull() {
+			*schema29 = r.PhoneAttribute.Schema.ValueString()
 		} else {
 			schema29 = nil
 		}
-		attributeWithCompositeIDEmailAttributeInput = &shared.AttributeWithCompositeIDEmailAttributeInput{
+		attributeWithCompositeIDPhoneAttributeInput = &shared.AttributeWithCompositeIDPhoneAttributeInput{
 			ID:                       id29,
 			Name:                     name59,
 			Label:                    label30,
@@ -8014,127 +8108,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema29,
 		}
 	}
-	if attributeWithCompositeIDEmailAttributeInput != nil {
+	if attributeWithCompositeIDPhoneAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDEmailAttributeInput: attributeWithCompositeIDEmailAttributeInput,
+			AttributeWithCompositeIDPhoneAttributeInput: attributeWithCompositeIDPhoneAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPaymentAttributeInput *shared.AttributeWithCompositeIDPaymentAttributeInput
-	if r.PaymentAttribute != nil {
+	var attributeWithCompositeIDEmailAttributeInput *shared.AttributeWithCompositeIDEmailAttributeInput
+	if r.EmailAttribute != nil {
 		id30 := new(string)
-		if !r.PaymentAttribute.ID.IsUnknown() && !r.PaymentAttribute.ID.IsNull() {
-			*id30 = r.PaymentAttribute.ID.ValueString()
+		if !r.EmailAttribute.ID.IsUnknown() && !r.EmailAttribute.ID.IsNull() {
+			*id30 = r.EmailAttribute.ID.ValueString()
 		} else {
 			id30 = nil
 		}
 		var name61 string
-		name61 = r.PaymentAttribute.Name.ValueString()
+		name61 = r.EmailAttribute.Name.ValueString()
 
 		var label31 string
-		label31 = r.PaymentAttribute.Label.ValueString()
+		label31 = r.EmailAttribute.Label.ValueString()
 
 		placeholder30 := new(string)
-		if !r.PaymentAttribute.Placeholder.IsUnknown() && !r.PaymentAttribute.Placeholder.IsNull() {
-			*placeholder30 = r.PaymentAttribute.Placeholder.ValueString()
+		if !r.EmailAttribute.Placeholder.IsUnknown() && !r.EmailAttribute.Placeholder.IsNull() {
+			*placeholder30 = r.EmailAttribute.Placeholder.ValueString()
 		} else {
 			placeholder30 = nil
 		}
 		hidden30 := new(bool)
-		if !r.PaymentAttribute.Hidden.IsUnknown() && !r.PaymentAttribute.Hidden.IsNull() {
-			*hidden30 = r.PaymentAttribute.Hidden.ValueBool()
+		if !r.EmailAttribute.Hidden.IsUnknown() && !r.EmailAttribute.Hidden.IsNull() {
+			*hidden30 = r.EmailAttribute.Hidden.ValueBool()
 		} else {
 			hidden30 = nil
 		}
 		showInTable30 := new(bool)
-		if !r.PaymentAttribute.ShowInTable.IsUnknown() && !r.PaymentAttribute.ShowInTable.IsNull() {
-			*showInTable30 = r.PaymentAttribute.ShowInTable.ValueBool()
+		if !r.EmailAttribute.ShowInTable.IsUnknown() && !r.EmailAttribute.ShowInTable.IsNull() {
+			*showInTable30 = r.EmailAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable30 = nil
 		}
 		sortable30 := new(bool)
-		if !r.PaymentAttribute.Sortable.IsUnknown() && !r.PaymentAttribute.Sortable.IsNull() {
-			*sortable30 = r.PaymentAttribute.Sortable.ValueBool()
+		if !r.EmailAttribute.Sortable.IsUnknown() && !r.EmailAttribute.Sortable.IsNull() {
+			*sortable30 = r.EmailAttribute.Sortable.ValueBool()
 		} else {
 			sortable30 = nil
 		}
 		required30 := new(bool)
-		if !r.PaymentAttribute.Required.IsUnknown() && !r.PaymentAttribute.Required.IsNull() {
-			*required30 = r.PaymentAttribute.Required.ValueBool()
+		if !r.EmailAttribute.Required.IsUnknown() && !r.EmailAttribute.Required.IsNull() {
+			*required30 = r.EmailAttribute.Required.ValueBool()
 		} else {
 			required30 = nil
 		}
 		readonly30 := new(bool)
-		if !r.PaymentAttribute.Readonly.IsUnknown() && !r.PaymentAttribute.Readonly.IsNull() {
-			*readonly30 = r.PaymentAttribute.Readonly.ValueBool()
+		if !r.EmailAttribute.Readonly.IsUnknown() && !r.EmailAttribute.Readonly.IsNull() {
+			*readonly30 = r.EmailAttribute.Readonly.ValueBool()
 		} else {
 			readonly30 = nil
 		}
 		deprecated30 := new(bool)
-		if !r.PaymentAttribute.Deprecated.IsUnknown() && !r.PaymentAttribute.Deprecated.IsNull() {
-			*deprecated30 = r.PaymentAttribute.Deprecated.ValueBool()
+		if !r.EmailAttribute.Deprecated.IsUnknown() && !r.EmailAttribute.Deprecated.IsNull() {
+			*deprecated30 = r.EmailAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated30 = nil
 		}
 		var defaultValue30 interface{}
-		if !r.PaymentAttribute.DefaultValue.IsUnknown() && !r.PaymentAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PaymentAttribute.DefaultValue.ValueString()), &defaultValue30)
+		if !r.EmailAttribute.DefaultValue.IsUnknown() && !r.EmailAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.EmailAttribute.DefaultValue.ValueString()), &defaultValue30)
 		}
 		group30 := new(string)
-		if !r.PaymentAttribute.Group.IsUnknown() && !r.PaymentAttribute.Group.IsNull() {
-			*group30 = r.PaymentAttribute.Group.ValueString()
+		if !r.EmailAttribute.Group.IsUnknown() && !r.EmailAttribute.Group.IsNull() {
+			*group30 = r.EmailAttribute.Group.ValueString()
 		} else {
 			group30 = nil
 		}
 		order30 := new(int64)
-		if !r.PaymentAttribute.Order.IsUnknown() && !r.PaymentAttribute.Order.IsNull() {
-			*order30 = r.PaymentAttribute.Order.ValueInt64()
+		if !r.EmailAttribute.Order.IsUnknown() && !r.EmailAttribute.Order.IsNull() {
+			*order30 = r.EmailAttribute.Order.ValueInt64()
 		} else {
 			order30 = nil
 		}
 		layout30 := new(string)
-		if !r.PaymentAttribute.Layout.IsUnknown() && !r.PaymentAttribute.Layout.IsNull() {
-			*layout30 = r.PaymentAttribute.Layout.ValueString()
+		if !r.EmailAttribute.Layout.IsUnknown() && !r.EmailAttribute.Layout.IsNull() {
+			*layout30 = r.EmailAttribute.Layout.ValueString()
 		} else {
 			layout30 = nil
 		}
 		hideLabel30 := new(bool)
-		if !r.PaymentAttribute.HideLabel.IsUnknown() && !r.PaymentAttribute.HideLabel.IsNull() {
-			*hideLabel30 = r.PaymentAttribute.HideLabel.ValueBool()
+		if !r.EmailAttribute.HideLabel.IsUnknown() && !r.EmailAttribute.HideLabel.IsNull() {
+			*hideLabel30 = r.EmailAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel30 = nil
 		}
 		icon30 := new(string)
-		if !r.PaymentAttribute.Icon.IsUnknown() && !r.PaymentAttribute.Icon.IsNull() {
-			*icon30 = r.PaymentAttribute.Icon.ValueString()
+		if !r.EmailAttribute.Icon.IsUnknown() && !r.EmailAttribute.Icon.IsNull() {
+			*icon30 = r.EmailAttribute.Icon.ValueString()
 		} else {
 			icon30 = nil
 		}
 		renderCondition30 := new(string)
-		if !r.PaymentAttribute.RenderCondition.IsUnknown() && !r.PaymentAttribute.RenderCondition.IsNull() {
-			*renderCondition30 = r.PaymentAttribute.RenderCondition.ValueString()
+		if !r.EmailAttribute.RenderCondition.IsUnknown() && !r.EmailAttribute.RenderCondition.IsNull() {
+			*renderCondition30 = r.EmailAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition30 = nil
 		}
 		var purpose30 []string = []string{}
-		for _, purposeItem30 := range r.PaymentAttribute.Purpose {
+		for _, purposeItem30 := range r.EmailAttribute.Purpose {
 			purpose30 = append(purpose30, purposeItem30.ValueString())
 		}
 		var manifest30 []string = []string{}
-		for _, manifestItem30 := range r.PaymentAttribute.Manifest {
+		for _, manifestItem30 := range r.EmailAttribute.Manifest {
 			manifest30 = append(manifest30, manifestItem30.ValueString())
 		}
-		var constraints30 *shared.PaymentAttributeAttributeWithCompositeIDConstraints
-		if r.PaymentAttribute.Constraints != nil {
-			constraints30 = &shared.PaymentAttributeAttributeWithCompositeIDConstraints{}
+		var constraints30 *shared.EmailAttributeAttributeWithCompositeIDConstraints
+		if r.EmailAttribute.Constraints != nil {
+			constraints30 = &shared.EmailAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag31 := new(string)
-		if !r.PaymentAttribute.FeatureFlag.IsUnknown() && !r.PaymentAttribute.FeatureFlag.IsNull() {
-			*featureFlag31 = r.PaymentAttribute.FeatureFlag.ValueString()
+		if !r.EmailAttribute.FeatureFlag.IsUnknown() && !r.EmailAttribute.FeatureFlag.IsNull() {
+			*featureFlag31 = r.EmailAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag31 = nil
 		}
 		var settingsFlag31 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem31 := range r.PaymentAttribute.SettingsFlag {
+		for _, settingsFlagItem31 := range r.EmailAttribute.SettingsFlag {
 			name62 := new(string)
 			if !settingsFlagItem31.Name.IsUnknown() && !settingsFlagItem31.Name.IsNull() {
 				*name62 = settingsFlagItem31.Name.ValueString()
@@ -8153,56 +8247,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter30 := new(string)
-		if !r.PaymentAttribute.ValueFormatter.IsUnknown() && !r.PaymentAttribute.ValueFormatter.IsNull() {
-			*valueFormatter30 = r.PaymentAttribute.ValueFormatter.ValueString()
+		if !r.EmailAttribute.ValueFormatter.IsUnknown() && !r.EmailAttribute.ValueFormatter.IsNull() {
+			*valueFormatter30 = r.EmailAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter30 = nil
 		}
 		previewValueFormatter30 := new(string)
-		if !r.PaymentAttribute.PreviewValueFormatter.IsUnknown() && !r.PaymentAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter30 = r.PaymentAttribute.PreviewValueFormatter.ValueString()
+		if !r.EmailAttribute.PreviewValueFormatter.IsUnknown() && !r.EmailAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter30 = r.EmailAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter30 = nil
 		}
 		entityBuilderDisableEdit30 := new(bool)
-		if !r.PaymentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PaymentAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit30 = r.PaymentAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.EmailAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.EmailAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit30 = r.EmailAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit30 = nil
 		}
 		protected30 := new(bool)
-		if !r.PaymentAttribute.Protected.IsUnknown() && !r.PaymentAttribute.Protected.IsNull() {
-			*protected30 = r.PaymentAttribute.Protected.ValueBool()
+		if !r.EmailAttribute.Protected.IsUnknown() && !r.EmailAttribute.Protected.IsNull() {
+			*protected30 = r.EmailAttribute.Protected.ValueBool()
 		} else {
 			protected30 = nil
 		}
-		var infoHelpers30 *shared.PaymentAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PaymentAttribute.InfoHelpers != nil {
+		var infoHelpers30 *shared.EmailAttributeAttributeWithCompositeIDInfoHelpers
+		if r.EmailAttribute.InfoHelpers != nil {
 			hintText30 := new(string)
-			if !r.PaymentAttribute.InfoHelpers.HintText.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText30 = r.PaymentAttribute.InfoHelpers.HintText.ValueString()
+			if !r.EmailAttribute.InfoHelpers.HintText.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText30 = r.EmailAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText30 = nil
 			}
 			hintTextKey30 := new(string)
-			if !r.PaymentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey30 = r.PaymentAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.EmailAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey30 = r.EmailAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey30 = nil
 			}
 			hintCustomComponent30 := new(string)
-			if !r.PaymentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent30 = r.PaymentAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.EmailAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent30 = r.EmailAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent30 = nil
 			}
 			hintTooltipPlacement30 := new(string)
-			if !r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement30 = r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.EmailAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.EmailAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement30 = r.EmailAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement30 = nil
 			}
-			infoHelpers30 = &shared.PaymentAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers30 = &shared.EmailAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText30,
 				HintTextKey:          hintTextKey30,
 				HintCustomComponent:  hintCustomComponent30,
@@ -8210,30 +8304,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable30 := new(bool)
-		if !r.PaymentAttribute.Repeatable.IsUnknown() && !r.PaymentAttribute.Repeatable.IsNull() {
-			*repeatable30 = r.PaymentAttribute.Repeatable.ValueBool()
+		if !r.EmailAttribute.Repeatable.IsUnknown() && !r.EmailAttribute.Repeatable.IsNull() {
+			*repeatable30 = r.EmailAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable30 = nil
 		}
 		hasPrimary30 := new(bool)
-		if !r.PaymentAttribute.HasPrimary.IsUnknown() && !r.PaymentAttribute.HasPrimary.IsNull() {
-			*hasPrimary30 = r.PaymentAttribute.HasPrimary.ValueBool()
+		if !r.EmailAttribute.HasPrimary.IsUnknown() && !r.EmailAttribute.HasPrimary.IsNull() {
+			*hasPrimary30 = r.EmailAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary30 = nil
 		}
-		typeVar30 := new(shared.PaymentAttributeAttributeWithCompositeIDType)
-		if !r.PaymentAttribute.Type.IsUnknown() && !r.PaymentAttribute.Type.IsNull() {
-			*typeVar30 = shared.PaymentAttributeAttributeWithCompositeIDType(r.PaymentAttribute.Type.ValueString())
+		typeVar30 := new(shared.EmailAttributeAttributeWithCompositeIDType)
+		if !r.EmailAttribute.Type.IsUnknown() && !r.EmailAttribute.Type.IsNull() {
+			*typeVar30 = shared.EmailAttributeAttributeWithCompositeIDType(r.EmailAttribute.Type.ValueString())
 		} else {
 			typeVar30 = nil
 		}
 		schema30 := new(string)
-		if !r.PaymentAttribute.Schema.IsUnknown() && !r.PaymentAttribute.Schema.IsNull() {
-			*schema30 = r.PaymentAttribute.Schema.ValueString()
+		if !r.EmailAttribute.Schema.IsUnknown() && !r.EmailAttribute.Schema.IsNull() {
+			*schema30 = r.EmailAttribute.Schema.ValueString()
 		} else {
 			schema30 = nil
 		}
-		attributeWithCompositeIDPaymentAttributeInput = &shared.AttributeWithCompositeIDPaymentAttributeInput{
+		attributeWithCompositeIDEmailAttributeInput = &shared.AttributeWithCompositeIDEmailAttributeInput{
 			ID:                       id30,
 			Name:                     name61,
 			Label:                    label31,
@@ -8267,127 +8361,127 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema30,
 		}
 	}
-	if attributeWithCompositeIDPaymentAttributeInput != nil {
+	if attributeWithCompositeIDEmailAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPaymentAttributeInput: attributeWithCompositeIDPaymentAttributeInput,
+			AttributeWithCompositeIDEmailAttributeInput: attributeWithCompositeIDEmailAttributeInput,
 		}
 	}
-	var attributeWithCompositeIDPriceComponentAttributeInput *shared.AttributeWithCompositeIDPriceComponentAttributeInput
-	if r.PriceComponentAttribute != nil {
+	var attributeWithCompositeIDPaymentAttributeInput *shared.AttributeWithCompositeIDPaymentAttributeInput
+	if r.PaymentAttribute != nil {
 		id31 := new(string)
-		if !r.PriceComponentAttribute.ID.IsUnknown() && !r.PriceComponentAttribute.ID.IsNull() {
-			*id31 = r.PriceComponentAttribute.ID.ValueString()
+		if !r.PaymentAttribute.ID.IsUnknown() && !r.PaymentAttribute.ID.IsNull() {
+			*id31 = r.PaymentAttribute.ID.ValueString()
 		} else {
 			id31 = nil
 		}
 		var name63 string
-		name63 = r.PriceComponentAttribute.Name.ValueString()
+		name63 = r.PaymentAttribute.Name.ValueString()
 
 		var label32 string
-		label32 = r.PriceComponentAttribute.Label.ValueString()
+		label32 = r.PaymentAttribute.Label.ValueString()
 
 		placeholder31 := new(string)
-		if !r.PriceComponentAttribute.Placeholder.IsUnknown() && !r.PriceComponentAttribute.Placeholder.IsNull() {
-			*placeholder31 = r.PriceComponentAttribute.Placeholder.ValueString()
+		if !r.PaymentAttribute.Placeholder.IsUnknown() && !r.PaymentAttribute.Placeholder.IsNull() {
+			*placeholder31 = r.PaymentAttribute.Placeholder.ValueString()
 		} else {
 			placeholder31 = nil
 		}
 		hidden31 := new(bool)
-		if !r.PriceComponentAttribute.Hidden.IsUnknown() && !r.PriceComponentAttribute.Hidden.IsNull() {
-			*hidden31 = r.PriceComponentAttribute.Hidden.ValueBool()
+		if !r.PaymentAttribute.Hidden.IsUnknown() && !r.PaymentAttribute.Hidden.IsNull() {
+			*hidden31 = r.PaymentAttribute.Hidden.ValueBool()
 		} else {
 			hidden31 = nil
 		}
 		showInTable31 := new(bool)
-		if !r.PriceComponentAttribute.ShowInTable.IsUnknown() && !r.PriceComponentAttribute.ShowInTable.IsNull() {
-			*showInTable31 = r.PriceComponentAttribute.ShowInTable.ValueBool()
+		if !r.PaymentAttribute.ShowInTable.IsUnknown() && !r.PaymentAttribute.ShowInTable.IsNull() {
+			*showInTable31 = r.PaymentAttribute.ShowInTable.ValueBool()
 		} else {
 			showInTable31 = nil
 		}
 		sortable31 := new(bool)
-		if !r.PriceComponentAttribute.Sortable.IsUnknown() && !r.PriceComponentAttribute.Sortable.IsNull() {
-			*sortable31 = r.PriceComponentAttribute.Sortable.ValueBool()
+		if !r.PaymentAttribute.Sortable.IsUnknown() && !r.PaymentAttribute.Sortable.IsNull() {
+			*sortable31 = r.PaymentAttribute.Sortable.ValueBool()
 		} else {
 			sortable31 = nil
 		}
 		required31 := new(bool)
-		if !r.PriceComponentAttribute.Required.IsUnknown() && !r.PriceComponentAttribute.Required.IsNull() {
-			*required31 = r.PriceComponentAttribute.Required.ValueBool()
+		if !r.PaymentAttribute.Required.IsUnknown() && !r.PaymentAttribute.Required.IsNull() {
+			*required31 = r.PaymentAttribute.Required.ValueBool()
 		} else {
 			required31 = nil
 		}
 		readonly31 := new(bool)
-		if !r.PriceComponentAttribute.Readonly.IsUnknown() && !r.PriceComponentAttribute.Readonly.IsNull() {
-			*readonly31 = r.PriceComponentAttribute.Readonly.ValueBool()
+		if !r.PaymentAttribute.Readonly.IsUnknown() && !r.PaymentAttribute.Readonly.IsNull() {
+			*readonly31 = r.PaymentAttribute.Readonly.ValueBool()
 		} else {
 			readonly31 = nil
 		}
 		deprecated31 := new(bool)
-		if !r.PriceComponentAttribute.Deprecated.IsUnknown() && !r.PriceComponentAttribute.Deprecated.IsNull() {
-			*deprecated31 = r.PriceComponentAttribute.Deprecated.ValueBool()
+		if !r.PaymentAttribute.Deprecated.IsUnknown() && !r.PaymentAttribute.Deprecated.IsNull() {
+			*deprecated31 = r.PaymentAttribute.Deprecated.ValueBool()
 		} else {
 			deprecated31 = nil
 		}
 		var defaultValue31 interface{}
-		if !r.PriceComponentAttribute.DefaultValue.IsUnknown() && !r.PriceComponentAttribute.DefaultValue.IsNull() {
-			_ = json.Unmarshal([]byte(r.PriceComponentAttribute.DefaultValue.ValueString()), &defaultValue31)
+		if !r.PaymentAttribute.DefaultValue.IsUnknown() && !r.PaymentAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PaymentAttribute.DefaultValue.ValueString()), &defaultValue31)
 		}
 		group31 := new(string)
-		if !r.PriceComponentAttribute.Group.IsUnknown() && !r.PriceComponentAttribute.Group.IsNull() {
-			*group31 = r.PriceComponentAttribute.Group.ValueString()
+		if !r.PaymentAttribute.Group.IsUnknown() && !r.PaymentAttribute.Group.IsNull() {
+			*group31 = r.PaymentAttribute.Group.ValueString()
 		} else {
 			group31 = nil
 		}
 		order31 := new(int64)
-		if !r.PriceComponentAttribute.Order.IsUnknown() && !r.PriceComponentAttribute.Order.IsNull() {
-			*order31 = r.PriceComponentAttribute.Order.ValueInt64()
+		if !r.PaymentAttribute.Order.IsUnknown() && !r.PaymentAttribute.Order.IsNull() {
+			*order31 = r.PaymentAttribute.Order.ValueInt64()
 		} else {
 			order31 = nil
 		}
 		layout31 := new(string)
-		if !r.PriceComponentAttribute.Layout.IsUnknown() && !r.PriceComponentAttribute.Layout.IsNull() {
-			*layout31 = r.PriceComponentAttribute.Layout.ValueString()
+		if !r.PaymentAttribute.Layout.IsUnknown() && !r.PaymentAttribute.Layout.IsNull() {
+			*layout31 = r.PaymentAttribute.Layout.ValueString()
 		} else {
 			layout31 = nil
 		}
 		hideLabel31 := new(bool)
-		if !r.PriceComponentAttribute.HideLabel.IsUnknown() && !r.PriceComponentAttribute.HideLabel.IsNull() {
-			*hideLabel31 = r.PriceComponentAttribute.HideLabel.ValueBool()
+		if !r.PaymentAttribute.HideLabel.IsUnknown() && !r.PaymentAttribute.HideLabel.IsNull() {
+			*hideLabel31 = r.PaymentAttribute.HideLabel.ValueBool()
 		} else {
 			hideLabel31 = nil
 		}
 		icon31 := new(string)
-		if !r.PriceComponentAttribute.Icon.IsUnknown() && !r.PriceComponentAttribute.Icon.IsNull() {
-			*icon31 = r.PriceComponentAttribute.Icon.ValueString()
+		if !r.PaymentAttribute.Icon.IsUnknown() && !r.PaymentAttribute.Icon.IsNull() {
+			*icon31 = r.PaymentAttribute.Icon.ValueString()
 		} else {
 			icon31 = nil
 		}
 		renderCondition31 := new(string)
-		if !r.PriceComponentAttribute.RenderCondition.IsUnknown() && !r.PriceComponentAttribute.RenderCondition.IsNull() {
-			*renderCondition31 = r.PriceComponentAttribute.RenderCondition.ValueString()
+		if !r.PaymentAttribute.RenderCondition.IsUnknown() && !r.PaymentAttribute.RenderCondition.IsNull() {
+			*renderCondition31 = r.PaymentAttribute.RenderCondition.ValueString()
 		} else {
 			renderCondition31 = nil
 		}
 		var purpose31 []string = []string{}
-		for _, purposeItem31 := range r.PriceComponentAttribute.Purpose {
+		for _, purposeItem31 := range r.PaymentAttribute.Purpose {
 			purpose31 = append(purpose31, purposeItem31.ValueString())
 		}
 		var manifest31 []string = []string{}
-		for _, manifestItem31 := range r.PriceComponentAttribute.Manifest {
+		for _, manifestItem31 := range r.PaymentAttribute.Manifest {
 			manifest31 = append(manifest31, manifestItem31.ValueString())
 		}
-		var constraints31 *shared.PriceComponentAttributeAttributeWithCompositeIDConstraints
-		if r.PriceComponentAttribute.Constraints != nil {
-			constraints31 = &shared.PriceComponentAttributeAttributeWithCompositeIDConstraints{}
+		var constraints31 *shared.PaymentAttributeAttributeWithCompositeIDConstraints
+		if r.PaymentAttribute.Constraints != nil {
+			constraints31 = &shared.PaymentAttributeAttributeWithCompositeIDConstraints{}
 		}
 		featureFlag32 := new(string)
-		if !r.PriceComponentAttribute.FeatureFlag.IsUnknown() && !r.PriceComponentAttribute.FeatureFlag.IsNull() {
-			*featureFlag32 = r.PriceComponentAttribute.FeatureFlag.ValueString()
+		if !r.PaymentAttribute.FeatureFlag.IsUnknown() && !r.PaymentAttribute.FeatureFlag.IsNull() {
+			*featureFlag32 = r.PaymentAttribute.FeatureFlag.ValueString()
 		} else {
 			featureFlag32 = nil
 		}
 		var settingsFlag32 []shared.SettingFlag = []shared.SettingFlag{}
-		for _, settingsFlagItem32 := range r.PriceComponentAttribute.SettingsFlag {
+		for _, settingsFlagItem32 := range r.PaymentAttribute.SettingsFlag {
 			name64 := new(string)
 			if !settingsFlagItem32.Name.IsUnknown() && !settingsFlagItem32.Name.IsNull() {
 				*name64 = settingsFlagItem32.Name.ValueString()
@@ -8406,56 +8500,56 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			})
 		}
 		valueFormatter31 := new(string)
-		if !r.PriceComponentAttribute.ValueFormatter.IsUnknown() && !r.PriceComponentAttribute.ValueFormatter.IsNull() {
-			*valueFormatter31 = r.PriceComponentAttribute.ValueFormatter.ValueString()
+		if !r.PaymentAttribute.ValueFormatter.IsUnknown() && !r.PaymentAttribute.ValueFormatter.IsNull() {
+			*valueFormatter31 = r.PaymentAttribute.ValueFormatter.ValueString()
 		} else {
 			valueFormatter31 = nil
 		}
 		previewValueFormatter31 := new(string)
-		if !r.PriceComponentAttribute.PreviewValueFormatter.IsUnknown() && !r.PriceComponentAttribute.PreviewValueFormatter.IsNull() {
-			*previewValueFormatter31 = r.PriceComponentAttribute.PreviewValueFormatter.ValueString()
+		if !r.PaymentAttribute.PreviewValueFormatter.IsUnknown() && !r.PaymentAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter31 = r.PaymentAttribute.PreviewValueFormatter.ValueString()
 		} else {
 			previewValueFormatter31 = nil
 		}
 		entityBuilderDisableEdit31 := new(bool)
-		if !r.PriceComponentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PriceComponentAttribute.EntityBuilderDisableEdit.IsNull() {
-			*entityBuilderDisableEdit31 = r.PriceComponentAttribute.EntityBuilderDisableEdit.ValueBool()
+		if !r.PaymentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PaymentAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit31 = r.PaymentAttribute.EntityBuilderDisableEdit.ValueBool()
 		} else {
 			entityBuilderDisableEdit31 = nil
 		}
 		protected31 := new(bool)
-		if !r.PriceComponentAttribute.Protected.IsUnknown() && !r.PriceComponentAttribute.Protected.IsNull() {
-			*protected31 = r.PriceComponentAttribute.Protected.ValueBool()
+		if !r.PaymentAttribute.Protected.IsUnknown() && !r.PaymentAttribute.Protected.IsNull() {
+			*protected31 = r.PaymentAttribute.Protected.ValueBool()
 		} else {
 			protected31 = nil
 		}
-		var infoHelpers31 *shared.PriceComponentAttributeAttributeWithCompositeIDInfoHelpers
-		if r.PriceComponentAttribute.InfoHelpers != nil {
+		var infoHelpers31 *shared.PaymentAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PaymentAttribute.InfoHelpers != nil {
 			hintText31 := new(string)
-			if !r.PriceComponentAttribute.InfoHelpers.HintText.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintText.IsNull() {
-				*hintText31 = r.PriceComponentAttribute.InfoHelpers.HintText.ValueString()
+			if !r.PaymentAttribute.InfoHelpers.HintText.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText31 = r.PaymentAttribute.InfoHelpers.HintText.ValueString()
 			} else {
 				hintText31 = nil
 			}
 			hintTextKey31 := new(string)
-			if !r.PriceComponentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintTextKey.IsNull() {
-				*hintTextKey31 = r.PriceComponentAttribute.InfoHelpers.HintTextKey.ValueString()
+			if !r.PaymentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey31 = r.PaymentAttribute.InfoHelpers.HintTextKey.ValueString()
 			} else {
 				hintTextKey31 = nil
 			}
 			hintCustomComponent31 := new(string)
-			if !r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
-				*hintCustomComponent31 = r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			if !r.PaymentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent31 = r.PaymentAttribute.InfoHelpers.HintCustomComponent.ValueString()
 			} else {
 				hintCustomComponent31 = nil
 			}
 			hintTooltipPlacement31 := new(string)
-			if !r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
-				*hintTooltipPlacement31 = r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			if !r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement31 = r.PaymentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
 			} else {
 				hintTooltipPlacement31 = nil
 			}
-			infoHelpers31 = &shared.PriceComponentAttributeAttributeWithCompositeIDInfoHelpers{
+			infoHelpers31 = &shared.PaymentAttributeAttributeWithCompositeIDInfoHelpers{
 				HintText:             hintText31,
 				HintTextKey:          hintTextKey31,
 				HintCustomComponent:  hintCustomComponent31,
@@ -8463,30 +8557,30 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			}
 		}
 		repeatable31 := new(bool)
-		if !r.PriceComponentAttribute.Repeatable.IsUnknown() && !r.PriceComponentAttribute.Repeatable.IsNull() {
-			*repeatable31 = r.PriceComponentAttribute.Repeatable.ValueBool()
+		if !r.PaymentAttribute.Repeatable.IsUnknown() && !r.PaymentAttribute.Repeatable.IsNull() {
+			*repeatable31 = r.PaymentAttribute.Repeatable.ValueBool()
 		} else {
 			repeatable31 = nil
 		}
 		hasPrimary31 := new(bool)
-		if !r.PriceComponentAttribute.HasPrimary.IsUnknown() && !r.PriceComponentAttribute.HasPrimary.IsNull() {
-			*hasPrimary31 = r.PriceComponentAttribute.HasPrimary.ValueBool()
+		if !r.PaymentAttribute.HasPrimary.IsUnknown() && !r.PaymentAttribute.HasPrimary.IsNull() {
+			*hasPrimary31 = r.PaymentAttribute.HasPrimary.ValueBool()
 		} else {
 			hasPrimary31 = nil
 		}
-		typeVar31 := new(shared.PriceComponentAttributeAttributeWithCompositeIDType)
-		if !r.PriceComponentAttribute.Type.IsUnknown() && !r.PriceComponentAttribute.Type.IsNull() {
-			*typeVar31 = shared.PriceComponentAttributeAttributeWithCompositeIDType(r.PriceComponentAttribute.Type.ValueString())
+		typeVar31 := new(shared.PaymentAttributeAttributeWithCompositeIDType)
+		if !r.PaymentAttribute.Type.IsUnknown() && !r.PaymentAttribute.Type.IsNull() {
+			*typeVar31 = shared.PaymentAttributeAttributeWithCompositeIDType(r.PaymentAttribute.Type.ValueString())
 		} else {
 			typeVar31 = nil
 		}
 		schema31 := new(string)
-		if !r.PriceComponentAttribute.Schema.IsUnknown() && !r.PriceComponentAttribute.Schema.IsNull() {
-			*schema31 = r.PriceComponentAttribute.Schema.ValueString()
+		if !r.PaymentAttribute.Schema.IsUnknown() && !r.PaymentAttribute.Schema.IsNull() {
+			*schema31 = r.PaymentAttribute.Schema.ValueString()
 		} else {
 			schema31 = nil
 		}
-		attributeWithCompositeIDPriceComponentAttributeInput = &shared.AttributeWithCompositeIDPriceComponentAttributeInput{
+		attributeWithCompositeIDPaymentAttributeInput = &shared.AttributeWithCompositeIDPaymentAttributeInput{
 			ID:                       id31,
 			Name:                     name63,
 			Label:                    label32,
@@ -8520,6 +8614,259 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			Schema:                   schema31,
 		}
 	}
+	if attributeWithCompositeIDPaymentAttributeInput != nil {
+		out = shared.AttributeWithCompositeIDInput{
+			AttributeWithCompositeIDPaymentAttributeInput: attributeWithCompositeIDPaymentAttributeInput,
+		}
+	}
+	var attributeWithCompositeIDPriceComponentAttributeInput *shared.AttributeWithCompositeIDPriceComponentAttributeInput
+	if r.PriceComponentAttribute != nil {
+		id32 := new(string)
+		if !r.PriceComponentAttribute.ID.IsUnknown() && !r.PriceComponentAttribute.ID.IsNull() {
+			*id32 = r.PriceComponentAttribute.ID.ValueString()
+		} else {
+			id32 = nil
+		}
+		var name65 string
+		name65 = r.PriceComponentAttribute.Name.ValueString()
+
+		var label33 string
+		label33 = r.PriceComponentAttribute.Label.ValueString()
+
+		placeholder32 := new(string)
+		if !r.PriceComponentAttribute.Placeholder.IsUnknown() && !r.PriceComponentAttribute.Placeholder.IsNull() {
+			*placeholder32 = r.PriceComponentAttribute.Placeholder.ValueString()
+		} else {
+			placeholder32 = nil
+		}
+		hidden32 := new(bool)
+		if !r.PriceComponentAttribute.Hidden.IsUnknown() && !r.PriceComponentAttribute.Hidden.IsNull() {
+			*hidden32 = r.PriceComponentAttribute.Hidden.ValueBool()
+		} else {
+			hidden32 = nil
+		}
+		showInTable32 := new(bool)
+		if !r.PriceComponentAttribute.ShowInTable.IsUnknown() && !r.PriceComponentAttribute.ShowInTable.IsNull() {
+			*showInTable32 = r.PriceComponentAttribute.ShowInTable.ValueBool()
+		} else {
+			showInTable32 = nil
+		}
+		sortable32 := new(bool)
+		if !r.PriceComponentAttribute.Sortable.IsUnknown() && !r.PriceComponentAttribute.Sortable.IsNull() {
+			*sortable32 = r.PriceComponentAttribute.Sortable.ValueBool()
+		} else {
+			sortable32 = nil
+		}
+		required32 := new(bool)
+		if !r.PriceComponentAttribute.Required.IsUnknown() && !r.PriceComponentAttribute.Required.IsNull() {
+			*required32 = r.PriceComponentAttribute.Required.ValueBool()
+		} else {
+			required32 = nil
+		}
+		readonly32 := new(bool)
+		if !r.PriceComponentAttribute.Readonly.IsUnknown() && !r.PriceComponentAttribute.Readonly.IsNull() {
+			*readonly32 = r.PriceComponentAttribute.Readonly.ValueBool()
+		} else {
+			readonly32 = nil
+		}
+		deprecated32 := new(bool)
+		if !r.PriceComponentAttribute.Deprecated.IsUnknown() && !r.PriceComponentAttribute.Deprecated.IsNull() {
+			*deprecated32 = r.PriceComponentAttribute.Deprecated.ValueBool()
+		} else {
+			deprecated32 = nil
+		}
+		var defaultValue32 interface{}
+		if !r.PriceComponentAttribute.DefaultValue.IsUnknown() && !r.PriceComponentAttribute.DefaultValue.IsNull() {
+			_ = json.Unmarshal([]byte(r.PriceComponentAttribute.DefaultValue.ValueString()), &defaultValue32)
+		}
+		group32 := new(string)
+		if !r.PriceComponentAttribute.Group.IsUnknown() && !r.PriceComponentAttribute.Group.IsNull() {
+			*group32 = r.PriceComponentAttribute.Group.ValueString()
+		} else {
+			group32 = nil
+		}
+		order32 := new(int64)
+		if !r.PriceComponentAttribute.Order.IsUnknown() && !r.PriceComponentAttribute.Order.IsNull() {
+			*order32 = r.PriceComponentAttribute.Order.ValueInt64()
+		} else {
+			order32 = nil
+		}
+		layout32 := new(string)
+		if !r.PriceComponentAttribute.Layout.IsUnknown() && !r.PriceComponentAttribute.Layout.IsNull() {
+			*layout32 = r.PriceComponentAttribute.Layout.ValueString()
+		} else {
+			layout32 = nil
+		}
+		hideLabel32 := new(bool)
+		if !r.PriceComponentAttribute.HideLabel.IsUnknown() && !r.PriceComponentAttribute.HideLabel.IsNull() {
+			*hideLabel32 = r.PriceComponentAttribute.HideLabel.ValueBool()
+		} else {
+			hideLabel32 = nil
+		}
+		icon32 := new(string)
+		if !r.PriceComponentAttribute.Icon.IsUnknown() && !r.PriceComponentAttribute.Icon.IsNull() {
+			*icon32 = r.PriceComponentAttribute.Icon.ValueString()
+		} else {
+			icon32 = nil
+		}
+		renderCondition32 := new(string)
+		if !r.PriceComponentAttribute.RenderCondition.IsUnknown() && !r.PriceComponentAttribute.RenderCondition.IsNull() {
+			*renderCondition32 = r.PriceComponentAttribute.RenderCondition.ValueString()
+		} else {
+			renderCondition32 = nil
+		}
+		var purpose32 []string = []string{}
+		for _, purposeItem32 := range r.PriceComponentAttribute.Purpose {
+			purpose32 = append(purpose32, purposeItem32.ValueString())
+		}
+		var manifest32 []string = []string{}
+		for _, manifestItem32 := range r.PriceComponentAttribute.Manifest {
+			manifest32 = append(manifest32, manifestItem32.ValueString())
+		}
+		var constraints32 *shared.PriceComponentAttributeAttributeWithCompositeIDConstraints
+		if r.PriceComponentAttribute.Constraints != nil {
+			constraints32 = &shared.PriceComponentAttributeAttributeWithCompositeIDConstraints{}
+		}
+		featureFlag33 := new(string)
+		if !r.PriceComponentAttribute.FeatureFlag.IsUnknown() && !r.PriceComponentAttribute.FeatureFlag.IsNull() {
+			*featureFlag33 = r.PriceComponentAttribute.FeatureFlag.ValueString()
+		} else {
+			featureFlag33 = nil
+		}
+		var settingsFlag33 []shared.SettingFlag = []shared.SettingFlag{}
+		for _, settingsFlagItem33 := range r.PriceComponentAttribute.SettingsFlag {
+			name66 := new(string)
+			if !settingsFlagItem33.Name.IsUnknown() && !settingsFlagItem33.Name.IsNull() {
+				*name66 = settingsFlagItem33.Name.ValueString()
+			} else {
+				name66 = nil
+			}
+			enabled33 := new(bool)
+			if !settingsFlagItem33.Enabled.IsUnknown() && !settingsFlagItem33.Enabled.IsNull() {
+				*enabled33 = settingsFlagItem33.Enabled.ValueBool()
+			} else {
+				enabled33 = nil
+			}
+			settingsFlag33 = append(settingsFlag33, shared.SettingFlag{
+				Name:    name66,
+				Enabled: enabled33,
+			})
+		}
+		valueFormatter32 := new(string)
+		if !r.PriceComponentAttribute.ValueFormatter.IsUnknown() && !r.PriceComponentAttribute.ValueFormatter.IsNull() {
+			*valueFormatter32 = r.PriceComponentAttribute.ValueFormatter.ValueString()
+		} else {
+			valueFormatter32 = nil
+		}
+		previewValueFormatter32 := new(string)
+		if !r.PriceComponentAttribute.PreviewValueFormatter.IsUnknown() && !r.PriceComponentAttribute.PreviewValueFormatter.IsNull() {
+			*previewValueFormatter32 = r.PriceComponentAttribute.PreviewValueFormatter.ValueString()
+		} else {
+			previewValueFormatter32 = nil
+		}
+		entityBuilderDisableEdit32 := new(bool)
+		if !r.PriceComponentAttribute.EntityBuilderDisableEdit.IsUnknown() && !r.PriceComponentAttribute.EntityBuilderDisableEdit.IsNull() {
+			*entityBuilderDisableEdit32 = r.PriceComponentAttribute.EntityBuilderDisableEdit.ValueBool()
+		} else {
+			entityBuilderDisableEdit32 = nil
+		}
+		protected32 := new(bool)
+		if !r.PriceComponentAttribute.Protected.IsUnknown() && !r.PriceComponentAttribute.Protected.IsNull() {
+			*protected32 = r.PriceComponentAttribute.Protected.ValueBool()
+		} else {
+			protected32 = nil
+		}
+		var infoHelpers32 *shared.PriceComponentAttributeAttributeWithCompositeIDInfoHelpers
+		if r.PriceComponentAttribute.InfoHelpers != nil {
+			hintText32 := new(string)
+			if !r.PriceComponentAttribute.InfoHelpers.HintText.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintText.IsNull() {
+				*hintText32 = r.PriceComponentAttribute.InfoHelpers.HintText.ValueString()
+			} else {
+				hintText32 = nil
+			}
+			hintTextKey32 := new(string)
+			if !r.PriceComponentAttribute.InfoHelpers.HintTextKey.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintTextKey.IsNull() {
+				*hintTextKey32 = r.PriceComponentAttribute.InfoHelpers.HintTextKey.ValueString()
+			} else {
+				hintTextKey32 = nil
+			}
+			hintCustomComponent32 := new(string)
+			if !r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.IsNull() {
+				*hintCustomComponent32 = r.PriceComponentAttribute.InfoHelpers.HintCustomComponent.ValueString()
+			} else {
+				hintCustomComponent32 = nil
+			}
+			hintTooltipPlacement32 := new(string)
+			if !r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.IsUnknown() && !r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.IsNull() {
+				*hintTooltipPlacement32 = r.PriceComponentAttribute.InfoHelpers.HintTooltipPlacement.ValueString()
+			} else {
+				hintTooltipPlacement32 = nil
+			}
+			infoHelpers32 = &shared.PriceComponentAttributeAttributeWithCompositeIDInfoHelpers{
+				HintText:             hintText32,
+				HintTextKey:          hintTextKey32,
+				HintCustomComponent:  hintCustomComponent32,
+				HintTooltipPlacement: hintTooltipPlacement32,
+			}
+		}
+		repeatable32 := new(bool)
+		if !r.PriceComponentAttribute.Repeatable.IsUnknown() && !r.PriceComponentAttribute.Repeatable.IsNull() {
+			*repeatable32 = r.PriceComponentAttribute.Repeatable.ValueBool()
+		} else {
+			repeatable32 = nil
+		}
+		hasPrimary32 := new(bool)
+		if !r.PriceComponentAttribute.HasPrimary.IsUnknown() && !r.PriceComponentAttribute.HasPrimary.IsNull() {
+			*hasPrimary32 = r.PriceComponentAttribute.HasPrimary.ValueBool()
+		} else {
+			hasPrimary32 = nil
+		}
+		typeVar32 := new(shared.PriceComponentAttributeAttributeWithCompositeIDType)
+		if !r.PriceComponentAttribute.Type.IsUnknown() && !r.PriceComponentAttribute.Type.IsNull() {
+			*typeVar32 = shared.PriceComponentAttributeAttributeWithCompositeIDType(r.PriceComponentAttribute.Type.ValueString())
+		} else {
+			typeVar32 = nil
+		}
+		schema32 := new(string)
+		if !r.PriceComponentAttribute.Schema.IsUnknown() && !r.PriceComponentAttribute.Schema.IsNull() {
+			*schema32 = r.PriceComponentAttribute.Schema.ValueString()
+		} else {
+			schema32 = nil
+		}
+		attributeWithCompositeIDPriceComponentAttributeInput = &shared.AttributeWithCompositeIDPriceComponentAttributeInput{
+			ID:                       id32,
+			Name:                     name65,
+			Label:                    label33,
+			Placeholder:              placeholder32,
+			Hidden:                   hidden32,
+			ShowInTable:              showInTable32,
+			Sortable:                 sortable32,
+			Required:                 required32,
+			Readonly:                 readonly32,
+			Deprecated:               deprecated32,
+			DefaultValue:             defaultValue32,
+			Group:                    group32,
+			Order:                    order32,
+			Layout:                   layout32,
+			HideLabel:                hideLabel32,
+			Icon:                     icon32,
+			RenderCondition:          renderCondition32,
+			Purpose:                  purpose32,
+			Manifest:                 manifest32,
+			Constraints:              constraints32,
+			FeatureFlag:              featureFlag33,
+			SettingsFlag:             settingsFlag33,
+			ValueFormatter:           valueFormatter32,
+			PreviewValueFormatter:    previewValueFormatter32,
+			EntityBuilderDisableEdit: entityBuilderDisableEdit32,
+			Protected:                protected32,
+			InfoHelpers:              infoHelpers32,
+			Repeatable:               repeatable32,
+			HasPrimary:               hasPrimary32,
+			Type:                     typeVar32,
+			Schema:                   schema32,
+		}
+	}
 	if attributeWithCompositeIDPriceComponentAttributeInput != nil {
 		out = shared.AttributeWithCompositeIDInput{
 			AttributeWithCompositeIDPriceComponentAttributeInput: attributeWithCompositeIDPriceComponentAttributeInput,
@@ -8547,6 +8894,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.AddressAttribute.Constraints = nil
 			} else {
 				r.AddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+			}
+			r.AddressAttribute.DefaultAddressFields = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAddressAttribute.DefaultAddressFields {
+				r.AddressAttribute.DefaultAddressFields = append(r.AddressAttribute.DefaultAddressFields, types.StringValue(string(v)))
 			}
 			if resp.AttributeWithCompositeIDAddressAttribute.DefaultValue == nil {
 				r.AddressAttribute.DefaultValue = types.StringNull()
@@ -8633,7 +8984,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.AddressAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
-			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
 			r.AddressRelationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
 				r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
@@ -8648,6 +8999,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.AddressRelationAttribute.Constraints = nil
 			} else {
 				r.AddressRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+			}
+			r.AddressRelationAttribute.DefaultAddressFields = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultAddressFields {
+				r.AddressRelationAttribute.DefaultAddressFields = append(r.AddressRelationAttribute.DefaultAddressFields, types.StringValue(string(v)))
 			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue == nil {
 				r.AddressRelationAttribute.DefaultValue = types.StringNull()
@@ -8734,7 +9089,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.AddressRelationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDAutomationAttribute != nil {
-			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.AutomationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.AutomationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAutomationAttribute.Manifest {
 				r.AutomationAttribute.Manifest = append(r.AutomationAttribute.Manifest, types.StringValue(v))
@@ -8835,7 +9190,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.AutomationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDBooleanAttribute != nil {
-			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.BooleanAttribute = &tfTypes.AttributeWithCompositeIDBooleanAttribute{}
 			r.BooleanAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDBooleanAttribute.Manifest {
 				r.BooleanAttribute.Manifest = append(r.BooleanAttribute.Manifest, types.StringValue(v))
@@ -8859,6 +9214,11 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			}
 			r.BooleanAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Deprecated)
 			r.Deprecated = r.BooleanAttribute.Deprecated
+			if resp.AttributeWithCompositeIDBooleanAttribute.DisplayType != nil {
+				r.BooleanAttribute.DisplayType = types.StringValue(string(*resp.AttributeWithCompositeIDBooleanAttribute.DisplayType))
+			} else {
+				r.BooleanAttribute.DisplayType = types.StringNull()
+			}
 			r.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.BooleanAttribute.EntityBuilderDisableEdit
 			r.BooleanAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.FeatureFlag)
@@ -8936,7 +9296,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.BooleanAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDComputedAttribute != nil {
-			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.ComputedAttribute = &tfTypes.AttributeWithCompositeIDComputedAttribute{}
 			r.ComputedAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Manifest {
 				r.ComputedAttribute.Manifest = append(r.ComputedAttribute.Manifest, types.StringValue(v))
@@ -8945,13 +9305,16 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			for _, v := range resp.AttributeWithCompositeIDComputedAttribute.Purpose {
 				r.ComputedAttribute.Purpose = append(r.ComputedAttribute.Purpose, types.StringValue(v))
 			}
+			r.ComputedAttribute.AmountField = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.AmountField)
 			r.ComputedAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.CompositeID)
 			r.CompositeID = r.ComputedAttribute.CompositeID
+			r.ComputedAttribute.Computed = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Computed)
 			if resp.AttributeWithCompositeIDComputedAttribute.Constraints == nil {
 				r.ComputedAttribute.Constraints = nil
 			} else {
 				r.ComputedAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
+			r.ComputedAttribute.CurrencyField = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.CurrencyField)
 			if resp.AttributeWithCompositeIDComputedAttribute.DefaultValue == nil {
 				r.ComputedAttribute.DefaultValue = types.StringNull()
 			} else {
@@ -9033,7 +9396,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			} else {
 				r.ComputedAttribute.Type = types.StringNull()
 			}
-			r.ComputedAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ValueFormatter)
+			r.ComputedAttribute.ValueFormatter = types.StringValue(resp.AttributeWithCompositeIDComputedAttribute.ValueFormatter)
 			r.ValueFormatter = r.ComputedAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDConsentAttribute != nil {
@@ -9139,7 +9502,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.ConsentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDCountryAttribute != nil {
-			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDCountryAttribute{}
 			r.CountryAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
 				r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
@@ -9357,7 +9720,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.CurrencyAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDDateAttribute != nil {
-			r.DateAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.DateAttribute = &tfTypes.AttributeWithCompositeIDDateAttribute{}
 			r.DateAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
 				r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
@@ -9458,7 +9821,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.DateAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDEmailAttribute != nil {
-			r.EmailAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.EmailAttribute = &tfTypes.AttributeWithCompositeIDEmailAttribute{}
 			r.EmailAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Manifest {
 				r.EmailAttribute.Manifest = append(r.EmailAttribute.Manifest, types.StringValue(v))
@@ -9668,7 +10031,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.FileAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalAttribute != nil {
-			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDInternalAttribute{}
 			r.InternalAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
 				r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
@@ -9769,7 +10132,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InternalAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalUserAttribute != nil {
-			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDInternalUserAttribute{}
 			r.InternalUserAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
 				r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
@@ -9870,7 +10233,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InternalUserAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInvitationEmailAttribute != nil {
-			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDInvitationEmailAttribute{}
 			r.InvitationEmailAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
 				r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
@@ -9971,7 +10334,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InvitationEmailAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDLinkAttribute != nil {
-			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDLinkAttribute{}
 			r.LinkAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
 				r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
@@ -10071,6 +10434,106 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.LinkAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ValueFormatter)
 			r.ValueFormatter = r.LinkAttribute.ValueFormatter
 		}
+		if resp.AttributeWithCompositeIDMessageEmailAddressAttribute != nil {
+			r.MessageEmailAddressAttribute = &tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute{}
+			r.MessageEmailAddressAttribute.Manifest = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Manifest {
+				r.MessageEmailAddressAttribute.Manifest = append(r.MessageEmailAddressAttribute.Manifest, types.StringValue(v))
+			}
+			r.MessageEmailAddressAttribute.Purpose = []types.String{}
+			for _, v := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Purpose {
+				r.MessageEmailAddressAttribute.Purpose = append(r.MessageEmailAddressAttribute.Purpose, types.StringValue(v))
+			}
+			r.MessageEmailAddressAttribute.Address = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Address)
+			r.MessageEmailAddressAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.CompositeID)
+			r.CompositeID = r.MessageEmailAddressAttribute.CompositeID
+			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Constraints == nil {
+				r.MessageEmailAddressAttribute.Constraints = nil
+			} else {
+				r.MessageEmailAddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+			}
+			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue == nil {
+				r.MessageEmailAddressAttribute.DefaultValue = types.StringNull()
+			} else {
+				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue)
+				r.MessageEmailAddressAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
+			}
+			r.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Deprecated)
+			r.Deprecated = r.MessageEmailAddressAttribute.Deprecated
+			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
+			r.MessageEmailAddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EntityBuilderDisableEdit)
+			r.EntityBuilderDisableEdit = r.MessageEmailAddressAttribute.EntityBuilderDisableEdit
+			r.MessageEmailAddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.FeatureFlag)
+			r.FeatureFlag = r.MessageEmailAddressAttribute.FeatureFlag
+			r.MessageEmailAddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Group)
+			r.Group = r.MessageEmailAddressAttribute.Group
+			r.MessageEmailAddressAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.HasPrimary)
+			r.HasPrimary = r.MessageEmailAddressAttribute.HasPrimary
+			r.MessageEmailAddressAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Hidden)
+			r.Hidden = r.MessageEmailAddressAttribute.Hidden
+			r.MessageEmailAddressAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.HideLabel)
+			r.HideLabel = r.MessageEmailAddressAttribute.HideLabel
+			r.MessageEmailAddressAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Icon)
+			r.Icon = r.MessageEmailAddressAttribute.Icon
+			r.MessageEmailAddressAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ID)
+			r.ID = r.MessageEmailAddressAttribute.ID
+			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers == nil {
+				r.MessageEmailAddressAttribute.InfoHelpers = nil
+			} else {
+				r.MessageEmailAddressAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.MessageEmailAddressAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintCustomComponent)
+				r.MessageEmailAddressAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintText)
+				r.MessageEmailAddressAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintTextKey)
+				r.MessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.InfoHelpers.HintTooltipPlacement)
+			}
+			r.MessageEmailAddressAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Label)
+			r.Label = r.MessageEmailAddressAttribute.Label
+			r.MessageEmailAddressAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Layout)
+			r.Layout = r.MessageEmailAddressAttribute.Layout
+			r.MessageEmailAddressAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Name)
+			r.Name = r.MessageEmailAddressAttribute.Name
+			r.MessageEmailAddressAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Order)
+			r.Order = r.MessageEmailAddressAttribute.Order
+			r.MessageEmailAddressAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Placeholder)
+			r.Placeholder = r.MessageEmailAddressAttribute.Placeholder
+			r.MessageEmailAddressAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.PreviewValueFormatter)
+			r.PreviewValueFormatter = r.MessageEmailAddressAttribute.PreviewValueFormatter
+			r.MessageEmailAddressAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Protected)
+			r.Protected = r.MessageEmailAddressAttribute.Protected
+			r.MessageEmailAddressAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Readonly)
+			r.Readonly = r.MessageEmailAddressAttribute.Readonly
+			r.MessageEmailAddressAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.RenderCondition)
+			r.RenderCondition = r.MessageEmailAddressAttribute.RenderCondition
+			r.MessageEmailAddressAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Repeatable)
+			r.Repeatable = r.MessageEmailAddressAttribute.Repeatable
+			r.MessageEmailAddressAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Required)
+			r.Required = r.MessageEmailAddressAttribute.Required
+			r.MessageEmailAddressAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Schema)
+			r.Schema = r.MessageEmailAddressAttribute.Schema
+			r.MessageEmailAddressAttribute.SendStatus = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SendStatus)
+			r.MessageEmailAddressAttribute.SettingsFlag = []tfTypes.SettingFlag{}
+			if len(r.MessageEmailAddressAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag) {
+				r.MessageEmailAddressAttribute.SettingsFlag = r.MessageEmailAddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag)]
+			}
+			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag {
+				var settingsFlag31 tfTypes.SettingFlag
+				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
+				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
+				if settingsFlagCount15+1 > len(r.MessageEmailAddressAttribute.SettingsFlag) {
+					r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag31)
+				} else {
+					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
+					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
+				}
+			}
+			r.MessageEmailAddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ShowInTable)
+			r.ShowInTable = r.MessageEmailAddressAttribute.ShowInTable
+			r.MessageEmailAddressAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Sortable)
+			r.Sortable = r.MessageEmailAddressAttribute.Sortable
+			r.MessageEmailAddressAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Type))
+			r.MessageEmailAddressAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ValueFormatter)
+			r.ValueFormatter = r.MessageEmailAddressAttribute.ValueFormatter
+		}
 		if resp.AttributeWithCompositeIDMultiSelectAttribute != nil {
 			r.MultiSelectAttribute = &tfTypes.AttributeWithCompositeIDMultiSelectAttribute{}
 			r.MultiSelectAttribute.Manifest = []types.String{}
@@ -10093,8 +10556,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue == nil {
 				r.MultiSelectAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
-				r.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
+				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
+				r.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
 			}
 			r.MultiSelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Deprecated)
 			r.Deprecated = r.MultiSelectAttribute.Deprecated
@@ -10173,15 +10636,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.MultiSelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag) {
 				r.MultiSelectAttribute.SettingsFlag = r.MultiSelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
-				var settingsFlag31 tfTypes.SettingFlag
-				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
-				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
-				if settingsFlagCount15+1 > len(r.MultiSelectAttribute.SettingsFlag) {
-					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag31)
+			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
+				var settingsFlag33 tfTypes.SettingFlag
+				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
+				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
+				if settingsFlagCount16+1 > len(r.MultiSelectAttribute.SettingsFlag) {
+					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag33)
 				} else {
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
 				}
 			}
 			r.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ShowInTable)
@@ -10216,8 +10679,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDNumberAttribute.DefaultValue == nil {
 				r.NumberAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
-				r.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
+				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
+				r.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
 			}
 			r.NumberAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Deprecated)
 			r.Deprecated = r.NumberAttribute.Deprecated
@@ -10275,15 +10738,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.NumberAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag) {
 				r.NumberAttribute.SettingsFlag = r.NumberAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
-				var settingsFlag33 tfTypes.SettingFlag
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
-				if settingsFlagCount16+1 > len(r.NumberAttribute.SettingsFlag) {
-					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag33)
+			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
+				var settingsFlag35 tfTypes.SettingFlag
+				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
+				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
+				if settingsFlagCount17+1 > len(r.NumberAttribute.SettingsFlag) {
+					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag35)
 				} else {
-					r.NumberAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
-					r.NumberAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
+					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
+					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
 				}
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
@@ -10300,7 +10763,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.NumberAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDOrderedListAttribute != nil {
-			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDOrderedListAttribute{}
 			r.OrderedListAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
 				r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
@@ -10319,8 +10782,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue == nil {
 				r.OrderedListAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
-				r.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
+				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
+				r.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
 			}
 			r.OrderedListAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Deprecated)
 			r.Deprecated = r.OrderedListAttribute.Deprecated
@@ -10377,15 +10840,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.OrderedListAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag) {
 				r.OrderedListAttribute.SettingsFlag = r.OrderedListAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
-				var settingsFlag35 tfTypes.SettingFlag
-				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
-				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
-				if settingsFlagCount17+1 > len(r.OrderedListAttribute.SettingsFlag) {
-					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag35)
+			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
+				var settingsFlag37 tfTypes.SettingFlag
+				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
+				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
+				if settingsFlagCount18+1 > len(r.OrderedListAttribute.SettingsFlag) {
+					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag37)
 				} else {
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
 				}
 			}
 			r.OrderedListAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ShowInTable)
@@ -10401,7 +10864,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.OrderedListAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
-			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDPartnerOrganisationAttribute{}
 			r.PartnerOrganisationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
 				r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
@@ -10420,8 +10883,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue == nil {
 				r.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
-				r.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
+				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
+				r.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
 			}
 			r.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Deprecated)
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
@@ -10478,15 +10941,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PartnerOrganisationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag) {
 				r.PartnerOrganisationAttribute.SettingsFlag = r.PartnerOrganisationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
-				var settingsFlag37 tfTypes.SettingFlag
-				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
-				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
-				if settingsFlagCount18+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
-					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag37)
+			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
+				var settingsFlag39 tfTypes.SettingFlag
+				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
+				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
+				if settingsFlagCount19+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
+					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag39)
 				} else {
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
 				}
 			}
 			r.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ShowInTable)
@@ -10502,7 +10965,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PartnerOrganisationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerStatusAttribute != nil {
-			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDPartnerStatusAttribute{}
 			r.PartnerStatusAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
 				r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
@@ -10521,8 +10984,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue == nil {
 				r.PartnerStatusAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
-				r.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
+				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
+				r.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
 			}
 			r.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Deprecated)
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
@@ -10579,15 +11042,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PartnerStatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag) {
 				r.PartnerStatusAttribute.SettingsFlag = r.PartnerStatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
-				var settingsFlag39 tfTypes.SettingFlag
-				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
-				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
-				if settingsFlagCount19+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
-					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag39)
+			for settingsFlagCount20, settingsFlagItem20 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
+				var settingsFlag41 tfTypes.SettingFlag
+				settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
+				settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
+				if settingsFlagCount20+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
+					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag41)
 				} else {
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
 				}
 			}
 			r.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ShowInTable)
@@ -10603,7 +11066,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PartnerStatusAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPaymentAttribute != nil {
-			r.PaymentAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PaymentAttribute = &tfTypes.AttributeWithCompositeIDPaymentAttribute{}
 			r.PaymentAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Manifest {
 				r.PaymentAttribute.Manifest = append(r.PaymentAttribute.Manifest, types.StringValue(v))
@@ -10622,8 +11085,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue == nil {
 				r.PaymentAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue)
-				r.PaymentAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
+				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue)
+				r.PaymentAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
 			}
 			r.PaymentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Deprecated)
 			r.Deprecated = r.PaymentAttribute.Deprecated
@@ -10680,15 +11143,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PaymentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag) {
 				r.PaymentAttribute.SettingsFlag = r.PaymentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount20, settingsFlagItem20 := range resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag {
-				var settingsFlag41 tfTypes.SettingFlag
-				settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
-				settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
-				if settingsFlagCount20+1 > len(r.PaymentAttribute.SettingsFlag) {
-					r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag41)
+			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag {
+				var settingsFlag43 tfTypes.SettingFlag
+				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
+				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
+				if settingsFlagCount21+1 > len(r.PaymentAttribute.SettingsFlag) {
+					r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag43)
 				} else {
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
+					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
+					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
 				}
 			}
 			r.PaymentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ShowInTable)
@@ -10704,7 +11167,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PaymentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute != nil {
-			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute{}
 			r.PaymentMethodRelationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
 				r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
@@ -10723,8 +11186,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue == nil {
 				r.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
-				r.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
+				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
+				r.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
 			}
 			r.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Deprecated)
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
@@ -10781,15 +11244,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PaymentMethodRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag) {
 				r.PaymentMethodRelationAttribute.SettingsFlag = r.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
-				var settingsFlag43 tfTypes.SettingFlag
-				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
-				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
-				if settingsFlagCount21+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
-					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag43)
+			for settingsFlagCount22, settingsFlagItem22 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
+				var settingsFlag45 tfTypes.SettingFlag
+				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
+				if settingsFlagCount22+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
+					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag45)
 				} else {
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
 				}
 			}
 			r.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ShowInTable)
@@ -10805,7 +11268,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PaymentMethodRelationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPhoneAttribute != nil {
-			r.PhoneAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PhoneAttribute = &tfTypes.AttributeWithCompositeIDPhoneAttribute{}
 			r.PhoneAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Manifest {
 				r.PhoneAttribute.Manifest = append(r.PhoneAttribute.Manifest, types.StringValue(v))
@@ -10824,8 +11287,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue == nil {
 				r.PhoneAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue)
-				r.PhoneAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
+				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue)
+				r.PhoneAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
 			}
 			r.PhoneAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Deprecated)
 			r.Deprecated = r.PhoneAttribute.Deprecated
@@ -10882,15 +11345,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PhoneAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag) {
 				r.PhoneAttribute.SettingsFlag = r.PhoneAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount22, settingsFlagItem22 := range resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag {
-				var settingsFlag45 tfTypes.SettingFlag
-				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
-				if settingsFlagCount22+1 > len(r.PhoneAttribute.SettingsFlag) {
-					r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag45)
+			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag {
+				var settingsFlag47 tfTypes.SettingFlag
+				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
+				if settingsFlagCount23+1 > len(r.PhoneAttribute.SettingsFlag) {
+					r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag47)
 				} else {
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
+					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
+					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
 				}
 			}
 			r.PhoneAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ShowInTable)
@@ -10906,7 +11369,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PhoneAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPriceComponentAttribute != nil {
-			r.PriceComponentAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
+			r.PriceComponentAttribute = &tfTypes.AttributeWithCompositeIDPriceComponentAttribute{}
 			r.PriceComponentAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Manifest {
 				r.PriceComponentAttribute.Manifest = append(r.PriceComponentAttribute.Manifest, types.StringValue(v))
@@ -10925,8 +11388,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue == nil {
 				r.PriceComponentAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
-				r.PriceComponentAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
+				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
+				r.PriceComponentAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
 			}
 			r.PriceComponentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Deprecated)
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
@@ -10983,15 +11446,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PriceComponentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag) {
 				r.PriceComponentAttribute.SettingsFlag = r.PriceComponentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag {
-				var settingsFlag47 tfTypes.SettingFlag
-				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
-				if settingsFlagCount23+1 > len(r.PriceComponentAttribute.SettingsFlag) {
-					r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag47)
+			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag {
+				var settingsFlag49 tfTypes.SettingFlag
+				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
+				if settingsFlagCount24+1 > len(r.PriceComponentAttribute.SettingsFlag) {
+					r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag49)
 				} else {
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
+					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
+					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
 				}
 			}
 			r.PriceComponentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ShowInTable)
@@ -11016,6 +11479,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
 			}
+			r.PurposeAttribute.Archived = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Archived)
 			r.PurposeAttribute.Color = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Color)
 			r.PurposeAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.CompositeID)
 			r.CompositeID = r.PurposeAttribute.CompositeID
@@ -11032,8 +11496,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue == nil {
 				r.PurposeAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
-				r.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
+				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
+				r.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
 			}
 			r.PurposeAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Deprecated)
 			r.Deprecated = r.PurposeAttribute.Deprecated
@@ -11094,15 +11558,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.PurposeAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag) {
 				r.PurposeAttribute.SettingsFlag = r.PurposeAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
-				var settingsFlag49 tfTypes.SettingFlag
-				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
-				if settingsFlagCount24+1 > len(r.PurposeAttribute.SettingsFlag) {
-					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag49)
+			for settingsFlagCount25, settingsFlagItem25 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
+				var settingsFlag51 tfTypes.SettingFlag
+				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
+				if settingsFlagCount25+1 > len(r.PurposeAttribute.SettingsFlag) {
+					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag51)
 				} else {
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
 				}
 			}
 			r.PurposeAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ShowInTable)
@@ -11154,15 +11618,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 					actions1.NewEntityItem = types.StringValue(string(newEntityItemResult))
 				}
 				actions1.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount25, settingsFlagItem25 := range actionsItem.SettingsFlag {
-					var settingsFlag51 tfTypes.SettingFlag
-					settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-					settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
-					if settingsFlagCount25+1 > len(actions1.SettingsFlag) {
-						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag51)
+				for settingsFlagCount26, settingsFlagItem26 := range actionsItem.SettingsFlag {
+					var settingsFlag53 tfTypes.SettingFlag
+					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
+					if settingsFlagCount26+1 > len(actions1.SettingsFlag) {
+						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag53)
 					} else {
-						actions1.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-						actions1.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
+						actions1.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
+						actions1.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
 					}
 				}
 				if actionsCount+1 > len(r.RelationAttribute.Actions) {
@@ -11191,8 +11655,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDRelationAttribute.DefaultValue == nil {
 				r.RelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
-				r.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
+				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
+				r.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
 			}
 			r.RelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Deprecated)
 			r.Deprecated = r.RelationAttribute.Deprecated
@@ -11255,6 +11719,12 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			} else {
 				r.RelationAttribute.RelationAffinityMode = types.StringNull()
 			}
+			if resp.AttributeWithCompositeIDRelationAttribute.RelationPickerFilter == nil {
+				r.RelationAttribute.RelationPickerFilter = nil
+			} else {
+				r.RelationAttribute.RelationPickerFilter = &tfTypes.RelationAttributeRelationPickerFilter{}
+				r.RelationAttribute.RelationPickerFilter.Q = types.StringValue(resp.AttributeWithCompositeIDRelationAttribute.RelationPickerFilter.Q)
+			}
 			if resp.AttributeWithCompositeIDRelationAttribute.RelationType != nil {
 				r.RelationAttribute.RelationType = types.StringValue(string(*resp.AttributeWithCompositeIDRelationAttribute.RelationType))
 			} else {
@@ -11279,15 +11749,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.RelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag) {
 				r.RelationAttribute.SettingsFlag = r.RelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount26, settingsFlagItem26 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
-				var settingsFlag53 tfTypes.SettingFlag
-				settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-				settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-				if settingsFlagCount26+1 > len(r.RelationAttribute.SettingsFlag) {
-					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag53)
+			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
+				var settingsFlag55 tfTypes.SettingFlag
+				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
+				if settingsFlagCount27+1 > len(r.RelationAttribute.SettingsFlag) {
+					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag55)
 				} else {
-					r.RelationAttribute.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-					r.RelationAttribute.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
+					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
+					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
 				}
 			}
 			r.RelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ShowInTable)
@@ -11344,8 +11814,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDSelectAttribute.DefaultValue == nil {
 				r.SelectAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
-				r.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
+				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
+				r.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
 			}
 			r.SelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Deprecated)
 			r.Deprecated = r.SelectAttribute.Deprecated
@@ -11408,15 +11878,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.SelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag) {
 				r.SelectAttribute.SettingsFlag = r.SelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
-				var settingsFlag55 tfTypes.SettingFlag
-				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
-				if settingsFlagCount27+1 > len(r.SelectAttribute.SettingsFlag) {
-					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag55)
+			for settingsFlagCount28, settingsFlagItem28 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
+				var settingsFlag57 tfTypes.SettingFlag
+				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
+				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
+				if settingsFlagCount28+1 > len(r.SelectAttribute.SettingsFlag) {
+					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag57)
 				} else {
-					r.SelectAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-					r.SelectAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
+					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
+					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
 				}
 			}
 			r.SelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ShowInTable)
@@ -11451,8 +11921,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue == nil {
 				r.SequenceAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
-				r.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
+				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
+				r.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
 			}
 			r.SequenceAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Deprecated)
 			r.Deprecated = r.SequenceAttribute.Deprecated
@@ -11510,15 +11980,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.SequenceAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag) {
 				r.SequenceAttribute.SettingsFlag = r.SequenceAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount28, settingsFlagItem28 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
-				var settingsFlag57 tfTypes.SettingFlag
-				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
-				if settingsFlagCount28+1 > len(r.SequenceAttribute.SettingsFlag) {
-					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag57)
+			for settingsFlagCount29, settingsFlagItem29 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
+				var settingsFlag59 tfTypes.SettingFlag
+				settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
+				settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
+				if settingsFlagCount29+1 > len(r.SequenceAttribute.SettingsFlag) {
+					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag59)
 				} else {
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
 				}
 			}
 			r.SequenceAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ShowInTable)
@@ -11554,8 +12024,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDStatusAttribute.DefaultValue == nil {
 				r.StatusAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
-				r.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
+				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
+				r.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
 			}
 			r.StatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Deprecated)
 			r.Deprecated = r.StatusAttribute.Deprecated
@@ -11633,15 +12103,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.StatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag) {
 				r.StatusAttribute.SettingsFlag = r.StatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount29, settingsFlagItem29 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
-				var settingsFlag59 tfTypes.SettingFlag
-				settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-				settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
-				if settingsFlagCount29+1 > len(r.StatusAttribute.SettingsFlag) {
-					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag59)
+			for settingsFlagCount30, settingsFlagItem30 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
+				var settingsFlag61 tfTypes.SettingFlag
+				settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
+				settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
+				if settingsFlagCount30+1 > len(r.StatusAttribute.SettingsFlag) {
+					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag61)
 				} else {
-					r.StatusAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-					r.StatusAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
+					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
+					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
 				}
 			}
 			r.StatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ShowInTable)
@@ -11676,8 +12146,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDTagsAttribute.DefaultValue == nil {
 				r.TagsAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
-				r.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
+				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
+				r.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult30))
 			}
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
@@ -11738,15 +12208,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.TagsAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag) {
 				r.TagsAttribute.SettingsFlag = r.TagsAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount30, settingsFlagItem30 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
-				var settingsFlag61 tfTypes.SettingFlag
-				settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-				settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
-				if settingsFlagCount30+1 > len(r.TagsAttribute.SettingsFlag) {
-					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag61)
+			for settingsFlagCount31, settingsFlagItem31 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
+				var settingsFlag63 tfTypes.SettingFlag
+				settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
+				settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
+				if settingsFlagCount31+1 > len(r.TagsAttribute.SettingsFlag) {
+					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag63)
 				} else {
-					r.TagsAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-					r.TagsAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
+					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
+					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
 				}
 			}
 			r.TagsAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ShowInTable)
@@ -11785,8 +12255,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDTextAttribute.DefaultValue == nil {
 				r.TextAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
-				r.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult30))
+				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
+				r.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult31))
 			}
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
@@ -11839,21 +12309,32 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.TextAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Required)
 			r.Required = r.TextAttribute.Required
 			r.TextAttribute.RichText = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.RichText)
+			if resp.AttributeWithCompositeIDTextAttribute.Rows == nil {
+				r.TextAttribute.Rows = nil
+			} else {
+				r.TextAttribute.Rows = &tfTypes.TextAttributeRows{}
+				if resp.AttributeWithCompositeIDTextAttribute.Rows.Integer != nil {
+					r.TextAttribute.Rows.Integer = types.Int64PointerValue(resp.AttributeWithCompositeIDTextAttribute.Rows.Integer)
+				}
+				if resp.AttributeWithCompositeIDTextAttribute.Rows.Str != nil {
+					r.TextAttribute.Rows.Str = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Rows.Str)
+				}
+			}
 			r.TextAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Schema)
 			r.Schema = r.TextAttribute.Schema
 			r.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 			if len(r.TextAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag) {
 				r.TextAttribute.SettingsFlag = r.TextAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount31, settingsFlagItem31 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
-				var settingsFlag63 tfTypes.SettingFlag
-				settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
-				settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
-				if settingsFlagCount31+1 > len(r.TextAttribute.SettingsFlag) {
-					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag63)
+			for settingsFlagCount32, settingsFlagItem32 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
+				var settingsFlag65 tfTypes.SettingFlag
+				settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
+				settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
+				if settingsFlagCount32+1 > len(r.TextAttribute.SettingsFlag) {
+					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag65)
 				} else {
-					r.TextAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
-					r.TextAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
+					r.TextAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
+					r.TextAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
 				}
 			}
 			r.TextAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ShowInTable)
@@ -11888,8 +12369,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue == nil {
 				r.UserRelationAttribute.DefaultValue = types.StringNull()
 			} else {
-				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
-				r.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult31))
+				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
+				r.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult32))
 			}
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
@@ -11947,15 +12428,15 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			if len(r.UserRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag) {
 				r.UserRelationAttribute.SettingsFlag = r.UserRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag)]
 			}
-			for settingsFlagCount32, settingsFlagItem32 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
-				var settingsFlag65 tfTypes.SettingFlag
-				settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
-				settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
-				if settingsFlagCount32+1 > len(r.UserRelationAttribute.SettingsFlag) {
-					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag65)
+			for settingsFlagCount33, settingsFlagItem33 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
+				var settingsFlag67 tfTypes.SettingFlag
+				settingsFlag67.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
+				settingsFlag67.Name = types.StringPointerValue(settingsFlagItem33.Name)
+				if settingsFlagCount33+1 > len(r.UserRelationAttribute.SettingsFlag) {
+					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag67)
 				} else {
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag67.Enabled
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag67.Name
 				}
 			}
 			r.UserRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ShowInTable)

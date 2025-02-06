@@ -40,8 +40,8 @@ const (
 )
 
 type ActivityIDQueryParam struct {
-	Str                   *string                `queryParam:"inline"`
-	ActivityIDQueryParam2 *ActivityIDQueryParam2 `queryParam:"inline"`
+	Str                   *string
+	ActivityIDQueryParam2 *ActivityIDQueryParam2
 
 	Type ActivityIDQueryParamType
 }

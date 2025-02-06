@@ -3,13 +3,26 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
 type GetTaxonomyBulkActionJobsRequest struct {
-	// The status of the bulk job
+	// The status of the jobs to return
 	Status *shared.TaxonomyBulkJobStatus `queryParam:"style=form,explode=true,name=status"`
+	Size   *float64                      `default:"20" queryParam:"style=form,explode=true,name=size"`
+}
+
+func (g GetTaxonomyBulkActionJobsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxonomyBulkActionJobsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() *shared.TaxonomyBulkJobStatus {
@@ -17,6 +30,13 @@ func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() *shared.TaxonomyBulkJobSt
 		return nil
 	}
 	return o.Status
+}
+
+func (o *GetTaxonomyBulkActionJobsRequest) GetSize() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Size
 }
 
 type GetTaxonomyBulkActionJobsResponse struct {

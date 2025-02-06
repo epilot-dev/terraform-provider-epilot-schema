@@ -75,6 +75,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitySchemaItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
       x-speakeasy-entity-operation: Schema#get
     put:
       operationId: putSchema
@@ -804,6 +806,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity/{slug}/{id}:restore:
     patch:
       operationId: restoreEntity
@@ -925,6 +929,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/EntityItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateEntity
       summary: updateEntity
@@ -1194,6 +1200,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActivityItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity/activity/{id}:attach:
     post:
       operationId: attachActivity
@@ -1219,6 +1227,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaseActivityItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity/{slug}/{id}/activity:
     get:
       operationId: getEntityActivityFeed
@@ -1277,6 +1287,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ActivityItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity/{slug}/{id}/relations:
     get:
       operationId: getRelations
@@ -1338,6 +1350,8 @@ paths:
                     _tags:
                       - solar_panel
                       - one_time
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     post:
       operationId: addRelations
       summary: addRelations
@@ -1372,6 +1386,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: removeRelations
       summary: removeRelations
@@ -1402,6 +1418,8 @@ paths:
       responses:
         '204':
           description: Relations deleted with success.
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v2/entity/{slug}/{id}/relations:
     get:
       operationId: getRelationsV2
@@ -1445,6 +1463,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetRelationsRespWithPagination'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v3/entity/{slug}/{id}/relations:
     get:
       operationId: getRelationsV3
@@ -1482,6 +1502,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetRelationsRespWithPagination'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v2/entity/{slug}/{id}/relations/count:
     get:
       operationId: getRelatedEntitiesCount
@@ -1501,6 +1523,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetRelatedEntitiesCount'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity/{slug}/{id}/relations/{attribute}/{entity_id}:
     put:
       operationId: updateRelation
@@ -1547,6 +1571,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RelationItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteRelation
       summary: deleteRelation
@@ -1573,6 +1599,8 @@ paths:
       responses:
         '204':
           description: Relation deleted with success.
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v1/entity:export:
     post:
       operationId: exportEntities
@@ -1718,6 +1746,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SavedViewItem'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateSavedView
       summary: updateSavedView
@@ -1731,6 +1761,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SavedViewItem'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedViewItem'
+    patch:
+      operationId: patchSavedView
+      summary: patchSavedView
+      description: Partially updates a saved view with the provided payload. If an updated_at is passed and the server contains a newer version of the view a `409` error is returned
+      tags:
+        - Saved Views
+      parameters:
+        - $ref: '#/components/parameters/SavedViewIdPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavedViewPartial'
       responses:
         '200':
           description: Success
@@ -1830,6 +1880,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Taxonomy'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateTaxonomy
       summary: updateTaxonomy
@@ -1900,6 +1952,8 @@ paths:
                     type: object
                     items:
                       $ref: '#/components/schemas/ClassificationId'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
   /v2/entity/taxonomies/classifications/{classificationSlug}:
     get:
       operationId: getTaxonomyClassification
@@ -1917,7 +1971,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TaxonomyClassification'
         '404':
-          description: Taxonomy classification not found
+          $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateTaxonomyClassification
       summary: updateTaxonomyClassification
@@ -2001,6 +2055,12 @@ paths:
           schema:
             type: string
             example: sales
+        - in: query
+          name: archived
+          description: Filter by archived status
+          schema:
+            type: boolean
+            example: false
       requestBody:
         content:
           application/json:
@@ -2067,9 +2127,16 @@ paths:
         - Taxonomy
       parameters:
         - in: query
+          description: The status of the jobs to return
           name: status
           schema:
             $ref: '#/components/schemas/TaxonomyBulkJobStatus'
+        - in: query
+          name: size
+          schema:
+            description: The maximum number of jobs to return (defaults to 20)
+            type: number
+            default: 20
       responses:
         '200':
           description: Returns the jobs matching the given query or the active jobs if no status is provided
@@ -2139,11 +2206,52 @@ paths:
               example:
                 job_id: '123'
                 status: PENDING
+  /v1/entity/taxonomies/classifications:merge:
+    post:
+      operationId: bulkMergeClassifications
+      summary: bulkMergeClassifications
+      description: |
+        Merges classifications from one taxonomy into one individual classification, through a bulk async operation which
+        also updates all references from the old Classifications to the new one.
+      tags:
+        - Taxonomy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                job_id:
+                  description: Job ID for tracking the status of a bulk operation request
+                  type: string
+                target_classification:
+                  description: The target classification id to which the classifications will be merged into
+                  $ref: '#/components/schemas/TaxonomySlug'
+                classification_ids:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ClassificationId'
+            example:
+              classification_ids:
+                - taxonomy-slug:classification-slug
+      responses:
+        '200':
+          description: Returns the job id for the async job and current status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyBulkJobTriggerResponse'
+              example:
+                job_id: '123'
+                status: PENDING
   /v1/entity/taxonomies/classifications:delete:
     post:
       operationId: bulkDeleteClassifications
       summary: bulkDeleteClassifications
-      description: "Permanently deletes taxonomy classifications. The classifications are deleted through a bulk \nasync operation which also deletes all references of the deleted classifications from the entities \nreferencing them.\n"
+      description: |
+        Permanently deletes taxonomy classifications. The classifications are deleted through a bulk
+        async operation which also deletes all references of the deleted classifications from the entities
+        referencing them.
       tags:
         - Taxonomy
       requestBody:
@@ -2215,6 +2323,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttributeWithCompositeID'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
       x-speakeasy-entity-operation: SchemaAttribute#get
     put:
       operationId: putSchemaAttribute
@@ -2310,6 +2420,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityCapabilityWithCompositeID'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
       x-speakeasy-entity-operation: SchemaCapability#get
     put:
       operationId: putSchemaCapability
@@ -2405,6 +2517,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitySchemaGroupWithCompositeID'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
       x-speakeasy-entity-operation: SchemaGroup#get
     put:
       operationId: putSchemaGroup
@@ -2500,6 +2614,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupHeadlineWithCompositeID'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
       x-speakeasy-entity-operation: SchemaGroupHeadline#get
     put:
       operationId: putSchemaGroupHeadline
@@ -2617,14 +2733,6 @@ components:
         category:
           type: string
           example: customer_relations
-          enum:
-            - customer_relations
-            - sales
-            - product_hub
-            - contracts
-            - journeys
-            - messaging
-            - system
         published:
           type: boolean
           example: false
@@ -2676,6 +2784,15 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/EntityAction'
+                ui_config:
+                  type: object
+                  properties:
+                    content_direction:
+                      type: string
+                      enum:
+                        - row
+                        - column
+                      description: Show attributes in a row or column
             sharing:
               type: object
               properties:
@@ -2872,7 +2989,6 @@ components:
       x-speakeasy-entity: SchemaGroup
     Attribute:
       anyOf:
-        # @TODO: order these
         - $ref: '#/components/schemas/TextAttribute'
         - $ref: '#/components/schemas/LinkAttribute'
         - $ref: '#/components/schemas/DateAttribute'
@@ -2884,10 +3000,12 @@ components:
         - $ref: '#/components/schemas/SequenceAttribute'
         - $ref: '#/components/schemas/RelationAttribute'
         - $ref: '#/components/schemas/UserRelationAttribute'
+        - $ref: '#/components/schemas/AddressAttribute'
         - $ref: '#/components/schemas/AddressRelationAttribute'
         - $ref: '#/components/schemas/PaymentMethodRelationAttribute'
         - $ref: '#/components/schemas/CurrencyAttribute'
         - $ref: '#/components/schemas/TagsAttribute'
+        - $ref: '#/components/schemas/MessageEmailAddressAttribute'
         - $ref: '#/components/schemas/NumberAttribute'
         - $ref: '#/components/schemas/ConsentAttribute'
         - $ref: '#/components/schemas/InternalAttribute'
@@ -3043,7 +3161,6 @@ components:
                 The placement of the hint tooltip.
                 The value should be a valid `@mui/core` tooltip placement.
               example: top
-        # repeatable properties  
         repeatable:
           description: The attribute is a repeatable
           type: boolean
@@ -3052,6 +3169,7 @@ components:
       required:
         - name
         - label
+      additionalProperties: false
     TextAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3066,6 +3184,12 @@ components:
               type: boolean
             rich_text:
               type: boolean
+            rows:
+              description: Number of rows for rich_text textarea
+              oneOf:
+                - type: integer
+                - type: string
+              example: 3
     LinkAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3096,6 +3220,12 @@ components:
               type: string
               enum:
                 - boolean
+            display_type:
+              type: string
+              enum:
+                - switch
+                - checkbox
+              default: switch
     DateAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3375,6 +3505,15 @@ components:
               type: boolean
               default: false
               description: Enables the preview, edition, and creation of relation items on a Master-Details view mode.
+            relation_picker_filter:
+              description: Additional entity search filter for relation picker
+              type: object
+              properties:
+                q:
+                  type: string
+                  example: AND is_composite_price:true
+              required:
+                - q
             actions:
               type: array
               items:
@@ -3452,7 +3591,6 @@ components:
             repeatable:
               description: Relations are always repeatables
               type: boolean
-              # const: true
               default: true
     UserRelationAttribute:
       allOf:
@@ -3477,6 +3615,46 @@ components:
               type: string
               enum:
                 - partner_organisation
+    DefaultAddressFields:
+      type: array
+      description: Default fields visible on addresses
+      items:
+        type: string
+        enum:
+          - postal_code
+          - city
+          - street
+          - street_number
+          - plot_area
+          - plot_of_land
+          - suburb
+          - country
+          - additional_info
+          - coordinates
+          - start_date
+          - end_date
+          - salutation
+          - title
+          - first_name
+          - last_name
+          - company_name
+      default:
+        - postal_code
+        - city
+        - street
+        - street_number
+    AddressAttribute:
+      allOf:
+        - $ref: '#/components/schemas/BaseAttribute'
+        - type: object
+          description: Address attribute
+          properties:
+            type:
+              type: string
+              enum:
+                - address
+            default_address_fields:
+              $ref: '#/components/schemas/DefaultAddressFields'
     AddressRelationAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3489,6 +3667,8 @@ components:
                 - relation_address
             has_primary:
               type: boolean
+            default_address_fields:
+              $ref: '#/components/schemas/DefaultAddressFields'
     PaymentMethodRelationAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3593,6 +3773,27 @@ components:
               type: array
               items:
                 type: string
+    MessageEmailAddressAttribute:
+      allOf:
+        - $ref: '#/components/schemas/BaseAttribute'
+        - type: object
+          description: Message emil address
+          properties:
+            type:
+              type: string
+              enum:
+                - message_email_address
+            address:
+              type: string
+            name:
+              type: string
+            send_status:
+              type: string
+            email_type:
+              type: string
+          required:
+            - type
+            - name
     NumberAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3658,16 +3859,6 @@ components:
               type: string
               enum:
                 - phone
-    AddressAttribute:
-      allOf:
-        - $ref: '#/components/schemas/BaseAttribute'
-        - type: object
-          description: Physical Address
-          properties:
-            type:
-              type: string
-              enum:
-                - address
     PaymentAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3698,6 +3889,25 @@ components:
               type: string
               enum:
                 - computed
+            computed:
+              type: boolean
+              default: true
+            value_formatter:
+              type: string
+              description: Variable template used to format the computed value
+              example: '{{formatCurrencyAttribute entity attribute locale}}'
+            preview_value_formatter:
+              type: string
+              description: Variable template used to format a preview for the computed value
+              example: '{{formatCurrencyAttribute entity attribute locale}}'
+            amount_field:
+              type: string
+              description: A source amount field that is used to compute the value of the attribute
+            currency_field:
+              type: string
+              description: A currency field used to format a computed currency value
+          required:
+            - value_formatter
     PartnerStatusAttribute:
       allOf:
         - $ref: '#/components/schemas/BaseAttribute'
@@ -3749,6 +3959,35 @@ components:
           description: This summary attribute should only be visible when all the settings have the correct value
           items:
             $ref: '#/components/schemas/SettingFlag'
+        display_mode:
+          type: string
+          enum:
+            - inline
+            - block
+          description: |
+            Defines the display mode of the summary attribute.
+            When set to `inline`, the label and value will be displayed in the same line.
+            When set to `block`, the label and value will be displayed in separate lines.
+        content_line_cap:
+          type: number
+          description: |
+            Defines the line numbers of the content.
+            For instance, When set to 1, the content will be displayed in a single line.
+        content_wrap:
+          type: string
+          enum:
+            - normal
+            - nowrap
+            - pre
+            - pre-wrap
+          description: |
+            Defines white-space of the content.
+        hide_label:
+          type: boolean
+          description: When set to true, will hide the label of the field.
+        highlight_container:
+          type: boolean
+          description: When set to true, will highlight the container of the field.
       required:
         - label
         - value
@@ -4076,6 +4315,11 @@ components:
           format: date-time
           nullable: true
           readOnly: true
+        _deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
         _acl:
           readOnly: true
           $ref: '#/components/schemas/EntityAcl'
@@ -4380,6 +4624,9 @@ components:
       properties:
         entity_id:
           $ref: '#/components/schemas/EntityId'
+        org_id:
+          type: string
+          description: Organization Id the entity belongs to
         attribute:
           type: string
         _tags:
@@ -4424,8 +4671,8 @@ components:
             hydrate: {}
             fields: {}
             aggs: {}
-            include_deleted:
-              $ref: '#/components/schemas/EntitySearchIncludeDeletedParam'
+            include_deleted: {}
+            highlight: {}
           additionalProperties: false
           required:
             - q
@@ -4446,6 +4693,7 @@ components:
             hydrate: {}
             fields: {}
             aggs: {}
+            include_deleted: {}
           additionalProperties: false
           required:
             - filter
@@ -4875,7 +5123,7 @@ components:
             updated_at:
               type: string
         - $ref: '#/components/schemas/SavedView'
-    SavedView:
+    SavedViewPartial:
       description: A saved entity view
       type: object
       properties:
@@ -4934,11 +5182,22 @@ components:
                 sort: _created_at:desc
                 pageSize: 25
                 columnSettings: []
-      required:
-        - slug
-        - name
-        - created_by
-        - ui_config
+        shared_with:
+          type: array
+          description: List of users ('${userId}'), user groups ('group_${groupId}'), or partner users ('${partnerOrgId}_${partnerUserId}') that the view is shared with
+          items:
+            type: string
+            example: '112233'
+    SavedView:
+      description: A saved entity view
+      allOf:
+        - $ref: '#/components/schemas/SavedViewPartial'
+        - type: object
+          required:
+            - slug
+            - name
+            - created_by
+            - ui_config
     Taxonomy:
       type: object
       properties:
@@ -5047,6 +5306,10 @@ components:
         updated_at:
           type: string
           format: date-time
+        archived:
+          type: boolean
+          description: Archived classification are not visible in the UI
+          default: false
         _manifest:
           type: array
           description: Manifest ID used to create/update the taxonomy classification
@@ -5106,6 +5369,7 @@ components:
       type: string
       enum:
         - MOVE_CLASSIFICATIONS
+        - MERGE_CLASSIFICATIONS
         - DELETE_CLASSIFICATIONS
     TaxonomyBulkJob:
       type: object
@@ -5115,6 +5379,8 @@ components:
           format: uuid
         job_status:
           $ref: '#/components/schemas/TaxonomyBulkJobStatus'
+        failure_reason:
+          type: string
         action_type:
           $ref: '#/components/schemas/TaxonomyBulkJobActionType'
         request:
@@ -5122,6 +5388,8 @@ components:
           properties:
             target_taxonomy:
               $ref: '#/components/schemas/TaxonomySlug'
+            target_classification:
+              $ref: '#/components/schemas/ClassificationId'
             classification_ids:
               type: array
               items:
@@ -5183,6 +5451,18 @@ components:
         enabled:
           type: boolean
           description: Whether the setting should be enabled or not
+    ErrorObject:
+      description: A generic error returned by the API
+      type: object
+      properties:
+        status:
+          type: integer
+          description: The HTTP status code of the error
+          example: 400
+        error:
+          type: string
+          description: The error message
+          example: Bad Request
   parameters:
     EntityIdPathParam:
       name: id
@@ -5269,6 +5549,7 @@ components:
             nullable: true
             enum:
               - ''
+              - null
     ActivityIdPathParam:
       name: id
       description: Activity Id
@@ -5828,8 +6109,19 @@ components:
         status: error
         errors:
           - $ref: '#/components/examples/EntityValidationError'
+  responses:
+    NotFoundError:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorObject'
+              - example:
+                  status: 404
+                  error: Not Found
 servers:
-  - url: https://entity.sls.epilot.io
+  - url: https://entity.dev.sls.epilot.io
 x-speakeasy-retries:
   strategy: backoff
   backoff:

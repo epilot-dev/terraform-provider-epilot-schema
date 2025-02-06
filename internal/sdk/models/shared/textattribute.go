@@ -4,6 +4,7 @@ package shared
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
@@ -85,6 +86,70 @@ func (e *TextAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type RowsType string
+
+const (
+	RowsTypeInteger RowsType = "integer"
+	RowsTypeStr     RowsType = "str"
+)
+
+// Rows - Number of rows for rich_text textarea
+type Rows struct {
+	Integer *int64
+	Str     *string
+
+	Type RowsType
+}
+
+func CreateRowsInteger(integer int64) Rows {
+	typ := RowsTypeInteger
+
+	return Rows{
+		Integer: &integer,
+		Type:    typ,
+	}
+}
+
+func CreateRowsStr(str string) Rows {
+	typ := RowsTypeStr
+
+	return Rows{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *Rows) UnmarshalJSON(data []byte) error {
+
+	var integer int64 = int64(0)
+	if err := utils.UnmarshalJSON(data, &integer, "", true, false); err == nil {
+		u.Integer = &integer
+		u.Type = RowsTypeInteger
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = RowsTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Rows", string(data))
+}
+
+func (u Rows) MarshalJSON() ([]byte, error) {
+	if u.Integer != nil {
+		return utils.MarshalJSON(u.Integer, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Rows: all fields are null")
+}
+
 // TextAttribute - Textarea or text input
 type TextAttribute struct {
 	// ID for the entity attribute
@@ -143,6 +208,8 @@ type TextAttribute struct {
 	Type       *TextAttributeType `json:"type,omitempty"`
 	Multiline  *bool              `json:"multiline,omitempty"`
 	RichText   *bool              `json:"rich_text,omitempty"`
+	// Number of rows for rich_text textarea
+	Rows *Rows `json:"rows,omitempty"`
 }
 
 func (t TextAttribute) MarshalJSON() ([]byte, error) {
@@ -378,4 +445,11 @@ func (o *TextAttribute) GetRichText() *bool {
 		return nil
 	}
 	return o.RichText
+}
+
+func (o *TextAttribute) GetRows() *Rows {
+	if o == nil {
+		return nil
+	}
+	return o.Rows
 }

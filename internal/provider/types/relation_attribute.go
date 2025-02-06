@@ -36,6 +36,7 @@ type RelationAttribute struct {
 	Protected                types.Bool                                           `tfsdk:"protected"`
 	Readonly                 types.Bool                                           `tfsdk:"readonly"`
 	RelationAffinityMode     types.String                                         `tfsdk:"relation_affinity_mode"`
+	RelationPickerFilter     *RelationAttributeRelationPickerFilter               `tfsdk:"relation_picker_filter"`
 	RelationType             types.String                                         `tfsdk:"relation_type"`
 	RenderCondition          types.String                                         `tfsdk:"render_condition"`
 	Repeatable               types.Bool                                           `tfsdk:"repeatable"`

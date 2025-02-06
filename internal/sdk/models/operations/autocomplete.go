@@ -68,9 +68,9 @@ const (
 )
 
 type Results struct {
-	Str      *string        `queryParam:"inline"`
-	Boolean  *bool          `queryParam:"inline"`
-	MapOfAny map[string]any `queryParam:"inline"`
+	Str      *string
+	Boolean  *bool
+	MapOfAny map[string]any
 
 	Type ResultsType
 }

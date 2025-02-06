@@ -85,6 +85,32 @@ func (e *BooleanAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type DisplayType string
+
+const (
+	DisplayTypeSwitch   DisplayType = "switch"
+	DisplayTypeCheckbox DisplayType = "checkbox"
+)
+
+func (e DisplayType) ToPointer() *DisplayType {
+	return &e
+}
+func (e *DisplayType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "switch":
+		fallthrough
+	case "checkbox":
+		*e = DisplayType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DisplayType: %v", v)
+	}
+}
+
 // BooleanAttribute - Yes / No Toggle
 type BooleanAttribute struct {
 	// ID for the entity attribute
@@ -138,9 +164,10 @@ type BooleanAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *BooleanAttributeType `json:"type,omitempty"`
+	Repeatable  *bool                 `json:"repeatable,omitempty"`
+	HasPrimary  *bool                 `json:"has_primary,omitempty"`
+	Type        *BooleanAttributeType `json:"type,omitempty"`
+	DisplayType *DisplayType          `default:"switch" json:"display_type"`
 }
 
 func (b BooleanAttribute) MarshalJSON() ([]byte, error) {
@@ -362,4 +389,11 @@ func (o *BooleanAttribute) GetType() *BooleanAttributeType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *BooleanAttribute) GetDisplayType() *DisplayType {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayType
 }

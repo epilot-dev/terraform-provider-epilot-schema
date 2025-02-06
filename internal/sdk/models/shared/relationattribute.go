@@ -162,6 +162,18 @@ func (e *EditMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// RelationPickerFilter - Additional entity search filter for relation picker
+type RelationPickerFilter struct {
+	Q string `json:"q"`
+}
+
+func (o *RelationPickerFilter) GetQ() string {
+	if o == nil {
+		return ""
+	}
+	return o.Q
+}
+
 // ActionType - The action type. Currently supported actions:
 //
 // | action | description |
@@ -298,8 +310,8 @@ const (
 )
 
 type SummaryFields struct {
-	Str          *string       `queryParam:"inline"`
-	SummaryField *SummaryField `queryParam:"inline"`
+	Str          *string
+	SummaryField *SummaryField
 
 	Type SummaryFieldsType
 }
@@ -415,11 +427,13 @@ type RelationAttribute struct {
 	EnableRelationPicker *bool     `default:"true" json:"enable_relation_picker"`
 	EditMode             *EditMode `json:"edit_mode,omitempty"`
 	// Enables the preview, edition, and creation of relation items on a Master-Details view mode.
-	DetailsViewModeEnabled *bool           `default:"false" json:"details_view_mode_enabled"`
-	Actions                []Actions       `json:"actions,omitempty"`
-	DrawerSize             *DrawerSize     `json:"drawer_size,omitempty"`
-	SummaryFields          []SummaryFields `json:"summary_fields,omitempty"`
-	AllowedSchemas         []string        `json:"allowedSchemas,omitempty"`
+	DetailsViewModeEnabled *bool `default:"false" json:"details_view_mode_enabled"`
+	// Additional entity search filter for relation picker
+	RelationPickerFilter *RelationPickerFilter `json:"relation_picker_filter,omitempty"`
+	Actions              []Actions             `json:"actions,omitempty"`
+	DrawerSize           *DrawerSize           `json:"drawer_size,omitempty"`
+	SummaryFields        []SummaryFields       `json:"summary_fields,omitempty"`
+	AllowedSchemas       []string              `json:"allowedSchemas,omitempty"`
 	// When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item.
 	EnableRelationTags *bool `default:"true" json:"enable_relation_tags"`
 	// Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
@@ -689,6 +703,13 @@ func (o *RelationAttribute) GetDetailsViewModeEnabled() *bool {
 		return nil
 	}
 	return o.DetailsViewModeEnabled
+}
+
+func (o *RelationAttribute) GetRelationPickerFilter() *RelationPickerFilter {
+	if o == nil {
+		return nil
+	}
+	return o.RelationPickerFilter
 }
 
 func (o *RelationAttribute) GetActions() []Actions {

@@ -19,6 +19,35 @@ func (o *GetSavedViewRequest) GetID() string {
 	return o.ID
 }
 
+// GetSavedViewResponseBody - A saved entity view
+type GetSavedViewResponseBody struct {
+	// Generated uuid for a saved view
+	ID        *string `json:"id,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
+}
+
+func (o *GetSavedViewResponseBody) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetSavedViewResponseBody) GetCreatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *GetSavedViewResponseBody) GetUpdatedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
 type GetSavedViewResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -27,7 +56,9 @@ type GetSavedViewResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	SavedViewItem *shared.SavedViewItem
+	Object *GetSavedViewResponseBody
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSavedViewResponse) GetContentType() string {
@@ -51,9 +82,16 @@ func (o *GetSavedViewResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSavedViewResponse) GetSavedViewItem() *shared.SavedViewItem {
+func (o *GetSavedViewResponse) GetObject() *GetSavedViewResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.SavedViewItem
+	return o.Object
+}
+
+func (o *GetSavedViewResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

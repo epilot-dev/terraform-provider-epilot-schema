@@ -59,6 +59,7 @@ Optional:
 - `country_attribute` (Attributes) Country picker (see [below for nested schema](#nestedatt--attributes--country_attribute))
 - `currency_attribute` (Attributes) Currency input (see [below for nested schema](#nestedatt--attributes--currency_attribute))
 - `date_attribute` (Attributes) Date or Datetime picker (see [below for nested schema](#nestedatt--attributes--date_attribute))
+- `email_attribute` (Attributes) Email address (see [below for nested schema](#nestedatt--attributes--email_attribute))
 - `file_attribute` (Attributes) File or Image Attachment (see [below for nested schema](#nestedatt--attributes--file_attribute))
 - `internal_attribute` (Attributes) No UI representation (see [below for nested schema](#nestedatt--attributes--internal_attribute))
 - `internal_user_attribute` (Attributes) Epilot internal user info (see [below for nested schema](#nestedatt--attributes--internal_user_attribute))
@@ -70,10 +71,12 @@ Optional:
 - `ordered_list_attribute` (Attributes) Type of attribute to render N number of ordered fields (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute))
 - `partner_organisation_attribute` (Attributes) Shared Partner Organisations (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute))
 - `partner_status_attribute` (Attributes) Partner Status (see [below for nested schema](#nestedatt--attributes--partner_status_attribute))
+- `payment_attribute` (Attributes) Payment method (see [below for nested schema](#nestedatt--attributes--payment_attribute))
 - `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute))
+- `phone_attribute` (Attributes) Phone number (see [below for nested schema](#nestedatt--attributes--phone_attribute))
+- `price_component_attribute` (Attributes) Price component (see [below for nested schema](#nestedatt--attributes--price_component_attribute))
 - `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--attributes--purpose_attribute))
 - `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--attributes--relation_attribute))
-- `repeatable_attribute` (Attributes) Repeatable (add N number of fields) (see [below for nested schema](#nestedatt--attributes--repeatable_attribute))
 - `select_attribute` (Attributes) Dropdown select (see [below for nested schema](#nestedatt--attributes--select_attribute))
 - `sequence_attribute` (Attributes) Sequence of unique identifiers (see [below for nested schema](#nestedatt--attributes--sequence_attribute))
 - `status_attribute` (Attributes) Status select (see [below for nested schema](#nestedatt--attributes--status_attribute))
@@ -94,6 +97,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -113,6 +117,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -183,6 +188,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -232,6 +238,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -251,6 +258,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -297,9 +305,11 @@ Optional:
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
+- `display_type` (String) must be one of ["switch", "checkbox"]; Default: "switch"
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -319,6 +329,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -361,13 +372,17 @@ Optional:
 
 Optional:
 
+- `amount_field` (String) A source amount field that is used to compute the value of the attribute
+- `computed` (Boolean) Default: true
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--computed_attribute--constraints))
+- `currency_field` (String) A currency field used to format a computed currency value
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -380,19 +395,20 @@ The value must be a valid @epilot/base-elements Icon name
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
 - `placeholder` (String)
-- `preview_value_formatter` (String)
+- `preview_value_formatter` (String) Variable template used to format a preview for the computed value
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) must be one of ["computed"]
-- `value_formatter` (String)
+- `value_formatter` (String) Variable template used to format the computed value. Not Null
 
 <a id="nestedatt--attributes--computed_attribute--constraints"></a>
 ### Nested Schema for `attributes.computed_attribute.constraints`
@@ -436,6 +452,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -456,6 +473,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--consent_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -506,6 +524,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -525,6 +544,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -576,6 +596,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -595,6 +616,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--currency_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -663,6 +685,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -682,6 +705,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -719,6 +743,76 @@ Optional:
 
 
 
+<a id="nestedatt--attributes--email_attribute"></a>
+### Nested Schema for `attributes.email_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--email_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--email_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--email_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["email"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--email_attribute--constraints"></a>
+### Nested Schema for `attributes.email_attribute.constraints`
+
+
+<a id="nestedatt--attributes--email_attribute--info_helpers"></a>
+### Nested Schema for `attributes.email_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--email_attribute--settings_flag"></a>
+### Nested Schema for `attributes.email_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--attributes--file_attribute"></a>
 ### Nested Schema for `attributes.file_attribute`
 
@@ -736,6 +830,7 @@ This description should be set through the platform locales in the form: `file.{
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -756,6 +851,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--file_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -805,6 +901,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -824,6 +921,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -873,6 +971,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -892,6 +991,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -941,6 +1041,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -960,6 +1061,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1009,6 +1111,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1028,6 +1131,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1070,7 +1174,7 @@ Optional:
 
 Optional:
 
-- `address` (String) Not Null
+- `address` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -1079,6 +1183,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1098,6 +1203,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `send_status` (String)
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--message_email_address_attribute--settings_flag))
@@ -1151,6 +1257,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1171,6 +1278,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1239,6 +1347,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `format` (String)
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1258,6 +1367,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--number_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1308,6 +1418,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1327,6 +1438,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1376,6 +1488,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1395,6 +1508,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1444,6 +1558,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1463,6 +1578,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1492,6 +1608,76 @@ The value should be a valid `@mui/core` tooltip placement.
 
 <a id="nestedatt--attributes--partner_status_attribute--settings_flag"></a>
 ### Nested Schema for `attributes.partner_status_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
+<a id="nestedatt--attributes--payment_attribute"></a>
+### Nested Schema for `attributes.payment_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--payment_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--payment_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["payment"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--payment_attribute--constraints"></a>
+### Nested Schema for `attributes.payment_attribute.constraints`
+
+
+<a id="nestedatt--attributes--payment_attribute--info_helpers"></a>
+### Nested Schema for `attributes.payment_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--payment_attribute--settings_flag"></a>
+### Nested Schema for `attributes.payment_attribute.settings_flag`
 
 Optional:
 
@@ -1532,6 +1718,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1569,6 +1756,146 @@ Optional:
 
 
 
+<a id="nestedatt--attributes--phone_attribute"></a>
+### Nested Schema for `attributes.phone_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--phone_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--phone_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--phone_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["phone"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--phone_attribute--constraints"></a>
+### Nested Schema for `attributes.phone_attribute.constraints`
+
+
+<a id="nestedatt--attributes--phone_attribute--info_helpers"></a>
+### Nested Schema for `attributes.phone_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--phone_attribute--settings_flag"></a>
+### Nested Schema for `attributes.phone_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
+<a id="nestedatt--attributes--price_component_attribute"></a>
+### Nested Schema for `attributes.price_component_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--price_component_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--price_component_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean) Default: false
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--price_component_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) must be one of ["price_component"]
+- `value_formatter` (String)
+
+<a id="nestedatt--attributes--price_component_attribute--constraints"></a>
+### Nested Schema for `attributes.price_component_attribute.constraints`
+
+
+<a id="nestedatt--attributes--price_component_attribute--info_helpers"></a>
+### Nested Schema for `attributes.price_component_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--attributes--price_component_attribute--settings_flag"></a>
+### Nested Schema for `attributes.price_component_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--attributes--purpose_attribute"></a>
 ### Nested Schema for `attributes.purpose_attribute`
 
@@ -1584,6 +1911,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1604,6 +1932,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1680,10 +2009,12 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `purpose` (List of String)
 - `readonly` (Boolean) Default: false
 - `relation_affinity_mode` (String) Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
+- `relation_picker_filter` (Attributes) Additional entity search filter for relation picker (see [below for nested schema](#nestedatt--attributes--relation_attribute--relation_picker_filter))
 - `relation_type` (String) must be one of ["has_many", "has_one"]
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) Relations are always repeatables. Default: true
 - `required` (Boolean) Default: false
 - `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
 - `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
@@ -1711,51 +2042,8 @@ must be one of ["add_existing", "create_new", "create_from_existing"]
 - `default` (Boolean) Sets the action as the default action, visible as the main action button.
 - `feature_flag` (String) Name of the feature flag that enables this action
 - `label` (String) The action label or action translation key (i18n)
-- `new_entity_item` (Attributes) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item))
+- `new_entity_item` (String) Parsed as JSON.
 - `settings_flag` (Attributes List) This action should only be active when all the settings have the correct value (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--settings_flag))
-
-<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item"></a>
-### Nested Schema for `attributes.relation_attribute.actions.new_entity_item`
-
-Optional:
-
-- `acl` (Attributes) Access control list (ACL) for an entity. Defines sharing access to external orgs or users. (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--acl))
-- `additional_properties` (String) Parsed as JSON.
-- `id` (String) Not Null
-- `manifest` (List of String) Manifest ID used to create/update the entity
-- `purpose` (List of String)
-- `schema` (String) URL-friendly identifier for the entity schema. Not Null
-- `tags` (List of String)
-- `title` (String) Title of entity. Not Null
-
-Read-Only:
-
-- `created_at` (String)
-- `deleted_at` (String)
-- `org` (String) Organization Id the entity belongs to
-- `owners` (Attributes List) (see [below for nested schema](#nestedatt--attributes--relation_attribute--actions--new_entity_item--owners))
-- `updated_at` (String)
-
-<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--acl"></a>
-### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.acl`
-
-Optional:
-
-- `additional_properties` (String) Parsed as JSON.
-- `delete` (List of String)
-- `edit` (List of String)
-- `view` (List of String)
-
-
-<a id="nestedatt--attributes--relation_attribute--actions--new_entity_item--owners"></a>
-### Nested Schema for `attributes.relation_attribute.actions.new_entity_item.owners`
-
-Read-Only:
-
-- `org_id` (String)
-- `user_id` (String)
-
-
 
 <a id="nestedatt--attributes--relation_attribute--actions--settings_flag"></a>
 ### Nested Schema for `attributes.relation_attribute.actions.settings_flag`
@@ -1787,6 +2075,14 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
+<a id="nestedatt--attributes--relation_attribute--relation_picker_filter"></a>
+### Nested Schema for `attributes.relation_attribute.relation_picker_filter`
+
+Optional:
+
+- `q` (String) Not Null
+
+
 <a id="nestedatt--attributes--relation_attribute--settings_flag"></a>
 ### Nested Schema for `attributes.relation_attribute.settings_flag`
 
@@ -1815,83 +2111,6 @@ Optional:
 
 
 
-<a id="nestedatt--attributes--repeatable_attribute"></a>
-### Nested Schema for `attributes.repeatable_attribute`
-
-Optional:
-
-- `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
-- `allowed_schemas` (List of String)
-- `constraints` (Attributes) A set of constraints applicable to the attribute.
-These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--constraints))
-- `default_value` (String) Parsed as JSON.
-- `deprecated` (Boolean) Default: false
-- `enable_relation_picker` (Boolean) when enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
-- `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
-- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
-- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
-- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
-- `has_primary` (Boolean)
-- `hidden` (Boolean) Do not render attribute in entity views. Default: false
-- `hide_label` (Boolean) When set to true, will hide the label of the field.
-- `icon` (String) Code name of the icon to used to represent this attribute.
-The value must be a valid @epilot/base-elements Icon name
-- `id` (String) ID for the entity attribute
-- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--info_helpers))
-- `label` (String) Not Null
-- `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the schema attribute
-- `name` (String) Not Null
-- `order` (Number) Attribute sort order (ascending) in group
-- `placeholder` (String)
-- `preview_value_formatter` (String)
-- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
-- `purpose` (List of String)
-- `readonly` (Boolean) Default: false
-- `relation_affinity_mode` (String) Weak repeatable attributes are kept when duplicating an entity. Strong repeatable attributes are discarded when duplicating an entity. must be one of ["weak", "strong"]
-- `render_condition` (String) Defines the conditional rendering expression for showing this field.
-When a valid expression is parsed, their evaluation defines the visibility of this attribute.
-Note: Empty or invalid expression have no effect on the field visibility.
-- `repeatable` (Boolean)
-- `required` (Boolean) Default: false
-- `reverse_attributes` (Map of String) Map of schema slug to target relation attribute
-- `search_placeholder` (String) Optional placeholder text for the relation search input. The translated value for search_placeholder is used, if found else the string is used as is.
-- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--repeatable_attribute--settings_flag))
-- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["string", "phone", "email", "address", "relation", "payment", "price_component", "date", "message_email_address"]
-- `value_formatter` (String)
-
-<a id="nestedatt--attributes--repeatable_attribute--constraints"></a>
-### Nested Schema for `attributes.repeatable_attribute.constraints`
-
-
-<a id="nestedatt--attributes--repeatable_attribute--info_helpers"></a>
-### Nested Schema for `attributes.repeatable_attribute.info_helpers`
-
-Optional:
-
-- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
-The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
-When specified it overrides the `hint_text` or `hint_text_key` configuration.
-- `hint_text` (String) The text to be displayed in the attribute hint helper.
-When specified it overrides the `hint_text_key` configuration.
-- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
-The key should be a valid i18n key.
-- `hint_tooltip_placement` (String) The placement of the hint tooltip.
-The value should be a valid `@mui/core` tooltip placement.
-
-
-<a id="nestedatt--attributes--repeatable_attribute--settings_flag"></a>
-### Nested Schema for `attributes.repeatable_attribute.settings_flag`
-
-Optional:
-
-- `enabled` (Boolean) Whether the setting should be enabled or not
-- `name` (String) The name of the organization setting to check
-
-
-
 <a id="nestedatt--attributes--select_attribute"></a>
 ### Nested Schema for `attributes.select_attribute`
 
@@ -1905,6 +2124,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1925,6 +2145,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -1974,6 +2195,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -1994,6 +2216,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--sequence_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2044,6 +2267,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2064,6 +2288,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2131,6 +2356,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2151,6 +2377,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--tags_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
@@ -2201,6 +2428,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2221,8 +2449,10 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `rich_text` (Boolean)
+- `rows` (Attributes) Number of rows for rich_text textarea (see [below for nested schema](#nestedatt--attributes--text_attribute--rows))
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
@@ -2249,6 +2479,15 @@ The key should be a valid i18n key.
 The value should be a valid `@mui/core` tooltip placement.
 
 
+<a id="nestedatt--attributes--text_attribute--rows"></a>
+### Nested Schema for `attributes.text_attribute.rows`
+
+Optional:
+
+- `integer` (Number)
+- `str` (String)
+
+
 <a id="nestedatt--attributes--text_attribute--settings_flag"></a>
 ### Nested Schema for `attributes.text_attribute.settings_flag`
 
@@ -2271,6 +2510,7 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
 - `hidden` (Boolean) Do not render attribute in entity views. Default: false
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
@@ -2291,6 +2531,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `render_condition` (String) Defines the conditional rendering expression for showing this field.
 When a valid expression is parsed, their evaluation defines the visibility of this attribute.
 Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
 - `required` (Boolean) Default: false
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--attributes--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`

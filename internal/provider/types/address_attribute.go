@@ -8,6 +8,7 @@ type AddressAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	DefaultAddressFields     []types.String                                       `tfsdk:"default_address_fields"`
 	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`

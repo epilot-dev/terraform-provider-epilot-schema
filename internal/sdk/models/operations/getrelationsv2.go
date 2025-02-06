@@ -103,6 +103,8 @@ type GetRelationsV2Response struct {
 	RawResponse *http.Response
 	// Success
 	GetRelationsRespWithPagination *shared.GetRelationsRespWithPagination
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetRelationsV2Response) GetContentType() string {
@@ -131,4 +133,11 @@ func (o *GetRelationsV2Response) GetGetRelationsRespWithPagination() *shared.Get
 		return nil
 	}
 	return o.GetRelationsRespWithPagination
+}
+
+func (o *GetRelationsV2Response) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

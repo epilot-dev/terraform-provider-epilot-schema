@@ -85,7 +85,7 @@ func (e *AddressAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// AddressAttribute - Physical Address
+// AddressAttribute - Address attribute
 type AddressAttribute struct {
 	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
@@ -141,6 +141,8 @@ type AddressAttribute struct {
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
 	Type       *AddressAttributeType `json:"type,omitempty"`
+	// Default fields visible on addresses
+	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 }
 
 func (a AddressAttribute) MarshalJSON() ([]byte, error) {
@@ -362,4 +364,11 @@ func (o *AddressAttribute) GetType() *AddressAttributeType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *AddressAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultAddressFields
 }

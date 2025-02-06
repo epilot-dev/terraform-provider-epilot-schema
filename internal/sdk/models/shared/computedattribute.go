@@ -128,9 +128,11 @@ type ComputedAttribute struct {
 	// This attribute should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This attribute should only be active when one of the provided settings have the correct value
-	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
-	ValueFormatter        *string       `json:"value_formatter,omitempty"`
-	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
+	// Variable template used to format the computed value
+	ValueFormatter string `json:"value_formatter"`
+	// Variable template used to format a preview for the computed value
+	PreviewValueFormatter *string `json:"preview_value_formatter,omitempty"`
 	// Setting to `true` disables editing the attribute on the entity builder UI
 	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
 	// Setting to `true` prevents the attribute from being modified / deleted
@@ -141,6 +143,11 @@ type ComputedAttribute struct {
 	Repeatable *bool                  `json:"repeatable,omitempty"`
 	HasPrimary *bool                  `json:"has_primary,omitempty"`
 	Type       *ComputedAttributeType `json:"type,omitempty"`
+	Computed   *bool                  `default:"true" json:"computed"`
+	// A source amount field that is used to compute the value of the attribute
+	AmountField *string `json:"amount_field,omitempty"`
+	// A currency field used to format a computed currency value
+	CurrencyField *string `json:"currency_field,omitempty"`
 }
 
 func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
@@ -308,9 +315,9 @@ func (o *ComputedAttribute) GetSettingsFlag() []SettingFlag {
 	return o.SettingsFlag
 }
 
-func (o *ComputedAttribute) GetValueFormatter() *string {
+func (o *ComputedAttribute) GetValueFormatter() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ValueFormatter
 }
@@ -362,4 +369,25 @@ func (o *ComputedAttribute) GetType() *ComputedAttributeType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *ComputedAttribute) GetComputed() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Computed
+}
+
+func (o *ComputedAttribute) GetAmountField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AmountField
+}
+
+func (o *ComputedAttribute) GetCurrencyField() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CurrencyField
 }

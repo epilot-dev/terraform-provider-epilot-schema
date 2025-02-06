@@ -40,8 +40,8 @@ const (
 )
 
 type RowActions struct {
-	Str          *string       `queryParam:"inline"`
-	EntityAction *EntityAction `queryParam:"inline"`
+	Str          *string
+	EntityAction *EntityAction
 
 	Type RowActionsType
 }
@@ -103,8 +103,8 @@ const (
 )
 
 type BulkActions struct {
-	Str          *string       `queryParam:"inline"`
-	EntityAction *EntityAction `queryParam:"inline"`
+	Str          *string
+	EntityAction *EntityAction
 
 	Type BulkActionsType
 }

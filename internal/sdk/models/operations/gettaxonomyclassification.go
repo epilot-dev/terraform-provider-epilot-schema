@@ -28,6 +28,8 @@ type GetTaxonomyClassificationResponse struct {
 	RawResponse *http.Response
 	// Taxonomy classification
 	TaxonomyClassification *shared.TaxonomyClassification
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetTaxonomyClassificationResponse) GetContentType() string {
@@ -56,4 +58,11 @@ func (o *GetTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.
 		return nil
 	}
 	return o.TaxonomyClassification
+}
+
+func (o *GetTaxonomyClassificationResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

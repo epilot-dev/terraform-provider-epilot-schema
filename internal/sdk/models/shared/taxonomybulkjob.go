@@ -9,8 +9,9 @@ import (
 
 type Request struct {
 	// URL-friendly name for taxonomy
-	TargetTaxonomy    *string  `json:"target_taxonomy,omitempty"`
-	ClassificationIds []string `json:"classification_ids,omitempty"`
+	TargetTaxonomy       *string  `json:"target_taxonomy,omitempty"`
+	TargetClassification *string  `json:"target_classification,omitempty"`
+	ClassificationIds    []string `json:"classification_ids,omitempty"`
 }
 
 func (o *Request) GetTargetTaxonomy() *string {
@@ -18,6 +19,13 @@ func (o *Request) GetTargetTaxonomy() *string {
 		return nil
 	}
 	return o.TargetTaxonomy
+}
+
+func (o *Request) GetTargetClassification() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TargetClassification
 }
 
 func (o *Request) GetClassificationIds() []string {
@@ -65,14 +73,15 @@ func (o *Output) GetFailedEntities() []string {
 type TaxonomyBulkJob struct {
 	JobID *string `json:"job_id,omitempty"`
 	// The status of the bulk job
-	JobStatus  *TaxonomyBulkJobStatus     `json:"job_status,omitempty"`
-	ActionType *TaxonomyBulkJobActionType `json:"action_type,omitempty"`
-	Request    *Request                   `json:"request,omitempty"`
-	Output     *Output                    `json:"output,omitempty"`
-	CreatedBy  *string                    `json:"created_by,omitempty"`
-	CreatedAt  *time.Time                 `json:"created_at,omitempty"`
-	UpdatedAt  *time.Time                 `json:"updated_at,omitempty"`
-	Org        *string                    `json:"org,omitempty"`
+	JobStatus     *TaxonomyBulkJobStatus     `json:"job_status,omitempty"`
+	FailureReason *string                    `json:"failure_reason,omitempty"`
+	ActionType    *TaxonomyBulkJobActionType `json:"action_type,omitempty"`
+	Request       *Request                   `json:"request,omitempty"`
+	Output        *Output                    `json:"output,omitempty"`
+	CreatedBy     *string                    `json:"created_by,omitempty"`
+	CreatedAt     *time.Time                 `json:"created_at,omitempty"`
+	UpdatedAt     *time.Time                 `json:"updated_at,omitempty"`
+	Org           *string                    `json:"org,omitempty"`
 	// Progress of the job on a scale of 0 to 1
 	Progress *float64 `json:"progress,omitempty"`
 }
@@ -100,6 +109,13 @@ func (o *TaxonomyBulkJob) GetJobStatus() *TaxonomyBulkJobStatus {
 		return nil
 	}
 	return o.JobStatus
+}
+
+func (o *TaxonomyBulkJob) GetFailureReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FailureReason
 }
 
 func (o *TaxonomyBulkJob) GetActionType() *TaxonomyBulkJobActionType {

@@ -16,8 +16,8 @@ const (
 )
 
 type GetRelationsResp struct {
-	RelationItem   *RelationItem   `queryParam:"inline"`
-	RelationEntity *RelationEntity `queryParam:"inline"`
+	RelationItem   *RelationItem
+	RelationEntity *RelationEntity
 
 	Type GetRelationsRespType
 }

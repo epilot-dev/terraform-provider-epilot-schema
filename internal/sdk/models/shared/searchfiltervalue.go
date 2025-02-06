@@ -18,9 +18,9 @@ const (
 
 // SearchFilterValue - A filter field value.
 type SearchFilterValue struct {
-	Str     *string  `queryParam:"inline"`
-	Number  *float64 `queryParam:"inline"`
-	Boolean *bool    `queryParam:"inline"`
+	Str     *string
+	Number  *float64
+	Boolean *bool
 
 	Type SearchFilterValueType
 }

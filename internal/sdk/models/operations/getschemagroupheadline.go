@@ -28,6 +28,8 @@ type GetSchemaGroupHeadlineResponse struct {
 	RawResponse *http.Response
 	// Success
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeID
+	// The requested resource was not found
+	NotFoundError *shared.NotFoundError
 }
 
 func (o *GetSchemaGroupHeadlineResponse) GetContentType() string {
@@ -56,4 +58,11 @@ func (o *GetSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *shar
 		return nil
 	}
 	return o.GroupHeadlineWithCompositeID
+}
+
+func (o *GetSchemaGroupHeadlineResponse) GetNotFoundError() *shared.NotFoundError {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundError
 }

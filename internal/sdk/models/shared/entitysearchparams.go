@@ -17,8 +17,8 @@ const (
 
 // Sort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type Sort struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string
+	ArrayOfStr []string
 
 	Type SortType
 }
@@ -105,6 +105,7 @@ type EntitySearchParams struct {
 	// By default, no deleted entities are included in the search results.
 	//
 	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
+	Highlight      any                              `json:"highlight,omitempty"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -179,4 +180,11 @@ func (o *EntitySearchParams) GetIncludeDeleted() *EntitySearchIncludeDeletedPara
 		return nil
 	}
 	return o.IncludeDeleted
+}
+
+func (o *EntitySearchParams) GetHighlight() any {
+	if o == nil {
+		return nil
+	}
+	return o.Highlight
 }
