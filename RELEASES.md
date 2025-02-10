@@ -17,3 +17,13 @@ Based on:
 - [terraform v0.3.0] .
 ### Releases
 - [Terraform v0.3.0] https://registry.terraform.io/providers/epilot/epilot-schema/0.3.0 - .
+
+## 2025-02-10 00:19:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.487.1 (2.506.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [terraform v0.15.0] .
+### Releases
+- [Terraform v0.15.0] https://registry.terraform.io/providers/epilot/epilot-schema/0.15.0 - .

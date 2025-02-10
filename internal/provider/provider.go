@@ -25,9 +25,9 @@ type EpilotSchemaProvider struct {
 
 // EpilotSchemaProviderModel describes the provider data model.
 type EpilotSchemaProviderModel struct {
-	ServerURL  types.String `tfsdk:"server_url"`
 	EpilotAuth types.String `tfsdk:"epilot_auth"`
 	EpilotOrg  types.String `tfsdk:"epilot_org"`
+	ServerURL  types.String `tfsdk:"server_url"`
 }
 
 func (p *EpilotSchemaProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
@@ -37,27 +37,25 @@ func (p *EpilotSchemaProvider) Metadata(ctx context.Context, req provider.Metada
 
 func (p *EpilotSchemaProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Attributes: map[string]schema.Attribute{
+			"epilot_auth": schema.StringAttribute{
+				Optional:  true,
+				Sensitive: true,
+			},
+			"epilot_org": schema.StringAttribute{
+				Optional:  true,
+				Sensitive: true,
+			},
+			"server_url": schema.StringAttribute{
+				Description: `Server URL (defaults to https://entity.sls.epilot.io)`,
+				Optional:    true,
+			},
+		},
 		MarkdownDescription: `Entity API: Flexible data layer for epilot Entities.` + "\n" +
 			`` + "\n" +
 			`Use this API configure and access your business objects like Contacts, Opportunities and Products.` + "\n" +
 			`` + "\n" +
-			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)` + "\n" +
-			``,
-		Attributes: map[string]schema.Attribute{
-			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to https://entity.dev.sls.epilot.io)",
-				Optional:            true,
-				Required:            false,
-			},
-			"epilot_auth": schema.StringAttribute{
-				Sensitive: true,
-				Optional:  true,
-			},
-			"epilot_org": schema.StringAttribute{
-				Sensitive: true,
-				Optional:  true,
-			},
-		},
+			`[Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)`,
 	}
 }
 
@@ -73,7 +71,7 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "https://entity.dev.sls.epilot.io"
+		ServerURL = "https://entity.sls.epilot.io"
 	}
 
 	epilotAuth := new(string)
@@ -93,10 +91,18 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 		EpilotOrg:  epilotOrg,
 	}
 
+	providerHTTPTransportOpts := ProviderHTTPTransportOpts{
+		SetHeaders: make(map[string]string),
+		Transport:  http.DefaultTransport,
+	}
+
+	httpClient := http.DefaultClient
+	httpClient.Transport = NewProviderHTTPTransport(providerHTTPTransportOpts)
+
 	opts := []sdk.SDKOption{
 		sdk.WithServerURL(ServerURL),
 		sdk.WithSecurity(security),
-		sdk.WithClient(http.DefaultClient),
+		sdk.WithClient(httpClient),
 	}
 	client := sdk.New(opts...)
 

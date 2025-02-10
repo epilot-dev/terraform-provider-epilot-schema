@@ -95,8 +95,8 @@ const (
 
 // Rows - Number of rows for rich_text textarea
 type Rows struct {
-	Integer *int64
-	Str     *string
+	Integer *int64  `queryParam:"inline"`
+	Str     *string `queryParam:"inline"`
 
 	Type RowsType
 }
