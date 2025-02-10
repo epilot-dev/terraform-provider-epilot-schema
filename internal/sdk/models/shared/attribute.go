@@ -47,39 +47,39 @@ const (
 )
 
 type Attribute struct {
-	TextAttribute                  *TextAttribute
-	LinkAttribute                  *LinkAttribute
-	DateAttribute                  *DateAttribute
-	CountryAttribute               *CountryAttribute
-	BooleanAttribute               *BooleanAttribute
-	SelectAttribute                *SelectAttribute
-	MultiSelectAttribute           *MultiSelectAttribute
-	StatusAttribute                *StatusAttribute
-	SequenceAttribute              *SequenceAttribute
-	RelationAttribute              *RelationAttribute
-	UserRelationAttribute          *UserRelationAttribute
-	AddressAttribute               *AddressAttribute
-	AddressRelationAttribute       *AddressRelationAttribute
-	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute
-	CurrencyAttribute              *CurrencyAttribute
-	TagsAttribute                  *TagsAttribute
-	MessageEmailAddressAttribute   *MessageEmailAddressAttribute
-	NumberAttribute                *NumberAttribute
-	ConsentAttribute               *ConsentAttribute
-	InternalAttribute              *InternalAttribute
-	OrderedListAttribute           *OrderedListAttribute
-	FileAttribute                  *FileAttribute
-	ComputedAttribute              *ComputedAttribute
-	PartnerStatusAttribute         *PartnerStatusAttribute
-	InvitationEmailAttribute       *InvitationEmailAttribute
-	AutomationAttribute            *AutomationAttribute
-	InternalUserAttribute          *InternalUserAttribute
-	PurposeAttribute               *PurposeAttribute
-	PartnerOrganisationAttribute   *PartnerOrganisationAttribute
-	PhoneAttribute                 *PhoneAttribute
-	EmailAttribute                 *EmailAttribute
-	PaymentAttribute               *PaymentAttribute
-	PriceComponentAttribute        *PriceComponentAttribute
+	TextAttribute                  *TextAttribute                  `queryParam:"inline"`
+	LinkAttribute                  *LinkAttribute                  `queryParam:"inline"`
+	DateAttribute                  *DateAttribute                  `queryParam:"inline"`
+	CountryAttribute               *CountryAttribute               `queryParam:"inline"`
+	BooleanAttribute               *BooleanAttribute               `queryParam:"inline"`
+	SelectAttribute                *SelectAttribute                `queryParam:"inline"`
+	MultiSelectAttribute           *MultiSelectAttribute           `queryParam:"inline"`
+	StatusAttribute                *StatusAttribute                `queryParam:"inline"`
+	SequenceAttribute              *SequenceAttribute              `queryParam:"inline"`
+	RelationAttribute              *RelationAttribute              `queryParam:"inline"`
+	UserRelationAttribute          *UserRelationAttribute          `queryParam:"inline"`
+	AddressAttribute               *AddressAttribute               `queryParam:"inline"`
+	AddressRelationAttribute       *AddressRelationAttribute       `queryParam:"inline"`
+	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `queryParam:"inline"`
+	CurrencyAttribute              *CurrencyAttribute              `queryParam:"inline"`
+	TagsAttribute                  *TagsAttribute                  `queryParam:"inline"`
+	MessageEmailAddressAttribute   *MessageEmailAddressAttribute   `queryParam:"inline"`
+	NumberAttribute                *NumberAttribute                `queryParam:"inline"`
+	ConsentAttribute               *ConsentAttribute               `queryParam:"inline"`
+	InternalAttribute              *InternalAttribute              `queryParam:"inline"`
+	OrderedListAttribute           *OrderedListAttribute           `queryParam:"inline"`
+	FileAttribute                  *FileAttribute                  `queryParam:"inline"`
+	ComputedAttribute              *ComputedAttribute              `queryParam:"inline"`
+	PartnerStatusAttribute         *PartnerStatusAttribute         `queryParam:"inline"`
+	InvitationEmailAttribute       *InvitationEmailAttribute       `queryParam:"inline"`
+	AutomationAttribute            *AutomationAttribute            `queryParam:"inline"`
+	InternalUserAttribute          *InternalUserAttribute          `queryParam:"inline"`
+	PurposeAttribute               *PurposeAttribute               `queryParam:"inline"`
+	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `queryParam:"inline"`
+	PhoneAttribute                 *PhoneAttribute                 `queryParam:"inline"`
+	EmailAttribute                 *EmailAttribute                 `queryParam:"inline"`
+	PaymentAttribute               *PaymentAttribute               `queryParam:"inline"`
+	PriceComponentAttribute        *PriceComponentAttribute        `queryParam:"inline"`
 
 	Type AttributeType
 }

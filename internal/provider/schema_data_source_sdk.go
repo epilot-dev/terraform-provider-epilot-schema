@@ -12,7 +12,7 @@ import (
 
 func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.EntitySchemaItem) {
 	if resp != nil {
-		r.Purpose = []types.String{}
+		r.Purpose = make([]types.String, 0, len(resp.Purpose))
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
 		}
@@ -33,7 +33,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 		}
 		r.DocsURL = types.StringPointerValue(resp.DocsURL)
 		r.Draft = types.BoolPointerValue(resp.Draft)
-		r.EnableSetting = []types.String{}
+		r.EnableSetting = make([]types.String, 0, len(resp.EnableSetting))
 		for _, v := range resp.EnableSetting {
 			r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
 		}
@@ -142,7 +142,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key3] = types.StringValue(value3)
 						}
 					}
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes))
 					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
 						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
 					}
@@ -276,7 +276,7 @@ func (r *SchemaDataSourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.E
 							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key4] = types.StringValue(value5)
 						}
 					}
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))
 					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
 						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
 					}

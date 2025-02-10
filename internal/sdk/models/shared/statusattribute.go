@@ -115,8 +115,8 @@ const (
 )
 
 type StatusAttributeOptions struct {
-	Str                     *string
-	StatusAttributeOptions2 *StatusAttributeOptions2
+	Str                     *string                  `queryParam:"inline"`
+	StatusAttributeOptions2 *StatusAttributeOptions2 `queryParam:"inline"`
 
 	Type StatusAttributeOptionsType
 }

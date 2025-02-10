@@ -86,8 +86,8 @@ const (
 )
 
 type CreatedBy struct {
-	One *One
-	Two *Two
+	One *One `queryParam:"inline"`
+	Two *Two `queryParam:"inline"`
 
 	Type CreatedByType
 }
