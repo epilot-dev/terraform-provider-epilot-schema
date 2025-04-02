@@ -47,39 +47,39 @@ const (
 )
 
 type Attribute struct {
-	TextAttribute                  *TextAttribute
-	LinkAttribute                  *LinkAttribute
-	DateAttribute                  *DateAttribute
-	CountryAttribute               *CountryAttribute
-	BooleanAttribute               *BooleanAttribute
-	SelectAttribute                *SelectAttribute
-	MultiSelectAttribute           *MultiSelectAttribute
-	StatusAttribute                *StatusAttribute
-	SequenceAttribute              *SequenceAttribute
-	RelationAttribute              *RelationAttribute
-	UserRelationAttribute          *UserRelationAttribute
-	AddressAttribute               *AddressAttribute
-	AddressRelationAttribute       *AddressRelationAttribute
-	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute
-	CurrencyAttribute              *CurrencyAttribute
-	TagsAttribute                  *TagsAttribute
-	MessageEmailAddressAttribute   *MessageEmailAddressAttribute
-	NumberAttribute                *NumberAttribute
-	ConsentAttribute               *ConsentAttribute
-	InternalAttribute              *InternalAttribute
-	OrderedListAttribute           *OrderedListAttribute
-	FileAttribute                  *FileAttribute
-	ComputedAttribute              *ComputedAttribute
-	PartnerStatusAttribute         *PartnerStatusAttribute
-	InvitationEmailAttribute       *InvitationEmailAttribute
-	AutomationAttribute            *AutomationAttribute
-	InternalUserAttribute          *InternalUserAttribute
-	PurposeAttribute               *PurposeAttribute
-	PartnerOrganisationAttribute   *PartnerOrganisationAttribute
-	PhoneAttribute                 *PhoneAttribute
-	EmailAttribute                 *EmailAttribute
-	PaymentAttribute               *PaymentAttribute
-	PriceComponentAttribute        *PriceComponentAttribute
+	TextAttribute                  *TextAttribute                  `queryParam:"inline"`
+	LinkAttribute                  *LinkAttribute                  `queryParam:"inline"`
+	DateAttribute                  *DateAttribute                  `queryParam:"inline"`
+	CountryAttribute               *CountryAttribute               `queryParam:"inline"`
+	BooleanAttribute               *BooleanAttribute               `queryParam:"inline"`
+	SelectAttribute                *SelectAttribute                `queryParam:"inline"`
+	MultiSelectAttribute           *MultiSelectAttribute           `queryParam:"inline"`
+	StatusAttribute                *StatusAttribute                `queryParam:"inline"`
+	SequenceAttribute              *SequenceAttribute              `queryParam:"inline"`
+	RelationAttribute              *RelationAttribute              `queryParam:"inline"`
+	UserRelationAttribute          *UserRelationAttribute          `queryParam:"inline"`
+	AddressAttribute               *AddressAttribute               `queryParam:"inline"`
+	AddressRelationAttribute       *AddressRelationAttribute       `queryParam:"inline"`
+	PaymentMethodRelationAttribute *PaymentMethodRelationAttribute `queryParam:"inline"`
+	CurrencyAttribute              *CurrencyAttribute              `queryParam:"inline"`
+	TagsAttribute                  *TagsAttribute                  `queryParam:"inline"`
+	MessageEmailAddressAttribute   *MessageEmailAddressAttribute   `queryParam:"inline"`
+	NumberAttribute                *NumberAttribute                `queryParam:"inline"`
+	ConsentAttribute               *ConsentAttribute               `queryParam:"inline"`
+	InternalAttribute              *InternalAttribute              `queryParam:"inline"`
+	OrderedListAttribute           *OrderedListAttribute           `queryParam:"inline"`
+	FileAttribute                  *FileAttribute                  `queryParam:"inline"`
+	ComputedAttribute              *ComputedAttribute              `queryParam:"inline"`
+	PartnerStatusAttribute         *PartnerStatusAttribute         `queryParam:"inline"`
+	InvitationEmailAttribute       *InvitationEmailAttribute       `queryParam:"inline"`
+	AutomationAttribute            *AutomationAttribute            `queryParam:"inline"`
+	InternalUserAttribute          *InternalUserAttribute          `queryParam:"inline"`
+	PurposeAttribute               *PurposeAttribute               `queryParam:"inline"`
+	PartnerOrganisationAttribute   *PartnerOrganisationAttribute   `queryParam:"inline"`
+	PhoneAttribute                 *PhoneAttribute                 `queryParam:"inline"`
+	EmailAttribute                 *EmailAttribute                 `queryParam:"inline"`
+	PaymentAttribute               *PaymentAttribute               `queryParam:"inline"`
+	PriceComponentAttribute        *PriceComponentAttribute        `queryParam:"inline"`
 
 	Type AttributeType
 }
@@ -390,10 +390,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
-		u.InvitationEmailAttribute = &invitationEmailAttribute
-		u.Type = AttributeTypeInvitationEmailAttribute
+	var linkAttribute LinkAttribute = LinkAttribute{}
+	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
+		u.LinkAttribute = &linkAttribute
+		u.Type = AttributeTypeLinkAttribute
 		return nil
 	}
 
@@ -411,10 +411,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var emailAttribute EmailAttribute = EmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &emailAttribute, "", true, false); err == nil {
-		u.EmailAttribute = &emailAttribute
-		u.Type = AttributeTypeEmailAttribute
+	var internalAttribute InternalAttribute = InternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
+		u.InternalAttribute = &internalAttribute
+		u.Type = AttributeTypeInternalAttribute
 		return nil
 	}
 
@@ -439,24 +439,24 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var internalAttribute InternalAttribute = InternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
-		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
-		return nil
-	}
-
-	var linkAttribute LinkAttribute = LinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
-		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
-		return nil
-	}
-
 	var phoneAttribute PhoneAttribute = PhoneAttribute{}
 	if err := utils.UnmarshalJSON(data, &phoneAttribute, "", true, false); err == nil {
 		u.PhoneAttribute = &phoneAttribute
 		u.Type = AttributeTypePhoneAttribute
+		return nil
+	}
+
+	var emailAttribute EmailAttribute = EmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &emailAttribute, "", true, false); err == nil {
+		u.EmailAttribute = &emailAttribute
+		u.Type = AttributeTypeEmailAttribute
+		return nil
+	}
+
+	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
+		u.InvitationEmailAttribute = &invitationEmailAttribute
+		u.Type = AttributeTypeInvitationEmailAttribute
 		return nil
 	}
 
@@ -488,10 +488,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
-		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
+	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
+		u.UserRelationAttribute = &userRelationAttribute
+		u.Type = AttributeTypeUserRelationAttribute
 		return nil
 	}
 
@@ -502,17 +502,17 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
+		u.AddressRelationAttribute = &addressRelationAttribute
+		u.Type = AttributeTypeAddressRelationAttribute
+		return nil
+	}
+
 	var statusAttribute StatusAttribute = StatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
 		u.StatusAttribute = &statusAttribute
 		u.Type = AttributeTypeStatusAttribute
-		return nil
-	}
-
-	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
-		u.UserRelationAttribute = &userRelationAttribute
-		u.Type = AttributeTypeUserRelationAttribute
 		return nil
 	}
 

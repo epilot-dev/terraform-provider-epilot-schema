@@ -6,14 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/hooks"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/errors"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/retry"
-	"io"
 	"net/http"
 )
 
@@ -35,13 +33,6 @@ func newRelations(sdkConfig sdkConfiguration) *Relations {
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelations(ctx context.Context, request operations.GetRelationsRequest, opts ...operations.Option) (*operations.GetRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,10 +45,23 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -84,6 +88,10 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -122,7 +130,11 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -183,17 +195,15 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out []shared.GetRelationsResp
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -201,11 +211,20 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 
 			res.GetRelationsResp = out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -213,9 +232,17 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -226,13 +253,6 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 // AddRelations - addRelations
 // Relates one or more entities to parent entity by adding items to a relation attribute
 func (s *Relations) AddRelations(ctx context.Context, request operations.AddRelationsRequest, opts ...operations.Option) (*operations.AddRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "addRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -245,12 +265,24 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "addRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -273,7 +305,9 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -281,6 +315,10 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -319,7 +357,11 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -380,17 +422,15 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.RelationItem
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -398,11 +438,20 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 
 			res.RelationItem = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -410,9 +459,17 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -423,13 +480,6 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 // RemoveRelations - removeRelations
 // Disassociate one or more entities to parent entity by removing items to a relation attribute
 func (s *Relations) RemoveRelations(ctx context.Context, request operations.RemoveRelationsRequest, opts ...operations.Option) (*operations.RemoveRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "removeRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -442,12 +492,24 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "removeRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -470,7 +532,9 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -478,6 +542,10 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -516,7 +584,11 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -577,18 +649,16 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -596,9 +666,17 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -613,13 +691,6 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRelationsV2Request, opts ...operations.Option) (*operations.GetRelationsV2Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelationsV2",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -632,10 +703,23 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelationsV2",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -662,6 +746,10 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -700,7 +788,11 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -761,17 +853,15 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.GetRelationsRespWithPagination
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -779,11 +869,20 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 
 			res.GetRelationsRespWithPagination = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -791,9 +890,17 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -808,13 +915,6 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRelationsV3Request, opts ...operations.Option) (*operations.GetRelationsV3Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelationsV3",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -827,10 +927,23 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelationsV3",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -857,6 +970,10 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -895,7 +1012,11 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -956,17 +1077,15 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.GetRelationsRespWithPagination
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -974,11 +1093,20 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 
 			res.GetRelationsRespWithPagination = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -986,9 +1114,17 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -999,13 +1135,6 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 // GetRelatedEntitiesCount - getRelatedEntitiesCount
 // Returns the amount of unique related entities for an entity - includes direct and reverse relations.
 func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operations.GetRelatedEntitiesCountRequest, opts ...operations.Option) (*operations.GetRelatedEntitiesCountResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelatedEntitiesCount",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1018,10 +1147,23 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/{slug}/{id}/relations/count", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelatedEntitiesCount",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1048,6 +1190,10 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1086,7 +1232,11 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1147,17 +1297,15 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.GetRelatedEntitiesCount
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1165,11 +1313,20 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 
 			res.GetRelatedEntitiesCount = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1177,9 +1334,17 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1190,13 +1355,6 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 // UpdateRelation - updateRelation
 // Updates an existing relation between two entities.
 func (s *Relations) UpdateRelation(ctx context.Context, request operations.UpdateRelationRequest, opts ...operations.Option) (*operations.UpdateRelationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateRelation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1209,12 +1367,24 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations/{attribute}/{entity_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateRelation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1237,7 +1407,9 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1245,6 +1417,10 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1283,7 +1459,11 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1344,17 +1524,15 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.RelationItem
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1362,11 +1540,20 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 
 			res.RelationItem = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1374,9 +1561,17 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1387,13 +1582,6 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 // DeleteRelation - deleteRelation
 // Removes relation between two entities
 func (s *Relations) DeleteRelation(ctx context.Context, request operations.DeleteRelationRequest, opts ...operations.Option) (*operations.DeleteRelationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteRelation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1406,10 +1594,23 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations/{attribute}/{entity_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteRelation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1436,6 +1637,10 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1474,7 +1679,11 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1535,18 +1744,16 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1554,9 +1761,17 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

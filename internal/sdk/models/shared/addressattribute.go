@@ -138,9 +138,9 @@ type AddressAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *AddressAttributeType `json:"type,omitempty"`
+	Repeatable *bool                `json:"repeatable,omitempty"`
+	HasPrimary *bool                `json:"has_primary,omitempty"`
+	Type       AddressAttributeType `json:"type"`
 	// Default fields visible on addresses
 	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 }
@@ -359,9 +359,9 @@ func (o *AddressAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() *AddressAttributeType {
+func (o *AddressAttribute) GetType() AddressAttributeType {
 	if o == nil {
-		return nil
+		return AddressAttributeType("")
 	}
 	return o.Type
 }

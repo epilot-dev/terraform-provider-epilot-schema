@@ -9,8 +9,7 @@ import (
 
 type BulkMoveClassificationsRequestBody struct {
 	// Job ID for tracking the status of a bulk operation request
-	JobID *string `json:"job_id,omitempty"`
-	// URL-friendly name for taxonomy
+	JobID             *string  `json:"job_id,omitempty"`
 	TargetTaxonomy    *string  `json:"target_taxonomy,omitempty"`
 	ClassificationIds []string `json:"classification_ids,omitempty"`
 }

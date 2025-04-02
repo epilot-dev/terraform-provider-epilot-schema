@@ -19,7 +19,7 @@ type GetRelationsV3Request struct {
 	// *It gets overriden by mode query parameter.*
 	//
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IncludeReverse *bool `default:"false" queryParam:"style=form,explode=true,name=include_reverse"`
 	// Starting page number
 	From *int64 `default:"0" queryParam:"style=form,explode=true,name=from"`
@@ -37,6 +37,8 @@ type GetRelationsV3Request struct {
 	// - both: both direct and reverse relations
 	//
 	Mode *shared.EntityRelationsModeQueryParam `queryParam:"style=form,explode=true,name=mode"`
+	// List of entity fields to include in results
+	Fields []string `queryParam:"style=form,explode=true,name=fields"`
 }
 
 func (g GetRelationsV3Request) MarshalJSON() ([]byte, error) {
@@ -111,6 +113,13 @@ func (o *GetRelationsV3Request) GetMode() *shared.EntityRelationsModeQueryParam 
 		return nil
 	}
 	return o.Mode
+}
+
+func (o *GetRelationsV3Request) GetFields() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Fields
 }
 
 type GetRelationsV3Response struct {

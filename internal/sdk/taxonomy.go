@@ -6,14 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/hooks"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/errors"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/retry"
-	"io"
 	"net/http"
 	"net/url"
 )
@@ -32,13 +30,6 @@ func newTaxonomy(sdkConfig sdkConfiguration) *Taxonomy {
 // ListTaxonomies - listTaxonomies
 // List taxonomies in an organization
 func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTaxonomiesRequest, opts ...operations.Option) (*operations.ListTaxonomiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listTaxonomies",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -51,10 +42,23 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listTaxonomies",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -81,6 +85,10 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -119,7 +127,11 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -180,17 +192,15 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.ListTaxonomiesResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -198,9 +208,17 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -211,13 +229,6 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 // CreateTaxonomy - createTaxonomy
 // Create a new taxonomy
 func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyInput, opts ...operations.Option) (*operations.CreateTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -230,12 +241,24 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -258,10 +281,16 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -300,7 +329,11 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -361,17 +394,15 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 201:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Taxonomy
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -379,10 +410,18 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 
 			res.Taxonomy = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 409:
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -393,13 +432,6 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 // GetTaxonomy - getTaxonomy
 // Get taxonomy by slug
 func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxonomyRequest, opts ...operations.Option) (*operations.GetTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -412,10 +444,23 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -438,6 +483,10 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -476,7 +525,11 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -537,17 +590,15 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Taxonomy
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -555,11 +606,20 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 
 			res.Taxonomy = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -567,9 +627,17 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -580,13 +648,6 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 // UpdateTaxonomy - updateTaxonomy
 // Update a taxonomy
 func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.UpdateTaxonomyRequest, opts ...operations.Option) (*operations.UpdateTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -599,12 +660,24 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Taxonomy", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -627,10 +700,16 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -669,7 +748,11 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -730,17 +813,15 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Taxonomy
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -748,9 +829,17 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 
 			res.Taxonomy = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -761,13 +850,6 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 // DeleteTaxonomy - deleteTaxonomy
 // Delete a taxonomy
 func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.DeleteTaxonomyRequest, opts ...operations.Option) (*operations.DeleteTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -780,10 +862,23 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -810,6 +905,10 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -848,7 +947,11 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -909,16 +1012,13 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 204:
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -929,13 +1029,6 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 // UpdateClassificationsForTaxonomy - updateClassificationsForTaxonomy
 // Update the classifications for a taxonomy
 func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request operations.UpdateClassificationsForTaxonomyRequest, opts ...operations.Option) (*operations.UpdateClassificationsForTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateClassificationsForTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -948,12 +1041,24 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}/classifications", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateClassificationsForTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "ClassificationsUpdate", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -976,10 +1081,16 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1018,7 +1129,11 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1079,17 +1194,15 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.UpdateClassificationsForTaxonomyResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1097,11 +1210,20 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1109,9 +1231,17 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1122,13 +1252,6 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 // GetTaxonomyClassification - getTaxonomyClassification
 // Get a classification for a taxonomy
 func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operations.GetTaxonomyClassificationRequest, opts ...operations.Option) (*operations.GetTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1141,10 +1264,23 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/taxonomies/classifications/{classificationSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1167,6 +1303,10 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1205,7 +1345,11 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1266,17 +1410,15 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyClassification
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1284,11 +1426,20 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 
 			res.TaxonomyClassification = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1296,9 +1447,17 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1309,13 +1468,6 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 // UpdateTaxonomyClassification - updateTaxonomyClassification
 // Update a classification for a taxonomy
 func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request operations.UpdateTaxonomyClassificationRequest, opts ...operations.Option) (*operations.UpdateTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1328,12 +1480,24 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/taxonomies/classifications/{classificationSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "TaxonomyClassification", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1356,10 +1520,16 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1398,7 +1568,11 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1459,17 +1633,15 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyClassification
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1477,10 +1649,18 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 
 			res.TaxonomyClassification = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1491,13 +1671,6 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 // DeleteTaxonomyClassification - deleteTaxonomyClassification
 // Delete a classification for a taxonomy
 func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request operations.DeleteTaxonomyClassificationRequest, opts ...operations.Option) (*operations.DeleteTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1510,10 +1683,23 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/taxonomies/classifications/{classificationSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1536,6 +1722,10 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1574,7 +1764,11 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1635,17 +1829,15 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyClassification
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1653,9 +1845,17 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 
 			res.TaxonomyClassification = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1666,13 +1866,6 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 // TaxonomyAutocomplete - taxonomyAutocomplete
 // Taxonomies autocomplete
 func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.TaxonomyAutocompleteRequest, opts ...operations.Option) (*operations.TaxonomyAutocompleteResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "taxonomyAutocomplete",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1685,10 +1878,23 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}:autocomplete", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "taxonomyAutocomplete",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1715,6 +1921,10 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1753,7 +1963,11 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1814,17 +2028,15 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.TaxonomyAutocompleteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1832,9 +2044,17 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1845,13 +2065,6 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 // TaxonomiesClassificationsSearch - taxonomiesClassificationsSearch
 // List taxonomy classifications in an organization based on taxonomy slug
 func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request operations.TaxonomiesClassificationsSearchRequest, opts ...operations.Option) (*operations.TaxonomiesClassificationsSearchResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "taxonomiesClassificationsSearch",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1864,12 +2077,24 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/classifications:search")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "taxonomiesClassificationsSearch",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1892,7 +2117,9 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -1900,6 +2127,10 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1938,7 +2169,11 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1999,17 +2234,15 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.TaxonomiesClassificationsSearchResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2017,9 +2250,17 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2034,13 +2275,6 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 // - FAILED = all failed jobs
 // - COMPLETED = all completed jobs
 func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operations.GetTaxonomyBulkActionJobsRequest, opts ...operations.Option) (*operations.GetTaxonomyBulkActionJobsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyBulkActionJobs",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2053,10 +2287,23 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/bulk-jobs")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyBulkActionJobs",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2083,6 +2330,10 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2121,7 +2372,11 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -2182,17 +2437,15 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out []shared.TaxonomyBulkJob
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2200,9 +2453,17 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 
 			res.TaxonomyBulkJobs = out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2213,13 +2474,6 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 // GetTaxonomyBulkActionJobByID - getTaxonomyBulkActionJobById
 // Gets a bulk action job by job id
 func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request operations.GetTaxonomyBulkActionJobByIDRequest, opts ...operations.Option) (*operations.GetTaxonomyBulkActionJobByIDResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyBulkActionJobById",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2232,10 +2486,23 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/bulk-jobs/{job_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyBulkActionJobById",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2258,6 +2525,10 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2296,7 +2567,11 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -2357,17 +2632,15 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out []shared.TaxonomyBulkJob
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2375,9 +2648,17 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 
 			res.TaxonomyBulkJobs = out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2389,13 +2670,6 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 // Moves classifications from one taxonomy to another, through a bulk async operation which
 // also updates all references from the old classification to the new one under the target taxonomy.
 func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operations.BulkMoveClassificationsRequestBody, opts ...operations.Option) (*operations.BulkMoveClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkMoveClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2408,12 +2682,24 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/classifications:move")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkMoveClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2436,10 +2722,16 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2478,7 +2770,11 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -2539,17 +2835,15 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyBulkJobTriggerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2557,9 +2851,17 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 
 			res.TaxonomyBulkJobTriggerResponse = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2571,13 +2873,6 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 // Merges classifications from one taxonomy into one individual classification, through a bulk async operation which
 // also updates all references from the old Classifications to the new one.
 func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operations.BulkMergeClassificationsRequestBody, opts ...operations.Option) (*operations.BulkMergeClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkMergeClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2590,12 +2885,24 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/classifications:merge")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkMergeClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2618,10 +2925,16 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2660,7 +2973,11 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -2721,17 +3038,15 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyBulkJobTriggerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2739,9 +3054,17 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 
 			res.TaxonomyBulkJobTriggerResponse = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -2754,13 +3077,6 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 // async operation which also deletes all references of the deleted classifications from the entities
 // referencing them.
 func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *operations.BulkDeleteClassificationsRequestBody, opts ...operations.Option) (*operations.BulkDeleteClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkDeleteClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2773,12 +3089,24 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/classifications:delete")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkDeleteClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2801,10 +3129,16 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2843,7 +3177,11 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -2904,17 +3242,15 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.TaxonomyBulkJobTriggerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -2922,9 +3258,17 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 
 			res.TaxonomyBulkJobTriggerResponse = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

@@ -141,9 +141,9 @@ type DateAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool              `json:"repeatable,omitempty"`
-	HasPrimary *bool              `json:"has_primary,omitempty"`
-	Type       *DateAttributeType `json:"type,omitempty"`
+	Repeatable *bool             `json:"repeatable,omitempty"`
+	HasPrimary *bool             `json:"has_primary,omitempty"`
+	Type       DateAttributeType `json:"type"`
 }
 
 func (d DateAttribute) MarshalJSON() ([]byte, error) {
@@ -360,9 +360,9 @@ func (o *DateAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *DateAttribute) GetType() *DateAttributeType {
+func (o *DateAttribute) GetType() DateAttributeType {
 	if o == nil {
-		return nil
+		return DateAttributeType("")
 	}
 	return o.Type
 }

@@ -15,7 +15,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"https://entity.dev.sls.epilot.io",
+	"https://entity.sls.epilot.io",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -40,6 +40,9 @@ func Float32(f float32) *float32 { return &f }
 
 // Float64 provides a helper function to return a pointer to a float64
 func Float64(f float64) *float64 { return &f }
+
+// Pointer provides a helper function to return a pointer to a type
+func Pointer[T any](v T) *T { return &v }
 
 type sdkConfiguration struct {
 	Client            HTTPClient
@@ -161,9 +164,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.0.1",
-			GenVersion:        "2.396.0",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.396.0 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
+			SDKVersion:        "0.15.0",
+			GenVersion:        "2.564.5",
+			UserAgent:         "speakeasy-sdk/terraform 0.15.0 2.564.5 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
 			Hooks:             hooks.New(),
 		},
 	}

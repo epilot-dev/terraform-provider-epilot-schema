@@ -138,9 +138,9 @@ type PhoneAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PhoneAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool               `json:"repeatable,omitempty"`
-	HasPrimary *bool               `json:"has_primary,omitempty"`
-	Type       *PhoneAttributeType `json:"type,omitempty"`
+	Repeatable *bool              `json:"repeatable,omitempty"`
+	HasPrimary *bool              `json:"has_primary,omitempty"`
+	Type       PhoneAttributeType `json:"type"`
 }
 
 func (p PhoneAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *PhoneAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *PhoneAttribute) GetType() *PhoneAttributeType {
+func (o *PhoneAttribute) GetType() PhoneAttributeType {
 	if o == nil {
-		return nil
+		return PhoneAttributeType("")
 	}
 	return o.Type
 }

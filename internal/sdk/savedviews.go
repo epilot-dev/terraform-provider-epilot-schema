@@ -6,14 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/hooks"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/errors"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/retry"
-	"io"
 	"net/http"
 	"net/url"
 )
@@ -32,13 +30,6 @@ func newSavedViews(sdkConfig sdkConfiguration) *SavedViews {
 // ListSavedViews - listSavedViews
 // Get the Saved Views based on the schema
 func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.ListSavedViewsRequest, opts ...operations.Option) (*operations.ListSavedViewsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listSavedViews",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -51,10 +42,23 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/views")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listSavedViews",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -81,6 +85,10 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -119,7 +127,11 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -180,17 +192,15 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.ListSavedViewsResults
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -198,9 +208,17 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 
 			res.ListSavedViewsResults = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -211,13 +229,6 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 // CreateSavedView - createSavedView
 // Creates a new saved view
 func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedView, opts ...operations.Option) (*operations.CreateSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -230,12 +241,24 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/view")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -258,10 +281,16 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -300,7 +329,11 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -361,17 +394,15 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 201:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.CreateSavedViewResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -379,9 +410,17 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -392,13 +431,6 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 // GetSavedView - getSavedView
 // Gets Saved View configuration by id.
 func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSavedViewRequest, opts ...operations.Option) (*operations.GetSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -411,10 +443,23 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -437,6 +482,10 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -475,7 +524,11 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -536,17 +589,15 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.GetSavedViewResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -554,11 +605,20 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -566,9 +626,17 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 
 			res.NotFoundError = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -579,13 +647,6 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 // UpdateSavedView - updateSavedView
 // Updates a saved view
 func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.UpdateSavedViewRequest, opts ...operations.Option) (*operations.UpdateSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -598,12 +659,24 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -626,10 +699,16 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -668,7 +747,11 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -729,17 +812,15 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.UpdateSavedViewResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -747,9 +828,17 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -760,13 +849,6 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 // PatchSavedView - patchSavedView
 // Partially updates a saved view with the provided payload. If an updated_at is passed and the server contains a newer version of the view a `409` error is returned
 func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.PatchSavedViewRequest, opts ...operations.Option) (*operations.PatchSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "patchSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -779,12 +861,24 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "patchSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SavedViewPartial", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -807,10 +901,16 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -849,7 +949,11 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -910,17 +1014,15 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.PatchSavedViewResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -928,9 +1030,17 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -941,13 +1051,6 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 // DeleteSavedView - deleteSavedView
 // Deletes a saved view
 func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.DeleteSavedViewRequest, opts ...operations.Option) (*operations.DeleteSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -960,10 +1063,23 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -986,6 +1102,10 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1024,7 +1144,11 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1085,16 +1209,13 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1105,13 +1226,6 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 // ListFavoriteViewsForUser - listFavoriteViewsForUser
 // Get the Favorite Saved Views for user based on the schema
 func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...operations.Option) (*operations.ListFavoriteViewsForUserResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listFavoriteViewsForUser",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1124,10 +1238,23 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/views/favorites")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listFavoriteViewsForUser",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1150,6 +1277,10 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1188,7 +1319,11 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1249,17 +1384,15 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
 			var out operations.ListFavoriteViewsForUserResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1267,9 +1400,17 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 
 			res.Object = &out
 		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
 			return nil, errors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
 		return nil, errors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

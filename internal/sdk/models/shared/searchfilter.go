@@ -138,9 +138,9 @@ type SearchFilter struct {
 	//
 	// You likely DO NOT want to use this filter on text fields and want to target its .keyword instead.
 	//
-	Term map[string]SearchFilterValue `json:"term,omitempty"`
+	Term map[string]*SearchFilterValue `json:"term,omitempty"`
 	// Returns documents that contain one of the exact terms in a provided field. See term filter for more info.
-	Terms map[string][]SearchFilterValue `json:"terms,omitempty"`
+	Terms map[string][]*SearchFilterValue `json:"terms,omitempty"`
 	// Returns documents based on their IDs.
 	Ids *Ids `json:"ids,omitempty"`
 	// Returns documents with fields that have terms within a certain range.
@@ -155,14 +155,14 @@ type SearchFilter struct {
 	DollarNot []SearchFilter `json:"$not,omitempty"`
 }
 
-func (o *SearchFilter) GetTerm() map[string]SearchFilterValue {
+func (o *SearchFilter) GetTerm() map[string]*SearchFilterValue {
 	if o == nil {
 		return nil
 	}
 	return o.Term
 }
 
-func (o *SearchFilter) GetTerms() map[string][]SearchFilterValue {
+func (o *SearchFilter) GetTerms() map[string][]*SearchFilterValue {
 	if o == nil {
 		return nil
 	}

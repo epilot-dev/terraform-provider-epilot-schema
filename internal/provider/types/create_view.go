@@ -3,7 +3,7 @@
 package types
 
 type CreateView struct {
-	EntityDefaultCreate *EntityDefaultCreate `tfsdk:"entity_default_create" tfPlanOnly:"true"`
-	EntityViewDisabled  *EntityViewDisabled  `tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
-	RedirectEntityView  *RedirectEntityView  `tfsdk:"redirect_entity_view" tfPlanOnly:"true"`
+	EntityDefaultCreate *EntityDefaultCreate `queryParam:"inline" tfsdk:"entity_default_create" tfPlanOnly:"true"`
+	EntityViewDisabled  *EntityViewDisabled  `queryParam:"inline" tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
+	RedirectEntityView  *RedirectEntityView  `queryParam:"inline" tfsdk:"redirect_entity_view" tfPlanOnly:"true"`
 }

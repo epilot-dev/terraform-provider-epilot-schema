@@ -140,10 +140,10 @@ type AttributeWithCompositeIDPriceComponentAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                                `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
-	Type        *PriceComponentAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                              `json:"composite_id,omitempty"`
+	Repeatable  *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
+	Type        PriceComponentAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                             `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -362,9 +362,9 @@ func (o *AttributeWithCompositeIDPriceComponentAttribute) GetHasPrimary() *bool 
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetType() *PriceComponentAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPriceComponentAttribute) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PriceComponentAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -513,10 +513,10 @@ type AttributeWithCompositeIDPaymentAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
-	Type        *PaymentAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                       `json:"composite_id,omitempty"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
+	Type        PaymentAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -735,9 +735,9 @@ func (o *AttributeWithCompositeIDPaymentAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetType() *PaymentAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentAttribute) GetType() PaymentAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PaymentAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -886,10 +886,10 @@ type AttributeWithCompositeIDEmailAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *EmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                       `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                       `json:"has_primary,omitempty"`
-	Type        *EmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                     `json:"composite_id,omitempty"`
+	Repeatable  *bool                                      `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
+	Type        EmailAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1108,9 +1108,9 @@ func (o *AttributeWithCompositeIDEmailAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetType() *EmailAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDEmailAttribute) GetType() EmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return EmailAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -1259,10 +1259,10 @@ type AttributeWithCompositeIDPhoneAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PhoneAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                       `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                       `json:"has_primary,omitempty"`
-	Type        *PhoneAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                     `json:"composite_id,omitempty"`
+	Repeatable  *bool                                      `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
+	Type        PhoneAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1481,9 +1481,9 @@ func (o *AttributeWithCompositeIDPhoneAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetType() *PhoneAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPhoneAttribute) GetType() PhoneAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PhoneAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -1632,10 +1632,10 @@ type AttributeWithCompositeIDPartnerOrganisationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                                     `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                     `json:"has_primary,omitempty"`
-	Type        *PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                                   `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                    `json:"has_primary,omitempty"`
+	Type        PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                                  `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -1854,9 +1854,9 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHasPrimary() *
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetType() *PartnerOrganisationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PartnerOrganisationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -2014,9 +2014,9 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Archived classification are not visible in the UI
-	Archived    *bool                                         `default:"false" json:"archived"`
-	Type        *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                       `json:"composite_id,omitempty"`
+	Archived    *bool                                        `default:"false" json:"archived"`
+	Type        PurposeAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -2277,9 +2277,9 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetArchived() *bool {
 	return o.Archived
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetType() *PurposeAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPurposeAttribute) GetType() PurposeAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PurposeAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -2428,10 +2428,10 @@ type AttributeWithCompositeIDInternalUserAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                              `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                              `json:"has_primary,omitempty"`
-	Type        *InternalUserAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                            `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	Type        InternalUserAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                           `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -2650,9 +2650,9 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetType() *InternalUserAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInternalUserAttribute) GetType() InternalUserAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InternalUserAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -2801,10 +2801,10 @@ type AttributeWithCompositeIDAutomationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                            `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                            `json:"has_primary,omitempty"`
-	Type        *AutomationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                          `json:"composite_id,omitempty"`
+	Repeatable  *bool                                           `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                           `json:"has_primary,omitempty"`
+	Type        AutomationAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                         `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -3023,9 +3023,9 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetType() *AutomationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAutomationAttribute) GetType() AutomationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AutomationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -3174,10 +3174,10 @@ type AttributeWithCompositeIDInvitationEmailAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                                 `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                 `json:"has_primary,omitempty"`
-	Type        *InvitationEmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                               `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                `json:"has_primary,omitempty"`
+	Type        InvitationEmailAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                              `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -3396,9 +3396,9 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetHasPrimary() *bool
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetType() *InvitationEmailAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InvitationEmailAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -3547,10 +3547,10 @@ type AttributeWithCompositeIDPartnerStatusAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                               `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                               `json:"has_primary,omitempty"`
-	Type        *PartnerStatusAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                             `json:"composite_id,omitempty"`
+	Repeatable  *bool                                              `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                              `json:"has_primary,omitempty"`
+	Type        PartnerStatusAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                            `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -3769,9 +3769,9 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetType() *PartnerStatusAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PartnerStatusAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -3922,10 +3922,10 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary *bool                                          `json:"has_primary,omitempty"`
-	Type       *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Computed   *bool                                          `default:"true" json:"computed"`
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       ComputedAttributeAttributeWithCompositeIDType `json:"type"`
+	Computed   *bool                                         `default:"true" json:"computed"`
 	// A source amount field that is used to compute the value of the attribute
 	AmountField *string `json:"amount_field,omitempty"`
 	// A currency field used to format a computed currency value
@@ -4149,9 +4149,9 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetType() *ComputedAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDComputedAttribute) GetType() ComputedAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return ComputedAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -4768,10 +4768,10 @@ type AttributeWithCompositeIDOrderedListAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                             `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
-	Type        *OrderedListAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                           `json:"composite_id,omitempty"`
+	Repeatable  *bool                                            `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                            `json:"has_primary,omitempty"`
+	Type        OrderedListAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                          `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -4990,9 +4990,9 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetType() *OrderedListAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDOrderedListAttribute) GetType() OrderedListAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return OrderedListAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -5141,10 +5141,10 @@ type AttributeWithCompositeIDInternalAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                          `json:"has_primary,omitempty"`
-	Type        *InternalAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                        `json:"composite_id,omitempty"`
+	Repeatable  *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
+	Type        InternalAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                       `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -5363,9 +5363,9 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetType() *InternalAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInternalAttribute) GetType() InternalAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InternalAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -5903,10 +5903,10 @@ type AttributeWithCompositeIDNumberAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                        `json:"repeatable,omitempty"`
-	HasPrimary *bool                                        `json:"has_primary,omitempty"`
-	Type       *NumberAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Format     *string                                      `json:"format,omitempty"`
+	Repeatable *bool                                       `json:"repeatable,omitempty"`
+	HasPrimary *bool                                       `json:"has_primary,omitempty"`
+	Type       NumberAttributeAttributeWithCompositeIDType `json:"type"`
+	Format     *string                                     `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool   `default:"true" json:"show_separator"`
 	CompositeID   *string `json:"composite_id,omitempty"`
@@ -6128,9 +6128,9 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetType() *NumberAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDNumberAttribute) GetType() NumberAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return NumberAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -6690,12 +6690,12 @@ type AttributeWithCompositeIDTagsAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
-	Type        *TagsAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Options     []string                                   `json:"options,omitempty"`
-	Suggestions []string                                   `json:"suggestions,omitempty"`
-	CompositeID *string                                    `json:"composite_id,omitempty"`
+	Repeatable  *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                     `json:"has_primary,omitempty"`
+	Type        TagsAttributeAttributeWithCompositeIDType `json:"type"`
+	Options     []string                                  `json:"options,omitempty"`
+	Suggestions []string                                  `json:"suggestions,omitempty"`
+	CompositeID *string                                   `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -6914,9 +6914,9 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetType() *TagsAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDTagsAttribute) GetType() TagsAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return TagsAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -7069,7 +7069,7 @@ const (
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1
+	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1 `queryParam:"inline"`
 
 	Type CurrencyAttributeCurrencyType
 }
@@ -7546,10 +7546,10 @@ type AttributeWithCompositeIDPaymentMethodRelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                                       `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                                       `json:"has_primary,omitempty"`
-	Type        *PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                                     `json:"composite_id,omitempty"`
+	Repeatable  *bool                                                      `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                                      `json:"has_primary,omitempty"`
+	Type        PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                                    `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -7768,9 +7768,9 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHasPrimary()
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PaymentMethodRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -7919,9 +7919,9 @@ type AttributeWithCompositeIDAddressRelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                 `json:"has_primary,omitempty"`
-	Type       *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                `json:"has_primary,omitempty"`
+	Type       AddressRelationAttributeAttributeWithCompositeIDType `json:"type"`
 	// Default fields visible on addresses
 	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 	CompositeID          *string                `json:"composite_id,omitempty"`
@@ -8143,9 +8143,9 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHasPrimary() *bool
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AddressRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -8301,9 +8301,9 @@ type AttributeWithCompositeIDAddressAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       AddressAttributeAttributeWithCompositeIDType `json:"type"`
 	// Default fields visible on addresses
 	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 	CompositeID          *string                `json:"composite_id,omitempty"`
@@ -8525,9 +8525,9 @@ func (o *AttributeWithCompositeIDAddressAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetType() *AddressAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressAttribute) GetType() AddressAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AddressAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -8683,11 +8683,11 @@ type AttributeWithCompositeIDUserRelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                              `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                              `json:"has_primary,omitempty"`
-	Type        *UserRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiple    *bool                                              `default:"false" json:"multiple"`
-	CompositeID *string                                            `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	Type        UserRelationAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiple    *bool                                             `default:"false" json:"multiple"`
+	CompositeID *string                                           `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -8906,9 +8906,9 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetType() *UserRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDUserRelationAttribute) GetType() UserRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return UserRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -9235,8 +9235,8 @@ const (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          *string
-	SummaryField *SummaryField
+	Str          *string       `queryParam:"inline"`
+	SummaryField *SummaryField `queryParam:"inline"`
 
 	Type RelationAttributeSummaryFieldsType
 }
@@ -9340,10 +9340,10 @@ type AttributeWithCompositeIDRelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// Relations are always repeatables
-	Repeatable   *bool                                          `default:"true" json:"repeatable"`
-	HasPrimary   *bool                                          `json:"has_primary,omitempty"`
-	Type         *RelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	RelationType *RelationAttributeRelationType                 `json:"relation_type,omitempty"`
+	Repeatable   *bool                                         `default:"true" json:"repeatable"`
+	HasPrimary   *bool                                         `json:"has_primary,omitempty"`
+	Type         RelationAttributeAttributeWithCompositeIDType `json:"type"`
+	RelationType *RelationAttributeRelationType                `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
@@ -9584,9 +9584,9 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetType() *RelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDRelationAttribute) GetType() RelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return RelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -9833,9 +9833,9 @@ type AttributeWithCompositeIDSequenceAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary *bool                                          `json:"has_primary,omitempty"`
-	Type       *SequenceAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       SequenceAttributeAttributeWithCompositeIDType `json:"type"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -10058,9 +10058,9 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetType() *SequenceAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDSequenceAttribute) GetType() SequenceAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return SequenceAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -10199,8 +10199,8 @@ const (
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                                             *string
-	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2
+	Str                                             *string                                          `queryParam:"inline"`
+	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2 `queryParam:"inline"`
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -10307,11 +10307,11 @@ type AttributeWithCompositeIDStatusAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                            `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                            `json:"has_primary,omitempty"`
-	Type        *StatusAttributeAttributeWithCompositeIDType     `json:"type,omitempty"`
-	Options     []StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
-	CompositeID *string                                          `json:"composite_id,omitempty"`
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	Type        StatusAttributeAttributeWithCompositeIDType       `json:"type"`
+	Options     []*StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
+	CompositeID *string                                           `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -10530,14 +10530,14 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetType() *StatusAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDStatusAttribute) GetType() StatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return StatusAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetOptions() []StatusAttributeAttributeWithCompositeIDOptions {
+func (o *AttributeWithCompositeIDStatusAttribute) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
 	if o == nil {
 		return nil
 	}
@@ -10665,8 +10665,8 @@ const (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str                          *string
-	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2
+	Str                          *string                       `queryParam:"inline"`
+	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline"`
 
 	Type MultiSelectAttributeOptionsType
 }
@@ -10773,14 +10773,14 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                             `json:"repeatable,omitempty"`
-	HasPrimary *bool                                             `json:"has_primary,omitempty"`
-	Type       *MultiSelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                            `json:"repeatable,omitempty"`
+	HasPrimary *bool                                            `json:"has_primary,omitempty"`
+	Type       MultiSelectAttributeAttributeWithCompositeIDType `json:"type"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool                         `json:"allow_extra_options,omitempty"`
-	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
+	AllowExtraOptions *bool                          `json:"allow_extra_options,omitempty"`
+	Options           []*MultiSelectAttributeOptions `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
@@ -11002,9 +11002,9 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetType() *MultiSelectAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return MultiSelectAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -11023,7 +11023,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetAllowExtraOptions() *b
 	return o.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []MultiSelectAttributeOptions {
+func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []*MultiSelectAttributeOptions {
 	if o == nil {
 		return nil
 	}
@@ -11184,10 +11184,10 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                        `json:"repeatable,omitempty"`
-	HasPrimary *bool                                        `json:"has_primary,omitempty"`
-	Type       *SelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Options    any                                          `json:"options,omitempty"`
+	Repeatable *bool                                       `json:"repeatable,omitempty"`
+	HasPrimary *bool                                       `json:"has_primary,omitempty"`
+	Type       SelectAttributeAttributeWithCompositeIDType `json:"type"`
+	Options    any                                         `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny    *bool   `json:"allow_any,omitempty"`
 	CompositeID *string `json:"composite_id,omitempty"`
@@ -11409,9 +11409,9 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetType() *SelectAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDSelectAttribute) GetType() SelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return SelectAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -11600,11 +11600,11 @@ type AttributeWithCompositeIDBooleanAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
-	Type        *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	DisplayType *BooleanAttributeDisplayType                  `default:"switch" json:"display_type"`
-	CompositeID *string                                       `json:"composite_id,omitempty"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
+	Type        BooleanAttributeAttributeWithCompositeIDType `json:"type"`
+	DisplayType *BooleanAttributeDisplayType                 `default:"switch" json:"display_type"`
+	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -11823,9 +11823,9 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetType() *BooleanAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDBooleanAttribute) GetType() BooleanAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return BooleanAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -11981,10 +11981,10 @@ type AttributeWithCompositeIDCountryAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
-	Type        *CountryAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                       `json:"composite_id,omitempty"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
+	Type        CountryAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -12203,9 +12203,9 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetType() *CountryAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDCountryAttribute) GetType() CountryAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return CountryAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -12357,10 +12357,10 @@ type AttributeWithCompositeIDDateAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
-	Type        *DateAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                    `json:"composite_id,omitempty"`
+	Repeatable  *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                     `json:"has_primary,omitempty"`
+	Type        DateAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                   `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -12579,9 +12579,9 @@ func (o *AttributeWithCompositeIDDateAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetType() *DateAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDDateAttribute) GetType() DateAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return DateAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -12730,10 +12730,10 @@ type AttributeWithCompositeIDLinkAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
-	Type        *LinkAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	CompositeID *string                                    `json:"composite_id,omitempty"`
+	Repeatable  *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                     `json:"has_primary,omitempty"`
+	Type        LinkAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                   `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -12952,9 +12952,9 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetType() *LinkAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDLinkAttribute) GetType() LinkAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return LinkAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -13059,8 +13059,8 @@ const (
 
 // TextAttributeRows - Number of rows for rich_text textarea
 type TextAttributeRows struct {
-	Integer *int64
-	Str     *string
+	Integer *int64  `queryParam:"inline"`
+	Str     *string `queryParam:"inline"`
 
 	Type TextAttributeRowsType
 }
@@ -13167,11 +13167,11 @@ type AttributeWithCompositeIDTextAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary *bool                                      `json:"has_primary,omitempty"`
-	Type       *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiline  *bool                                      `json:"multiline,omitempty"`
-	RichText   *bool                                      `json:"rich_text,omitempty"`
+	Repeatable *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                                     `json:"has_primary,omitempty"`
+	Type       TextAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiline  *bool                                     `json:"multiline,omitempty"`
+	RichText   *bool                                     `json:"rich_text,omitempty"`
 	// Number of rows for rich_text textarea
 	Rows        *TextAttributeRows `json:"rows,omitempty"`
 	CompositeID *string            `json:"composite_id,omitempty"`
@@ -13393,9 +13393,9 @@ func (o *AttributeWithCompositeIDTextAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetType() *TextAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDTextAttribute) GetType() TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return TextAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -13475,39 +13475,39 @@ const (
 
 // AttributeWithCompositeID - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeID struct {
-	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute
-	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute
-	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute
-	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute
-	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute
-	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute
-	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute
-	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute
-	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute
-	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute
-	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute
-	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute
-	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute
-	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute
-	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute
-	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute
-	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute
-	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute
-	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute
-	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute
-	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute
-	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute
-	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute
-	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute
-	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute
-	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute
-	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute
-	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute
-	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute
-	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute
-	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute
-	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute
+	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline"`
+	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
+	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
+	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline"`
+	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
+	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline"`
+	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline"`
+	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline"`
+	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline"`
+	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline"`
+	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline"`
+	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline"`
+	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline"`
+	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline"`
+	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline"`
 
 	Type AttributeWithCompositeIDType
 }
@@ -13818,10 +13818,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
+	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
 		return nil
 	}
 
@@ -13839,10 +13839,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
+	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
 		return nil
 	}
 
@@ -13867,24 +13867,24 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
 		return nil
 	}
 
@@ -13916,10 +13916,10 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
@@ -13930,17 +13930,17 @@ func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, false); err == nil {
 		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
@@ -14234,9 +14234,9 @@ type AttributeWithCompositeIDPriceComponentAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                `json:"has_primary,omitempty"`
-	Type       *PriceComponentAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                               `json:"repeatable,omitempty"`
+	HasPrimary *bool                                               `json:"has_primary,omitempty"`
+	Type       PriceComponentAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -14455,9 +14455,9 @@ func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetHasPrimary() *
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetType() *PriceComponentAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PriceComponentAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -14522,9 +14522,9 @@ type AttributeWithCompositeIDPaymentAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *PaymentAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       PaymentAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -14743,9 +14743,9 @@ func (o *AttributeWithCompositeIDPaymentAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetType() *PaymentAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentAttributeInput) GetType() PaymentAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PaymentAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -14810,9 +14810,9 @@ type AttributeWithCompositeIDEmailAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *EmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                       `json:"repeatable,omitempty"`
-	HasPrimary *bool                                       `json:"has_primary,omitempty"`
-	Type       *EmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                      `json:"repeatable,omitempty"`
+	HasPrimary *bool                                      `json:"has_primary,omitempty"`
+	Type       EmailAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15031,9 +15031,9 @@ func (o *AttributeWithCompositeIDEmailAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetType() *EmailAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDEmailAttributeInput) GetType() EmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return EmailAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -15098,9 +15098,9 @@ type AttributeWithCompositeIDPhoneAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PhoneAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                       `json:"repeatable,omitempty"`
-	HasPrimary *bool                                       `json:"has_primary,omitempty"`
-	Type       *PhoneAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                      `json:"repeatable,omitempty"`
+	HasPrimary *bool                                      `json:"has_primary,omitempty"`
+	Type       PhoneAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15319,9 +15319,9 @@ func (o *AttributeWithCompositeIDPhoneAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetType() *PhoneAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPhoneAttributeInput) GetType() PhoneAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PhoneAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -15386,9 +15386,9 @@ type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                     `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                     `json:"has_primary,omitempty"`
-	Type       *PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                    `json:"has_primary,omitempty"`
+	Type       PartnerOrganisationAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15607,9 +15607,9 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHasPrimar
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() *PartnerOrganisationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PartnerOrganisationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -15683,8 +15683,8 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Archived classification are not visible in the UI
-	Archived *bool                                         `default:"false" json:"archived"`
-	Type     *PurposeAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Archived *bool                                        `default:"false" json:"archived"`
+	Type     PurposeAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15945,9 +15945,9 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetArchived() *bool {
 	return o.Archived
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() *PurposeAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() PurposeAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PurposeAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -16012,9 +16012,9 @@ type AttributeWithCompositeIDInternalUserAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                              `json:"repeatable,omitempty"`
-	HasPrimary *bool                                              `json:"has_primary,omitempty"`
-	Type       *InternalUserAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary *bool                                             `json:"has_primary,omitempty"`
+	Type       InternalUserAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -16233,9 +16233,9 @@ func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetHasPrimary() *bo
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() *InternalUserAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() InternalUserAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InternalUserAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -16300,9 +16300,9 @@ type AttributeWithCompositeIDAutomationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AutomationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                            `json:"repeatable,omitempty"`
-	HasPrimary *bool                                            `json:"has_primary,omitempty"`
-	Type       *AutomationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                           `json:"repeatable,omitempty"`
+	HasPrimary *bool                                           `json:"has_primary,omitempty"`
+	Type       AutomationAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -16521,9 +16521,9 @@ func (o *AttributeWithCompositeIDAutomationAttributeInput) GetHasPrimary() *bool
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() *AutomationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() AutomationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AutomationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -16588,9 +16588,9 @@ type AttributeWithCompositeIDInvitationEmailAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                 `json:"has_primary,omitempty"`
-	Type       *InvitationEmailAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                `json:"has_primary,omitempty"`
+	Type       InvitationEmailAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -16809,9 +16809,9 @@ func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHasPrimary() 
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() *InvitationEmailAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InvitationEmailAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -16876,9 +16876,9 @@ type AttributeWithCompositeIDPartnerStatusAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                               `json:"repeatable,omitempty"`
-	HasPrimary *bool                                               `json:"has_primary,omitempty"`
-	Type       *PartnerStatusAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                              `json:"repeatable,omitempty"`
+	HasPrimary *bool                                              `json:"has_primary,omitempty"`
+	Type       PartnerStatusAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -17097,9 +17097,9 @@ func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHasPrimary() *b
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() *PartnerStatusAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PartnerStatusAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -17166,10 +17166,10 @@ type AttributeWithCompositeIDComputedAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary *bool                                          `json:"has_primary,omitempty"`
-	Type       *ComputedAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Computed   *bool                                          `default:"true" json:"computed"`
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       ComputedAttributeAttributeWithCompositeIDType `json:"type"`
+	Computed   *bool                                         `default:"true" json:"computed"`
 	// A source amount field that is used to compute the value of the attribute
 	AmountField *string `json:"amount_field,omitempty"`
 	// A currency field used to format a computed currency value
@@ -17392,9 +17392,9 @@ func (o *AttributeWithCompositeIDComputedAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() *ComputedAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() ComputedAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return ComputedAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -17813,9 +17813,9 @@ type AttributeWithCompositeIDOrderedListAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                             `json:"repeatable,omitempty"`
-	HasPrimary *bool                                             `json:"has_primary,omitempty"`
-	Type       *OrderedListAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                            `json:"repeatable,omitempty"`
+	HasPrimary *bool                                            `json:"has_primary,omitempty"`
+	Type       OrderedListAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -18034,9 +18034,9 @@ func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetHasPrimary() *boo
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() *OrderedListAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() OrderedListAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return OrderedListAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -18101,9 +18101,9 @@ type AttributeWithCompositeIDInternalAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary *bool                                          `json:"has_primary,omitempty"`
-	Type       *InternalAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       InternalAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -18322,9 +18322,9 @@ func (o *AttributeWithCompositeIDInternalAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() *InternalAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() InternalAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return InternalAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -18693,10 +18693,10 @@ type AttributeWithCompositeIDNumberAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *NumberAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                        `json:"repeatable,omitempty"`
-	HasPrimary *bool                                        `json:"has_primary,omitempty"`
-	Type       *NumberAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Format     *string                                      `json:"format,omitempty"`
+	Repeatable *bool                                       `json:"repeatable,omitempty"`
+	HasPrimary *bool                                       `json:"has_primary,omitempty"`
+	Type       NumberAttributeAttributeWithCompositeIDType `json:"type"`
+	Format     *string                                     `json:"format,omitempty"`
 	// Whether or not to show a thousands separator
 	ShowSeparator *bool `default:"true" json:"show_separator"`
 	// Schema slug the attribute belongs to
@@ -18917,9 +18917,9 @@ func (o *AttributeWithCompositeIDNumberAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetType() *NumberAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDNumberAttributeInput) GetType() NumberAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return NumberAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -19310,11 +19310,11 @@ type AttributeWithCompositeIDTagsAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                      `json:"has_primary,omitempty"`
-	Type        *TagsAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Options     []string                                   `json:"options,omitempty"`
-	Suggestions []string                                   `json:"suggestions,omitempty"`
+	Repeatable  *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                     `json:"has_primary,omitempty"`
+	Type        TagsAttributeAttributeWithCompositeIDType `json:"type"`
+	Options     []string                                  `json:"options,omitempty"`
+	Suggestions []string                                  `json:"suggestions,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -19533,9 +19533,9 @@ func (o *AttributeWithCompositeIDTagsAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetType() *TagsAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDTagsAttributeInput) GetType() TagsAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return TagsAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -19919,9 +19919,9 @@ type AttributeWithCompositeIDPaymentMethodRelationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                       `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                       `json:"has_primary,omitempty"`
-	Type       *PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                                      `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                      `json:"has_primary,omitempty"`
+	Type       PaymentMethodRelationAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -20140,9 +20140,9 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrim
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() *PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return PaymentMethodRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -20207,9 +20207,9 @@ type AttributeWithCompositeIDAddressRelationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                                                 `json:"has_primary,omitempty"`
-	Type       *AddressRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                                `json:"repeatable,omitempty"`
+	HasPrimary *bool                                                `json:"has_primary,omitempty"`
+	Type       AddressRelationAttributeAttributeWithCompositeIDType `json:"type"`
 	// Default fields visible on addresses
 	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 	// Schema slug the attribute belongs to
@@ -20430,9 +20430,9 @@ func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() 
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() *AddressRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AddressRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -20504,9 +20504,9 @@ type AttributeWithCompositeIDAddressAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *AddressAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       AddressAttributeAttributeWithCompositeIDType `json:"type"`
 	// Default fields visible on addresses
 	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
 	// Schema slug the attribute belongs to
@@ -20727,9 +20727,9 @@ func (o *AttributeWithCompositeIDAddressAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() *AddressAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() AddressAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return AddressAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -20801,10 +20801,10 @@ type AttributeWithCompositeIDUserRelationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                              `json:"repeatable,omitempty"`
-	HasPrimary *bool                                              `json:"has_primary,omitempty"`
-	Type       *UserRelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiple   *bool                                              `default:"false" json:"multiple"`
+	Repeatable *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary *bool                                             `json:"has_primary,omitempty"`
+	Type       UserRelationAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiple   *bool                                             `default:"false" json:"multiple"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -21023,9 +21023,9 @@ func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetHasPrimary() *bo
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetType() *UserRelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetType() UserRelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return UserRelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -21094,10 +21094,10 @@ type AttributeWithCompositeIDRelationAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RelationAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// Relations are always repeatables
-	Repeatable   *bool                                          `default:"true" json:"repeatable"`
-	HasPrimary   *bool                                          `json:"has_primary,omitempty"`
-	Type         *RelationAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	RelationType *RelationAttributeRelationType                 `json:"relation_type,omitempty"`
+	Repeatable   *bool                                         `default:"true" json:"repeatable"`
+	HasPrimary   *bool                                         `json:"has_primary,omitempty"`
+	Type         RelationAttributeAttributeWithCompositeIDType `json:"type"`
+	RelationType *RelationAttributeRelationType                `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
@@ -21337,9 +21337,9 @@ func (o *AttributeWithCompositeIDRelationAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetType() *RelationAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDRelationAttributeInput) GetType() RelationAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return RelationAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -21502,9 +21502,9 @@ type AttributeWithCompositeIDSequenceAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                          `json:"repeatable,omitempty"`
-	HasPrimary *bool                                          `json:"has_primary,omitempty"`
-	Type       *SequenceAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                         `json:"repeatable,omitempty"`
+	HasPrimary *bool                                         `json:"has_primary,omitempty"`
+	Type       SequenceAttributeAttributeWithCompositeIDType `json:"type"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -21726,9 +21726,9 @@ func (o *AttributeWithCompositeIDSequenceAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetType() *SequenceAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDSequenceAttributeInput) GetType() SequenceAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return SequenceAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -21807,10 +21807,10 @@ type AttributeWithCompositeIDStatusAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                            `json:"repeatable,omitempty"`
-	HasPrimary *bool                                            `json:"has_primary,omitempty"`
-	Type       *StatusAttributeAttributeWithCompositeIDType     `json:"type,omitempty"`
-	Options    []StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
+	Repeatable *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary *bool                                             `json:"has_primary,omitempty"`
+	Type       StatusAttributeAttributeWithCompositeIDType       `json:"type"`
+	Options    []*StatusAttributeAttributeWithCompositeIDOptions `json:"options,omitempty"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -22029,14 +22029,14 @@ func (o *AttributeWithCompositeIDStatusAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetType() *StatusAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetType() StatusAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return StatusAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []StatusAttributeAttributeWithCompositeIDOptions {
+func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
 	if o == nil {
 		return nil
 	}
@@ -22103,14 +22103,14 @@ type AttributeWithCompositeIDMultiSelectAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                             `json:"repeatable,omitempty"`
-	HasPrimary *bool                                             `json:"has_primary,omitempty"`
-	Type       *MultiSelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                            `json:"repeatable,omitempty"`
+	HasPrimary *bool                                            `json:"has_primary,omitempty"`
+	Type       MultiSelectAttributeAttributeWithCompositeIDType `json:"type"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool                         `json:"allow_extra_options,omitempty"`
-	Options           []MultiSelectAttributeOptions `json:"options,omitempty"`
+	AllowExtraOptions *bool                          `json:"allow_extra_options,omitempty"`
+	Options           []*MultiSelectAttributeOptions `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 	// Schema slug the attribute belongs to
@@ -22331,9 +22331,9 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetHasPrimary() *boo
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetType() *MultiSelectAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return MultiSelectAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -22352,7 +22352,7 @@ func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowExtraOptions
 	return o.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []MultiSelectAttributeOptions {
+func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []*MultiSelectAttributeOptions {
 	if o == nil {
 		return nil
 	}
@@ -22426,10 +22426,10 @@ type AttributeWithCompositeIDSelectAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                        `json:"repeatable,omitempty"`
-	HasPrimary *bool                                        `json:"has_primary,omitempty"`
-	Type       *SelectAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Options    any                                          `json:"options,omitempty"`
+	Repeatable *bool                                       `json:"repeatable,omitempty"`
+	HasPrimary *bool                                       `json:"has_primary,omitempty"`
+	Type       SelectAttributeAttributeWithCompositeIDType `json:"type"`
+	Options    any                                         `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 	// Schema slug the attribute belongs to
@@ -22650,9 +22650,9 @@ func (o *AttributeWithCompositeIDSelectAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetType() *SelectAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDSelectAttributeInput) GetType() SelectAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return SelectAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -22731,10 +22731,10 @@ type AttributeWithCompositeIDBooleanAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary  *bool                                         `json:"has_primary,omitempty"`
-	Type        *BooleanAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	DisplayType *BooleanAttributeDisplayType                  `default:"switch" json:"display_type"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
+	Type        BooleanAttributeAttributeWithCompositeIDType `json:"type"`
+	DisplayType *BooleanAttributeDisplayType                 `default:"switch" json:"display_type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -22953,9 +22953,9 @@ func (o *AttributeWithCompositeIDBooleanAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() *BooleanAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() BooleanAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return BooleanAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -23027,9 +23027,9 @@ type AttributeWithCompositeIDCountryAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                                         `json:"has_primary,omitempty"`
-	Type       *CountryAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       CountryAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -23248,9 +23248,9 @@ func (o *AttributeWithCompositeIDCountryAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() *CountryAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() CountryAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return CountryAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -23315,9 +23315,9 @@ type AttributeWithCompositeIDDateAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *DateAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary *bool                                      `json:"has_primary,omitempty"`
-	Type       *DateAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                                     `json:"has_primary,omitempty"`
+	Type       DateAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -23536,9 +23536,9 @@ func (o *AttributeWithCompositeIDDateAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetType() *DateAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDDateAttributeInput) GetType() DateAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return DateAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -23603,9 +23603,9 @@ type AttributeWithCompositeIDLinkAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *LinkAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary *bool                                      `json:"has_primary,omitempty"`
-	Type       *LinkAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
+	Repeatable *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                                     `json:"has_primary,omitempty"`
+	Type       LinkAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -23824,9 +23824,9 @@ func (o *AttributeWithCompositeIDLinkAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() *LinkAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() LinkAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return LinkAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -23891,11 +23891,11 @@ type AttributeWithCompositeIDTextAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TextAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                                      `json:"repeatable,omitempty"`
-	HasPrimary *bool                                      `json:"has_primary,omitempty"`
-	Type       *TextAttributeAttributeWithCompositeIDType `json:"type,omitempty"`
-	Multiline  *bool                                      `json:"multiline,omitempty"`
-	RichText   *bool                                      `json:"rich_text,omitempty"`
+	Repeatable *bool                                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                                     `json:"has_primary,omitempty"`
+	Type       TextAttributeAttributeWithCompositeIDType `json:"type"`
+	Multiline  *bool                                     `json:"multiline,omitempty"`
+	RichText   *bool                                     `json:"rich_text,omitempty"`
 	// Number of rows for rich_text textarea
 	Rows *TextAttributeRows `json:"rows,omitempty"`
 	// Schema slug the attribute belongs to
@@ -24116,9 +24116,9 @@ func (o *AttributeWithCompositeIDTextAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetType() *TextAttributeAttributeWithCompositeIDType {
+func (o *AttributeWithCompositeIDTextAttributeInput) GetType() TextAttributeAttributeWithCompositeIDType {
 	if o == nil {
-		return nil
+		return TextAttributeAttributeWithCompositeIDType("")
 	}
 	return o.Type
 }
@@ -24191,39 +24191,39 @@ const (
 
 // AttributeWithCompositeIDInput - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeIDInput struct {
-	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput
-	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput
-	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput
-	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput
-	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput
-	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput
-	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput
-	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput
-	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput
-	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput
-	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput
-	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput
-	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput
-	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput
-	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput
-	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput
-	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput
-	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput
-	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput
-	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput
-	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput
-	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput
-	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput
-	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput
-	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput
-	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput
-	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput
-	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput
-	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput
-	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput
-	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput
-	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput
+	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline"`
+	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
+	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
+	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline"`
+	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
+	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline"`
+	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline"`
+	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline"`
+	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline"`
+	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline"`
+	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline"`
+	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline"`
+	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline"`
+	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline"`
+	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline"`
+	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline"`
 
 	Type AttributeWithCompositeIDInputType
 }
@@ -24534,10 +24534,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
+	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
 		return nil
 	}
 
@@ -24555,10 +24555,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
+	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
 		return nil
 	}
 
@@ -24583,24 +24583,24 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
 		return nil
 	}
 
@@ -24632,10 +24632,10 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 
@@ -24646,17 +24646,17 @@ func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
 	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, false); err == nil {
 		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 

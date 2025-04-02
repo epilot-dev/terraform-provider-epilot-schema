@@ -1,26 +1,28 @@
-speakeasyVersion: 1.293.1
+speakeasyVersion: 1.527.1
 sources:
     schema:
         sourceNamespace: schema
-        sourceRevisionDigest: sha256:d37ff91c42353978b6297f2581b09e71671d095e87718228409d7186979a91f5
-        sourceBlobDigest: sha256:7544968823dfd57d3bb048a878446e223a540c2a38b8449dd775665661af9feb
+        sourceRevisionDigest: sha256:f988f82c107d2d5b4f96649504021cdd2caa88b736e596f970e604d8285ba582
+        sourceBlobDigest: sha256:6756c319d74a2a5dfb02f1d71af5f84c24c49be195e731cdb11ae9a696492aa8
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1738852425
+            - 1.0.0
 targets:
     terraform:
         source: schema
         sourceNamespace: schema
-        sourceRevisionDigest: sha256:d37ff91c42353978b6297f2581b09e71671d095e87718228409d7186979a91f5
-        sourceBlobDigest: sha256:7544968823dfd57d3bb048a878446e223a540c2a38b8449dd775665661af9feb
-        outLocation: .
+        sourceRevisionDigest: sha256:f988f82c107d2d5b4f96649504021cdd2caa88b736e596f970e604d8285ba582
+        sourceBlobDigest: sha256:6756c319d74a2a5dfb02f1d71af5f84c24c49be195e731cdb11ae9a696492aa8
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         schema:
             inputs:
-                - location: schema.yaml
+                - location: https://docs.api.epilot.io/entity.yaml
+            overlays:
+                - location: overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/epilot/epilot/schema
     targets:

@@ -116,8 +116,8 @@ const (
 )
 
 type OptionsObj struct {
-	Str      *string
-	Options2 *Options2
+	Str      *string   `queryParam:"inline"`
+	Options2 *Options2 `queryParam:"inline"`
 
 	Type OptionsObjType
 }
@@ -224,14 +224,14 @@ type MultiSelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                     `json:"repeatable,omitempty"`
-	HasPrimary *bool                     `json:"has_primary,omitempty"`
-	Type       *MultiSelectAttributeType `json:"type,omitempty"`
+	Repeatable *bool                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                    `json:"has_primary,omitempty"`
+	Type       MultiSelectAttributeType `json:"type"`
 	// controls if the matching of values against the options is case sensitive or not
 	DisableCaseSensitive *bool `json:"disable_case_sensitive,omitempty"`
 	// controls if the 360 ui will allow the user to enter a value which is not defined by the options
-	AllowExtraOptions *bool        `json:"allow_extra_options,omitempty"`
-	Options           []OptionsObj `json:"options,omitempty"`
+	AllowExtraOptions *bool         `json:"allow_extra_options,omitempty"`
+	Options           []*OptionsObj `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -450,9 +450,9 @@ func (o *MultiSelectAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *MultiSelectAttribute) GetType() *MultiSelectAttributeType {
+func (o *MultiSelectAttribute) GetType() MultiSelectAttributeType {
 	if o == nil {
-		return nil
+		return MultiSelectAttributeType("")
 	}
 	return o.Type
 }
@@ -471,7 +471,7 @@ func (o *MultiSelectAttribute) GetAllowExtraOptions() *bool {
 	return o.AllowExtraOptions
 }
 
-func (o *MultiSelectAttribute) GetOptions() []OptionsObj {
+func (o *MultiSelectAttribute) GetOptions() []*OptionsObj {
 	if o == nil {
 		return nil
 	}

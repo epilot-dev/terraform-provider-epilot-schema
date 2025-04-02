@@ -3,5 +3,5 @@
 package types
 
 type CurrencyAttributeCurrency struct {
-	One *CurrencyAttributeCurrency1 `tfsdk:"one" tfPlanOnly:"true"`
+	One *CurrencyAttributeCurrency1 `queryParam:"inline" tfsdk:"one" tfPlanOnly:"true"`
 }

@@ -7,6 +7,53 @@ import (
 	"time"
 )
 
+// ACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+type ACL struct {
+	View                 []string `json:"view,omitempty"`
+	Edit                 []string `json:"edit,omitempty"`
+	Delete               []string `json:"delete,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
+}
+
+func (a ACL) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ACL) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ACL) GetView() []string {
+	if o == nil {
+		return nil
+	}
+	return o.View
+}
+
+func (o *ACL) GetEdit() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Edit
+}
+
+func (o *ACL) GetDelete() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Delete
+}
+
+func (o *ACL) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type EntityItem struct {
 	ID string `json:"_id"`
 	// Organization Id the entity belongs to
@@ -20,9 +67,8 @@ type EntityItem struct {
 	CreatedAt *time.Time `json:"_created_at"`
 	UpdatedAt *time.Time `json:"_updated_at"`
 	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
+	ACL       *ACL       `json:"_acl,omitempty"`
+	Purpose   []string   `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the entity
 	Manifest             []string `json:"_manifest,omitempty"`
 	AdditionalProperties any      `additionalProperties:"true" json:"-"`
@@ -102,7 +148,7 @@ func (o *EntityItem) GetDeletedAt() *time.Time {
 	return o.DeletedAt
 }
 
-func (o *EntityItem) GetACL() *EntityACL {
+func (o *EntityItem) GetACL() *ACL {
 	if o == nil {
 		return nil
 	}

@@ -140,10 +140,10 @@ type ComputedAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                  `json:"repeatable,omitempty"`
-	HasPrimary *bool                  `json:"has_primary,omitempty"`
-	Type       *ComputedAttributeType `json:"type,omitempty"`
-	Computed   *bool                  `default:"true" json:"computed"`
+	Repeatable *bool                 `json:"repeatable,omitempty"`
+	HasPrimary *bool                 `json:"has_primary,omitempty"`
+	Type       ComputedAttributeType `json:"type"`
+	Computed   *bool                 `default:"true" json:"computed"`
 	// A source amount field that is used to compute the value of the attribute
 	AmountField *string `json:"amount_field,omitempty"`
 	// A currency field used to format a computed currency value
@@ -364,9 +364,9 @@ func (o *ComputedAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *ComputedAttribute) GetType() *ComputedAttributeType {
+func (o *ComputedAttribute) GetType() ComputedAttributeType {
 	if o == nil {
-		return nil
+		return ComputedAttributeType("")
 	}
 	return o.Type
 }

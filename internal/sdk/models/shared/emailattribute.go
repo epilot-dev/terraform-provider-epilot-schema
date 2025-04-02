@@ -138,9 +138,9 @@ type EmailAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *EmailAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool               `json:"repeatable,omitempty"`
-	HasPrimary *bool               `json:"has_primary,omitempty"`
-	Type       *EmailAttributeType `json:"type,omitempty"`
+	Repeatable *bool              `json:"repeatable,omitempty"`
+	HasPrimary *bool              `json:"has_primary,omitempty"`
+	Type       EmailAttributeType `json:"type"`
 }
 
 func (e EmailAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *EmailAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *EmailAttribute) GetType() *EmailAttributeType {
+func (o *EmailAttribute) GetType() EmailAttributeType {
 	if o == nil {
-		return nil
+		return EmailAttributeType("")
 	}
 	return o.Type
 }

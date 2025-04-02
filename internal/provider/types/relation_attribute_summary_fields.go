@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type RelationAttributeSummaryFields struct {
-	Str          types.String  `tfsdk:"str" tfPlanOnly:"true"`
-	SummaryField *SummaryField `tfsdk:"summary_field" tfPlanOnly:"true"`
+	Str          types.String  `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
+	SummaryField *SummaryField `queryParam:"inline" tfsdk:"summary_field" tfPlanOnly:"true"`
 }

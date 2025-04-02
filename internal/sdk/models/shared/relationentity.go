@@ -7,6 +7,53 @@ import (
 	"time"
 )
 
+// RelationEntityACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+type RelationEntityACL struct {
+	View                 []string `json:"view,omitempty"`
+	Edit                 []string `json:"edit,omitempty"`
+	Delete               []string `json:"delete,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
+}
+
+func (r RelationEntityACL) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationEntityACL) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *RelationEntityACL) GetView() []string {
+	if o == nil {
+		return nil
+	}
+	return o.View
+}
+
+func (o *RelationEntityACL) GetEdit() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Edit
+}
+
+func (o *RelationEntityACL) GetDelete() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Delete
+}
+
+func (o *RelationEntityACL) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type RelationEntity struct {
 	ID string `json:"_id"`
 	// Organization Id the entity belongs to
@@ -15,14 +62,13 @@ type RelationEntity struct {
 	// URL-friendly identifier for the entity schema
 	Schema string `json:"_schema"`
 	// Title of entity
-	Title     *string    `json:"_title"`
-	Tags      []string   `json:"_tags,omitempty"`
-	CreatedAt *time.Time `json:"_created_at"`
-	UpdatedAt *time.Time `json:"_updated_at"`
-	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
+	Title     *string            `json:"_title"`
+	Tags      []string           `json:"_tags,omitempty"`
+	CreatedAt *time.Time         `json:"_created_at"`
+	UpdatedAt *time.Time         `json:"_updated_at"`
+	DeletedAt *time.Time         `json:"_deleted_at,omitempty"`
+	ACL       *RelationEntityACL `json:"_acl,omitempty"`
+	Purpose   []string           `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the entity
 	Manifest             []string      `json:"_manifest,omitempty"`
 	DollarRelation       *RelationItem `json:"$relation,omitempty"`
@@ -103,7 +149,7 @@ func (o *RelationEntity) GetDeletedAt() *time.Time {
 	return o.DeletedAt
 }
 
-func (o *RelationEntity) GetACL() *EntityACL {
+func (o *RelationEntity) GetACL() *RelationEntityACL {
 	if o == nil {
 		return nil
 	}

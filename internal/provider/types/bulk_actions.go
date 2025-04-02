@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type BulkActions struct {
-	Str          types.String  `tfsdk:"str" tfPlanOnly:"true"`
-	EntityAction *EntityAction `tfsdk:"entity_action" tfPlanOnly:"true"`
+	Str          types.String  `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
+	EntityAction *EntityAction `queryParam:"inline" tfsdk:"entity_action" tfPlanOnly:"true"`
 }
