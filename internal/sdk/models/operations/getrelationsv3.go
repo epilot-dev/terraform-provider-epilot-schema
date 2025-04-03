@@ -19,7 +19,7 @@ type GetRelationsV3Request struct {
 	// *It gets overriden by mode query parameter.*
 	//
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IncludeReverse *bool `default:"false" queryParam:"style=form,explode=true,name=include_reverse"`
 	// Starting page number
 	From *int64 `default:"0" queryParam:"style=form,explode=true,name=from"`
