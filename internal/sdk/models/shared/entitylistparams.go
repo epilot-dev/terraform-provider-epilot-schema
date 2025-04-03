@@ -17,8 +17,8 @@ const (
 
 // EntityListParamsSort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type EntityListParamsSort struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type EntityListParamsSortType
 }
