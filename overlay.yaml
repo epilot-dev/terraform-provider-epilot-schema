@@ -177,3 +177,10 @@ actions:
         example:
           contact: account
           opportunity: customer
+
+  # jsonencode rows in textattribute
+  - target: $["components"]["schemas"]["TextAttribute"]["allOf"][1]["properties"]["rows"]
+    remove: true
+  - target: $["components"]["schemas"]["TextAttribute"]["allOf"][1]["properties"]
+    update:
+      rows: {}
