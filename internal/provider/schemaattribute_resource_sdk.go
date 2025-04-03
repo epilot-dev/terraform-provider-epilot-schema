@@ -232,30 +232,9 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			richText = nil
 		}
-		var rows *shared.TextAttributeRows
-		if r.TextAttribute.Rows != nil {
-			integer := new(int64)
-			if !r.TextAttribute.Rows.Integer.IsUnknown() && !r.TextAttribute.Rows.Integer.IsNull() {
-				*integer = r.TextAttribute.Rows.Integer.ValueInt64()
-			} else {
-				integer = nil
-			}
-			if integer != nil {
-				rows = &shared.TextAttributeRows{
-					Integer: integer,
-				}
-			}
-			str := new(string)
-			if !r.TextAttribute.Rows.Str.IsUnknown() && !r.TextAttribute.Rows.Str.IsNull() {
-				*str = r.TextAttribute.Rows.Str.ValueString()
-			} else {
-				str = nil
-			}
-			if str != nil {
-				rows = &shared.TextAttributeRows{
-					Str: str,
-				}
-			}
+		var rows interface{}
+		if !r.TextAttribute.Rows.IsUnknown() && !r.TextAttribute.Rows.IsNull() {
+			_ = json.Unmarshal([]byte(r.TextAttribute.Rows.ValueString()), &rows)
 		}
 		schema := new(string)
 		if !r.TextAttribute.Schema.IsUnknown() && !r.TextAttribute.Schema.IsNull() {
@@ -1812,11 +1791,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var optionsVar1 []shared.MultiSelectAttributeOptions = []shared.MultiSelectAttributeOptions{}
 		for _, optionsItem := range r.MultiSelectAttribute.Options {
 			if !optionsItem.Str.IsUnknown() && !optionsItem.Str.IsNull() {
-				var str1 string
-				str1 = optionsItem.Str.ValueString()
+				var str string
+				str = optionsItem.Str.ValueString()
 
 				optionsVar1 = append(optionsVar1, shared.MultiSelectAttributeOptions{
-					Str: &str1,
+					Str: &str,
 				})
 			}
 			if optionsItem.Two != nil {
@@ -2104,11 +2083,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var optionsVar2 []shared.StatusAttributeAttributeWithCompositeIDOptions = []shared.StatusAttributeAttributeWithCompositeIDOptions{}
 		for _, optionsItem1 := range r.StatusAttribute.Options {
 			if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
-				var str2 string
-				str2 = optionsItem1.Str.ValueString()
+				var str1 string
+				str1 = optionsItem1.Str.ValueString()
 
 				optionsVar2 = append(optionsVar2, shared.StatusAttributeAttributeWithCompositeIDOptions{
-					Str: &str2,
+					Str: &str1,
 				})
 			}
 			if optionsItem1.Two != nil {
@@ -2764,11 +2743,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var summaryFields []shared.RelationAttributeSummaryFields = []shared.RelationAttributeSummaryFields{}
 		for _, summaryFieldsItem := range r.RelationAttribute.SummaryFields {
 			if !summaryFieldsItem.Str.IsUnknown() && !summaryFieldsItem.Str.IsNull() {
-				var str3 string
-				str3 = summaryFieldsItem.Str.ValueString()
+				var str2 string
+				str2 = summaryFieldsItem.Str.ValueString()
 
 				summaryFields = append(summaryFields, shared.RelationAttributeSummaryFields{
-					Str: &str3,
+					Str: &str2,
 				})
 			}
 			if summaryFieldsItem.SummaryField != nil {
@@ -8984,7 +8963,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.AddressAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDAddressRelationAttribute != nil {
-			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressRelationAttribute{}
+			r.AddressRelationAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
 			r.AddressRelationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDAddressRelationAttribute.Manifest {
 				r.AddressRelationAttribute.Manifest = append(r.AddressRelationAttribute.Manifest, types.StringValue(v))
@@ -9502,7 +9481,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.ConsentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDCountryAttribute != nil {
-			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDCountryAttribute{}
+			r.CountryAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.CountryAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDCountryAttribute.Manifest {
 				r.CountryAttribute.Manifest = append(r.CountryAttribute.Manifest, types.StringValue(v))
@@ -9720,7 +9699,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.CurrencyAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDDateAttribute != nil {
-			r.DateAttribute = &tfTypes.AttributeWithCompositeIDDateAttribute{}
+			r.DateAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.DateAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDDateAttribute.Manifest {
 				r.DateAttribute.Manifest = append(r.DateAttribute.Manifest, types.StringValue(v))
@@ -9821,7 +9800,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.DateAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDEmailAttribute != nil {
-			r.EmailAttribute = &tfTypes.AttributeWithCompositeIDEmailAttribute{}
+			r.EmailAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.EmailAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDEmailAttribute.Manifest {
 				r.EmailAttribute.Manifest = append(r.EmailAttribute.Manifest, types.StringValue(v))
@@ -10031,7 +10010,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.FileAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalAttribute != nil {
-			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDInternalAttribute{}
+			r.InternalAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.InternalAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalAttribute.Manifest {
 				r.InternalAttribute.Manifest = append(r.InternalAttribute.Manifest, types.StringValue(v))
@@ -10132,7 +10111,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InternalAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInternalUserAttribute != nil {
-			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDInternalUserAttribute{}
+			r.InternalUserAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.InternalUserAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInternalUserAttribute.Manifest {
 				r.InternalUserAttribute.Manifest = append(r.InternalUserAttribute.Manifest, types.StringValue(v))
@@ -10233,7 +10212,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InternalUserAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDInvitationEmailAttribute != nil {
-			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDInvitationEmailAttribute{}
+			r.InvitationEmailAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.InvitationEmailAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDInvitationEmailAttribute.Manifest {
 				r.InvitationEmailAttribute.Manifest = append(r.InvitationEmailAttribute.Manifest, types.StringValue(v))
@@ -10334,7 +10313,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.InvitationEmailAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDLinkAttribute != nil {
-			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDLinkAttribute{}
+			r.LinkAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.LinkAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDLinkAttribute.Manifest {
 				r.LinkAttribute.Manifest = append(r.LinkAttribute.Manifest, types.StringValue(v))
@@ -10763,7 +10742,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.NumberAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDOrderedListAttribute != nil {
-			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDOrderedListAttribute{}
+			r.OrderedListAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.OrderedListAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDOrderedListAttribute.Manifest {
 				r.OrderedListAttribute.Manifest = append(r.OrderedListAttribute.Manifest, types.StringValue(v))
@@ -10864,7 +10843,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.OrderedListAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerOrganisationAttribute != nil {
-			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDPartnerOrganisationAttribute{}
+			r.PartnerOrganisationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PartnerOrganisationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Manifest {
 				r.PartnerOrganisationAttribute.Manifest = append(r.PartnerOrganisationAttribute.Manifest, types.StringValue(v))
@@ -10965,7 +10944,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PartnerOrganisationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPartnerStatusAttribute != nil {
-			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDPartnerStatusAttribute{}
+			r.PartnerStatusAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PartnerStatusAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPartnerStatusAttribute.Manifest {
 				r.PartnerStatusAttribute.Manifest = append(r.PartnerStatusAttribute.Manifest, types.StringValue(v))
@@ -11066,7 +11045,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PartnerStatusAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPaymentAttribute != nil {
-			r.PaymentAttribute = &tfTypes.AttributeWithCompositeIDPaymentAttribute{}
+			r.PaymentAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PaymentAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentAttribute.Manifest {
 				r.PaymentAttribute.Manifest = append(r.PaymentAttribute.Manifest, types.StringValue(v))
@@ -11167,7 +11146,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PaymentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute != nil {
-			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+			r.PaymentMethodRelationAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PaymentMethodRelationAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Manifest {
 				r.PaymentMethodRelationAttribute.Manifest = append(r.PaymentMethodRelationAttribute.Manifest, types.StringValue(v))
@@ -11268,7 +11247,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PaymentMethodRelationAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPhoneAttribute != nil {
-			r.PhoneAttribute = &tfTypes.AttributeWithCompositeIDPhoneAttribute{}
+			r.PhoneAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PhoneAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPhoneAttribute.Manifest {
 				r.PhoneAttribute.Manifest = append(r.PhoneAttribute.Manifest, types.StringValue(v))
@@ -11369,7 +11348,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.PhoneAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPriceComponentAttribute != nil {
-			r.PriceComponentAttribute = &tfTypes.AttributeWithCompositeIDPriceComponentAttribute{}
+			r.PriceComponentAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			r.PriceComponentAttribute.Manifest = []types.String{}
 			for _, v := range resp.AttributeWithCompositeIDPriceComponentAttribute.Manifest {
 				r.PriceComponentAttribute.Manifest = append(r.PriceComponentAttribute.Manifest, types.StringValue(v))
@@ -12310,15 +12289,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Required = r.TextAttribute.Required
 			r.TextAttribute.RichText = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.RichText)
 			if resp.AttributeWithCompositeIDTextAttribute.Rows == nil {
-				r.TextAttribute.Rows = nil
+				r.TextAttribute.Rows = types.StringNull()
 			} else {
-				r.TextAttribute.Rows = &tfTypes.TextAttributeRows{}
-				if resp.AttributeWithCompositeIDTextAttribute.Rows.Integer != nil {
-					r.TextAttribute.Rows.Integer = types.Int64PointerValue(resp.AttributeWithCompositeIDTextAttribute.Rows.Integer)
-				}
-				if resp.AttributeWithCompositeIDTextAttribute.Rows.Str != nil {
-					r.TextAttribute.Rows.Str = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Rows.Str)
-				}
+				rowsResult, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.Rows)
+				r.TextAttribute.Rows = types.StringValue(string(rowsResult))
 			}
 			r.TextAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Schema)
 			r.Schema = r.TextAttribute.Schema

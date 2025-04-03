@@ -27,7 +27,7 @@ data "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
 
 ### Read-Only
 
-- `divider` (String) must be one of ["top_divider", "bottom_divider"]
+- `divider` (String)
 - `enable_divider` (Boolean)
 - `group` (String) The group of headline attribute
 - `id` (String) The ID of this resource.
@@ -38,4 +38,4 @@ data "epilot-schema_schema_group_headline" "my_schemagroupheadline" {
 - `order` (Number) The order of headline attribute
 - `purpose` (List of String)
 - `schema` (String) Schema slug the capability belongs to
-- `type` (String) must be one of ["headline"]
+- `type` (String)
