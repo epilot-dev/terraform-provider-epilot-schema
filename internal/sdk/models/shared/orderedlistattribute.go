@@ -138,9 +138,9 @@ type OrderedListAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                     `json:"repeatable,omitempty"`
-	HasPrimary *bool                     `json:"has_primary,omitempty"`
-	Type       *OrderedListAttributeType `json:"type,omitempty"`
+	Repeatable *bool                    `json:"repeatable,omitempty"`
+	HasPrimary *bool                    `json:"has_primary,omitempty"`
+	Type       OrderedListAttributeType `json:"type"`
 }
 
 func (o OrderedListAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *OrderedListAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *OrderedListAttribute) GetType() *OrderedListAttributeType {
+func (o *OrderedListAttribute) GetType() OrderedListAttributeType {
 	if o == nil {
-		return nil
+		return OrderedListAttributeType("")
 	}
 	return o.Type
 }

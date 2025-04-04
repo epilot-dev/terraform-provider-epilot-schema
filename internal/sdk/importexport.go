@@ -31,13 +31,6 @@ func newImportExport(sdkConfig sdkConfiguration) *ImportExport {
 //
 // To force the export of raw values, use the `#` prefix in front of your field name when specifying the field on the `fields` param.
 func (s *ImportExport) ExportEntities(ctx context.Context, request operations.ExportEntitiesRequest, opts ...operations.Option) (*operations.ExportEntitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "exportEntities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -61,6 +54,13 @@ func (s *ImportExport) ExportEntities(ctx context.Context, request operations.Ex
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "exportEntities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntitySearchParams", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -219,13 +219,6 @@ func (s *ImportExport) ExportEntities(ctx context.Context, request operations.Ex
 // The entities should be provided in a CSV format inside an S3 bucket.
 // This API will return the `job_id“ which can be used to fetch the status of the import process.
 func (s *ImportExport) ImportEntities(ctx context.Context, request operations.ImportEntitiesRequest, opts ...operations.Option) (*operations.ImportEntitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "importEntities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -249,6 +242,13 @@ func (s *ImportExport) ImportEntities(ctx context.Context, request operations.Im
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "importEntities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "EntityImportParams", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

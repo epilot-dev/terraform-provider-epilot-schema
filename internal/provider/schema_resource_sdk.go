@@ -779,7 +779,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 
 func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.EntitySchemaItem) {
 	if resp != nil {
-		r.Purpose = []types.String{}
+		r.Purpose = make([]types.String, 0, len(resp.Purpose))
 		for _, v := range resp.Purpose {
 			r.Purpose = append(r.Purpose, types.StringValue(v))
 		}
@@ -792,7 +792,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		r.CreatedAt = types.StringPointerValue(resp.CreatedAt)
 		r.Description = types.StringPointerValue(resp.Description)
 		if len(resp.DialogConfig) > 0 {
-			r.DialogConfig = make(map[string]types.String)
+			r.DialogConfig = make(map[string]types.String, len(resp.DialogConfig))
 			for key, value := range resp.DialogConfig {
 				result, _ := json.Marshal(value)
 				r.DialogConfig[key] = types.StringValue(string(result))
@@ -800,16 +800,16 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		}
 		r.DocsURL = types.StringPointerValue(resp.DocsURL)
 		r.Draft = types.BoolPointerValue(resp.Draft)
-		r.EnableSetting = []types.String{}
+		r.EnableSetting = make([]types.String, 0, len(resp.EnableSetting))
 		for _, v := range resp.EnableSetting {
 			r.EnableSetting = append(r.EnableSetting, types.StringValue(v))
 		}
 		if len(resp.ExplicitSearchMappings) > 0 {
-			r.ExplicitSearchMappings = make(map[string]tfTypes.SearchMappings)
+			r.ExplicitSearchMappings = make(map[string]tfTypes.SearchMappings, len(resp.ExplicitSearchMappings))
 			for searchMappingsKey, searchMappingsValue := range resp.ExplicitSearchMappings {
 				var searchMappingsResult tfTypes.SearchMappings
 				if len(searchMappingsValue.Fields) > 0 {
-					searchMappingsResult.Fields = make(map[string]types.String)
+					searchMappingsResult.Fields = make(map[string]types.String, len(searchMappingsValue.Fields))
 					for key1, value1 := range searchMappingsValue.Fields {
 						result1, _ := json.Marshal(value1)
 						searchMappingsResult.Fields[key1] = types.StringValue(string(result1))
@@ -821,6 +821,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				} else {
 					searchMappingsResult.Type = types.StringNull()
 				}
+
 				r.ExplicitSearchMappings[searchMappingsKey] = searchMappingsResult
 			}
 		}
@@ -868,7 +869,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
 					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
 					if len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams) > 0 {
-						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String)
+						r.UIConfig.CreateView.EntityDefaultCreate.SearchParams = make(map[string]types.String, len(resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams))
 						for key2, value2 := range resp.UIConfig.CreateView.EntityDefaultCreate.SearchParams {
 							r.UIConfig.CreateView.EntityDefaultCreate.SearchParams[key2] = types.StringValue(value2)
 						}
@@ -904,12 +905,12 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
 					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.EditView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.EditView.EntityDefaultEdit.SearchParams))
 						for key3, value3 := range resp.UIConfig.EditView.EntityDefaultEdit.SearchParams {
 							r.UIConfig.EditView.EntityDefaultEdit.SearchParams[key3] = types.StringValue(value3)
 						}
 					}
-					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes))
 					for _, v := range resp.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
 						r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
 					}
@@ -1038,12 +1039,12 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
 					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
-						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String)
+						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams))
 						for key4, value5 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
 							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key4] = types.StringValue(value5)
 						}
 					}
-					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = []types.String{}
+					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))
 					for _, v := range resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
 						r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = append(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes, types.StringValue(v))
 					}

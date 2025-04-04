@@ -4,6 +4,7 @@ package shared
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"time"
@@ -36,6 +37,69 @@ func (e *Kind) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type EnabledLocationsType string
+
+const (
+	EnabledLocationsTypeTaxonomyLocationID EnabledLocationsType = "TaxonomyLocationId"
+	EnabledLocationsTypeStr                EnabledLocationsType = "str"
+)
+
+type EnabledLocations struct {
+	TaxonomyLocationID *TaxonomyLocationID `queryParam:"inline"`
+	Str                *string             `queryParam:"inline"`
+
+	Type EnabledLocationsType
+}
+
+func CreateEnabledLocationsTaxonomyLocationID(taxonomyLocationID TaxonomyLocationID) EnabledLocations {
+	typ := EnabledLocationsTypeTaxonomyLocationID
+
+	return EnabledLocations{
+		TaxonomyLocationID: &taxonomyLocationID,
+		Type:               typ,
+	}
+}
+
+func CreateEnabledLocationsStr(str string) EnabledLocations {
+	typ := EnabledLocationsTypeStr
+
+	return EnabledLocations{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *EnabledLocations) UnmarshalJSON(data []byte) error {
+
+	var taxonomyLocationID TaxonomyLocationID = TaxonomyLocationID("")
+	if err := utils.UnmarshalJSON(data, &taxonomyLocationID, "", true, false); err == nil {
+		u.TaxonomyLocationID = &taxonomyLocationID
+		u.Type = EnabledLocationsTypeTaxonomyLocationID
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = EnabledLocationsTypeStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for EnabledLocations", string(data))
+}
+
+func (u EnabledLocations) MarshalJSON() ([]byte, error) {
+	if u.TaxonomyLocationID != nil {
+		return utils.MarshalJSON(u.TaxonomyLocationID, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type EnabledLocations: all fields are null")
+}
+
 type Taxonomy struct {
 	// URL-friendly name for taxonomy
 	Slug *string `json:"slug,omitempty"`
@@ -60,7 +124,7 @@ type Taxonomy struct {
 	// Position of the taxonomy
 	Order *float64 `json:"order,omitempty"`
 	// List of locations where the taxonomy is enabled to be used. If empty, it's enabled for all locations.
-	EnabledLocations []TaxonomyLocationID `json:"enabled_locations,omitempty"`
+	EnabledLocations []EnabledLocations `json:"enabled_locations,omitempty"`
 }
 
 func (t Taxonomy) MarshalJSON() ([]byte, error) {
@@ -158,7 +222,82 @@ func (o *Taxonomy) GetOrder() *float64 {
 	return o.Order
 }
 
-func (o *Taxonomy) GetEnabledLocations() []TaxonomyLocationID {
+func (o *Taxonomy) GetEnabledLocations() []EnabledLocations {
+	if o == nil {
+		return nil
+	}
+	return o.EnabledLocations
+}
+
+type TaxonomyInput struct {
+	// URL-friendly name for taxonomy
+	Slug *string `json:"slug,omitempty"`
+	// A human friendly name of a Taxonomy e.g. Purpose, Product Category, Folder, Tag
+	Name *string `json:"name,omitempty"`
+	// Plural name of a Taxonomy e.g. Purposes, Product Categories, Folders, Tags. Defaults to name is not provided.
+	Plural *string `json:"plural,omitempty"`
+	// Icon name for the taxonomy (from epilot360/icons icon set)
+	Icon *string `json:"icon,omitempty"`
+	// HEX Color code for the taxonomy
+	Color *string `json:"color,omitempty"`
+	// Whether the taxonomy is enabled or not
+	Enabled *bool `json:"enabled,omitempty"`
+	// Position of the taxonomy
+	Order *float64 `json:"order,omitempty"`
+	// List of locations where the taxonomy is enabled to be used. If empty, it's enabled for all locations.
+	EnabledLocations []EnabledLocations `json:"enabled_locations,omitempty"`
+}
+
+func (o *TaxonomyInput) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
+func (o *TaxonomyInput) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TaxonomyInput) GetPlural() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Plural
+}
+
+func (o *TaxonomyInput) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *TaxonomyInput) GetColor() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Color
+}
+
+func (o *TaxonomyInput) GetEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Enabled
+}
+
+func (o *TaxonomyInput) GetOrder() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *TaxonomyInput) GetEnabledLocations() []EnabledLocations {
 	if o == nil {
 		return nil
 	}

@@ -44,7 +44,7 @@ type SchemaDataSourceModel struct {
 	GroupHeadlines         types.String                      `tfsdk:"group_headlines"`
 	GroupSettings          types.String                      `tfsdk:"group_settings"`
 	Icon                   types.String                      `tfsdk:"icon"`
-	ID                     types.String                      `tfsdk:"id"`
+	ID                     types.String                      `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
 	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
 	Name                   types.String                      `tfsdk:"name"`
 	Plural                 types.String                      `tfsdk:"plural"`
@@ -369,7 +369,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 												`` + "```" + `js` + "\n" +
 												`{` + "\n" +
 												`  "label": "Price components"` + "\n" +
-												`  "value": "{{"{{"}}item.prices.length{{"}}"}} price components"` + "\n" +
+												`  "value": "{{item.prices.length}} price components"` + "\n" +
 												`  "show_as_tag": true` + "\n" +
 												`  "render_condition": "is_composite_price = "true""` + "\n" +
 												`}` + "\n" +

@@ -83,7 +83,26 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed:    true,
 									Optional:    true,
 									ElementType: types.StringType,
-									Description: `Default fields visible on addresses`,
+									MarkdownDescription: `Default fields visible on addresses` + "\n" +
+										`` + "\n" +
+										`Valid values are:` + "\n" +
+										`  - postal_code (default)` + "\n" +
+										`  - city (default)` + "\n" +
+										`  - street (default)` + "\n" +
+										`  - street_number (default)` + "\n" +
+										`  - plot_area` + "\n" +
+										`  - plot_of_land` + "\n" +
+										`  - suburb` + "\n" +
+										`  - country` + "\n" +
+										`  - additional_info` + "\n" +
+										`  - coordinates` + "\n" +
+										`  - start_date` + "\n" +
+										`  - end_date` + "\n" +
+										`  - salutation` + "\n" +
+										`  - title` + "\n" +
+										`  - first_name` + "\n" +
+										`  - last_name` + "\n" +
+										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -282,8 +301,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "address"`,
+									Description: `Not Null; must be "address"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("address"),
 									},
 								},
@@ -344,7 +364,26 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed:    true,
 									Optional:    true,
 									ElementType: types.StringType,
-									Description: `Default fields visible on addresses`,
+									MarkdownDescription: `Default fields visible on addresses` + "\n" +
+										`` + "\n" +
+										`Valid values are:` + "\n" +
+										`  - postal_code (default)` + "\n" +
+										`  - city (default)` + "\n" +
+										`  - street (default)` + "\n" +
+										`  - street_number (default)` + "\n" +
+										`  - plot_area` + "\n" +
+										`  - plot_of_land` + "\n" +
+										`  - suburb` + "\n" +
+										`  - country` + "\n" +
+										`  - additional_info` + "\n" +
+										`  - coordinates` + "\n" +
+										`  - start_date` + "\n" +
+										`  - end_date` + "\n" +
+										`  - salutation` + "\n" +
+										`  - title` + "\n" +
+										`  - first_name` + "\n" +
+										`  - last_name` + "\n" +
+										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -543,8 +582,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "relation_address"`,
+									Description: `Not Null; must be "relation_address"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"relation_address",
 										),
@@ -800,8 +840,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "automation"`,
+									Description: `Not Null; must be "automation"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"automation",
 										),
@@ -877,7 +918,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"display_type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Default:     stringdefault.StaticString("switch"),
+									Default:     stringdefault.StaticString(`switch`),
 									Description: `Default: "switch"; must be one of ["switch", "checkbox"]`,
 									Validators: []validator.String{
 										stringvalidator.OneOf(
@@ -1069,8 +1110,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "boolean"`,
+									Description: `Not Null; must be "boolean"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("boolean"),
 									},
 								},
@@ -1341,8 +1383,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "computed"`,
+									Description: `Not Null; must be "computed"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("computed"),
 									},
 								},
@@ -1869,8 +1912,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "country"`,
+									Description: `Not Null; must be "country"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("country"),
 									},
 								},
@@ -2436,8 +2480,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be one of ["date", "datetime"]`,
+									Description: `Not Null; must be one of ["date", "datetime"]`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"date",
 											"datetime",
@@ -2694,8 +2739,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "email"`,
+									Description: `Not Null; must be "email"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("email"),
 									},
 								},
@@ -3240,8 +3286,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "internal"`,
+									Description: `Not Null; must be "internal"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("internal"),
 									},
 								},
@@ -3495,8 +3542,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "internal_user"`,
+									Description: `Not Null; must be "internal_user"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"internal_user",
 										),
@@ -3752,8 +3800,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "invitation_email"`,
+									Description: `Not Null; must be "invitation_email"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"invitation_email",
 										),
@@ -4009,8 +4058,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "link"`,
+									Description: `Not Null; must be "link"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("link"),
 									},
 								},
@@ -4592,8 +4642,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be one of ["multiselect", "checkbox"]`,
+									Description: `Not Null; must be one of ["multiselect", "checkbox"]`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"multiselect",
 											"checkbox",
@@ -4860,8 +4911,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "number"`,
+									Description: `Not Null; must be "number"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("number"),
 									},
 								},
@@ -5115,8 +5167,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "ordered_list"`,
+									Description: `Not Null; must be "ordered_list"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"ordered_list",
 										),
@@ -5372,8 +5425,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "partner_organisation"`,
+									Description: `Not Null; must be "partner_organisation"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"partner_organisation",
 										),
@@ -5629,8 +5683,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "partner_status"`,
+									Description: `Not Null; must be "partner_status"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"partner_status",
 										),
@@ -5886,8 +5941,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "payment"`,
+									Description: `Not Null; must be "payment"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("payment"),
 									},
 								},
@@ -6141,8 +6197,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "relation_payment_method"`,
+									Description: `Not Null; must be "relation_payment_method"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"relation_payment_method",
 										),
@@ -6398,8 +6455,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "phone"`,
+									Description: `Not Null; must be "phone"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("phone"),
 									},
 								},
@@ -6653,8 +6711,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "price_component"`,
+									Description: `Not Null; must be "price_component"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"price_component",
 										),
@@ -6937,8 +6996,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "purpose"`,
+									Description: `Not Null; must be "purpose"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("purpose"),
 									},
 								},
@@ -7413,8 +7473,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "relation"`,
+									Description: `Not Null; must be "relation"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("relation"),
 									},
 								},
@@ -7681,8 +7742,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be one of ["select", "radio"]`,
+									Description: `Not Null; must be one of ["select", "radio"]`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"select",
 											"radio",
@@ -7948,8 +8010,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "sequence"`,
+									Description: `Not Null; must be "sequence"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("sequence"),
 									},
 								},
@@ -8247,8 +8310,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "status"`,
+									Description: `Not Null; must be "status"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("status"),
 									},
 								},
@@ -8512,8 +8576,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "tags"`,
+									Description: `Not Null; must be "tags"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("tags"),
 									},
 								},
@@ -8783,8 +8848,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "string"`,
+									Description: `Not Null; must be "string"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("string"),
 									},
 								},
@@ -9044,8 +9110,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								"type": schema.StringAttribute{
 									Computed:    true,
 									Optional:    true,
-									Description: `must be "relation_user"`,
+									Description: `Not Null; must be "relation_user"`,
 									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf(
 											"relation_user",
 										),

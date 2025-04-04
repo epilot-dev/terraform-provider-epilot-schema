@@ -26,7 +26,7 @@ type GetTaxonomyBulkActionJobByIDResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Returns the job matching the given job id
-	TaxonomyBulkJobs []shared.TaxonomyBulkJob
+	TaxonomyBulkJob *shared.TaxonomyBulkJob
 }
 
 func (o *GetTaxonomyBulkActionJobByIDResponse) GetContentType() string {
@@ -50,9 +50,9 @@ func (o *GetTaxonomyBulkActionJobByIDResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetTaxonomyBulkActionJobByIDResponse) GetTaxonomyBulkJobs() []shared.TaxonomyBulkJob {
+func (o *GetTaxonomyBulkActionJobByIDResponse) GetTaxonomyBulkJob() *shared.TaxonomyBulkJob {
 	if o == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJobs
+	return o.TaxonomyBulkJob
 }

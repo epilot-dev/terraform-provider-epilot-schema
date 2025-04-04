@@ -12,9 +12,11 @@ import (
 type Operation string
 
 const (
-	OperationCreateEntity Operation = "createEntity"
-	OperationUpdateEntity Operation = "updateEntity"
-	OperationDeleteEntity Operation = "deleteEntity"
+	OperationCreateEntity     Operation = "createEntity"
+	OperationUpdateEntity     Operation = "updateEntity"
+	OperationDeleteEntity     Operation = "deleteEntity"
+	OperationSoftDeleteEntity Operation = "softDeleteEntity"
+	OperationRestoreEntity    Operation = "restoreEntity"
 )
 
 func (e Operation) ToPointer() *Operation {
@@ -31,6 +33,10 @@ func (e *Operation) UnmarshalJSON(data []byte) error {
 	case "updateEntity":
 		fallthrough
 	case "deleteEntity":
+		fallthrough
+	case "softDeleteEntity":
+		fallthrough
+	case "restoreEntity":
 		*e = Operation(v)
 		return nil
 	default:
@@ -58,6 +64,53 @@ func (o *EntityOperationParams) GetSlug() *string {
 	return o.Slug
 }
 
+// EntityOperationACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+type EntityOperationACL struct {
+	View                 []string `json:"view,omitempty"`
+	Edit                 []string `json:"edit,omitempty"`
+	Delete               []string `json:"delete,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
+}
+
+func (e EntityOperationACL) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityOperationACL) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EntityOperationACL) GetView() []string {
+	if o == nil {
+		return nil
+	}
+	return o.View
+}
+
+func (o *EntityOperationACL) GetEdit() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Edit
+}
+
+func (o *EntityOperationACL) GetDelete() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Delete
+}
+
+func (o *EntityOperationACL) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Payload struct {
 	ID *string `json:"_id,omitempty"`
 	// Organization Id the entity belongs to
@@ -66,14 +119,13 @@ type Payload struct {
 	// URL-friendly identifier for the entity schema
 	Schema *string `json:"_schema,omitempty"`
 	// Title of entity
-	Title     *string    `json:"_title,omitempty"`
-	Tags      []string   `json:"_tags,omitempty"`
-	CreatedAt *time.Time `json:"_created_at,omitempty"`
-	UpdatedAt *time.Time `json:"_updated_at,omitempty"`
-	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
+	Title     *string             `json:"_title,omitempty"`
+	Tags      []string            `json:"_tags,omitempty"`
+	CreatedAt *time.Time          `json:"_created_at,omitempty"`
+	UpdatedAt *time.Time          `json:"_updated_at,omitempty"`
+	DeletedAt *time.Time          `json:"_deleted_at,omitempty"`
+	ACL       *EntityOperationACL `json:"_acl,omitempty"`
+	Purpose   []string            `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the entity
 	Manifest             []string `json:"_manifest,omitempty"`
 	AdditionalProperties any      `additionalProperties:"true" json:"-"`
@@ -153,7 +205,7 @@ func (o *Payload) GetDeletedAt() *time.Time {
 	return o.DeletedAt
 }
 
-func (o *Payload) GetACL() *EntityACL {
+func (o *Payload) GetACL() *EntityOperationACL {
 	if o == nil {
 		return nil
 	}

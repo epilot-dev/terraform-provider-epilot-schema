@@ -138,9 +138,9 @@ type InvitationEmailAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                         `json:"repeatable,omitempty"`
-	HasPrimary *bool                         `json:"has_primary,omitempty"`
-	Type       *InvitationEmailAttributeType `json:"type,omitempty"`
+	Repeatable *bool                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                        `json:"has_primary,omitempty"`
+	Type       InvitationEmailAttributeType `json:"type"`
 }
 
 func (i InvitationEmailAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *InvitationEmailAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *InvitationEmailAttribute) GetType() *InvitationEmailAttributeType {
+func (o *InvitationEmailAttribute) GetType() InvitationEmailAttributeType {
 	if o == nil {
-		return nil
+		return InvitationEmailAttributeType("")
 	}
 	return o.Type
 }

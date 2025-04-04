@@ -37,6 +37,8 @@ type GetRelationsV3Request struct {
 	// - both: both direct and reverse relations
 	//
 	Mode *shared.EntityRelationsModeQueryParam `queryParam:"style=form,explode=true,name=mode"`
+	// List of entity fields to include in results
+	Fields []string `queryParam:"style=form,explode=true,name=fields"`
 }
 
 func (g GetRelationsV3Request) MarshalJSON() ([]byte, error) {
@@ -111,6 +113,13 @@ func (o *GetRelationsV3Request) GetMode() *shared.EntityRelationsModeQueryParam 
 		return nil
 	}
 	return o.Mode
+}
+
+func (o *GetRelationsV3Request) GetFields() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Fields
 }
 
 type GetRelationsV3Response struct {

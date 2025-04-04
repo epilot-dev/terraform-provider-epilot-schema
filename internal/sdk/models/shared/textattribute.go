@@ -138,12 +138,12 @@ type TextAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool              `json:"repeatable,omitempty"`
-	HasPrimary *bool              `json:"has_primary,omitempty"`
-	Type       *TextAttributeType `json:"type,omitempty"`
-	Multiline  *bool              `json:"multiline,omitempty"`
-	RichText   *bool              `json:"rich_text,omitempty"`
-	Rows       any                `json:"rows,omitempty"`
+	Repeatable *bool             `json:"repeatable,omitempty"`
+	HasPrimary *bool             `json:"has_primary,omitempty"`
+	Type       TextAttributeType `json:"type"`
+	Multiline  *bool             `json:"multiline,omitempty"`
+	RichText   *bool             `json:"rich_text,omitempty"`
+	Rows       any               `json:"rows,omitempty"`
 }
 
 func (t TextAttribute) MarshalJSON() ([]byte, error) {
@@ -360,9 +360,9 @@ func (o *TextAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *TextAttribute) GetType() *TextAttributeType {
+func (o *TextAttribute) GetType() TextAttributeType {
 	if o == nil {
-		return nil
+		return TextAttributeType("")
 	}
 	return o.Type
 }

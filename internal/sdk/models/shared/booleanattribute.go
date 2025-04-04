@@ -164,10 +164,10 @@ type BooleanAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *BooleanAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool                 `json:"repeatable,omitempty"`
-	HasPrimary  *bool                 `json:"has_primary,omitempty"`
-	Type        *BooleanAttributeType `json:"type,omitempty"`
-	DisplayType *DisplayType          `default:"switch" json:"display_type"`
+	Repeatable  *bool                `json:"repeatable,omitempty"`
+	HasPrimary  *bool                `json:"has_primary,omitempty"`
+	Type        BooleanAttributeType `json:"type"`
+	DisplayType *DisplayType         `default:"switch" json:"display_type"`
 }
 
 func (b BooleanAttribute) MarshalJSON() ([]byte, error) {
@@ -384,9 +384,9 @@ func (o *BooleanAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *BooleanAttribute) GetType() *BooleanAttributeType {
+func (o *BooleanAttribute) GetType() BooleanAttributeType {
 	if o == nil {
-		return nil
+		return BooleanAttributeType("")
 	}
 	return o.Type
 }

@@ -3,9 +3,76 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
+
+type TaxonomySlugType string
+
+const (
+	TaxonomySlugTypeStr        TaxonomySlugType = "str"
+	TaxonomySlugTypeArrayOfStr TaxonomySlugType = "arrayOfStr"
+)
+
+// TaxonomySlug - The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
+type TaxonomySlug struct {
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
+
+	Type TaxonomySlugType
+}
+
+func CreateTaxonomySlugStr(str string) TaxonomySlug {
+	typ := TaxonomySlugTypeStr
+
+	return TaxonomySlug{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateTaxonomySlugArrayOfStr(arrayOfStr []string) TaxonomySlug {
+	typ := TaxonomySlugTypeArrayOfStr
+
+	return TaxonomySlug{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *TaxonomySlug) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = TaxonomySlugTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = TaxonomySlugTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TaxonomySlug", string(data))
+}
+
+func (u TaxonomySlug) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type TaxonomySlug: all fields are null")
+}
 
 type TaxonomiesClassificationsSearchRequestBody struct {
 	ClassificationIds []string `json:"classificationIds,omitempty"`
@@ -19,16 +86,38 @@ func (o *TaxonomiesClassificationsSearchRequestBody) GetClassificationIds() []st
 }
 
 type TaxonomiesClassificationsSearchRequest struct {
-	// Taxonomy slug
-	TaxonomySlug *string `queryParam:"style=form,explode=true,name=taxonomySlug"`
-	// Input to search
+	// The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
+	//
+	TaxonomySlug *TaxonomySlug `queryParam:"style=form,explode=true,name=taxonomySlug"`
+	// The label names to search for (lowercase insensitive)
 	Query *string `queryParam:"style=form,explode=true,name=query"`
-	// Filter by archived status
-	Archived    *bool                                       `queryParam:"style=form,explode=true,name=archived"`
-	RequestBody *TaxonomiesClassificationsSearchRequestBody `request:"mediaType=application/json"`
+	// Filter by archived status. Deprecated. Use `include_archived` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Archived *bool `queryParam:"style=form,explode=true,name=archived"`
+	// Whether to include archived labels in the search results
+	// - `true`: include archived labels
+	// - `false`: exclude archived labels
+	// - `only`: include only archived labels
+	//
+	// By default, no archived labels are included in the search results.
+	//
+	IncludeArchived *shared.TaxonomySearchIncludeArchivedParam  `default:"false" queryParam:"style=form,explode=true,name=include_archived"`
+	RequestBody     *TaxonomiesClassificationsSearchRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetTaxonomySlug() *string {
+func (t TaxonomiesClassificationsSearchRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxonomiesClassificationsSearchRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TaxonomiesClassificationsSearchRequest) GetTaxonomySlug() *TaxonomySlug {
 	if o == nil {
 		return nil
 	}
@@ -49,6 +138,13 @@ func (o *TaxonomiesClassificationsSearchRequest) GetArchived() *bool {
 	return o.Archived
 }
 
+func (o *TaxonomiesClassificationsSearchRequest) GetIncludeArchived() *shared.TaxonomySearchIncludeArchivedParam {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeArchived
+}
+
 func (o *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesClassificationsSearchRequestBody {
 	if o == nil {
 		return nil
@@ -59,6 +155,7 @@ func (o *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesCla
 // TaxonomiesClassificationsSearchResponseBody - Returns the classifications for the taxonomy slug provided
 type TaxonomiesClassificationsSearchResponseBody struct {
 	Results []shared.TaxonomyClassification `json:"results,omitempty"`
+	Hits    *int64                          `json:"hits,omitempty"`
 }
 
 func (o *TaxonomiesClassificationsSearchResponseBody) GetResults() []shared.TaxonomyClassification {
@@ -66,6 +163,13 @@ func (o *TaxonomiesClassificationsSearchResponseBody) GetResults() []shared.Taxo
 		return nil
 	}
 	return o.Results
+}
+
+func (o *TaxonomiesClassificationsSearchResponseBody) GetHits() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Hits
 }
 
 type TaxonomiesClassificationsSearchResponse struct {

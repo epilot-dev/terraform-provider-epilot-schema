@@ -30,13 +30,6 @@ func newTaxonomy(sdkConfig sdkConfiguration) *Taxonomy {
 // ListTaxonomies - listTaxonomies
 // List taxonomies in an organization
 func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTaxonomiesRequest, opts ...operations.Option) (*operations.ListTaxonomiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listTaxonomies",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,14 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listTaxonomies",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -228,13 +229,6 @@ func (s *Taxonomy) ListTaxonomies(ctx context.Context, request operations.ListTa
 // CreateTaxonomy - createTaxonomy
 // Create a new taxonomy
 func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyInput, opts ...operations.Option) (*operations.CreateTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -258,6 +252,13 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -431,13 +432,6 @@ func (s *Taxonomy) CreateTaxonomy(ctx context.Context, request *shared.TaxonomyI
 // GetTaxonomy - getTaxonomy
 // Get taxonomy by slug
 func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxonomyRequest, opts ...operations.Option) (*operations.GetTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -459,6 +453,14 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -646,13 +648,6 @@ func (s *Taxonomy) GetTaxonomy(ctx context.Context, request operations.GetTaxono
 // UpdateTaxonomy - updateTaxonomy
 // Update a taxonomy
 func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.UpdateTaxonomyRequest, opts ...operations.Option) (*operations.UpdateTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -676,6 +671,13 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Taxonomy", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -848,13 +850,6 @@ func (s *Taxonomy) UpdateTaxonomy(ctx context.Context, request operations.Update
 // DeleteTaxonomy - deleteTaxonomy
 // Delete a taxonomy
 func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.DeleteTaxonomyRequest, opts ...operations.Option) (*operations.DeleteTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -876,6 +871,14 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1026,13 +1029,6 @@ func (s *Taxonomy) DeleteTaxonomy(ctx context.Context, request operations.Delete
 // UpdateClassificationsForTaxonomy - updateClassificationsForTaxonomy
 // Update the classifications for a taxonomy
 func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request operations.UpdateClassificationsForTaxonomyRequest, opts ...operations.Option) (*operations.UpdateClassificationsForTaxonomyResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateClassificationsForTaxonomy",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1056,6 +1052,13 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateClassificationsForTaxonomy",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "ClassificationsUpdate", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1249,13 +1252,6 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 // GetTaxonomyClassification - getTaxonomyClassification
 // Get a classification for a taxonomy
 func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operations.GetTaxonomyClassificationRequest, opts ...operations.Option) (*operations.GetTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1277,6 +1273,14 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/taxonomies/classifications/{classificationSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1464,13 +1468,6 @@ func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operat
 // UpdateTaxonomyClassification - updateTaxonomyClassification
 // Update a classification for a taxonomy
 func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request operations.UpdateTaxonomyClassificationRequest, opts ...operations.Option) (*operations.UpdateTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1494,6 +1491,13 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "TaxonomyClassification", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1667,13 +1671,6 @@ func (s *Taxonomy) UpdateTaxonomyClassification(ctx context.Context, request ope
 // DeleteTaxonomyClassification - deleteTaxonomyClassification
 // Delete a classification for a taxonomy
 func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request operations.DeleteTaxonomyClassificationRequest, opts ...operations.Option) (*operations.DeleteTaxonomyClassificationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteTaxonomyClassification",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1695,6 +1692,14 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/taxonomies/classifications/{classificationSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteTaxonomyClassification",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1861,13 +1866,6 @@ func (s *Taxonomy) DeleteTaxonomyClassification(ctx context.Context, request ope
 // TaxonomyAutocomplete - taxonomyAutocomplete
 // Taxonomies autocomplete
 func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.TaxonomyAutocompleteRequest, opts ...operations.Option) (*operations.TaxonomyAutocompleteResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "taxonomyAutocomplete",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1889,6 +1887,14 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/{taxonomySlug}:autocomplete", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "taxonomyAutocomplete",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2059,13 +2065,6 @@ func (s *Taxonomy) TaxonomyAutocomplete(ctx context.Context, request operations.
 // TaxonomiesClassificationsSearch - taxonomiesClassificationsSearch
 // List taxonomy classifications in an organization based on taxonomy slug
 func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request operations.TaxonomiesClassificationsSearchRequest, opts ...operations.Option) (*operations.TaxonomiesClassificationsSearchResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "taxonomiesClassificationsSearch",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2089,6 +2088,13 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "taxonomiesClassificationsSearch",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2269,13 +2275,6 @@ func (s *Taxonomy) TaxonomiesClassificationsSearch(ctx context.Context, request 
 // - FAILED = all failed jobs
 // - COMPLETED = all completed jobs
 func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operations.GetTaxonomyBulkActionJobsRequest, opts ...operations.Option) (*operations.GetTaxonomyBulkActionJobsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyBulkActionJobs",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2297,6 +2296,14 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/taxonomies/bulk-jobs")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyBulkActionJobs",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2467,13 +2474,6 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobs(ctx context.Context, request operat
 // GetTaxonomyBulkActionJobByID - getTaxonomyBulkActionJobById
 // Gets a bulk action job by job id
 func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request operations.GetTaxonomyBulkActionJobByIDRequest, opts ...operations.Option) (*operations.GetTaxonomyBulkActionJobByIDResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTaxonomyBulkActionJobById",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2495,6 +2495,14 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/taxonomies/bulk-jobs/{job_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTaxonomyBulkActionJobById",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2633,12 +2641,12 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 				return nil, err
 			}
 
-			var out []shared.TaxonomyBulkJob
+			var out shared.TaxonomyBulkJob
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.TaxonomyBulkJobs = out
+			res.TaxonomyBulkJob = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2662,13 +2670,6 @@ func (s *Taxonomy) GetTaxonomyBulkActionJobByID(ctx context.Context, request ope
 // Moves classifications from one taxonomy to another, through a bulk async operation which
 // also updates all references from the old classification to the new one under the target taxonomy.
 func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operations.BulkMoveClassificationsRequestBody, opts ...operations.Option) (*operations.BulkMoveClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkMoveClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2692,6 +2693,13 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkMoveClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2865,13 +2873,6 @@ func (s *Taxonomy) BulkMoveClassifications(ctx context.Context, request *operati
 // Merges classifications from one taxonomy into one individual classification, through a bulk async operation which
 // also updates all references from the old Classifications to the new one.
 func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operations.BulkMergeClassificationsRequestBody, opts ...operations.Option) (*operations.BulkMergeClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkMergeClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2895,6 +2896,13 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkMergeClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -3069,13 +3077,6 @@ func (s *Taxonomy) BulkMergeClassifications(ctx context.Context, request *operat
 // async operation which also deletes all references of the deleted classifications from the entities
 // referencing them.
 func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *operations.BulkDeleteClassificationsRequestBody, opts ...operations.Option) (*operations.BulkDeleteClassificationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkDeleteClassifications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3099,6 +3100,13 @@ func (s *Taxonomy) BulkDeleteClassifications(ctx context.Context, request *opera
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkDeleteClassifications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

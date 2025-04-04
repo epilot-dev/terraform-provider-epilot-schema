@@ -138,9 +138,9 @@ type CountryAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CountryAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *CountryAttributeType `json:"type,omitempty"`
+	Repeatable *bool                `json:"repeatable,omitempty"`
+	HasPrimary *bool                `json:"has_primary,omitempty"`
+	Type       CountryAttributeType `json:"type"`
 }
 
 func (c CountryAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *CountryAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *CountryAttribute) GetType() *CountryAttributeType {
+func (o *CountryAttribute) GetType() CountryAttributeType {
 	if o == nil {
-		return nil
+		return CountryAttributeType("")
 	}
 	return o.Type
 }

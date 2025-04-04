@@ -85,6 +85,25 @@ Read-Only:
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
+
+Valid values are:
+  - postal_code (default)
+  - city (default)
+  - street (default)
+  - street_number (default)
+  - plot_area
+  - plot_of_land
+  - suburb
+  - country
+  - additional_info
+  - coordinates
+  - start_date
+  - end_date
+  - salutation
+  - title
+  - first_name
+  - last_name
+  - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -156,6 +175,25 @@ Read-Only:
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--attributes--address_relation_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
+
+Valid values are:
+  - postal_code (default)
+  - city (default)
+  - street (default)
+  - street_number (default)
+  - plot_area
+  - plot_of_land
+  - suburb
+  - country
+  - additional_info
+  - coordinates
+  - start_date
+  - end_date
+  - salutation
+  - title
+  - first_name
+  - last_name
+  - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI

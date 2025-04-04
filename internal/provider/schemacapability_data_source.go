@@ -68,7 +68,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"default_address_fields": schema.ListAttribute{
 									Computed:    true,
 									ElementType: types.StringType,
-									Description: `Default fields visible on addresses`,
+									MarkdownDescription: `Default fields visible on addresses` + "\n" +
+										`` + "\n" +
+										`Valid values are:` + "\n" +
+										`  - postal_code (default)` + "\n" +
+										`  - city (default)` + "\n" +
+										`  - street (default)` + "\n" +
+										`  - street_number (default)` + "\n" +
+										`  - plot_area` + "\n" +
+										`  - plot_of_land` + "\n" +
+										`  - suburb` + "\n" +
+										`  - country` + "\n" +
+										`  - additional_info` + "\n" +
+										`  - coordinates` + "\n" +
+										`  - start_date` + "\n" +
+										`  - end_date` + "\n" +
+										`  - salutation` + "\n" +
+										`  - title` + "\n" +
+										`  - first_name` + "\n" +
+										`  - last_name` + "\n" +
+										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,
@@ -228,7 +247,26 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"default_address_fields": schema.ListAttribute{
 									Computed:    true,
 									ElementType: types.StringType,
-									Description: `Default fields visible on addresses`,
+									MarkdownDescription: `Default fields visible on addresses` + "\n" +
+										`` + "\n" +
+										`Valid values are:` + "\n" +
+										`  - postal_code (default)` + "\n" +
+										`  - city (default)` + "\n" +
+										`  - street (default)` + "\n" +
+										`  - street_number (default)` + "\n" +
+										`  - plot_area` + "\n" +
+										`  - plot_of_land` + "\n" +
+										`  - suburb` + "\n" +
+										`  - country` + "\n" +
+										`  - additional_info` + "\n" +
+										`  - coordinates` + "\n" +
+										`  - start_date` + "\n" +
+										`  - end_date` + "\n" +
+										`  - salutation` + "\n" +
+										`  - title` + "\n" +
+										`  - first_name` + "\n" +
+										`  - last_name` + "\n" +
+										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
 									Computed:    true,

@@ -7,6 +7,53 @@ import (
 	"time"
 )
 
+// EntityACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
+type EntityACL struct {
+	View                 []string `json:"view,omitempty"`
+	Edit                 []string `json:"edit,omitempty"`
+	Delete               []string `json:"delete,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
+}
+
+func (e EntityACL) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityACL) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EntityACL) GetView() []string {
+	if o == nil {
+		return nil
+	}
+	return o.View
+}
+
+func (o *EntityACL) GetEdit() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Edit
+}
+
+func (o *EntityACL) GetDelete() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Delete
+}
+
+func (o *EntityACL) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Entity struct {
 	ID *string `json:"_id,omitempty"`
 	// Organization Id the entity belongs to
@@ -20,9 +67,8 @@ type Entity struct {
 	CreatedAt *time.Time `json:"_created_at,omitempty"`
 	UpdatedAt *time.Time `json:"_updated_at,omitempty"`
 	DeletedAt *time.Time `json:"_deleted_at,omitempty"`
-	// Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
-	ACL     *EntityACL `json:"_acl,omitempty"`
-	Purpose []string   `json:"_purpose,omitempty"`
+	ACL       *EntityACL `json:"_acl,omitempty"`
+	Purpose   []string   `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the entity
 	Manifest             []string `json:"_manifest,omitempty"`
 	AdditionalProperties any      `additionalProperties:"true" json:"-"`
@@ -124,6 +170,87 @@ func (o *Entity) GetManifest() []string {
 }
 
 func (o *Entity) GetAdditionalProperties() any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type EntityInput struct {
+	ID *string `json:"_id,omitempty"`
+	// URL-friendly identifier for the entity schema
+	Schema *string `json:"_schema,omitempty"`
+	// Title of entity
+	Title   *string    `json:"_title,omitempty"`
+	Tags    []string   `json:"_tags,omitempty"`
+	ACL     *EntityACL `json:"_acl,omitempty"`
+	Purpose []string   `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the entity
+	Manifest             []string `json:"_manifest,omitempty"`
+	AdditionalProperties any      `additionalProperties:"true" json:"-"`
+}
+
+func (e EntityInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EntityInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *EntityInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
+func (o *EntityInput) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *EntityInput) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *EntityInput) GetACL() *EntityACL {
+	if o == nil {
+		return nil
+	}
+	return o.ACL
+}
+
+func (o *EntityInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *EntityInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *EntityInput) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}

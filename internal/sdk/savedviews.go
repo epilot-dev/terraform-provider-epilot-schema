@@ -30,13 +30,6 @@ func newSavedViews(sdkConfig sdkConfiguration) *SavedViews {
 // ListSavedViews - listSavedViews
 // Get the Saved Views based on the schema
 func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.ListSavedViewsRequest, opts ...operations.Option) (*operations.ListSavedViewsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listSavedViews",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,14 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/views")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listSavedViews",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -228,13 +229,6 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 // CreateSavedView - createSavedView
 // Creates a new saved view
 func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedView, opts ...operations.Option) (*operations.CreateSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -258,6 +252,13 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -430,13 +431,6 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 // GetSavedView - getSavedView
 // Gets Saved View configuration by id.
 func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSavedViewRequest, opts ...operations.Option) (*operations.GetSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -458,6 +452,14 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -645,13 +647,6 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 // UpdateSavedView - updateSavedView
 // Updates a saved view
 func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.UpdateSavedViewRequest, opts ...operations.Option) (*operations.UpdateSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -675,6 +670,13 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -847,13 +849,6 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 // PatchSavedView - patchSavedView
 // Partially updates a saved view with the provided payload. If an updated_at is passed and the server contains a newer version of the view a `409` error is returned
 func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.PatchSavedViewRequest, opts ...operations.Option) (*operations.PatchSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "patchSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -877,6 +872,13 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "patchSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SavedViewPartial", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1049,13 +1051,6 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 // DeleteSavedView - deleteSavedView
 // Deletes a saved view
 func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.DeleteSavedViewRequest, opts ...operations.Option) (*operations.DeleteSavedViewResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1077,6 +1072,14 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/view/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteSavedView",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1223,13 +1226,6 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 // ListFavoriteViewsForUser - listFavoriteViewsForUser
 // Get the Favorite Saved Views for user based on the schema
 func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...operations.Option) (*operations.ListFavoriteViewsForUserResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listFavoriteViewsForUser",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1251,6 +1247,14 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 	opURL, err := url.JoinPath(baseURL, "/v1/entity/views/favorites")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listFavoriteViewsForUser",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

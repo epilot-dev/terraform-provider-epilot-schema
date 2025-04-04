@@ -390,10 +390,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
-		u.InvitationEmailAttribute = &invitationEmailAttribute
-		u.Type = AttributeTypeInvitationEmailAttribute
+	var linkAttribute LinkAttribute = LinkAttribute{}
+	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
+		u.LinkAttribute = &linkAttribute
+		u.Type = AttributeTypeLinkAttribute
 		return nil
 	}
 
@@ -411,10 +411,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var emailAttribute EmailAttribute = EmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &emailAttribute, "", true, false); err == nil {
-		u.EmailAttribute = &emailAttribute
-		u.Type = AttributeTypeEmailAttribute
+	var internalAttribute InternalAttribute = InternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
+		u.InternalAttribute = &internalAttribute
+		u.Type = AttributeTypeInternalAttribute
 		return nil
 	}
 
@@ -439,24 +439,24 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var internalAttribute InternalAttribute = InternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &internalAttribute, "", true, false); err == nil {
-		u.InternalAttribute = &internalAttribute
-		u.Type = AttributeTypeInternalAttribute
-		return nil
-	}
-
-	var linkAttribute LinkAttribute = LinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &linkAttribute, "", true, false); err == nil {
-		u.LinkAttribute = &linkAttribute
-		u.Type = AttributeTypeLinkAttribute
-		return nil
-	}
-
 	var phoneAttribute PhoneAttribute = PhoneAttribute{}
 	if err := utils.UnmarshalJSON(data, &phoneAttribute, "", true, false); err == nil {
 		u.PhoneAttribute = &phoneAttribute
 		u.Type = AttributeTypePhoneAttribute
+		return nil
+	}
+
+	var emailAttribute EmailAttribute = EmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &emailAttribute, "", true, false); err == nil {
+		u.EmailAttribute = &emailAttribute
+		u.Type = AttributeTypeEmailAttribute
+		return nil
+	}
+
+	var invitationEmailAttribute InvitationEmailAttribute = InvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &invitationEmailAttribute, "", true, false); err == nil {
+		u.InvitationEmailAttribute = &invitationEmailAttribute
+		u.Type = AttributeTypeInvitationEmailAttribute
 		return nil
 	}
 
@@ -488,10 +488,10 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
-		u.AddressRelationAttribute = &addressRelationAttribute
-		u.Type = AttributeTypeAddressRelationAttribute
+	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
+		u.UserRelationAttribute = &userRelationAttribute
+		u.Type = AttributeTypeUserRelationAttribute
 		return nil
 	}
 
@@ -502,17 +502,17 @@ func (u *Attribute) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var addressRelationAttribute AddressRelationAttribute = AddressRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &addressRelationAttribute, "", true, false); err == nil {
+		u.AddressRelationAttribute = &addressRelationAttribute
+		u.Type = AttributeTypeAddressRelationAttribute
+		return nil
+	}
+
 	var statusAttribute StatusAttribute = StatusAttribute{}
 	if err := utils.UnmarshalJSON(data, &statusAttribute, "", true, false); err == nil {
 		u.StatusAttribute = &statusAttribute
 		u.Type = AttributeTypeStatusAttribute
-		return nil
-	}
-
-	var userRelationAttribute UserRelationAttribute = UserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &userRelationAttribute, "", true, false); err == nil {
-		u.UserRelationAttribute = &userRelationAttribute
-		u.Type = AttributeTypeUserRelationAttribute
 		return nil
 	}
 

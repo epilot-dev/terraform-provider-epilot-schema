@@ -138,9 +138,9 @@ type InternalUserAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InternalUserAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                      `json:"repeatable,omitempty"`
-	HasPrimary *bool                      `json:"has_primary,omitempty"`
-	Type       *InternalUserAttributeType `json:"type,omitempty"`
+	Repeatable *bool                     `json:"repeatable,omitempty"`
+	HasPrimary *bool                     `json:"has_primary,omitempty"`
+	Type       InternalUserAttributeType `json:"type"`
 }
 
 func (i InternalUserAttribute) MarshalJSON() ([]byte, error) {
@@ -357,9 +357,9 @@ func (o *InternalUserAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *InternalUserAttribute) GetType() *InternalUserAttributeType {
+func (o *InternalUserAttribute) GetType() InternalUserAttributeType {
 	if o == nil {
-		return nil
+		return InternalUserAttributeType("")
 	}
 	return o.Type
 }

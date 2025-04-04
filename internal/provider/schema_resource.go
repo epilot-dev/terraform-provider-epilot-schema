@@ -47,7 +47,7 @@ type SchemaResourceModel struct {
 	Description            types.String                      `tfsdk:"description"`
 	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
 	DocsURL                types.String                      `tfsdk:"docs_url"`
-	Draft                  types.Bool                        `tfsdk:"draft"`
+	Draft                  types.Bool                        `queryParam:"style=form,explode=true,name=draft" tfsdk:"draft"`
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
@@ -587,7 +587,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 												`` + "```" + `js` + "\n" +
 												`{` + "\n" +
 												`  "label": "Price components"` + "\n" +
-												`  "value": "{{"{{"}}item.prices.length{{"}}"}} price components"` + "\n" +
+												`  "value": "{{item.prices.length}} price components"` + "\n" +
 												`  "show_as_tag": true` + "\n" +
 												`  "render_condition": "is_composite_price = "true""` + "\n" +
 												`}` + "\n" +

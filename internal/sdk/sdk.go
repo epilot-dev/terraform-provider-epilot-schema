@@ -15,7 +15,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"https://entity.dev.sls.epilot.io",
+	"https://entity.sls.epilot.io",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -164,9 +164,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.15.0",
-			GenVersion:        "2.497.0",
-			UserAgent:         "speakeasy-sdk/terraform 0.15.0 2.497.0 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
+			SDKVersion:        "0.16.0",
+			GenVersion:        "2.566.5",
+			UserAgent:         "speakeasy-sdk/terraform 0.16.0 2.566.5 1.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
 			Hooks:             hooks.New(),
 		},
 	}
