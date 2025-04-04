@@ -193,7 +193,7 @@ This configuration can be used in the following way:
 ```js
 {
   "label": "Price components"
-  "value": "{{"{{"}}item.prices.length{{"}}"}} price components"
+  "value": "{{item.prices.length}} price components"
   "show_as_tag": true
   "render_condition": "is_composite_price = "true""
 }

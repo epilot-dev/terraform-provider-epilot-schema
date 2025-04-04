@@ -138,11 +138,31 @@ type AddressAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                 `json:"repeatable,omitempty"`
-	HasPrimary *bool                 `json:"has_primary,omitempty"`
-	Type       *AddressAttributeType `json:"type,omitempty"`
+	Repeatable *bool                `json:"repeatable,omitempty"`
+	HasPrimary *bool                `json:"has_primary,omitempty"`
+	Type       AddressAttributeType `json:"type"`
 	// Default fields visible on addresses
-	DefaultAddressFields []DefaultAddressFields `json:"default_address_fields,omitempty"`
+	//
+	// Valid values are:
+	//   - postal_code (default)
+	//   - city (default)
+	//   - street (default)
+	//   - street_number (default)
+	//   - plot_area
+	//   - plot_of_land
+	//   - suburb
+	//   - country
+	//   - additional_info
+	//   - coordinates
+	//   - start_date
+	//   - end_date
+	//   - salutation
+	//   - title
+	//   - first_name
+	//   - last_name
+	//   - company_name
+	//
+	DefaultAddressFields []string `json:"default_address_fields,omitempty"`
 }
 
 func (a AddressAttribute) MarshalJSON() ([]byte, error) {
@@ -359,14 +379,14 @@ func (o *AddressAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() *AddressAttributeType {
+func (o *AddressAttribute) GetType() AddressAttributeType {
 	if o == nil {
-		return nil
+		return AddressAttributeType("")
 	}
 	return o.Type
 }
 
-func (o *AddressAttribute) GetDefaultAddressFields() []DefaultAddressFields {
+func (o *AddressAttribute) GetDefaultAddressFields() []string {
 	if o == nil {
 		return nil
 	}

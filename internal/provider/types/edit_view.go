@@ -3,7 +3,7 @@
 package types
 
 type EditView struct {
-	EntityDefaultEdit  *EntityDefaultEdit  `tfsdk:"entity_default_edit" tfPlanOnly:"true"`
-	EntityViewDisabled *EntityViewDisabled `tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
-	RedirectEntityView *RedirectEntityView `tfsdk:"redirect_entity_view" tfPlanOnly:"true"`
+	EntityDefaultEdit  *EntityDefaultEdit  `queryParam:"inline" tfsdk:"entity_default_edit" tfPlanOnly:"true"`
+	EntityViewDisabled *EntityViewDisabled `queryParam:"inline" tfsdk:"entity_view_disabled" tfPlanOnly:"true"`
+	RedirectEntityView *RedirectEntityView `queryParam:"inline" tfsdk:"redirect_entity_view" tfPlanOnly:"true"`
 }

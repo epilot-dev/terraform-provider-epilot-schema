@@ -148,8 +148,8 @@ type PurposeAttribute struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Archived classification are not visible in the UI
-	Archived *bool                 `default:"false" json:"archived"`
-	Type     *PurposeAttributeType `json:"type,omitempty"`
+	Archived *bool                `default:"false" json:"archived"`
+	Type     PurposeAttributeType `json:"type"`
 }
 
 func (p PurposeAttribute) MarshalJSON() ([]byte, error) {
@@ -408,9 +408,9 @@ func (o *PurposeAttribute) GetArchived() *bool {
 	return o.Archived
 }
 
-func (o *PurposeAttribute) GetType() *PurposeAttributeType {
+func (o *PurposeAttribute) GetType() PurposeAttributeType {
 	if o == nil {
-		return nil
+		return PurposeAttributeType("")
 	}
 	return o.Type
 }

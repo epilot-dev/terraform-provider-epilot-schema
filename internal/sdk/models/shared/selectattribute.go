@@ -141,10 +141,10 @@ type SelectAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                `json:"repeatable,omitempty"`
-	HasPrimary *bool                `json:"has_primary,omitempty"`
-	Type       *SelectAttributeType `json:"type,omitempty"`
-	Options    any                  `json:"options,omitempty"`
+	Repeatable *bool               `json:"repeatable,omitempty"`
+	HasPrimary *bool               `json:"has_primary,omitempty"`
+	Type       SelectAttributeType `json:"type"`
+	Options    any                 `json:"options,omitempty"`
 	// Allow arbitrary input values in addition to provided options
 	AllowAny *bool `json:"allow_any,omitempty"`
 }
@@ -363,9 +363,9 @@ func (o *SelectAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *SelectAttribute) GetType() *SelectAttributeType {
+func (o *SelectAttribute) GetType() SelectAttributeType {
 	if o == nil {
-		return nil
+		return SelectAttributeType("")
 	}
 	return o.Type
 }

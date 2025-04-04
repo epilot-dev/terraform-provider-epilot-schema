@@ -19,7 +19,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       # ...
     }
     default_address_fields = [
-      "start_date"
+      "..."
     ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
@@ -71,7 +71,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       # ...
     }
     default_address_fields = [
-      "plot_of_land"
+      "..."
     ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
@@ -865,10 +865,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     options = [
       {
         str = "...my_str..."
-        two = {
-          title = "...my_title..."
-          value = "...my_value..."
-        }
       }
     ]
     order                   = 0
@@ -1412,7 +1408,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     repeatable       = true
     required         = false
     reverse_attributes = {
-      key = "value",
+      key = "value"
     }
     schema             = "contact"
     search_placeholder = "...my_search_placeholder..."
@@ -1426,7 +1422,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     sortable      = false
     summary_fields = [
       {
-        str = "...my_str..."
         summary_field = {
           display_as = "...my_display_as..."
           field      = "...my_field..."
@@ -1566,7 +1561,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     name = "...my_name..."
     options = [
       {
-        str = "...my_str..."
         two = {
           title = "...my_title..."
           value = "...my_value..."
@@ -1834,6 +1828,25 @@ Optional:
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
+
+Valid values are:
+  - postal_code (default)
+  - city (default)
+  - street (default)
+  - street_number (default)
+  - plot_area
+  - plot_of_land
+  - suburb
+  - country
+  - additional_info
+  - coordinates
+  - start_date
+  - end_date
+  - salutation
+  - title
+  - first_name
+  - last_name
+  - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
@@ -1865,7 +1878,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--address_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "address"
+- `type` (String) Not Null; must be "address"
 - `value_formatter` (String)
 
 Read-Only:
@@ -1910,6 +1923,25 @@ Optional:
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_relation_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
+
+Valid values are:
+  - postal_code (default)
+  - city (default)
+  - street (default)
+  - street_number (default)
+  - plot_area
+  - plot_of_land
+  - suburb
+  - country
+  - additional_info
+  - coordinates
+  - start_date
+  - end_date
+  - salutation
+  - title
+  - first_name
+  - last_name
+  - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
@@ -1941,7 +1973,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--address_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "relation_address"
+- `type` (String) Not Null; must be "relation_address"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2016,7 +2048,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--automation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "automation"
+- `type` (String) Not Null; must be "automation"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2092,7 +2124,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--boolean_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "boolean"
+- `type` (String) Not Null; must be "boolean"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2170,7 +2202,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--computed_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "computed"
+- `type` (String) Not Null; must be "computed"
 - `value_formatter` (String) Variable template used to format the computed value. Not Null
 
 Read-Only:
@@ -2322,7 +2354,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--country_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "country"
+- `type` (String) Not Null; must be "country"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2493,7 +2525,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--date_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["date", "datetime"]
+- `type` (String) Not Null; must be one of ["date", "datetime"]
 - `value_formatter` (String)
 
 Read-Only:
@@ -2568,7 +2600,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "email"
+- `type` (String) Not Null; must be "email"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2724,7 +2756,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--internal_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "internal"
+- `type` (String) Not Null; must be "internal"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2799,7 +2831,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--internal_user_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "internal_user"
+- `type` (String) Not Null; must be "internal_user"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2874,7 +2906,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--invitation_email_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "invitation_email"
+- `type` (String) Not Null; must be "invitation_email"
 - `value_formatter` (String)
 
 Read-Only:
@@ -2949,7 +2981,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--link_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "link"
+- `type` (String) Not Null; must be "link"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3106,7 +3138,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--multi_select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["multiselect", "checkbox"]
+- `type` (String) Not Null; must be one of ["multiselect", "checkbox"]
 - `value_formatter` (String)
 
 Read-Only:
@@ -3201,7 +3233,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `show_separator` (Boolean) Whether or not to show a thousands separator. Default: true
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "number"
+- `type` (String) Not Null; must be "number"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3276,7 +3308,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--ordered_list_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "ordered_list"
+- `type` (String) Not Null; must be "ordered_list"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3351,7 +3383,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--partner_organisation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "partner_organisation"
+- `type` (String) Not Null; must be "partner_organisation"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3426,7 +3458,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--partner_status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "partner_status"
+- `type` (String) Not Null; must be "partner_status"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3501,7 +3533,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--payment_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "payment"
+- `type` (String) Not Null; must be "payment"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3576,7 +3608,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--payment_method_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "relation_payment_method"
+- `type` (String) Not Null; must be "relation_payment_method"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3651,7 +3683,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--phone_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "phone"
+- `type` (String) Not Null; must be "phone"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3726,7 +3758,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--price_component_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "price_component"
+- `type` (String) Not Null; must be "price_component"
 - `value_formatter` (String)
 
 Read-Only:
@@ -3806,7 +3838,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `slug` (String) URL-friendly identifier for the classification
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "purpose"
+- `type` (String) Not Null; must be "purpose"
 - `updated_at` (String)
 - `value_formatter` (String)
 
@@ -3895,7 +3927,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--summary_fields))
-- `type` (String) must be "relation"
+- `type` (String) Not Null; must be "relation"
 - `value_formatter` (String)
 
 Read-Only:
@@ -4027,7 +4059,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--select_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be one of ["select", "radio"]
+- `type` (String) Not Null; must be one of ["select", "radio"]
 - `value_formatter` (String)
 
 Read-Only:
@@ -4104,7 +4136,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `start_number` (Number)
-- `type` (String) must be "sequence"
+- `type` (String) Not Null; must be "sequence"
 - `value_formatter` (String)
 
 Read-Only:
@@ -4180,7 +4212,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--status_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "status"
+- `type` (String) Not Null; must be "status"
 - `value_formatter` (String)
 
 Read-Only:
@@ -4275,7 +4307,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `suggestions` (List of String)
-- `type` (String) must be "tags"
+- `type` (String) Not Null; must be "tags"
 - `value_formatter` (String)
 
 Read-Only:
@@ -4353,7 +4385,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--text_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "string"
+- `type` (String) Not Null; must be "string"
 - `value_formatter` (String)
 
 Read-Only:
@@ -4429,7 +4461,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--user_relation_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
-- `type` (String) must be "relation_user"
+- `type` (String) Not Null; must be "relation_user"
 - `value_formatter` (String)
 
 Read-Only:

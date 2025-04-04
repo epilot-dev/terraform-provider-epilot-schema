@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type MultiSelectAttributeOptions struct {
-	Str types.String                  `tfsdk:"str" tfPlanOnly:"true"`
-	Two *MultiSelectAttributeOptions2 `tfsdk:"two" tfPlanOnly:"true"`
+	Str types.String                  `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
+	Two *MultiSelectAttributeOptions2 `queryParam:"inline" tfsdk:"two" tfPlanOnly:"true"`
 }

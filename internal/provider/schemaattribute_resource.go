@@ -40,63 +40,63 @@ type SchemaAttributeResource struct {
 
 // SchemaAttributeResourceModel describes the resource data model.
 type SchemaAttributeResourceModel struct {
-	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute             `tfsdk:"address_attribute" tfPlanOnly:"true"`
-	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute             `tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
-	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"automation_attribute" tfPlanOnly:"true"`
-	BooleanAttribute               *tfTypes.AttributeWithCompositeIDBooleanAttribute             `tfsdk:"boolean_attribute" tfPlanOnly:"true"`
+	AddressAttribute               *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_attribute" tfPlanOnly:"true"`
+	AddressRelationAttribute       *tfTypes.AttributeWithCompositeIDAddressAttribute             `queryParam:"inline" tfsdk:"address_relation_attribute" tfPlanOnly:"true"`
+	AutomationAttribute            *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"automation_attribute" tfPlanOnly:"true"`
+	BooleanAttribute               *tfTypes.AttributeWithCompositeIDBooleanAttribute             `queryParam:"inline" tfsdk:"boolean_attribute" tfPlanOnly:"true"`
 	CompositeID                    types.String                                                  `tfsdk:"composite_id"`
-	ComputedAttribute              *tfTypes.AttributeWithCompositeIDComputedAttribute            `tfsdk:"computed_attribute" tfPlanOnly:"true"`
-	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute             `tfsdk:"consent_attribute" tfPlanOnly:"true"`
-	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"country_attribute" tfPlanOnly:"true"`
-	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `tfsdk:"currency_attribute" tfPlanOnly:"true"`
-	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"date_attribute" tfPlanOnly:"true"`
+	ComputedAttribute              *tfTypes.AttributeWithCompositeIDComputedAttribute            `queryParam:"inline" tfsdk:"computed_attribute" tfPlanOnly:"true"`
+	ConsentAttribute               *tfTypes.AttributeWithCompositeIDConsentAttribute             `queryParam:"inline" tfsdk:"consent_attribute" tfPlanOnly:"true"`
+	CountryAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"country_attribute" tfPlanOnly:"true"`
+	CurrencyAttribute              *tfTypes.AttributeWithCompositeIDCurrencyAttribute            `queryParam:"inline" tfsdk:"currency_attribute" tfPlanOnly:"true"`
+	DateAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"date_attribute" tfPlanOnly:"true"`
 	Deprecated                     types.Bool                                                    `tfsdk:"deprecated"`
-	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"email_attribute" tfPlanOnly:"true"`
+	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute" tfPlanOnly:"true"`
 	EntityBuilderDisableEdit       types.Bool                                                    `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag                    types.String                                                  `tfsdk:"feature_flag"`
-	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                `tfsdk:"file_attribute" tfPlanOnly:"true"`
+	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                `queryParam:"inline" tfsdk:"file_attribute" tfPlanOnly:"true"`
 	Group                          types.String                                                  `tfsdk:"group"`
 	HasPrimary                     types.Bool                                                    `tfsdk:"has_primary"`
 	Hidden                         types.Bool                                                    `tfsdk:"hidden"`
 	HideLabel                      types.Bool                                                    `tfsdk:"hide_label"`
 	Icon                           types.String                                                  `tfsdk:"icon"`
 	ID                             types.String                                                  `tfsdk:"id"`
-	InternalAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"internal_attribute" tfPlanOnly:"true"`
-	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
-	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
+	InternalAttribute              *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_attribute" tfPlanOnly:"true"`
+	InternalUserAttribute          *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"internal_user_attribute" tfPlanOnly:"true"`
+	InvitationEmailAttribute       *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"invitation_email_attribute" tfPlanOnly:"true"`
 	Label                          types.String                                                  `tfsdk:"label"`
 	Layout                         types.String                                                  `tfsdk:"layout"`
-	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"link_attribute" tfPlanOnly:"true"`
-	MessageEmailAddressAttribute   *tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute `tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
-	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute         `tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
+	LinkAttribute                  *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"link_attribute" tfPlanOnly:"true"`
+	MessageEmailAddressAttribute   *tfTypes.AttributeWithCompositeIDMessageEmailAddressAttribute `queryParam:"inline" tfsdk:"message_email_address_attribute" tfPlanOnly:"true"`
+	MultiSelectAttribute           *tfTypes.AttributeWithCompositeIDMultiSelectAttribute         `queryParam:"inline" tfsdk:"multi_select_attribute" tfPlanOnly:"true"`
 	Name                           types.String                                                  `tfsdk:"name"`
-	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute              `tfsdk:"number_attribute" tfPlanOnly:"true"`
+	NumberAttribute                *tfTypes.AttributeWithCompositeIDNumberAttribute              `queryParam:"inline" tfsdk:"number_attribute" tfPlanOnly:"true"`
 	Order                          types.Int64                                                   `tfsdk:"order"`
-	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
-	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
-	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
-	PaymentAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"payment_attribute" tfPlanOnly:"true"`
-	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
-	PhoneAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"phone_attribute" tfPlanOnly:"true"`
+	OrderedListAttribute           *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"ordered_list_attribute" tfPlanOnly:"true"`
+	PartnerOrganisationAttribute   *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_organisation_attribute" tfPlanOnly:"true"`
+	PartnerStatusAttribute         *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"partner_status_attribute" tfPlanOnly:"true"`
+	PaymentAttribute               *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute" tfPlanOnly:"true"`
+	PaymentMethodRelationAttribute *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
+	PhoneAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute" tfPlanOnly:"true"`
 	Placeholder                    types.String                                                  `tfsdk:"placeholder"`
 	PreviewValueFormatter          types.String                                                  `tfsdk:"preview_value_formatter"`
-	PriceComponentAttribute        *tfTypes.AttributeWithCompositeIDAutomationAttribute          `tfsdk:"price_component_attribute" tfPlanOnly:"true"`
+	PriceComponentAttribute        *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute" tfPlanOnly:"true"`
 	Protected                      types.Bool                                                    `tfsdk:"protected"`
-	PurposeAttribute               *tfTypes.AttributeWithCompositeIDPurposeAttribute             `tfsdk:"purpose_attribute" tfPlanOnly:"true"`
+	PurposeAttribute               *tfTypes.AttributeWithCompositeIDPurposeAttribute             `queryParam:"inline" tfsdk:"purpose_attribute" tfPlanOnly:"true"`
 	Readonly                       types.Bool                                                    `tfsdk:"readonly"`
-	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute            `tfsdk:"relation_attribute" tfPlanOnly:"true"`
+	RelationAttribute              *tfTypes.AttributeWithCompositeIDRelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute" tfPlanOnly:"true"`
 	RenderCondition                types.String                                                  `tfsdk:"render_condition"`
 	Repeatable                     types.Bool                                                    `tfsdk:"repeatable"`
 	Required                       types.Bool                                                    `tfsdk:"required"`
 	Schema                         types.String                                                  `tfsdk:"schema"`
-	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute              `tfsdk:"select_attribute" tfPlanOnly:"true"`
-	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute            `tfsdk:"sequence_attribute" tfPlanOnly:"true"`
+	SelectAttribute                *tfTypes.AttributeWithCompositeIDSelectAttribute              `queryParam:"inline" tfsdk:"select_attribute" tfPlanOnly:"true"`
+	SequenceAttribute              *tfTypes.AttributeWithCompositeIDSequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute" tfPlanOnly:"true"`
 	ShowInTable                    types.Bool                                                    `tfsdk:"show_in_table"`
 	Sortable                       types.Bool                                                    `tfsdk:"sortable"`
-	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute              `tfsdk:"status_attribute" tfPlanOnly:"true"`
-	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `tfsdk:"tags_attribute" tfPlanOnly:"true"`
-	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `tfsdk:"text_attribute" tfPlanOnly:"true"`
-	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
+	StatusAttribute                *tfTypes.AttributeWithCompositeIDStatusAttribute              `queryParam:"inline" tfsdk:"status_attribute" tfPlanOnly:"true"`
+	TagsAttribute                  *tfTypes.AttributeWithCompositeIDTagsAttribute                `queryParam:"inline" tfsdk:"tags_attribute" tfPlanOnly:"true"`
+	TextAttribute                  *tfTypes.AttributeWithCompositeIDTextAttribute                `queryParam:"inline" tfsdk:"text_attribute" tfPlanOnly:"true"`
+	UserRelationAttribute          *tfTypes.AttributeWithCompositeIDUserRelationAttribute        `queryParam:"inline" tfsdk:"user_relation_attribute" tfPlanOnly:"true"`
 	ValueFormatter                 types.String                                                  `tfsdk:"value_formatter"`
 }
 
@@ -125,7 +125,26 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						ElementType: types.StringType,
-						Description: `Default fields visible on addresses`,
+						MarkdownDescription: `Default fields visible on addresses` + "\n" +
+							`` + "\n" +
+							`Valid values are:` + "\n" +
+							`  - postal_code (default)` + "\n" +
+							`  - city (default)` + "\n" +
+							`  - street (default)` + "\n" +
+							`  - street_number (default)` + "\n" +
+							`  - plot_area` + "\n" +
+							`  - plot_of_land` + "\n" +
+							`  - suburb` + "\n" +
+							`  - country` + "\n" +
+							`  - additional_info` + "\n" +
+							`  - coordinates` + "\n" +
+							`  - start_date` + "\n" +
+							`  - end_date` + "\n" +
+							`  - salutation` + "\n" +
+							`  - title` + "\n" +
+							`  - first_name` + "\n" +
+							`  - last_name` + "\n" +
+							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
 						Computed:    true,
@@ -329,8 +348,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "address"`,
+						Description: `Not Null; must be "address"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("address"),
 						},
 					},
@@ -394,7 +414,26 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 						Computed:    true,
 						Optional:    true,
 						ElementType: types.StringType,
-						Description: `Default fields visible on addresses`,
+						MarkdownDescription: `Default fields visible on addresses` + "\n" +
+							`` + "\n" +
+							`Valid values are:` + "\n" +
+							`  - postal_code (default)` + "\n" +
+							`  - city (default)` + "\n" +
+							`  - street (default)` + "\n" +
+							`  - street_number (default)` + "\n" +
+							`  - plot_area` + "\n" +
+							`  - plot_of_land` + "\n" +
+							`  - suburb` + "\n" +
+							`  - country` + "\n" +
+							`  - additional_info` + "\n" +
+							`  - coordinates` + "\n" +
+							`  - start_date` + "\n" +
+							`  - end_date` + "\n" +
+							`  - salutation` + "\n" +
+							`  - title` + "\n" +
+							`  - first_name` + "\n" +
+							`  - last_name` + "\n" +
+							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
 						Computed:    true,
@@ -598,8 +637,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "relation_address"`,
+						Description: `Not Null; must be "relation_address"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"relation_address",
 							),
@@ -863,8 +903,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "automation"`,
+						Description: `Not Null; must be "automation"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"automation",
 							),
@@ -943,7 +984,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"display_type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Default:     stringdefault.StaticString("switch"),
+						Default:     stringdefault.StaticString(`switch`),
 						Description: `Default: "switch"; must be one of ["switch", "checkbox"]`,
 						Validators: []validator.String{
 							stringvalidator.OneOf(
@@ -1140,8 +1181,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "boolean"`,
+						Description: `Not Null; must be "boolean"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("boolean"),
 						},
 					},
@@ -1427,8 +1469,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "computed"`,
+						Description: `Not Null; must be "computed"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("computed"),
 						},
 					},
@@ -1971,8 +2014,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "country"`,
+						Description: `Not Null; must be "country"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("country"),
 						},
 					},
@@ -2554,8 +2598,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be one of ["date", "datetime"]`,
+						Description: `Not Null; must be one of ["date", "datetime"]`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"date",
 								"datetime",
@@ -2825,8 +2870,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "email"`,
+						Description: `Not Null; must be "email"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("email"),
 						},
 					},
@@ -3421,8 +3467,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "internal"`,
+						Description: `Not Null; must be "internal"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("internal"),
 						},
 					},
@@ -3684,8 +3731,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "internal_user"`,
+						Description: `Not Null; must be "internal_user"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"internal_user",
 							),
@@ -3949,8 +3997,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "invitation_email"`,
+						Description: `Not Null; must be "invitation_email"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"invitation_email",
 							),
@@ -4220,8 +4269,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "link"`,
+						Description: `Not Null; must be "link"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("link"),
 						},
 					},
@@ -4819,8 +4869,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be one of ["multiselect", "checkbox"]`,
+						Description: `Not Null; must be one of ["multiselect", "checkbox"]`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"multiselect",
 								"checkbox",
@@ -5098,8 +5149,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "number"`,
+						Description: `Not Null; must be "number"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("number"),
 						},
 					},
@@ -5365,8 +5417,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "ordered_list"`,
+						Description: `Not Null; must be "ordered_list"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"ordered_list",
 							),
@@ -5630,8 +5683,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "partner_organisation"`,
+						Description: `Not Null; must be "partner_organisation"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"partner_organisation",
 							),
@@ -5895,8 +5949,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "partner_status"`,
+						Description: `Not Null; must be "partner_status"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"partner_status",
 							),
@@ -6160,8 +6215,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "payment"`,
+						Description: `Not Null; must be "payment"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("payment"),
 						},
 					},
@@ -6423,8 +6479,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "relation_payment_method"`,
+						Description: `Not Null; must be "relation_payment_method"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"relation_payment_method",
 							),
@@ -6688,8 +6745,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "phone"`,
+						Description: `Not Null; must be "phone"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("phone"),
 						},
 					},
@@ -6957,8 +7015,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "price_component"`,
+						Description: `Not Null; must be "price_component"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"price_component",
 							),
@@ -7253,8 +7312,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "purpose"`,
+						Description: `Not Null; must be "purpose"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("purpose"),
 						},
 					},
@@ -7742,8 +7802,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "relation"`,
+						Description: `Not Null; must be "relation"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("relation"),
 						},
 					},
@@ -8037,8 +8098,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be one of ["select", "radio"]`,
+						Description: `Not Null; must be one of ["select", "radio"]`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"select",
 								"radio",
@@ -8312,8 +8374,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "sequence"`,
+						Description: `Not Null; must be "sequence"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("sequence"),
 						},
 					},
@@ -8628,8 +8691,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "status"`,
+						Description: `Not Null; must be "status"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("status"),
 						},
 					},
@@ -8901,8 +8965,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "tags"`,
+						Description: `Not Null; must be "tags"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("tags"),
 						},
 					},
@@ -9180,8 +9245,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "string"`,
+						Description: `Not Null; must be "string"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf("string"),
 						},
 					},
@@ -9449,8 +9515,9 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					"type": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
-						Description: `must be "relation_user"`,
+						Description: `Not Null; must be "relation_user"`,
 						Validators: []validator.String{
+							speakeasy_stringvalidators.NotNull(),
 							stringvalidator.OneOf(
 								"relation_user",
 							),

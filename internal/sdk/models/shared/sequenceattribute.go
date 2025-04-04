@@ -138,9 +138,9 @@ type SequenceAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool                  `json:"repeatable,omitempty"`
-	HasPrimary *bool                  `json:"has_primary,omitempty"`
-	Type       *SequenceAttributeType `json:"type,omitempty"`
+	Repeatable *bool                 `json:"repeatable,omitempty"`
+	HasPrimary *bool                 `json:"has_primary,omitempty"`
+	Type       SequenceAttributeType `json:"type"`
 	// Prefix added before the sequence number
 	Prefix      *string `json:"prefix,omitempty"`
 	StartNumber *int64  `json:"start_number,omitempty"`
@@ -360,9 +360,9 @@ func (o *SequenceAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *SequenceAttribute) GetType() *SequenceAttributeType {
+func (o *SequenceAttribute) GetType() SequenceAttributeType {
 	if o == nil {
-		return nil
+		return SequenceAttributeType("")
 	}
 	return o.Type
 }

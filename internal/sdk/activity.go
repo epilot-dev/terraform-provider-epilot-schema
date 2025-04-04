@@ -33,13 +33,6 @@ func newActivity(sdkConfig sdkConfiguration) *Activity {
 // - All activites are published as events on the event bus
 // - Entity mutations are always part of an activity
 func (s *Activity) CreateActivity(ctx context.Context, request operations.CreateActivityRequest, opts ...operations.Option) (*operations.CreateActivityResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createActivity",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -63,6 +56,13 @@ func (s *Activity) CreateActivity(ctx context.Context, request operations.Create
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createActivity",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Activity", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -239,13 +239,6 @@ func (s *Activity) CreateActivity(ctx context.Context, request operations.Create
 // GetActivity - getActivity
 // Get activity by id
 func (s *Activity) GetActivity(ctx context.Context, request operations.GetActivityRequest, opts ...operations.Option) (*operations.GetActivityResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getActivity",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -267,6 +260,14 @@ func (s *Activity) GetActivity(ctx context.Context, request operations.GetActivi
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/activity/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getActivity",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -458,13 +459,6 @@ func (s *Activity) GetActivity(ctx context.Context, request operations.GetActivi
 // AttachActivity - attachActivity
 // Attach existing activity to entity activity feeds
 func (s *Activity) AttachActivity(ctx context.Context, request operations.AttachActivityRequest, opts ...operations.Option) (*operations.AttachActivityResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "attachActivity",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -486,6 +480,14 @@ func (s *Activity) AttachActivity(ctx context.Context, request operations.Attach
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/activity/{id}:attach", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "attachActivity",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -677,13 +679,6 @@ func (s *Activity) AttachActivity(ctx context.Context, request operations.Attach
 // GetEntityActivityFeed - getEntityActivityFeed
 // Get activity feed for an entity
 func (s *Activity) GetEntityActivityFeed(ctx context.Context, request operations.GetEntityActivityFeedRequest, opts ...operations.Option) (*operations.GetEntityActivityFeedResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getEntityActivityFeed",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -705,6 +700,14 @@ func (s *Activity) GetEntityActivityFeed(ctx context.Context, request operations
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/activity", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getEntityActivityFeed",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

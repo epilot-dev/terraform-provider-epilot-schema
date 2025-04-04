@@ -57,6 +57,121 @@ func (e *Divider) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// GroupHeadlineWithCompositeIDInput - a readonly computed ID for the entity group headline including schema slug and the headline ID
+type GroupHeadlineWithCompositeIDInput struct {
+	ID     *string `json:"id,omitempty"`
+	Name   string  `json:"name"`
+	Label  string  `json:"label"`
+	Layout *string `json:"layout,omitempty"`
+	// The group of headline attribute
+	Group string `json:"group"`
+	// The order of headline attribute
+	Order         *int64                           `json:"order,omitempty"`
+	Type          GroupHeadlineWithCompositeIDType `json:"type"`
+	EnableDivider *bool                            `default:"false" json:"enable_divider"`
+	Divider       *Divider                         `json:"divider,omitempty"`
+	Purpose       []string                         `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema group headline
+	Manifest []string `json:"_manifest,omitempty"`
+	// Schema slug the capability belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (g GroupHeadlineWithCompositeIDInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GroupHeadlineWithCompositeIDInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetGroup() string {
+	if o == nil {
+		return ""
+	}
+	return o.Group
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetType() GroupHeadlineWithCompositeIDType {
+	if o == nil {
+		return GroupHeadlineWithCompositeIDType("")
+	}
+	return o.Type
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EnableDivider
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
+	if o == nil {
+		return nil
+	}
+	return o.Divider
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *GroupHeadlineWithCompositeIDInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // GroupHeadlineWithCompositeID - a readonly computed ID for the entity group headline including schema slug and the headline ID
 type GroupHeadlineWithCompositeID struct {
 	ID     *string `json:"id,omitempty"`
@@ -174,121 +289,6 @@ func (o *GroupHeadlineWithCompositeID) GetCompositeID() *string {
 }
 
 func (o *GroupHeadlineWithCompositeID) GetSchema() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Schema
-}
-
-// GroupHeadlineWithCompositeIDInput - a readonly computed ID for the entity group headline including schema slug and the headline ID
-type GroupHeadlineWithCompositeIDInput struct {
-	ID     *string `json:"id,omitempty"`
-	Name   string  `json:"name"`
-	Label  string  `json:"label"`
-	Layout *string `json:"layout,omitempty"`
-	// The group of headline attribute
-	Group string `json:"group"`
-	// The order of headline attribute
-	Order         *int64                           `json:"order,omitempty"`
-	Type          GroupHeadlineWithCompositeIDType `json:"type"`
-	EnableDivider *bool                            `default:"false" json:"enable_divider"`
-	Divider       *Divider                         `json:"divider,omitempty"`
-	Purpose       []string                         `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the schema group headline
-	Manifest []string `json:"_manifest,omitempty"`
-	// Schema slug the capability belongs to
-	Schema *string `json:"schema,omitempty"`
-}
-
-func (g GroupHeadlineWithCompositeIDInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GroupHeadlineWithCompositeIDInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetLabel() string {
-	if o == nil {
-		return ""
-	}
-	return o.Label
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetLayout() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Layout
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetGroup() string {
-	if o == nil {
-		return ""
-	}
-	return o.Group
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetOrder() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Order
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetType() GroupHeadlineWithCompositeIDType {
-	if o == nil {
-		return GroupHeadlineWithCompositeIDType("")
-	}
-	return o.Type
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetEnableDivider() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.EnableDivider
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetDivider() *Divider {
-	if o == nil {
-		return nil
-	}
-	return o.Divider
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetPurpose() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Purpose
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetManifest() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Manifest
-}
-
-func (o *GroupHeadlineWithCompositeIDInput) GetSchema() *string {
 	if o == nil {
 		return nil
 	}

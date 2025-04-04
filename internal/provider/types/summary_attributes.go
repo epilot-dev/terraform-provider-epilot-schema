@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SummaryAttributes struct {
-	Str              types.String      `tfsdk:"str" tfPlanOnly:"true"`
-	SummaryAttribute *SummaryAttribute `tfsdk:"summary_attribute" tfPlanOnly:"true"`
+	Str              types.String      `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
+	SummaryAttribute *SummaryAttribute `queryParam:"inline" tfsdk:"summary_attribute" tfPlanOnly:"true"`
 }

@@ -415,10 +415,10 @@ type RelationAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// Relations are always repeatables
-	Repeatable   *bool                  `default:"true" json:"repeatable"`
-	HasPrimary   *bool                  `json:"has_primary,omitempty"`
-	Type         *RelationAttributeType `json:"type,omitempty"`
-	RelationType *RelationType          `json:"relation_type,omitempty"`
+	Repeatable   *bool                 `default:"true" json:"repeatable"`
+	HasPrimary   *bool                 `json:"has_primary,omitempty"`
+	Type         RelationAttributeType `json:"type"`
+	RelationType *RelationType         `json:"relation_type,omitempty"`
 	// Map of schema slug to target relation attribute
 	ReverseAttributes map[string]string `json:"reverse_attributes,omitempty"`
 	// Weak relation attributes are kept when duplicating an entity. Strong relation attributes are discarded when duplicating an entity.
@@ -656,9 +656,9 @@ func (o *RelationAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *RelationAttribute) GetType() *RelationAttributeType {
+func (o *RelationAttribute) GetType() RelationAttributeType {
 	if o == nil {
-		return nil
+		return RelationAttributeType("")
 	}
 	return o.Type
 }

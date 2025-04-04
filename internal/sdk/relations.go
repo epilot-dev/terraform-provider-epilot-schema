@@ -33,13 +33,6 @@ func newRelations(sdkConfig sdkConfiguration) *Relations {
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelations(ctx context.Context, request operations.GetRelationsRequest, opts ...operations.Option) (*operations.GetRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -61,6 +54,14 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -252,13 +253,6 @@ func (s *Relations) GetRelations(ctx context.Context, request operations.GetRela
 // AddRelations - addRelations
 // Relates one or more entities to parent entity by adding items to a relation attribute
 func (s *Relations) AddRelations(ctx context.Context, request operations.AddRelationsRequest, opts ...operations.Option) (*operations.AddRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "addRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -282,6 +276,13 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "addRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -479,13 +480,6 @@ func (s *Relations) AddRelations(ctx context.Context, request operations.AddRela
 // RemoveRelations - removeRelations
 // Disassociate one or more entities to parent entity by removing items to a relation attribute
 func (s *Relations) RemoveRelations(ctx context.Context, request operations.RemoveRelationsRequest, opts ...operations.Option) (*operations.RemoveRelationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "removeRelations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -509,6 +503,13 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "removeRelations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -690,13 +691,6 @@ func (s *Relations) RemoveRelations(ctx context.Context, request operations.Remo
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRelationsV2Request, opts ...operations.Option) (*operations.GetRelationsV2Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelationsV2",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -718,6 +712,14 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelationsV2",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -913,13 +915,6 @@ func (s *Relations) GetRelationsV2(ctx context.Context, request operations.GetRe
 //
 // Reverse relations i.e. entities referring to this entity are included with the `?include_reverse` query param.
 func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRelationsV3Request, opts ...operations.Option) (*operations.GetRelationsV3Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelationsV3",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -941,6 +936,14 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/entity/{slug}/{id}/relations", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelationsV3",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1132,13 +1135,6 @@ func (s *Relations) GetRelationsV3(ctx context.Context, request operations.GetRe
 // GetRelatedEntitiesCount - getRelatedEntitiesCount
 // Returns the amount of unique related entities for an entity - includes direct and reverse relations.
 func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operations.GetRelatedEntitiesCountRequest, opts ...operations.Option) (*operations.GetRelatedEntitiesCountResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getRelatedEntitiesCount",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1160,6 +1156,14 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/entity/{slug}/{id}/relations/count", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getRelatedEntitiesCount",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1351,13 +1355,6 @@ func (s *Relations) GetRelatedEntitiesCount(ctx context.Context, request operati
 // UpdateRelation - updateRelation
 // Updates an existing relation between two entities.
 func (s *Relations) UpdateRelation(ctx context.Context, request operations.UpdateRelationRequest, opts ...operations.Option) (*operations.UpdateRelationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateRelation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1381,6 +1378,13 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateRelation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1578,13 +1582,6 @@ func (s *Relations) UpdateRelation(ctx context.Context, request operations.Updat
 // DeleteRelation - deleteRelation
 // Removes relation between two entities
 func (s *Relations) DeleteRelation(ctx context.Context, request operations.DeleteRelationRequest, opts ...operations.Option) (*operations.DeleteRelationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteRelation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1606,6 +1603,14 @@ func (s *Relations) DeleteRelation(ctx context.Context, request operations.Delet
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entity/{slug}/{id}/relations/{attribute}/{entity_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteRelation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

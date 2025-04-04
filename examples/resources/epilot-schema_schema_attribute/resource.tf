@@ -4,7 +4,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       # ...
     }
     default_address_fields = [
-      "start_date"
+      "..."
     ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
@@ -56,7 +56,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       # ...
     }
     default_address_fields = [
-      "plot_of_land"
+      "..."
     ]
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
@@ -850,10 +850,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     options = [
       {
         str = "...my_str..."
-        two = {
-          title = "...my_title..."
-          value = "...my_value..."
-        }
       }
     ]
     order                   = 0
@@ -1397,7 +1393,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     repeatable       = true
     required         = false
     reverse_attributes = {
-      key = "value",
+      key = "value"
     }
     schema             = "contact"
     search_placeholder = "...my_search_placeholder..."
@@ -1411,7 +1407,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     sortable      = false
     summary_fields = [
       {
-        str = "...my_str..."
         summary_field = {
           display_as = "...my_display_as..."
           field      = "...my_field..."
@@ -1551,7 +1546,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     name = "...my_name..."
     options = [
       {
-        str = "...my_str..."
         two = {
           title = "...my_title..."
           value = "...my_value..."

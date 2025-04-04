@@ -138,11 +138,11 @@ type TagsAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *TagsAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable  *bool              `json:"repeatable,omitempty"`
-	HasPrimary  *bool              `json:"has_primary,omitempty"`
-	Type        *TagsAttributeType `json:"type,omitempty"`
-	Options     []string           `json:"options,omitempty"`
-	Suggestions []string           `json:"suggestions,omitempty"`
+	Repeatable  *bool             `json:"repeatable,omitempty"`
+	HasPrimary  *bool             `json:"has_primary,omitempty"`
+	Type        TagsAttributeType `json:"type"`
+	Options     []string          `json:"options,omitempty"`
+	Suggestions []string          `json:"suggestions,omitempty"`
 }
 
 func (t TagsAttribute) MarshalJSON() ([]byte, error) {
@@ -359,9 +359,9 @@ func (o *TagsAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *TagsAttribute) GetType() *TagsAttributeType {
+func (o *TagsAttribute) GetType() TagsAttributeType {
 	if o == nil {
-		return nil
+		return TagsAttributeType("")
 	}
 	return o.Type
 }
