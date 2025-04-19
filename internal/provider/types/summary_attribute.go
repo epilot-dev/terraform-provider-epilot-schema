@@ -5,7 +5,7 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SummaryAttribute struct {
-	ContentLineCap     types.Number  `tfsdk:"content_line_cap"`
+	ContentLineCap     types.Float64 `tfsdk:"content_line_cap"`
 	ContentWrap        types.String  `tfsdk:"content_wrap"`
 	DisplayMode        types.String  `tfsdk:"display_mode"`
 	FeatureFlag        types.String  `tfsdk:"feature_flag"`

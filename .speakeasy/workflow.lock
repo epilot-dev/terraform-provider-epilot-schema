@@ -1,19 +1,19 @@
-speakeasyVersion: 1.529.1
+speakeasyVersion: 1.535.1
 sources:
     schema:
         sourceNamespace: schema
-        sourceRevisionDigest: sha256:16b44f3b8bc7302a4a1e5618095fbdabf3db0c71a50c178e6ff4e88e71b1b48e
-        sourceBlobDigest: sha256:25adef9067fb0ce8dfdb4db1555b2a22d8c6f8ef9253f658d3be940be481788b
+        sourceRevisionDigest: sha256:760e791847b761bf1fbc8ba0fe89b43bf93ecdd26c0f054a4877ee2e48e43177
+        sourceBlobDigest: sha256:9a3acc949f7d21ef2901d11aa36429f3c6d69c88953242b5dfb2c251a53a7066
         tags:
             - latest
-            - speakeasy-sdk-regen-1743753975
+            - speakeasy-sdk-regen-1744417227
             - 1.0.0
 targets:
     terraform:
         source: schema
         sourceNamespace: schema
-        sourceRevisionDigest: sha256:16b44f3b8bc7302a4a1e5618095fbdabf3db0c71a50c178e6ff4e88e71b1b48e
-        sourceBlobDigest: sha256:25adef9067fb0ce8dfdb4db1555b2a22d8c6f8ef9253f658d3be940be481788b
+        sourceRevisionDigest: sha256:760e791847b761bf1fbc8ba0fe89b43bf93ecdd26c0f054a4877ee2e48e43177
+        sourceBlobDigest: sha256:9a3acc949f7d21ef2901d11aa36429f3c6d69c88953242b5dfb2c251a53a7066
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

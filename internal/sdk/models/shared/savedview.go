@@ -153,7 +153,7 @@ type SavedView struct {
 	Shared *bool `json:"shared,omitempty"`
 	// List of users (IDs) that have favorited the view
 	IsFavoritedBy []string       `json:"isFavoritedBy,omitempty"`
-	CreatedBy     CreatedBy      `json:"created_by"`
+	CreatedBy     *CreatedBy     `json:"created_by,omitempty"`
 	UIConfig      map[string]any `json:"ui_config"`
 	// List of users ('${userId}'), user groups ('group_${groupId}'), or partner users ('${partnerOrgId}_${partnerUserId}') that the view is shared with
 	SharedWith []string `json:"shared_with,omitempty"`
@@ -194,9 +194,9 @@ func (o *SavedView) GetIsFavoritedBy() []string {
 	return o.IsFavoritedBy
 }
 
-func (o *SavedView) GetCreatedBy() CreatedBy {
+func (o *SavedView) GetCreatedBy() *CreatedBy {
 	if o == nil {
-		return CreatedBy{}
+		return nil
 	}
 	return o.CreatedBy
 }
