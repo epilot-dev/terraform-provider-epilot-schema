@@ -3,12 +3,17 @@
 package provider
 
 import (
+	"context"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput() *shared.EntitySchemaGroupWithCompositeIDInput {
+func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput(ctx context.Context) (*shared.EntitySchemaGroupWithCompositeIDInput, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
 	var label string
 	label = r.Label.ValueString()
 
@@ -36,13 +41,16 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 	} else {
 		renderCondition = nil
 	}
-	var purpose []string = []string{}
+	purpose := make([]string, 0, len(r.Purpose))
 	for _, purposeItem := range r.Purpose {
 		purpose = append(purpose, purposeItem.ValueString())
 	}
-	var manifest []string = []string{}
-	for _, manifestItem := range r.Manifest {
-		manifest = append(manifest, manifestItem.ValueString())
+	var manifest []string
+	if r.Manifest != nil {
+		manifest = make([]string, 0, len(r.Manifest))
+		for _, manifestItem := range r.Manifest {
+			manifest = append(manifest, manifestItem.ValueString())
+		}
 	}
 	featureFlag := new(string)
 	if !r.FeatureFlag.IsUnknown() && !r.FeatureFlag.IsNull() {
@@ -50,7 +58,7 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 	} else {
 		featureFlag = nil
 	}
-	var settingsFlag []shared.SettingFlag = []shared.SettingFlag{}
+	settingsFlag := make([]shared.SettingFlag, 0, len(r.SettingsFlag))
 	for _, settingsFlagItem := range r.SettingsFlag {
 		name := new(string)
 		if !settingsFlagItem.Name.IsUnknown() && !settingsFlagItem.Name.IsNull() {
@@ -107,10 +115,60 @@ func (r *SchemaGroupResourceModel) ToSharedEntitySchemaGroupWithCompositeIDInput
 		InfoTooltipTitle: infoTooltipTitle,
 		Schema:           schema,
 	}
-	return &out
+
+	return &out, diags
 }
 
-func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithCompositeID(resp *shared.EntitySchemaGroupWithCompositeID) {
+func (r *SchemaGroupResourceModel) ToOperationsPutSchemaGroupRequest(ctx context.Context) (*operations.PutSchemaGroupRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	entitySchemaGroupWithCompositeID, entitySchemaGroupWithCompositeIDDiags := r.ToSharedEntitySchemaGroupWithCompositeIDInput(ctx)
+	diags.Append(entitySchemaGroupWithCompositeIDDiags...)
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	out := operations.PutSchemaGroupRequest{
+		CompositeID:                      compositeID,
+		EntitySchemaGroupWithCompositeID: entitySchemaGroupWithCompositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupResourceModel) ToOperationsGetSchemaGroupRequest(ctx context.Context) (*operations.GetSchemaGroupRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.GetSchemaGroupRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupResourceModel) ToOperationsDeleteSchemaGroupRequest(ctx context.Context) (*operations.DeleteSchemaGroupRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.DeleteSchemaGroupRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithCompositeID(ctx context.Context, resp *shared.EntitySchemaGroupWithCompositeID) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		if resp.Manifest != nil {
 			r.Manifest = make([]types.String, 0, len(resp.Manifest))
@@ -142,15 +200,17 @@ func (r *SchemaGroupResourceModel) RefreshFromSharedEntitySchemaGroupWithComposi
 			r.SettingsFlag = r.SettingsFlag[:len(resp.SettingsFlag)]
 		}
 		for settingsFlagCount, settingsFlagItem := range resp.SettingsFlag {
-			var settingsFlag1 tfTypes.SettingFlag
-			settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-			settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
+			var settingsFlag tfTypes.SettingFlag
+			settingsFlag.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+			settingsFlag.Name = types.StringPointerValue(settingsFlagItem.Name)
 			if settingsFlagCount+1 > len(r.SettingsFlag) {
-				r.SettingsFlag = append(r.SettingsFlag, settingsFlag1)
+				r.SettingsFlag = append(r.SettingsFlag, settingsFlag)
 			} else {
-				r.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-				r.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
+				r.SettingsFlag[settingsFlagCount].Enabled = settingsFlag.Enabled
+				r.SettingsFlag[settingsFlagCount].Name = settingsFlag.Name
 			}
 		}
 	}
+
+	return diags
 }
