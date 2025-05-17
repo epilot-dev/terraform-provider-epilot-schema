@@ -82,8 +82,6 @@ type TaxonomyBulkJob struct {
 	CreatedAt     *time.Time                 `json:"created_at,omitempty"`
 	UpdatedAt     *time.Time                 `json:"updated_at,omitempty"`
 	Org           *string                    `json:"org,omitempty"`
-	// Progress of the job on a scale of 0 to 1
-	Progress *float64 `json:"progress,omitempty"`
 }
 
 func (t TaxonomyBulkJob) MarshalJSON() ([]byte, error) {
@@ -165,11 +163,4 @@ func (o *TaxonomyBulkJob) GetOrg() *string {
 		return nil
 	}
 	return o.Org
-}
-
-func (o *TaxonomyBulkJob) GetProgress() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Progress
 }
