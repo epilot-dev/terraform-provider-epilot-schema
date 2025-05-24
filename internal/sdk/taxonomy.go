@@ -1250,7 +1250,9 @@ func (s *Taxonomy) UpdateClassificationsForTaxonomy(ctx context.Context, request
 }
 
 // GetTaxonomyClassification - getTaxonomyClassification
-// Get a classification for a taxonomy
+// Get a classification for a taxonomy by slug
+//
+// For backwards compatibility with purposes, you can also pass the classification id instead of the slug.
 func (s *Taxonomy) GetTaxonomyClassification(ctx context.Context, request operations.GetTaxonomyClassificationRequest, opts ...operations.Option) (*operations.GetTaxonomyClassificationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
