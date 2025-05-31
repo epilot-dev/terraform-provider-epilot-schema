@@ -15598,7 +15598,6 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSchema() 
 
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
-	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
@@ -15673,13 +15672,6 @@ func (a *AttributeWithCompositeIDPurposeAttributeInput) UnmarshalJSON(data []byt
 		return err
 	}
 	return nil
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
 }
 
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetName() string {

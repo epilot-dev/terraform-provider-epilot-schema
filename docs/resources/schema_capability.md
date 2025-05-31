@@ -2044,7 +2044,6 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--attributes--purpose_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
@@ -2069,6 +2068,10 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "purpose"
 - `updated_at` (String)
 - `value_formatter` (String)
+
+Read-Only:
+
+- `id` (String)
 
 <a id="nestedatt--attributes--purpose_attribute--constraints"></a>
 ### Nested Schema for `attributes.purpose_attribute.constraints`
