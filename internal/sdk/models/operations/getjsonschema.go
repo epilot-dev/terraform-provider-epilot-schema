@@ -3,12 +3,25 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"net/http"
 )
 
 type GetJSONSchemaRequest struct {
 	// Entity Type
-	Slug string `pathParam:"style=simple,explode=false,name=slug"`
+	Slug        string `pathParam:"style=simple,explode=false,name=slug"`
+	Dereference *bool  `default:"false" queryParam:"style=form,explode=true,name=dereference"`
+}
+
+func (g GetJSONSchemaRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetJSONSchemaRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetJSONSchemaRequest) GetSlug() string {
@@ -16,6 +29,13 @@ func (o *GetJSONSchemaRequest) GetSlug() string {
 		return ""
 	}
 	return o.Slug
+}
+
+func (o *GetJSONSchemaRequest) GetDereference() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Dereference
 }
 
 // GetJSONSchemaResponseBody - Success

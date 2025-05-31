@@ -9,8 +9,8 @@ import (
 
 type UpdateTaxonomyClassificationRequest struct {
 	// Taxonomy Classification slug
-	ClassificationSlug     string                         `pathParam:"style=simple,explode=false,name=classificationSlug"`
-	TaxonomyClassification *shared.TaxonomyClassification `request:"mediaType=application/json"`
+	ClassificationSlug     string                              `pathParam:"style=simple,explode=false,name=classificationSlug"`
+	TaxonomyClassification *shared.TaxonomyClassificationInput `request:"mediaType=application/json"`
 }
 
 func (o *UpdateTaxonomyClassificationRequest) GetClassificationSlug() string {
@@ -20,7 +20,7 @@ func (o *UpdateTaxonomyClassificationRequest) GetClassificationSlug() string {
 	return o.ClassificationSlug
 }
 
-func (o *UpdateTaxonomyClassificationRequest) GetTaxonomyClassification() *shared.TaxonomyClassification {
+func (o *UpdateTaxonomyClassificationRequest) GetTaxonomyClassification() *shared.TaxonomyClassificationInput {
 	if o == nil {
 		return nil
 	}
