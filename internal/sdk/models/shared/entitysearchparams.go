@@ -76,13 +76,79 @@ func (u Sort) MarshalJSON() ([]byte, error) {
 type Aggs struct {
 }
 
+type SearchAfterType string
+
+const (
+	SearchAfterTypeStr    SearchAfterType = "str"
+	SearchAfterTypeNumber SearchAfterType = "number"
+)
+
+type SearchAfter struct {
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
+
+	Type SearchAfterType
+}
+
+func CreateSearchAfterStr(str string) SearchAfter {
+	typ := SearchAfterTypeStr
+
+	return SearchAfter{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateSearchAfterNumber(number float64) SearchAfter {
+	typ := SearchAfterTypeNumber
+
+	return SearchAfter{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *SearchAfter) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = SearchAfterTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
+		u.Number = &number
+		u.Type = SearchAfterTypeNumber
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchAfter", string(data))
+}
+
+func (u SearchAfter) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SearchAfter: all fields are null")
+}
+
 type EntitySearchParams struct {
 	// Lucene [queries supported with ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax)
 	Q string `json:"q"`
 	// Adds a `_score` number field to results that can be used to rank by match score
 	IncludeScores *bool `default:"false" json:"include_scores"`
 	// You can pass one sort field or an array of sort fields. Each sort field can be a string
-	Sort *Sort  `json:"sort,omitempty"`
+	Sort *Sort `json:"sort,omitempty"`
+	// The offset from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	//
 	From *int64 `default:"0" json:"from"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"10" json:"size"`
@@ -106,6 +172,24 @@ type EntitySearchParams struct {
 	//
 	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
 	Highlight      any                              `json:"highlight,omitempty"`
+	// A TTL (in seconds) that specifies how long the context should be maintained.
+	// Defaults to 30 seconds; configurable up to 60 seconds to prevent abuse.
+	// A value of 0 can be provided the close the context after the query.
+	// Defaults to none.
+	//
+	StableFor *int64 `json:"stable_for,omitempty"`
+	// A unique identifier of the query context from the last stable query.
+	// The context is maintained for the duration of the stable_for value.
+	//
+	StableQueryID *string `json:"stable_query_id,omitempty"`
+	// The sort values from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	// It is strongly recommended to always use the `sort_end` field from the last search result.
+	// Used for deep pagination, typically together with `stable_query_id` to maintain the context between requests.
+	// Requires explicit sort to work reliably.
+	// Typically used sort fields are `_id` or `_created_at`.
+	//
+	SearchAfter []*SearchAfter `json:"search_after,omitempty"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -187,4 +271,25 @@ func (o *EntitySearchParams) GetHighlight() any {
 		return nil
 	}
 	return o.Highlight
+}
+
+func (o *EntitySearchParams) GetStableFor() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StableFor
+}
+
+func (o *EntitySearchParams) GetStableQueryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StableQueryID
+}
+
+func (o *EntitySearchParams) GetSearchAfter() []*SearchAfter {
+	if o == nil {
+		return nil
+	}
+	return o.SearchAfter
 }

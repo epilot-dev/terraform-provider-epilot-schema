@@ -17,6 +17,8 @@ const (
 	OperationDeleteEntity     Operation = "deleteEntity"
 	OperationSoftDeleteEntity Operation = "softDeleteEntity"
 	OperationRestoreEntity    Operation = "restoreEntity"
+	OperationRelationsAdded   Operation = "relationsAdded"
+	OperationRelationsRemoved Operation = "relationsRemoved"
 )
 
 func (e Operation) ToPointer() *Operation {
@@ -37,6 +39,10 @@ func (e *Operation) UnmarshalJSON(data []byte) error {
 	case "softDeleteEntity":
 		fallthrough
 	case "restoreEntity":
+		fallthrough
+	case "relationsAdded":
+		fallthrough
+	case "relationsRemoved":
 		*e = Operation(v)
 		return nil
 	default:
