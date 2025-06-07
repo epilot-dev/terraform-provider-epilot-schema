@@ -10,8 +10,8 @@ import (
 
 type GetTaxonomyBulkActionJobsRequest struct {
 	// The status of the jobs to return
-	Status *shared.TaxonomyBulkJobStatus `queryParam:"style=form,explode=true,name=status"`
-	Size   *float64                      `default:"20" queryParam:"style=form,explode=true,name=size"`
+	Status []string `queryParam:"style=form,explode=true,name=status"`
+	Size   *float64 `default:"20" queryParam:"style=form,explode=true,name=size"`
 }
 
 func (g GetTaxonomyBulkActionJobsRequest) MarshalJSON() ([]byte, error) {
@@ -25,7 +25,7 @@ func (g *GetTaxonomyBulkActionJobsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() *shared.TaxonomyBulkJobStatus {
+func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() []string {
 	if o == nil {
 		return nil
 	}

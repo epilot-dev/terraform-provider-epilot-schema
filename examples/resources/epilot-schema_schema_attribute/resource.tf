@@ -1285,7 +1285,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
-    id                          = "taxonomy-slug:classification-slug"
     info_helpers = {
       hint_custom_component  = "...my_hint_custom_component..."
       hint_text              = "...my_hint_text..."
