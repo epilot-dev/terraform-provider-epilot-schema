@@ -3,14 +3,45 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
+// Type of taxonomy to include
+type Type string
+
+const (
+	TypeEntity   Type = "entity"
+	TypeRelation Type = "relation"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "entity":
+		fallthrough
+	case "relation":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
 type ListTaxonomiesRequest struct {
 	// Include disabled taxonomies
 	IncludeDisabled *bool `default:"false" queryParam:"style=form,explode=true,name=include_disabled"`
+	// Type of taxonomy to include
+	Type *Type `default:"entity" queryParam:"style=form,explode=true,name=type"`
 }
 
 func (l ListTaxonomiesRequest) MarshalJSON() ([]byte, error) {
@@ -29,6 +60,13 @@ func (o *ListTaxonomiesRequest) GetIncludeDisabled() *bool {
 		return nil
 	}
 	return o.IncludeDisabled
+}
+
+func (o *ListTaxonomiesRequest) GetType() *Type {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 // ListTaxonomiesResponseBody - Returns list of taxonomies in an organization
