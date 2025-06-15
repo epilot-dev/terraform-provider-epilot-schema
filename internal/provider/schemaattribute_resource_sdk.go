@@ -3,14 +3,20 @@
 package provider
 
 import (
+	"context"
 	"encoding/json"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/provider/typeconvert"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"time"
 )
 
-func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *shared.AttributeWithCompositeIDInput {
+func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx context.Context) (*shared.AttributeWithCompositeIDInput, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
 	var out shared.AttributeWithCompositeIDInput
 	var attributeWithCompositeIDTextAttributeInput *shared.AttributeWithCompositeIDTextAttributeInput
 	if r.TextAttribute != nil {
@@ -108,13 +114,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition = nil
 		}
-		var purpose []string = []string{}
+		purpose := make([]string, 0, len(r.TextAttribute.Purpose))
 		for _, purposeItem := range r.TextAttribute.Purpose {
 			purpose = append(purpose, purposeItem.ValueString())
 		}
-		var manifest []string = []string{}
-		for _, manifestItem := range r.TextAttribute.Manifest {
-			manifest = append(manifest, manifestItem.ValueString())
+		var manifest []string
+		if r.TextAttribute.Manifest != nil {
+			manifest = make([]string, 0, len(r.TextAttribute.Manifest))
+			for _, manifestItem := range r.TextAttribute.Manifest {
+				manifest = append(manifest, manifestItem.ValueString())
+			}
 		}
 		var constraints *shared.TextAttributeConstraints
 		if r.TextAttribute.Constraints != nil {
@@ -126,7 +135,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag = nil
 		}
-		var settingsFlag []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag := make([]shared.SettingFlag, 0, len(r.TextAttribute.SettingsFlag))
 		for _, settingsFlagItem := range r.TextAttribute.SettingsFlag {
 			name1 := new(string)
 			if !settingsFlagItem.Name.IsUnknown() && !settingsFlagItem.Name.IsNull() {
@@ -375,13 +384,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition1 = nil
 		}
-		var purpose1 []string = []string{}
+		purpose1 := make([]string, 0, len(r.LinkAttribute.Purpose))
 		for _, purposeItem1 := range r.LinkAttribute.Purpose {
 			purpose1 = append(purpose1, purposeItem1.ValueString())
 		}
-		var manifest1 []string = []string{}
-		for _, manifestItem1 := range r.LinkAttribute.Manifest {
-			manifest1 = append(manifest1, manifestItem1.ValueString())
+		var manifest1 []string
+		if r.LinkAttribute.Manifest != nil {
+			manifest1 = make([]string, 0, len(r.LinkAttribute.Manifest))
+			for _, manifestItem1 := range r.LinkAttribute.Manifest {
+				manifest1 = append(manifest1, manifestItem1.ValueString())
+			}
 		}
 		var constraints1 *shared.LinkAttributeAttributeWithCompositeIDConstraints
 		if r.LinkAttribute.Constraints != nil {
@@ -393,7 +405,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag1 = nil
 		}
-		var settingsFlag1 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag1 := make([]shared.SettingFlag, 0, len(r.LinkAttribute.SettingsFlag))
 		for _, settingsFlagItem1 := range r.LinkAttribute.SettingsFlag {
 			name3 := new(string)
 			if !settingsFlagItem1.Name.IsUnknown() && !settingsFlagItem1.Name.IsNull() {
@@ -623,13 +635,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition2 = nil
 		}
-		var purpose2 []string = []string{}
+		purpose2 := make([]string, 0, len(r.DateAttribute.Purpose))
 		for _, purposeItem2 := range r.DateAttribute.Purpose {
 			purpose2 = append(purpose2, purposeItem2.ValueString())
 		}
-		var manifest2 []string = []string{}
-		for _, manifestItem2 := range r.DateAttribute.Manifest {
-			manifest2 = append(manifest2, manifestItem2.ValueString())
+		var manifest2 []string
+		if r.DateAttribute.Manifest != nil {
+			manifest2 = make([]string, 0, len(r.DateAttribute.Manifest))
+			for _, manifestItem2 := range r.DateAttribute.Manifest {
+				manifest2 = append(manifest2, manifestItem2.ValueString())
+			}
 		}
 		var constraints2 *shared.DateAttributeAttributeWithCompositeIDConstraints
 		if r.DateAttribute.Constraints != nil {
@@ -641,7 +656,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag2 = nil
 		}
-		var settingsFlag2 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag2 := make([]shared.SettingFlag, 0, len(r.DateAttribute.SettingsFlag))
 		for _, settingsFlagItem2 := range r.DateAttribute.SettingsFlag {
 			name5 := new(string)
 			if !settingsFlagItem2.Name.IsUnknown() && !settingsFlagItem2.Name.IsNull() {
@@ -871,13 +886,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition3 = nil
 		}
-		var purpose3 []string = []string{}
+		purpose3 := make([]string, 0, len(r.CountryAttribute.Purpose))
 		for _, purposeItem3 := range r.CountryAttribute.Purpose {
 			purpose3 = append(purpose3, purposeItem3.ValueString())
 		}
-		var manifest3 []string = []string{}
-		for _, manifestItem3 := range r.CountryAttribute.Manifest {
-			manifest3 = append(manifest3, manifestItem3.ValueString())
+		var manifest3 []string
+		if r.CountryAttribute.Manifest != nil {
+			manifest3 = make([]string, 0, len(r.CountryAttribute.Manifest))
+			for _, manifestItem3 := range r.CountryAttribute.Manifest {
+				manifest3 = append(manifest3, manifestItem3.ValueString())
+			}
 		}
 		var constraints3 *shared.CountryAttributeAttributeWithCompositeIDConstraints
 		if r.CountryAttribute.Constraints != nil {
@@ -889,7 +907,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag3 = nil
 		}
-		var settingsFlag3 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag3 := make([]shared.SettingFlag, 0, len(r.CountryAttribute.SettingsFlag))
 		for _, settingsFlagItem3 := range r.CountryAttribute.SettingsFlag {
 			name7 := new(string)
 			if !settingsFlagItem3.Name.IsUnknown() && !settingsFlagItem3.Name.IsNull() {
@@ -1119,13 +1137,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition4 = nil
 		}
-		var purpose4 []string = []string{}
+		purpose4 := make([]string, 0, len(r.BooleanAttribute.Purpose))
 		for _, purposeItem4 := range r.BooleanAttribute.Purpose {
 			purpose4 = append(purpose4, purposeItem4.ValueString())
 		}
-		var manifest4 []string = []string{}
-		for _, manifestItem4 := range r.BooleanAttribute.Manifest {
-			manifest4 = append(manifest4, manifestItem4.ValueString())
+		var manifest4 []string
+		if r.BooleanAttribute.Manifest != nil {
+			manifest4 = make([]string, 0, len(r.BooleanAttribute.Manifest))
+			for _, manifestItem4 := range r.BooleanAttribute.Manifest {
+				manifest4 = append(manifest4, manifestItem4.ValueString())
+			}
 		}
 		var constraints4 *shared.BooleanAttributeAttributeWithCompositeIDConstraints
 		if r.BooleanAttribute.Constraints != nil {
@@ -1137,7 +1158,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag4 = nil
 		}
-		var settingsFlag4 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag4 := make([]shared.SettingFlag, 0, len(r.BooleanAttribute.SettingsFlag))
 		for _, settingsFlagItem4 := range r.BooleanAttribute.SettingsFlag {
 			name9 := new(string)
 			if !settingsFlagItem4.Name.IsUnknown() && !settingsFlagItem4.Name.IsNull() {
@@ -1374,13 +1395,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition5 = nil
 		}
-		var purpose5 []string = []string{}
+		purpose5 := make([]string, 0, len(r.SelectAttribute.Purpose))
 		for _, purposeItem5 := range r.SelectAttribute.Purpose {
 			purpose5 = append(purpose5, purposeItem5.ValueString())
 		}
-		var manifest5 []string = []string{}
-		for _, manifestItem5 := range r.SelectAttribute.Manifest {
-			manifest5 = append(manifest5, manifestItem5.ValueString())
+		var manifest5 []string
+		if r.SelectAttribute.Manifest != nil {
+			manifest5 = make([]string, 0, len(r.SelectAttribute.Manifest))
+			for _, manifestItem5 := range r.SelectAttribute.Manifest {
+				manifest5 = append(manifest5, manifestItem5.ValueString())
+			}
 		}
 		var constraints5 *shared.SelectAttributeAttributeWithCompositeIDConstraints
 		if r.SelectAttribute.Constraints != nil {
@@ -1392,7 +1416,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag5 = nil
 		}
-		var settingsFlag5 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag5 := make([]shared.SettingFlag, 0, len(r.SelectAttribute.SettingsFlag))
 		for _, settingsFlagItem5 := range r.SelectAttribute.SettingsFlag {
 			name11 := new(string)
 			if !settingsFlagItem5.Name.IsUnknown() && !settingsFlagItem5.Name.IsNull() {
@@ -1634,13 +1658,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition6 = nil
 		}
-		var purpose6 []string = []string{}
+		purpose6 := make([]string, 0, len(r.MultiSelectAttribute.Purpose))
 		for _, purposeItem6 := range r.MultiSelectAttribute.Purpose {
 			purpose6 = append(purpose6, purposeItem6.ValueString())
 		}
-		var manifest6 []string = []string{}
-		for _, manifestItem6 := range r.MultiSelectAttribute.Manifest {
-			manifest6 = append(manifest6, manifestItem6.ValueString())
+		var manifest6 []string
+		if r.MultiSelectAttribute.Manifest != nil {
+			manifest6 = make([]string, 0, len(r.MultiSelectAttribute.Manifest))
+			for _, manifestItem6 := range r.MultiSelectAttribute.Manifest {
+				manifest6 = append(manifest6, manifestItem6.ValueString())
+			}
 		}
 		var constraints6 *shared.MultiSelectAttributeAttributeWithCompositeIDConstraints
 		if r.MultiSelectAttribute.Constraints != nil {
@@ -1652,7 +1679,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag6 = nil
 		}
-		var settingsFlag6 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag6 := make([]shared.SettingFlag, 0, len(r.MultiSelectAttribute.SettingsFlag))
 		for _, settingsFlagItem6 := range r.MultiSelectAttribute.SettingsFlag {
 			name13 := new(string)
 			if !settingsFlagItem6.Name.IsUnknown() && !settingsFlagItem6.Name.IsNull() {
@@ -1753,7 +1780,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			allowExtraOptions = nil
 		}
-		var optionsVar1 []*shared.MultiSelectAttributeOptions = []*shared.MultiSelectAttributeOptions{}
+		optionsVar1 := make([]*shared.MultiSelectAttributeOptions, 0, len(r.MultiSelectAttribute.Options))
 		for _, optionsItem := range r.MultiSelectAttribute.Options {
 			if !optionsItem.Str.IsUnknown() && !optionsItem.Str.IsNull() {
 				var str string
@@ -1933,13 +1960,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition7 = nil
 		}
-		var purpose7 []string = []string{}
+		purpose7 := make([]string, 0, len(r.StatusAttribute.Purpose))
 		for _, purposeItem7 := range r.StatusAttribute.Purpose {
 			purpose7 = append(purpose7, purposeItem7.ValueString())
 		}
-		var manifest7 []string = []string{}
-		for _, manifestItem7 := range r.StatusAttribute.Manifest {
-			manifest7 = append(manifest7, manifestItem7.ValueString())
+		var manifest7 []string
+		if r.StatusAttribute.Manifest != nil {
+			manifest7 = make([]string, 0, len(r.StatusAttribute.Manifest))
+			for _, manifestItem7 := range r.StatusAttribute.Manifest {
+				manifest7 = append(manifest7, manifestItem7.ValueString())
+			}
 		}
 		var constraints7 *shared.StatusAttributeAttributeWithCompositeIDConstraints
 		if r.StatusAttribute.Constraints != nil {
@@ -1951,7 +1981,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag7 = nil
 		}
-		var settingsFlag7 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag7 := make([]shared.SettingFlag, 0, len(r.StatusAttribute.SettingsFlag))
 		for _, settingsFlagItem7 := range r.StatusAttribute.SettingsFlag {
 			name15 := new(string)
 			if !settingsFlagItem7.Name.IsUnknown() && !settingsFlagItem7.Name.IsNull() {
@@ -2040,7 +2070,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			hasPrimary7 = nil
 		}
 		typeVar7 := shared.StatusAttributeAttributeWithCompositeIDType(r.StatusAttribute.Type.ValueString())
-		var optionsVar2 []*shared.StatusAttributeAttributeWithCompositeIDOptions = []*shared.StatusAttributeAttributeWithCompositeIDOptions{}
+		optionsVar2 := make([]*shared.StatusAttributeAttributeWithCompositeIDOptions, 0, len(r.StatusAttribute.Options))
 		for _, optionsItem1 := range r.StatusAttribute.Options {
 			if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
 				var str1 string
@@ -2211,13 +2241,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition8 = nil
 		}
-		var purpose8 []string = []string{}
+		purpose8 := make([]string, 0, len(r.SequenceAttribute.Purpose))
 		for _, purposeItem8 := range r.SequenceAttribute.Purpose {
 			purpose8 = append(purpose8, purposeItem8.ValueString())
 		}
-		var manifest8 []string = []string{}
-		for _, manifestItem8 := range r.SequenceAttribute.Manifest {
-			manifest8 = append(manifest8, manifestItem8.ValueString())
+		var manifest8 []string
+		if r.SequenceAttribute.Manifest != nil {
+			manifest8 = make([]string, 0, len(r.SequenceAttribute.Manifest))
+			for _, manifestItem8 := range r.SequenceAttribute.Manifest {
+				manifest8 = append(manifest8, manifestItem8.ValueString())
+			}
 		}
 		var constraints8 *shared.SequenceAttributeAttributeWithCompositeIDConstraints
 		if r.SequenceAttribute.Constraints != nil {
@@ -2229,7 +2262,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag8 = nil
 		}
-		var settingsFlag8 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag8 := make([]shared.SettingFlag, 0, len(r.SequenceAttribute.SettingsFlag))
 		for _, settingsFlagItem8 := range r.SequenceAttribute.SettingsFlag {
 			name17 := new(string)
 			if !settingsFlagItem8.Name.IsUnknown() && !settingsFlagItem8.Name.IsNull() {
@@ -2473,13 +2506,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition9 = nil
 		}
-		var purpose9 []string = []string{}
+		purpose9 := make([]string, 0, len(r.RelationAttribute.Purpose))
 		for _, purposeItem9 := range r.RelationAttribute.Purpose {
 			purpose9 = append(purpose9, purposeItem9.ValueString())
 		}
-		var manifest9 []string = []string{}
-		for _, manifestItem9 := range r.RelationAttribute.Manifest {
-			manifest9 = append(manifest9, manifestItem9.ValueString())
+		var manifest9 []string
+		if r.RelationAttribute.Manifest != nil {
+			manifest9 = make([]string, 0, len(r.RelationAttribute.Manifest))
+			for _, manifestItem9 := range r.RelationAttribute.Manifest {
+				manifest9 = append(manifest9, manifestItem9.ValueString())
+			}
 		}
 		var constraints9 *shared.RelationAttributeAttributeWithCompositeIDConstraints
 		if r.RelationAttribute.Constraints != nil {
@@ -2491,7 +2527,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag9 = nil
 		}
-		var settingsFlag9 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag9 := make([]shared.SettingFlag, 0, len(r.RelationAttribute.SettingsFlag))
 		for _, settingsFlagItem9 := range r.RelationAttribute.SettingsFlag {
 			name19 := new(string)
 			if !settingsFlagItem9.Name.IsUnknown() && !settingsFlagItem9.Name.IsNull() {
@@ -2626,7 +2662,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				Q: q,
 			}
 		}
-		var actions []shared.RelationAttributeActions = []shared.RelationAttributeActions{}
+		actions := make([]shared.RelationAttributeActions, 0, len(r.RelationAttribute.Actions))
 		for _, actionsItem := range r.RelationAttribute.Actions {
 			actionType := new(shared.RelationAttributeActionType)
 			if !actionsItem.ActionType.IsUnknown() && !actionsItem.ActionType.IsNull() {
@@ -2652,7 +2688,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			} else {
 				featureFlag10 = nil
 			}
-			var settingsFlag10 []shared.SettingFlag = []shared.SettingFlag{}
+			settingsFlag10 := make([]shared.SettingFlag, 0, len(actionsItem.SettingsFlag))
 			for _, settingsFlagItem10 := range actionsItem.SettingsFlag {
 				name20 := new(string)
 				if !settingsFlagItem10.Name.IsUnknown() && !settingsFlagItem10.Name.IsNull() {
@@ -2690,7 +2726,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			drawerSize = nil
 		}
-		var summaryFields []shared.RelationAttributeSummaryFields = []shared.RelationAttributeSummaryFields{}
+		summaryFields := make([]shared.RelationAttributeSummaryFields, 0, len(r.RelationAttribute.SummaryFields))
 		for _, summaryFieldsItem := range r.RelationAttribute.SummaryFields {
 			if !summaryFieldsItem.Str.IsUnknown() && !summaryFieldsItem.Str.IsNull() {
 				var str2 string
@@ -2722,7 +2758,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 				})
 			}
 		}
-		var allowedSchemas []string = []string{}
+		allowedSchemas := make([]string, 0, len(r.RelationAttribute.AllowedSchemas))
 		for _, allowedSchemasItem := range r.RelationAttribute.AllowedSchemas {
 			allowedSchemas = append(allowedSchemas, allowedSchemasItem.ValueString())
 		}
@@ -2899,13 +2935,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition10 = nil
 		}
-		var purpose10 []string = []string{}
+		purpose10 := make([]string, 0, len(r.UserRelationAttribute.Purpose))
 		for _, purposeItem10 := range r.UserRelationAttribute.Purpose {
 			purpose10 = append(purpose10, purposeItem10.ValueString())
 		}
-		var manifest10 []string = []string{}
-		for _, manifestItem10 := range r.UserRelationAttribute.Manifest {
-			manifest10 = append(manifest10, manifestItem10.ValueString())
+		var manifest10 []string
+		if r.UserRelationAttribute.Manifest != nil {
+			manifest10 = make([]string, 0, len(r.UserRelationAttribute.Manifest))
+			for _, manifestItem10 := range r.UserRelationAttribute.Manifest {
+				manifest10 = append(manifest10, manifestItem10.ValueString())
+			}
 		}
 		var constraints10 *shared.UserRelationAttributeAttributeWithCompositeIDConstraints
 		if r.UserRelationAttribute.Constraints != nil {
@@ -2917,7 +2956,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag11 = nil
 		}
-		var settingsFlag11 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag11 := make([]shared.SettingFlag, 0, len(r.UserRelationAttribute.SettingsFlag))
 		for _, settingsFlagItem11 := range r.UserRelationAttribute.SettingsFlag {
 			name22 := new(string)
 			if !settingsFlagItem11.Name.IsUnknown() && !settingsFlagItem11.Name.IsNull() {
@@ -3154,13 +3193,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition11 = nil
 		}
-		var purpose11 []string = []string{}
+		purpose11 := make([]string, 0, len(r.AddressAttribute.Purpose))
 		for _, purposeItem11 := range r.AddressAttribute.Purpose {
 			purpose11 = append(purpose11, purposeItem11.ValueString())
 		}
-		var manifest11 []string = []string{}
-		for _, manifestItem11 := range r.AddressAttribute.Manifest {
-			manifest11 = append(manifest11, manifestItem11.ValueString())
+		var manifest11 []string
+		if r.AddressAttribute.Manifest != nil {
+			manifest11 = make([]string, 0, len(r.AddressAttribute.Manifest))
+			for _, manifestItem11 := range r.AddressAttribute.Manifest {
+				manifest11 = append(manifest11, manifestItem11.ValueString())
+			}
 		}
 		var constraints11 *shared.AddressAttributeAttributeWithCompositeIDConstraints
 		if r.AddressAttribute.Constraints != nil {
@@ -3172,7 +3214,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag12 = nil
 		}
-		var settingsFlag12 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag12 := make([]shared.SettingFlag, 0, len(r.AddressAttribute.SettingsFlag))
 		for _, settingsFlagItem12 := range r.AddressAttribute.SettingsFlag {
 			name24 := new(string)
 			if !settingsFlagItem12.Name.IsUnknown() && !settingsFlagItem12.Name.IsNull() {
@@ -3261,9 +3303,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			hasPrimary11 = nil
 		}
 		typeVar11 := shared.AddressAttributeAttributeWithCompositeIDType(r.AddressAttribute.Type.ValueString())
-		var defaultAddressFields []string = []string{}
-		for _, defaultAddressFieldsItem := range r.AddressAttribute.DefaultAddressFields {
-			defaultAddressFields = append(defaultAddressFields, defaultAddressFieldsItem.ValueString())
+		var defaultAddressFields []string
+		if r.AddressAttribute.DefaultAddressFields != nil {
+			defaultAddressFields = make([]string, 0, len(r.AddressAttribute.DefaultAddressFields))
+			for _, defaultAddressFieldsItem := range r.AddressAttribute.DefaultAddressFields {
+				defaultAddressFields = append(defaultAddressFields, defaultAddressFieldsItem.ValueString())
+			}
 		}
 		schema11 := new(string)
 		if !r.AddressAttribute.Schema.IsUnknown() && !r.AddressAttribute.Schema.IsNull() {
@@ -3407,13 +3452,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition12 = nil
 		}
-		var purpose12 []string = []string{}
+		purpose12 := make([]string, 0, len(r.AddressRelationAttribute.Purpose))
 		for _, purposeItem12 := range r.AddressRelationAttribute.Purpose {
 			purpose12 = append(purpose12, purposeItem12.ValueString())
 		}
-		var manifest12 []string = []string{}
-		for _, manifestItem12 := range r.AddressRelationAttribute.Manifest {
-			manifest12 = append(manifest12, manifestItem12.ValueString())
+		var manifest12 []string
+		if r.AddressRelationAttribute.Manifest != nil {
+			manifest12 = make([]string, 0, len(r.AddressRelationAttribute.Manifest))
+			for _, manifestItem12 := range r.AddressRelationAttribute.Manifest {
+				manifest12 = append(manifest12, manifestItem12.ValueString())
+			}
 		}
 		var constraints12 *shared.AddressRelationAttributeAttributeWithCompositeIDConstraints
 		if r.AddressRelationAttribute.Constraints != nil {
@@ -3425,7 +3473,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag13 = nil
 		}
-		var settingsFlag13 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag13 := make([]shared.SettingFlag, 0, len(r.AddressRelationAttribute.SettingsFlag))
 		for _, settingsFlagItem13 := range r.AddressRelationAttribute.SettingsFlag {
 			name26 := new(string)
 			if !settingsFlagItem13.Name.IsUnknown() && !settingsFlagItem13.Name.IsNull() {
@@ -3514,9 +3562,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			hasPrimary12 = nil
 		}
 		typeVar12 := shared.AddressRelationAttributeAttributeWithCompositeIDType(r.AddressRelationAttribute.Type.ValueString())
-		var defaultAddressFields1 []string = []string{}
-		for _, defaultAddressFieldsItem1 := range r.AddressRelationAttribute.DefaultAddressFields {
-			defaultAddressFields1 = append(defaultAddressFields1, defaultAddressFieldsItem1.ValueString())
+		var defaultAddressFields1 []string
+		if r.AddressRelationAttribute.DefaultAddressFields != nil {
+			defaultAddressFields1 = make([]string, 0, len(r.AddressRelationAttribute.DefaultAddressFields))
+			for _, defaultAddressFieldsItem1 := range r.AddressRelationAttribute.DefaultAddressFields {
+				defaultAddressFields1 = append(defaultAddressFields1, defaultAddressFieldsItem1.ValueString())
+			}
 		}
 		schema12 := new(string)
 		if !r.AddressRelationAttribute.Schema.IsUnknown() && !r.AddressRelationAttribute.Schema.IsNull() {
@@ -3660,13 +3711,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition13 = nil
 		}
-		var purpose13 []string = []string{}
+		purpose13 := make([]string, 0, len(r.PaymentMethodRelationAttribute.Purpose))
 		for _, purposeItem13 := range r.PaymentMethodRelationAttribute.Purpose {
 			purpose13 = append(purpose13, purposeItem13.ValueString())
 		}
-		var manifest13 []string = []string{}
-		for _, manifestItem13 := range r.PaymentMethodRelationAttribute.Manifest {
-			manifest13 = append(manifest13, manifestItem13.ValueString())
+		var manifest13 []string
+		if r.PaymentMethodRelationAttribute.Manifest != nil {
+			manifest13 = make([]string, 0, len(r.PaymentMethodRelationAttribute.Manifest))
+			for _, manifestItem13 := range r.PaymentMethodRelationAttribute.Manifest {
+				manifest13 = append(manifest13, manifestItem13.ValueString())
+			}
 		}
 		var constraints13 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints
 		if r.PaymentMethodRelationAttribute.Constraints != nil {
@@ -3678,7 +3732,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag14 = nil
 		}
-		var settingsFlag14 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag14 := make([]shared.SettingFlag, 0, len(r.PaymentMethodRelationAttribute.SettingsFlag))
 		for _, settingsFlagItem14 := range r.PaymentMethodRelationAttribute.SettingsFlag {
 			name28 := new(string)
 			if !settingsFlagItem14.Name.IsUnknown() && !settingsFlagItem14.Name.IsNull() {
@@ -3908,13 +3962,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition14 = nil
 		}
-		var purpose14 []string = []string{}
+		purpose14 := make([]string, 0, len(r.CurrencyAttribute.Purpose))
 		for _, purposeItem14 := range r.CurrencyAttribute.Purpose {
 			purpose14 = append(purpose14, purposeItem14.ValueString())
 		}
-		var manifest14 []string = []string{}
-		for _, manifestItem14 := range r.CurrencyAttribute.Manifest {
-			manifest14 = append(manifest14, manifestItem14.ValueString())
+		var manifest14 []string
+		if r.CurrencyAttribute.Manifest != nil {
+			manifest14 = make([]string, 0, len(r.CurrencyAttribute.Manifest))
+			for _, manifestItem14 := range r.CurrencyAttribute.Manifest {
+				manifest14 = append(manifest14, manifestItem14.ValueString())
+			}
 		}
 		var constraints14 *shared.CurrencyAttributeAttributeWithCompositeIDConstraints
 		if r.CurrencyAttribute.Constraints != nil {
@@ -3926,7 +3983,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag15 = nil
 		}
-		var settingsFlag15 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag15 := make([]shared.SettingFlag, 0, len(r.CurrencyAttribute.SettingsFlag))
 		for _, settingsFlagItem15 := range r.CurrencyAttribute.SettingsFlag {
 			name30 := new(string)
 			if !settingsFlagItem15.Name.IsUnknown() && !settingsFlagItem15.Name.IsNull() {
@@ -4021,7 +4078,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			currencySelectorOnly = nil
 		}
-		var currency []shared.CurrencyAttributeCurrency = []shared.CurrencyAttributeCurrency{}
+		currency := make([]shared.CurrencyAttributeCurrency, 0, len(r.CurrencyAttribute.Currency))
 		for _, currencyItem := range r.CurrencyAttribute.Currency {
 			if currencyItem.One != nil {
 				var code string
@@ -4193,13 +4250,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition15 = nil
 		}
-		var purpose15 []string = []string{}
+		purpose15 := make([]string, 0, len(r.TagsAttribute.Purpose))
 		for _, purposeItem15 := range r.TagsAttribute.Purpose {
 			purpose15 = append(purpose15, purposeItem15.ValueString())
 		}
-		var manifest15 []string = []string{}
-		for _, manifestItem15 := range r.TagsAttribute.Manifest {
-			manifest15 = append(manifest15, manifestItem15.ValueString())
+		var manifest15 []string
+		if r.TagsAttribute.Manifest != nil {
+			manifest15 = make([]string, 0, len(r.TagsAttribute.Manifest))
+			for _, manifestItem15 := range r.TagsAttribute.Manifest {
+				manifest15 = append(manifest15, manifestItem15.ValueString())
+			}
 		}
 		var constraints15 *shared.TagsAttributeAttributeWithCompositeIDConstraints
 		if r.TagsAttribute.Constraints != nil {
@@ -4211,7 +4271,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag16 = nil
 		}
-		var settingsFlag16 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag16 := make([]shared.SettingFlag, 0, len(r.TagsAttribute.SettingsFlag))
 		for _, settingsFlagItem16 := range r.TagsAttribute.SettingsFlag {
 			name32 := new(string)
 			if !settingsFlagItem16.Name.IsUnknown() && !settingsFlagItem16.Name.IsNull() {
@@ -4300,11 +4360,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			hasPrimary15 = nil
 		}
 		typeVar15 := shared.TagsAttributeAttributeWithCompositeIDType(r.TagsAttribute.Type.ValueString())
-		var optionsVar3 []string = []string{}
+		optionsVar3 := make([]string, 0, len(r.TagsAttribute.Options))
 		for _, optionsItem2 := range r.TagsAttribute.Options {
 			optionsVar3 = append(optionsVar3, optionsItem2.ValueString())
 		}
-		var suggestions []string = []string{}
+		suggestions := make([]string, 0, len(r.TagsAttribute.Suggestions))
 		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
 			suggestions = append(suggestions, suggestionsItem.ValueString())
 		}
@@ -4451,13 +4511,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition16 = nil
 		}
-		var purpose16 []string = []string{}
+		purpose16 := make([]string, 0, len(r.MessageEmailAddressAttribute.Purpose))
 		for _, purposeItem16 := range r.MessageEmailAddressAttribute.Purpose {
 			purpose16 = append(purpose16, purposeItem16.ValueString())
 		}
-		var manifest16 []string = []string{}
-		for _, manifestItem16 := range r.MessageEmailAddressAttribute.Manifest {
-			manifest16 = append(manifest16, manifestItem16.ValueString())
+		var manifest16 []string
+		if r.MessageEmailAddressAttribute.Manifest != nil {
+			manifest16 = make([]string, 0, len(r.MessageEmailAddressAttribute.Manifest))
+			for _, manifestItem16 := range r.MessageEmailAddressAttribute.Manifest {
+				manifest16 = append(manifest16, manifestItem16.ValueString())
+			}
 		}
 		var constraints16 *shared.MessageEmailAddressAttributeAttributeWithCompositeIDConstraints
 		if r.MessageEmailAddressAttribute.Constraints != nil {
@@ -4469,7 +4532,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag17 = nil
 		}
-		var settingsFlag17 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag17 := make([]shared.SettingFlag, 0, len(r.MessageEmailAddressAttribute.SettingsFlag))
 		for _, settingsFlagItem17 := range r.MessageEmailAddressAttribute.SettingsFlag {
 			name34 := new(string)
 			if !settingsFlagItem17.Name.IsUnknown() && !settingsFlagItem17.Name.IsNull() {
@@ -4720,13 +4783,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition17 = nil
 		}
-		var purpose17 []string = []string{}
+		purpose17 := make([]string, 0, len(r.NumberAttribute.Purpose))
 		for _, purposeItem17 := range r.NumberAttribute.Purpose {
 			purpose17 = append(purpose17, purposeItem17.ValueString())
 		}
-		var manifest17 []string = []string{}
-		for _, manifestItem17 := range r.NumberAttribute.Manifest {
-			manifest17 = append(manifest17, manifestItem17.ValueString())
+		var manifest17 []string
+		if r.NumberAttribute.Manifest != nil {
+			manifest17 = make([]string, 0, len(r.NumberAttribute.Manifest))
+			for _, manifestItem17 := range r.NumberAttribute.Manifest {
+				manifest17 = append(manifest17, manifestItem17.ValueString())
+			}
 		}
 		var constraints17 *shared.NumberAttributeAttributeWithCompositeIDConstraints
 		if r.NumberAttribute.Constraints != nil {
@@ -4738,7 +4804,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag18 = nil
 		}
-		var settingsFlag18 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag18 := make([]shared.SettingFlag, 0, len(r.NumberAttribute.SettingsFlag))
 		for _, settingsFlagItem18 := range r.NumberAttribute.SettingsFlag {
 			name36 := new(string)
 			if !settingsFlagItem18.Name.IsUnknown() && !settingsFlagItem18.Name.IsNull() {
@@ -4982,13 +5048,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition18 = nil
 		}
-		var purpose18 []string = []string{}
+		purpose18 := make([]string, 0, len(r.ConsentAttribute.Purpose))
 		for _, purposeItem18 := range r.ConsentAttribute.Purpose {
 			purpose18 = append(purpose18, purposeItem18.ValueString())
 		}
-		var manifest18 []string = []string{}
-		for _, manifestItem18 := range r.ConsentAttribute.Manifest {
-			manifest18 = append(manifest18, manifestItem18.ValueString())
+		var manifest18 []string
+		if r.ConsentAttribute.Manifest != nil {
+			manifest18 = make([]string, 0, len(r.ConsentAttribute.Manifest))
+			for _, manifestItem18 := range r.ConsentAttribute.Manifest {
+				manifest18 = append(manifest18, manifestItem18.ValueString())
+			}
 		}
 		var constraints18 *shared.ConsentAttributeAttributeWithCompositeIDConstraints
 		if r.ConsentAttribute.Constraints != nil {
@@ -5000,7 +5069,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag19 = nil
 		}
-		var settingsFlag19 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag19 := make([]shared.SettingFlag, 0, len(r.ConsentAttribute.SettingsFlag))
 		for _, settingsFlagItem19 := range r.ConsentAttribute.SettingsFlag {
 			name38 := new(string)
 			if !settingsFlagItem19.Name.IsUnknown() && !settingsFlagItem19.Name.IsNull() {
@@ -5092,7 +5161,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		var topic string
 		topic = r.ConsentAttribute.Topic.ValueString()
 
-		var identifiers []string = []string{}
+		identifiers := make([]string, 0, len(r.ConsentAttribute.Identifiers))
 		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
 			identifiers = append(identifiers, identifiersItem.ValueString())
 		}
@@ -5239,13 +5308,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition19 = nil
 		}
-		var purpose19 []string = []string{}
+		purpose19 := make([]string, 0, len(r.InternalAttribute.Purpose))
 		for _, purposeItem19 := range r.InternalAttribute.Purpose {
 			purpose19 = append(purpose19, purposeItem19.ValueString())
 		}
-		var manifest19 []string = []string{}
-		for _, manifestItem19 := range r.InternalAttribute.Manifest {
-			manifest19 = append(manifest19, manifestItem19.ValueString())
+		var manifest19 []string
+		if r.InternalAttribute.Manifest != nil {
+			manifest19 = make([]string, 0, len(r.InternalAttribute.Manifest))
+			for _, manifestItem19 := range r.InternalAttribute.Manifest {
+				manifest19 = append(manifest19, manifestItem19.ValueString())
+			}
 		}
 		var constraints19 *shared.InternalAttributeAttributeWithCompositeIDConstraints
 		if r.InternalAttribute.Constraints != nil {
@@ -5257,7 +5329,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag20 = nil
 		}
-		var settingsFlag20 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag20 := make([]shared.SettingFlag, 0, len(r.InternalAttribute.SettingsFlag))
 		for _, settingsFlagItem20 := range r.InternalAttribute.SettingsFlag {
 			name40 := new(string)
 			if !settingsFlagItem20.Name.IsUnknown() && !settingsFlagItem20.Name.IsNull() {
@@ -5487,13 +5559,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition20 = nil
 		}
-		var purpose20 []string = []string{}
+		purpose20 := make([]string, 0, len(r.OrderedListAttribute.Purpose))
 		for _, purposeItem20 := range r.OrderedListAttribute.Purpose {
 			purpose20 = append(purpose20, purposeItem20.ValueString())
 		}
-		var manifest20 []string = []string{}
-		for _, manifestItem20 := range r.OrderedListAttribute.Manifest {
-			manifest20 = append(manifest20, manifestItem20.ValueString())
+		var manifest20 []string
+		if r.OrderedListAttribute.Manifest != nil {
+			manifest20 = make([]string, 0, len(r.OrderedListAttribute.Manifest))
+			for _, manifestItem20 := range r.OrderedListAttribute.Manifest {
+				manifest20 = append(manifest20, manifestItem20.ValueString())
+			}
 		}
 		var constraints20 *shared.OrderedListAttributeAttributeWithCompositeIDConstraints
 		if r.OrderedListAttribute.Constraints != nil {
@@ -5505,7 +5580,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag21 = nil
 		}
-		var settingsFlag21 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag21 := make([]shared.SettingFlag, 0, len(r.OrderedListAttribute.SettingsFlag))
 		for _, settingsFlagItem21 := range r.OrderedListAttribute.SettingsFlag {
 			name42 := new(string)
 			if !settingsFlagItem21.Name.IsUnknown() && !settingsFlagItem21.Name.IsNull() {
@@ -5735,13 +5810,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition21 = nil
 		}
-		var purpose21 []string = []string{}
+		purpose21 := make([]string, 0, len(r.FileAttribute.Purpose))
 		for _, purposeItem21 := range r.FileAttribute.Purpose {
 			purpose21 = append(purpose21, purposeItem21.ValueString())
 		}
-		var manifest21 []string = []string{}
-		for _, manifestItem21 := range r.FileAttribute.Manifest {
-			manifest21 = append(manifest21, manifestItem21.ValueString())
+		var manifest21 []string
+		if r.FileAttribute.Manifest != nil {
+			manifest21 = make([]string, 0, len(r.FileAttribute.Manifest))
+			for _, manifestItem21 := range r.FileAttribute.Manifest {
+				manifest21 = append(manifest21, manifestItem21.ValueString())
+			}
 		}
 		var constraints21 *shared.FileAttributeAttributeWithCompositeIDConstraints
 		if r.FileAttribute.Constraints != nil {
@@ -5753,7 +5831,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag22 = nil
 		}
-		var settingsFlag22 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag22 := make([]shared.SettingFlag, 0, len(r.FileAttribute.SettingsFlag))
 		for _, settingsFlagItem22 := range r.FileAttribute.SettingsFlag {
 			name44 := new(string)
 			if !settingsFlagItem22.Name.IsUnknown() && !settingsFlagItem22.Name.IsNull() {
@@ -5848,7 +5926,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			multiple1 = nil
 		}
-		var allowedExtensions []string = []string{}
+		allowedExtensions := make([]string, 0, len(r.FileAttribute.AllowedExtensions))
 		for _, allowedExtensionsItem := range r.FileAttribute.AllowedExtensions {
 			allowedExtensions = append(allowedExtensions, allowedExtensionsItem.ValueString())
 		}
@@ -6016,13 +6094,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition22 = nil
 		}
-		var purpose22 []string = []string{}
+		purpose22 := make([]string, 0, len(r.ComputedAttribute.Purpose))
 		for _, purposeItem22 := range r.ComputedAttribute.Purpose {
 			purpose22 = append(purpose22, purposeItem22.ValueString())
 		}
-		var manifest22 []string = []string{}
-		for _, manifestItem22 := range r.ComputedAttribute.Manifest {
-			manifest22 = append(manifest22, manifestItem22.ValueString())
+		var manifest22 []string
+		if r.ComputedAttribute.Manifest != nil {
+			manifest22 = make([]string, 0, len(r.ComputedAttribute.Manifest))
+			for _, manifestItem22 := range r.ComputedAttribute.Manifest {
+				manifest22 = append(manifest22, manifestItem22.ValueString())
+			}
 		}
 		var constraints22 *shared.ComputedAttributeAttributeWithCompositeIDConstraints
 		if r.ComputedAttribute.Constraints != nil {
@@ -6034,7 +6115,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag23 = nil
 		}
-		var settingsFlag23 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag23 := make([]shared.SettingFlag, 0, len(r.ComputedAttribute.SettingsFlag))
 		for _, settingsFlagItem23 := range r.ComputedAttribute.SettingsFlag {
 			name46 := new(string)
 			if !settingsFlagItem23.Name.IsUnknown() && !settingsFlagItem23.Name.IsNull() {
@@ -6282,13 +6363,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition23 = nil
 		}
-		var purpose23 []string = []string{}
+		purpose23 := make([]string, 0, len(r.PartnerStatusAttribute.Purpose))
 		for _, purposeItem23 := range r.PartnerStatusAttribute.Purpose {
 			purpose23 = append(purpose23, purposeItem23.ValueString())
 		}
-		var manifest23 []string = []string{}
-		for _, manifestItem23 := range r.PartnerStatusAttribute.Manifest {
-			manifest23 = append(manifest23, manifestItem23.ValueString())
+		var manifest23 []string
+		if r.PartnerStatusAttribute.Manifest != nil {
+			manifest23 = make([]string, 0, len(r.PartnerStatusAttribute.Manifest))
+			for _, manifestItem23 := range r.PartnerStatusAttribute.Manifest {
+				manifest23 = append(manifest23, manifestItem23.ValueString())
+			}
 		}
 		var constraints23 *shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints
 		if r.PartnerStatusAttribute.Constraints != nil {
@@ -6300,7 +6384,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag24 = nil
 		}
-		var settingsFlag24 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag24 := make([]shared.SettingFlag, 0, len(r.PartnerStatusAttribute.SettingsFlag))
 		for _, settingsFlagItem24 := range r.PartnerStatusAttribute.SettingsFlag {
 			name48 := new(string)
 			if !settingsFlagItem24.Name.IsUnknown() && !settingsFlagItem24.Name.IsNull() {
@@ -6530,13 +6614,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition24 = nil
 		}
-		var purpose24 []string = []string{}
+		purpose24 := make([]string, 0, len(r.InvitationEmailAttribute.Purpose))
 		for _, purposeItem24 := range r.InvitationEmailAttribute.Purpose {
 			purpose24 = append(purpose24, purposeItem24.ValueString())
 		}
-		var manifest24 []string = []string{}
-		for _, manifestItem24 := range r.InvitationEmailAttribute.Manifest {
-			manifest24 = append(manifest24, manifestItem24.ValueString())
+		var manifest24 []string
+		if r.InvitationEmailAttribute.Manifest != nil {
+			manifest24 = make([]string, 0, len(r.InvitationEmailAttribute.Manifest))
+			for _, manifestItem24 := range r.InvitationEmailAttribute.Manifest {
+				manifest24 = append(manifest24, manifestItem24.ValueString())
+			}
 		}
 		var constraints24 *shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints
 		if r.InvitationEmailAttribute.Constraints != nil {
@@ -6548,7 +6635,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag25 = nil
 		}
-		var settingsFlag25 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag25 := make([]shared.SettingFlag, 0, len(r.InvitationEmailAttribute.SettingsFlag))
 		for _, settingsFlagItem25 := range r.InvitationEmailAttribute.SettingsFlag {
 			name50 := new(string)
 			if !settingsFlagItem25.Name.IsUnknown() && !settingsFlagItem25.Name.IsNull() {
@@ -6778,13 +6865,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition25 = nil
 		}
-		var purpose25 []string = []string{}
+		purpose25 := make([]string, 0, len(r.AutomationAttribute.Purpose))
 		for _, purposeItem25 := range r.AutomationAttribute.Purpose {
 			purpose25 = append(purpose25, purposeItem25.ValueString())
 		}
-		var manifest25 []string = []string{}
-		for _, manifestItem25 := range r.AutomationAttribute.Manifest {
-			manifest25 = append(manifest25, manifestItem25.ValueString())
+		var manifest25 []string
+		if r.AutomationAttribute.Manifest != nil {
+			manifest25 = make([]string, 0, len(r.AutomationAttribute.Manifest))
+			for _, manifestItem25 := range r.AutomationAttribute.Manifest {
+				manifest25 = append(manifest25, manifestItem25.ValueString())
+			}
 		}
 		var constraints25 *shared.AutomationAttributeAttributeWithCompositeIDConstraints
 		if r.AutomationAttribute.Constraints != nil {
@@ -6796,7 +6886,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag26 = nil
 		}
-		var settingsFlag26 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag26 := make([]shared.SettingFlag, 0, len(r.AutomationAttribute.SettingsFlag))
 		for _, settingsFlagItem26 := range r.AutomationAttribute.SettingsFlag {
 			name52 := new(string)
 			if !settingsFlagItem26.Name.IsUnknown() && !settingsFlagItem26.Name.IsNull() {
@@ -7026,13 +7116,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition26 = nil
 		}
-		var purpose26 []string = []string{}
+		purpose26 := make([]string, 0, len(r.InternalUserAttribute.Purpose))
 		for _, purposeItem26 := range r.InternalUserAttribute.Purpose {
 			purpose26 = append(purpose26, purposeItem26.ValueString())
 		}
-		var manifest26 []string = []string{}
-		for _, manifestItem26 := range r.InternalUserAttribute.Manifest {
-			manifest26 = append(manifest26, manifestItem26.ValueString())
+		var manifest26 []string
+		if r.InternalUserAttribute.Manifest != nil {
+			manifest26 = make([]string, 0, len(r.InternalUserAttribute.Manifest))
+			for _, manifestItem26 := range r.InternalUserAttribute.Manifest {
+				manifest26 = append(manifest26, manifestItem26.ValueString())
+			}
 		}
 		var constraints26 *shared.InternalUserAttributeAttributeWithCompositeIDConstraints
 		if r.InternalUserAttribute.Constraints != nil {
@@ -7044,7 +7137,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag27 = nil
 		}
-		var settingsFlag27 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag27 := make([]shared.SettingFlag, 0, len(r.InternalUserAttribute.SettingsFlag))
 		for _, settingsFlagItem27 := range r.InternalUserAttribute.SettingsFlag {
 			name54 := new(string)
 			if !settingsFlagItem27.Name.IsUnknown() && !settingsFlagItem27.Name.IsNull() {
@@ -7180,12 +7273,6 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDPurposeAttributeInput *shared.AttributeWithCompositeIDPurposeAttributeInput
 	if r.PurposeAttribute != nil {
-		id27 := new(string)
-		if !r.PurposeAttribute.ID.IsUnknown() && !r.PurposeAttribute.ID.IsNull() {
-			*id27 = r.PurposeAttribute.ID.ValueString()
-		} else {
-			id27 = nil
-		}
 		var name55 string
 		name55 = r.PurposeAttribute.Name.ValueString()
 
@@ -7274,13 +7361,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition27 = nil
 		}
-		var purpose27 []string = []string{}
+		purpose27 := make([]string, 0, len(r.PurposeAttribute.Purpose))
 		for _, purposeItem27 := range r.PurposeAttribute.Purpose {
 			purpose27 = append(purpose27, purposeItem27.ValueString())
 		}
-		var manifest27 []string = []string{}
-		for _, manifestItem27 := range r.PurposeAttribute.Manifest {
-			manifest27 = append(manifest27, manifestItem27.ValueString())
+		var manifest27 []string
+		if r.PurposeAttribute.Manifest != nil {
+			manifest27 = make([]string, 0, len(r.PurposeAttribute.Manifest))
+			for _, manifestItem27 := range r.PurposeAttribute.Manifest {
+				manifest27 = append(manifest27, manifestItem27.ValueString())
+			}
 		}
 		var constraints27 *shared.PurposeAttributeAttributeWithCompositeIDConstraints
 		if r.PurposeAttribute.Constraints != nil {
@@ -7292,7 +7382,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag28 = nil
 		}
-		var settingsFlag28 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag28 := make([]shared.SettingFlag, 0, len(r.PurposeAttribute.SettingsFlag))
 		for _, settingsFlagItem28 := range r.PurposeAttribute.SettingsFlag {
 			name56 := new(string)
 			if !settingsFlagItem28.Name.IsUnknown() && !settingsFlagItem28.Name.IsNull() {
@@ -7386,7 +7476,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			slug = nil
 		}
-		var parents []string = []string{}
+		parents := make([]string, 0, len(r.PurposeAttribute.Parents))
 		for _, parentsItem := range r.PurposeAttribute.Parents {
 			parents = append(parents, parentsItem.ValueString())
 		}
@@ -7422,7 +7512,6 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema27 = nil
 		}
 		attributeWithCompositeIDPurposeAttributeInput = &shared.AttributeWithCompositeIDPurposeAttributeInput{
-			ID:                       id27,
 			Name:                     name55,
 			Label:                    label28,
 			Placeholder:              placeholder27,
@@ -7468,11 +7557,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDPartnerOrganisationAttributeInput *shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput
 	if r.PartnerOrganisationAttribute != nil {
-		id28 := new(string)
+		id27 := new(string)
 		if !r.PartnerOrganisationAttribute.ID.IsUnknown() && !r.PartnerOrganisationAttribute.ID.IsNull() {
-			*id28 = r.PartnerOrganisationAttribute.ID.ValueString()
+			*id27 = r.PartnerOrganisationAttribute.ID.ValueString()
 		} else {
-			id28 = nil
+			id27 = nil
 		}
 		var name57 string
 		name57 = r.PartnerOrganisationAttribute.Name.ValueString()
@@ -7562,13 +7651,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition28 = nil
 		}
-		var purpose28 []string = []string{}
+		purpose28 := make([]string, 0, len(r.PartnerOrganisationAttribute.Purpose))
 		for _, purposeItem28 := range r.PartnerOrganisationAttribute.Purpose {
 			purpose28 = append(purpose28, purposeItem28.ValueString())
 		}
-		var manifest28 []string = []string{}
-		for _, manifestItem28 := range r.PartnerOrganisationAttribute.Manifest {
-			manifest28 = append(manifest28, manifestItem28.ValueString())
+		var manifest28 []string
+		if r.PartnerOrganisationAttribute.Manifest != nil {
+			manifest28 = make([]string, 0, len(r.PartnerOrganisationAttribute.Manifest))
+			for _, manifestItem28 := range r.PartnerOrganisationAttribute.Manifest {
+				manifest28 = append(manifest28, manifestItem28.ValueString())
+			}
 		}
 		var constraints28 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints
 		if r.PartnerOrganisationAttribute.Constraints != nil {
@@ -7580,7 +7672,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag29 = nil
 		}
-		var settingsFlag29 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag29 := make([]shared.SettingFlag, 0, len(r.PartnerOrganisationAttribute.SettingsFlag))
 		for _, settingsFlagItem29 := range r.PartnerOrganisationAttribute.SettingsFlag {
 			name58 := new(string)
 			if !settingsFlagItem29.Name.IsUnknown() && !settingsFlagItem29.Name.IsNull() {
@@ -7676,7 +7768,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema28 = nil
 		}
 		attributeWithCompositeIDPartnerOrganisationAttributeInput = &shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput{
-			ID:                       id28,
+			ID:                       id27,
 			Name:                     name57,
 			Label:                    label29,
 			Placeholder:              placeholder28,
@@ -7716,11 +7808,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDPhoneAttributeInput *shared.AttributeWithCompositeIDPhoneAttributeInput
 	if r.PhoneAttribute != nil {
-		id29 := new(string)
+		id28 := new(string)
 		if !r.PhoneAttribute.ID.IsUnknown() && !r.PhoneAttribute.ID.IsNull() {
-			*id29 = r.PhoneAttribute.ID.ValueString()
+			*id28 = r.PhoneAttribute.ID.ValueString()
 		} else {
-			id29 = nil
+			id28 = nil
 		}
 		var name59 string
 		name59 = r.PhoneAttribute.Name.ValueString()
@@ -7810,13 +7902,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition29 = nil
 		}
-		var purpose29 []string = []string{}
+		purpose29 := make([]string, 0, len(r.PhoneAttribute.Purpose))
 		for _, purposeItem29 := range r.PhoneAttribute.Purpose {
 			purpose29 = append(purpose29, purposeItem29.ValueString())
 		}
-		var manifest29 []string = []string{}
-		for _, manifestItem29 := range r.PhoneAttribute.Manifest {
-			manifest29 = append(manifest29, manifestItem29.ValueString())
+		var manifest29 []string
+		if r.PhoneAttribute.Manifest != nil {
+			manifest29 = make([]string, 0, len(r.PhoneAttribute.Manifest))
+			for _, manifestItem29 := range r.PhoneAttribute.Manifest {
+				manifest29 = append(manifest29, manifestItem29.ValueString())
+			}
 		}
 		var constraints29 *shared.PhoneAttributeAttributeWithCompositeIDConstraints
 		if r.PhoneAttribute.Constraints != nil {
@@ -7828,7 +7923,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag30 = nil
 		}
-		var settingsFlag30 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag30 := make([]shared.SettingFlag, 0, len(r.PhoneAttribute.SettingsFlag))
 		for _, settingsFlagItem30 := range r.PhoneAttribute.SettingsFlag {
 			name60 := new(string)
 			if !settingsFlagItem30.Name.IsUnknown() && !settingsFlagItem30.Name.IsNull() {
@@ -7924,7 +8019,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema29 = nil
 		}
 		attributeWithCompositeIDPhoneAttributeInput = &shared.AttributeWithCompositeIDPhoneAttributeInput{
-			ID:                       id29,
+			ID:                       id28,
 			Name:                     name59,
 			Label:                    label30,
 			Placeholder:              placeholder29,
@@ -7964,11 +8059,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDEmailAttributeInput *shared.AttributeWithCompositeIDEmailAttributeInput
 	if r.EmailAttribute != nil {
-		id30 := new(string)
+		id29 := new(string)
 		if !r.EmailAttribute.ID.IsUnknown() && !r.EmailAttribute.ID.IsNull() {
-			*id30 = r.EmailAttribute.ID.ValueString()
+			*id29 = r.EmailAttribute.ID.ValueString()
 		} else {
-			id30 = nil
+			id29 = nil
 		}
 		var name61 string
 		name61 = r.EmailAttribute.Name.ValueString()
@@ -8058,13 +8153,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition30 = nil
 		}
-		var purpose30 []string = []string{}
+		purpose30 := make([]string, 0, len(r.EmailAttribute.Purpose))
 		for _, purposeItem30 := range r.EmailAttribute.Purpose {
 			purpose30 = append(purpose30, purposeItem30.ValueString())
 		}
-		var manifest30 []string = []string{}
-		for _, manifestItem30 := range r.EmailAttribute.Manifest {
-			manifest30 = append(manifest30, manifestItem30.ValueString())
+		var manifest30 []string
+		if r.EmailAttribute.Manifest != nil {
+			manifest30 = make([]string, 0, len(r.EmailAttribute.Manifest))
+			for _, manifestItem30 := range r.EmailAttribute.Manifest {
+				manifest30 = append(manifest30, manifestItem30.ValueString())
+			}
 		}
 		var constraints30 *shared.EmailAttributeAttributeWithCompositeIDConstraints
 		if r.EmailAttribute.Constraints != nil {
@@ -8076,7 +8174,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag31 = nil
 		}
-		var settingsFlag31 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag31 := make([]shared.SettingFlag, 0, len(r.EmailAttribute.SettingsFlag))
 		for _, settingsFlagItem31 := range r.EmailAttribute.SettingsFlag {
 			name62 := new(string)
 			if !settingsFlagItem31.Name.IsUnknown() && !settingsFlagItem31.Name.IsNull() {
@@ -8172,7 +8270,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema30 = nil
 		}
 		attributeWithCompositeIDEmailAttributeInput = &shared.AttributeWithCompositeIDEmailAttributeInput{
-			ID:                       id30,
+			ID:                       id29,
 			Name:                     name61,
 			Label:                    label31,
 			Placeholder:              placeholder30,
@@ -8212,11 +8310,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDPaymentAttributeInput *shared.AttributeWithCompositeIDPaymentAttributeInput
 	if r.PaymentAttribute != nil {
-		id31 := new(string)
+		id30 := new(string)
 		if !r.PaymentAttribute.ID.IsUnknown() && !r.PaymentAttribute.ID.IsNull() {
-			*id31 = r.PaymentAttribute.ID.ValueString()
+			*id30 = r.PaymentAttribute.ID.ValueString()
 		} else {
-			id31 = nil
+			id30 = nil
 		}
 		var name63 string
 		name63 = r.PaymentAttribute.Name.ValueString()
@@ -8306,13 +8404,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition31 = nil
 		}
-		var purpose31 []string = []string{}
+		purpose31 := make([]string, 0, len(r.PaymentAttribute.Purpose))
 		for _, purposeItem31 := range r.PaymentAttribute.Purpose {
 			purpose31 = append(purpose31, purposeItem31.ValueString())
 		}
-		var manifest31 []string = []string{}
-		for _, manifestItem31 := range r.PaymentAttribute.Manifest {
-			manifest31 = append(manifest31, manifestItem31.ValueString())
+		var manifest31 []string
+		if r.PaymentAttribute.Manifest != nil {
+			manifest31 = make([]string, 0, len(r.PaymentAttribute.Manifest))
+			for _, manifestItem31 := range r.PaymentAttribute.Manifest {
+				manifest31 = append(manifest31, manifestItem31.ValueString())
+			}
 		}
 		var constraints31 *shared.PaymentAttributeAttributeWithCompositeIDConstraints
 		if r.PaymentAttribute.Constraints != nil {
@@ -8324,7 +8425,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag32 = nil
 		}
-		var settingsFlag32 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag32 := make([]shared.SettingFlag, 0, len(r.PaymentAttribute.SettingsFlag))
 		for _, settingsFlagItem32 := range r.PaymentAttribute.SettingsFlag {
 			name64 := new(string)
 			if !settingsFlagItem32.Name.IsUnknown() && !settingsFlagItem32.Name.IsNull() {
@@ -8420,7 +8521,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema31 = nil
 		}
 		attributeWithCompositeIDPaymentAttributeInput = &shared.AttributeWithCompositeIDPaymentAttributeInput{
-			ID:                       id31,
+			ID:                       id30,
 			Name:                     name63,
 			Label:                    label32,
 			Placeholder:              placeholder31,
@@ -8460,11 +8561,11 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 	}
 	var attributeWithCompositeIDPriceComponentAttributeInput *shared.AttributeWithCompositeIDPriceComponentAttributeInput
 	if r.PriceComponentAttribute != nil {
-		id32 := new(string)
+		id31 := new(string)
 		if !r.PriceComponentAttribute.ID.IsUnknown() && !r.PriceComponentAttribute.ID.IsNull() {
-			*id32 = r.PriceComponentAttribute.ID.ValueString()
+			*id31 = r.PriceComponentAttribute.ID.ValueString()
 		} else {
-			id32 = nil
+			id31 = nil
 		}
 		var name65 string
 		name65 = r.PriceComponentAttribute.Name.ValueString()
@@ -8554,13 +8655,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			renderCondition32 = nil
 		}
-		var purpose32 []string = []string{}
+		purpose32 := make([]string, 0, len(r.PriceComponentAttribute.Purpose))
 		for _, purposeItem32 := range r.PriceComponentAttribute.Purpose {
 			purpose32 = append(purpose32, purposeItem32.ValueString())
 		}
-		var manifest32 []string = []string{}
-		for _, manifestItem32 := range r.PriceComponentAttribute.Manifest {
-			manifest32 = append(manifest32, manifestItem32.ValueString())
+		var manifest32 []string
+		if r.PriceComponentAttribute.Manifest != nil {
+			manifest32 = make([]string, 0, len(r.PriceComponentAttribute.Manifest))
+			for _, manifestItem32 := range r.PriceComponentAttribute.Manifest {
+				manifest32 = append(manifest32, manifestItem32.ValueString())
+			}
 		}
 		var constraints32 *shared.PriceComponentAttributeAttributeWithCompositeIDConstraints
 		if r.PriceComponentAttribute.Constraints != nil {
@@ -8572,7 +8676,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 		} else {
 			featureFlag33 = nil
 		}
-		var settingsFlag33 []shared.SettingFlag = []shared.SettingFlag{}
+		settingsFlag33 := make([]shared.SettingFlag, 0, len(r.PriceComponentAttribute.SettingsFlag))
 		for _, settingsFlagItem33 := range r.PriceComponentAttribute.SettingsFlag {
 			name66 := new(string)
 			if !settingsFlagItem33.Name.IsUnknown() && !settingsFlagItem33.Name.IsNull() {
@@ -8668,7 +8772,7 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			schema32 = nil
 		}
 		attributeWithCompositeIDPriceComponentAttributeInput = &shared.AttributeWithCompositeIDPriceComponentAttributeInput{
-			ID:                       id32,
+			ID:                       id31,
 			Name:                     name65,
 			Label:                    label33,
 			Placeholder:              placeholder32,
@@ -8706,12 +8810,61 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput() *
 			AttributeWithCompositeIDPriceComponentAttributeInput: attributeWithCompositeIDPriceComponentAttributeInput,
 		}
 	}
-	return &out
+
+	return &out, diags
 }
 
-func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID(resp *shared.AttributeWithCompositeID) {
-	if resp == nil {
-	} else {
+func (r *SchemaAttributeResourceModel) ToOperationsPutSchemaAttributeRequest(ctx context.Context) (*operations.PutSchemaAttributeRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	attributeWithCompositeID, attributeWithCompositeIDDiags := r.ToSharedAttributeWithCompositeIDInput(ctx)
+	diags.Append(attributeWithCompositeIDDiags...)
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	out := operations.PutSchemaAttributeRequest{
+		CompositeID:              compositeID,
+		AttributeWithCompositeID: attributeWithCompositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaAttributeResourceModel) ToOperationsGetSchemaAttributeRequest(ctx context.Context) (*operations.GetSchemaAttributeRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.GetSchemaAttributeRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaAttributeResourceModel) ToOperationsDeleteSchemaAttributeRequest(ctx context.Context) (*operations.DeleteSchemaAttributeRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.DeleteSchemaAttributeRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID(ctx context.Context, resp *shared.AttributeWithCompositeID) diag.Diagnostics {
+	var diags diag.Diagnostics
+
+	if resp != nil {
 		if resp.AttributeWithCompositeIDAddressAttribute != nil {
 			r.AddressAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
 			if resp.AttributeWithCompositeIDAddressAttribute.Manifest != nil {
@@ -8799,14 +8952,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.AddressAttribute.SettingsFlag = r.AddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount, settingsFlagItem := range resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag {
-				var settingsFlag1 tfTypes.SettingFlag
-				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
+				var settingsFlag tfTypes.SettingFlag
+				settingsFlag.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+				settingsFlag.Name = types.StringPointerValue(settingsFlagItem.Name)
 				if settingsFlagCount+1 > len(r.AddressAttribute.SettingsFlag) {
-					r.AddressAttribute.SettingsFlag = append(r.AddressAttribute.SettingsFlag, settingsFlag1)
+					r.AddressAttribute.SettingsFlag = append(r.AddressAttribute.SettingsFlag, settingsFlag)
 				} else {
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
+					r.AddressAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag.Enabled
+					r.AddressAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag.Name
 				}
 			}
 			r.AddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ShowInTable)
@@ -8904,14 +9057,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.AddressRelationAttribute.SettingsFlag = r.AddressRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount1, settingsFlagItem1 := range resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag {
-				var settingsFlag3 tfTypes.SettingFlag
-				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
-				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
+				var settingsFlag1 tfTypes.SettingFlag
+				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
+				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem1.Name)
 				if settingsFlagCount1+1 > len(r.AddressRelationAttribute.SettingsFlag) {
-					r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag3)
+					r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag1)
 				} else {
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
+					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag1.Enabled
+					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag1.Name
 				}
 			}
 			r.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ShowInTable)
@@ -9003,14 +9156,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.AutomationAttribute.SettingsFlag = r.AutomationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount2, settingsFlagItem2 := range resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag {
-				var settingsFlag5 tfTypes.SettingFlag
-				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
-				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
+				var settingsFlag2 tfTypes.SettingFlag
+				settingsFlag2.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
+				settingsFlag2.Name = types.StringPointerValue(settingsFlagItem2.Name)
 				if settingsFlagCount2+1 > len(r.AutomationAttribute.SettingsFlag) {
-					r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag5)
+					r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag2)
 				} else {
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
+					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag2.Enabled
+					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag2.Name
 				}
 			}
 			r.AutomationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ShowInTable)
@@ -9107,14 +9260,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.BooleanAttribute.SettingsFlag = r.BooleanAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount3, settingsFlagItem3 := range resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag {
-				var settingsFlag7 tfTypes.SettingFlag
-				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
-				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
+				var settingsFlag3 tfTypes.SettingFlag
+				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
+				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem3.Name)
 				if settingsFlagCount3+1 > len(r.BooleanAttribute.SettingsFlag) {
-					r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag7)
+					r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag3)
 				} else {
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
+					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag3.Enabled
+					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag3.Name
 				}
 			}
 			r.BooleanAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ShowInTable)
@@ -9209,14 +9362,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.ComputedAttribute.SettingsFlag = r.ComputedAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount4, settingsFlagItem4 := range resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag {
-				var settingsFlag9 tfTypes.SettingFlag
-				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
-				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
+				var settingsFlag4 tfTypes.SettingFlag
+				settingsFlag4.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
+				settingsFlag4.Name = types.StringPointerValue(settingsFlagItem4.Name)
 				if settingsFlagCount4+1 > len(r.ComputedAttribute.SettingsFlag) {
-					r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag9)
+					r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag4)
 				} else {
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
+					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag4.Enabled
+					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag4.Name
 				}
 			}
 			r.ComputedAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ShowInTable)
@@ -9312,14 +9465,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.ConsentAttribute.SettingsFlag = r.ConsentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount5, settingsFlagItem5 := range resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag {
-				var settingsFlag11 tfTypes.SettingFlag
-				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
-				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
+				var settingsFlag5 tfTypes.SettingFlag
+				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
+				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem5.Name)
 				if settingsFlagCount5+1 > len(r.ConsentAttribute.SettingsFlag) {
-					r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag11)
+					r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag5)
 				} else {
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
+					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag5.Enabled
+					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag5.Name
 				}
 			}
 			r.ConsentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ShowInTable)
@@ -9412,14 +9565,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.CountryAttribute.SettingsFlag = r.CountryAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount6, settingsFlagItem6 := range resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag {
-				var settingsFlag13 tfTypes.SettingFlag
-				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
-				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
+				var settingsFlag6 tfTypes.SettingFlag
+				settingsFlag6.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
+				settingsFlag6.Name = types.StringPointerValue(settingsFlagItem6.Name)
 				if settingsFlagCount6+1 > len(r.CountryAttribute.SettingsFlag) {
-					r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag13)
+					r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag6)
 				} else {
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
+					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag6.Enabled
+					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag6.Name
 				}
 			}
 			r.CountryAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ShowInTable)
@@ -9454,18 +9607,18 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.CurrencyAttribute.Currency = r.CurrencyAttribute.Currency[:len(resp.AttributeWithCompositeIDCurrencyAttribute.Currency)]
 			}
 			for currencyCount, currencyItem := range resp.AttributeWithCompositeIDCurrencyAttribute.Currency {
-				var currency1 tfTypes.CurrencyAttributeCurrency
+				var currency tfTypes.CurrencyAttributeCurrency
 				if currencyItem.CurrencyAttributeCurrency1 != nil {
-					currency1.One = &tfTypes.CurrencyAttributeCurrency1{}
-					currency1.One.Code = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Code)
-					currency1.One.Description = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Description)
-					currency1.One.Flag = types.StringPointerValue(currencyItem.CurrencyAttributeCurrency1.Flag)
-					currency1.One.Symbol = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Symbol)
+					currency.One = &tfTypes.CurrencyAttributeCurrency1{}
+					currency.One.Code = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Code)
+					currency.One.Description = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Description)
+					currency.One.Flag = types.StringPointerValue(currencyItem.CurrencyAttributeCurrency1.Flag)
+					currency.One.Symbol = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Symbol)
 				}
 				if currencyCount+1 > len(r.CurrencyAttribute.Currency) {
-					r.CurrencyAttribute.Currency = append(r.CurrencyAttribute.Currency, currency1)
+					r.CurrencyAttribute.Currency = append(r.CurrencyAttribute.Currency, currency)
 				} else {
-					r.CurrencyAttribute.Currency[currencyCount].One = currency1.One
+					r.CurrencyAttribute.Currency[currencyCount].One = currency.One
 				}
 			}
 			r.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.CurrencySelectorOnly)
@@ -9531,14 +9684,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.CurrencyAttribute.SettingsFlag = r.CurrencyAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount7, settingsFlagItem7 := range resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag {
-				var settingsFlag15 tfTypes.SettingFlag
-				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
-				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
+				var settingsFlag7 tfTypes.SettingFlag
+				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
+				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem7.Name)
 				if settingsFlagCount7+1 > len(r.CurrencyAttribute.SettingsFlag) {
-					r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag15)
+					r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag7)
 				} else {
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
+					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag7.Enabled
+					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag7.Name
 				}
 			}
 			r.CurrencyAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ShowInTable)
@@ -9630,14 +9783,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.DateAttribute.SettingsFlag = r.DateAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount8, settingsFlagItem8 := range resp.AttributeWithCompositeIDDateAttribute.SettingsFlag {
-				var settingsFlag17 tfTypes.SettingFlag
-				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
-				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
+				var settingsFlag8 tfTypes.SettingFlag
+				settingsFlag8.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
+				settingsFlag8.Name = types.StringPointerValue(settingsFlagItem8.Name)
 				if settingsFlagCount8+1 > len(r.DateAttribute.SettingsFlag) {
-					r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag17)
+					r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag8)
 				} else {
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
+					r.DateAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag8.Enabled
+					r.DateAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag8.Name
 				}
 			}
 			r.DateAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ShowInTable)
@@ -9729,14 +9882,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.EmailAttribute.SettingsFlag = r.EmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount9, settingsFlagItem9 := range resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag {
-				var settingsFlag19 tfTypes.SettingFlag
-				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
-				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
+				var settingsFlag9 tfTypes.SettingFlag
+				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
+				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem9.Name)
 				if settingsFlagCount9+1 > len(r.EmailAttribute.SettingsFlag) {
-					r.EmailAttribute.SettingsFlag = append(r.EmailAttribute.SettingsFlag, settingsFlag19)
+					r.EmailAttribute.SettingsFlag = append(r.EmailAttribute.SettingsFlag, settingsFlag9)
 				} else {
-					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
-					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
+					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag9.Enabled
+					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag9.Name
 				}
 			}
 			r.EmailAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ShowInTable)
@@ -9840,14 +9993,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.FileAttribute.SettingsFlag = r.FileAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount10, settingsFlagItem10 := range resp.AttributeWithCompositeIDFileAttribute.SettingsFlag {
-				var settingsFlag21 tfTypes.SettingFlag
-				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
-				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
+				var settingsFlag10 tfTypes.SettingFlag
+				settingsFlag10.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
+				settingsFlag10.Name = types.StringPointerValue(settingsFlagItem10.Name)
 				if settingsFlagCount10+1 > len(r.FileAttribute.SettingsFlag) {
-					r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag21)
+					r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag10)
 				} else {
-					r.FileAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
-					r.FileAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
+					r.FileAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag10.Enabled
+					r.FileAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag10.Name
 				}
 			}
 			r.FileAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ShowInTable)
@@ -9939,14 +10092,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.InternalAttribute.SettingsFlag = r.InternalAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount11, settingsFlagItem11 := range resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag {
-				var settingsFlag23 tfTypes.SettingFlag
-				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
-				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
+				var settingsFlag11 tfTypes.SettingFlag
+				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
+				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem11.Name)
 				if settingsFlagCount11+1 > len(r.InternalAttribute.SettingsFlag) {
-					r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag23)
+					r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag11)
 				} else {
-					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
-					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
+					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag11.Enabled
+					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag11.Name
 				}
 			}
 			r.InternalAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ShowInTable)
@@ -10038,14 +10191,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.InternalUserAttribute.SettingsFlag = r.InternalUserAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount12, settingsFlagItem12 := range resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag {
-				var settingsFlag25 tfTypes.SettingFlag
-				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
-				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
+				var settingsFlag12 tfTypes.SettingFlag
+				settingsFlag12.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
+				settingsFlag12.Name = types.StringPointerValue(settingsFlagItem12.Name)
 				if settingsFlagCount12+1 > len(r.InternalUserAttribute.SettingsFlag) {
-					r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag25)
+					r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag12)
 				} else {
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
+					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag12.Enabled
+					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag12.Name
 				}
 			}
 			r.InternalUserAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ShowInTable)
@@ -10137,14 +10290,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.InvitationEmailAttribute.SettingsFlag = r.InvitationEmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount13, settingsFlagItem13 := range resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag {
-				var settingsFlag27 tfTypes.SettingFlag
-				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
-				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
+				var settingsFlag13 tfTypes.SettingFlag
+				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
+				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem13.Name)
 				if settingsFlagCount13+1 > len(r.InvitationEmailAttribute.SettingsFlag) {
-					r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag27)
+					r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag13)
 				} else {
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
+					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag13.Enabled
+					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag13.Name
 				}
 			}
 			r.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ShowInTable)
@@ -10236,14 +10389,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.LinkAttribute.SettingsFlag = r.LinkAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount14, settingsFlagItem14 := range resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag {
-				var settingsFlag29 tfTypes.SettingFlag
-				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
-				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
+				var settingsFlag14 tfTypes.SettingFlag
+				settingsFlag14.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
+				settingsFlag14.Name = types.StringPointerValue(settingsFlagItem14.Name)
 				if settingsFlagCount14+1 > len(r.LinkAttribute.SettingsFlag) {
-					r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag29)
+					r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag14)
 				} else {
-					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
-					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
+					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag14.Enabled
+					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag14.Name
 				}
 			}
 			r.LinkAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ShowInTable)
@@ -10338,14 +10491,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.MessageEmailAddressAttribute.SettingsFlag = r.MessageEmailAddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag {
-				var settingsFlag31 tfTypes.SettingFlag
-				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
-				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
+				var settingsFlag15 tfTypes.SettingFlag
+				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
+				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem15.Name)
 				if settingsFlagCount15+1 > len(r.MessageEmailAddressAttribute.SettingsFlag) {
-					r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag31)
+					r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag15)
 				} else {
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
+					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag15.Enabled
+					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag15.Name
 				}
 			}
 			r.MessageEmailAddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ShowInTable)
@@ -10422,20 +10575,20 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.MultiSelectAttribute.Options = r.MultiSelectAttribute.Options[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.Options)]
 			}
 			for optionsVarCount, optionsVarItem := range resp.AttributeWithCompositeIDMultiSelectAttribute.Options {
-				var optionsVar1 tfTypes.MultiSelectAttributeOptions
+				var optionsVar tfTypes.MultiSelectAttributeOptions
 				if optionsVarItem.Str != nil {
-					optionsVar1.Str = types.StringPointerValue(optionsVarItem.Str)
+					optionsVar.Str = types.StringPointerValue(optionsVarItem.Str)
 				}
 				if optionsVarItem.MultiSelectAttributeOptions2 != nil {
-					optionsVar1.Two = &tfTypes.MultiSelectAttributeOptions2{}
-					optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem.MultiSelectAttributeOptions2.Title)
-					optionsVar1.Two.Value = types.StringValue(optionsVarItem.MultiSelectAttributeOptions2.Value)
+					optionsVar.Two = &tfTypes.MultiSelectAttributeOptions2{}
+					optionsVar.Two.Title = types.StringPointerValue(optionsVarItem.MultiSelectAttributeOptions2.Title)
+					optionsVar.Two.Value = types.StringValue(optionsVarItem.MultiSelectAttributeOptions2.Value)
 				}
 				if optionsVarCount+1 > len(r.MultiSelectAttribute.Options) {
-					r.MultiSelectAttribute.Options = append(r.MultiSelectAttribute.Options, optionsVar1)
+					r.MultiSelectAttribute.Options = append(r.MultiSelectAttribute.Options, optionsVar)
 				} else {
-					r.MultiSelectAttribute.Options[optionsVarCount].Str = optionsVar1.Str
-					r.MultiSelectAttribute.Options[optionsVarCount].Two = optionsVar1.Two
+					r.MultiSelectAttribute.Options[optionsVarCount].Str = optionsVar.Str
+					r.MultiSelectAttribute.Options[optionsVarCount].Two = optionsVar.Two
 				}
 			}
 			r.MultiSelectAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Order)
@@ -10461,14 +10614,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.MultiSelectAttribute.SettingsFlag = r.MultiSelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
-				var settingsFlag33 tfTypes.SettingFlag
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
+				var settingsFlag16 tfTypes.SettingFlag
+				settingsFlag16.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
+				settingsFlag16.Name = types.StringPointerValue(settingsFlagItem16.Name)
 				if settingsFlagCount16+1 > len(r.MultiSelectAttribute.SettingsFlag) {
-					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag33)
+					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag16)
 				} else {
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag16.Enabled
+					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag16.Name
 				}
 			}
 			r.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ShowInTable)
@@ -10561,14 +10714,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.NumberAttribute.SettingsFlag = r.NumberAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
-				var settingsFlag35 tfTypes.SettingFlag
-				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
-				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
+				var settingsFlag17 tfTypes.SettingFlag
+				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
+				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem17.Name)
 				if settingsFlagCount17+1 > len(r.NumberAttribute.SettingsFlag) {
-					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag35)
+					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag17)
 				} else {
-					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
-					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
+					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag17.Enabled
+					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag17.Name
 				}
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
@@ -10661,14 +10814,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.OrderedListAttribute.SettingsFlag = r.OrderedListAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
-				var settingsFlag37 tfTypes.SettingFlag
-				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
-				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
+				var settingsFlag18 tfTypes.SettingFlag
+				settingsFlag18.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
+				settingsFlag18.Name = types.StringPointerValue(settingsFlagItem18.Name)
 				if settingsFlagCount18+1 > len(r.OrderedListAttribute.SettingsFlag) {
-					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag37)
+					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag18)
 				} else {
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag18.Enabled
+					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag18.Name
 				}
 			}
 			r.OrderedListAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ShowInTable)
@@ -10760,14 +10913,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PartnerOrganisationAttribute.SettingsFlag = r.PartnerOrganisationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
-				var settingsFlag39 tfTypes.SettingFlag
-				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
-				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
+				var settingsFlag19 tfTypes.SettingFlag
+				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
+				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem19.Name)
 				if settingsFlagCount19+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
-					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag39)
+					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag19)
 				} else {
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag19.Enabled
+					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag19.Name
 				}
 			}
 			r.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ShowInTable)
@@ -10859,14 +11012,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PartnerStatusAttribute.SettingsFlag = r.PartnerStatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount20, settingsFlagItem20 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
-				var settingsFlag41 tfTypes.SettingFlag
-				settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
-				settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
+				var settingsFlag20 tfTypes.SettingFlag
+				settingsFlag20.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
+				settingsFlag20.Name = types.StringPointerValue(settingsFlagItem20.Name)
 				if settingsFlagCount20+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
-					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag41)
+					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag20)
 				} else {
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag20.Enabled
+					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag20.Name
 				}
 			}
 			r.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ShowInTable)
@@ -10958,14 +11111,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PaymentAttribute.SettingsFlag = r.PaymentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag {
-				var settingsFlag43 tfTypes.SettingFlag
-				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
-				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
+				var settingsFlag21 tfTypes.SettingFlag
+				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
+				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem21.Name)
 				if settingsFlagCount21+1 > len(r.PaymentAttribute.SettingsFlag) {
-					r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag43)
+					r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag21)
 				} else {
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
+					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag21.Enabled
+					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag21.Name
 				}
 			}
 			r.PaymentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ShowInTable)
@@ -11057,14 +11210,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PaymentMethodRelationAttribute.SettingsFlag = r.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount22, settingsFlagItem22 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
-				var settingsFlag45 tfTypes.SettingFlag
-				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
+				var settingsFlag22 tfTypes.SettingFlag
+				settingsFlag22.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+				settingsFlag22.Name = types.StringPointerValue(settingsFlagItem22.Name)
 				if settingsFlagCount22+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
-					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag45)
+					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag22)
 				} else {
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag22.Enabled
+					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag22.Name
 				}
 			}
 			r.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ShowInTable)
@@ -11156,14 +11309,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PhoneAttribute.SettingsFlag = r.PhoneAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag {
-				var settingsFlag47 tfTypes.SettingFlag
-				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
+				var settingsFlag23 tfTypes.SettingFlag
+				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem23.Name)
 				if settingsFlagCount23+1 > len(r.PhoneAttribute.SettingsFlag) {
-					r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag47)
+					r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag23)
 				} else {
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
+					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag23.Enabled
+					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag23.Name
 				}
 			}
 			r.PhoneAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ShowInTable)
@@ -11255,14 +11408,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PriceComponentAttribute.SettingsFlag = r.PriceComponentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag {
-				var settingsFlag49 tfTypes.SettingFlag
-				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
+				var settingsFlag24 tfTypes.SettingFlag
+				settingsFlag24.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+				settingsFlag24.Name = types.StringPointerValue(settingsFlagItem24.Name)
 				if settingsFlagCount24+1 > len(r.PriceComponentAttribute.SettingsFlag) {
-					r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag49)
+					r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag24)
 				} else {
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
+					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag24.Enabled
+					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag24.Name
 				}
 			}
 			r.PriceComponentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ShowInTable)
@@ -11294,11 +11447,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			} else {
 				r.PurposeAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
-			if resp.AttributeWithCompositeIDPurposeAttribute.CreatedAt != nil {
-				r.PurposeAttribute.CreatedAt = types.StringValue(resp.AttributeWithCompositeIDPurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
-			} else {
-				r.PurposeAttribute.CreatedAt = types.StringNull()
-			}
+			r.PurposeAttribute.CreatedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(resp.AttributeWithCompositeIDPurposeAttribute.CreatedAt))
 			if resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue == nil {
 				r.PurposeAttribute.DefaultValue = types.StringNull()
 			} else {
@@ -11365,14 +11514,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.PurposeAttribute.SettingsFlag = r.PurposeAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount25, settingsFlagItem25 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
-				var settingsFlag51 tfTypes.SettingFlag
-				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
+				var settingsFlag25 tfTypes.SettingFlag
+				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem25.Name)
 				if settingsFlagCount25+1 > len(r.PurposeAttribute.SettingsFlag) {
-					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag51)
+					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag25)
 				} else {
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag25.Enabled
+					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag25.Name
 				}
 			}
 			r.PurposeAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ShowInTable)
@@ -11381,11 +11530,7 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.PurposeAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Sortable)
 			r.Sortable = r.PurposeAttribute.Sortable
 			r.PurposeAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPurposeAttribute.Type))
-			if resp.AttributeWithCompositeIDPurposeAttribute.UpdatedAt != nil {
-				r.PurposeAttribute.UpdatedAt = types.StringValue(resp.AttributeWithCompositeIDPurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
-			} else {
-				r.PurposeAttribute.UpdatedAt = types.StringNull()
-			}
+			r.PurposeAttribute.UpdatedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(resp.AttributeWithCompositeIDPurposeAttribute.UpdatedAt))
 			r.PurposeAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ValueFormatter)
 			r.ValueFormatter = r.PurposeAttribute.ValueFormatter
 		}
@@ -11406,42 +11551,42 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.RelationAttribute.Actions = r.RelationAttribute.Actions[:len(resp.AttributeWithCompositeIDRelationAttribute.Actions)]
 			}
 			for actionsCount, actionsItem := range resp.AttributeWithCompositeIDRelationAttribute.Actions {
-				var actions1 tfTypes.RelationAttributeActions
+				var actions tfTypes.RelationAttributeActions
 				if actionsItem.ActionType != nil {
-					actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
+					actions.ActionType = types.StringValue(string(*actionsItem.ActionType))
 				} else {
-					actions1.ActionType = types.StringNull()
+					actions.ActionType = types.StringNull()
 				}
-				actions1.Default = types.BoolPointerValue(actionsItem.Default)
-				actions1.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
-				actions1.Label = types.StringPointerValue(actionsItem.Label)
+				actions.Default = types.BoolPointerValue(actionsItem.Default)
+				actions.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
+				actions.Label = types.StringPointerValue(actionsItem.Label)
 				if actionsItem.NewEntityItem == nil {
-					actions1.NewEntityItem = types.StringNull()
+					actions.NewEntityItem = types.StringNull()
 				} else {
 					newEntityItemResult, _ := json.Marshal(actionsItem.NewEntityItem)
-					actions1.NewEntityItem = types.StringValue(string(newEntityItemResult))
+					actions.NewEntityItem = types.StringValue(string(newEntityItemResult))
 				}
-				actions1.SettingsFlag = []tfTypes.SettingFlag{}
+				actions.SettingsFlag = []tfTypes.SettingFlag{}
 				for settingsFlagCount26, settingsFlagItem26 := range actionsItem.SettingsFlag {
-					var settingsFlag53 tfTypes.SettingFlag
-					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-					if settingsFlagCount26+1 > len(actions1.SettingsFlag) {
-						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag53)
+					var settingsFlag26 tfTypes.SettingFlag
+					settingsFlag26.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+					settingsFlag26.Name = types.StringPointerValue(settingsFlagItem26.Name)
+					if settingsFlagCount26+1 > len(actions.SettingsFlag) {
+						actions.SettingsFlag = append(actions.SettingsFlag, settingsFlag26)
 					} else {
-						actions1.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-						actions1.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
+						actions.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag26.Enabled
+						actions.SettingsFlag[settingsFlagCount26].Name = settingsFlag26.Name
 					}
 				}
 				if actionsCount+1 > len(r.RelationAttribute.Actions) {
-					r.RelationAttribute.Actions = append(r.RelationAttribute.Actions, actions1)
+					r.RelationAttribute.Actions = append(r.RelationAttribute.Actions, actions)
 				} else {
-					r.RelationAttribute.Actions[actionsCount].ActionType = actions1.ActionType
-					r.RelationAttribute.Actions[actionsCount].Default = actions1.Default
-					r.RelationAttribute.Actions[actionsCount].FeatureFlag = actions1.FeatureFlag
-					r.RelationAttribute.Actions[actionsCount].Label = actions1.Label
-					r.RelationAttribute.Actions[actionsCount].NewEntityItem = actions1.NewEntityItem
-					r.RelationAttribute.Actions[actionsCount].SettingsFlag = actions1.SettingsFlag
+					r.RelationAttribute.Actions[actionsCount].ActionType = actions.ActionType
+					r.RelationAttribute.Actions[actionsCount].Default = actions.Default
+					r.RelationAttribute.Actions[actionsCount].FeatureFlag = actions.FeatureFlag
+					r.RelationAttribute.Actions[actionsCount].Label = actions.Label
+					r.RelationAttribute.Actions[actionsCount].NewEntityItem = actions.NewEntityItem
+					r.RelationAttribute.Actions[actionsCount].SettingsFlag = actions.SettingsFlag
 				}
 			}
 			r.RelationAttribute.AddButtonLabel = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.AddButtonLabel)
@@ -11542,8 +11687,8 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Required = r.RelationAttribute.Required
 			if len(resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes) > 0 {
 				r.RelationAttribute.ReverseAttributes = make(map[string]types.String, len(resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes))
-				for key, value1 := range resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes {
-					r.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
+				for key, value := range resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes {
+					r.RelationAttribute.ReverseAttributes[key] = types.StringValue(value)
 				}
 			}
 			r.RelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Schema)
@@ -11554,14 +11699,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.RelationAttribute.SettingsFlag = r.RelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
-				var settingsFlag55 tfTypes.SettingFlag
-				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
+				var settingsFlag27 tfTypes.SettingFlag
+				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem27.Name)
 				if settingsFlagCount27+1 > len(r.RelationAttribute.SettingsFlag) {
-					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag55)
+					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag27)
 				} else {
-					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
+					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag27.Enabled
+					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag27.Name
 				}
 			}
 			r.RelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ShowInTable)
@@ -11573,20 +11718,20 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.RelationAttribute.SummaryFields = r.RelationAttribute.SummaryFields[:len(resp.AttributeWithCompositeIDRelationAttribute.SummaryFields)]
 			}
 			for summaryFieldsCount, summaryFieldsItem := range resp.AttributeWithCompositeIDRelationAttribute.SummaryFields {
-				var summaryFields1 tfTypes.RelationAttributeSummaryFields
+				var summaryFields tfTypes.RelationAttributeSummaryFields
 				if summaryFieldsItem.Str != nil {
-					summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
+					summaryFields.Str = types.StringPointerValue(summaryFieldsItem.Str)
 				}
 				if summaryFieldsItem.SummaryField != nil {
-					summaryFields1.SummaryField = &tfTypes.SummaryField{}
-					summaryFields1.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
-					summaryFields1.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
+					summaryFields.SummaryField = &tfTypes.SummaryField{}
+					summaryFields.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
+					summaryFields.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
 				}
 				if summaryFieldsCount+1 > len(r.RelationAttribute.SummaryFields) {
-					r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields1)
+					r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields)
 				} else {
-					r.RelationAttribute.SummaryFields[summaryFieldsCount].Str = summaryFields1.Str
-					r.RelationAttribute.SummaryFields[summaryFieldsCount].SummaryField = summaryFields1.SummaryField
+					r.RelationAttribute.SummaryFields[summaryFieldsCount].Str = summaryFields.Str
+					r.RelationAttribute.SummaryFields[summaryFieldsCount].SummaryField = summaryFields.SummaryField
 				}
 			}
 			r.RelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDRelationAttribute.Type))
@@ -11681,14 +11826,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.SelectAttribute.SettingsFlag = r.SelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount28, settingsFlagItem28 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
-				var settingsFlag57 tfTypes.SettingFlag
-				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
+				var settingsFlag28 tfTypes.SettingFlag
+				settingsFlag28.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
+				settingsFlag28.Name = types.StringPointerValue(settingsFlagItem28.Name)
 				if settingsFlagCount28+1 > len(r.SelectAttribute.SettingsFlag) {
-					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag57)
+					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag28)
 				} else {
-					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
+					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag28.Enabled
+					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag28.Name
 				}
 			}
 			r.SelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ShowInTable)
@@ -11781,14 +11926,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.SequenceAttribute.SettingsFlag = r.SequenceAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount29, settingsFlagItem29 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
-				var settingsFlag59 tfTypes.SettingFlag
-				settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-				settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
+				var settingsFlag29 tfTypes.SettingFlag
+				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
+				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem29.Name)
 				if settingsFlagCount29+1 > len(r.SequenceAttribute.SettingsFlag) {
-					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag59)
+					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag29)
 				} else {
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag29.Enabled
+					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag29.Name
 				}
 			}
 			r.SequenceAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ShowInTable)
@@ -11863,20 +12008,20 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.StatusAttribute.Options = r.StatusAttribute.Options[:len(resp.AttributeWithCompositeIDStatusAttribute.Options)]
 			}
 			for optionsVarCount1, optionsVarItem1 := range resp.AttributeWithCompositeIDStatusAttribute.Options {
-				var optionsVar2 tfTypes.MultiSelectAttributeOptions
+				var optionsVar1 tfTypes.MultiSelectAttributeOptions
 				if optionsVarItem1.Str != nil {
-					optionsVar2.Str = types.StringPointerValue(optionsVarItem1.Str)
+					optionsVar1.Str = types.StringPointerValue(optionsVarItem1.Str)
 				}
 				if optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2 != nil {
-					optionsVar2.Two = &tfTypes.MultiSelectAttributeOptions2{}
-					optionsVar2.Two.Title = types.StringPointerValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Title)
-					optionsVar2.Two.Value = types.StringValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Value)
+					optionsVar1.Two = &tfTypes.MultiSelectAttributeOptions2{}
+					optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Title)
+					optionsVar1.Two.Value = types.StringValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Value)
 				}
 				if optionsVarCount1+1 > len(r.StatusAttribute.Options) {
-					r.StatusAttribute.Options = append(r.StatusAttribute.Options, optionsVar2)
+					r.StatusAttribute.Options = append(r.StatusAttribute.Options, optionsVar1)
 				} else {
-					r.StatusAttribute.Options[optionsVarCount1].Str = optionsVar2.Str
-					r.StatusAttribute.Options[optionsVarCount1].Two = optionsVar2.Two
+					r.StatusAttribute.Options[optionsVarCount1].Str = optionsVar1.Str
+					r.StatusAttribute.Options[optionsVarCount1].Two = optionsVar1.Two
 				}
 			}
 			r.StatusAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDStatusAttribute.Order)
@@ -11902,14 +12047,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.StatusAttribute.SettingsFlag = r.StatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount30, settingsFlagItem30 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
-				var settingsFlag61 tfTypes.SettingFlag
-				settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-				settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
+				var settingsFlag30 tfTypes.SettingFlag
+				settingsFlag30.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
+				settingsFlag30.Name = types.StringPointerValue(settingsFlagItem30.Name)
 				if settingsFlagCount30+1 > len(r.StatusAttribute.SettingsFlag) {
-					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag61)
+					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag30)
 				} else {
-					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
+					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag30.Enabled
+					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag30.Name
 				}
 			}
 			r.StatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ShowInTable)
@@ -12005,14 +12150,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.TagsAttribute.SettingsFlag = r.TagsAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount31, settingsFlagItem31 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
-				var settingsFlag63 tfTypes.SettingFlag
-				settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
-				settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
+				var settingsFlag31 tfTypes.SettingFlag
+				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
+				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem31.Name)
 				if settingsFlagCount31+1 > len(r.TagsAttribute.SettingsFlag) {
-					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag63)
+					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag31)
 				} else {
-					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
-					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
+					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag31.Enabled
+					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag31.Name
 				}
 			}
 			r.TagsAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ShowInTable)
@@ -12116,14 +12261,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.TextAttribute.SettingsFlag = r.TextAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount32, settingsFlagItem32 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
-				var settingsFlag65 tfTypes.SettingFlag
-				settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
-				settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
+				var settingsFlag32 tfTypes.SettingFlag
+				settingsFlag32.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
+				settingsFlag32.Name = types.StringPointerValue(settingsFlagItem32.Name)
 				if settingsFlagCount32+1 > len(r.TextAttribute.SettingsFlag) {
-					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag65)
+					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag32)
 				} else {
-					r.TextAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
-					r.TextAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
+					r.TextAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag32.Enabled
+					r.TextAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag32.Name
 				}
 			}
 			r.TextAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ShowInTable)
@@ -12216,14 +12361,14 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 				r.UserRelationAttribute.SettingsFlag = r.UserRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag)]
 			}
 			for settingsFlagCount33, settingsFlagItem33 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
-				var settingsFlag67 tfTypes.SettingFlag
-				settingsFlag67.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
-				settingsFlag67.Name = types.StringPointerValue(settingsFlagItem33.Name)
+				var settingsFlag33 tfTypes.SettingFlag
+				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
+				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem33.Name)
 				if settingsFlagCount33+1 > len(r.UserRelationAttribute.SettingsFlag) {
-					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag67)
+					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag33)
 				} else {
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag67.Enabled
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag67.Name
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag33.Enabled
+					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag33.Name
 				}
 			}
 			r.UserRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ShowInTable)
@@ -12235,4 +12380,6 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.ValueFormatter = r.UserRelationAttribute.ValueFormatter
 		}
 	}
+
+	return diags
 }

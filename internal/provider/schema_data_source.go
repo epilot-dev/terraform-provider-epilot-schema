@@ -7,7 +7,6 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -298,7 +297,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										"summary_attribute": schema.SingleNestedAttribute{
 											Computed: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.NumberAttribute{
+												"content_line_cap": schema.Float64Attribute{
 													Computed: true,
 													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
 														`For instance, When set to 1, the content will be displayed in a single line.`,
@@ -611,20 +610,13 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	id := new(string)
-	if !data.ID.IsUnknown() && !data.ID.IsNull() {
-		*id = data.ID.ValueString()
-	} else {
-		id = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	request := operations.GetSchemaRequest{
-		Slug: slug,
-		ID:   id,
-	}
-	res, err := r.client.Schemas.GetSchema(ctx, request)
+	res, err := r.client.Schemas.GetSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -636,10 +628,6 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode == 404 {
-		resp.State.RemoveResource(ctx)
-		return
-	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -648,7 +636,11 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

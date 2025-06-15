@@ -3,11 +3,16 @@
 package provider
 
 import (
+	"context"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDInput() *shared.GroupHeadlineWithCompositeIDInput {
+func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDInput(ctx context.Context) (*shared.GroupHeadlineWithCompositeIDInput, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
 	id := new(string)
 	if !r.ID.IsUnknown() && !r.ID.IsNull() {
 		*id = r.ID.ValueString()
@@ -48,13 +53,16 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 	} else {
 		divider = nil
 	}
-	var purpose []string = []string{}
+	purpose := make([]string, 0, len(r.Purpose))
 	for _, purposeItem := range r.Purpose {
 		purpose = append(purpose, purposeItem.ValueString())
 	}
-	var manifest []string = []string{}
-	for _, manifestItem := range r.Manifest {
-		manifest = append(manifest, manifestItem.ValueString())
+	var manifest []string
+	if r.Manifest != nil {
+		manifest = make([]string, 0, len(r.Manifest))
+		for _, manifestItem := range r.Manifest {
+			manifest = append(manifest, manifestItem.ValueString())
+		}
 	}
 	schema := new(string)
 	if !r.Schema.IsUnknown() && !r.Schema.IsNull() {
@@ -76,10 +84,60 @@ func (r *SchemaGroupHeadlineResourceModel) ToSharedGroupHeadlineWithCompositeIDI
 		Manifest:      manifest,
 		Schema:        schema,
 	}
-	return &out
+
+	return &out, diags
 }
 
-func (r *SchemaGroupHeadlineResourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(resp *shared.GroupHeadlineWithCompositeID) {
+func (r *SchemaGroupHeadlineResourceModel) ToOperationsPutSchemaGroupHeadlineRequest(ctx context.Context) (*operations.PutSchemaGroupHeadlineRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	groupHeadlineWithCompositeID, groupHeadlineWithCompositeIDDiags := r.ToSharedGroupHeadlineWithCompositeIDInput(ctx)
+	diags.Append(groupHeadlineWithCompositeIDDiags...)
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	out := operations.PutSchemaGroupHeadlineRequest{
+		CompositeID:                  compositeID,
+		GroupHeadlineWithCompositeID: groupHeadlineWithCompositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupHeadlineResourceModel) ToOperationsGetSchemaGroupHeadlineRequest(ctx context.Context) (*operations.GetSchemaGroupHeadlineRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.GetSchemaGroupHeadlineRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupHeadlineResourceModel) ToOperationsDeleteSchemaGroupHeadlineRequest(ctx context.Context) (*operations.DeleteSchemaGroupHeadlineRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.DeleteSchemaGroupHeadlineRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupHeadlineResourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(ctx context.Context, resp *shared.GroupHeadlineWithCompositeID) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		if resp.Manifest != nil {
 			r.Manifest = make([]types.String, 0, len(resp.Manifest))
@@ -107,4 +165,6 @@ func (r *SchemaGroupHeadlineResourceModel) RefreshFromSharedGroupHeadlineWithCom
 		r.Schema = types.StringPointerValue(resp.Schema)
 		r.Type = types.StringValue(string(resp.Type))
 	}
+
+	return diags
 }

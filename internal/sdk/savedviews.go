@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/config"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/hooks"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/errors"
@@ -18,12 +19,16 @@ import (
 
 // SavedViews - Saved Views for Entities
 type SavedViews struct {
-	sdkConfiguration sdkConfiguration
+	rootSDK          *SDK
+	sdkConfiguration config.SDKConfiguration
+	hooks            *hooks.Hooks
 }
 
-func newSavedViews(sdkConfig sdkConfiguration) *SavedViews {
+func newSavedViews(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *SavedViews {
 	return &SavedViews{
+		rootSDK:          rootSDK,
 		sdkConfiguration: sdkConfig,
+		hooks:            hooks,
 	}
 }
 
@@ -54,11 +59,13 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "listSavedViews",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "listSavedViews",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -117,15 +124,17 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -142,7 +151,7 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -150,13 +159,13 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -169,17 +178,17 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -253,11 +262,13 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "createSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "createSavedView",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -319,15 +330,17 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -344,7 +357,7 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -352,13 +365,13 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -371,17 +384,17 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -455,11 +468,13 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "getSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "getSavedView",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -514,15 +529,17 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -539,7 +556,7 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -547,13 +564,13 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -566,17 +583,17 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -671,11 +688,13 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "updateSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "updateSavedView",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -737,15 +756,17 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -762,7 +783,7 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -770,13 +791,13 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -789,17 +810,17 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -873,11 +894,13 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "patchSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "patchSavedView",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SavedViewPartial", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -939,15 +962,17 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -964,7 +989,7 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -972,13 +997,13 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -991,17 +1016,17 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1075,11 +1100,13 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "deleteSavedView",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "deleteSavedView",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1134,15 +1161,17 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -1159,7 +1188,7 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -1167,13 +1196,13 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -1186,17 +1215,17 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -1250,11 +1279,13 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 	}
 
 	hookCtx := hooks.HookContext{
-		BaseURL:        baseURL,
-		Context:        ctx,
-		OperationID:    "listFavoriteViewsForUser",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "listFavoriteViewsForUser",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1309,15 +1340,17 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 				"5XX",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
 				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
 					return nil, err
@@ -1334,7 +1367,7 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 					err = fmt.Errorf("error sending request: no response")
 				}
 
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			}
 			return httpRes, err
 		})
@@ -1342,13 +1375,13 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 		if err != nil {
 			return nil, err
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}
 		}
 	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
 			return nil, err
 		}
@@ -1361,17 +1394,17 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 				err = fmt.Errorf("error sending request: no response")
 			}
 
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
 		} else if utils.MatchStatusCodes([]string{}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
 			} else if _httpRes != nil {
 				httpRes = _httpRes
 			}
 		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 			if err != nil {
 				return nil, err
 			}

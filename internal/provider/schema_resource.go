@@ -7,7 +7,6 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
@@ -478,7 +477,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.NumberAttribute{
+												"content_line_cap": schema.Float64Attribute{
 													Computed: true,
 													Optional: true,
 													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
@@ -1002,22 +1001,13 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	draft := new(bool)
-	if !data.Draft.IsUnknown() && !data.Draft.IsNull() {
-		*draft = data.Draft.ValueBool()
-	} else {
-		draft = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	entitySchemaItem := data.ToSharedEntitySchemaItem()
-	request := operations.PutSchemaRequest{
-		Slug:             slug,
-		Draft:            draft,
-		EntitySchemaItem: entitySchemaItem,
-	}
-	res, err := r.client.Schemas.PutSchema(ctx, request)
+	res, err := r.client.Schemas.PutSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1037,8 +1027,17 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1062,20 +1061,13 @@ func (r *SchemaResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	id := new(string)
-	if !data.ID.IsUnknown() && !data.ID.IsNull() {
-		*id = data.ID.ValueString()
-	} else {
-		id = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	request := operations.GetSchemaRequest{
-		Slug: slug,
-		ID:   id,
-	}
-	res, err := r.client.Schemas.GetSchema(ctx, request)
+	res, err := r.client.Schemas.GetSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1099,7 +1091,11 @@ func (r *SchemaResource) Read(ctx context.Context, req resource.ReadRequest, res
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1119,22 +1115,13 @@ func (r *SchemaResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	draft := new(bool)
-	if !data.Draft.IsUnknown() && !data.Draft.IsNull() {
-		*draft = data.Draft.ValueBool()
-	} else {
-		draft = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	entitySchemaItem := data.ToSharedEntitySchemaItem()
-	request := operations.PutSchemaRequest{
-		Slug:             slug,
-		Draft:            draft,
-		EntitySchemaItem: entitySchemaItem,
-	}
-	res, err := r.client.Schemas.PutSchema(ctx, request)
+	res, err := r.client.Schemas.PutSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1154,8 +1141,17 @@ func (r *SchemaResource) Update(ctx context.Context, req resource.UpdateRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1179,13 +1175,13 @@ func (r *SchemaResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsDeleteSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeleteSchemaRequest{
-		Slug: slug,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.DeleteSchema(ctx, request)
+	res, err := r.client.Schemas.DeleteSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

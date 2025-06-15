@@ -1300,7 +1300,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
-    id                          = "taxonomy-slug:classification-slug"
     info_helpers = {
       hint_custom_component  = "...my_hint_custom_component..."
       hint_text              = "...my_hint_text..."
@@ -3815,7 +3814,6 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--purpose_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
@@ -3845,6 +3843,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 Read-Only:
 
 - `composite_id` (String)
+- `id` (String)
 
 <a id="nestedatt--purpose_attribute--constraints"></a>
 ### Nested Schema for `purpose_attribute.constraints`

@@ -3,14 +3,18 @@
 package provider
 
 import (
+	"context"
 	"encoding/json"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"math/big"
 )
 
-func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaItem {
+func (r *SchemaResourceModel) ToSharedEntitySchemaItem(ctx context.Context) (*shared.EntitySchemaItem, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
 	id := new(string)
 	if !r.ID.IsUnknown() && !r.ID.IsNull() {
 		*id = r.ID.ValueString()
@@ -50,7 +54,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 	} else {
 		featureFlag = nil
 	}
-	var enableSetting []string = []string{}
+	enableSetting := make([]string, 0, len(r.EnableSetting))
 	for _, enableSettingItem := range r.EnableSetting {
 		enableSetting = append(enableSetting, enableSettingItem.ValueString())
 	}
@@ -114,7 +118,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 				} else {
 					viewType = nil
 				}
-				var rowActions []shared.RowActions = []shared.RowActions{}
+				rowActions := make([]shared.RowActions, 0, len(r.UIConfig.TableView.EntityDefaultTable.RowActions))
 				for _, rowActionsItem := range r.UIConfig.TableView.EntityDefaultTable.RowActions {
 					if !rowActionsItem.Str.IsUnknown() && !rowActionsItem.Str.IsNull() {
 						var str string
@@ -154,7 +158,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						})
 					}
 				}
-				var bulkActions []shared.BulkActions = []shared.BulkActions{}
+				bulkActions := make([]shared.BulkActions, 0, len(r.UIConfig.TableView.EntityDefaultTable.BulkActions))
 				for _, bulkActionsItem := range r.UIConfig.TableView.EntityDefaultTable.BulkActions {
 					if !bulkActionsItem.Str.IsUnknown() && !bulkActionsItem.Str.IsNull() {
 						var str1 string
@@ -194,12 +198,12 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 						})
 					}
 				}
-				var navbarActions []shared.NavbarActions = []shared.NavbarActions{}
+				navbarActions := make([]shared.NavbarActions, 0, len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions))
 				for _, navbarActionsItem := range r.UIConfig.TableView.EntityDefaultTable.NavbarActions {
 					var typeVar string
 					typeVar = navbarActionsItem.Type.ValueString()
 
-					var optionsVar []shared.EntityDefaultTableOptions = []shared.EntityDefaultTableOptions{}
+					optionsVar := make([]shared.EntityDefaultTableOptions, 0, len(navbarActionsItem.Options))
 					for _, optionsItem := range navbarActionsItem.Options {
 						var label2 string
 						label2 = optionsItem.Label.ValueString()
@@ -365,7 +369,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 
 					searchParams1[searchParamsKey1] = searchParamsInst1
 				}
-				var summaryAttributes []string = []string{}
+				summaryAttributes := make([]string, 0, len(r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes))
 				for _, summaryAttributesItem := range r.UIConfig.EditView.EntityDefaultEdit.SummaryAttributes {
 					summaryAttributes = append(summaryAttributes, summaryAttributesItem.ValueString())
 				}
@@ -439,7 +443,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 
 					searchParams2[searchParamsKey2] = searchParamsInst2
 				}
-				var summaryAttributes1 []string = []string{}
+				summaryAttributes1 := make([]string, 0, len(r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))
 				for _, summaryAttributesItem1 := range r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes {
 					summaryAttributes1 = append(summaryAttributes1, summaryAttributesItem1.ValueString())
 				}
@@ -498,7 +502,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		}
 		var listItem *shared.ListItem
 		if r.UIConfig.ListItem != nil {
-			var summaryAttributes2 []shared.SummaryAttributes = []shared.SummaryAttributes{}
+			summaryAttributes2 := make([]shared.SummaryAttributes, 0, len(r.UIConfig.ListItem.SummaryAttributes))
 			for _, summaryAttributesItem2 := range r.UIConfig.ListItem.SummaryAttributes {
 				if summaryAttributesItem2.SummaryAttribute != nil {
 					var label3 string
@@ -531,7 +535,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					} else {
 						featureFlag1 = nil
 					}
-					var settingsFlag []shared.SettingFlag = []shared.SettingFlag{}
+					settingsFlag := make([]shared.SettingFlag, 0, len(summaryAttributesItem2.SummaryAttribute.SettingsFlag))
 					for _, settingsFlagItem := range summaryAttributesItem2.SummaryAttribute.SettingsFlag {
 						name1 := new(string)
 						if !settingsFlagItem.Name.IsUnknown() && !settingsFlagItem.Name.IsNull() {
@@ -558,7 +562,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					}
 					contentLineCap := new(float64)
 					if !summaryAttributesItem2.SummaryAttribute.ContentLineCap.IsUnknown() && !summaryAttributesItem2.SummaryAttribute.ContentLineCap.IsNull() {
-						*contentLineCap, _ = summaryAttributesItem2.SummaryAttribute.ContentLineCap.ValueBigFloat().Float64()
+						*contentLineCap = summaryAttributesItem2.SummaryAttribute.ContentLineCap.ValueFloat64()
 					} else {
 						contentLineCap = nil
 					}
@@ -607,7 +611,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 					})
 				}
 			}
-			var quickActions []shared.EntityAction = []shared.EntityAction{}
+			quickActions := make([]shared.EntityAction, 0, len(r.UIConfig.ListItem.QuickActions))
 			for _, quickActionsItem := range r.UIConfig.ListItem.QuickActions {
 				var action2 string
 				action2 = quickActionsItem.Action.ValueString()
@@ -703,7 +707,7 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		_ = json.Unmarshal([]byte(dialogConfigValue.ValueString()), &dialogConfigInst)
 		dialogConfig[dialogConfigKey] = dialogConfigInst
 	}
-	var purpose []string = []string{}
+	purpose := make([]string, 0, len(r.Purpose))
 	for _, purposeItem := range r.Purpose {
 		purpose = append(purpose, purposeItem.ValueString())
 	}
@@ -774,10 +778,74 @@ func (r *SchemaResourceModel) ToSharedEntitySchemaItem() *shared.EntitySchemaIte
 		GroupSettings:          groupSettings,
 		GroupHeadlines:         groupHeadlines,
 	}
-	return &out
+
+	return &out, diags
 }
 
-func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.EntitySchemaItem) {
+func (r *SchemaResourceModel) ToOperationsPutSchemaRequest(ctx context.Context) (*operations.PutSchemaRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var slug string
+	slug = r.Slug.ValueString()
+
+	draft := new(bool)
+	if !r.Draft.IsUnknown() && !r.Draft.IsNull() {
+		*draft = r.Draft.ValueBool()
+	} else {
+		draft = nil
+	}
+	entitySchemaItem, entitySchemaItemDiags := r.ToSharedEntitySchemaItem(ctx)
+	diags.Append(entitySchemaItemDiags...)
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	out := operations.PutSchemaRequest{
+		Slug:             slug,
+		Draft:            draft,
+		EntitySchemaItem: entitySchemaItem,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaResourceModel) ToOperationsGetSchemaRequest(ctx context.Context) (*operations.GetSchemaRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var slug string
+	slug = r.Slug.ValueString()
+
+	id := new(string)
+	if !r.ID.IsUnknown() && !r.ID.IsNull() {
+		*id = r.ID.ValueString()
+	} else {
+		id = nil
+	}
+	out := operations.GetSchemaRequest{
+		Slug: slug,
+		ID:   id,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaResourceModel) ToOperationsDeleteSchemaRequest(ctx context.Context) (*operations.DeleteSchemaRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var slug string
+	slug = r.Slug.ValueString()
+
+	out := operations.DeleteSchemaRequest{
+		Slug: slug,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(ctx context.Context, resp *shared.EntitySchemaItem) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		r.Purpose = make([]types.String, 0, len(resp.Purpose))
 		for _, v := range resp.Purpose {
@@ -862,9 +930,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 			r.UIConfig = nil
 		} else {
 			r.UIConfig = &tfTypes.UIConfig{}
-			if resp.UIConfig.CreateView == nil {
-				r.UIConfig.CreateView = nil
-			} else {
+			if resp.UIConfig.CreateView != nil {
 				r.UIConfig.CreateView = &tfTypes.CreateView{}
 				if resp.UIConfig.CreateView.EntityDefaultCreate != nil {
 					r.UIConfig.CreateView.EntityDefaultCreate = &tfTypes.EntityDefaultCreate{}
@@ -898,9 +964,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					}
 				}
 			}
-			if resp.UIConfig.EditView == nil {
-				r.UIConfig.EditView = nil
-			} else {
+			if resp.UIConfig.EditView != nil {
 				r.UIConfig.EditView = &tfTypes.EditView{}
 				if resp.UIConfig.EditView.EntityDefaultEdit != nil {
 					r.UIConfig.EditView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
@@ -947,18 +1011,18 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					r.UIConfig.ListItem.QuickActions = r.UIConfig.ListItem.QuickActions[:len(resp.UIConfig.ListItem.QuickActions)]
 				}
 				for quickActionsCount, quickActionsItem := range resp.UIConfig.ListItem.QuickActions {
-					var quickActions1 tfTypes.EntityAction
-					quickActions1.Action = types.StringValue(quickActionsItem.Action)
-					quickActions1.Icon = types.StringPointerValue(quickActionsItem.Icon)
-					quickActions1.Label = types.StringValue(quickActionsItem.Label)
-					quickActions1.Permission = types.StringPointerValue(quickActionsItem.Permission)
+					var quickActions tfTypes.EntityAction
+					quickActions.Action = types.StringValue(quickActionsItem.Action)
+					quickActions.Icon = types.StringPointerValue(quickActionsItem.Icon)
+					quickActions.Label = types.StringValue(quickActionsItem.Label)
+					quickActions.Permission = types.StringPointerValue(quickActionsItem.Permission)
 					if quickActionsCount+1 > len(r.UIConfig.ListItem.QuickActions) {
-						r.UIConfig.ListItem.QuickActions = append(r.UIConfig.ListItem.QuickActions, quickActions1)
+						r.UIConfig.ListItem.QuickActions = append(r.UIConfig.ListItem.QuickActions, quickActions)
 					} else {
-						r.UIConfig.ListItem.QuickActions[quickActionsCount].Action = quickActions1.Action
-						r.UIConfig.ListItem.QuickActions[quickActionsCount].Icon = quickActions1.Icon
-						r.UIConfig.ListItem.QuickActions[quickActionsCount].Label = quickActions1.Label
-						r.UIConfig.ListItem.QuickActions[quickActionsCount].Permission = quickActions1.Permission
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Action = quickActions.Action
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Icon = quickActions.Icon
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Label = quickActions.Label
+						r.UIConfig.ListItem.QuickActions[quickActionsCount].Permission = quickActions.Permission
 					}
 				}
 				r.UIConfig.ListItem.SummaryAttributes = []tfTypes.SummaryAttributes{}
@@ -966,53 +1030,49 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					r.UIConfig.ListItem.SummaryAttributes = r.UIConfig.ListItem.SummaryAttributes[:len(resp.UIConfig.ListItem.SummaryAttributes)]
 				}
 				for summaryAttributesCount, summaryAttributesItem := range resp.UIConfig.ListItem.SummaryAttributes {
-					var summaryAttributes2 tfTypes.SummaryAttributes
+					var summaryAttributes tfTypes.SummaryAttributes
 					if summaryAttributesItem.Str != nil {
-						summaryAttributes2.Str = types.StringPointerValue(summaryAttributesItem.Str)
+						summaryAttributes.Str = types.StringPointerValue(summaryAttributesItem.Str)
 					}
 					if summaryAttributesItem.SummaryAttribute != nil {
-						summaryAttributes2.SummaryAttribute = &tfTypes.SummaryAttribute{}
-						if summaryAttributesItem.SummaryAttribute.ContentLineCap != nil {
-							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberValue(big.NewFloat(float64(*summaryAttributesItem.SummaryAttribute.ContentLineCap)))
-						} else {
-							summaryAttributes2.SummaryAttribute.ContentLineCap = types.NumberNull()
-						}
+						summaryAttributes.SummaryAttribute = &tfTypes.SummaryAttribute{}
+						summaryAttributes.SummaryAttribute.ContentLineCap = types.Float64PointerValue(summaryAttributesItem.SummaryAttribute.ContentLineCap)
 						if summaryAttributesItem.SummaryAttribute.ContentWrap != nil {
-							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.ContentWrap))
+							summaryAttributes.SummaryAttribute.ContentWrap = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.ContentWrap))
 						} else {
-							summaryAttributes2.SummaryAttribute.ContentWrap = types.StringNull()
+							summaryAttributes.SummaryAttribute.ContentWrap = types.StringNull()
 						}
 						if summaryAttributesItem.SummaryAttribute.DisplayMode != nil {
-							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.DisplayMode))
+							summaryAttributes.SummaryAttribute.DisplayMode = types.StringValue(string(*summaryAttributesItem.SummaryAttribute.DisplayMode))
 						} else {
-							summaryAttributes2.SummaryAttribute.DisplayMode = types.StringNull()
+							summaryAttributes.SummaryAttribute.DisplayMode = types.StringNull()
 						}
-						summaryAttributes2.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
-						summaryAttributes2.SummaryAttribute.HideLabel = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HideLabel)
-						summaryAttributes2.SummaryAttribute.HighlightContainer = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HighlightContainer)
-						summaryAttributes2.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
-						summaryAttributes2.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
-						summaryAttributes2.SummaryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
+						summaryAttributes.SummaryAttribute.FeatureFlag = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.FeatureFlag)
+						summaryAttributes.SummaryAttribute.HideLabel = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HideLabel)
+						summaryAttributes.SummaryAttribute.HighlightContainer = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.HighlightContainer)
+						summaryAttributes.SummaryAttribute.Label = types.StringValue(summaryAttributesItem.SummaryAttribute.Label)
+						summaryAttributes.SummaryAttribute.RenderCondition = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.RenderCondition)
+						summaryAttributes.SummaryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
 						for settingsFlagCount, settingsFlagItem := range summaryAttributesItem.SummaryAttribute.SettingsFlag {
-							var settingsFlag1 tfTypes.SettingFlag
-							settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-							settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
-							if settingsFlagCount+1 > len(summaryAttributes2.SummaryAttribute.SettingsFlag) {
-								summaryAttributes2.SummaryAttribute.SettingsFlag = append(summaryAttributes2.SummaryAttribute.SettingsFlag, settingsFlag1)
+							var settingsFlag tfTypes.SettingFlag
+							settingsFlag.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+							settingsFlag.Name = types.StringPointerValue(settingsFlagItem.Name)
+							if settingsFlagCount+1 > len(summaryAttributes.SummaryAttribute.SettingsFlag) {
+								summaryAttributes.SummaryAttribute.SettingsFlag = append(summaryAttributes.SummaryAttribute.SettingsFlag, settingsFlag)
 							} else {
-								summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-								summaryAttributes2.SummaryAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
+								summaryAttributes.SummaryAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag.Enabled
+								summaryAttributes.SummaryAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag.Name
 							}
 						}
-						summaryAttributes2.SummaryAttribute.ShowAsTag = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.ShowAsTag)
-						summaryAttributes2.SummaryAttribute.TagColor = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.TagColor)
-						summaryAttributes2.SummaryAttribute.Value = types.StringValue(summaryAttributesItem.SummaryAttribute.Value)
+						summaryAttributes.SummaryAttribute.ShowAsTag = types.BoolPointerValue(summaryAttributesItem.SummaryAttribute.ShowAsTag)
+						summaryAttributes.SummaryAttribute.TagColor = types.StringPointerValue(summaryAttributesItem.SummaryAttribute.TagColor)
+						summaryAttributes.SummaryAttribute.Value = types.StringValue(summaryAttributesItem.SummaryAttribute.Value)
 					}
 					if summaryAttributesCount+1 > len(r.UIConfig.ListItem.SummaryAttributes) {
-						r.UIConfig.ListItem.SummaryAttributes = append(r.UIConfig.ListItem.SummaryAttributes, summaryAttributes2)
+						r.UIConfig.ListItem.SummaryAttributes = append(r.UIConfig.ListItem.SummaryAttributes, summaryAttributes)
 					} else {
-						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].Str = summaryAttributes2.Str
-						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].SummaryAttribute = summaryAttributes2.SummaryAttribute
+						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].Str = summaryAttributes.Str
+						r.UIConfig.ListItem.SummaryAttributes[summaryAttributesCount].SummaryAttribute = summaryAttributes.SummaryAttribute
 					}
 				}
 				if resp.UIConfig.ListItem.UIConfig == nil {
@@ -1032,16 +1092,14 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 				r.UIConfig.Sharing = &tfTypes.Sharing{}
 				r.UIConfig.Sharing.ShowSharingButton = types.BoolPointerValue(resp.UIConfig.Sharing.ShowSharingButton)
 			}
-			if resp.UIConfig.SingleView == nil {
-				r.UIConfig.SingleView = nil
-			} else {
+			if resp.UIConfig.SingleView != nil {
 				r.UIConfig.SingleView = &tfTypes.EditView{}
 				if resp.UIConfig.SingleView.EntityDefaultEdit != nil {
 					r.UIConfig.SingleView.EntityDefaultEdit = &tfTypes.EntityDefaultEdit{}
 					if len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams) > 0 {
 						r.UIConfig.SingleView.EntityDefaultEdit.SearchParams = make(map[string]types.String, len(resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams))
-						for key4, value5 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
-							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key4] = types.StringValue(value5)
+						for key4, value4 := range resp.UIConfig.SingleView.EntityDefaultEdit.SearchParams {
+							r.UIConfig.SingleView.EntityDefaultEdit.SearchParams[key4] = types.StringValue(value4)
 						}
 					}
 					r.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes = make([]types.String, 0, len(resp.UIConfig.SingleView.EntityDefaultEdit.SummaryAttributes))
@@ -1072,9 +1130,7 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 					}
 				}
 			}
-			if resp.UIConfig.TableView == nil {
-				r.UIConfig.TableView = nil
-			} else {
+			if resp.UIConfig.TableView != nil {
 				r.UIConfig.TableView = &tfTypes.TableView{}
 				if resp.UIConfig.TableView.EntityDefaultTable != nil {
 					r.UIConfig.TableView.EntityDefaultTable = &tfTypes.EntityDefaultTable{}
@@ -1083,22 +1139,22 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 						r.UIConfig.TableView.EntityDefaultTable.BulkActions = r.UIConfig.TableView.EntityDefaultTable.BulkActions[:len(resp.UIConfig.TableView.EntityDefaultTable.BulkActions)]
 					}
 					for bulkActionsCount, bulkActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.BulkActions {
-						var bulkActions1 tfTypes.BulkActions
+						var bulkActions tfTypes.BulkActions
 						if bulkActionsItem.Str != nil {
-							bulkActions1.Str = types.StringPointerValue(bulkActionsItem.Str)
+							bulkActions.Str = types.StringPointerValue(bulkActionsItem.Str)
 						}
 						if bulkActionsItem.EntityAction != nil {
-							bulkActions1.EntityAction = &tfTypes.EntityAction{}
-							bulkActions1.EntityAction.Action = types.StringValue(bulkActionsItem.EntityAction.Action)
-							bulkActions1.EntityAction.Icon = types.StringPointerValue(bulkActionsItem.EntityAction.Icon)
-							bulkActions1.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
-							bulkActions1.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
+							bulkActions.EntityAction = &tfTypes.EntityAction{}
+							bulkActions.EntityAction.Action = types.StringValue(bulkActionsItem.EntityAction.Action)
+							bulkActions.EntityAction.Icon = types.StringPointerValue(bulkActionsItem.EntityAction.Icon)
+							bulkActions.EntityAction.Label = types.StringValue(bulkActionsItem.EntityAction.Label)
+							bulkActions.EntityAction.Permission = types.StringPointerValue(bulkActionsItem.EntityAction.Permission)
 						}
 						if bulkActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.BulkActions) {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions1)
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions = append(r.UIConfig.TableView.EntityDefaultTable.BulkActions, bulkActions)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].Str = bulkActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].EntityAction = bulkActions1.EntityAction
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].Str = bulkActions.Str
+							r.UIConfig.TableView.EntityDefaultTable.BulkActions[bulkActionsCount].EntityAction = bulkActions.EntityAction
 						}
 					}
 					r.UIConfig.TableView.EntityDefaultTable.EnableThumbnails = types.BoolPointerValue(resp.UIConfig.TableView.EntityDefaultTable.EnableThumbnails)
@@ -1107,29 +1163,29 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 						r.UIConfig.TableView.EntityDefaultTable.NavbarActions = r.UIConfig.TableView.EntityDefaultTable.NavbarActions[:len(resp.UIConfig.TableView.EntityDefaultTable.NavbarActions)]
 					}
 					for navbarActionsCount, navbarActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.NavbarActions {
-						var navbarActions1 tfTypes.NavbarActions
-						navbarActions1.Options = []tfTypes.EntityDefaultTableOptions{}
+						var navbarActions tfTypes.NavbarActions
+						navbarActions.Options = []tfTypes.EntityDefaultTableOptions{}
 						for optionsVarCount, optionsVarItem := range navbarActionsItem.Options {
-							var optionsVar1 tfTypes.EntityDefaultTableOptions
-							optionsVar1.Label = types.StringValue(optionsVarItem.Label)
+							var optionsVar tfTypes.EntityDefaultTableOptions
+							optionsVar.Label = types.StringValue(optionsVarItem.Label)
 							if optionsVarItem.Params == nil {
-								optionsVar1.Params = nil
+								optionsVar.Params = nil
 							} else {
-								optionsVar1.Params = &tfTypes.EntityDefaultTableParams{}
+								optionsVar.Params = &tfTypes.EntityDefaultTableParams{}
 							}
-							if optionsVarCount+1 > len(navbarActions1.Options) {
-								navbarActions1.Options = append(navbarActions1.Options, optionsVar1)
+							if optionsVarCount+1 > len(navbarActions.Options) {
+								navbarActions.Options = append(navbarActions.Options, optionsVar)
 							} else {
-								navbarActions1.Options[optionsVarCount].Label = optionsVar1.Label
-								navbarActions1.Options[optionsVarCount].Params = optionsVar1.Params
+								navbarActions.Options[optionsVarCount].Label = optionsVar.Label
+								navbarActions.Options[optionsVarCount].Params = optionsVar.Params
 							}
 						}
-						navbarActions1.Type = types.StringValue(navbarActionsItem.Type)
+						navbarActions.Type = types.StringValue(navbarActionsItem.Type)
 						if navbarActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.NavbarActions) {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions1)
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions = append(r.UIConfig.TableView.EntityDefaultTable.NavbarActions, navbarActions)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions1.Options
-							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions1.Type
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Options = navbarActions.Options
+							r.UIConfig.TableView.EntityDefaultTable.NavbarActions[navbarActionsCount].Type = navbarActions.Type
 						}
 					}
 					r.UIConfig.TableView.EntityDefaultTable.RowActions = []tfTypes.BulkActions{}
@@ -1137,22 +1193,22 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 						r.UIConfig.TableView.EntityDefaultTable.RowActions = r.UIConfig.TableView.EntityDefaultTable.RowActions[:len(resp.UIConfig.TableView.EntityDefaultTable.RowActions)]
 					}
 					for rowActionsCount, rowActionsItem := range resp.UIConfig.TableView.EntityDefaultTable.RowActions {
-						var rowActions1 tfTypes.BulkActions
+						var rowActions tfTypes.BulkActions
 						if rowActionsItem.Str != nil {
-							rowActions1.Str = types.StringPointerValue(rowActionsItem.Str)
+							rowActions.Str = types.StringPointerValue(rowActionsItem.Str)
 						}
 						if rowActionsItem.EntityAction != nil {
-							rowActions1.EntityAction = &tfTypes.EntityAction{}
-							rowActions1.EntityAction.Action = types.StringValue(rowActionsItem.EntityAction.Action)
-							rowActions1.EntityAction.Icon = types.StringPointerValue(rowActionsItem.EntityAction.Icon)
-							rowActions1.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
-							rowActions1.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
+							rowActions.EntityAction = &tfTypes.EntityAction{}
+							rowActions.EntityAction.Action = types.StringValue(rowActionsItem.EntityAction.Action)
+							rowActions.EntityAction.Icon = types.StringPointerValue(rowActionsItem.EntityAction.Icon)
+							rowActions.EntityAction.Label = types.StringValue(rowActionsItem.EntityAction.Label)
+							rowActions.EntityAction.Permission = types.StringPointerValue(rowActionsItem.EntityAction.Permission)
 						}
 						if rowActionsCount+1 > len(r.UIConfig.TableView.EntityDefaultTable.RowActions) {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions1)
+							r.UIConfig.TableView.EntityDefaultTable.RowActions = append(r.UIConfig.TableView.EntityDefaultTable.RowActions, rowActions)
 						} else {
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].Str = rowActions1.Str
-							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].EntityAction = rowActions1.EntityAction
+							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].Str = rowActions.Str
+							r.UIConfig.TableView.EntityDefaultTable.RowActions[rowActionsCount].EntityAction = rowActions.EntityAction
 						}
 					}
 					if resp.UIConfig.TableView.EntityDefaultTable.ViewType != nil {
@@ -1183,4 +1239,6 @@ func (r *SchemaResourceModel) RefreshFromSharedEntitySchemaItem(resp *shared.Ent
 		r.UpdatedAt = types.StringPointerValue(resp.UpdatedAt)
 		r.Version = types.Int64PointerValue(resp.Version)
 	}
+
+	return diags
 }

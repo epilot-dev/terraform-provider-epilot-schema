@@ -36,24 +36,24 @@ func (o *Request) GetClassificationIds() []string {
 }
 
 type Output struct {
-	TargetEntities   []string `json:"target_entities,omitempty"`
-	AffectedEntities []string `json:"affected_entities,omitempty"`
-	FailuresCount    *float64 `json:"failures_count,omitempty"`
-	FailedEntities   []string `json:"failed_entities,omitempty"`
+	TargetEntitiesCount   *float64 `json:"target_entities_count,omitempty"`
+	AffectedEntitiesCount *float64 `json:"affected_entities_count,omitempty"`
+	FailuresCount         *float64 `json:"failures_count,omitempty"`
+	FailedEntities        []string `json:"failed_entities,omitempty"`
 }
 
-func (o *Output) GetTargetEntities() []string {
+func (o *Output) GetTargetEntitiesCount() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.TargetEntities
+	return o.TargetEntitiesCount
 }
 
-func (o *Output) GetAffectedEntities() []string {
+func (o *Output) GetAffectedEntitiesCount() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.AffectedEntities
+	return o.AffectedEntitiesCount
 }
 
 func (o *Output) GetFailuresCount() *float64 {
@@ -82,8 +82,6 @@ type TaxonomyBulkJob struct {
 	CreatedAt     *time.Time                 `json:"created_at,omitempty"`
 	UpdatedAt     *time.Time                 `json:"updated_at,omitempty"`
 	Org           *string                    `json:"org,omitempty"`
-	// Progress of the job on a scale of 0 to 1
-	Progress *float64 `json:"progress,omitempty"`
 }
 
 func (t TaxonomyBulkJob) MarshalJSON() ([]byte, error) {
@@ -165,11 +163,4 @@ func (o *TaxonomyBulkJob) GetOrg() *string {
 		return nil
 	}
 	return o.Org
-}
-
-func (o *TaxonomyBulkJob) GetProgress() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Progress
 }
