@@ -37,6 +37,33 @@ func (e *Kind) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// TaxonomyType - Type of taxonomy. Whether it classifies entities or relations.
+type TaxonomyType string
+
+const (
+	TaxonomyTypeEntity   TaxonomyType = "entity"
+	TaxonomyTypeRelation TaxonomyType = "relation"
+)
+
+func (e TaxonomyType) ToPointer() *TaxonomyType {
+	return &e
+}
+func (e *TaxonomyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "entity":
+		fallthrough
+	case "relation":
+		*e = TaxonomyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TaxonomyType: %v", v)
+	}
+}
+
 type EnabledLocationsType string
 
 const (
@@ -109,6 +136,8 @@ type Taxonomy struct {
 	Plural *string `json:"plural,omitempty"`
 	// Kind of taxonomy e.g. system or user_defined. By default, it's empty, which means 'user_defined'
 	Kind *Kind `json:"kind,omitempty"`
+	// Type of taxonomy. Whether it classifies entities or relations.
+	Type *TaxonomyType `default:"entity" json:"type"`
 	// Icon name for the taxonomy (from epilot360/icons icon set)
 	Icon *string `json:"icon,omitempty"`
 	// HEX Color code for the taxonomy
@@ -164,6 +193,13 @@ func (o *Taxonomy) GetKind() *Kind {
 		return nil
 	}
 	return o.Kind
+}
+
+func (o *Taxonomy) GetType() *TaxonomyType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *Taxonomy) GetIcon() *string {
@@ -236,6 +272,8 @@ type TaxonomyInput struct {
 	Name *string `json:"name,omitempty"`
 	// Plural name of a Taxonomy e.g. Purposes, Product Categories, Folders, Tags. Defaults to name is not provided.
 	Plural *string `json:"plural,omitempty"`
+	// Type of taxonomy. Whether it classifies entities or relations.
+	Type *TaxonomyType `default:"entity" json:"type"`
 	// Icon name for the taxonomy (from epilot360/icons icon set)
 	Icon *string `json:"icon,omitempty"`
 	// HEX Color code for the taxonomy
@@ -246,6 +284,17 @@ type TaxonomyInput struct {
 	Order *float64 `json:"order,omitempty"`
 	// List of locations where the taxonomy is enabled to be used. If empty, it's enabled for all locations.
 	EnabledLocations []EnabledLocations `json:"enabled_locations,omitempty"`
+}
+
+func (t TaxonomyInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxonomyInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TaxonomyInput) GetSlug() *string {
@@ -267,6 +316,13 @@ func (o *TaxonomyInput) GetPlural() *string {
 		return nil
 	}
 	return o.Plural
+}
+
+func (o *TaxonomyInput) GetType() *TaxonomyType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *TaxonomyInput) GetIcon() *string {

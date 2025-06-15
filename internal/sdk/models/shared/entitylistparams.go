@@ -76,6 +76,69 @@ func (u EntityListParamsSort) MarshalJSON() ([]byte, error) {
 type EntityListParamsAggs struct {
 }
 
+type EntityListParamsSearchAfterType string
+
+const (
+	EntityListParamsSearchAfterTypeStr    EntityListParamsSearchAfterType = "str"
+	EntityListParamsSearchAfterTypeNumber EntityListParamsSearchAfterType = "number"
+)
+
+type EntityListParamsSearchAfter struct {
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
+
+	Type EntityListParamsSearchAfterType
+}
+
+func CreateEntityListParamsSearchAfterStr(str string) EntityListParamsSearchAfter {
+	typ := EntityListParamsSearchAfterTypeStr
+
+	return EntityListParamsSearchAfter{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateEntityListParamsSearchAfterNumber(number float64) EntityListParamsSearchAfter {
+	typ := EntityListParamsSearchAfterTypeNumber
+
+	return EntityListParamsSearchAfter{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *EntityListParamsSearchAfter) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = EntityListParamsSearchAfterTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
+		u.Number = &number
+		u.Type = EntityListParamsSearchAfterTypeNumber
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntityListParamsSearchAfter", string(data))
+}
+
+func (u EntityListParamsSearchAfter) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type EntityListParamsSearchAfter: all fields are null")
+}
+
 type EntityListParams struct {
 	// A subset of simplified Elasticsearch query clauses. The default operator is a logical AND. Use nested $and, $or, $not to combine filters using different logical operators.
 	Filter []SearchFilter `json:"filter"`
@@ -83,7 +146,10 @@ type EntityListParams struct {
 	AllowTargetingAllSchemas *bool `default:"false" json:"allow_targeting_all_schemas"`
 	// You can pass one sort field or an array of sort fields. Each sort field can be a string
 	Sort *EntityListParamsSort `json:"sort,omitempty"`
-	From *int64                `default:"0" json:"from"`
+	// The offset from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	//
+	From *int64 `default:"0" json:"from"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"10" json:"size"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
@@ -105,6 +171,25 @@ type EntityListParams struct {
 	// By default, no deleted entities are included in the search results.
 	//
 	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
+	Highlight      any                              `json:"highlight,omitempty"`
+	// A TTL (in seconds) that specifies how long the context should be maintained.
+	// Defaults to 30 seconds; configurable up to 60 seconds to prevent abuse.
+	// A value of 0 can be provided the close the context after the query.
+	// Defaults to none.
+	//
+	StableFor *int64 `json:"stable_for,omitempty"`
+	// A unique identifier of the query context from the last stable query.
+	// The context is maintained for the duration of the stable_for value.
+	//
+	StableQueryID *string `json:"stable_query_id,omitempty"`
+	// The sort values from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	// It is strongly recommended to always use the `sort_end` field from the last search result.
+	// Used for deep pagination, typically together with `stable_query_id` to maintain the context between requests.
+	// Requires explicit sort to work reliably.
+	// Typically used sort fields are `_id` or `_created_at`.
+	//
+	SearchAfter []*EntityListParamsSearchAfter `json:"search_after,omitempty"`
 }
 
 func (e EntityListParams) MarshalJSON() ([]byte, error) {
@@ -179,4 +264,32 @@ func (o *EntityListParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam 
 		return nil
 	}
 	return o.IncludeDeleted
+}
+
+func (o *EntityListParams) GetHighlight() any {
+	if o == nil {
+		return nil
+	}
+	return o.Highlight
+}
+
+func (o *EntityListParams) GetStableFor() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.StableFor
+}
+
+func (o *EntityListParams) GetStableQueryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StableQueryID
+}
+
+func (o *EntityListParams) GetSearchAfter() []*EntityListParamsSearchAfter {
+	if o == nil {
+		return nil
+	}
+	return o.SearchAfter
 }

@@ -2,7 +2,9 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type Sharing struct {
 	ShowSharingButton types.Bool `tfsdk:"show_sharing_button"`

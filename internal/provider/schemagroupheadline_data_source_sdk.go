@@ -3,11 +3,29 @@
 package provider
 
 import (
+	"context"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(resp *shared.GroupHeadlineWithCompositeID) {
+func (r *SchemaGroupHeadlineDataSourceModel) ToOperationsGetSchemaGroupHeadlineRequest(ctx context.Context) (*operations.GetSchemaGroupHeadlineRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.GetSchemaGroupHeadlineRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
+}
+
+func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithCompositeID(ctx context.Context, resp *shared.GroupHeadlineWithCompositeID) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		if resp.Manifest != nil {
 			r.Manifest = make([]types.String, 0, len(resp.Manifest))
@@ -35,4 +53,6 @@ func (r *SchemaGroupHeadlineDataSourceModel) RefreshFromSharedGroupHeadlineWithC
 		r.Schema = types.StringPointerValue(resp.Schema)
 		r.Type = types.StringValue(string(resp.Type))
 	}
+
+	return diags
 }

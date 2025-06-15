@@ -7,7 +7,6 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
 	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
@@ -6843,7 +6842,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 								},
 								"id": schema.StringAttribute{
 									Computed: true,
-									Optional: true,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -9364,7 +9362,12 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		return
 	}
 
-	request := data.ToSharedEntityCapabilityWithCompositeIDInput()
+	request, requestDiags := data.ToSharedEntityCapabilityWithCompositeIDInput(ctx)
+	resp.Diagnostics.Append(requestDiags...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 	res, err := r.client.Schemas.CreateSchemaCapability(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
@@ -9385,8 +9388,17 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9410,13 +9422,13 @@ func (r *SchemaCapabilityResource) Read(ctx context.Context, req resource.ReadRe
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetSchemaCapabilityRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.GetSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.GetSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -9440,7 +9452,11 @@ func (r *SchemaCapabilityResource) Read(ctx context.Context, req resource.ReadRe
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9460,15 +9476,13 @@ func (r *SchemaCapabilityResource) Update(ctx context.Context, req resource.Upda
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	entityCapabilityWithCompositeID := data.ToSharedEntityCapabilityWithCompositeIDInput()
-	request := operations.PutSchemaCapabilityRequest{
-		CompositeID:                     compositeID,
-		EntityCapabilityWithCompositeID: entityCapabilityWithCompositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.PutSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.PutSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -9488,8 +9502,17 @@ func (r *SchemaCapabilityResource) Update(ctx context.Context, req resource.Upda
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9513,13 +9536,13 @@ func (r *SchemaCapabilityResource) Delete(ctx context.Context, req resource.Dele
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsDeleteSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeleteSchemaCapabilityRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.DeleteSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.DeleteSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

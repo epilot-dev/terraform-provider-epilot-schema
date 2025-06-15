@@ -2,7 +2,9 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintCustomComponent  types.String `tfsdk:"hint_custom_component"`

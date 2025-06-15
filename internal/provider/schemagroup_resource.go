@@ -7,7 +7,6 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -191,7 +190,12 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		return
 	}
 
-	request := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
+	request, requestDiags := data.ToSharedEntitySchemaGroupWithCompositeIDInput(ctx)
+	resp.Diagnostics.Append(requestDiags...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 	res, err := r.client.Schemas.CreateSchemaGroup(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
@@ -212,8 +216,17 @@ func (r *SchemaGroupResource) Create(ctx context.Context, req resource.CreateReq
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaGroupWithCompositeID(ctx, res.EntitySchemaGroupWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -237,13 +250,13 @@ func (r *SchemaGroupResource) Read(ctx context.Context, req resource.ReadRequest
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaGroupRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetSchemaGroupRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.GetSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.GetSchemaGroup(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -267,7 +280,11 @@ func (r *SchemaGroupResource) Read(ctx context.Context, req resource.ReadRequest
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaGroupWithCompositeID(ctx, res.EntitySchemaGroupWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -287,15 +304,13 @@ func (r *SchemaGroupResource) Update(ctx context.Context, req resource.UpdateReq
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaGroupRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	entitySchemaGroupWithCompositeID := data.ToSharedEntitySchemaGroupWithCompositeIDInput()
-	request := operations.PutSchemaGroupRequest{
-		CompositeID:                      compositeID,
-		EntitySchemaGroupWithCompositeID: entitySchemaGroupWithCompositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.PutSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.PutSchemaGroup(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -315,8 +330,17 @@ func (r *SchemaGroupResource) Update(ctx context.Context, req resource.UpdateReq
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaGroupWithCompositeID(ctx, res.EntitySchemaGroupWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -340,13 +364,13 @@ func (r *SchemaGroupResource) Delete(ctx context.Context, req resource.DeleteReq
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsDeleteSchemaGroupRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeleteSchemaGroupRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.DeleteSchemaGroup(ctx, request)
+	res, err := r.client.Schemas.DeleteSchemaGroup(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

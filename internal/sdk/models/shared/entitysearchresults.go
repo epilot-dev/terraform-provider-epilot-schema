@@ -2,13 +2,90 @@
 
 package shared
 
+import (
+	"errors"
+	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+)
+
 type Aggregations struct {
+}
+
+type SortEndType string
+
+const (
+	SortEndTypeStr    SortEndType = "str"
+	SortEndTypeNumber SortEndType = "number"
+)
+
+type SortEnd struct {
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
+
+	Type SortEndType
+}
+
+func CreateSortEndStr(str string) SortEnd {
+	typ := SortEndTypeStr
+
+	return SortEnd{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateSortEndNumber(number float64) SortEnd {
+	typ := SortEndTypeNumber
+
+	return SortEnd{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *SortEnd) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+		u.Str = &str
+		u.Type = SortEndTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
+		u.Number = &number
+		u.Type = SortEndTypeNumber
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SortEnd", string(data))
+}
+
+func (u SortEnd) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SortEnd: all fields are null")
 }
 
 type EntitySearchResults struct {
 	Hits         *float64      `json:"hits,omitempty"`
 	Results      []EntityItem  `json:"results,omitempty"`
 	Aggregations *Aggregations `json:"aggregations,omitempty"`
+	// A unique identifier of the query context.
+	// Should be used on the input for the next query that needs to be executed in the same context.
+	//
+	StableQueryID *string `json:"stable_query_id,omitempty"`
+	// The sort value of the last item returned in `results`.
+	// Can be used as the input for the `search_after` in the next query.
+	//
+	SortEnd []*SortEnd `json:"sort_end,omitempty"`
 }
 
 func (o *EntitySearchResults) GetHits() *float64 {
@@ -30,4 +107,18 @@ func (o *EntitySearchResults) GetAggregations() *Aggregations {
 		return nil
 	}
 	return o.Aggregations
+}
+
+func (o *EntitySearchResults) GetStableQueryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StableQueryID
+}
+
+func (o *EntitySearchResults) GetSortEnd() []*SortEnd {
+	if o == nil {
+		return nil
+	}
+	return o.SortEnd
 }

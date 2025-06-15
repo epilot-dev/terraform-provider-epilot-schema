@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -142,13 +141,13 @@ func (r *SchemaGroupHeadlineDataSource) Read(ctx context.Context, req datasource
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaGroupHeadlineRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetSchemaGroupHeadlineRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.GetSchemaGroupHeadline(ctx, request)
+	res, err := r.client.Schemas.GetSchemaGroupHeadline(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -160,10 +159,6 @@ func (r *SchemaGroupHeadlineDataSource) Read(ctx context.Context, req datasource
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode == 404 {
-		resp.State.RemoveResource(ctx)
-		return
-	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -172,7 +167,11 @@ func (r *SchemaGroupHeadlineDataSource) Read(ctx context.Context, req datasource
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
+	resp.Diagnostics.Append(data.RefreshFromSharedGroupHeadlineWithCompositeID(ctx, res.GroupHeadlineWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
