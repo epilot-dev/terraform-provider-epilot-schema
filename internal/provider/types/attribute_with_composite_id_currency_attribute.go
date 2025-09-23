@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AttributeWithCompositeIDCurrencyAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -11,7 +14,7 @@ type AttributeWithCompositeIDCurrencyAttribute struct {
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	Currency                 []CurrencyAttributeCurrency                          `tfsdk:"currency"`
 	CurrencySelectorOnly     types.Bool                                           `tfsdk:"currency_selector_only"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`

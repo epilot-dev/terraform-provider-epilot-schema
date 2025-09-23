@@ -32,78 +32,78 @@ func (a ActivityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ActivityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "title", "message"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ActivityItem) GetID() *string {
-	if o == nil {
+func (a *ActivityItem) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *ActivityItem) GetTimestamp() *time.Time {
-	if o == nil {
+func (a *ActivityItem) GetTimestamp() *time.Time {
+	if a == nil {
 		return nil
 	}
-	return o.Timestamp
+	return a.Timestamp
 }
 
-func (o *ActivityItem) GetType() string {
-	if o == nil {
+func (a *ActivityItem) GetType() string {
+	if a == nil {
 		return ""
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *ActivityItem) GetTitle() string {
-	if o == nil {
+func (a *ActivityItem) GetTitle() string {
+	if a == nil {
 		return ""
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *ActivityItem) GetMessage() string {
-	if o == nil {
+func (a *ActivityItem) GetMessage() string {
+	if a == nil {
 		return ""
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *ActivityItem) GetPayload() map[string]any {
-	if o == nil {
+func (a *ActivityItem) GetPayload() map[string]any {
+	if a == nil {
 		return nil
 	}
-	return o.Payload
+	return a.Payload
 }
 
-func (o *ActivityItem) GetPending() *bool {
-	if o == nil {
+func (a *ActivityItem) GetPending() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Pending
+	return a.Pending
 }
 
-func (o *ActivityItem) GetCaller() *ActivityCallerContext {
-	if o == nil {
+func (a *ActivityItem) GetCaller() *ActivityCallerContext {
+	if a == nil {
 		return nil
 	}
-	return o.Caller
+	return a.Caller
 }
 
-func (o *ActivityItem) GetOperationsTotal() *int64 {
-	if o == nil {
+func (a *ActivityItem) GetOperationsTotal() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.OperationsTotal
+	return a.OperationsTotal
 }
 
-func (o *ActivityItem) GetOperations() []EntityOperation {
-	if o == nil {
+func (a *ActivityItem) GetOperations() []EntityOperation {
+	if a == nil {
 		return nil
 	}
-	return o.Operations
+	return a.Operations
 }

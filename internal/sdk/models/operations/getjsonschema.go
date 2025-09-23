@@ -3,19 +3,39 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"net/http"
 )
 
 type GetJSONSchemaRequest struct {
 	// Entity Type
-	Slug string `pathParam:"style=simple,explode=false,name=slug"`
+	Slug        string `pathParam:"style=simple,explode=false,name=slug"`
+	Dereference *bool  `default:"false" queryParam:"style=form,explode=true,name=dereference"`
 }
 
-func (o *GetJSONSchemaRequest) GetSlug() string {
-	if o == nil {
+func (g GetJSONSchemaRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetJSONSchemaRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetJSONSchemaRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
+}
+
+func (g *GetJSONSchemaRequest) GetDereference() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.Dereference
 }
 
 // GetJSONSchemaResponseBody - Success
@@ -33,30 +53,30 @@ type GetJSONSchemaResponse struct {
 	Object *GetJSONSchemaResponseBody
 }
 
-func (o *GetJSONSchemaResponse) GetContentType() string {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetJSONSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetJSONSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetJSONSchemaResponse) GetObject() *GetJSONSchemaResponseBody {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetObject() *GetJSONSchemaResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -13,6 +13,17 @@ import (
 type PriceComponentAttributeConstraints struct {
 }
 
+func (p PriceComponentAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PriceComponentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PriceComponentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type PriceComponentAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PriceComponentAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PriceComponentAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PriceComponentAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PriceComponentAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PriceComponentAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PriceComponentAttributeInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PriceComponentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PriceComponentAttributeInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PriceComponentAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PriceComponentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PriceComponentAttributeType string
@@ -148,218 +170,218 @@ func (p PriceComponentAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PriceComponentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PriceComponentAttribute) GetID() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PriceComponentAttribute) GetName() string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetName() string {
+	if p == nil {
 		return ""
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PriceComponentAttribute) GetLabel() string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetLabel() string {
+	if p == nil {
 		return ""
 	}
-	return o.Label
+	return p.Label
 }
 
-func (o *PriceComponentAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetPlaceholder() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Placeholder
+	return p.Placeholder
 }
 
-func (o *PriceComponentAttribute) GetHidden() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetHidden() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Hidden
+	return p.Hidden
 }
 
-func (o *PriceComponentAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetShowInTable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return p.ShowInTable
 }
 
-func (o *PriceComponentAttribute) GetSortable() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetSortable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Sortable
+	return p.Sortable
 }
 
-func (o *PriceComponentAttribute) GetRequired() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetRequired() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Required
+	return p.Required
 }
 
-func (o *PriceComponentAttribute) GetReadonly() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetReadonly() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Readonly
+	return p.Readonly
 }
 
-func (o *PriceComponentAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetDeprecated() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Deprecated
+	return p.Deprecated
 }
 
-func (o *PriceComponentAttribute) GetDefaultValue() any {
-	if o == nil {
+func (p *PriceComponentAttribute) GetDefaultValue() any {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return p.DefaultValue
 }
 
-func (o *PriceComponentAttribute) GetGroup() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetGroup() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Group
+	return p.Group
 }
 
-func (o *PriceComponentAttribute) GetOrder() *int64 {
-	if o == nil {
+func (p *PriceComponentAttribute) GetOrder() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *PriceComponentAttribute) GetLayout() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetLayout() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Layout
+	return p.Layout
 }
 
-func (o *PriceComponentAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetHideLabel() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HideLabel
+	return p.HideLabel
 }
 
-func (o *PriceComponentAttribute) GetIcon() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetIcon() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Icon
+	return p.Icon
 }
 
-func (o *PriceComponentAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetRenderCondition() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return p.RenderCondition
 }
 
-func (o *PriceComponentAttribute) GetPurpose() []string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetPurpose() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Purpose
+	return p.Purpose
 }
 
-func (o *PriceComponentAttribute) GetManifest() []string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetManifest() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Manifest
+	return p.Manifest
 }
 
-func (o *PriceComponentAttribute) GetConstraints() *PriceComponentAttributeConstraints {
-	if o == nil {
+func (p *PriceComponentAttribute) GetConstraints() *PriceComponentAttributeConstraints {
+	if p == nil {
 		return nil
 	}
-	return o.Constraints
+	return p.Constraints
 }
 
-func (o *PriceComponentAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetFeatureFlag() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return p.FeatureFlag
 }
 
-func (o *PriceComponentAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (p *PriceComponentAttribute) GetSettingsFlag() []SettingFlag {
+	if p == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return p.SettingsFlag
 }
 
-func (o *PriceComponentAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return p.ValueFormatter
 }
 
-func (o *PriceComponentAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (p *PriceComponentAttribute) GetPreviewValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return p.PreviewValueFormatter
 }
 
-func (o *PriceComponentAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetEntityBuilderDisableEdit() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return p.EntityBuilderDisableEdit
 }
 
-func (o *PriceComponentAttribute) GetProtected() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetProtected() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Protected
+	return p.Protected
 }
 
-func (o *PriceComponentAttribute) GetInfoHelpers() *PriceComponentAttributeInfoHelpers {
-	if o == nil {
+func (p *PriceComponentAttribute) GetInfoHelpers() *PriceComponentAttributeInfoHelpers {
+	if p == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return p.InfoHelpers
 }
 
-func (o *PriceComponentAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetRepeatable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Repeatable
+	return p.Repeatable
 }
 
-func (o *PriceComponentAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (p *PriceComponentAttribute) GetHasPrimary() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return p.HasPrimary
 }
 
-func (o *PriceComponentAttribute) GetType() PriceComponentAttributeType {
-	if o == nil {
+func (p *PriceComponentAttribute) GetType() PriceComponentAttributeType {
+	if p == nil {
 		return PriceComponentAttributeType("")
 	}
-	return o.Type
+	return p.Type
 }

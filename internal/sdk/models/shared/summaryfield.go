@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+)
+
 // SummaryField - Summary Fields are displayed inside list view as a resume of the relation entity.
 type SummaryField struct {
 	// The field from the entity attributes to display
@@ -10,16 +14,27 @@ type SummaryField struct {
 	DisplayAs *string `json:"display_as,omitempty"`
 }
 
-func (o *SummaryField) GetField() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Field
+func (s SummaryField) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *SummaryField) GetDisplayAs() *string {
-	if o == nil {
+func (s *SummaryField) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SummaryField) GetField() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DisplayAs
+	return s.Field
+}
+
+func (s *SummaryField) GetDisplayAs() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DisplayAs
 }

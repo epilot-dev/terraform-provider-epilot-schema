@@ -12,11 +12,11 @@ type DeleteTaxonomyClassificationRequest struct {
 	ClassificationSlug string `pathParam:"style=simple,explode=false,name=classificationSlug"`
 }
 
-func (o *DeleteTaxonomyClassificationRequest) GetClassificationSlug() string {
-	if o == nil {
+func (d *DeleteTaxonomyClassificationRequest) GetClassificationSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.ClassificationSlug
+	return d.ClassificationSlug
 }
 
 type DeleteTaxonomyClassificationResponse struct {
@@ -28,32 +28,49 @@ type DeleteTaxonomyClassificationResponse struct {
 	RawResponse *http.Response
 	// Taxonomy classification deleted
 	TaxonomyClassification *shared.TaxonomyClassification
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *DeleteTaxonomyClassificationResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteTaxonomyClassificationResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteTaxonomyClassificationResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteTaxonomyClassificationResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteTaxonomyClassificationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteTaxonomyClassificationResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
-	if o == nil {
+func (d *DeleteTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
+	if d == nil {
 		return nil
 	}
-	return o.TaxonomyClassification
+	return d.TaxonomyClassification
+}
+
+func (d *DeleteTaxonomyClassificationResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
+		return nil
+	}
+	return d.TooManyRequestsError
+}
+
+func (d *DeleteTaxonomyClassificationResponse) GetHeaders() map[string][]string {
+	if d == nil {
+		return map[string][]string{}
+	}
+	return d.Headers
 }

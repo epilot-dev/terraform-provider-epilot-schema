@@ -35,94 +35,105 @@ func (e *CreatedBySource) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreatedBy2 - A system-created view
-type CreatedBy2 struct {
+// SavedViewPartialCreatedBy2 - A system-created view
+type SavedViewPartialCreatedBy2 struct {
 	Source               *CreatedBySource `json:"source,omitempty"`
 	AdditionalProperties any              `additionalProperties:"true" json:"-"`
 }
 
-func (c CreatedBy2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (s SavedViewPartialCreatedBy2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+func (s *SavedViewPartialCreatedBy2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreatedBy2) GetSource() *CreatedBySource {
-	if o == nil {
+func (s *SavedViewPartialCreatedBy2) GetSource() *CreatedBySource {
+	if s == nil {
 		return nil
 	}
-	return o.Source
+	return s.Source
 }
 
-func (o *CreatedBy2) GetAdditionalProperties() any {
-	if o == nil {
+func (s *SavedViewPartialCreatedBy2) GetAdditionalProperties() any {
+	if s == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return s.AdditionalProperties
 }
 
-// CreatedBy1 - A user that created the view
-type CreatedBy1 struct {
+// SavedViewPartialCreatedBy1 - A user that created the view
+type SavedViewPartialCreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (o *CreatedBy1) GetUserID() *string {
-	if o == nil {
+func (s SavedViewPartialCreatedBy1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SavedViewPartialCreatedBy1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SavedViewPartialCreatedBy1) GetUserID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UserID
+	return s.UserID
 }
 
 type SavedViewPartialCreatedByType string
 
 const (
-	SavedViewPartialCreatedByTypeCreatedBy1 SavedViewPartialCreatedByType = "created_by_1"
-	SavedViewPartialCreatedByTypeCreatedBy2 SavedViewPartialCreatedByType = "created_by_2"
+	SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy1 SavedViewPartialCreatedByType = "SavedViewPartial_created_by_1"
+	SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy2 SavedViewPartialCreatedByType = "SavedViewPartial_created_by_2"
 )
 
 type SavedViewPartialCreatedBy struct {
-	CreatedBy1 *CreatedBy1 `queryParam:"inline"`
-	CreatedBy2 *CreatedBy2 `queryParam:"inline"`
+	SavedViewPartialCreatedBy1 *SavedViewPartialCreatedBy1 `queryParam:"inline" name:"created_by"`
+	SavedViewPartialCreatedBy2 *SavedViewPartialCreatedBy2 `queryParam:"inline" name:"created_by"`
 
 	Type SavedViewPartialCreatedByType
 }
 
-func CreateSavedViewPartialCreatedByCreatedBy1(createdBy1 CreatedBy1) SavedViewPartialCreatedBy {
-	typ := SavedViewPartialCreatedByTypeCreatedBy1
+func CreateSavedViewPartialCreatedBySavedViewPartialCreatedBy1(savedViewPartialCreatedBy1 SavedViewPartialCreatedBy1) SavedViewPartialCreatedBy {
+	typ := SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy1
 
 	return SavedViewPartialCreatedBy{
-		CreatedBy1: &createdBy1,
-		Type:       typ,
+		SavedViewPartialCreatedBy1: &savedViewPartialCreatedBy1,
+		Type:                       typ,
 	}
 }
 
-func CreateSavedViewPartialCreatedByCreatedBy2(createdBy2 CreatedBy2) SavedViewPartialCreatedBy {
-	typ := SavedViewPartialCreatedByTypeCreatedBy2
+func CreateSavedViewPartialCreatedBySavedViewPartialCreatedBy2(savedViewPartialCreatedBy2 SavedViewPartialCreatedBy2) SavedViewPartialCreatedBy {
+	typ := SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy2
 
 	return SavedViewPartialCreatedBy{
-		CreatedBy2: &createdBy2,
-		Type:       typ,
+		SavedViewPartialCreatedBy2: &savedViewPartialCreatedBy2,
+		Type:                       typ,
 	}
 }
 
 func (u *SavedViewPartialCreatedBy) UnmarshalJSON(data []byte) error {
 
-	var createdBy1 CreatedBy1 = CreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, false); err == nil {
-		u.CreatedBy1 = &createdBy1
-		u.Type = SavedViewPartialCreatedByTypeCreatedBy1
+	var savedViewPartialCreatedBy1 SavedViewPartialCreatedBy1 = SavedViewPartialCreatedBy1{}
+	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy1, "", true, nil); err == nil {
+		u.SavedViewPartialCreatedBy1 = &savedViewPartialCreatedBy1
+		u.Type = SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy1
 		return nil
 	}
 
-	var createdBy2 CreatedBy2 = CreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, false); err == nil {
-		u.CreatedBy2 = &createdBy2
-		u.Type = SavedViewPartialCreatedByTypeCreatedBy2
+	var savedViewPartialCreatedBy2 SavedViewPartialCreatedBy2 = SavedViewPartialCreatedBy2{}
+	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy2, "", true, nil); err == nil {
+		u.SavedViewPartialCreatedBy2 = &savedViewPartialCreatedBy2
+		u.Type = SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy2
 		return nil
 	}
 
@@ -130,12 +141,12 @@ func (u *SavedViewPartialCreatedBy) UnmarshalJSON(data []byte) error {
 }
 
 func (u SavedViewPartialCreatedBy) MarshalJSON() ([]byte, error) {
-	if u.CreatedBy1 != nil {
-		return utils.MarshalJSON(u.CreatedBy1, "", true)
+	if u.SavedViewPartialCreatedBy1 != nil {
+		return utils.MarshalJSON(u.SavedViewPartialCreatedBy1, "", true)
 	}
 
-	if u.CreatedBy2 != nil {
-		return utils.MarshalJSON(u.CreatedBy2, "", true)
+	if u.SavedViewPartialCreatedBy2 != nil {
+		return utils.MarshalJSON(u.SavedViewPartialCreatedBy2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type SavedViewPartialCreatedBy: all fields are null")
@@ -159,58 +170,58 @@ type SavedViewPartial struct {
 	SharedWith []string `json:"shared_with,omitempty"`
 }
 
-func (o *SavedViewPartial) GetSlug() []string {
-	if o == nil {
+func (s *SavedViewPartial) GetSlug() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Slug
+	return s.Slug
 }
 
-func (o *SavedViewPartial) GetName() *string {
-	if o == nil {
+func (s *SavedViewPartial) GetName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *SavedViewPartial) GetOrg() *string {
-	if o == nil {
+func (s *SavedViewPartial) GetOrg() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Org
+	return s.Org
 }
 
-func (o *SavedViewPartial) GetShared() *bool {
-	if o == nil {
+func (s *SavedViewPartial) GetShared() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Shared
+	return s.Shared
 }
 
-func (o *SavedViewPartial) GetIsFavoritedBy() []string {
-	if o == nil {
+func (s *SavedViewPartial) GetIsFavoritedBy() []string {
+	if s == nil {
 		return nil
 	}
-	return o.IsFavoritedBy
+	return s.IsFavoritedBy
 }
 
-func (o *SavedViewPartial) GetCreatedBy() *SavedViewPartialCreatedBy {
-	if o == nil {
+func (s *SavedViewPartial) GetCreatedBy() *SavedViewPartialCreatedBy {
+	if s == nil {
 		return nil
 	}
-	return o.CreatedBy
+	return s.CreatedBy
 }
 
-func (o *SavedViewPartial) GetUIConfig() map[string]any {
-	if o == nil {
+func (s *SavedViewPartial) GetUIConfig() map[string]any {
+	if s == nil {
 		return nil
 	}
-	return o.UIConfig
+	return s.UIConfig
 }
 
-func (o *SavedViewPartial) GetSharedWith() []string {
-	if o == nil {
+func (s *SavedViewPartial) GetSharedWith() []string {
+	if s == nil {
 		return nil
 	}
-	return o.SharedWith
+	return s.SharedWith
 }

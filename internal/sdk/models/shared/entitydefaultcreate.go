@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type EntityDefaultCreateViewType string
@@ -35,16 +36,27 @@ type EntityDefaultCreate struct {
 	SearchParams map[string]string            `json:"search_params,omitempty"`
 }
 
-func (o *EntityDefaultCreate) GetViewType() *EntityDefaultCreateViewType {
-	if o == nil {
-		return nil
-	}
-	return o.ViewType
+func (e EntityDefaultCreate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (o *EntityDefaultCreate) GetSearchParams() map[string]string {
-	if o == nil {
+func (e *EntityDefaultCreate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EntityDefaultCreate) GetViewType() *EntityDefaultCreateViewType {
+	if e == nil {
 		return nil
 	}
-	return o.SearchParams
+	return e.ViewType
+}
+
+func (e *EntityDefaultCreate) GetSearchParams() map[string]string {
+	if e == nil {
+		return nil
+	}
+	return e.SearchParams
 }

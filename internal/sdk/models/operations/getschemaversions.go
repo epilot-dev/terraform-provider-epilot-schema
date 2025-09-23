@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
@@ -10,73 +11,102 @@ import (
 type GetSchemaVersionsRequest struct {
 	// Entity Type
 	Slug         string   `pathParam:"style=simple,explode=false,name=slug"`
-	VersionsFrom *float64 `queryParam:"style=form,explode=true,name=versions_from"`
-	VersionsSize *float64 `queryParam:"style=form,explode=true,name=versions_size"`
-	DraftsFrom   *float64 `queryParam:"style=form,explode=true,name=drafts_from"`
-	DraftsSize   *float64 `queryParam:"style=form,explode=true,name=drafts_size"`
+	VersionsFrom *float64 `default:"0" queryParam:"style=form,explode=true,name=versions_from"`
+	VersionsSize *float64 `default:"20" queryParam:"style=form,explode=true,name=versions_size"`
+	DraftsFrom   *float64 `default:"0" queryParam:"style=form,explode=true,name=drafts_from"`
+	DraftsSize   *float64 `default:"0" queryParam:"style=form,explode=true,name=drafts_size"`
 	Fields       []string `queryParam:"style=form,explode=false,name=fields"`
 }
 
-func (o *GetSchemaVersionsRequest) GetSlug() string {
-	if o == nil {
+func (g GetSchemaVersionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSchemaVersionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSchemaVersionsRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetSchemaVersionsRequest) GetVersionsFrom() *float64 {
-	if o == nil {
+func (g *GetSchemaVersionsRequest) GetVersionsFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.VersionsFrom
+	return g.VersionsFrom
 }
 
-func (o *GetSchemaVersionsRequest) GetVersionsSize() *float64 {
-	if o == nil {
+func (g *GetSchemaVersionsRequest) GetVersionsSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.VersionsSize
+	return g.VersionsSize
 }
 
-func (o *GetSchemaVersionsRequest) GetDraftsFrom() *float64 {
-	if o == nil {
+func (g *GetSchemaVersionsRequest) GetDraftsFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.DraftsFrom
+	return g.DraftsFrom
 }
 
-func (o *GetSchemaVersionsRequest) GetDraftsSize() *float64 {
-	if o == nil {
+func (g *GetSchemaVersionsRequest) GetDraftsSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.DraftsSize
+	return g.DraftsSize
 }
 
-func (o *GetSchemaVersionsRequest) GetFields() []string {
-	if o == nil {
+func (g *GetSchemaVersionsRequest) GetFields() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Fields
+	return g.Fields
 }
 
 // GetSchemaVersionsResponseBody - Success
 type GetSchemaVersionsResponseBody struct {
-	Versions []shared.EntitySchemaItem `json:"versions,omitempty"`
+	Versions []shared.EntitySchemaItem `json:"versions"`
 	Drafts   []shared.EntitySchemaItem `json:"drafts,omitempty"`
+	// Pagination: Whether more versions are available
+	VersionsMore bool `json:"versions_more"`
+	// Pagination: Whether more drafts are available
+	DraftsMore *bool `json:"drafts_more,omitempty"`
 }
 
-func (o *GetSchemaVersionsResponseBody) GetVersions() []shared.EntitySchemaItem {
-	if o == nil {
-		return nil
+func (g *GetSchemaVersionsResponseBody) GetVersions() []shared.EntitySchemaItem {
+	if g == nil {
+		return []shared.EntitySchemaItem{}
 	}
-	return o.Versions
+	return g.Versions
 }
 
-func (o *GetSchemaVersionsResponseBody) GetDrafts() []shared.EntitySchemaItem {
-	if o == nil {
+func (g *GetSchemaVersionsResponseBody) GetDrafts() []shared.EntitySchemaItem {
+	if g == nil {
 		return nil
 	}
-	return o.Drafts
+	return g.Drafts
+}
+
+func (g *GetSchemaVersionsResponseBody) GetVersionsMore() bool {
+	if g == nil {
+		return false
+	}
+	return g.VersionsMore
+}
+
+func (g *GetSchemaVersionsResponseBody) GetDraftsMore() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.DraftsMore
 }
 
 type GetSchemaVersionsResponse struct {
@@ -90,30 +120,30 @@ type GetSchemaVersionsResponse struct {
 	Object *GetSchemaVersionsResponseBody
 }
 
-func (o *GetSchemaVersionsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaVersionsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaVersionsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaVersionsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaVersionsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaVersionsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaVersionsResponse) GetObject() *GetSchemaVersionsResponseBody {
-	if o == nil {
+func (g *GetSchemaVersionsResponse) GetObject() *GetSchemaVersionsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

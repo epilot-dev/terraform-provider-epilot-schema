@@ -27,8 +27,9 @@ type Attribute struct {
 	PaymentAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_attribute" tfPlanOnly:"true"`
 	PaymentMethodRelationAttribute *AutomationAttribute          `queryParam:"inline" tfsdk:"payment_method_relation_attribute" tfPlanOnly:"true"`
 	PhoneAttribute                 *AutomationAttribute          `queryParam:"inline" tfsdk:"phone_attribute" tfPlanOnly:"true"`
+	PortalAccessAttribute          *AutomationAttribute          `queryParam:"inline" tfsdk:"portal_access_attribute" tfPlanOnly:"true"`
 	PriceComponentAttribute        *AutomationAttribute          `queryParam:"inline" tfsdk:"price_component_attribute" tfPlanOnly:"true"`
-	PurposeAttribute               *PurposeAttribute             `queryParam:"inline" tfsdk:"purpose_attribute" tfPlanOnly:"true"`
+	PurposeAttribute               *AutomationAttribute          `queryParam:"inline" tfsdk:"purpose_attribute" tfPlanOnly:"true"`
 	RelationAttribute              *RelationAttribute            `queryParam:"inline" tfsdk:"relation_attribute" tfPlanOnly:"true"`
 	SelectAttribute                *SelectAttribute              `queryParam:"inline" tfsdk:"select_attribute" tfPlanOnly:"true"`
 	SequenceAttribute              *SequenceAttribute            `queryParam:"inline" tfsdk:"sequence_attribute" tfPlanOnly:"true"`

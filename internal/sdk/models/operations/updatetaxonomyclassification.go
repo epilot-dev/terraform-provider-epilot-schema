@@ -9,22 +9,22 @@ import (
 
 type UpdateTaxonomyClassificationRequest struct {
 	// Taxonomy Classification slug
-	ClassificationSlug     string                         `pathParam:"style=simple,explode=false,name=classificationSlug"`
-	TaxonomyClassification *shared.TaxonomyClassification `request:"mediaType=application/json"`
+	ClassificationSlug     string                              `pathParam:"style=simple,explode=false,name=classificationSlug"`
+	TaxonomyClassification *shared.TaxonomyClassificationInput `request:"mediaType=application/json"`
 }
 
-func (o *UpdateTaxonomyClassificationRequest) GetClassificationSlug() string {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationRequest) GetClassificationSlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.ClassificationSlug
+	return u.ClassificationSlug
 }
 
-func (o *UpdateTaxonomyClassificationRequest) GetTaxonomyClassification() *shared.TaxonomyClassification {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationRequest) GetTaxonomyClassification() *shared.TaxonomyClassificationInput {
+	if u == nil {
 		return nil
 	}
-	return o.TaxonomyClassification
+	return u.TaxonomyClassification
 }
 
 type UpdateTaxonomyClassificationResponse struct {
@@ -38,30 +38,30 @@ type UpdateTaxonomyClassificationResponse struct {
 	TaxonomyClassification *shared.TaxonomyClassification
 }
 
-func (o *UpdateTaxonomyClassificationResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateTaxonomyClassificationResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateTaxonomyClassificationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
-	if o == nil {
+func (u *UpdateTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
+	if u == nil {
 		return nil
 	}
-	return o.TaxonomyClassification
+	return u.TaxonomyClassification
 }

@@ -21,32 +21,32 @@ type RestoreEntityRequest struct {
 	RequestBody *RestoreEntityRequestBody    `request:"mediaType=application/json"`
 }
 
-func (o *RestoreEntityRequest) GetID() string {
-	if o == nil {
+func (r *RestoreEntityRequest) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RestoreEntityRequest) GetSlug() string {
-	if o == nil {
+func (r *RestoreEntityRequest) GetSlug() string {
+	if r == nil {
 		return ""
 	}
-	return o.Slug
+	return r.Slug
 }
 
-func (o *RestoreEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (r *RestoreEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if r == nil {
 		return nil
 	}
-	return o.ActivityID
+	return r.ActivityID
 }
 
-func (o *RestoreEntityRequest) GetRequestBody() *RestoreEntityRequestBody {
-	if o == nil {
+func (r *RestoreEntityRequest) GetRequestBody() *RestoreEntityRequestBody {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type RestoreEntityResponse struct {
@@ -58,32 +58,49 @@ type RestoreEntityResponse struct {
 	RawResponse *http.Response
 	// The restored entity
 	EntityItem *shared.EntityItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *RestoreEntityResponse) GetContentType() string {
-	if o == nil {
+func (r *RestoreEntityResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *RestoreEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (r *RestoreEntityResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *RestoreEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *RestoreEntityResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *RestoreEntityResponse) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (r *RestoreEntityResponse) GetEntityItem() *shared.EntityItem {
+	if r == nil {
 		return nil
 	}
-	return o.EntityItem
+	return r.EntityItem
+}
+
+func (r *RestoreEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if r == nil {
+		return nil
+	}
+	return r.TooManyRequestsError
+}
+
+func (r *RestoreEntityResponse) GetHeaders() map[string][]string {
+	if r == nil {
+		return map[string][]string{}
+	}
+	return r.Headers
 }

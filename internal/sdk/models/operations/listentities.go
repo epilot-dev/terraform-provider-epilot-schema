@@ -18,39 +18,56 @@ type ListEntitiesResponse struct {
 	EntitySearchResults *shared.EntitySearchResults
 	// Success
 	Res *string
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *ListEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (l *ListEntitiesResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListEntitiesResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListEntitiesResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListEntitiesResponse) GetEntitySearchResults() *shared.EntitySearchResults {
-	if o == nil {
+func (l *ListEntitiesResponse) GetEntitySearchResults() *shared.EntitySearchResults {
+	if l == nil {
 		return nil
 	}
-	return o.EntitySearchResults
+	return l.EntitySearchResults
 }
 
-func (o *ListEntitiesResponse) GetRes() *string {
-	if o == nil {
+func (l *ListEntitiesResponse) GetRes() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Res
+	return l.Res
+}
+
+func (l *ListEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if l == nil {
+		return nil
+	}
+	return l.TooManyRequestsError
+}
+
+func (l *ListEntitiesResponse) GetHeaders() map[string][]string {
+	if l == nil {
+		return map[string][]string{}
+	}
+	return l.Headers
 }

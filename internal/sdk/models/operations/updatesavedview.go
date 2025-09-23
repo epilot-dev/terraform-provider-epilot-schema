@@ -14,25 +14,25 @@ type UpdateSavedViewRequestBody struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *UpdateSavedViewRequestBody) GetID() *string {
-	if o == nil {
+func (u *UpdateSavedViewRequestBody) GetID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateSavedViewRequestBody) GetCreatedAt() *string {
-	if o == nil {
+func (u *UpdateSavedViewRequestBody) GetCreatedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return u.CreatedAt
 }
 
-func (o *UpdateSavedViewRequestBody) GetUpdatedAt() *string {
-	if o == nil {
+func (u *UpdateSavedViewRequestBody) GetUpdatedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return u.UpdatedAt
 }
 
 type UpdateSavedViewRequest struct {
@@ -41,18 +41,18 @@ type UpdateSavedViewRequest struct {
 	RequestBody *UpdateSavedViewRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateSavedViewRequest) GetID() string {
-	if o == nil {
+func (u *UpdateSavedViewRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateSavedViewRequest) GetRequestBody() *UpdateSavedViewRequestBody {
-	if o == nil {
+func (u *UpdateSavedViewRequest) GetRequestBody() *UpdateSavedViewRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 // UpdateSavedViewResponseBody - A saved entity view
@@ -63,25 +63,25 @@ type UpdateSavedViewResponseBody struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *UpdateSavedViewResponseBody) GetID() *string {
-	if o == nil {
+func (u *UpdateSavedViewResponseBody) GetID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateSavedViewResponseBody) GetCreatedAt() *string {
-	if o == nil {
+func (u *UpdateSavedViewResponseBody) GetCreatedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return u.CreatedAt
 }
 
-func (o *UpdateSavedViewResponseBody) GetUpdatedAt() *string {
-	if o == nil {
+func (u *UpdateSavedViewResponseBody) GetUpdatedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return u.UpdatedAt
 }
 
 type UpdateSavedViewResponse struct {
@@ -95,30 +95,30 @@ type UpdateSavedViewResponse struct {
 	Object *UpdateSavedViewResponseBody
 }
 
-func (o *UpdateSavedViewResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateSavedViewResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateSavedViewResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateSavedViewResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateSavedViewResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateSavedViewResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateSavedViewResponse) GetObject() *UpdateSavedViewResponseBody {
-	if o == nil {
+func (u *UpdateSavedViewResponse) GetObject() *UpdateSavedViewResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

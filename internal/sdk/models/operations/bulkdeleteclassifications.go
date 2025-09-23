@@ -13,18 +13,18 @@ type BulkDeleteClassificationsRequestBody struct {
 	ClassificationIds []string `json:"classification_ids,omitempty"`
 }
 
-func (o *BulkDeleteClassificationsRequestBody) GetJobID() *string {
-	if o == nil {
+func (b *BulkDeleteClassificationsRequestBody) GetJobID() *string {
+	if b == nil {
 		return nil
 	}
-	return o.JobID
+	return b.JobID
 }
 
-func (o *BulkDeleteClassificationsRequestBody) GetClassificationIds() []string {
-	if o == nil {
+func (b *BulkDeleteClassificationsRequestBody) GetClassificationIds() []string {
+	if b == nil {
 		return nil
 	}
-	return o.ClassificationIds
+	return b.ClassificationIds
 }
 
 type BulkDeleteClassificationsResponse struct {
@@ -36,32 +36,49 @@ type BulkDeleteClassificationsResponse struct {
 	RawResponse *http.Response
 	// Returns the job id for the async job and current status
 	TaxonomyBulkJobTriggerResponse *shared.TaxonomyBulkJobTriggerResponse
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *BulkDeleteClassificationsResponse) GetContentType() string {
-	if o == nil {
+func (b *BulkDeleteClassificationsResponse) GetContentType() string {
+	if b == nil {
 		return ""
 	}
-	return o.ContentType
+	return b.ContentType
 }
 
-func (o *BulkDeleteClassificationsResponse) GetStatusCode() int {
-	if o == nil {
+func (b *BulkDeleteClassificationsResponse) GetStatusCode() int {
+	if b == nil {
 		return 0
 	}
-	return o.StatusCode
+	return b.StatusCode
 }
 
-func (o *BulkDeleteClassificationsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (b *BulkDeleteClassificationsResponse) GetRawResponse() *http.Response {
+	if b == nil {
 		return nil
 	}
-	return o.RawResponse
+	return b.RawResponse
 }
 
-func (o *BulkDeleteClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() *shared.TaxonomyBulkJobTriggerResponse {
-	if o == nil {
+func (b *BulkDeleteClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() *shared.TaxonomyBulkJobTriggerResponse {
+	if b == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJobTriggerResponse
+	return b.TaxonomyBulkJobTriggerResponse
+}
+
+func (b *BulkDeleteClassificationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if b == nil {
+		return nil
+	}
+	return b.TooManyRequestsError
+}
+
+func (b *BulkDeleteClassificationsResponse) GetHeaders() map[string][]string {
+	if b == nil {
+		return map[string][]string{}
+	}
+	return b.Headers
 }

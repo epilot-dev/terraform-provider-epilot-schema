@@ -16,32 +16,32 @@ type ListTaxonomyClassificationsForSchemaRequest struct {
 	Size         *float64 `queryParam:"style=form,explode=true,name=size"`
 }
 
-func (o *ListTaxonomyClassificationsForSchemaRequest) GetSlug() string {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaRequest) GetSlug() string {
+	if l == nil {
 		return ""
 	}
-	return o.Slug
+	return l.Slug
 }
 
-func (o *ListTaxonomyClassificationsForSchemaRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaRequest) GetTaxonomySlug() string {
+	if l == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return l.TaxonomySlug
 }
 
-func (o *ListTaxonomyClassificationsForSchemaRequest) GetQuery() *string {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaRequest) GetQuery() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Query
+	return l.Query
 }
 
-func (o *ListTaxonomyClassificationsForSchemaRequest) GetSize() *float64 {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaRequest) GetSize() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Size
+	return l.Size
 }
 
 // ListTaxonomyClassificationsForSchemaResponseBody - List of taxonomy classifications
@@ -49,11 +49,11 @@ type ListTaxonomyClassificationsForSchemaResponseBody struct {
 	Results []shared.TaxonomyClassification `json:"results,omitempty"`
 }
 
-func (o *ListTaxonomyClassificationsForSchemaResponseBody) GetResults() []shared.TaxonomyClassification {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaResponseBody) GetResults() []shared.TaxonomyClassification {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListTaxonomyClassificationsForSchemaResponse struct {
@@ -67,30 +67,30 @@ type ListTaxonomyClassificationsForSchemaResponse struct {
 	Object *ListTaxonomyClassificationsForSchemaResponseBody
 }
 
-func (o *ListTaxonomyClassificationsForSchemaResponse) GetContentType() string {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListTaxonomyClassificationsForSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListTaxonomyClassificationsForSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListTaxonomyClassificationsForSchemaResponse) GetObject() *ListTaxonomyClassificationsForSchemaResponseBody {
-	if o == nil {
+func (l *ListTaxonomyClassificationsForSchemaResponse) GetObject() *ListTaxonomyClassificationsForSchemaResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

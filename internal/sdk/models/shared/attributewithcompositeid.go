@@ -7,12 +7,22 @@ import (
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-	"time"
 )
 
 // PriceComponentAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PriceComponentAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PriceComponentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PriceComponentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -36,32 +46,43 @@ type PriceComponentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PriceComponentAttributeAttributeWithCompositeIDType string
@@ -153,239 +174,250 @@ func (a AttributeWithCompositeIDPriceComponentAttribute) MarshalJSON() ([]byte, 
 }
 
 func (a *AttributeWithCompositeIDPriceComponentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetConstraints() *PriceComponentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetConstraints() *PriceComponentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetInfoHelpers() *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetInfoHelpers() *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PriceComponentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // PaymentAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PaymentAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PaymentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PaymentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -409,32 +441,43 @@ type PaymentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PaymentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PaymentAttributeAttributeWithCompositeIDType string
@@ -526,239 +569,250 @@ func (a AttributeWithCompositeIDPaymentAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDPaymentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetConstraints() *PaymentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetConstraints() *PaymentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetInfoHelpers() *PaymentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetInfoHelpers() *PaymentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetType() PaymentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetType() PaymentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PaymentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPaymentAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // EmailAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type EmailAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (e EmailAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmailAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // EmailAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -782,32 +836,43 @@ type EmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (e EmailAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (o *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if e == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return e.HintText
 }
 
-func (o *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if e == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return e.HintTextKey
+}
+
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if e == nil {
+		return nil
+	}
+	return e.HintCustomComponent
+}
+
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if e == nil {
+		return nil
+	}
+	return e.HintTooltipPlacement
 }
 
 type EmailAttributeAttributeWithCompositeIDType string
@@ -899,239 +964,250 @@ func (a AttributeWithCompositeIDEmailAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetConstraints() *EmailAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetConstraints() *EmailAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetInfoHelpers() *EmailAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetInfoHelpers() *EmailAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetType() EmailAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetType() EmailAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return EmailAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDEmailAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // PhoneAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PhoneAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PhoneAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PhoneAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -1155,32 +1231,43 @@ type PhoneAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PhoneAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PhoneAttributeAttributeWithCompositeIDType string
@@ -1272,239 +1359,645 @@ func (a AttributeWithCompositeIDPhoneAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDPhoneAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetConstraints() *PhoneAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetConstraints() *PhoneAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetInfoHelpers() *PhoneAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetInfoHelpers() *PhoneAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetType() PhoneAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetType() PhoneAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PhoneAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPhoneAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
+}
+
+// PortalAccessAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
+// These constraints should and will be enforced by the attribute renderer.
+type PortalAccessAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PortalAccessAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+// PortalAccessAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type PortalAccessAttributeAttributeWithCompositeIDInfoHelpers struct {
+	// The text to be displayed in the attribute hint helper.
+	// When specified it overrides the `hint_text_key` configuration.
+	//
+	HintText *string `json:"hint_text,omitempty"`
+	// The key of the hint text to be displayed in the attribute hint helper.
+	// The key should be a valid i18n key.
+	//
+	HintTextKey *string `json:"hint_text_key,omitempty"`
+	// The name of the custom component to be used as the hint helper.
+	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
+	//
+	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
+	// The placement of the hint tooltip.
+	// The value should be a valid `@mui/core` tooltip placement.
+	//
+	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintText
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTextKey
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
+}
+
+type PortalAccessAttributeAttributeWithCompositeIDType string
+
+const (
+	PortalAccessAttributeAttributeWithCompositeIDTypePortalAccess PortalAccessAttributeAttributeWithCompositeIDType = "portal_access"
+)
+
+func (e PortalAccessAttributeAttributeWithCompositeIDType) ToPointer() *PortalAccessAttributeAttributeWithCompositeIDType {
+	return &e
+}
+func (e *PortalAccessAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "portal_access":
+		*e = PortalAccessAttributeAttributeWithCompositeIDType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PortalAccessAttributeAttributeWithCompositeIDType: %v", v)
+	}
+}
+
+// AttributeWithCompositeIDPortalAccessAttribute - Portal access configuration
+type AttributeWithCompositeIDPortalAccessAttribute struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *PortalAccessAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	Type        PortalAccessAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDPortalAccessAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ID
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetName() string {
+	if a == nil {
+		return ""
+	}
+	return a.Name
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetLabel() string {
+	if a == nil {
+		return ""
+	}
+	return a.Label
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetPlaceholder() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Placeholder
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetHidden() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Hidden
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetShowInTable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.ShowInTable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetSortable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Sortable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetRequired() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Required
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetReadonly() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Readonly
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetDeprecated() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Deprecated
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetDefaultValue() any {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultValue
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetGroup() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Group
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetOrder() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Order
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetLayout() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Layout
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetHideLabel() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.HideLabel
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetIcon() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Icon
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetRenderCondition() *string {
+	if a == nil {
+		return nil
+	}
+	return a.RenderCondition
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetPurpose() []string {
+	if a == nil {
+		return nil
+	}
+	return a.Purpose
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetManifest() []string {
+	if a == nil {
+		return nil
+	}
+	return a.Manifest
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetConstraints() *PortalAccessAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
+		return nil
+	}
+	return a.Constraints
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetFeatureFlag() *string {
+	if a == nil {
+		return nil
+	}
+	return a.FeatureFlag
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
+		return nil
+	}
+	return a.SettingsFlag
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetValueFormatter() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ValueFormatter
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PreviewValueFormatter
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.EntityBuilderDisableEdit
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetProtected() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Protected
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetInfoHelpers() *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
+		return nil
+	}
+	return a.InfoHelpers
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetRepeatable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Repeatable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetHasPrimary() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.HasPrimary
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetType() PortalAccessAttributeAttributeWithCompositeIDType {
+	if a == nil {
+		return PortalAccessAttributeAttributeWithCompositeIDType("")
+	}
+	return a.Type
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetCompositeID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.CompositeID
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) GetSchema() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Schema
 }
 
 // PartnerOrganisationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PartnerOrganisationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PartnerOrganisationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -1528,32 +2021,43 @@ type PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PartnerOrganisationAttributeAttributeWithCompositeIDType string
@@ -1645,239 +2149,250 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttribute) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetInfoHelpers() *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetInfoHelpers() *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PartnerOrganisationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // PurposeAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PurposeAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PurposeAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurposeAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PurposeAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -1901,32 +2416,43 @@ type PurposeAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PurposeAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PurposeAttributeAttributeWithCompositeIDType string
@@ -1954,6 +2480,7 @@ func (e *PurposeAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDPurposeAttribute - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
@@ -1985,7 +2512,7 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the taxonomy classification
+	// Manifest ID used to create/update the schema attribute
 	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
@@ -2004,17 +2531,8 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool `json:"repeatable,omitempty"`
-	HasPrimary *bool `json:"has_primary,omitempty"`
-	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
-	Parents []string `json:"parents,omitempty"`
-	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived    *bool                                        `default:"false" json:"archived"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
 	Type        PurposeAttributeAttributeWithCompositeIDType `json:"type"`
 	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
@@ -2026,281 +2544,250 @@ func (a AttributeWithCompositeIDPurposeAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDPurposeAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetInfoHelpers() *PurposeAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetInfoHelpers() *PurposeAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetParents() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Parents
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetColor() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Color
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetType() PurposeAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetType() PurposeAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PurposeAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // InternalUserAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InternalUserAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (i InternalUserAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalUserAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // InternalUserAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -2324,32 +2811,43 @@ type InternalUserAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (i InternalUserAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
 }
 
-func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return i.HintText
 }
 
-func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return i.HintTextKey
+}
+
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintCustomComponent
+}
+
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintTooltipPlacement
 }
 
 type InternalUserAttributeAttributeWithCompositeIDType string
@@ -2441,239 +2939,250 @@ func (a AttributeWithCompositeIDInternalUserAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetInfoHelpers() *InternalUserAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetInfoHelpers() *InternalUserAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetType() InternalUserAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetType() InternalUserAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InternalUserAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AutomationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type AutomationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (a AutomationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutomationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // AutomationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -2697,32 +3206,43 @@ type AutomationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (a AutomationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return a.HintText
 }
 
-func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return a.HintTextKey
+}
+
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintCustomComponent
+}
+
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintTooltipPlacement
 }
 
 type AutomationAttributeAttributeWithCompositeIDType string
@@ -2814,239 +3334,250 @@ func (a AttributeWithCompositeIDAutomationAttribute) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDAutomationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetInfoHelpers() *AutomationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetInfoHelpers() *AutomationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetType() AutomationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetType() AutomationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AutomationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDAutomationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // InvitationEmailAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InvitationEmailAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (i InvitationEmailAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvitationEmailAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -3070,32 +3601,43 @@ type InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (i InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
 }
 
-func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return i.HintText
 }
 
-func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return i.HintTextKey
+}
+
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintCustomComponent
+}
+
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintTooltipPlacement
 }
 
 type InvitationEmailAttributeAttributeWithCompositeIDType string
@@ -3187,239 +3729,250 @@ func (a AttributeWithCompositeIDInvitationEmailAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InvitationEmailAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // PartnerStatusAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PartnerStatusAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PartnerStatusAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerStatusAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -3443,32 +3996,43 @@ type PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PartnerStatusAttributeAttributeWithCompositeIDType string
@@ -3560,239 +4124,250 @@ func (a AttributeWithCompositeIDPartnerStatusAttribute) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetInfoHelpers() *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetInfoHelpers() *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PartnerStatusAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // ComputedAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type ComputedAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (c ComputedAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ComputedAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // ComputedAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -3816,32 +4391,43 @@ type ComputedAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c ComputedAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type ComputedAttributeAttributeWithCompositeIDType string
@@ -3940,260 +4526,271 @@ func (a AttributeWithCompositeIDComputedAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetValueFormatter() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetValueFormatter() string {
+	if a == nil {
 		return ""
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetInfoHelpers() *ComputedAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetInfoHelpers() *ComputedAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetType() ComputedAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetType() ComputedAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return ComputedAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetComputed() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetComputed() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Computed
+	return a.Computed
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetAmountField() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetAmountField() *string {
+	if a == nil {
 		return nil
 	}
-	return o.AmountField
+	return a.AmountField
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetCurrencyField() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetCurrencyField() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CurrencyField
+	return a.CurrencyField
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDComputedAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // FileAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type FileAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (f FileAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FileAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // FileAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -4217,32 +4814,43 @@ type FileAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (f FileAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
 }
 
-func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if f == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return f.HintText
 }
 
-func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if f == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return f.HintTextKey
+}
+
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if f == nil {
+		return nil
+	}
+	return f.HintCustomComponent
+}
+
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if f == nil {
+		return nil
+	}
+	return f.HintTooltipPlacement
 }
 
 type FileAttributeAttributeWithCompositeIDType string
@@ -4373,274 +4981,285 @@ func (a AttributeWithCompositeIDFileAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDFileAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetInfoHelpers() *FileAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetInfoHelpers() *FileAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetType() FileAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetType() FileAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return FileAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetMultiple() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetMultiple() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiple
+	return a.Multiple
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetAllowedExtensions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetAllowedExtensions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.AllowedExtensions
+	return a.AllowedExtensions
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetDisplayImagesLandscaped() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetDisplayImagesLandscaped() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DisplayImagesLandscaped
+	return a.DisplayImagesLandscaped
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetEnableDescription() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetEnableDescription() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableDescription
+	return a.EnableDescription
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetDefaultAccessControl() *FileAttributeDefaultAccessControl {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetDefaultAccessControl() *FileAttributeDefaultAccessControl {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAccessControl
+	return a.DefaultAccessControl
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDFileAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // OrderedListAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type OrderedListAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (o OrderedListAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // OrderedListAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -4662,6 +5281,17 @@ type OrderedListAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o OrderedListAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OrderedListAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -4781,239 +5411,250 @@ func (a AttributeWithCompositeIDOrderedListAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetInfoHelpers() *OrderedListAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetInfoHelpers() *OrderedListAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetType() OrderedListAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetType() OrderedListAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return OrderedListAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // InternalAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type InternalAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (i InternalAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // InternalAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -5037,32 +5678,43 @@ type InternalAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (i InternalAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
 }
 
-func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return i.HintText
 }
 
-func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return i.HintTextKey
+}
+
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintCustomComponent
+}
+
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintTooltipPlacement
 }
 
 type InternalAttributeAttributeWithCompositeIDType string
@@ -5154,239 +5806,250 @@ func (a AttributeWithCompositeIDInternalAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDInternalAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetInfoHelpers() *InternalAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetInfoHelpers() *InternalAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetType() InternalAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetType() InternalAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InternalAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDInternalAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // ConsentAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type ConsentAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (c ConsentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConsentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // ConsentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -5410,32 +6073,43 @@ type ConsentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c ConsentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type ConsentAttributeAttributeWithCompositeIDType string
@@ -5529,253 +6203,264 @@ func (a AttributeWithCompositeIDConsentAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDConsentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "topic"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetInfoHelpers() *ConsentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetInfoHelpers() *ConsentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetType() ConsentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetType() ConsentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return ConsentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetTopic() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetTopic() string {
+	if a == nil {
 		return ""
 	}
-	return o.Topic
+	return a.Topic
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetIdentifiers() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetIdentifiers() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Identifiers
+	return a.Identifiers
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDConsentAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // NumberAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type NumberAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (n NumberAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NumberAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // NumberAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -5799,32 +6484,43 @@ type NumberAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (n NumberAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
 }
 
-func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if n == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return n.HintText
 }
 
-func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if n == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return n.HintTextKey
+}
+
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if n == nil {
+		return nil
+	}
+	return n.HintCustomComponent
+}
+
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if n == nil {
+		return nil
+	}
+	return n.HintTooltipPlacement
 }
 
 type NumberAttributeAttributeWithCompositeIDType string
@@ -5919,253 +6615,264 @@ func (a AttributeWithCompositeIDNumberAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDNumberAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetInfoHelpers() *NumberAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetInfoHelpers() *NumberAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetType() NumberAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetType() NumberAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return NumberAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetFormat() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetFormat() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Format
+	return a.Format
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetShowSeparator() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetShowSeparator() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowSeparator
+	return a.ShowSeparator
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // MessageEmailAddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type MessageEmailAddressAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (m MessageEmailAddressAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -6189,32 +6896,43 @@ type MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (m MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
 }
 
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return m.HintText
 }
 
-func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return m.HintTextKey
+}
+
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if m == nil {
+		return nil
+	}
+	return m.HintCustomComponent
+}
+
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if m == nil {
+		return nil
+	}
+	return m.HintTooltipPlacement
 }
 
 type MessageEmailAddressAttributeAttributeWithCompositeIDType string
@@ -6309,260 +7027,271 @@ func (a AttributeWithCompositeIDMessageEmailAddressAttribute) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetAddress() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetAddress() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Address
+	return a.Address
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSendStatus() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSendStatus() *string {
+	if a == nil {
 		return nil
 	}
-	return o.SendStatus
+	return a.SendStatus
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEmailType() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetEmailType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.EmailType
+	return a.EmailType
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // TagsAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type TagsAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (t TagsAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // TagsAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -6586,32 +7315,43 @@ type TagsAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (t TagsAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return t.HintText
 }
 
-func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return t.HintTextKey
+}
+
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintCustomComponent
+}
+
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintTooltipPlacement
 }
 
 type TagsAttributeAttributeWithCompositeIDType string
@@ -6705,253 +7445,264 @@ func (a AttributeWithCompositeIDTagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetInfoHelpers() *TagsAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetInfoHelpers() *TagsAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetType() TagsAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetType() TagsAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return TagsAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetOptions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetOptions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetSuggestions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetSuggestions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Suggestions
+	return a.Suggestions
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDTagsAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // CurrencyAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type CurrencyAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (c CurrencyAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // CurrencyAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -6975,32 +7726,43 @@ type CurrencyAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c CurrencyAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type CurrencyAttributeAttributeWithCompositeIDType string
@@ -7026,69 +7788,80 @@ func (e *CurrencyAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 	}
 }
 
-// CurrencyAttributeCurrency1 - A currency configuration
-type CurrencyAttributeCurrency1 struct {
+// Currency1 - A currency configuration
+type Currency1 struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *CurrencyAttributeCurrency1) GetCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.Code
+func (c Currency1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *CurrencyAttributeCurrency1) GetDescription() string {
-	if o == nil {
-		return ""
+func (c *Currency1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"code", "description", "symbol"}); err != nil {
+		return err
 	}
-	return o.Description
+	return nil
 }
 
-func (o *CurrencyAttributeCurrency1) GetSymbol() string {
-	if o == nil {
+func (c *Currency1) GetCode() string {
+	if c == nil {
 		return ""
 	}
-	return o.Symbol
+	return c.Code
 }
 
-func (o *CurrencyAttributeCurrency1) GetFlag() *string {
-	if o == nil {
+func (c *Currency1) GetDescription() string {
+	if c == nil {
+		return ""
+	}
+	return c.Description
+}
+
+func (c *Currency1) GetSymbol() string {
+	if c == nil {
+		return ""
+	}
+	return c.Symbol
+}
+
+func (c *Currency1) GetFlag() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Flag
+	return c.Flag
 }
 
 type CurrencyAttributeCurrencyType string
 
 const (
-	CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1 CurrencyAttributeCurrencyType = "CurrencyAttribute_currency_1"
+	CurrencyAttributeCurrencyTypeCurrency1 CurrencyAttributeCurrencyType = "currency_1"
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1 `queryParam:"inline"`
+	Currency1 *Currency1 `queryParam:"inline" name:"currency"`
 
 	Type CurrencyAttributeCurrencyType
 }
 
-func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttributeCurrency1 CurrencyAttributeCurrency1) CurrencyAttributeCurrency {
-	typ := CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+func CreateCurrencyAttributeCurrencyCurrency1(currency1 Currency1) CurrencyAttributeCurrency {
+	typ := CurrencyAttributeCurrencyTypeCurrency1
 
 	return CurrencyAttributeCurrency{
-		CurrencyAttributeCurrency1: &currencyAttributeCurrency1,
-		Type:                       typ,
+		Currency1: &currency1,
+		Type:      typ,
 	}
 }
 
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
-	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
-	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, false); err == nil {
-		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
-		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+	var currency1 Currency1 = Currency1{}
+	if err := utils.UnmarshalJSON(data, &currency1, "", true, nil); err == nil {
+		u.Currency1 = &currency1
+		u.Type = CurrencyAttributeCurrencyTypeCurrency1
 		return nil
 	}
 
@@ -7096,8 +7869,8 @@ func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 }
 
 func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
-	if u.CurrencyAttributeCurrency1 != nil {
-		return utils.MarshalJSON(u.CurrencyAttributeCurrency1, "", true)
+	if u.Currency1 != nil {
+		return utils.MarshalJSON(u.Currency1, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CurrencyAttributeCurrency: all fields are null")
@@ -7172,253 +7945,264 @@ func (a AttributeWithCompositeIDCurrencyAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetInfoHelpers() *CurrencyAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetInfoHelpers() *CurrencyAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetType() CurrencyAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetType() CurrencyAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return CurrencyAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetCurrencySelectorOnly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetCurrencySelectorOnly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.CurrencySelectorOnly
+	return a.CurrencySelectorOnly
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetCurrency() []CurrencyAttributeCurrency {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetCurrency() []CurrencyAttributeCurrency {
+	if a == nil {
 		return []CurrencyAttributeCurrency{}
 	}
-	return o.Currency
+	return a.Currency
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -7442,32 +8226,43 @@ type PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PaymentMethodRelationAttributeAttributeWithCompositeIDType string
@@ -7559,239 +8354,250 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttribute) MarshalJSON() ([
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PaymentMethodRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AddressRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type AddressRelationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (a AddressRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // AddressRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -7815,32 +8621,43 @@ type AddressRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (a AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return a.HintText
 }
 
-func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return a.HintTextKey
+}
+
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintCustomComponent
+}
+
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintTooltipPlacement
 }
 
 type AddressRelationAttributeAttributeWithCompositeIDType string
@@ -7954,246 +8771,257 @@ func (a AttributeWithCompositeIDAddressRelationAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AddressRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AddressAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type AddressAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (a AddressAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // AddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -8217,32 +9045,43 @@ type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (a AddressAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return a.HintText
 }
 
-func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return a.HintTextKey
+}
+
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintCustomComponent
+}
+
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintTooltipPlacement
 }
 
 type AddressAttributeAttributeWithCompositeIDType string
@@ -8356,246 +9195,257 @@ func (a AttributeWithCompositeIDAddressAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetType() AddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetType() AddressAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AddressAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // UserRelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type UserRelationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (u UserRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // UserRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -8619,32 +9469,43 @@ type UserRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (u UserRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return u.HintText
 }
 
-func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return u.HintTextKey
+}
+
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if u == nil {
+		return nil
+	}
+	return u.HintCustomComponent
+}
+
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if u == nil {
+		return nil
+	}
+	return u.HintTooltipPlacement
 }
 
 type UserRelationAttributeAttributeWithCompositeIDType string
@@ -8737,246 +9598,257 @@ func (a AttributeWithCompositeIDUserRelationAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetInfoHelpers() *UserRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetInfoHelpers() *UserRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetType() UserRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetType() UserRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return UserRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetMultiple() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetMultiple() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiple
+	return a.Multiple
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // RelationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type RelationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (r RelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // RelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -9000,32 +9872,43 @@ type RelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (r RelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return r.HintText
 }
 
-func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return r.HintTextKey
+}
+
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if r == nil {
+		return nil
+	}
+	return r.HintCustomComponent
+}
+
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if r == nil {
+		return nil
+	}
+	return r.HintTooltipPlacement
 }
 
 type RelationAttributeAttributeWithCompositeIDType string
@@ -9132,11 +10015,22 @@ type RelationAttributeRelationPickerFilter struct {
 	Q string `json:"q"`
 }
 
-func (o *RelationAttributeRelationPickerFilter) GetQ() string {
-	if o == nil {
+func (r RelationAttributeRelationPickerFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeRelationPickerFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"q"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RelationAttributeRelationPickerFilter) GetQ() string {
+	if r == nil {
 		return ""
 	}
-	return o.Q
+	return r.Q
 }
 
 // RelationAttributeActionType - The action type. Currently supported actions:
@@ -9196,46 +10090,57 @@ type RelationAttributeActions struct {
 	NewEntityItem any           `json:"new_entity_item,omitempty"`
 }
 
-func (o *RelationAttributeActions) GetActionType() *RelationAttributeActionType {
-	if o == nil {
-		return nil
-	}
-	return o.ActionType
+func (r RelationAttributeActions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (o *RelationAttributeActions) GetLabel() *string {
-	if o == nil {
-		return nil
+func (r *RelationAttributeActions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
 	}
-	return o.Label
+	return nil
 }
 
-func (o *RelationAttributeActions) GetDefault() *bool {
-	if o == nil {
+func (r *RelationAttributeActions) GetActionType() *RelationAttributeActionType {
+	if r == nil {
 		return nil
 	}
-	return o.Default
+	return r.ActionType
 }
 
-func (o *RelationAttributeActions) GetFeatureFlag() *string {
-	if o == nil {
+func (r *RelationAttributeActions) GetLabel() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return r.Label
 }
 
-func (o *RelationAttributeActions) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (r *RelationAttributeActions) GetDefault() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return r.Default
 }
 
-func (o *RelationAttributeActions) GetNewEntityItem() any {
-	if o == nil {
+func (r *RelationAttributeActions) GetFeatureFlag() *string {
+	if r == nil {
 		return nil
 	}
-	return o.NewEntityItem
+	return r.FeatureFlag
+}
+
+func (r *RelationAttributeActions) GetSettingsFlag() []SettingFlag {
+	if r == nil {
+		return nil
+	}
+	return r.SettingsFlag
+}
+
+func (r *RelationAttributeActions) GetNewEntityItem() any {
+	if r == nil {
+		return nil
+	}
+	return r.NewEntityItem
 }
 
 type RelationAttributeDrawerSize string
@@ -9275,8 +10180,8 @@ const (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          *string       `queryParam:"inline"`
-	SummaryField *SummaryField `queryParam:"inline"`
+	Str          *string       `queryParam:"inline" name:"summary_fields"`
+	SummaryField *SummaryField `queryParam:"inline" name:"summary_fields"`
 
 	Type RelationAttributeSummaryFieldsType
 }
@@ -9302,14 +10207,14 @@ func CreateRelationAttributeSummaryFieldsSummaryField(summaryField SummaryField)
 func (u *RelationAttributeSummaryFields) UnmarshalJSON(data []byte) error {
 
 	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, nil); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = RelationAttributeSummaryFieldsTypeSummaryField
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = RelationAttributeSummaryFieldsTypeStr
 		return nil
@@ -9415,337 +10320,348 @@ func (a AttributeWithCompositeIDRelationAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetInfoHelpers() *RelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetInfoHelpers() *RelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetType() RelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetType() RelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return RelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRelationType() *RelationAttributeRelationType {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRelationType() *RelationAttributeRelationType {
+	if a == nil {
 		return nil
 	}
-	return o.RelationType
+	return a.RelationType
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetReverseAttributes() map[string]string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetReverseAttributes() map[string]string {
+	if a == nil {
 		return nil
 	}
-	return o.ReverseAttributes
+	return a.ReverseAttributes
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
+	if a == nil {
 		return nil
 	}
-	return o.RelationAffinityMode
+	return a.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetEnableRelationPicker() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetEnableRelationPicker() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableRelationPicker
+	return a.EnableRelationPicker
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetEditMode() *RelationAttributeEditMode {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetEditMode() *RelationAttributeEditMode {
+	if a == nil {
 		return nil
 	}
-	return o.EditMode
+	return a.EditMode
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetDetailsViewModeEnabled() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetDetailsViewModeEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DetailsViewModeEnabled
+	return a.DetailsViewModeEnabled
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
+	if a == nil {
 		return nil
 	}
-	return o.RelationPickerFilter
+	return a.RelationPickerFilter
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetActions() []RelationAttributeActions {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetActions() []RelationAttributeActions {
+	if a == nil {
 		return nil
 	}
-	return o.Actions
+	return a.Actions
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetDrawerSize() *RelationAttributeDrawerSize {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetDrawerSize() *RelationAttributeDrawerSize {
+	if a == nil {
 		return nil
 	}
-	return o.DrawerSize
+	return a.DrawerSize
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetSummaryFields() []RelationAttributeSummaryFields {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetSummaryFields() []RelationAttributeSummaryFields {
+	if a == nil {
 		return nil
 	}
-	return o.SummaryFields
+	return a.SummaryFields
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetAllowedSchemas() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetAllowedSchemas() []string {
+	if a == nil {
 		return nil
 	}
-	return o.AllowedSchemas
+	return a.AllowedSchemas
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetEnableRelationTags() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetEnableRelationTags() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableRelationTags
+	return a.EnableRelationTags
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetAddButtonLabel() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetAddButtonLabel() *string {
+	if a == nil {
 		return nil
 	}
-	return o.AddButtonLabel
+	return a.AddButtonLabel
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetSearchPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetSearchPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.SearchPlaceholder
+	return a.SearchPlaceholder
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDRelationAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // SequenceAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type SequenceAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (s SequenceAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SequenceAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // SequenceAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -9769,32 +10685,43 @@ type SequenceAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (s SequenceAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return s.HintText
 }
 
-func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return s.HintTextKey
+}
+
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintCustomComponent
+}
+
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintTooltipPlacement
 }
 
 type SequenceAttributeAttributeWithCompositeIDType string
@@ -9889,253 +10816,264 @@ func (a AttributeWithCompositeIDSequenceAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDSequenceAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetInfoHelpers() *SequenceAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetInfoHelpers() *SequenceAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetType() SequenceAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetType() SequenceAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return SequenceAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetPrefix() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetPrefix() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Prefix
+	return a.Prefix
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetStartNumber() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetStartNumber() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.StartNumber
+	return a.StartNumber
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDSequenceAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // StatusAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type StatusAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (s StatusAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // StatusAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -10159,32 +11097,43 @@ type StatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (s StatusAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return s.HintText
 }
 
-func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return s.HintTextKey
+}
+
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintCustomComponent
+}
+
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintTooltipPlacement
 }
 
 type StatusAttributeAttributeWithCompositeIDType string
@@ -10210,37 +11159,48 @@ func (e *StatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 	}
 }
 
-type StatusAttributeOptionsAttributeWithCompositeID2 struct {
+type StatusAttributeOptions2 struct {
 	// The stored value of the option
 	Value string `json:"value"`
 	// The displayed title of the option
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
+func (s StatusAttributeOptions2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetTitle() *string {
-	if o == nil {
+func (s *StatusAttributeOptions2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *StatusAttributeOptions2) GetValue() string {
+	if s == nil {
+		return ""
+	}
+	return s.Value
+}
+
+func (s *StatusAttributeOptions2) GetTitle() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Title
+	return s.Title
 }
 
 type StatusAttributeAttributeWithCompositeIDOptionsType string
 
 const (
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                                             StatusAttributeAttributeWithCompositeIDOptionsType = "str"
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_AttributeWithCompositeID_2"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                     StatusAttributeAttributeWithCompositeIDOptionsType = "str"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_2"
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                                             *string                                          `queryParam:"inline"`
-	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2 `queryParam:"inline"`
+	Str                     *string                  `queryParam:"inline" name:"options"`
+	StatusAttributeOptions2 *StatusAttributeOptions2 `queryParam:"inline" name:"options"`
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -10254,26 +11214,26 @@ func CreateStatusAttributeAttributeWithCompositeIDOptionsStr(str string) StatusA
 	}
 }
 
-func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptionsAttributeWithCompositeID2(statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2) StatusAttributeAttributeWithCompositeIDOptions {
-	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
+func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptions2(statusAttributeOptions2 StatusAttributeOptions2) StatusAttributeAttributeWithCompositeIDOptions {
+	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 
 	return StatusAttributeAttributeWithCompositeIDOptions{
-		StatusAttributeOptionsAttributeWithCompositeID2: &statusAttributeOptionsAttributeWithCompositeID2,
-		Type: typ,
+		StatusAttributeOptions2: &statusAttributeOptions2,
+		Type:                    typ,
 	}
 }
 
 func (u *StatusAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
-	var statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2 = StatusAttributeOptionsAttributeWithCompositeID2{}
-	if err := utils.UnmarshalJSON(data, &statusAttributeOptionsAttributeWithCompositeID2, "", true, false); err == nil {
-		u.StatusAttributeOptionsAttributeWithCompositeID2 = &statusAttributeOptionsAttributeWithCompositeID2
-		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
+	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
+	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, nil); err == nil {
+		u.StatusAttributeOptions2 = &statusAttributeOptions2
+		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStr
 		return nil
@@ -10287,8 +11247,8 @@ func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, e
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.StatusAttributeOptionsAttributeWithCompositeID2 != nil {
-		return utils.MarshalJSON(u.StatusAttributeOptionsAttributeWithCompositeID2, "", true)
+	if u.StatusAttributeOptions2 != nil {
+		return utils.MarshalJSON(u.StatusAttributeOptions2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type StatusAttributeAttributeWithCompositeIDOptions: all fields are null")
@@ -10361,246 +11321,257 @@ func (a AttributeWithCompositeIDStatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetInfoHelpers() *StatusAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetInfoHelpers() *StatusAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetType() StatusAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetType() StatusAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return StatusAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDStatusAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // MultiSelectAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type MultiSelectAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (m MultiSelectAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // MultiSelectAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -10624,32 +11595,43 @@ type MultiSelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (m MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
 }
 
-func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return m.HintText
 }
 
-func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return m.HintTextKey
+}
+
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if m == nil {
+		return nil
+	}
+	return m.HintCustomComponent
+}
+
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if m == nil {
+		return nil
+	}
+	return m.HintTooltipPlacement
 }
 
 type MultiSelectAttributeAttributeWithCompositeIDType string
@@ -10683,18 +11665,29 @@ type MultiSelectAttributeOptions2 struct {
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *MultiSelectAttributeOptions2) GetValue() string {
-	if o == nil {
-		return ""
-	}
-	return o.Value
+func (m MultiSelectAttributeOptions2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
 }
 
-func (o *MultiSelectAttributeOptions2) GetTitle() *string {
-	if o == nil {
+func (m *MultiSelectAttributeOptions2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MultiSelectAttributeOptions2) GetValue() string {
+	if m == nil {
+		return ""
+	}
+	return m.Value
+}
+
+func (m *MultiSelectAttributeOptions2) GetTitle() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Title
+	return m.Title
 }
 
 type MultiSelectAttributeOptionsType string
@@ -10705,8 +11698,8 @@ const (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str                          *string                       `queryParam:"inline"`
-	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline"`
+	Str                          *string                       `queryParam:"inline" name:"options"`
+	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline" name:"options"`
 
 	Type MultiSelectAttributeOptionsType
 }
@@ -10732,14 +11725,14 @@ func CreateMultiSelectAttributeOptionsMultiSelectAttributeOptions2(multiSelectAt
 func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var multiSelectAttributeOptions2 MultiSelectAttributeOptions2 = MultiSelectAttributeOptions2{}
-	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, nil); err == nil {
 		u.MultiSelectAttributeOptions2 = &multiSelectAttributeOptions2
 		u.Type = MultiSelectAttributeOptionsTypeMultiSelectAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeOptionsTypeStr
 		return nil
@@ -10833,267 +11826,278 @@ func (a AttributeWithCompositeIDMultiSelectAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetInfoHelpers() *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetInfoHelpers() *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return MultiSelectAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetDisableCaseSensitive() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetDisableCaseSensitive() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DisableCaseSensitive
+	return a.DisableCaseSensitive
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetAllowExtraOptions() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetAllowExtraOptions() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowExtraOptions
+	return a.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []*MultiSelectAttributeOptions {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetOptions() []*MultiSelectAttributeOptions {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetAllowAny() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetAllowAny() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowAny
+	return a.AllowAny
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // SelectAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type SelectAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (s SelectAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SelectAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // SelectAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -11117,32 +12121,43 @@ type SelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (s SelectAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return s.HintText
 }
 
-func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return s.HintTextKey
+}
+
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintCustomComponent
+}
+
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if s == nil {
+		return nil
+	}
+	return s.HintTooltipPlacement
 }
 
 type SelectAttributeAttributeWithCompositeIDType string
@@ -11240,253 +12255,264 @@ func (a AttributeWithCompositeIDSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetInfoHelpers() *SelectAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetInfoHelpers() *SelectAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetType() SelectAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetType() SelectAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return SelectAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetOptions() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetOptions() any {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetAllowAny() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetAllowAny() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowAny
+	return a.AllowAny
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDSelectAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // BooleanAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type BooleanAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (b BooleanAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // BooleanAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -11510,32 +12536,43 @@ type BooleanAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (b BooleanAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
 }
 
-func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if b == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return b.HintText
 }
 
-func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if b == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return b.HintTextKey
+}
+
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if b == nil {
+		return nil
+	}
+	return b.HintCustomComponent
+}
+
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if b == nil {
+		return nil
+	}
+	return b.HintTooltipPlacement
 }
 
 type BooleanAttributeAttributeWithCompositeIDType string
@@ -11654,246 +12691,257 @@ func (a AttributeWithCompositeIDBooleanAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDBooleanAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetInfoHelpers() *BooleanAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetInfoHelpers() *BooleanAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetType() BooleanAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetType() BooleanAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return BooleanAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetDisplayType() *BooleanAttributeDisplayType {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetDisplayType() *BooleanAttributeDisplayType {
+	if a == nil {
 		return nil
 	}
-	return o.DisplayType
+	return a.DisplayType
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDBooleanAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // CountryAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type CountryAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (c CountryAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CountryAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // CountryAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -11917,32 +12965,43 @@ type CountryAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c CountryAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type CountryAttributeAttributeWithCompositeIDType string
@@ -12034,239 +13093,250 @@ func (a AttributeWithCompositeIDCountryAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDCountryAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetInfoHelpers() *CountryAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetInfoHelpers() *CountryAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetType() CountryAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetType() CountryAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return CountryAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDCountryAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // DateAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type DateAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (d DateAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DateAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // DateAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -12290,32 +13360,43 @@ type DateAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (d DateAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
 }
 
-func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if d == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return d.HintText
 }
 
-func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if d == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return d.HintTextKey
+}
+
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if d == nil {
+		return nil
+	}
+	return d.HintCustomComponent
+}
+
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if d == nil {
+		return nil
+	}
+	return d.HintTooltipPlacement
 }
 
 type DateAttributeAttributeWithCompositeIDType string
@@ -12410,239 +13491,250 @@ func (a AttributeWithCompositeIDDateAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDDateAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetInfoHelpers() *DateAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetInfoHelpers() *DateAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetType() DateAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetType() DateAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return DateAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDDateAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // LinkAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type LinkAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (l LinkAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // LinkAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -12666,32 +13758,43 @@ type LinkAttributeAttributeWithCompositeIDInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (l LinkAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if l == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return l.HintText
 }
 
-func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return l.HintTextKey
+}
+
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if l == nil {
+		return nil
+	}
+	return l.HintCustomComponent
+}
+
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if l == nil {
+		return nil
+	}
+	return l.HintTooltipPlacement
 }
 
 type LinkAttributeAttributeWithCompositeIDType string
@@ -12783,239 +13886,250 @@ func (a AttributeWithCompositeIDLinkAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDLinkAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetInfoHelpers() *LinkAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetInfoHelpers() *LinkAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetType() LinkAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetType() LinkAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return LinkAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDLinkAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // TextAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type TextAttributeConstraints struct {
+}
+
+func (t TextAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TextAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // TextAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -13039,32 +14153,43 @@ type TextAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *TextAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (t TextAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (o *TextAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (t *TextAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *TextAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (t *TextAttributeInfoHelpers) GetHintText() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return t.HintText
 }
 
-func (o *TextAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (t *TextAttributeInfoHelpers) GetHintTextKey() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return t.HintTextKey
+}
+
+func (t *TextAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintCustomComponent
+}
+
+func (t *TextAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintTooltipPlacement
 }
 
 type TextAttributeAttributeWithCompositeIDType string
@@ -13159,255 +14284,255 @@ func (a AttributeWithCompositeIDTextAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTextAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetConstraints() *TextAttributeConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetConstraints() *TextAttributeConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetInfoHelpers() *TextAttributeInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetInfoHelpers() *TextAttributeInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetType() TextAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetType() TextAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return TextAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetMultiline() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetMultiline() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiline
+	return a.Multiline
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetRichText() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetRichText() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.RichText
+	return a.RichText
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetRows() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetRows() any {
+	if a == nil {
 		return nil
 	}
-	return o.Rows
+	return a.Rows
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetCompositeID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetCompositeID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CompositeID
+	return a.CompositeID
 }
 
-func (o *AttributeWithCompositeIDTextAttribute) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttribute) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 type AttributeWithCompositeIDType string
@@ -13442,6 +14567,7 @@ const (
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_InternalUserAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PurposeAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute   AttributeWithCompositeIDType = "AttributeWithCompositeID_PartnerOrganisationAttribute"
+	AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_PortalAccessAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_PhoneAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_EmailAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PaymentAttribute"
@@ -13450,39 +14576,40 @@ const (
 
 // AttributeWithCompositeID - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeID struct {
-	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPortalAccessAttribute          *AttributeWithCompositeIDPortalAccessAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline" name:"AttributeWithCompositeID"`
 
 	Type AttributeWithCompositeIDType
 }
@@ -13748,6 +14875,15 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 	}
 }
 
+func CreateAttributeWithCompositeIDAttributeWithCompositeIDPortalAccessAttribute(attributeWithCompositeIDPortalAccessAttribute AttributeWithCompositeIDPortalAccessAttribute) AttributeWithCompositeID {
+	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute
+
+	return AttributeWithCompositeID{
+		AttributeWithCompositeIDPortalAccessAttribute: &attributeWithCompositeIDPortalAccessAttribute,
+		Type: typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDPhoneAttribute(attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
 
@@ -13786,234 +14922,241 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPriceComponentAttribu
 
 func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
+	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPriceComponentAttribute AttributeWithCompositeIDPriceComponentAttribute = AttributeWithCompositeIDPriceComponentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPriceComponentAttribute = &attributeWithCompositeIDPriceComponentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPriceComponentAttribute
+	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentAttribute AttributeWithCompositeIDPaymentAttribute = AttributeWithCompositeIDPaymentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentAttribute = &attributeWithCompositeIDPaymentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute
+	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
+	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
+	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute = AttributeWithCompositeIDAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressAttribute = &attributeWithCompositeIDAddressAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttribute AttributeWithCompositeIDTagsAttribute = AttributeWithCompositeIDTagsAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDTagsAttribute = &attributeWithCompositeIDTagsAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute = AttributeWithCompositeIDMessageEmailAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDMessageEmailAddressAttribute = &attributeWithCompositeIDMessageEmailAddressAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
+	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
+	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
 		return nil
 	}
 
+	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
+	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPortalAccessAttribute AttributeWithCompositeIDPortalAccessAttribute = AttributeWithCompositeIDPortalAccessAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPortalAccessAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPortalAccessAttribute = &attributeWithCompositeIDPortalAccessAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentAttribute AttributeWithCompositeIDPaymentAttribute = AttributeWithCompositeIDPaymentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentAttribute = &attributeWithCompositeIDPaymentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPriceComponentAttribute AttributeWithCompositeIDPriceComponentAttribute = AttributeWithCompositeIDPriceComponentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPriceComponentAttribute = &attributeWithCompositeIDPriceComponentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPriceComponentAttribute
 		return nil
 	}
 
@@ -14137,6 +15280,10 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttribute, "", true)
 	}
 
+	if u.AttributeWithCompositeIDPortalAccessAttribute != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDPortalAccessAttribute, "", true)
+	}
+
 	if u.AttributeWithCompositeIDPhoneAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPhoneAttribute, "", true)
 	}
@@ -14221,227 +15368,227 @@ func (a AttributeWithCompositeIDPriceComponentAttributeInput) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDPriceComponentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetConstraints() *PriceComponentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetConstraints() *PriceComponentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetInfoHelpers() *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetInfoHelpers() *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetType() PriceComponentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PriceComponentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPriceComponentAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPriceComponentAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPaymentAttributeInput - Payment method
@@ -14509,227 +15656,227 @@ func (a AttributeWithCompositeIDPaymentAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDPaymentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetConstraints() *PaymentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetConstraints() *PaymentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetInfoHelpers() *PaymentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetInfoHelpers() *PaymentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetType() PaymentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetType() PaymentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PaymentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPaymentAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDEmailAttributeInput - Email address
@@ -14797,227 +15944,227 @@ func (a AttributeWithCompositeIDEmailAttributeInput) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDEmailAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetConstraints() *EmailAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetConstraints() *EmailAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetInfoHelpers() *EmailAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetInfoHelpers() *EmailAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetType() EmailAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetType() EmailAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return EmailAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDEmailAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDEmailAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPhoneAttributeInput - Phone number
@@ -15085,227 +16232,515 @@ func (a AttributeWithCompositeIDPhoneAttributeInput) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDPhoneAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetConstraints() *PhoneAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetConstraints() *PhoneAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetInfoHelpers() *PhoneAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetInfoHelpers() *PhoneAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetType() PhoneAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetType() PhoneAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PhoneAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPhoneAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPhoneAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
+}
+
+// AttributeWithCompositeIDPortalAccessAttributeInput - Portal access configuration
+type AttributeWithCompositeIDPortalAccessAttributeInput struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *PortalAccessAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary *bool                                             `json:"has_primary,omitempty"`
+	Type       PortalAccessAttributeAttributeWithCompositeIDType `json:"type"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDPortalAccessAttributeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ID
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetName() string {
+	if a == nil {
+		return ""
+	}
+	return a.Name
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetLabel() string {
+	if a == nil {
+		return ""
+	}
+	return a.Label
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetPlaceholder() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Placeholder
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetHidden() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Hidden
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetShowInTable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.ShowInTable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetSortable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Sortable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetRequired() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Required
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetReadonly() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Readonly
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetDeprecated() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Deprecated
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetDefaultValue() any {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultValue
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetGroup() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Group
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetOrder() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Order
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetLayout() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Layout
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetHideLabel() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.HideLabel
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetIcon() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Icon
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetRenderCondition() *string {
+	if a == nil {
+		return nil
+	}
+	return a.RenderCondition
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetPurpose() []string {
+	if a == nil {
+		return nil
+	}
+	return a.Purpose
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetManifest() []string {
+	if a == nil {
+		return nil
+	}
+	return a.Manifest
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetConstraints() *PortalAccessAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
+		return nil
+	}
+	return a.Constraints
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
+		return nil
+	}
+	return a.FeatureFlag
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
+		return nil
+	}
+	return a.SettingsFlag
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetValueFormatter() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ValueFormatter
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PreviewValueFormatter
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.EntityBuilderDisableEdit
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetProtected() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Protected
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetInfoHelpers() *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
+		return nil
+	}
+	return a.InfoHelpers
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetRepeatable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Repeatable
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.HasPrimary
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetType() PortalAccessAttributeAttributeWithCompositeIDType {
+	if a == nil {
+		return PortalAccessAttributeAttributeWithCompositeIDType("")
+	}
+	return a.Type
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) GetSchema() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPartnerOrganisationAttributeInput - Shared Partner Organisations
@@ -15373,231 +16808,232 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttributeInput) MarshalJSON()
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetConstraints() *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetInfoHelpers() *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetInfoHelpers() *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetType() PartnerOrganisationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PartnerOrganisationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
@@ -15629,7 +17065,7 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the taxonomy classification
+	// Manifest ID used to create/update the schema attribute
 	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
@@ -15648,18 +17084,9 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool `json:"repeatable,omitempty"`
-	HasPrimary *bool `json:"has_primary,omitempty"`
-	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
-	Parents []string `json:"parents,omitempty"`
-	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                                        `default:"false" json:"archived"`
-	Type     PurposeAttributeAttributeWithCompositeIDType `json:"type"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       PurposeAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15669,269 +17096,227 @@ func (a AttributeWithCompositeIDPurposeAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDPurposeAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetConstraints() *PurposeAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetInfoHelpers() *PurposeAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetInfoHelpers() *PurposeAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetParents() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Parents
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetColor() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Color
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() PurposeAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetType() PurposeAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PurposeAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPurposeAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDInternalUserAttributeInput - Epilot internal user info
@@ -15999,227 +17384,227 @@ func (a AttributeWithCompositeIDInternalUserAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetConstraints() *InternalUserAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetInfoHelpers() *InternalUserAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetInfoHelpers() *InternalUserAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetType() InternalUserAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetType() InternalUserAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InternalUserAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInternalUserAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalUserAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDAutomationAttributeInput - Automation entity
@@ -16287,227 +17672,227 @@ func (a AttributeWithCompositeIDAutomationAttributeInput) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAutomationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetConstraints() *AutomationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetInfoHelpers() *AutomationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetInfoHelpers() *AutomationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetType() AutomationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetType() AutomationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AutomationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAutomationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAutomationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDInvitationEmailAttributeInput - Email address for send invitation
@@ -16575,227 +17960,227 @@ func (a AttributeWithCompositeIDInvitationEmailAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetConstraints() *InvitationEmailAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetInfoHelpers() *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetInfoHelpers() *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetType() InvitationEmailAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InvitationEmailAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPartnerStatusAttributeInput - Partner Status
@@ -16863,227 +18248,227 @@ func (a AttributeWithCompositeIDPartnerStatusAttributeInput) MarshalJSON() ([]by
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetConstraints() *PartnerStatusAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetInfoHelpers() *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetInfoHelpers() *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetType() PartnerStatusAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PartnerStatusAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDComputedAttributeInput - An attribute that is computed from the entity data. For more details on how to use them, check the docs [here](https://e-pilot.atlassian.net/wiki/spaces/EO/pages/5642977476/How+To+Computed+Schema+Attributes)
@@ -17158,248 +18543,248 @@ func (a AttributeWithCompositeIDComputedAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDComputedAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetConstraints() *ComputedAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetValueFormatter() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetValueFormatter() string {
+	if a == nil {
 		return ""
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetInfoHelpers() *ComputedAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetInfoHelpers() *ComputedAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetType() ComputedAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetType() ComputedAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return ComputedAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetComputed() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetComputed() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Computed
+	return a.Computed
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetAmountField() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetAmountField() *string {
+	if a == nil {
 		return nil
 	}
-	return o.AmountField
+	return a.AmountField
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetCurrencyField() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetCurrencyField() *string {
+	if a == nil {
 		return nil
 	}
-	return o.CurrencyField
+	return a.CurrencyField
 }
 
-func (o *AttributeWithCompositeIDComputedAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDComputedAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDFileAttributeInput - File or Image Attachment
@@ -17477,262 +18862,262 @@ func (a AttributeWithCompositeIDFileAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDFileAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetConstraints() *FileAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetInfoHelpers() *FileAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetInfoHelpers() *FileAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetType() FileAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetType() FileAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return FileAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetMultiple() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetMultiple() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiple
+	return a.Multiple
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetAllowedExtensions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetAllowedExtensions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.AllowedExtensions
+	return a.AllowedExtensions
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetDisplayImagesLandscaped() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetDisplayImagesLandscaped() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DisplayImagesLandscaped
+	return a.DisplayImagesLandscaped
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetEnableDescription() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetEnableDescription() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableDescription
+	return a.EnableDescription
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetDefaultAccessControl() *FileAttributeDefaultAccessControl {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetDefaultAccessControl() *FileAttributeDefaultAccessControl {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAccessControl
+	return a.DefaultAccessControl
 }
 
-func (o *AttributeWithCompositeIDFileAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDFileAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDOrderedListAttributeInput - Type of attribute to render N number of ordered fields
@@ -17800,227 +19185,227 @@ func (a AttributeWithCompositeIDOrderedListAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetConstraints() *OrderedListAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetInfoHelpers() *OrderedListAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetInfoHelpers() *OrderedListAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetType() OrderedListAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetType() OrderedListAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return OrderedListAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDOrderedListAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDOrderedListAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDInternalAttributeInput - No UI representation
@@ -18088,227 +19473,227 @@ func (a AttributeWithCompositeIDInternalAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDInternalAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetConstraints() *InternalAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetInfoHelpers() *InternalAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetInfoHelpers() *InternalAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetType() InternalAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetType() InternalAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return InternalAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDInternalAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDInternalAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDConsentAttributeInput - Consent Management
@@ -18378,241 +19763,241 @@ func (a AttributeWithCompositeIDConsentAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDConsentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "topic"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetConstraints() *ConsentAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetInfoHelpers() *ConsentAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetInfoHelpers() *ConsentAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetType() ConsentAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetType() ConsentAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return ConsentAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetTopic() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetTopic() string {
+	if a == nil {
 		return ""
 	}
-	return o.Topic
+	return a.Topic
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetIdentifiers() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetIdentifiers() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Identifiers
+	return a.Identifiers
 }
 
-func (o *AttributeWithCompositeIDConsentAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDConsentAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDNumberAttributeInput - Numeric input
@@ -18683,241 +20068,241 @@ func (a AttributeWithCompositeIDNumberAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDNumberAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetConstraints() *NumberAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetInfoHelpers() *NumberAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetInfoHelpers() *NumberAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetType() NumberAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetType() NumberAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return NumberAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetFormat() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetFormat() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Format
+	return a.Format
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetShowSeparator() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetShowSeparator() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowSeparator
+	return a.ShowSeparator
 }
 
-func (o *AttributeWithCompositeIDNumberAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDNumberAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDMessageEmailAddressAttributeInput - Message emil address
@@ -18988,248 +20373,248 @@ func (a AttributeWithCompositeIDMessageEmailAddressAttributeInput) MarshalJSON()
 }
 
 func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetConstraints() *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetInfoHelpers() *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetType() MessageEmailAddressAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return MessageEmailAddressAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetAddress() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetAddress() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Address
+	return a.Address
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSendStatus() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSendStatus() *string {
+	if a == nil {
 		return nil
 	}
-	return o.SendStatus
+	return a.SendStatus
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEmailType() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetEmailType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.EmailType
+	return a.EmailType
 }
 
-func (o *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDTagsAttributeInput - Tags
@@ -19299,241 +20684,241 @@ func (a AttributeWithCompositeIDTagsAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTagsAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetConstraints() *TagsAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetInfoHelpers() *TagsAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetInfoHelpers() *TagsAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetType() TagsAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetType() TagsAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return TagsAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetOptions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetOptions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetSuggestions() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Suggestions
+	return a.Suggestions
 }
 
-func (o *AttributeWithCompositeIDTagsAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTagsAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDCurrencyAttributeInput - Currency input
@@ -19604,241 +20989,241 @@ func (a AttributeWithCompositeIDCurrencyAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetConstraints() *CurrencyAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetInfoHelpers() *CurrencyAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetInfoHelpers() *CurrencyAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetType() CurrencyAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetType() CurrencyAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return CurrencyAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrencySelectorOnly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrencySelectorOnly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.CurrencySelectorOnly
+	return a.CurrencySelectorOnly
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrency() []CurrencyAttributeCurrency {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetCurrency() []CurrencyAttributeCurrency {
+	if a == nil {
 		return []CurrencyAttributeCurrency{}
 	}
-	return o.Currency
+	return a.Currency
 }
 
-func (o *AttributeWithCompositeIDCurrencyAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCurrencyAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDPaymentMethodRelationAttributeInput - Reference to a payment method attribute of another entity
@@ -19906,227 +21291,227 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttributeInput) MarshalJSON
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetConstraints() *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetInfoHelpers() *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetInfoHelpers() *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetType() PaymentMethodRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return PaymentMethodRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDAddressRelationAttributeInput - Reference to an address attribute of another entity
@@ -20216,234 +21601,234 @@ func (a AttributeWithCompositeIDAddressRelationAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetConstraints() *AddressRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetInfoHelpers() *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetInfoHelpers() *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetType() AddressRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AddressRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }
 
-func (o *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressRelationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDAddressAttributeInput - Address attribute
@@ -20533,234 +21918,234 @@ func (a AttributeWithCompositeIDAddressAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetConstraints() *AddressAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetInfoHelpers() *AddressAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetType() AddressAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetType() AddressAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return AddressAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }
 
-func (o *AttributeWithCompositeIDAddressAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDAddressAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDUserRelationAttributeInput - User Relationship
@@ -20829,234 +22214,234 @@ func (a AttributeWithCompositeIDUserRelationAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetConstraints() *UserRelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetInfoHelpers() *UserRelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetInfoHelpers() *UserRelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetType() UserRelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetType() UserRelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return UserRelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetMultiple() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiple
+	return a.Multiple
 }
 
-func (o *AttributeWithCompositeIDUserRelationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDUserRelationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDRelationAttributeInput - Entity Relationship
@@ -21143,325 +22528,325 @@ func (a AttributeWithCompositeIDRelationAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetConstraints() *RelationAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetInfoHelpers() *RelationAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetInfoHelpers() *RelationAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetType() RelationAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetType() RelationAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return RelationAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationType() *RelationAttributeRelationType {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRelationType() *RelationAttributeRelationType {
+	if a == nil {
 		return nil
 	}
-	return o.RelationType
+	return a.RelationType
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetReverseAttributes() map[string]string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetReverseAttributes() map[string]string {
+	if a == nil {
 		return nil
 	}
-	return o.ReverseAttributes
+	return a.ReverseAttributes
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRelationAffinityMode() *RelationAttributeRelationAffinityMode {
+	if a == nil {
 		return nil
 	}
-	return o.RelationAffinityMode
+	return a.RelationAffinityMode
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationPicker() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationPicker() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableRelationPicker
+	return a.EnableRelationPicker
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetEditMode() *RelationAttributeEditMode {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetEditMode() *RelationAttributeEditMode {
+	if a == nil {
 		return nil
 	}
-	return o.EditMode
+	return a.EditMode
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetDetailsViewModeEnabled() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetDetailsViewModeEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DetailsViewModeEnabled
+	return a.DetailsViewModeEnabled
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetRelationPickerFilter() *RelationAttributeRelationPickerFilter {
+	if a == nil {
 		return nil
 	}
-	return o.RelationPickerFilter
+	return a.RelationPickerFilter
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetActions() []RelationAttributeActions {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetActions() []RelationAttributeActions {
+	if a == nil {
 		return nil
 	}
-	return o.Actions
+	return a.Actions
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetDrawerSize() *RelationAttributeDrawerSize {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetDrawerSize() *RelationAttributeDrawerSize {
+	if a == nil {
 		return nil
 	}
-	return o.DrawerSize
+	return a.DrawerSize
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetSummaryFields() []RelationAttributeSummaryFields {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetSummaryFields() []RelationAttributeSummaryFields {
+	if a == nil {
 		return nil
 	}
-	return o.SummaryFields
+	return a.SummaryFields
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetAllowedSchemas() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetAllowedSchemas() []string {
+	if a == nil {
 		return nil
 	}
-	return o.AllowedSchemas
+	return a.AllowedSchemas
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationTags() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetEnableRelationTags() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EnableRelationTags
+	return a.EnableRelationTags
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetAddButtonLabel() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetAddButtonLabel() *string {
+	if a == nil {
 		return nil
 	}
-	return o.AddButtonLabel
+	return a.AddButtonLabel
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetSearchPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetSearchPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.SearchPlaceholder
+	return a.SearchPlaceholder
 }
 
-func (o *AttributeWithCompositeIDRelationAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDRelationAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDSequenceAttributeInput - Sequence of unique identifiers
@@ -21532,241 +22917,241 @@ func (a AttributeWithCompositeIDSequenceAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDSequenceAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetConstraints() *SequenceAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetInfoHelpers() *SequenceAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetInfoHelpers() *SequenceAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetType() SequenceAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetType() SequenceAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return SequenceAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetPrefix() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetPrefix() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Prefix
+	return a.Prefix
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetStartNumber() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetStartNumber() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.StartNumber
+	return a.StartNumber
 }
 
-func (o *AttributeWithCompositeIDSequenceAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSequenceAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDStatusAttributeInput - Status select
@@ -21835,234 +23220,234 @@ func (a AttributeWithCompositeIDStatusAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetConstraints() *StatusAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetInfoHelpers() *StatusAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetInfoHelpers() *StatusAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetType() StatusAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetType() StatusAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return StatusAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetOptions() []*StatusAttributeAttributeWithCompositeIDOptions {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDStatusAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDStatusAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDMultiSelectAttributeInput - Multi Choice Selection
@@ -22137,255 +23522,255 @@ func (a AttributeWithCompositeIDMultiSelectAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetConstraints() *MultiSelectAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetInfoHelpers() *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetInfoHelpers() *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetType() MultiSelectAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return MultiSelectAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetDisableCaseSensitive() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetDisableCaseSensitive() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.DisableCaseSensitive
+	return a.DisableCaseSensitive
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowExtraOptions() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowExtraOptions() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowExtraOptions
+	return a.AllowExtraOptions
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []*MultiSelectAttributeOptions {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetOptions() []*MultiSelectAttributeOptions {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowAny() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetAllowAny() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowAny
+	return a.AllowAny
 }
 
-func (o *AttributeWithCompositeIDMultiSelectAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDMultiSelectAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDSelectAttributeInput - Dropdown select
@@ -22456,241 +23841,241 @@ func (a AttributeWithCompositeIDSelectAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetConstraints() *SelectAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetInfoHelpers() *SelectAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetInfoHelpers() *SelectAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetType() SelectAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetType() SelectAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return SelectAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetOptions() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetOptions() any {
+	if a == nil {
 		return nil
 	}
-	return o.Options
+	return a.Options
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetAllowAny() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetAllowAny() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowAny
+	return a.AllowAny
 }
 
-func (o *AttributeWithCompositeIDSelectAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDSelectAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDBooleanAttributeInput - Yes / No Toggle
@@ -22759,234 +24144,234 @@ func (a AttributeWithCompositeIDBooleanAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDBooleanAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetConstraints() *BooleanAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetInfoHelpers() *BooleanAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetInfoHelpers() *BooleanAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetType() BooleanAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetType() BooleanAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return BooleanAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetDisplayType() *BooleanAttributeDisplayType {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetDisplayType() *BooleanAttributeDisplayType {
+	if a == nil {
 		return nil
 	}
-	return o.DisplayType
+	return a.DisplayType
 }
 
-func (o *AttributeWithCompositeIDBooleanAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDBooleanAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDCountryAttributeInput - Country picker
@@ -23054,227 +24439,227 @@ func (a AttributeWithCompositeIDCountryAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDCountryAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetConstraints() *CountryAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetInfoHelpers() *CountryAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetInfoHelpers() *CountryAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetType() CountryAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetType() CountryAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return CountryAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDCountryAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDCountryAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDDateAttributeInput - Date or Datetime picker
@@ -23342,227 +24727,227 @@ func (a AttributeWithCompositeIDDateAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDDateAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetConstraints() *DateAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetInfoHelpers() *DateAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetInfoHelpers() *DateAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetType() DateAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetType() DateAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return DateAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDDateAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDDateAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDLinkAttributeInput - Link with title and href
@@ -23630,227 +25015,227 @@ func (a AttributeWithCompositeIDLinkAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDLinkAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetConstraints() *LinkAttributeAttributeWithCompositeIDConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetInfoHelpers() *LinkAttributeAttributeWithCompositeIDInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetInfoHelpers() *LinkAttributeAttributeWithCompositeIDInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetType() LinkAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetType() LinkAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return LinkAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDLinkAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDLinkAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 // AttributeWithCompositeIDTextAttributeInput - Textarea or text input
@@ -23921,248 +25306,248 @@ func (a AttributeWithCompositeIDTextAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTextAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetID() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetName() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetLabel() string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetPlaceholder() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetHidden() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetShowInTable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetSortable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetRequired() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetReadonly() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetDeprecated() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetDefaultValue() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetGroup() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetOrder() *int64 {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetLayout() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetHideLabel() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetIcon() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetRenderCondition() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetPurpose() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetManifest() []string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetConstraints() *TextAttributeConstraints {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetConstraints() *TextAttributeConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetProtected() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetInfoHelpers() *TextAttributeInfoHelpers {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetInfoHelpers() *TextAttributeInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetRepeatable() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetType() TextAttributeAttributeWithCompositeIDType {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetType() TextAttributeAttributeWithCompositeIDType {
+	if a == nil {
 		return TextAttributeAttributeWithCompositeIDType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetMultiline() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetMultiline() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Multiline
+	return a.Multiline
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetRichText() *bool {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetRichText() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.RichText
+	return a.RichText
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetRows() any {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetRows() any {
+	if a == nil {
 		return nil
 	}
-	return o.Rows
+	return a.Rows
 }
 
-func (o *AttributeWithCompositeIDTextAttributeInput) GetSchema() *string {
-	if o == nil {
+func (a *AttributeWithCompositeIDTextAttributeInput) GetSchema() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Schema
+	return a.Schema
 }
 
 type AttributeWithCompositeIDInputType string
@@ -24197,6 +25582,7 @@ const (
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_InternalUserAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PurposeAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput   AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PartnerOrganisationAttribute_input"
+	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PortalAccessAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PhoneAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_EmailAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PaymentAttribute_input"
@@ -24205,39 +25591,40 @@ const (
 
 // AttributeWithCompositeIDInput - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeIDInput struct {
-	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPortalAccessAttributeInput          *AttributeWithCompositeIDPortalAccessAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline" name:"AttributeWithCompositeID"`
 
 	Type AttributeWithCompositeIDInputType
 }
@@ -24503,6 +25890,15 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 	}
 }
 
+func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPortalAccessAttributeInput(attributeWithCompositeIDPortalAccessAttributeInput AttributeWithCompositeIDPortalAccessAttributeInput) AttributeWithCompositeIDInput {
+	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput
+
+	return AttributeWithCompositeIDInput{
+		AttributeWithCompositeIDPortalAccessAttributeInput: &attributeWithCompositeIDPortalAccessAttributeInput,
+		Type: typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPhoneAttributeInput(attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
 
@@ -24541,234 +25937,241 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPriceComponentAt
 
 func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
+	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPriceComponentAttributeInput AttributeWithCompositeIDPriceComponentAttributeInput = AttributeWithCompositeIDPriceComponentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPriceComponentAttributeInput = &attributeWithCompositeIDPriceComponentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPriceComponentAttributeInput
+	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentAttributeInput AttributeWithCompositeIDPaymentAttributeInput = AttributeWithCompositeIDPaymentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentAttributeInput = &attributeWithCompositeIDPaymentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput
+	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
+	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
+	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput = AttributeWithCompositeIDAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressAttributeInput = &attributeWithCompositeIDAddressAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttributeInput AttributeWithCompositeIDTagsAttributeInput = AttributeWithCompositeIDTagsAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDTagsAttributeInput = &attributeWithCompositeIDTagsAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput = AttributeWithCompositeIDMessageEmailAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDMessageEmailAddressAttributeInput = &attributeWithCompositeIDMessageEmailAddressAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
+	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
+	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
 		return nil
 	}
 
+	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPortalAccessAttributeInput AttributeWithCompositeIDPortalAccessAttributeInput = AttributeWithCompositeIDPortalAccessAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPortalAccessAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPortalAccessAttributeInput = &attributeWithCompositeIDPortalAccessAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentAttributeInput AttributeWithCompositeIDPaymentAttributeInput = AttributeWithCompositeIDPaymentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentAttributeInput = &attributeWithCompositeIDPaymentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPriceComponentAttributeInput AttributeWithCompositeIDPriceComponentAttributeInput = AttributeWithCompositeIDPriceComponentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPriceComponentAttributeInput = &attributeWithCompositeIDPriceComponentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPriceComponentAttributeInput
 		return nil
 	}
 
@@ -24890,6 +26293,10 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttributeInput, "", true)
+	}
+
+	if u.AttributeWithCompositeIDPortalAccessAttributeInput != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDPortalAccessAttributeInput, "", true)
 	}
 
 	if u.AttributeWithCompositeIDPhoneAttributeInput != nil {

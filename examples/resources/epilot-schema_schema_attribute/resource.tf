@@ -1220,6 +1220,55 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "phone"
     value_formatter = "...my_value_formatter..."
   }
+  portal_access_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = true
+    entity_builder_disable_edit = false
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = true
+    hidden                      = false
+    hide_label                  = true
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = true
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = true
+    render_condition = "...my_render_condition..."
+    repeatable       = true
+    required         = false
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = true
+    sortable        = true
+    type            = "portal_access"
+    value_formatter = "...my_value_formatter..."
+  }
   price_component_attribute = {
     constraints = {
       # ...
@@ -1270,12 +1319,9 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   purpose_attribute = {
-    archived = false
-    color    = "#FF5733"
     constraints = {
       # ...
     }
-    created_at                  = "2022-04-09T15:18:01.781Z"
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
@@ -1285,7 +1331,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
-    id                          = "taxonomy-slug:classification-slug"
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
     info_helpers = {
       hint_custom_component  = "...my_hint_custom_component..."
       hint_text              = "...my_hint_text..."
@@ -1297,11 +1343,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     manifest = [
       "123e4567-e89b-12d3-a456-426614174000"
     ]
-    name  = "Wallbox PV"
-    order = 0
-    parents = [
-      "taxonomy-slug:classification-slug"
-    ]
+    name                    = "...my_name..."
+    order                   = 0
     placeholder             = "...my_placeholder..."
     preview_value_formatter = "...my_preview_value_formatter..."
     protected               = false
@@ -1320,10 +1363,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       }
     ]
     show_in_table   = false
-    slug            = "wallbox-pv"
     sortable        = false
     type            = "purpose"
-    updated_at      = "2021-01-24T03:23:46.761Z"
     value_formatter = "...my_value_formatter..."
   }
   relation_attribute = {
@@ -1386,7 +1427,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     readonly               = false
     relation_affinity_mode = "strong"
     relation_picker_filter = {
-      q = "AND is_composite_price:true"
+      q = "NOT is_composite_price:true"
     }
     relation_type    = "has_one"
     render_condition = "...my_render_condition..."

@@ -3,15 +3,49 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
+	"time"
 )
+
+// Scope of jobs to return. 'me' returns only jobs created by the current user, 'all' returns jobs from all users in the organization.
+type Scope string
+
+const (
+	ScopeMe  Scope = "me"
+	ScopeAll Scope = "all"
+)
+
+func (e Scope) ToPointer() *Scope {
+	return &e
+}
+func (e *Scope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "me":
+		fallthrough
+	case "all":
+		*e = Scope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Scope: %v", v)
+	}
+}
 
 type GetTaxonomyBulkActionJobsRequest struct {
 	// The status of the jobs to return
-	Status *shared.TaxonomyBulkJobStatus `queryParam:"style=form,explode=true,name=status"`
-	Size   *float64                      `default:"20" queryParam:"style=form,explode=true,name=size"`
+	Status           []string   `queryParam:"style=form,explode=true,name=status"`
+	Size             *float64   `default:"20" queryParam:"style=form,explode=true,name=size"`
+	CreatedAfter     *time.Time `queryParam:"style=form,explode=true,name=created_after"`
+	SortPendingFirst *bool      `default:"false" queryParam:"style=form,explode=true,name=sort_pending_first"`
+	// Scope of jobs to return. 'me' returns only jobs created by the current user, 'all' returns jobs from all users in the organization.
+	Scope *Scope `default:"me" queryParam:"style=form,explode=true,name=scope"`
 }
 
 func (g GetTaxonomyBulkActionJobsRequest) MarshalJSON() ([]byte, error) {
@@ -19,24 +53,45 @@ func (g GetTaxonomyBulkActionJobsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTaxonomyBulkActionJobsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetStatus() *shared.TaxonomyBulkJobStatus {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetStatus() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
-func (o *GetTaxonomyBulkActionJobsRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
+}
+
+func (g *GetTaxonomyBulkActionJobsRequest) GetCreatedAfter() *time.Time {
+	if g == nil {
+		return nil
+	}
+	return g.CreatedAfter
+}
+
+func (g *GetTaxonomyBulkActionJobsRequest) GetSortPendingFirst() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.SortPendingFirst
+}
+
+func (g *GetTaxonomyBulkActionJobsRequest) GetScope() *Scope {
+	if g == nil {
+		return nil
+	}
+	return g.Scope
 }
 
 type GetTaxonomyBulkActionJobsResponse struct {
@@ -50,30 +105,30 @@ type GetTaxonomyBulkActionJobsResponse struct {
 	TaxonomyBulkJobs []shared.TaxonomyBulkJob
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTaxonomyBulkActionJobsResponse) GetTaxonomyBulkJobs() []shared.TaxonomyBulkJob {
-	if o == nil {
+func (g *GetTaxonomyBulkActionJobsResponse) GetTaxonomyBulkJobs() []shared.TaxonomyBulkJob {
+	if g == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJobs
+	return g.TaxonomyBulkJobs
 }

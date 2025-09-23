@@ -17,32 +17,32 @@ type ExportEntitiesRequest struct {
 	EntitySearchParams *shared.EntitySearchParams `request:"mediaType=application/json"`
 }
 
-func (o *ExportEntitiesRequest) GetJobID() *string {
-	if o == nil {
+func (e *ExportEntitiesRequest) GetJobID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.JobID
+	return e.JobID
 }
 
-func (o *ExportEntitiesRequest) GetIsTemplate() *bool {
-	if o == nil {
+func (e *ExportEntitiesRequest) GetIsTemplate() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.IsTemplate
+	return e.IsTemplate
 }
 
-func (o *ExportEntitiesRequest) GetLanguage() *string {
-	if o == nil {
+func (e *ExportEntitiesRequest) GetLanguage() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Language
+	return e.Language
 }
 
-func (o *ExportEntitiesRequest) GetEntitySearchParams() *shared.EntitySearchParams {
-	if o == nil {
+func (e *ExportEntitiesRequest) GetEntitySearchParams() *shared.EntitySearchParams {
+	if e == nil {
 		return nil
 	}
-	return o.EntitySearchParams
+	return e.EntitySearchParams
 }
 
 type ExportEntitiesResponse struct {
@@ -52,25 +52,42 @@ type ExportEntitiesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *ExportEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (e *ExportEntitiesResponse) GetContentType() string {
+	if e == nil {
 		return ""
 	}
-	return o.ContentType
+	return e.ContentType
 }
 
-func (o *ExportEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (e *ExportEntitiesResponse) GetStatusCode() int {
+	if e == nil {
 		return 0
 	}
-	return o.StatusCode
+	return e.StatusCode
 }
 
-func (o *ExportEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (e *ExportEntitiesResponse) GetRawResponse() *http.Response {
+	if e == nil {
 		return nil
 	}
-	return o.RawResponse
+	return e.RawResponse
+}
+
+func (e *ExportEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if e == nil {
+		return nil
+	}
+	return e.TooManyRequestsError
+}
+
+func (e *ExportEntitiesResponse) GetHeaders() map[string][]string {
+	if e == nil {
+		return map[string][]string{}
+	}
+	return e.Headers
 }

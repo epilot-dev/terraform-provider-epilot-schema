@@ -7,10 +7,10 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
@@ -22,6 +22,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -34,25 +35,26 @@ func NewSchemaResource() resource.Resource {
 
 // SchemaResource defines the resource implementation.
 type SchemaResource struct {
+	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // SchemaResourceModel describes the resource data model.
 type SchemaResourceModel struct {
-	Attributes             types.String                      `tfsdk:"attributes"`
+	Attributes             jsontypes.Normalized              `tfsdk:"attributes"`
 	Blueprint              types.String                      `tfsdk:"blueprint"`
-	Capabilities           types.String                      `tfsdk:"capabilities"`
+	Capabilities           jsontypes.Normalized              `tfsdk:"capabilities"`
 	Category               types.String                      `tfsdk:"category"`
 	CreatedAt              types.String                      `tfsdk:"created_at"`
 	Description            types.String                      `tfsdk:"description"`
-	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
+	DialogConfig           map[string]jsontypes.Normalized   `tfsdk:"dialog_config"`
 	DocsURL                types.String                      `tfsdk:"docs_url"`
 	Draft                  types.Bool                        `queryParam:"style=form,explode=true,name=draft" tfsdk:"draft"`
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
-	GroupHeadlines         types.String                      `tfsdk:"group_headlines"`
-	GroupSettings          types.String                      `tfsdk:"group_settings"`
+	GroupHeadlines         jsontypes.Normalized              `tfsdk:"group_headlines"`
+	GroupSettings          jsontypes.Normalized              `tfsdk:"group_settings"`
 	Icon                   types.String                      `tfsdk:"icon"`
 	ID                     types.String                      `tfsdk:"id"`
 	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
@@ -76,11 +78,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 		MarkdownDescription: "Schema Resource",
 		Attributes: map[string]schema.Attribute{
 			"attributes": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Required:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"blueprint": schema.StringAttribute{
 				Computed:    true,
@@ -88,11 +88,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Description: `Reference to blueprint`,
 			},
 			"capabilities": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Required:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"category": schema.StringAttribute{
 				Computed: true,
@@ -109,7 +107,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			"dialog_config": schema.MapAttribute{
 				Computed:    true,
 				Optional:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
@@ -141,7 +139,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						"fields": schema.MapAttribute{
 							Computed:    true,
 							Optional:    true,
-							ElementType: types.StringType,
+							ElementType: jsontypes.NormalizedType{},
 							Validators: []validator.Map{
 								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 							},
@@ -180,20 +178,16 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Description: `This schema should only be active when the feature flag is enabled`,
 			},
 			"group_headlines": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Optional:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"group_settings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Optional:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"icon": schema.StringAttribute{
 				Computed: true,
@@ -209,12 +203,10 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"additional_properties": schema.StringAttribute{
+						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Optional:    true,
 						Description: `Parsed as JSON.`,
-						Validators: []validator.String{
-							validators.IsValidJSON(),
-						},
 					},
 					"grid_gap": schema.StringAttribute{
 						Computed:    true,
@@ -250,6 +242,9 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			"slug": schema.StringAttribute{
 				Required:    true,
 				Description: `Entity Type`,
+				Validators: []validator.String{
+					stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), "must match pattern "+regexp.MustCompile(`^[a-zA-Z0-9_-]+$`).String()),
+				},
 			},
 			"title_template": schema.StringAttribute{
 				Computed:    true,
@@ -478,7 +473,7 @@ func (r *SchemaResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.NumberAttribute{
+												"content_line_cap": schema.Float64Attribute{
 													Computed: true,
 													Optional: true,
 													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
@@ -1002,22 +997,13 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	draft := new(bool)
-	if !data.Draft.IsUnknown() && !data.Draft.IsNull() {
-		*draft = data.Draft.ValueBool()
-	} else {
-		draft = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	entitySchemaItem := data.ToSharedEntitySchemaItem()
-	request := operations.PutSchemaRequest{
-		Slug:             slug,
-		Draft:            draft,
-		EntitySchemaItem: entitySchemaItem,
-	}
-	res, err := r.client.Schemas.PutSchema(ctx, request)
+	res, err := r.client.Schemas.PutSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1037,8 +1023,17 @@ func (r *SchemaResource) Create(ctx context.Context, req resource.CreateRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1062,20 +1057,13 @@ func (r *SchemaResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	id := new(string)
-	if !data.ID.IsUnknown() && !data.ID.IsNull() {
-		*id = data.ID.ValueString()
-	} else {
-		id = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	request := operations.GetSchemaRequest{
-		Slug: slug,
-		ID:   id,
-	}
-	res, err := r.client.Schemas.GetSchema(ctx, request)
+	res, err := r.client.Schemas.GetSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1099,7 +1087,11 @@ func (r *SchemaResource) Read(ctx context.Context, req resource.ReadRequest, res
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1119,22 +1111,13 @@ func (r *SchemaResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	draft := new(bool)
-	if !data.Draft.IsUnknown() && !data.Draft.IsNull() {
-		*draft = data.Draft.ValueBool()
-	} else {
-		draft = nil
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	entitySchemaItem := data.ToSharedEntitySchemaItem()
-	request := operations.PutSchemaRequest{
-		Slug:             slug,
-		Draft:            draft,
-		EntitySchemaItem: entitySchemaItem,
-	}
-	res, err := r.client.Schemas.PutSchema(ctx, request)
+	res, err := r.client.Schemas.PutSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -1154,8 +1137,17 @@ func (r *SchemaResource) Update(ctx context.Context, req resource.UpdateRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -1179,13 +1171,13 @@ func (r *SchemaResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	var slug string
-	slug = data.Slug.ValueString()
+	request, requestDiags := data.ToOperationsDeleteSchemaRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeleteSchemaRequest{
-		Slug: slug,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.DeleteSchema(ctx, request)
+	res, err := r.client.Schemas.DeleteSchema(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

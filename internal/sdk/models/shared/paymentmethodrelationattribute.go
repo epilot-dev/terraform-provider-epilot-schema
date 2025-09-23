@@ -13,6 +13,17 @@ import (
 type PaymentMethodRelationAttributeConstraints struct {
 }
 
+func (p PaymentMethodRelationAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentMethodRelationAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PaymentMethodRelationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PaymentMethodRelationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type PaymentMethodRelationAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PaymentMethodRelationAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PaymentMethodRelationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PaymentMethodRelationAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PaymentMethodRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PaymentMethodRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttributeInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PaymentMethodRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttributeInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PaymentMethodRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PaymentMethodRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PaymentMethodRelationAttributeType string
@@ -148,218 +170,218 @@ func (p PaymentMethodRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentMethodRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PaymentMethodRelationAttribute) GetID() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PaymentMethodRelationAttribute) GetName() string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetName() string {
+	if p == nil {
 		return ""
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PaymentMethodRelationAttribute) GetLabel() string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetLabel() string {
+	if p == nil {
 		return ""
 	}
-	return o.Label
+	return p.Label
 }
 
-func (o *PaymentMethodRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetPlaceholder() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Placeholder
+	return p.Placeholder
 }
 
-func (o *PaymentMethodRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetHidden() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Hidden
+	return p.Hidden
 }
 
-func (o *PaymentMethodRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetShowInTable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return p.ShowInTable
 }
 
-func (o *PaymentMethodRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetSortable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Sortable
+	return p.Sortable
 }
 
-func (o *PaymentMethodRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetRequired() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Required
+	return p.Required
 }
 
-func (o *PaymentMethodRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetReadonly() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Readonly
+	return p.Readonly
 }
 
-func (o *PaymentMethodRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetDeprecated() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Deprecated
+	return p.Deprecated
 }
 
-func (o *PaymentMethodRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetDefaultValue() any {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return p.DefaultValue
 }
 
-func (o *PaymentMethodRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetGroup() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Group
+	return p.Group
 }
 
-func (o *PaymentMethodRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetOrder() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *PaymentMethodRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetLayout() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Layout
+	return p.Layout
 }
 
-func (o *PaymentMethodRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetHideLabel() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HideLabel
+	return p.HideLabel
 }
 
-func (o *PaymentMethodRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetIcon() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Icon
+	return p.Icon
 }
 
-func (o *PaymentMethodRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetRenderCondition() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return p.RenderCondition
 }
 
-func (o *PaymentMethodRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetPurpose() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Purpose
+	return p.Purpose
 }
 
-func (o *PaymentMethodRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetManifest() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Manifest
+	return p.Manifest
 }
 
-func (o *PaymentMethodRelationAttribute) GetConstraints() *PaymentMethodRelationAttributeConstraints {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetConstraints() *PaymentMethodRelationAttributeConstraints {
+	if p == nil {
 		return nil
 	}
-	return o.Constraints
+	return p.Constraints
 }
 
-func (o *PaymentMethodRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetFeatureFlag() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return p.FeatureFlag
 }
 
-func (o *PaymentMethodRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if p == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return p.SettingsFlag
 }
 
-func (o *PaymentMethodRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return p.ValueFormatter
 }
 
-func (o *PaymentMethodRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetPreviewValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return p.PreviewValueFormatter
 }
 
-func (o *PaymentMethodRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return p.EntityBuilderDisableEdit
 }
 
-func (o *PaymentMethodRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetProtected() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Protected
+	return p.Protected
 }
 
-func (o *PaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelationAttributeInfoHelpers {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetInfoHelpers() *PaymentMethodRelationAttributeInfoHelpers {
+	if p == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return p.InfoHelpers
 }
 
-func (o *PaymentMethodRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetRepeatable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Repeatable
+	return p.Repeatable
 }
 
-func (o *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetHasPrimary() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return p.HasPrimary
 }
 
-func (o *PaymentMethodRelationAttribute) GetType() PaymentMethodRelationAttributeType {
-	if o == nil {
+func (p *PaymentMethodRelationAttribute) GetType() PaymentMethodRelationAttributeType {
+	if p == nil {
 		return PaymentMethodRelationAttributeType("")
 	}
-	return o.Type
+	return p.Type
 }

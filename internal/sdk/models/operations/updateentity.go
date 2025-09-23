@@ -31,59 +31,59 @@ func (u UpdateEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug", "id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UpdateEntityRequest) GetSlug() string {
-	if o == nil {
+func (u *UpdateEntityRequest) GetSlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.Slug
+	return u.Slug
 }
 
-func (o *UpdateEntityRequest) GetID() string {
-	if o == nil {
+func (u *UpdateEntityRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (u *UpdateEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if u == nil {
 		return nil
 	}
-	return o.ActivityID
+	return u.ActivityID
 }
 
-func (o *UpdateEntityRequest) GetFillActivity() *bool {
-	if o == nil {
+func (u *UpdateEntityRequest) GetFillActivity() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.FillActivity
+	return u.FillActivity
 }
 
-func (o *UpdateEntityRequest) GetAsync() *bool {
-	if o == nil {
+func (u *UpdateEntityRequest) GetAsync() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Async
+	return u.Async
 }
 
-func (o *UpdateEntityRequest) GetValidate() *bool {
-	if o == nil {
+func (u *UpdateEntityRequest) GetValidate() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Validate
+	return u.Validate
 }
 
-func (o *UpdateEntityRequest) GetEntity() *shared.EntityInput {
-	if o == nil {
+func (u *UpdateEntityRequest) GetEntity() *shared.EntityInput {
+	if u == nil {
 		return nil
 	}
-	return o.Entity
+	return u.Entity
 }
 
 type UpdateEntityResponse struct {
@@ -99,37 +99,37 @@ type UpdateEntityResponse struct {
 	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
 }
 
-func (o *UpdateEntityResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateEntityResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateEntityResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateEntityResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateEntityResponse) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (u *UpdateEntityResponse) GetEntityItem() *shared.EntityItem {
+	if u == nil {
 		return nil
 	}
-	return o.EntityItem
+	return u.EntityItem
 }
 
-func (o *UpdateEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
-	if o == nil {
+func (u *UpdateEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if u == nil {
 		return nil
 	}
-	return o.EntityValidationV2ResultError
+	return u.EntityValidationV2ResultError
 }

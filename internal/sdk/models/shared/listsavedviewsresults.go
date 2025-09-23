@@ -10,25 +10,25 @@ type Results struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 }
 
-func (o *Results) GetID() *string {
-	if o == nil {
+func (r *Results) GetID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *Results) GetCreatedAt() *string {
-	if o == nil {
+func (r *Results) GetCreatedAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return r.CreatedAt
 }
 
-func (o *Results) GetUpdatedAt() *string {
-	if o == nil {
+func (r *Results) GetUpdatedAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return r.UpdatedAt
 }
 
 type ListSavedViewsResults struct {
@@ -36,16 +36,16 @@ type ListSavedViewsResults struct {
 	Results []Results `json:"results,omitempty"`
 }
 
-func (o *ListSavedViewsResults) GetHits() *float64 {
-	if o == nil {
+func (l *ListSavedViewsResults) GetHits() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Hits
+	return l.Hits
 }
 
-func (o *ListSavedViewsResults) GetResults() []Results {
-	if o == nil {
+func (l *ListSavedViewsResults) GetResults() []Results {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }

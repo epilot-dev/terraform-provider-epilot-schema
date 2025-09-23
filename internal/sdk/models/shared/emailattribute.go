@@ -13,6 +13,17 @@ import (
 type EmailAttributeConstraints struct {
 }
 
+func (e EmailAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmailAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // EmailAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type EmailAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type EmailAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *EmailAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (e EmailAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (o *EmailAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (e *EmailAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *EmailAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (e *EmailAttributeInfoHelpers) GetHintText() *string {
+	if e == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return e.HintText
 }
 
-func (o *EmailAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (e *EmailAttributeInfoHelpers) GetHintTextKey() *string {
+	if e == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return e.HintTextKey
+}
+
+func (e *EmailAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if e == nil {
+		return nil
+	}
+	return e.HintCustomComponent
+}
+
+func (e *EmailAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if e == nil {
+		return nil
+	}
+	return e.HintTooltipPlacement
 }
 
 type EmailAttributeType string
@@ -148,218 +170,218 @@ func (e EmailAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EmailAttribute) GetID() *string {
-	if o == nil {
+func (e *EmailAttribute) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EmailAttribute) GetName() string {
-	if o == nil {
+func (e *EmailAttribute) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EmailAttribute) GetLabel() string {
-	if o == nil {
+func (e *EmailAttribute) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EmailAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (e *EmailAttribute) GetPlaceholder() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Placeholder
+	return e.Placeholder
 }
 
-func (o *EmailAttribute) GetHidden() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetHidden() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Hidden
+	return e.Hidden
 }
 
-func (o *EmailAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetShowInTable() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return e.ShowInTable
 }
 
-func (o *EmailAttribute) GetSortable() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetSortable() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Sortable
+	return e.Sortable
 }
 
-func (o *EmailAttribute) GetRequired() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetRequired() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Required
+	return e.Required
 }
 
-func (o *EmailAttribute) GetReadonly() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetReadonly() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Readonly
+	return e.Readonly
 }
 
-func (o *EmailAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetDeprecated() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Deprecated
+	return e.Deprecated
 }
 
-func (o *EmailAttribute) GetDefaultValue() any {
-	if o == nil {
+func (e *EmailAttribute) GetDefaultValue() any {
+	if e == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return e.DefaultValue
 }
 
-func (o *EmailAttribute) GetGroup() *string {
-	if o == nil {
+func (e *EmailAttribute) GetGroup() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Group
+	return e.Group
 }
 
-func (o *EmailAttribute) GetOrder() *int64 {
-	if o == nil {
+func (e *EmailAttribute) GetOrder() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Order
+	return e.Order
 }
 
-func (o *EmailAttribute) GetLayout() *string {
-	if o == nil {
+func (e *EmailAttribute) GetLayout() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Layout
+	return e.Layout
 }
 
-func (o *EmailAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetHideLabel() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.HideLabel
+	return e.HideLabel
 }
 
-func (o *EmailAttribute) GetIcon() *string {
-	if o == nil {
+func (e *EmailAttribute) GetIcon() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Icon
+	return e.Icon
 }
 
-func (o *EmailAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (e *EmailAttribute) GetRenderCondition() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return e.RenderCondition
 }
 
-func (o *EmailAttribute) GetPurpose() []string {
-	if o == nil {
+func (e *EmailAttribute) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EmailAttribute) GetManifest() []string {
-	if o == nil {
+func (e *EmailAttribute) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EmailAttribute) GetConstraints() *EmailAttributeConstraints {
-	if o == nil {
+func (e *EmailAttribute) GetConstraints() *EmailAttributeConstraints {
+	if e == nil {
 		return nil
 	}
-	return o.Constraints
+	return e.Constraints
 }
 
-func (o *EmailAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EmailAttribute) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.FeatureFlag
 }
 
-func (o *EmailAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EmailAttribute) GetSettingsFlag() []SettingFlag {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.SettingsFlag
 }
 
-func (o *EmailAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (e *EmailAttribute) GetValueFormatter() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return e.ValueFormatter
 }
 
-func (o *EmailAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (e *EmailAttribute) GetPreviewValueFormatter() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return e.PreviewValueFormatter
 }
 
-func (o *EmailAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetEntityBuilderDisableEdit() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return e.EntityBuilderDisableEdit
 }
 
-func (o *EmailAttribute) GetProtected() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetProtected() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Protected
+	return e.Protected
 }
 
-func (o *EmailAttribute) GetInfoHelpers() *EmailAttributeInfoHelpers {
-	if o == nil {
+func (e *EmailAttribute) GetInfoHelpers() *EmailAttributeInfoHelpers {
+	if e == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return e.InfoHelpers
 }
 
-func (o *EmailAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetRepeatable() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Repeatable
+	return e.Repeatable
 }
 
-func (o *EmailAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (e *EmailAttribute) GetHasPrimary() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return e.HasPrimary
 }
 
-func (o *EmailAttribute) GetType() EmailAttributeType {
-	if o == nil {
+func (e *EmailAttribute) GetType() EmailAttributeType {
+	if e == nil {
 		return EmailAttributeType("")
 	}
-	return o.Type
+	return e.Type
 }

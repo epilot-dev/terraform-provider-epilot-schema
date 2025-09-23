@@ -13,6 +13,17 @@ import (
 type BooleanAttributeConstraints struct {
 }
 
+func (b BooleanAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // BooleanAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type BooleanAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type BooleanAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *BooleanAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (b BooleanAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
 }
 
-func (o *BooleanAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (b *BooleanAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *BooleanAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (b *BooleanAttributeInfoHelpers) GetHintText() *string {
+	if b == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return b.HintText
 }
 
-func (o *BooleanAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (b *BooleanAttributeInfoHelpers) GetHintTextKey() *string {
+	if b == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return b.HintTextKey
+}
+
+func (b *BooleanAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if b == nil {
+		return nil
+	}
+	return b.HintCustomComponent
+}
+
+func (b *BooleanAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if b == nil {
+		return nil
+	}
+	return b.HintTooltipPlacement
 }
 
 type BooleanAttributeType string
@@ -175,225 +197,225 @@ func (b BooleanAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BooleanAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BooleanAttribute) GetID() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetID() *string {
+	if b == nil {
 		return nil
 	}
-	return o.ID
+	return b.ID
 }
 
-func (o *BooleanAttribute) GetName() string {
-	if o == nil {
+func (b *BooleanAttribute) GetName() string {
+	if b == nil {
 		return ""
 	}
-	return o.Name
+	return b.Name
 }
 
-func (o *BooleanAttribute) GetLabel() string {
-	if o == nil {
+func (b *BooleanAttribute) GetLabel() string {
+	if b == nil {
 		return ""
 	}
-	return o.Label
+	return b.Label
 }
 
-func (o *BooleanAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetPlaceholder() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Placeholder
+	return b.Placeholder
 }
 
-func (o *BooleanAttribute) GetHidden() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetHidden() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Hidden
+	return b.Hidden
 }
 
-func (o *BooleanAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetShowInTable() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return b.ShowInTable
 }
 
-func (o *BooleanAttribute) GetSortable() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetSortable() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Sortable
+	return b.Sortable
 }
 
-func (o *BooleanAttribute) GetRequired() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetRequired() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Required
+	return b.Required
 }
 
-func (o *BooleanAttribute) GetReadonly() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetReadonly() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Readonly
+	return b.Readonly
 }
 
-func (o *BooleanAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetDeprecated() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Deprecated
+	return b.Deprecated
 }
 
-func (o *BooleanAttribute) GetDefaultValue() any {
-	if o == nil {
+func (b *BooleanAttribute) GetDefaultValue() any {
+	if b == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return b.DefaultValue
 }
 
-func (o *BooleanAttribute) GetGroup() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetGroup() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Group
+	return b.Group
 }
 
-func (o *BooleanAttribute) GetOrder() *int64 {
-	if o == nil {
+func (b *BooleanAttribute) GetOrder() *int64 {
+	if b == nil {
 		return nil
 	}
-	return o.Order
+	return b.Order
 }
 
-func (o *BooleanAttribute) GetLayout() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetLayout() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Layout
+	return b.Layout
 }
 
-func (o *BooleanAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetHideLabel() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.HideLabel
+	return b.HideLabel
 }
 
-func (o *BooleanAttribute) GetIcon() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetIcon() *string {
+	if b == nil {
 		return nil
 	}
-	return o.Icon
+	return b.Icon
 }
 
-func (o *BooleanAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetRenderCondition() *string {
+	if b == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return b.RenderCondition
 }
 
-func (o *BooleanAttribute) GetPurpose() []string {
-	if o == nil {
+func (b *BooleanAttribute) GetPurpose() []string {
+	if b == nil {
 		return nil
 	}
-	return o.Purpose
+	return b.Purpose
 }
 
-func (o *BooleanAttribute) GetManifest() []string {
-	if o == nil {
+func (b *BooleanAttribute) GetManifest() []string {
+	if b == nil {
 		return nil
 	}
-	return o.Manifest
+	return b.Manifest
 }
 
-func (o *BooleanAttribute) GetConstraints() *BooleanAttributeConstraints {
-	if o == nil {
+func (b *BooleanAttribute) GetConstraints() *BooleanAttributeConstraints {
+	if b == nil {
 		return nil
 	}
-	return o.Constraints
+	return b.Constraints
 }
 
-func (o *BooleanAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetFeatureFlag() *string {
+	if b == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return b.FeatureFlag
 }
 
-func (o *BooleanAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (b *BooleanAttribute) GetSettingsFlag() []SettingFlag {
+	if b == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return b.SettingsFlag
 }
 
-func (o *BooleanAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetValueFormatter() *string {
+	if b == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return b.ValueFormatter
 }
 
-func (o *BooleanAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (b *BooleanAttribute) GetPreviewValueFormatter() *string {
+	if b == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return b.PreviewValueFormatter
 }
 
-func (o *BooleanAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetEntityBuilderDisableEdit() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return b.EntityBuilderDisableEdit
 }
 
-func (o *BooleanAttribute) GetProtected() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetProtected() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Protected
+	return b.Protected
 }
 
-func (o *BooleanAttribute) GetInfoHelpers() *BooleanAttributeInfoHelpers {
-	if o == nil {
+func (b *BooleanAttribute) GetInfoHelpers() *BooleanAttributeInfoHelpers {
+	if b == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return b.InfoHelpers
 }
 
-func (o *BooleanAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetRepeatable() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.Repeatable
+	return b.Repeatable
 }
 
-func (o *BooleanAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (b *BooleanAttribute) GetHasPrimary() *bool {
+	if b == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return b.HasPrimary
 }
 
-func (o *BooleanAttribute) GetType() BooleanAttributeType {
-	if o == nil {
+func (b *BooleanAttribute) GetType() BooleanAttributeType {
+	if b == nil {
 		return BooleanAttributeType("")
 	}
-	return o.Type
+	return b.Type
 }
 
-func (o *BooleanAttribute) GetDisplayType() *DisplayType {
-	if o == nil {
+func (b *BooleanAttribute) GetDisplayType() *DisplayType {
+	if b == nil {
 		return nil
 	}
-	return o.DisplayType
+	return b.DisplayType
 }

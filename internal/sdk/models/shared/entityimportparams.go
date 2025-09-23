@@ -10,18 +10,18 @@ type S3Reference struct {
 	Key string `json:"key"`
 }
 
-func (o *S3Reference) GetBucket() string {
-	if o == nil {
+func (s *S3Reference) GetBucket() string {
+	if s == nil {
 		return ""
 	}
-	return o.Bucket
+	return s.Bucket
 }
 
-func (o *S3Reference) GetKey() string {
-	if o == nil {
+func (s *S3Reference) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
 // EntityImportParams - The parameters for importing entities.
@@ -32,16 +32,16 @@ type EntityImportParams struct {
 	Schema string `json:"schema"`
 }
 
-func (o *EntityImportParams) GetS3Reference() S3Reference {
-	if o == nil {
+func (e *EntityImportParams) GetS3Reference() S3Reference {
+	if e == nil {
 		return S3Reference{}
 	}
-	return o.S3Reference
+	return e.S3Reference
 }
 
-func (o *EntityImportParams) GetSchema() string {
-	if o == nil {
+func (e *EntityImportParams) GetSchema() string {
+	if e == nil {
 		return ""
 	}
-	return o.Schema
+	return e.Schema
 }

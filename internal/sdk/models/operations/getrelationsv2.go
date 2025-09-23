@@ -32,66 +32,66 @@ func (g GetRelationsV2Request) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRelationsV2Request) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug", "id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetRelationsV2Request) GetSlug() string {
-	if o == nil {
+func (g *GetRelationsV2Request) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetRelationsV2Request) GetID() string {
-	if o == nil {
+func (g *GetRelationsV2Request) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetRelationsV2Request) GetHydrate() *bool {
-	if o == nil {
+func (g *GetRelationsV2Request) GetHydrate() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Hydrate
+	return g.Hydrate
 }
 
-func (o *GetRelationsV2Request) GetQuery() *string {
-	if o == nil {
+func (g *GetRelationsV2Request) GetQuery() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Query
+	return g.Query
 }
 
-func (o *GetRelationsV2Request) GetIncludeReverse() *bool {
-	if o == nil {
+func (g *GetRelationsV2Request) GetIncludeReverse() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeReverse
+	return g.IncludeReverse
 }
 
-func (o *GetRelationsV2Request) GetFrom() *int64 {
-	if o == nil {
+func (g *GetRelationsV2Request) GetFrom() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetRelationsV2Request) GetSize() *int64 {
-	if o == nil {
+func (g *GetRelationsV2Request) GetSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetRelationsV2Request) GetFields() []string {
-	if o == nil {
+func (g *GetRelationsV2Request) GetFields() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Fields
+	return g.Fields
 }
 
 type GetRelationsV2Response struct {
@@ -107,37 +107,37 @@ type GetRelationsV2Response struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetRelationsV2Response) GetContentType() string {
-	if o == nil {
+func (g *GetRelationsV2Response) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRelationsV2Response) GetStatusCode() int {
-	if o == nil {
+func (g *GetRelationsV2Response) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRelationsV2Response) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRelationsV2Response) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetRelationsV2Response) GetGetRelationsRespWithPagination() *shared.GetRelationsRespWithPagination {
-	if o == nil {
+func (g *GetRelationsV2Response) GetGetRelationsRespWithPagination() *shared.GetRelationsRespWithPagination {
+	if g == nil {
 		return nil
 	}
-	return o.GetRelationsRespWithPagination
+	return g.GetRelationsRespWithPagination
 }
 
-func (o *GetRelationsV2Response) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetRelationsV2Response) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

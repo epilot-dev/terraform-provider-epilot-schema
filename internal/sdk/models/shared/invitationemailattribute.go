@@ -13,6 +13,17 @@ import (
 type InvitationEmailAttributeConstraints struct {
 }
 
+func (i InvitationEmailAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvitationEmailAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InvitationEmailAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InvitationEmailAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type InvitationEmailAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *InvitationEmailAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (i InvitationEmailAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
 }
 
-func (o *InvitationEmailAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (i *InvitationEmailAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *InvitationEmailAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (i *InvitationEmailAttributeInfoHelpers) GetHintText() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return i.HintText
 }
 
-func (o *InvitationEmailAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (i *InvitationEmailAttributeInfoHelpers) GetHintTextKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return i.HintTextKey
+}
+
+func (i *InvitationEmailAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintCustomComponent
+}
+
+func (i *InvitationEmailAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HintTooltipPlacement
 }
 
 type InvitationEmailAttributeType string
@@ -148,218 +170,218 @@ func (i InvitationEmailAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InvitationEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *InvitationEmailAttribute) GetID() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetID() *string {
+	if i == nil {
 		return nil
 	}
-	return o.ID
+	return i.ID
 }
 
-func (o *InvitationEmailAttribute) GetName() string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetName() string {
+	if i == nil {
 		return ""
 	}
-	return o.Name
+	return i.Name
 }
 
-func (o *InvitationEmailAttribute) GetLabel() string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetLabel() string {
+	if i == nil {
 		return ""
 	}
-	return o.Label
+	return i.Label
 }
 
-func (o *InvitationEmailAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetPlaceholder() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Placeholder
+	return i.Placeholder
 }
 
-func (o *InvitationEmailAttribute) GetHidden() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetHidden() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Hidden
+	return i.Hidden
 }
 
-func (o *InvitationEmailAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetShowInTable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return i.ShowInTable
 }
 
-func (o *InvitationEmailAttribute) GetSortable() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetSortable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Sortable
+	return i.Sortable
 }
 
-func (o *InvitationEmailAttribute) GetRequired() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetRequired() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Required
+	return i.Required
 }
 
-func (o *InvitationEmailAttribute) GetReadonly() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetReadonly() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Readonly
+	return i.Readonly
 }
 
-func (o *InvitationEmailAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetDeprecated() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Deprecated
+	return i.Deprecated
 }
 
-func (o *InvitationEmailAttribute) GetDefaultValue() any {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetDefaultValue() any {
+	if i == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return i.DefaultValue
 }
 
-func (o *InvitationEmailAttribute) GetGroup() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetGroup() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Group
+	return i.Group
 }
 
-func (o *InvitationEmailAttribute) GetOrder() *int64 {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetOrder() *int64 {
+	if i == nil {
 		return nil
 	}
-	return o.Order
+	return i.Order
 }
 
-func (o *InvitationEmailAttribute) GetLayout() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetLayout() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Layout
+	return i.Layout
 }
 
-func (o *InvitationEmailAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetHideLabel() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.HideLabel
+	return i.HideLabel
 }
 
-func (o *InvitationEmailAttribute) GetIcon() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetIcon() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Icon
+	return i.Icon
 }
 
-func (o *InvitationEmailAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetRenderCondition() *string {
+	if i == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return i.RenderCondition
 }
 
-func (o *InvitationEmailAttribute) GetPurpose() []string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetPurpose() []string {
+	if i == nil {
 		return nil
 	}
-	return o.Purpose
+	return i.Purpose
 }
 
-func (o *InvitationEmailAttribute) GetManifest() []string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetManifest() []string {
+	if i == nil {
 		return nil
 	}
-	return o.Manifest
+	return i.Manifest
 }
 
-func (o *InvitationEmailAttribute) GetConstraints() *InvitationEmailAttributeConstraints {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetConstraints() *InvitationEmailAttributeConstraints {
+	if i == nil {
 		return nil
 	}
-	return o.Constraints
+	return i.Constraints
 }
 
-func (o *InvitationEmailAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetFeatureFlag() *string {
+	if i == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return i.FeatureFlag
 }
 
-func (o *InvitationEmailAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetSettingsFlag() []SettingFlag {
+	if i == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return i.SettingsFlag
 }
 
-func (o *InvitationEmailAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetValueFormatter() *string {
+	if i == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return i.ValueFormatter
 }
 
-func (o *InvitationEmailAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetPreviewValueFormatter() *string {
+	if i == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return i.PreviewValueFormatter
 }
 
-func (o *InvitationEmailAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetEntityBuilderDisableEdit() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return i.EntityBuilderDisableEdit
 }
 
-func (o *InvitationEmailAttribute) GetProtected() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetProtected() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Protected
+	return i.Protected
 }
 
-func (o *InvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeInfoHelpers {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeInfoHelpers {
+	if i == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return i.InfoHelpers
 }
 
-func (o *InvitationEmailAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetRepeatable() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Repeatable
+	return i.Repeatable
 }
 
-func (o *InvitationEmailAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetHasPrimary() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return i.HasPrimary
 }
 
-func (o *InvitationEmailAttribute) GetType() InvitationEmailAttributeType {
-	if o == nil {
+func (i *InvitationEmailAttribute) GetType() InvitationEmailAttributeType {
+	if i == nil {
 		return InvitationEmailAttributeType("")
 	}
-	return o.Type
+	return i.Type
 }

@@ -18,17 +18,17 @@ func (l ListSchemasRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListSchemasRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ListSchemasRequest) GetUnpublished() *bool {
-	if o == nil {
+func (l *ListSchemasRequest) GetUnpublished() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Unpublished
+	return l.Unpublished
 }
 
 // ListSchemasResponseBody - Success
@@ -36,11 +36,11 @@ type ListSchemasResponseBody struct {
 	Results []shared.EntitySchemaItem `json:"results,omitempty"`
 }
 
-func (o *ListSchemasResponseBody) GetResults() []shared.EntitySchemaItem {
-	if o == nil {
+func (l *ListSchemasResponseBody) GetResults() []shared.EntitySchemaItem {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListSchemasResponse struct {
@@ -54,30 +54,30 @@ type ListSchemasResponse struct {
 	Object *ListSchemasResponseBody
 }
 
-func (o *ListSchemasResponse) GetContentType() string {
-	if o == nil {
+func (l *ListSchemasResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListSchemasResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListSchemasResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListSchemasResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListSchemasResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListSchemasResponse) GetObject() *ListSchemasResponseBody {
-	if o == nil {
+func (l *ListSchemasResponse) GetObject() *ListSchemasResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

@@ -13,6 +13,17 @@ import (
 type PartnerOrganisationAttributeConstraints struct {
 }
 
+func (p PartnerOrganisationAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerOrganisationAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PartnerOrganisationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PartnerOrganisationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type PartnerOrganisationAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *PartnerOrganisationAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (p PartnerOrganisationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (o *PartnerOrganisationAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (p *PartnerOrganisationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *PartnerOrganisationAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttributeInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintText
 }
 
-func (o *PartnerOrganisationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttributeInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTextKey
+}
+
+func (p *PartnerOrganisationAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintCustomComponent
+}
+
+func (p *PartnerOrganisationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
+		return nil
+	}
+	return p.HintTooltipPlacement
 }
 
 type PartnerOrganisationAttributeType string
@@ -148,218 +170,218 @@ func (p PartnerOrganisationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerOrganisationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PartnerOrganisationAttribute) GetID() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PartnerOrganisationAttribute) GetName() string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetName() string {
+	if p == nil {
 		return ""
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PartnerOrganisationAttribute) GetLabel() string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetLabel() string {
+	if p == nil {
 		return ""
 	}
-	return o.Label
+	return p.Label
 }
 
-func (o *PartnerOrganisationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetPlaceholder() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Placeholder
+	return p.Placeholder
 }
 
-func (o *PartnerOrganisationAttribute) GetHidden() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetHidden() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Hidden
+	return p.Hidden
 }
 
-func (o *PartnerOrganisationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetShowInTable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return p.ShowInTable
 }
 
-func (o *PartnerOrganisationAttribute) GetSortable() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetSortable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Sortable
+	return p.Sortable
 }
 
-func (o *PartnerOrganisationAttribute) GetRequired() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetRequired() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Required
+	return p.Required
 }
 
-func (o *PartnerOrganisationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetReadonly() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Readonly
+	return p.Readonly
 }
 
-func (o *PartnerOrganisationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetDeprecated() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Deprecated
+	return p.Deprecated
 }
 
-func (o *PartnerOrganisationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetDefaultValue() any {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return p.DefaultValue
 }
 
-func (o *PartnerOrganisationAttribute) GetGroup() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetGroup() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Group
+	return p.Group
 }
 
-func (o *PartnerOrganisationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetOrder() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *PartnerOrganisationAttribute) GetLayout() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetLayout() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Layout
+	return p.Layout
 }
 
-func (o *PartnerOrganisationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetHideLabel() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HideLabel
+	return p.HideLabel
 }
 
-func (o *PartnerOrganisationAttribute) GetIcon() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetIcon() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Icon
+	return p.Icon
 }
 
-func (o *PartnerOrganisationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetRenderCondition() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return p.RenderCondition
 }
 
-func (o *PartnerOrganisationAttribute) GetPurpose() []string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetPurpose() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Purpose
+	return p.Purpose
 }
 
-func (o *PartnerOrganisationAttribute) GetManifest() []string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetManifest() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Manifest
+	return p.Manifest
 }
 
-func (o *PartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeConstraints {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetConstraints() *PartnerOrganisationAttributeConstraints {
+	if p == nil {
 		return nil
 	}
-	return o.Constraints
+	return p.Constraints
 }
 
-func (o *PartnerOrganisationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetFeatureFlag() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return p.FeatureFlag
 }
 
-func (o *PartnerOrganisationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetSettingsFlag() []SettingFlag {
+	if p == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return p.SettingsFlag
 }
 
-func (o *PartnerOrganisationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return p.ValueFormatter
 }
 
-func (o *PartnerOrganisationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetPreviewValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return p.PreviewValueFormatter
 }
 
-func (o *PartnerOrganisationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return p.EntityBuilderDisableEdit
 }
 
-func (o *PartnerOrganisationAttribute) GetProtected() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetProtected() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Protected
+	return p.Protected
 }
 
-func (o *PartnerOrganisationAttribute) GetInfoHelpers() *PartnerOrganisationAttributeInfoHelpers {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetInfoHelpers() *PartnerOrganisationAttributeInfoHelpers {
+	if p == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return p.InfoHelpers
 }
 
-func (o *PartnerOrganisationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetRepeatable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Repeatable
+	return p.Repeatable
 }
 
-func (o *PartnerOrganisationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetHasPrimary() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return p.HasPrimary
 }
 
-func (o *PartnerOrganisationAttribute) GetType() PartnerOrganisationAttributeType {
-	if o == nil {
+func (p *PartnerOrganisationAttribute) GetType() PartnerOrganisationAttributeType {
+	if p == nil {
 		return PartnerOrganisationAttributeType("")
 	}
-	return o.Type
+	return p.Type
 }

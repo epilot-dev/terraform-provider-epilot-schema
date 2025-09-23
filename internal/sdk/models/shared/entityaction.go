@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+)
+
 // EntityAction - An entity action configured from the entity schema
 type EntityAction struct {
 	// A unique action name
@@ -14,30 +18,41 @@ type EntityAction struct {
 	Permission *string `json:"permission,omitempty"`
 }
 
-func (o *EntityAction) GetAction() string {
-	if o == nil {
+func (e EntityAction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityAction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"action", "label"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EntityAction) GetAction() string {
+	if e == nil {
 		return ""
 	}
-	return o.Action
+	return e.Action
 }
 
-func (o *EntityAction) GetLabel() string {
-	if o == nil {
+func (e *EntityAction) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EntityAction) GetIcon() *string {
-	if o == nil {
+func (e *EntityAction) GetIcon() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Icon
+	return e.Icon
 }
 
-func (o *EntityAction) GetPermission() *string {
-	if o == nil {
+func (e *EntityAction) GetPermission() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Permission
+	return e.Permission
 }

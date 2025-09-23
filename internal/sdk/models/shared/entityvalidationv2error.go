@@ -27,65 +27,65 @@ type EntityValidationV2Error struct {
 	Data map[string]any `json:"data,omitempty"`
 }
 
-func (o *EntityValidationV2Error) GetKeyword() string {
-	if o == nil {
+func (e *EntityValidationV2Error) GetKeyword() string {
+	if e == nil {
 		return ""
 	}
-	return o.Keyword
+	return e.Keyword
 }
 
-func (o *EntityValidationV2Error) GetInstancePath() string {
-	if o == nil {
+func (e *EntityValidationV2Error) GetInstancePath() string {
+	if e == nil {
 		return ""
 	}
-	return o.InstancePath
+	return e.InstancePath
 }
 
-func (o *EntityValidationV2Error) GetSchemaPath() string {
-	if o == nil {
+func (e *EntityValidationV2Error) GetSchemaPath() string {
+	if e == nil {
 		return ""
 	}
-	return o.SchemaPath
+	return e.SchemaPath
 }
 
-func (o *EntityValidationV2Error) GetParams() map[string]any {
-	if o == nil {
+func (e *EntityValidationV2Error) GetParams() map[string]any {
+	if e == nil {
 		return map[string]any{}
 	}
-	return o.Params
+	return e.Params
 }
 
-func (o *EntityValidationV2Error) GetPropertyName() *string {
-	if o == nil {
+func (e *EntityValidationV2Error) GetPropertyName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.PropertyName
+	return e.PropertyName
 }
 
-func (o *EntityValidationV2Error) GetMessage() *string {
-	if o == nil {
+func (e *EntityValidationV2Error) GetMessage() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Message
+	return e.Message
 }
 
-func (o *EntityValidationV2Error) GetSchema() *Schema {
-	if o == nil {
+func (e *EntityValidationV2Error) GetSchema() *Schema {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.Schema
 }
 
-func (o *EntityValidationV2Error) GetParentSchema() map[string]any {
-	if o == nil {
+func (e *EntityValidationV2Error) GetParentSchema() map[string]any {
+	if e == nil {
 		return nil
 	}
-	return o.ParentSchema
+	return e.ParentSchema
 }
 
-func (o *EntityValidationV2Error) GetData() map[string]any {
-	if o == nil {
+func (e *EntityValidationV2Error) GetData() map[string]any {
+	if e == nil {
 		return nil
 	}
-	return o.Data
+	return e.Data
 }

@@ -14,6 +14,17 @@ import (
 type CurrencyAttributeConstraints struct {
 }
 
+func (c CurrencyAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // CurrencyAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CurrencyAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -35,32 +46,43 @@ type CurrencyAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *CurrencyAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c CurrencyAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *CurrencyAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *CurrencyAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *CurrencyAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *CurrencyAttributeInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *CurrencyAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *CurrencyAttributeInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *CurrencyAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *CurrencyAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type CurrencyAttributeType string
@@ -86,36 +108,47 @@ func (e *CurrencyAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Currency1 - A currency configuration
-type Currency1 struct {
+// One - A currency configuration
+type One struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *Currency1) GetCode() string {
+func (o One) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *One) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"code", "description", "symbol"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *One) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *Currency1) GetDescription() string {
+func (o *One) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *Currency1) GetSymbol() string {
+func (o *One) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *Currency1) GetFlag() *string {
+func (o *One) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -125,30 +158,30 @@ func (o *Currency1) GetFlag() *string {
 type CurrencyType string
 
 const (
-	CurrencyTypeCurrency1 CurrencyType = "currency_1"
+	CurrencyTypeOne CurrencyType = "1"
 )
 
 type Currency struct {
-	Currency1 *Currency1 `queryParam:"inline"`
+	One *One `queryParam:"inline" name:"currency"`
 
 	Type CurrencyType
 }
 
-func CreateCurrencyCurrency1(currency1 Currency1) Currency {
-	typ := CurrencyTypeCurrency1
+func CreateCurrencyOne(one One) Currency {
+	typ := CurrencyTypeOne
 
 	return Currency{
-		Currency1: &currency1,
-		Type:      typ,
+		One:  &one,
+		Type: typ,
 	}
 }
 
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
-	var currency1 Currency1 = Currency1{}
-	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
-		u.Currency1 = &currency1
-		u.Type = CurrencyTypeCurrency1
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
+		u.One = &one
+		u.Type = CurrencyTypeOne
 		return nil
 	}
 
@@ -156,8 +189,8 @@ func (u *Currency) UnmarshalJSON(data []byte) error {
 }
 
 func (u Currency) MarshalJSON() ([]byte, error) {
-	if u.Currency1 != nil {
-		return utils.MarshalJSON(u.Currency1, "", true)
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Currency: all fields are null")
@@ -229,232 +262,232 @@ func (c CurrencyAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CurrencyAttribute) GetID() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CurrencyAttribute) GetName() string {
-	if o == nil {
+func (c *CurrencyAttribute) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CurrencyAttribute) GetLabel() string {
-	if o == nil {
+func (c *CurrencyAttribute) GetLabel() string {
+	if c == nil {
 		return ""
 	}
-	return o.Label
+	return c.Label
 }
 
-func (o *CurrencyAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetPlaceholder() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Placeholder
+	return c.Placeholder
 }
 
-func (o *CurrencyAttribute) GetHidden() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetHidden() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Hidden
+	return c.Hidden
 }
 
-func (o *CurrencyAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetShowInTable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return c.ShowInTable
 }
 
-func (o *CurrencyAttribute) GetSortable() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetSortable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Sortable
+	return c.Sortable
 }
 
-func (o *CurrencyAttribute) GetRequired() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetRequired() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Required
+	return c.Required
 }
 
-func (o *CurrencyAttribute) GetReadonly() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetReadonly() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Readonly
+	return c.Readonly
 }
 
-func (o *CurrencyAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetDeprecated() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Deprecated
+	return c.Deprecated
 }
 
-func (o *CurrencyAttribute) GetDefaultValue() any {
-	if o == nil {
+func (c *CurrencyAttribute) GetDefaultValue() any {
+	if c == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return c.DefaultValue
 }
 
-func (o *CurrencyAttribute) GetGroup() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetGroup() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Group
+	return c.Group
 }
 
-func (o *CurrencyAttribute) GetOrder() *int64 {
-	if o == nil {
+func (c *CurrencyAttribute) GetOrder() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.Order
+	return c.Order
 }
 
-func (o *CurrencyAttribute) GetLayout() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetLayout() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Layout
+	return c.Layout
 }
 
-func (o *CurrencyAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetHideLabel() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HideLabel
+	return c.HideLabel
 }
 
-func (o *CurrencyAttribute) GetIcon() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetIcon() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Icon
+	return c.Icon
 }
 
-func (o *CurrencyAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetRenderCondition() *string {
+	if c == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return c.RenderCondition
 }
 
-func (o *CurrencyAttribute) GetPurpose() []string {
-	if o == nil {
+func (c *CurrencyAttribute) GetPurpose() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Purpose
+	return c.Purpose
 }
 
-func (o *CurrencyAttribute) GetManifest() []string {
-	if o == nil {
+func (c *CurrencyAttribute) GetManifest() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Manifest
+	return c.Manifest
 }
 
-func (o *CurrencyAttribute) GetConstraints() *CurrencyAttributeConstraints {
-	if o == nil {
+func (c *CurrencyAttribute) GetConstraints() *CurrencyAttributeConstraints {
+	if c == nil {
 		return nil
 	}
-	return o.Constraints
+	return c.Constraints
 }
 
-func (o *CurrencyAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetFeatureFlag() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return c.FeatureFlag
 }
 
-func (o *CurrencyAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (c *CurrencyAttribute) GetSettingsFlag() []SettingFlag {
+	if c == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return c.SettingsFlag
 }
 
-func (o *CurrencyAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetValueFormatter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return c.ValueFormatter
 }
 
-func (o *CurrencyAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (c *CurrencyAttribute) GetPreviewValueFormatter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return c.PreviewValueFormatter
 }
 
-func (o *CurrencyAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetEntityBuilderDisableEdit() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return c.EntityBuilderDisableEdit
 }
 
-func (o *CurrencyAttribute) GetProtected() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetProtected() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Protected
+	return c.Protected
 }
 
-func (o *CurrencyAttribute) GetInfoHelpers() *CurrencyAttributeInfoHelpers {
-	if o == nil {
+func (c *CurrencyAttribute) GetInfoHelpers() *CurrencyAttributeInfoHelpers {
+	if c == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return c.InfoHelpers
 }
 
-func (o *CurrencyAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetRepeatable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Repeatable
+	return c.Repeatable
 }
 
-func (o *CurrencyAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetHasPrimary() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return c.HasPrimary
 }
 
-func (o *CurrencyAttribute) GetType() CurrencyAttributeType {
-	if o == nil {
+func (c *CurrencyAttribute) GetType() CurrencyAttributeType {
+	if c == nil {
 		return CurrencyAttributeType("")
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *CurrencyAttribute) GetCurrencySelectorOnly() *bool {
-	if o == nil {
+func (c *CurrencyAttribute) GetCurrencySelectorOnly() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.CurrencySelectorOnly
+	return c.CurrencySelectorOnly
 }
 
-func (o *CurrencyAttribute) GetCurrency() []Currency {
-	if o == nil {
+func (c *CurrencyAttribute) GetCurrency() []Currency {
+	if c == nil {
 		return []Currency{}
 	}
-	return o.Currency
+	return c.Currency
 }

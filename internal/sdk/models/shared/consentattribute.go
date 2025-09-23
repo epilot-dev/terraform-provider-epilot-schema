@@ -13,6 +13,17 @@ import (
 type ConsentAttributeConstraints struct {
 }
 
+func (c ConsentAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConsentAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ConsentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ConsentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type ConsentAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *ConsentAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (c ConsentAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *ConsentAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (c *ConsentAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *ConsentAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *ConsentAttributeInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintText
 }
 
-func (o *ConsentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *ConsentAttributeInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTextKey
+}
+
+func (c *ConsentAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintCustomComponent
+}
+
+func (c *ConsentAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
+		return nil
+	}
+	return c.HintTooltipPlacement
 }
 
 type ConsentAttributeType string
@@ -150,232 +172,232 @@ func (c ConsentAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConsentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type", "topic"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ConsentAttribute) GetID() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *ConsentAttribute) GetName() string {
-	if o == nil {
+func (c *ConsentAttribute) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *ConsentAttribute) GetLabel() string {
-	if o == nil {
+func (c *ConsentAttribute) GetLabel() string {
+	if c == nil {
 		return ""
 	}
-	return o.Label
+	return c.Label
 }
 
-func (o *ConsentAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetPlaceholder() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Placeholder
+	return c.Placeholder
 }
 
-func (o *ConsentAttribute) GetHidden() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetHidden() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Hidden
+	return c.Hidden
 }
 
-func (o *ConsentAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetShowInTable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return c.ShowInTable
 }
 
-func (o *ConsentAttribute) GetSortable() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetSortable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Sortable
+	return c.Sortable
 }
 
-func (o *ConsentAttribute) GetRequired() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetRequired() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Required
+	return c.Required
 }
 
-func (o *ConsentAttribute) GetReadonly() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetReadonly() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Readonly
+	return c.Readonly
 }
 
-func (o *ConsentAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetDeprecated() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Deprecated
+	return c.Deprecated
 }
 
-func (o *ConsentAttribute) GetDefaultValue() any {
-	if o == nil {
+func (c *ConsentAttribute) GetDefaultValue() any {
+	if c == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return c.DefaultValue
 }
 
-func (o *ConsentAttribute) GetGroup() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetGroup() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Group
+	return c.Group
 }
 
-func (o *ConsentAttribute) GetOrder() *int64 {
-	if o == nil {
+func (c *ConsentAttribute) GetOrder() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.Order
+	return c.Order
 }
 
-func (o *ConsentAttribute) GetLayout() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetLayout() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Layout
+	return c.Layout
 }
 
-func (o *ConsentAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetHideLabel() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HideLabel
+	return c.HideLabel
 }
 
-func (o *ConsentAttribute) GetIcon() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetIcon() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Icon
+	return c.Icon
 }
 
-func (o *ConsentAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetRenderCondition() *string {
+	if c == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return c.RenderCondition
 }
 
-func (o *ConsentAttribute) GetPurpose() []string {
-	if o == nil {
+func (c *ConsentAttribute) GetPurpose() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Purpose
+	return c.Purpose
 }
 
-func (o *ConsentAttribute) GetManifest() []string {
-	if o == nil {
+func (c *ConsentAttribute) GetManifest() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Manifest
+	return c.Manifest
 }
 
-func (o *ConsentAttribute) GetConstraints() *ConsentAttributeConstraints {
-	if o == nil {
+func (c *ConsentAttribute) GetConstraints() *ConsentAttributeConstraints {
+	if c == nil {
 		return nil
 	}
-	return o.Constraints
+	return c.Constraints
 }
 
-func (o *ConsentAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetFeatureFlag() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return c.FeatureFlag
 }
 
-func (o *ConsentAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (c *ConsentAttribute) GetSettingsFlag() []SettingFlag {
+	if c == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return c.SettingsFlag
 }
 
-func (o *ConsentAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetValueFormatter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return c.ValueFormatter
 }
 
-func (o *ConsentAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (c *ConsentAttribute) GetPreviewValueFormatter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return c.PreviewValueFormatter
 }
 
-func (o *ConsentAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetEntityBuilderDisableEdit() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return c.EntityBuilderDisableEdit
 }
 
-func (o *ConsentAttribute) GetProtected() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetProtected() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Protected
+	return c.Protected
 }
 
-func (o *ConsentAttribute) GetInfoHelpers() *ConsentAttributeInfoHelpers {
-	if o == nil {
+func (c *ConsentAttribute) GetInfoHelpers() *ConsentAttributeInfoHelpers {
+	if c == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return c.InfoHelpers
 }
 
-func (o *ConsentAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetRepeatable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Repeatable
+	return c.Repeatable
 }
 
-func (o *ConsentAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (c *ConsentAttribute) GetHasPrimary() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return c.HasPrimary
 }
 
-func (o *ConsentAttribute) GetType() ConsentAttributeType {
-	if o == nil {
+func (c *ConsentAttribute) GetType() ConsentAttributeType {
+	if c == nil {
 		return ConsentAttributeType("")
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *ConsentAttribute) GetTopic() string {
-	if o == nil {
+func (c *ConsentAttribute) GetTopic() string {
+	if c == nil {
 		return ""
 	}
-	return o.Topic
+	return c.Topic
 }
 
-func (o *ConsentAttribute) GetIdentifiers() []string {
-	if o == nil {
+func (c *ConsentAttribute) GetIdentifiers() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Identifiers
+	return c.Identifiers
 }

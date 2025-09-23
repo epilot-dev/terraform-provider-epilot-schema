@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -11,11 +12,11 @@ type DeleteSchemaRequest struct {
 	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *DeleteSchemaRequest) GetSlug() string {
-	if o == nil {
+func (d *DeleteSchemaRequest) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
 type DeleteSchemaResponse struct {
@@ -25,25 +26,42 @@ type DeleteSchemaResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *DeleteSchemaResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteSchemaResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteSchemaResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteSchemaResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
+}
+
+func (d *DeleteSchemaResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
+		return nil
+	}
+	return d.TooManyRequestsError
+}
+
+func (d *DeleteSchemaResponse) GetHeaders() map[string][]string {
+	if d == nil {
+		return map[string][]string{}
+	}
+	return d.Headers
 }

@@ -14,25 +14,25 @@ type BulkMoveClassificationsRequestBody struct {
 	ClassificationIds []string `json:"classification_ids,omitempty"`
 }
 
-func (o *BulkMoveClassificationsRequestBody) GetJobID() *string {
-	if o == nil {
+func (b *BulkMoveClassificationsRequestBody) GetJobID() *string {
+	if b == nil {
 		return nil
 	}
-	return o.JobID
+	return b.JobID
 }
 
-func (o *BulkMoveClassificationsRequestBody) GetTargetTaxonomy() *string {
-	if o == nil {
+func (b *BulkMoveClassificationsRequestBody) GetTargetTaxonomy() *string {
+	if b == nil {
 		return nil
 	}
-	return o.TargetTaxonomy
+	return b.TargetTaxonomy
 }
 
-func (o *BulkMoveClassificationsRequestBody) GetClassificationIds() []string {
-	if o == nil {
+func (b *BulkMoveClassificationsRequestBody) GetClassificationIds() []string {
+	if b == nil {
 		return nil
 	}
-	return o.ClassificationIds
+	return b.ClassificationIds
 }
 
 type BulkMoveClassificationsResponse struct {
@@ -44,32 +44,49 @@ type BulkMoveClassificationsResponse struct {
 	RawResponse *http.Response
 	// Returns the job id for the async job and current status
 	TaxonomyBulkJobTriggerResponse *shared.TaxonomyBulkJobTriggerResponse
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *BulkMoveClassificationsResponse) GetContentType() string {
-	if o == nil {
+func (b *BulkMoveClassificationsResponse) GetContentType() string {
+	if b == nil {
 		return ""
 	}
-	return o.ContentType
+	return b.ContentType
 }
 
-func (o *BulkMoveClassificationsResponse) GetStatusCode() int {
-	if o == nil {
+func (b *BulkMoveClassificationsResponse) GetStatusCode() int {
+	if b == nil {
 		return 0
 	}
-	return o.StatusCode
+	return b.StatusCode
 }
 
-func (o *BulkMoveClassificationsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (b *BulkMoveClassificationsResponse) GetRawResponse() *http.Response {
+	if b == nil {
 		return nil
 	}
-	return o.RawResponse
+	return b.RawResponse
 }
 
-func (o *BulkMoveClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() *shared.TaxonomyBulkJobTriggerResponse {
-	if o == nil {
+func (b *BulkMoveClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() *shared.TaxonomyBulkJobTriggerResponse {
+	if b == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJobTriggerResponse
+	return b.TaxonomyBulkJobTriggerResponse
+}
+
+func (b *BulkMoveClassificationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if b == nil {
+		return nil
+	}
+	return b.TooManyRequestsError
+}
+
+func (b *BulkMoveClassificationsResponse) GetHeaders() map[string][]string {
+	if b == nil {
+		return map[string][]string{}
+	}
+	return b.Headers
 }

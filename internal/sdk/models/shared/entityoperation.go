@@ -12,11 +12,16 @@ import (
 type Operation string
 
 const (
-	OperationCreateEntity     Operation = "createEntity"
-	OperationUpdateEntity     Operation = "updateEntity"
-	OperationDeleteEntity     Operation = "deleteEntity"
-	OperationSoftDeleteEntity Operation = "softDeleteEntity"
-	OperationRestoreEntity    Operation = "restoreEntity"
+	OperationCreateEntity         Operation = "createEntity"
+	OperationUpdateEntity         Operation = "updateEntity"
+	OperationDeleteEntity         Operation = "deleteEntity"
+	OperationSoftDeleteEntity     Operation = "softDeleteEntity"
+	OperationRestoreEntity        Operation = "restoreEntity"
+	OperationRelationsAdded       Operation = "relationsAdded"
+	OperationRelationsRemoved     Operation = "relationsRemoved"
+	OperationRelationsSoftDeleted Operation = "relationsSoftDeleted"
+	OperationRelationsRestored    Operation = "relationsRestored"
+	OperationRelationsDeleted     Operation = "relationsDeleted"
 )
 
 func (e Operation) ToPointer() *Operation {
@@ -37,6 +42,16 @@ func (e *Operation) UnmarshalJSON(data []byte) error {
 	case "softDeleteEntity":
 		fallthrough
 	case "restoreEntity":
+		fallthrough
+	case "relationsAdded":
+		fallthrough
+	case "relationsRemoved":
+		fallthrough
+	case "relationsSoftDeleted":
+		fallthrough
+	case "relationsRestored":
+		fallthrough
+	case "relationsDeleted":
 		*e = Operation(v)
 		return nil
 	default:
@@ -50,18 +65,18 @@ type EntityOperationParams struct {
 	Slug *string `json:"slug,omitempty"`
 }
 
-func (o *EntityOperationParams) GetID() *string {
-	if o == nil {
+func (e *EntityOperationParams) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityOperationParams) GetSlug() *string {
-	if o == nil {
+func (e *EntityOperationParams) GetSlug() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Slug
+	return e.Slug
 }
 
 // EntityOperationACL - Access control list (ACL) for an entity. Defines sharing access to external orgs or users.
@@ -77,38 +92,38 @@ func (e EntityOperationACL) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityOperationACL) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityOperationACL) GetView() []string {
-	if o == nil {
+func (e *EntityOperationACL) GetView() []string {
+	if e == nil {
 		return nil
 	}
-	return o.View
+	return e.View
 }
 
-func (o *EntityOperationACL) GetEdit() []string {
-	if o == nil {
+func (e *EntityOperationACL) GetEdit() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Edit
+	return e.Edit
 }
 
-func (o *EntityOperationACL) GetDelete() []string {
-	if o == nil {
+func (e *EntityOperationACL) GetDelete() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Delete
+	return e.Delete
 }
 
-func (o *EntityOperationACL) GetAdditionalProperties() any {
-	if o == nil {
+func (e *EntityOperationACL) GetAdditionalProperties() any {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
 type Payload struct {
@@ -136,101 +151,101 @@ func (p Payload) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Payload) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Payload) GetID() *string {
-	if o == nil {
+func (p *Payload) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Payload) GetOrg() *string {
-	if o == nil {
+func (p *Payload) GetOrg() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Org
+	return p.Org
 }
 
-func (o *Payload) GetOwners() []EntityOwner {
-	if o == nil {
+func (p *Payload) GetOwners() []EntityOwner {
+	if p == nil {
 		return nil
 	}
-	return o.Owners
+	return p.Owners
 }
 
-func (o *Payload) GetSchema() *string {
-	if o == nil {
+func (p *Payload) GetSchema() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Schema
+	return p.Schema
 }
 
-func (o *Payload) GetTitle() *string {
-	if o == nil {
+func (p *Payload) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *Payload) GetTags() []string {
-	if o == nil {
+func (p *Payload) GetTags() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Tags
+	return p.Tags
 }
 
-func (o *Payload) GetCreatedAt() *time.Time {
-	if o == nil {
+func (p *Payload) GetCreatedAt() *time.Time {
+	if p == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *Payload) GetUpdatedAt() *time.Time {
-	if o == nil {
+func (p *Payload) GetUpdatedAt() *time.Time {
+	if p == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return p.UpdatedAt
 }
 
-func (o *Payload) GetDeletedAt() *time.Time {
-	if o == nil {
+func (p *Payload) GetDeletedAt() *time.Time {
+	if p == nil {
 		return nil
 	}
-	return o.DeletedAt
+	return p.DeletedAt
 }
 
-func (o *Payload) GetACL() *EntityOperationACL {
-	if o == nil {
+func (p *Payload) GetACL() *EntityOperationACL {
+	if p == nil {
 		return nil
 	}
-	return o.ACL
+	return p.ACL
 }
 
-func (o *Payload) GetPurpose() []string {
-	if o == nil {
+func (p *Payload) GetPurpose() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Purpose
+	return p.Purpose
 }
 
-func (o *Payload) GetManifest() []string {
-	if o == nil {
+func (p *Payload) GetManifest() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Manifest
+	return p.Manifest
 }
 
-func (o *Payload) GetAdditionalProperties() any {
-	if o == nil {
+func (p *Payload) GetAdditionalProperties() any {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
 type Diff struct {
@@ -239,25 +254,25 @@ type Diff struct {
 	Deleted *Entity `json:"deleted,omitempty"`
 }
 
-func (o *Diff) GetAdded() *Entity {
-	if o == nil {
+func (d *Diff) GetAdded() *Entity {
+	if d == nil {
 		return nil
 	}
-	return o.Added
+	return d.Added
 }
 
-func (o *Diff) GetUpdated() *Entity {
-	if o == nil {
+func (d *Diff) GetUpdated() *Entity {
+	if d == nil {
 		return nil
 	}
-	return o.Updated
+	return d.Updated
 }
 
-func (o *Diff) GetDeleted() *Entity {
-	if o == nil {
+func (d *Diff) GetDeleted() *Entity {
+	if d == nil {
 		return nil
 	}
-	return o.Deleted
+	return d.Deleted
 }
 
 type EntityOperation struct {
@@ -271,51 +286,51 @@ type EntityOperation struct {
 	Diff       *Diff                  `json:"diff,omitempty"`
 }
 
-func (o *EntityOperation) GetEntity() string {
-	if o == nil {
+func (e *EntityOperation) GetEntity() string {
+	if e == nil {
 		return ""
 	}
-	return o.Entity
+	return e.Entity
 }
 
-func (o *EntityOperation) GetOrg() string {
-	if o == nil {
+func (e *EntityOperation) GetOrg() string {
+	if e == nil {
 		return ""
 	}
-	return o.Org
+	return e.Org
 }
 
-func (o *EntityOperation) GetActivityID() *string {
-	if o == nil {
+func (e *EntityOperation) GetActivityID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ActivityID
+	return e.ActivityID
 }
 
-func (o *EntityOperation) GetOperation() Operation {
-	if o == nil {
+func (e *EntityOperation) GetOperation() Operation {
+	if e == nil {
 		return Operation("")
 	}
-	return o.Operation
+	return e.Operation
 }
 
-func (o *EntityOperation) GetParams() *EntityOperationParams {
-	if o == nil {
+func (e *EntityOperation) GetParams() *EntityOperationParams {
+	if e == nil {
 		return nil
 	}
-	return o.Params
+	return e.Params
 }
 
-func (o *EntityOperation) GetPayload() *Payload {
-	if o == nil {
+func (e *EntityOperation) GetPayload() *Payload {
+	if e == nil {
 		return nil
 	}
-	return o.Payload
+	return e.Payload
 }
 
-func (o *EntityOperation) GetDiff() *Diff {
-	if o == nil {
+func (e *EntityOperation) GetDiff() *Diff {
+	if e == nil {
 		return nil
 	}
-	return o.Diff
+	return e.Diff
 }

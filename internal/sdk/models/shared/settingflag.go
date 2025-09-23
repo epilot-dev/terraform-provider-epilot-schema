@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+)
+
 type SettingFlag struct {
 	// The name of the organization setting to check
 	Name *string `json:"name,omitempty"`
@@ -9,16 +13,27 @@ type SettingFlag struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *SettingFlag) GetName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Name
+func (s SettingFlag) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (o *SettingFlag) GetEnabled() *bool {
-	if o == nil {
+func (s *SettingFlag) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SettingFlag) GetName() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Enabled
+	return s.Name
+}
+
+func (s *SettingFlag) GetEnabled() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Enabled
 }

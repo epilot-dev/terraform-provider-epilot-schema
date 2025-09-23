@@ -19,8 +19,8 @@ const (
 
 // TaxonomySlug - The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
 type TaxonomySlug struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"taxonomySlug"`
+	ArrayOfStr []string `queryParam:"inline" name:"taxonomySlug"`
 
 	Type TaxonomySlugType
 }
@@ -46,14 +46,14 @@ func CreateTaxonomySlugArrayOfStr(arrayOfStr []string) TaxonomySlug {
 func (u *TaxonomySlug) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = TaxonomySlugTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = TaxonomySlugTypeArrayOfStr
 		return nil
@@ -75,14 +75,14 @@ func (u TaxonomySlug) MarshalJSON() ([]byte, error) {
 }
 
 type TaxonomiesClassificationsSearchRequestBody struct {
-	ClassificationIds []string `json:"classificationIds,omitempty"`
+	ClassificationIds []shared.ClassificationIDOrPattern `json:"classificationIds,omitempty"`
 }
 
-func (o *TaxonomiesClassificationsSearchRequestBody) GetClassificationIds() []string {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequestBody) GetClassificationIds() []shared.ClassificationIDOrPattern {
+	if t == nil {
 		return nil
 	}
-	return o.ClassificationIds
+	return t.ClassificationIds
 }
 
 type TaxonomiesClassificationsSearchRequest struct {
@@ -111,45 +111,45 @@ func (t TaxonomiesClassificationsSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomiesClassificationsSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetTaxonomySlug() *TaxonomySlug {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequest) GetTaxonomySlug() *TaxonomySlug {
+	if t == nil {
 		return nil
 	}
-	return o.TaxonomySlug
+	return t.TaxonomySlug
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetQuery() *string {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequest) GetQuery() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Query
+	return t.Query
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetArchived() *bool {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequest) GetArchived() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Archived
+	return t.Archived
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetIncludeArchived() *shared.TaxonomySearchIncludeArchivedParam {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequest) GetIncludeArchived() *shared.TaxonomySearchIncludeArchivedParam {
+	if t == nil {
 		return nil
 	}
-	return o.IncludeArchived
+	return t.IncludeArchived
 }
 
-func (o *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesClassificationsSearchRequestBody {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchRequest) GetRequestBody() *TaxonomiesClassificationsSearchRequestBody {
+	if t == nil {
 		return nil
 	}
-	return o.RequestBody
+	return t.RequestBody
 }
 
 // TaxonomiesClassificationsSearchResponseBody - Returns the classifications for the taxonomy slug provided
@@ -158,18 +158,18 @@ type TaxonomiesClassificationsSearchResponseBody struct {
 	Hits    *int64                          `json:"hits,omitempty"`
 }
 
-func (o *TaxonomiesClassificationsSearchResponseBody) GetResults() []shared.TaxonomyClassification {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponseBody) GetResults() []shared.TaxonomyClassification {
+	if t == nil {
 		return nil
 	}
-	return o.Results
+	return t.Results
 }
 
-func (o *TaxonomiesClassificationsSearchResponseBody) GetHits() *int64 {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponseBody) GetHits() *int64 {
+	if t == nil {
 		return nil
 	}
-	return o.Hits
+	return t.Hits
 }
 
 type TaxonomiesClassificationsSearchResponse struct {
@@ -181,32 +181,49 @@ type TaxonomiesClassificationsSearchResponse struct {
 	RawResponse *http.Response
 	// Returns the classifications for the taxonomy slug provided
 	Object *TaxonomiesClassificationsSearchResponseBody
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *TaxonomiesClassificationsSearchResponse) GetContentType() string {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponse) GetContentType() string {
+	if t == nil {
 		return ""
 	}
-	return o.ContentType
+	return t.ContentType
 }
 
-func (o *TaxonomiesClassificationsSearchResponse) GetStatusCode() int {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponse) GetStatusCode() int {
+	if t == nil {
 		return 0
 	}
-	return o.StatusCode
+	return t.StatusCode
 }
 
-func (o *TaxonomiesClassificationsSearchResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponse) GetRawResponse() *http.Response {
+	if t == nil {
 		return nil
 	}
-	return o.RawResponse
+	return t.RawResponse
 }
 
-func (o *TaxonomiesClassificationsSearchResponse) GetObject() *TaxonomiesClassificationsSearchResponseBody {
-	if o == nil {
+func (t *TaxonomiesClassificationsSearchResponse) GetObject() *TaxonomiesClassificationsSearchResponseBody {
+	if t == nil {
 		return nil
 	}
-	return o.Object
+	return t.Object
+}
+
+func (t *TaxonomiesClassificationsSearchResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if t == nil {
+		return nil
+	}
+	return t.TooManyRequestsError
+}
+
+func (t *TaxonomiesClassificationsSearchResponse) GetHeaders() map[string][]string {
+	if t == nil {
+		return map[string][]string{}
+	}
+	return t.Headers
 }

@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AttributeWithCompositeIDSelectAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -10,7 +13,7 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	AllowAny                 types.Bool                                           `tfsdk:"allow_any"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
@@ -24,7 +27,7 @@ type AttributeWithCompositeIDSelectAttribute struct {
 	Label                    types.String                                         `tfsdk:"label"`
 	Layout                   types.String                                         `tfsdk:"layout"`
 	Name                     types.String                                         `tfsdk:"name"`
-	Options                  types.String                                         `tfsdk:"options"`
+	Options                  jsontypes.Normalized                                 `tfsdk:"options"`
 	Order                    types.Int64                                          `tfsdk:"order"`
 	Placeholder              types.String                                         `tfsdk:"placeholder"`
 	PreviewValueFormatter    types.String                                         `tfsdk:"preview_value_formatter"`

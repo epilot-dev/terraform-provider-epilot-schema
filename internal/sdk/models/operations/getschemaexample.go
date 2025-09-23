@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -11,11 +12,11 @@ type GetSchemaExampleRequest struct {
 	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *GetSchemaExampleRequest) GetSlug() string {
-	if o == nil {
+func (g *GetSchemaExampleRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
 // GetSchemaExampleResponseBody - Success
@@ -31,32 +32,49 @@ type GetSchemaExampleResponse struct {
 	RawResponse *http.Response
 	// Success
 	Object *GetSchemaExampleResponseBody
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *GetSchemaExampleResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaExampleResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaExampleResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaExampleResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaExampleResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaExampleResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaExampleResponse) GetObject() *GetSchemaExampleResponseBody {
-	if o == nil {
+func (g *GetSchemaExampleResponse) GetObject() *GetSchemaExampleResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
+}
+
+func (g *GetSchemaExampleResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if g == nil {
+		return nil
+	}
+	return g.TooManyRequestsError
+}
+
+func (g *GetSchemaExampleResponse) GetHeaders() map[string][]string {
+	if g == nil {
+		return map[string][]string{}
+	}
+	return g.Headers
 }

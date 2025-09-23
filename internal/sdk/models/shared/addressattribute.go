@@ -13,6 +13,17 @@ import (
 type AddressAttributeConstraints struct {
 }
 
+func (a AddressAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AddressAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type AddressAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (a AddressAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (a *AddressAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (a *AddressAttributeInfoHelpers) GetHintText() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return a.HintText
 }
 
-func (o *AddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (a *AddressAttributeInfoHelpers) GetHintTextKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return a.HintTextKey
+}
+
+func (a *AddressAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintCustomComponent
+}
+
+func (a *AddressAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if a == nil {
+		return nil
+	}
+	return a.HintTooltipPlacement
 }
 
 type AddressAttributeType string
@@ -170,225 +192,225 @@ func (a AddressAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AddressAttribute) GetID() *string {
-	if o == nil {
+func (a *AddressAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AddressAttribute) GetName() string {
-	if o == nil {
+func (a *AddressAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AddressAttribute) GetLabel() string {
-	if o == nil {
+func (a *AddressAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AddressAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AddressAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AddressAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AddressAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AddressAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AddressAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AddressAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AddressAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AddressAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AddressAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AddressAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AddressAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AddressAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AddressAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AddressAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AddressAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AddressAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AddressAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AddressAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AddressAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AddressAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AddressAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AddressAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AddressAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AddressAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AddressAttribute) GetConstraints() *AddressAttributeConstraints {
-	if o == nil {
+func (a *AddressAttribute) GetConstraints() *AddressAttributeConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AddressAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AddressAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AddressAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AddressAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AddressAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AddressAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AddressAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AddressAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AddressAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AddressAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AddressAttribute) GetInfoHelpers() *AddressAttributeInfoHelpers {
-	if o == nil {
+func (a *AddressAttribute) GetInfoHelpers() *AddressAttributeInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AddressAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetRepeatable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.Repeatable
 }
 
-func (o *AddressAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AddressAttribute) GetHasPrimary() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.HasPrimary
 }
 
-func (o *AddressAttribute) GetType() AddressAttributeType {
-	if o == nil {
+func (a *AddressAttribute) GetType() AddressAttributeType {
+	if a == nil {
 		return AddressAttributeType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AddressAttribute) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AddressAttribute) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }

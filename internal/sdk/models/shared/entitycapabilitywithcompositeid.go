@@ -6,27 +6,50 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
-// RequiredPermission - Require a permission to display UI hook
-type RequiredPermission struct {
+type EntityCapabilityWithCompositeIDUIConfig struct {
+	// Whether the capability is filterable
+	IsFilterable *bool `default:"false" json:"is_filterable"`
+}
+
+func (e EntityCapabilityWithCompositeIDUIConfig) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityCapabilityWithCompositeIDUIConfig) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EntityCapabilityWithCompositeIDUIConfig) GetIsFilterable() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.IsFilterable
+}
+
+// EntityCapabilityWithCompositeIDRequiredPermission - Require a permission to display UI hook
+type EntityCapabilityWithCompositeIDRequiredPermission struct {
 	Action   string  `json:"action"`
 	Resource *string `json:"resource,omitempty"`
 }
 
-func (o *RequiredPermission) GetAction() string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDRequiredPermission) GetAction() string {
+	if e == nil {
 		return ""
 	}
-	return o.Action
+	return e.Action
 }
 
-func (o *RequiredPermission) GetResource() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDRequiredPermission) GetResource() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Resource
+	return e.Resource
 }
 
-type UIHooks struct {
+type EntityCapabilityWithCompositeIDUIHooks struct {
 	// name of the hook to use
 	Hook            string  `json:"hook"`
 	RenderCondition *string `json:"render_condition,omitempty"`
@@ -48,110 +71,110 @@ type UIHooks struct {
 	// Specific to Activity pilot
 	Header *bool `json:"header,omitempty"`
 	// Require a permission to display UI hook
-	RequiredPermission   *RequiredPermission `json:"requiredPermission,omitempty"`
-	AdditionalProperties any                 `additionalProperties:"true" json:"-"`
+	RequiredPermission   *EntityCapabilityWithCompositeIDRequiredPermission `json:"requiredPermission,omitempty"`
+	AdditionalProperties any                                                `additionalProperties:"true" json:"-"`
 }
 
-func (u UIHooks) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(u, "", false)
+func (e EntityCapabilityWithCompositeIDUIHooks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (u *UIHooks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"hook"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UIHooks) GetHook() string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetHook() string {
+	if e == nil {
 		return ""
 	}
-	return o.Hook
+	return e.Hook
 }
 
-func (o *UIHooks) GetRenderCondition() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetRenderCondition() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return e.RenderCondition
 }
 
-func (o *UIHooks) GetOrder() *int64 {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetOrder() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Order
+	return e.Order
 }
 
-func (o *UIHooks) GetTitle() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetTitle() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Title
+	return e.Title
 }
 
-func (o *UIHooks) GetGroupExpanded() *bool {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetGroupExpanded() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.GroupExpanded
+	return e.GroupExpanded
 }
 
-func (o *UIHooks) GetImport() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetImport() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Import
+	return e.Import
 }
 
-func (o *UIHooks) GetComponent() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetComponent() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Component
+	return e.Component
 }
 
-func (o *UIHooks) GetRoute() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetRoute() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Route
+	return e.Route
 }
 
-func (o *UIHooks) GetIcon() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetIcon() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Icon
+	return e.Icon
 }
 
-func (o *UIHooks) GetDisabled() *bool {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetDisabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Disabled
+	return e.Disabled
 }
 
-func (o *UIHooks) GetHeader() *bool {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetHeader() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Header
+	return e.Header
 }
 
-func (o *UIHooks) GetRequiredPermission() *RequiredPermission {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetRequiredPermission() *EntityCapabilityWithCompositeIDRequiredPermission {
+	if e == nil {
 		return nil
 	}
-	return o.RequiredPermission
+	return e.RequiredPermission
 }
 
-func (o *UIHooks) GetAdditionalProperties() any {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDUIHooks) GetAdditionalProperties() any {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
 // EntityCapabilityWithCompositeID - a readonly computed ID for the entity capability including schema slug and the capability ID
@@ -165,8 +188,11 @@ type EntityCapabilityWithCompositeID struct {
 	Attributes []Attribute `json:"attributes,omitempty"`
 	Purpose    []string    `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema capabilility
-	Manifest []string  `json:"_manifest,omitempty"`
-	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
+	Manifest []string `json:"_manifest,omitempty"`
+	// ID of the app if the capability is provided by an app
+	AppID    *string                                  `json:"app_id,omitempty"`
+	UIConfig *EntityCapabilityWithCompositeIDUIConfig `json:"ui_config,omitempty"`
+	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -176,81 +202,95 @@ type EntityCapabilityWithCompositeID struct {
 	Schema *string `json:"schema,omitempty"`
 }
 
-func (o *EntityCapabilityWithCompositeID) GetID() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCapabilityWithCompositeID) GetName() string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityCapabilityWithCompositeID) GetTitle() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetTitle() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Title
+	return e.Title
 }
 
-func (o *EntityCapabilityWithCompositeID) GetAttributes() []Attribute {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetAttributes() []Attribute {
+	if e == nil {
 		return nil
 	}
-	return o.Attributes
+	return e.Attributes
 }
 
-func (o *EntityCapabilityWithCompositeID) GetPurpose() []string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EntityCapabilityWithCompositeID) GetManifest() []string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EntityCapabilityWithCompositeID) GetUIHooks() []UIHooks {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetAppID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.UIHooks
+	return e.AppID
 }
 
-func (o *EntityCapabilityWithCompositeID) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetUIConfig() *EntityCapabilityWithCompositeIDUIConfig {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.UIConfig
 }
 
-func (o *EntityCapabilityWithCompositeID) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.UIHooks
 }
 
-func (o *EntityCapabilityWithCompositeID) GetCompositeID() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CompositeID
+	return e.FeatureFlag
 }
 
-func (o *EntityCapabilityWithCompositeID) GetSchema() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeID) GetSettingsFlag() []SettingFlag {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.SettingsFlag
+}
+
+func (e *EntityCapabilityWithCompositeID) GetCompositeID() *string {
+	if e == nil {
+		return nil
+	}
+	return e.CompositeID
+}
+
+func (e *EntityCapabilityWithCompositeID) GetSchema() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Schema
 }
 
 // EntityCapabilityWithCompositeIDInput - a readonly computed ID for the entity capability including schema slug and the capability ID
@@ -264,8 +304,11 @@ type EntityCapabilityWithCompositeIDInput struct {
 	Attributes []Attribute `json:"attributes,omitempty"`
 	Purpose    []string    `json:"_purpose,omitempty"`
 	// Manifest ID used to create/update the schema capabilility
-	Manifest []string  `json:"_manifest,omitempty"`
-	UIHooks  []UIHooks `json:"ui_hooks,omitempty"`
+	Manifest []string `json:"_manifest,omitempty"`
+	// ID of the app if the capability is provided by an app
+	AppID    *string                                  `json:"app_id,omitempty"`
+	UIConfig *EntityCapabilityWithCompositeIDUIConfig `json:"ui_config,omitempty"`
+	UIHooks  []EntityCapabilityWithCompositeIDUIHooks `json:"ui_hooks,omitempty"`
 	// This capability should only be active when the feature flag is enabled
 	FeatureFlag *string `json:"feature_flag,omitempty"`
 	// This capability should only be active when all the settings have the correct value
@@ -274,72 +317,86 @@ type EntityCapabilityWithCompositeIDInput struct {
 	Schema *string `json:"schema,omitempty"`
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetID() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetName() string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetTitle() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetTitle() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Title
+	return e.Title
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetAttributes() []Attribute {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetAttributes() []Attribute {
+	if e == nil {
 		return nil
 	}
-	return o.Attributes
+	return e.Attributes
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetPurpose() []string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetManifest() []string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetUIHooks() []UIHooks {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetAppID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.UIHooks
+	return e.AppID
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetUIConfig() *EntityCapabilityWithCompositeIDUIConfig {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.UIConfig
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetUIHooks() []EntityCapabilityWithCompositeIDUIHooks {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.UIHooks
 }
 
-func (o *EntityCapabilityWithCompositeIDInput) GetSchema() *string {
-	if o == nil {
+func (e *EntityCapabilityWithCompositeIDInput) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.FeatureFlag
+}
+
+func (e *EntityCapabilityWithCompositeIDInput) GetSettingsFlag() []SettingFlag {
+	if e == nil {
+		return nil
+	}
+	return e.SettingsFlag
+}
+
+func (e *EntityCapabilityWithCompositeIDInput) GetSchema() *string {
+	if e == nil {
+		return nil
+	}
+	return e.Schema
 }

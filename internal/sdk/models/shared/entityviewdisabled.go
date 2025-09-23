@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type EntityViewDisabledViewType string
@@ -34,9 +35,20 @@ type EntityViewDisabled struct {
 	ViewType *EntityViewDisabledViewType `json:"view_type,omitempty"`
 }
 
-func (o *EntityViewDisabled) GetViewType() *EntityViewDisabledViewType {
-	if o == nil {
+func (e EntityViewDisabled) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityViewDisabled) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *EntityViewDisabled) GetViewType() *EntityViewDisabledViewType {
+	if e == nil {
 		return nil
 	}
-	return o.ViewType
+	return e.ViewType
 }

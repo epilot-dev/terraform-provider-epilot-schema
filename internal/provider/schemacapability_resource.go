@@ -7,11 +7,10 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/validators"
 	speakeasy_listvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/listvalidators"
 	speakeasy_objectvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot/terraform-provider-epilot-schema/internal/validators/stringvalidators"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -35,22 +34,25 @@ func NewSchemaCapabilityResource() resource.Resource {
 
 // SchemaCapabilityResource defines the resource implementation.
 type SchemaCapabilityResource struct {
+	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // SchemaCapabilityResourceModel describes the resource data model.
 type SchemaCapabilityResourceModel struct {
-	Attributes   []tfTypes.Attribute   `tfsdk:"attributes"`
-	CompositeID  types.String          `tfsdk:"composite_id"`
-	FeatureFlag  types.String          `tfsdk:"feature_flag"`
-	ID           types.String          `tfsdk:"id"`
-	Manifest     []types.String        `tfsdk:"manifest"`
-	Name         types.String          `tfsdk:"name"`
-	Purpose      []types.String        `tfsdk:"purpose"`
-	Schema       types.String          `tfsdk:"schema"`
-	SettingsFlag []tfTypes.SettingFlag `tfsdk:"settings_flag"`
-	Title        types.String          `tfsdk:"title"`
-	UIHooks      []tfTypes.UIHooks     `tfsdk:"ui_hooks"`
+	AppID        types.String                                     `tfsdk:"app_id"`
+	Attributes   []tfTypes.Attribute                              `tfsdk:"attributes"`
+	CompositeID  types.String                                     `tfsdk:"composite_id"`
+	FeatureFlag  types.String                                     `tfsdk:"feature_flag"`
+	ID           types.String                                     `tfsdk:"id"`
+	Manifest     []types.String                                   `tfsdk:"manifest"`
+	Name         types.String                                     `tfsdk:"name"`
+	Purpose      []types.String                                   `tfsdk:"purpose"`
+	Schema       types.String                                     `tfsdk:"schema"`
+	SettingsFlag []tfTypes.SettingFlag                            `tfsdk:"settings_flag"`
+	Title        types.String                                     `tfsdk:"title"`
+	UIConfig     *tfTypes.EntityCapabilityWithCompositeIDUIConfig `tfsdk:"ui_config"`
+	UIHooks      []tfTypes.EntityCapabilityWithCompositeIDUIHooks `tfsdk:"ui_hooks"`
 }
 
 func (r *SchemaCapabilityResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -61,6 +63,11 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "SchemaCapability Resource",
 		Attributes: map[string]schema.Attribute{
+			"app_id": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `ID of the app if the capability is provided by an app`,
+			},
 			"attributes": schema.ListNestedAttribute{
 				Computed: true,
 				Optional: true,
@@ -105,12 +112,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -338,6 +343,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -386,12 +392,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -621,6 +625,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -644,12 +649,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -879,6 +882,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -902,12 +906,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -1147,6 +1149,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -1186,12 +1189,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Description: `A currency field used to format a computed currency value`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -1424,6 +1425,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -1447,12 +1449,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -1693,6 +1693,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -1716,12 +1717,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -1949,6 +1948,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -2028,12 +2028,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Description: `Default: false`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -2261,6 +2259,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -2284,12 +2283,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -2520,6 +2517,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -2543,12 +2541,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -2776,6 +2772,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -2816,12 +2813,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									},
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -3067,6 +3062,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -3090,12 +3086,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -3323,6 +3317,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -3346,12 +3341,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -3581,6 +3574,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -3604,12 +3598,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -3839,6 +3831,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -3862,12 +3855,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -4095,6 +4086,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -4122,12 +4114,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -4365,6 +4355,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -4398,12 +4389,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -4682,6 +4671,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -4705,12 +4695,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -4948,6 +4936,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -4971,12 +4960,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -5206,6 +5193,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -5229,12 +5217,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -5464,6 +5450,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -5487,12 +5474,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -5722,6 +5707,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -5745,12 +5731,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -5978,6 +5962,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -6001,12 +5986,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -6236,6 +6219,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -6259,12 +6243,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -6492,6 +6474,264 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
+									path.MatchRelative().AtParent().AtName("price_component_attribute"),
+									path.MatchRelative().AtParent().AtName("purpose_attribute"),
+									path.MatchRelative().AtParent().AtName("relation_attribute"),
+									path.MatchRelative().AtParent().AtName("select_attribute"),
+									path.MatchRelative().AtParent().AtName("sequence_attribute"),
+									path.MatchRelative().AtParent().AtName("status_attribute"),
+									path.MatchRelative().AtParent().AtName("tags_attribute"),
+									path.MatchRelative().AtParent().AtName("text_attribute"),
+									path.MatchRelative().AtParent().AtName("user_relation_attribute"),
+								}...),
+							},
+						},
+						"portal_access_attribute": schema.SingleNestedAttribute{
+							Computed: true,
+							Optional: true,
+							Attributes: map[string]schema.Attribute{
+								"constraints": schema.SingleNestedAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+										`These constraints should and will be enforced by the attribute renderer.`,
+								},
+								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
+								},
+								"deprecated": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"entity_builder_disable_edit": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI. Default: false`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"group": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"has_primary": schema.BoolAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"hidden": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Do not render attribute in entity views. Default: false`,
+								},
+								"hide_label": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `When set to true, will hide the label of the field.`,
+								},
+								"icon": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+										`The value must be a valid @epilot/base-elements Icon name`,
+								},
+								"id": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
+								},
+								"info_helpers": schema.SingleNestedAttribute{
+									Computed: true,
+									Optional: true,
+									Attributes: map[string]schema.Attribute{
+										"hint_custom_component": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text_key": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+												`The key should be a valid i18n key.`,
+										},
+										"hint_tooltip_placement": schema.StringAttribute{
+											Computed: true,
+											Optional: true,
+											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+										},
+									},
+									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+								},
+								"label": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"layout": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"name": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+									},
+								},
+								"order": schema.Int64Attribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Attribute sort order (ascending) in group`,
+								},
+								"placeholder": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"preview_value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+								"protected": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									Optional:    true,
+									ElementType: types.StringType,
+								},
+								"readonly": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"render_condition": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+										`Note: Empty or invalid expression have no effect on the field visibility.`,
+								},
+								"repeatable": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `The attribute is a repeatable`,
+								},
+								"required": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(false),
+									Description: `Default: false`,
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									Optional: true,
+									NestedObject: schema.NestedAttributeObject{
+										Validators: []validator.Object{
+											speakeasy_objectvalidators.NotNull(),
+										},
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Optional:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
+								},
+								"show_in_table": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"sortable": schema.BoolAttribute{
+									Computed:    true,
+									Optional:    true,
+									Default:     booldefault.StaticBool(true),
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true. Default: true`,
+								},
+								"type": schema.StringAttribute{
+									Computed:    true,
+									Optional:    true,
+									Description: `Not Null; must be "portal_access"`,
+									Validators: []validator.String{
+										speakeasy_stringvalidators.NotNull(),
+										stringvalidator.OneOf(
+											"portal_access",
+										),
+									},
+								},
+								"value_formatter": schema.StringAttribute{
+									Computed: true,
+									Optional: true,
+								},
+							},
+							Description: `Portal access configuration`,
+							Validators: []validator.Object{
+								objectvalidator.ConflictsWith(path.Expressions{
+									path.MatchRelative().AtParent().AtName("address_attribute"),
+									path.MatchRelative().AtParent().AtName("address_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("automation_attribute"),
+									path.MatchRelative().AtParent().AtName("boolean_attribute"),
+									path.MatchRelative().AtParent().AtName("computed_attribute"),
+									path.MatchRelative().AtParent().AtName("consent_attribute"),
+									path.MatchRelative().AtParent().AtName("country_attribute"),
+									path.MatchRelative().AtParent().AtName("currency_attribute"),
+									path.MatchRelative().AtParent().AtName("date_attribute"),
+									path.MatchRelative().AtParent().AtName("email_attribute"),
+									path.MatchRelative().AtParent().AtName("file_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_attribute"),
+									path.MatchRelative().AtParent().AtName("internal_user_attribute"),
+									path.MatchRelative().AtParent().AtName("invitation_email_attribute"),
+									path.MatchRelative().AtParent().AtName("link_attribute"),
+									path.MatchRelative().AtParent().AtName("message_email_address_attribute"),
+									path.MatchRelative().AtParent().AtName("multi_select_attribute"),
+									path.MatchRelative().AtParent().AtName("number_attribute"),
+									path.MatchRelative().AtParent().AtName("ordered_list_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_organisation_attribute"),
+									path.MatchRelative().AtParent().AtName("partner_status_attribute"),
+									path.MatchRelative().AtParent().AtName("payment_attribute"),
+									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
+									path.MatchRelative().AtParent().AtName("phone_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -6515,12 +6755,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -6751,6 +6989,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
 									path.MatchRelative().AtParent().AtName("select_attribute"),
@@ -6766,37 +7005,17 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 							Computed: true,
 							Optional: true,
 							Attributes: map[string]schema.Attribute{
-								"archived": schema.BoolAttribute{
-									Computed:    true,
-									Optional:    true,
-									Default:     booldefault.StaticBool(false),
-									Description: `Archived classification are not visible in the UI. Default: false`,
-								},
-								"color": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `Color of the classification`,
-								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
 									Optional: true,
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
-								"created_at": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
-									Validators: []validator.String{
-										validators.IsRFC3339(),
-									},
-								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -6842,8 +7061,9 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`The value must be a valid @epilot/base-elements Icon name`,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
+									Computed:    true,
+									Optional:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -6893,7 +7113,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed:    true,
 									Optional:    true,
 									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the taxonomy classification`,
+									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed:    true,
@@ -6907,11 +7127,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Computed:    true,
 									Optional:    true,
 									Description: `Attribute sort order (ascending) in group`,
-								},
-								"parents": schema.ListAttribute{
-									Computed:    true,
-									Optional:    true,
-									ElementType: types.StringType,
 								},
 								"placeholder": schema.StringAttribute{
 									Computed: true,
@@ -6982,11 +7197,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional:    true,
 									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 								},
-								"slug": schema.StringAttribute{
-									Computed:    true,
-									Optional:    true,
-									Description: `URL-friendly identifier for the classification`,
-								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
 									Optional:    true,
@@ -7000,13 +7210,6 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Validators: []validator.String{
 										speakeasy_stringvalidators.NotNull(),
 										stringvalidator.OneOf("purpose"),
-									},
-								},
-								"updated_at": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
-									Validators: []validator.String{
-										validators.IsRFC3339(),
 									},
 								},
 								"value_formatter": schema.StringAttribute{
@@ -7041,6 +7244,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
 									path.MatchRelative().AtParent().AtName("select_attribute"),
@@ -7099,12 +7303,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 												Description: `The action label or action translation key (i18n)`,
 											},
 											"new_entity_item": schema.StringAttribute{
+												CustomType:  jsontypes.NormalizedType{},
 												Computed:    true,
 												Optional:    true,
 												Description: `Parsed as JSON.`,
-												Validators: []validator.String{
-													validators.IsValidJSON(),
-												},
 											},
 											"settings_flag": schema.ListNestedAttribute{
 												Computed: true,
@@ -7148,12 +7350,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -7511,6 +7711,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("select_attribute"),
@@ -7538,12 +7739,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -7652,12 +7851,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									},
 								},
 								"options": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"order": schema.Int64Attribute{
 									Computed:    true,
@@ -7783,6 +7980,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -7805,12 +8003,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -8048,6 +8244,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -8070,12 +8267,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -8348,6 +8543,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -8370,12 +8566,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -8614,6 +8808,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -8636,12 +8831,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -8805,12 +8998,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									Optional: true,
 								},
 								"rows": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"settings_flag": schema.ListNestedAttribute{
 									Computed: true,
@@ -8886,6 +9077,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -8908,12 +9100,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"deprecated": schema.BoolAttribute{
 									Computed:    true,
@@ -9150,6 +9340,7 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 									path.MatchRelative().AtParent().AtName("payment_attribute"),
 									path.MatchRelative().AtParent().AtName("payment_method_relation_attribute"),
 									path.MatchRelative().AtParent().AtName("phone_attribute"),
+									path.MatchRelative().AtParent().AtName("portal_access_attribute"),
 									path.MatchRelative().AtParent().AtName("price_component_attribute"),
 									path.MatchRelative().AtParent().AtName("purpose_attribute"),
 									path.MatchRelative().AtParent().AtName("relation_attribute"),
@@ -9228,6 +9419,18 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 				Optional:    true,
 				Description: `Human readable title of the capability`,
 			},
+			"ui_config": schema.SingleNestedAttribute{
+				Computed: true,
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"is_filterable": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Default:     booldefault.StaticBool(false),
+						Description: `Whether the capability is filterable. Default: false`,
+					},
+				},
+			},
 			"ui_hooks": schema.ListNestedAttribute{
 				Computed: true,
 				Optional: true,
@@ -9237,12 +9440,10 @@ func (r *SchemaCapabilityResource) Schema(ctx context.Context, req resource.Sche
 					},
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
 							Computed:    true,
 							Optional:    true,
 							Description: `Parsed as JSON.`,
-							Validators: []validator.String{
-								validators.IsValidJSON(),
-							},
 						},
 						"component": schema.StringAttribute{
 							Computed:    true,
@@ -9364,7 +9565,12 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		return
 	}
 
-	request := data.ToSharedEntityCapabilityWithCompositeIDInput()
+	request, requestDiags := data.ToSharedEntityCapabilityWithCompositeIDInput(ctx)
+	resp.Diagnostics.Append(requestDiags...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 	res, err := r.client.Schemas.CreateSchemaCapability(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
@@ -9385,8 +9591,17 @@ func (r *SchemaCapabilityResource) Create(ctx context.Context, req resource.Crea
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9410,13 +9625,13 @@ func (r *SchemaCapabilityResource) Read(ctx context.Context, req resource.ReadRe
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetSchemaCapabilityRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.GetSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.GetSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -9440,7 +9655,11 @@ func (r *SchemaCapabilityResource) Read(ctx context.Context, req resource.ReadRe
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9460,15 +9679,13 @@ func (r *SchemaCapabilityResource) Update(ctx context.Context, req resource.Upda
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsPutSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	entityCapabilityWithCompositeID := data.ToSharedEntityCapabilityWithCompositeIDInput()
-	request := operations.PutSchemaCapabilityRequest{
-		CompositeID:                     compositeID,
-		EntityCapabilityWithCompositeID: entityCapabilityWithCompositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.PutSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.PutSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -9488,8 +9705,17 @@ func (r *SchemaCapabilityResource) Update(ctx context.Context, req resource.Upda
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -9513,13 +9739,13 @@ func (r *SchemaCapabilityResource) Delete(ctx context.Context, req resource.Dele
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsDeleteSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeleteSchemaCapabilityRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.DeleteSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.DeleteSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

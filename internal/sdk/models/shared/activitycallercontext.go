@@ -13,43 +13,43 @@ type Token struct {
 	CustomIvyUserID *string `json:"custom:ivy_user_id,omitempty"`
 }
 
-func (o *Token) GetSub() *string {
-	if o == nil {
+func (t *Token) GetSub() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Sub
+	return t.Sub
 }
 
-func (o *Token) GetEmail() *string {
-	if o == nil {
+func (t *Token) GetEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Email
+	return t.Email
 }
 
-func (o *Token) GetCognitoUsername() *string {
-	if o == nil {
+func (t *Token) GetCognitoUsername() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CognitoUsername
+	return t.CognitoUsername
 }
 
-func (o *Token) GetCustomIvyUserID() *string {
-	if o == nil {
+func (t *Token) GetCustomIvyUserID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomIvyUserID
+	return t.CustomIvyUserID
 }
 
 type EpilotAuth struct {
 	Token *Token `json:"token,omitempty"`
 }
 
-func (o *EpilotAuth) GetToken() *Token {
-	if o == nil {
+func (e *EpilotAuth) GetToken() *Token {
+	if e == nil {
 		return nil
 	}
-	return o.Token
+	return e.Token
 }
 
 type ActivityCallerContext struct {
@@ -62,22 +62,22 @@ func (a ActivityCallerContext) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ActivityCallerContext) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ActivityCallerContext) GetEpilotAuth() *EpilotAuth {
-	if o == nil {
+func (a *ActivityCallerContext) GetEpilotAuth() *EpilotAuth {
+	if a == nil {
 		return nil
 	}
-	return o.EpilotAuth
+	return a.EpilotAuth
 }
 
-func (o *ActivityCallerContext) GetAdditionalProperties() any {
-	if o == nil {
+func (a *ActivityCallerContext) GetAdditionalProperties() any {
+	if a == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return a.AdditionalProperties
 }

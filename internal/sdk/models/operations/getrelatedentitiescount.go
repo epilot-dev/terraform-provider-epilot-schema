@@ -16,25 +16,25 @@ type GetRelatedEntitiesCountRequest struct {
 	ExcludeSchemas []string `queryParam:"style=form,explode=false,name=exclude_schemas"`
 }
 
-func (o *GetRelatedEntitiesCountRequest) GetSlug() string {
-	if o == nil {
+func (g *GetRelatedEntitiesCountRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetRelatedEntitiesCountRequest) GetID() string {
-	if o == nil {
+func (g *GetRelatedEntitiesCountRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetRelatedEntitiesCountRequest) GetExcludeSchemas() []string {
-	if o == nil {
+func (g *GetRelatedEntitiesCountRequest) GetExcludeSchemas() []string {
+	if g == nil {
 		return nil
 	}
-	return o.ExcludeSchemas
+	return g.ExcludeSchemas
 }
 
 type GetRelatedEntitiesCountResponse struct {
@@ -50,37 +50,37 @@ type GetRelatedEntitiesCountResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetRelatedEntitiesCountResponse) GetContentType() string {
-	if o == nil {
+func (g *GetRelatedEntitiesCountResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRelatedEntitiesCountResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetRelatedEntitiesCountResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRelatedEntitiesCountResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRelatedEntitiesCountResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetRelatedEntitiesCountResponse) GetGetRelatedEntitiesCount() *shared.GetRelatedEntitiesCount {
-	if o == nil {
+func (g *GetRelatedEntitiesCountResponse) GetGetRelatedEntitiesCount() *shared.GetRelatedEntitiesCount {
+	if g == nil {
 		return nil
 	}
-	return o.GetRelatedEntitiesCount
+	return g.GetRelatedEntitiesCount
 }
 
-func (o *GetRelatedEntitiesCountResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetRelatedEntitiesCountResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

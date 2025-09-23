@@ -13,18 +13,18 @@ type CreateActivityRequest struct {
 	Activity *shared.Activity `request:"mediaType=application/json"`
 }
 
-func (o *CreateActivityRequest) GetEntities() []string {
-	if o == nil {
+func (c *CreateActivityRequest) GetEntities() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Entities
+	return c.Entities
 }
 
-func (o *CreateActivityRequest) GetActivity() *shared.Activity {
-	if o == nil {
+func (c *CreateActivityRequest) GetActivity() *shared.Activity {
+	if c == nil {
 		return nil
 	}
-	return o.Activity
+	return c.Activity
 }
 
 type CreateActivityResponse struct {
@@ -36,32 +36,49 @@ type CreateActivityResponse struct {
 	RawResponse *http.Response
 	// Success
 	BaseActivityItem *shared.BaseActivityItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *CreateActivityResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateActivityResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateActivityResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateActivityResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateActivityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateActivityResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateActivityResponse) GetBaseActivityItem() *shared.BaseActivityItem {
-	if o == nil {
+func (c *CreateActivityResponse) GetBaseActivityItem() *shared.BaseActivityItem {
+	if c == nil {
 		return nil
 	}
-	return o.BaseActivityItem
+	return c.BaseActivityItem
+}
+
+func (c *CreateActivityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
+		return nil
+	}
+	return c.TooManyRequestsError
+}
+
+func (c *CreateActivityResponse) GetHeaders() map[string][]string {
+	if c == nil {
+		return map[string][]string{}
+	}
+	return c.Headers
 }

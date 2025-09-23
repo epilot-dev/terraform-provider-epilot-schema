@@ -17,8 +17,8 @@ const (
 
 // Sort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type Sort struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"sort"`
+	ArrayOfStr []string `queryParam:"inline" name:"sort"`
 
 	Type SortType
 }
@@ -44,14 +44,14 @@ func CreateSortArrayOfStr(arrayOfStr []string) Sort {
 func (u *Sort) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = SortTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = SortTypeArrayOfStr
 		return nil
@@ -76,13 +76,79 @@ func (u Sort) MarshalJSON() ([]byte, error) {
 type Aggs struct {
 }
 
+type SearchAfterType string
+
+const (
+	SearchAfterTypeStr    SearchAfterType = "str"
+	SearchAfterTypeNumber SearchAfterType = "number"
+)
+
+type SearchAfter struct {
+	Str    *string  `queryParam:"inline" name:"search_after"`
+	Number *float64 `queryParam:"inline" name:"search_after"`
+
+	Type SearchAfterType
+}
+
+func CreateSearchAfterStr(str string) SearchAfter {
+	typ := SearchAfterTypeStr
+
+	return SearchAfter{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateSearchAfterNumber(number float64) SearchAfter {
+	typ := SearchAfterTypeNumber
+
+	return SearchAfter{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *SearchAfter) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = SearchAfterTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = SearchAfterTypeNumber
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchAfter", string(data))
+}
+
+func (u SearchAfter) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SearchAfter: all fields are null")
+}
+
 type EntitySearchParams struct {
 	// Lucene [queries supported with ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax)
 	Q string `json:"q"`
 	// Adds a `_score` number field to results that can be used to rank by match score
 	IncludeScores *bool `default:"false" json:"include_scores"`
 	// You can pass one sort field or an array of sort fields. Each sort field can be a string
-	Sort *Sort  `json:"sort,omitempty"`
+	Sort *Sort `json:"sort,omitempty"`
+	// The offset from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	//
 	From *int64 `default:"0" json:"from"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"10" json:"size"`
@@ -106,6 +172,24 @@ type EntitySearchParams struct {
 	//
 	IncludeDeleted *EntitySearchIncludeDeletedParam `default:"false" json:"include_deleted"`
 	Highlight      any                              `json:"highlight,omitempty"`
+	// A TTL (in seconds) that specifies how long the context should be maintained.
+	// Defaults to 30 seconds; configurable up to 60 seconds to prevent abuse.
+	// A value of 0 can be provided the close the context after the query.
+	// Defaults to none.
+	//
+	StableFor *int64 `json:"stable_for,omitempty"`
+	// A unique identifier of the query context from the last stable query.
+	// The context is maintained for the duration of the stable_for value.
+	//
+	StableQueryID *string `json:"stable_query_id,omitempty"`
+	// The sort values from which to start the search results.
+	// Only one of `from` or `search_after` should be used.
+	// It is strongly recommended to always use the `sort_end` field from the last search result.
+	// Used for deep pagination, typically together with `stable_query_id` to maintain the context between requests.
+	// Requires explicit sort to work reliably.
+	// Typically used sort fields are `_id` or `_created_at`.
+	//
+	SearchAfter []*SearchAfter `json:"search_after,omitempty"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -113,78 +197,99 @@ func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntitySearchParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"q"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntitySearchParams) GetQ() string {
-	if o == nil {
+func (e *EntitySearchParams) GetQ() string {
+	if e == nil {
 		return ""
 	}
-	return o.Q
+	return e.Q
 }
 
-func (o *EntitySearchParams) GetIncludeScores() *bool {
-	if o == nil {
+func (e *EntitySearchParams) GetIncludeScores() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.IncludeScores
+	return e.IncludeScores
 }
 
-func (o *EntitySearchParams) GetSort() *Sort {
-	if o == nil {
+func (e *EntitySearchParams) GetSort() *Sort {
+	if e == nil {
 		return nil
 	}
-	return o.Sort
+	return e.Sort
 }
 
-func (o *EntitySearchParams) GetFrom() *int64 {
-	if o == nil {
+func (e *EntitySearchParams) GetFrom() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.From
+	return e.From
 }
 
-func (o *EntitySearchParams) GetSize() *int64 {
-	if o == nil {
+func (e *EntitySearchParams) GetSize() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Size
+	return e.Size
 }
 
-func (o *EntitySearchParams) GetHydrate() *bool {
-	if o == nil {
+func (e *EntitySearchParams) GetHydrate() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Hydrate
+	return e.Hydrate
 }
 
-func (o *EntitySearchParams) GetFields() []string {
-	if o == nil {
+func (e *EntitySearchParams) GetFields() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Fields
+	return e.Fields
 }
 
-func (o *EntitySearchParams) GetAggs() *Aggs {
-	if o == nil {
+func (e *EntitySearchParams) GetAggs() *Aggs {
+	if e == nil {
 		return nil
 	}
-	return o.Aggs
+	return e.Aggs
 }
 
-func (o *EntitySearchParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
-	if o == nil {
+func (e *EntitySearchParams) GetIncludeDeleted() *EntitySearchIncludeDeletedParam {
+	if e == nil {
 		return nil
 	}
-	return o.IncludeDeleted
+	return e.IncludeDeleted
 }
 
-func (o *EntitySearchParams) GetHighlight() any {
-	if o == nil {
+func (e *EntitySearchParams) GetHighlight() any {
+	if e == nil {
 		return nil
 	}
-	return o.Highlight
+	return e.Highlight
+}
+
+func (e *EntitySearchParams) GetStableFor() *int64 {
+	if e == nil {
+		return nil
+	}
+	return e.StableFor
+}
+
+func (e *EntitySearchParams) GetStableQueryID() *string {
+	if e == nil {
+		return nil
+	}
+	return e.StableQueryID
+}
+
+func (e *EntitySearchParams) GetSearchAfter() []*SearchAfter {
+	if e == nil {
+		return nil
+	}
+	return e.SearchAfter
 }

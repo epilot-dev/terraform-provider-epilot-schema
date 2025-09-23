@@ -16,32 +16,49 @@ type CreateSchemaCapabilityResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *CreateSchemaCapabilityResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateSchemaCapabilityResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateSchemaCapabilityResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateSchemaCapabilityResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateSchemaCapabilityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateSchemaCapabilityResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
-	if o == nil {
+func (c *CreateSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
+	if c == nil {
 		return nil
 	}
-	return o.EntityCapabilityWithCompositeID
+	return c.EntityCapabilityWithCompositeID
+}
+
+func (c *CreateSchemaCapabilityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
+		return nil
+	}
+	return c.TooManyRequestsError
+}
+
+func (c *CreateSchemaCapabilityResponse) GetHeaders() map[string][]string {
+	if c == nil {
+		return map[string][]string{}
+	}
+	return c.Headers
 }

@@ -12,11 +12,11 @@ type DeleteSchemaGroupHeadlineRequest struct {
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
-func (o *DeleteSchemaGroupHeadlineRequest) GetCompositeID() string {
-	if o == nil {
+func (d *DeleteSchemaGroupHeadlineRequest) GetCompositeID() string {
+	if d == nil {
 		return ""
 	}
-	return o.CompositeID
+	return d.CompositeID
 }
 
 type DeleteSchemaGroupHeadlineResponse struct {
@@ -28,32 +28,49 @@ type DeleteSchemaGroupHeadlineResponse struct {
 	RawResponse *http.Response
 	// Success
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *DeleteSchemaGroupHeadlineResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteSchemaGroupHeadlineResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteSchemaGroupHeadlineResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteSchemaGroupHeadlineResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteSchemaGroupHeadlineResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteSchemaGroupHeadlineResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeID {
-	if o == nil {
+func (d *DeleteSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeID {
+	if d == nil {
 		return nil
 	}
-	return o.GroupHeadlineWithCompositeID
+	return d.GroupHeadlineWithCompositeID
+}
+
+func (d *DeleteSchemaGroupHeadlineResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
+		return nil
+	}
+	return d.TooManyRequestsError
+}
+
+func (d *DeleteSchemaGroupHeadlineResponse) GetHeaders() map[string][]string {
+	if d == nil {
+		return map[string][]string{}
+	}
+	return d.Headers
 }

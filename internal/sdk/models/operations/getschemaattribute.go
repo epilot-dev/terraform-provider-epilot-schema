@@ -12,11 +12,11 @@ type GetSchemaAttributeRequest struct {
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
-func (o *GetSchemaAttributeRequest) GetCompositeID() string {
-	if o == nil {
+func (g *GetSchemaAttributeRequest) GetCompositeID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CompositeID
+	return g.CompositeID
 }
 
 type GetSchemaAttributeResponse struct {
@@ -32,37 +32,37 @@ type GetSchemaAttributeResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetSchemaAttributeResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaAttributeResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaAttributeResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaAttributeResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaAttributeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaAttributeResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
-	if o == nil {
+func (g *GetSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
+	if g == nil {
 		return nil
 	}
-	return o.AttributeWithCompositeID
+	return g.AttributeWithCompositeID
 }
 
-func (o *GetSchemaAttributeResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetSchemaAttributeResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

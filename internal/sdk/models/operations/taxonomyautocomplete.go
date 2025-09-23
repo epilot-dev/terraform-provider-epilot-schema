@@ -16,25 +16,25 @@ type TaxonomyAutocompleteRequest struct {
 	Size *float64 `queryParam:"style=form,explode=true,name=size"`
 }
 
-func (o *TaxonomyAutocompleteRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (t *TaxonomyAutocompleteRequest) GetTaxonomySlug() string {
+	if t == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return t.TaxonomySlug
 }
 
-func (o *TaxonomyAutocompleteRequest) GetQuery() *string {
-	if o == nil {
+func (t *TaxonomyAutocompleteRequest) GetQuery() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Query
+	return t.Query
 }
 
-func (o *TaxonomyAutocompleteRequest) GetSize() *float64 {
-	if o == nil {
+func (t *TaxonomyAutocompleteRequest) GetSize() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.Size
+	return t.Size
 }
 
 // TaxonomyAutocompleteResponseBody - Taxonomy classifications
@@ -42,11 +42,11 @@ type TaxonomyAutocompleteResponseBody struct {
 	Results []shared.TaxonomyClassification `json:"results,omitempty"`
 }
 
-func (o *TaxonomyAutocompleteResponseBody) GetResults() []shared.TaxonomyClassification {
-	if o == nil {
+func (t *TaxonomyAutocompleteResponseBody) GetResults() []shared.TaxonomyClassification {
+	if t == nil {
 		return nil
 	}
-	return o.Results
+	return t.Results
 }
 
 type TaxonomyAutocompleteResponse struct {
@@ -60,30 +60,30 @@ type TaxonomyAutocompleteResponse struct {
 	Object *TaxonomyAutocompleteResponseBody
 }
 
-func (o *TaxonomyAutocompleteResponse) GetContentType() string {
-	if o == nil {
+func (t *TaxonomyAutocompleteResponse) GetContentType() string {
+	if t == nil {
 		return ""
 	}
-	return o.ContentType
+	return t.ContentType
 }
 
-func (o *TaxonomyAutocompleteResponse) GetStatusCode() int {
-	if o == nil {
+func (t *TaxonomyAutocompleteResponse) GetStatusCode() int {
+	if t == nil {
 		return 0
 	}
-	return o.StatusCode
+	return t.StatusCode
 }
 
-func (o *TaxonomyAutocompleteResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (t *TaxonomyAutocompleteResponse) GetRawResponse() *http.Response {
+	if t == nil {
 		return nil
 	}
-	return o.RawResponse
+	return t.RawResponse
 }
 
-func (o *TaxonomyAutocompleteResponse) GetObject() *TaxonomyAutocompleteResponseBody {
-	if o == nil {
+func (t *TaxonomyAutocompleteResponse) GetObject() *TaxonomyAutocompleteResponseBody {
+	if t == nil {
 		return nil
 	}
-	return o.Object
+	return t.Object
 }

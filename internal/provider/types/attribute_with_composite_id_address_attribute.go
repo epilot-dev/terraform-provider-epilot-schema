@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AttributeWithCompositeIDAddressAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -10,7 +13,7 @@ type AttributeWithCompositeIDAddressAttribute struct {
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	DefaultAddressFields     []types.String                                       `tfsdk:"default_address_fields"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`

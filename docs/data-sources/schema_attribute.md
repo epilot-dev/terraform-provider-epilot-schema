@@ -66,6 +66,7 @@ The value must be a valid @epilot/base-elements Icon name
 - `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--payment_method_relation_attribute))
 - `phone_attribute` (Attributes) Phone number (see [below for nested schema](#nestedatt--phone_attribute))
 - `placeholder` (String)
+- `portal_access_attribute` (Attributes) Portal access configuration (see [below for nested schema](#nestedatt--portal_access_attribute))
 - `preview_value_formatter` (String)
 - `price_component_attribute` (Attributes) Price component (see [below for nested schema](#nestedatt--price_component_attribute))
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
@@ -1916,6 +1917,78 @@ Read-Only:
 
 
 
+<a id="nestedatt--portal_access_attribute"></a>
+### Nested Schema for `portal_access_attribute`
+
+Read-Only:
+
+- `composite_id` (String)
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--portal_access_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean)
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--portal_access_attribute--info_helpers))
+- `label` (String)
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String)
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean)
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean)
+- `schema` (String) Schema slug the attribute belongs to
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--portal_access_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
+- `type` (String)
+- `value_formatter` (String)
+
+<a id="nestedatt--portal_access_attribute--constraints"></a>
+### Nested Schema for `portal_access_attribute.constraints`
+
+
+<a id="nestedatt--portal_access_attribute--info_helpers"></a>
+### Nested Schema for `portal_access_attribute.info_helpers`
+
+Read-Only:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--portal_access_attribute--settings_flag"></a>
+### Nested Schema for `portal_access_attribute.settings_flag`
+
+Read-Only:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--price_component_attribute"></a>
 ### Nested Schema for `price_component_attribute`
 
@@ -1993,12 +2066,9 @@ Read-Only:
 
 Read-Only:
 
-- `archived` (Boolean) Archived classification are not visible in the UI
-- `color` (String) Color of the classification
 - `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
-- `created_at` (String)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI
@@ -2009,14 +2079,13 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--purpose_attribute--info_helpers))
 - `label` (String)
 - `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the taxonomy classification
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String)
 - `order` (Number) Attribute sort order (ascending) in group
-- `parents` (List of String)
 - `placeholder` (String)
 - `preview_value_formatter` (String)
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
@@ -2030,10 +2099,8 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `slug` (String) URL-friendly identifier for the classification
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true
 - `type` (String)
-- `updated_at` (String)
 - `value_formatter` (String)
 
 <a id="nestedatt--purpose_attribute--constraints"></a>

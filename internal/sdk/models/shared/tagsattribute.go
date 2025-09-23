@@ -13,6 +13,17 @@ import (
 type TagsAttributeConstraints struct {
 }
 
+func (t TagsAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TagsAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type TagsAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -34,32 +45,43 @@ type TagsAttributeInfoHelpers struct {
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
 }
 
-func (o *TagsAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HintText
+func (t TagsAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (o *TagsAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
-		return nil
+func (t *TagsAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
 	}
-	return o.HintTextKey
+	return nil
 }
 
-func (o *TagsAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (t *TagsAttributeInfoHelpers) GetHintText() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return t.HintText
 }
 
-func (o *TagsAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (t *TagsAttributeInfoHelpers) GetHintTextKey() *string {
+	if t == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return t.HintTextKey
+}
+
+func (t *TagsAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintCustomComponent
+}
+
+func (t *TagsAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if t == nil {
+		return nil
+	}
+	return t.HintTooltipPlacement
 }
 
 type TagsAttributeType string
@@ -150,232 +172,232 @@ func (t TagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TagsAttribute) GetID() *string {
-	if o == nil {
+func (t *TagsAttribute) GetID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TagsAttribute) GetName() string {
-	if o == nil {
+func (t *TagsAttribute) GetName() string {
+	if t == nil {
 		return ""
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *TagsAttribute) GetLabel() string {
-	if o == nil {
+func (t *TagsAttribute) GetLabel() string {
+	if t == nil {
 		return ""
 	}
-	return o.Label
+	return t.Label
 }
 
-func (o *TagsAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (t *TagsAttribute) GetPlaceholder() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Placeholder
+	return t.Placeholder
 }
 
-func (o *TagsAttribute) GetHidden() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetHidden() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Hidden
+	return t.Hidden
 }
 
-func (o *TagsAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetShowInTable() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return t.ShowInTable
 }
 
-func (o *TagsAttribute) GetSortable() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetSortable() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Sortable
+	return t.Sortable
 }
 
-func (o *TagsAttribute) GetRequired() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetRequired() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Required
+	return t.Required
 }
 
-func (o *TagsAttribute) GetReadonly() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetReadonly() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Readonly
+	return t.Readonly
 }
 
-func (o *TagsAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetDeprecated() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Deprecated
+	return t.Deprecated
 }
 
-func (o *TagsAttribute) GetDefaultValue() any {
-	if o == nil {
+func (t *TagsAttribute) GetDefaultValue() any {
+	if t == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return t.DefaultValue
 }
 
-func (o *TagsAttribute) GetGroup() *string {
-	if o == nil {
+func (t *TagsAttribute) GetGroup() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Group
+	return t.Group
 }
 
-func (o *TagsAttribute) GetOrder() *int64 {
-	if o == nil {
+func (t *TagsAttribute) GetOrder() *int64 {
+	if t == nil {
 		return nil
 	}
-	return o.Order
+	return t.Order
 }
 
-func (o *TagsAttribute) GetLayout() *string {
-	if o == nil {
+func (t *TagsAttribute) GetLayout() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Layout
+	return t.Layout
 }
 
-func (o *TagsAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetHideLabel() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.HideLabel
+	return t.HideLabel
 }
 
-func (o *TagsAttribute) GetIcon() *string {
-	if o == nil {
+func (t *TagsAttribute) GetIcon() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Icon
+	return t.Icon
 }
 
-func (o *TagsAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (t *TagsAttribute) GetRenderCondition() *string {
+	if t == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return t.RenderCondition
 }
 
-func (o *TagsAttribute) GetPurpose() []string {
-	if o == nil {
+func (t *TagsAttribute) GetPurpose() []string {
+	if t == nil {
 		return nil
 	}
-	return o.Purpose
+	return t.Purpose
 }
 
-func (o *TagsAttribute) GetManifest() []string {
-	if o == nil {
+func (t *TagsAttribute) GetManifest() []string {
+	if t == nil {
 		return nil
 	}
-	return o.Manifest
+	return t.Manifest
 }
 
-func (o *TagsAttribute) GetConstraints() *TagsAttributeConstraints {
-	if o == nil {
+func (t *TagsAttribute) GetConstraints() *TagsAttributeConstraints {
+	if t == nil {
 		return nil
 	}
-	return o.Constraints
+	return t.Constraints
 }
 
-func (o *TagsAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (t *TagsAttribute) GetFeatureFlag() *string {
+	if t == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return t.FeatureFlag
 }
 
-func (o *TagsAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (t *TagsAttribute) GetSettingsFlag() []SettingFlag {
+	if t == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return t.SettingsFlag
 }
 
-func (o *TagsAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (t *TagsAttribute) GetValueFormatter() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return t.ValueFormatter
 }
 
-func (o *TagsAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (t *TagsAttribute) GetPreviewValueFormatter() *string {
+	if t == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return t.PreviewValueFormatter
 }
 
-func (o *TagsAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetEntityBuilderDisableEdit() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return t.EntityBuilderDisableEdit
 }
 
-func (o *TagsAttribute) GetProtected() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetProtected() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Protected
+	return t.Protected
 }
 
-func (o *TagsAttribute) GetInfoHelpers() *TagsAttributeInfoHelpers {
-	if o == nil {
+func (t *TagsAttribute) GetInfoHelpers() *TagsAttributeInfoHelpers {
+	if t == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return t.InfoHelpers
 }
 
-func (o *TagsAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetRepeatable() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Repeatable
+	return t.Repeatable
 }
 
-func (o *TagsAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (t *TagsAttribute) GetHasPrimary() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return t.HasPrimary
 }
 
-func (o *TagsAttribute) GetType() TagsAttributeType {
-	if o == nil {
+func (t *TagsAttribute) GetType() TagsAttributeType {
+	if t == nil {
 		return TagsAttributeType("")
 	}
-	return o.Type
+	return t.Type
 }
 
-func (o *TagsAttribute) GetOptions() []string {
-	if o == nil {
+func (t *TagsAttribute) GetOptions() []string {
+	if t == nil {
 		return nil
 	}
-	return o.Options
+	return t.Options
 }
 
-func (o *TagsAttribute) GetSuggestions() []string {
-	if o == nil {
+func (t *TagsAttribute) GetSuggestions() []string {
+	if t == nil {
 		return nil
 	}
-	return o.Suggestions
+	return t.Suggestions
 }

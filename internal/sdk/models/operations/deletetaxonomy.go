@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -13,18 +14,18 @@ type DeleteTaxonomyRequest struct {
 	Permanent *bool `queryParam:"style=form,explode=true,name=permanent"`
 }
 
-func (o *DeleteTaxonomyRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (d *DeleteTaxonomyRequest) GetTaxonomySlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return d.TaxonomySlug
 }
 
-func (o *DeleteTaxonomyRequest) GetPermanent() *bool {
-	if o == nil {
+func (d *DeleteTaxonomyRequest) GetPermanent() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Permanent
+	return d.Permanent
 }
 
 type DeleteTaxonomyResponse struct {
@@ -34,25 +35,42 @@ type DeleteTaxonomyResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *DeleteTaxonomyResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteTaxonomyResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteTaxonomyResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteTaxonomyResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
+}
+
+func (d *DeleteTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
+		return nil
+	}
+	return d.TooManyRequestsError
+}
+
+func (d *DeleteTaxonomyResponse) GetHeaders() map[string][]string {
+	if d == nil {
+		return map[string][]string{}
+	}
+	return d.Headers
 }

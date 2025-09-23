@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -11,11 +12,11 @@ type DeleteSavedViewRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeleteSavedViewRequest) GetID() string {
-	if o == nil {
+func (d *DeleteSavedViewRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 type DeleteSavedViewResponse struct {
@@ -25,25 +26,42 @@ type DeleteSavedViewResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *DeleteSavedViewResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteSavedViewResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteSavedViewResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteSavedViewResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteSavedViewResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteSavedViewResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
+}
+
+func (d *DeleteSavedViewResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if d == nil {
+		return nil
+	}
+	return d.TooManyRequestsError
+}
+
+func (d *DeleteSavedViewResponse) GetHeaders() map[string][]string {
+	if d == nil {
+		return map[string][]string{}
+	}
+	return d.Headers
 }

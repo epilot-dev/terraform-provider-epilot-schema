@@ -13,18 +13,18 @@ type ValidateEntityV2Request struct {
 	Entity *shared.EntityInput `request:"mediaType=application/json"`
 }
 
-func (o *ValidateEntityV2Request) GetSlug() string {
-	if o == nil {
+func (v *ValidateEntityV2Request) GetSlug() string {
+	if v == nil {
 		return ""
 	}
-	return o.Slug
+	return v.Slug
 }
 
-func (o *ValidateEntityV2Request) GetEntity() *shared.EntityInput {
-	if o == nil {
+func (v *ValidateEntityV2Request) GetEntity() *shared.EntityInput {
+	if v == nil {
 		return nil
 	}
-	return o.Entity
+	return v.Entity
 }
 
 type ValidateEntityV2Response struct {
@@ -38,39 +38,56 @@ type ValidateEntityV2Response struct {
 	EntityValidationV2ResultSuccess *shared.EntityValidationV2ResultSuccess
 	// Error
 	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
-func (o *ValidateEntityV2Response) GetContentType() string {
-	if o == nil {
+func (v *ValidateEntityV2Response) GetContentType() string {
+	if v == nil {
 		return ""
 	}
-	return o.ContentType
+	return v.ContentType
 }
 
-func (o *ValidateEntityV2Response) GetStatusCode() int {
-	if o == nil {
+func (v *ValidateEntityV2Response) GetStatusCode() int {
+	if v == nil {
 		return 0
 	}
-	return o.StatusCode
+	return v.StatusCode
 }
 
-func (o *ValidateEntityV2Response) GetRawResponse() *http.Response {
-	if o == nil {
+func (v *ValidateEntityV2Response) GetRawResponse() *http.Response {
+	if v == nil {
 		return nil
 	}
-	return o.RawResponse
+	return v.RawResponse
 }
 
-func (o *ValidateEntityV2Response) GetEntityValidationV2ResultSuccess() *shared.EntityValidationV2ResultSuccess {
-	if o == nil {
+func (v *ValidateEntityV2Response) GetEntityValidationV2ResultSuccess() *shared.EntityValidationV2ResultSuccess {
+	if v == nil {
 		return nil
 	}
-	return o.EntityValidationV2ResultSuccess
+	return v.EntityValidationV2ResultSuccess
 }
 
-func (o *ValidateEntityV2Response) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
-	if o == nil {
+func (v *ValidateEntityV2Response) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if v == nil {
 		return nil
 	}
-	return o.EntityValidationV2ResultError
+	return v.EntityValidationV2ResultError
+}
+
+func (v *ValidateEntityV2Response) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if v == nil {
+		return nil
+	}
+	return v.TooManyRequestsError
+}
+
+func (v *ValidateEntityV2Response) GetHeaders() map[string][]string {
+	if v == nil {
+		return map[string][]string{}
+	}
+	return v.Headers
 }

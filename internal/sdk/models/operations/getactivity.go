@@ -24,31 +24,31 @@ func (g GetActivityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetActivityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetActivityRequest) GetID() string {
-	if o == nil {
+func (g *GetActivityRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetActivityRequest) GetOperationsSize() *int64 {
-	if o == nil {
+func (g *GetActivityRequest) GetOperationsSize() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.OperationsSize
+	return g.OperationsSize
 }
 
-func (o *GetActivityRequest) GetOperationsFrom() *int64 {
-	if o == nil {
+func (g *GetActivityRequest) GetOperationsFrom() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.OperationsFrom
+	return g.OperationsFrom
 }
 
 type GetActivityResponse struct {
@@ -64,37 +64,37 @@ type GetActivityResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetActivityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetActivityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetActivityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetActivityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetActivityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetActivityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetActivityResponse) GetActivityItem() *shared.ActivityItem {
-	if o == nil {
+func (g *GetActivityResponse) GetActivityItem() *shared.ActivityItem {
+	if g == nil {
 		return nil
 	}
-	return o.ActivityItem
+	return g.ActivityItem
 }
 
-func (o *GetActivityResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetActivityResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

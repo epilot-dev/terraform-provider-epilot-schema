@@ -3,28 +3,28 @@
 package shared
 
 type ClassificationsUpdate struct {
-	Create []TaxonomyClassification `json:"create,omitempty"`
-	Update []TaxonomyClassification `json:"update,omitempty"`
-	Delete []string                 `json:"delete,omitempty"`
+	Create []TaxonomyClassificationInput `json:"create,omitempty"`
+	Update []TaxonomyClassificationInput `json:"update,omitempty"`
+	Delete []string                      `json:"delete,omitempty"`
 }
 
-func (o *ClassificationsUpdate) GetCreate() []TaxonomyClassification {
-	if o == nil {
+func (c *ClassificationsUpdate) GetCreate() []TaxonomyClassificationInput {
+	if c == nil {
 		return nil
 	}
-	return o.Create
+	return c.Create
 }
 
-func (o *ClassificationsUpdate) GetUpdate() []TaxonomyClassification {
-	if o == nil {
+func (c *ClassificationsUpdate) GetUpdate() []TaxonomyClassificationInput {
+	if c == nil {
 		return nil
 	}
-	return o.Update
+	return c.Update
 }
 
-func (o *ClassificationsUpdate) GetDelete() []string {
-	if o == nil {
+func (c *ClassificationsUpdate) GetDelete() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Delete
+	return c.Delete
 }

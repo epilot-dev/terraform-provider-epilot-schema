@@ -3,14 +3,45 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
+// Type of taxonomy to include
+type Type string
+
+const (
+	TypeEntity   Type = "entity"
+	TypeRelation Type = "relation"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "entity":
+		fallthrough
+	case "relation":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
 type ListTaxonomiesRequest struct {
 	// Include disabled taxonomies
 	IncludeDisabled *bool `default:"false" queryParam:"style=form,explode=true,name=include_disabled"`
+	// Type of taxonomy to include
+	Type *Type `default:"entity" queryParam:"style=form,explode=true,name=type"`
 }
 
 func (l ListTaxonomiesRequest) MarshalJSON() ([]byte, error) {
@@ -18,17 +49,24 @@ func (l ListTaxonomiesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListTaxonomiesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ListTaxonomiesRequest) GetIncludeDisabled() *bool {
-	if o == nil {
+func (l *ListTaxonomiesRequest) GetIncludeDisabled() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.IncludeDisabled
+	return l.IncludeDisabled
+}
+
+func (l *ListTaxonomiesRequest) GetType() *Type {
+	if l == nil {
+		return nil
+	}
+	return l.Type
 }
 
 // ListTaxonomiesResponseBody - Returns list of taxonomies in an organization
@@ -36,11 +74,11 @@ type ListTaxonomiesResponseBody struct {
 	Results []shared.Taxonomy `json:"results,omitempty"`
 }
 
-func (o *ListTaxonomiesResponseBody) GetResults() []shared.Taxonomy {
-	if o == nil {
+func (l *ListTaxonomiesResponseBody) GetResults() []shared.Taxonomy {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListTaxonomiesResponse struct {
@@ -54,30 +92,30 @@ type ListTaxonomiesResponse struct {
 	Object *ListTaxonomiesResponseBody
 }
 
-func (o *ListTaxonomiesResponse) GetContentType() string {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListTaxonomiesResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListTaxonomiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListTaxonomiesResponse) GetObject() *ListTaxonomiesResponseBody {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetObject() *ListTaxonomiesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

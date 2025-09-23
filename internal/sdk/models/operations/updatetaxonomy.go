@@ -13,18 +13,18 @@ type UpdateTaxonomyRequest struct {
 	Taxonomy     *shared.TaxonomyInput `request:"mediaType=application/json"`
 }
 
-func (o *UpdateTaxonomyRequest) GetTaxonomySlug() string {
-	if o == nil {
+func (u *UpdateTaxonomyRequest) GetTaxonomySlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.TaxonomySlug
+	return u.TaxonomySlug
 }
 
-func (o *UpdateTaxonomyRequest) GetTaxonomy() *shared.TaxonomyInput {
-	if o == nil {
+func (u *UpdateTaxonomyRequest) GetTaxonomy() *shared.TaxonomyInput {
+	if u == nil {
 		return nil
 	}
-	return o.Taxonomy
+	return u.Taxonomy
 }
 
 type UpdateTaxonomyResponse struct {
@@ -38,30 +38,30 @@ type UpdateTaxonomyResponse struct {
 	Taxonomy *shared.Taxonomy
 }
 
-func (o *UpdateTaxonomyResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateTaxonomyResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateTaxonomyResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateTaxonomyResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateTaxonomyResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateTaxonomyResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateTaxonomyResponse) GetTaxonomy() *shared.Taxonomy {
-	if o == nil {
+func (u *UpdateTaxonomyResponse) GetTaxonomy() *shared.Taxonomy {
+	if u == nil {
 		return nil
 	}
-	return o.Taxonomy
+	return u.Taxonomy
 }

@@ -13,6 +13,17 @@ import (
 type OrderedListAttributeConstraints struct {
 }
 
+func (o OrderedListAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // OrderedListAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type OrderedListAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type OrderedListAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o OrderedListAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OrderedListAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (o OrderedListAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type EntityDefaultEditViewType string
@@ -37,23 +38,34 @@ type EntityDefaultEdit struct {
 	SummaryAttributes []string `json:"summary_attributes,omitempty"`
 }
 
-func (o *EntityDefaultEdit) GetViewType() *EntityDefaultEditViewType {
-	if o == nil {
-		return nil
-	}
-	return o.ViewType
+func (e EntityDefaultEdit) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (o *EntityDefaultEdit) GetSearchParams() map[string]string {
-	if o == nil {
-		return nil
+func (e *EntityDefaultEdit) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
 	}
-	return o.SearchParams
+	return nil
 }
 
-func (o *EntityDefaultEdit) GetSummaryAttributes() []string {
-	if o == nil {
+func (e *EntityDefaultEdit) GetViewType() *EntityDefaultEditViewType {
+	if e == nil {
 		return nil
 	}
-	return o.SummaryAttributes
+	return e.ViewType
+}
+
+func (e *EntityDefaultEdit) GetSearchParams() map[string]string {
+	if e == nil {
+		return nil
+	}
+	return e.SearchParams
+}
+
+func (e *EntityDefaultEdit) GetSummaryAttributes() []string {
+	if e == nil {
+		return nil
+	}
+	return e.SummaryAttributes
 }

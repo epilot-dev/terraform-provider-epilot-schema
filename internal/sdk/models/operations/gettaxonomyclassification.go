@@ -12,11 +12,11 @@ type GetTaxonomyClassificationRequest struct {
 	ClassificationSlug string `pathParam:"style=simple,explode=false,name=classificationSlug"`
 }
 
-func (o *GetTaxonomyClassificationRequest) GetClassificationSlug() string {
-	if o == nil {
+func (g *GetTaxonomyClassificationRequest) GetClassificationSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.ClassificationSlug
+	return g.ClassificationSlug
 }
 
 type GetTaxonomyClassificationResponse struct {
@@ -32,37 +32,37 @@ type GetTaxonomyClassificationResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetTaxonomyClassificationResponse) GetContentType() string {
-	if o == nil {
+func (g *GetTaxonomyClassificationResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetTaxonomyClassificationResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetTaxonomyClassificationResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetTaxonomyClassificationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetTaxonomyClassificationResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
-	if o == nil {
+func (g *GetTaxonomyClassificationResponse) GetTaxonomyClassification() *shared.TaxonomyClassification {
+	if g == nil {
 		return nil
 	}
-	return o.TaxonomyClassification
+	return g.TaxonomyClassification
 }
 
-func (o *GetTaxonomyClassificationResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetTaxonomyClassificationResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

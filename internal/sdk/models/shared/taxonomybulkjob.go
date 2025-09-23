@@ -14,46 +14,46 @@ type Request struct {
 	ClassificationIds    []string `json:"classification_ids,omitempty"`
 }
 
-func (o *Request) GetTargetTaxonomy() *string {
-	if o == nil {
+func (r *Request) GetTargetTaxonomy() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TargetTaxonomy
+	return r.TargetTaxonomy
 }
 
-func (o *Request) GetTargetClassification() *string {
-	if o == nil {
+func (r *Request) GetTargetClassification() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TargetClassification
+	return r.TargetClassification
 }
 
-func (o *Request) GetClassificationIds() []string {
-	if o == nil {
+func (r *Request) GetClassificationIds() []string {
+	if r == nil {
 		return nil
 	}
-	return o.ClassificationIds
+	return r.ClassificationIds
 }
 
 type Output struct {
-	TargetEntities   []string `json:"target_entities,omitempty"`
-	AffectedEntities []string `json:"affected_entities,omitempty"`
-	FailuresCount    *float64 `json:"failures_count,omitempty"`
-	FailedEntities   []string `json:"failed_entities,omitempty"`
+	TargetEntitiesCount   *float64 `json:"target_entities_count,omitempty"`
+	AffectedEntitiesCount *float64 `json:"affected_entities_count,omitempty"`
+	FailuresCount         *float64 `json:"failures_count,omitempty"`
+	FailedEntities        []string `json:"failed_entities,omitempty"`
 }
 
-func (o *Output) GetTargetEntities() []string {
+func (o *Output) GetTargetEntitiesCount() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.TargetEntities
+	return o.TargetEntitiesCount
 }
 
-func (o *Output) GetAffectedEntities() []string {
+func (o *Output) GetAffectedEntitiesCount() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.AffectedEntities
+	return o.AffectedEntitiesCount
 }
 
 func (o *Output) GetFailuresCount() *float64 {
@@ -82,8 +82,6 @@ type TaxonomyBulkJob struct {
 	CreatedAt     *time.Time                 `json:"created_at,omitempty"`
 	UpdatedAt     *time.Time                 `json:"updated_at,omitempty"`
 	Org           *string                    `json:"org,omitempty"`
-	// Progress of the job on a scale of 0 to 1
-	Progress *float64 `json:"progress,omitempty"`
 }
 
 func (t TaxonomyBulkJob) MarshalJSON() ([]byte, error) {
@@ -91,85 +89,78 @@ func (t TaxonomyBulkJob) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomyBulkJob) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TaxonomyBulkJob) GetJobID() *string {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetJobID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.JobID
+	return t.JobID
 }
 
-func (o *TaxonomyBulkJob) GetJobStatus() *TaxonomyBulkJobStatus {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetJobStatus() *TaxonomyBulkJobStatus {
+	if t == nil {
 		return nil
 	}
-	return o.JobStatus
+	return t.JobStatus
 }
 
-func (o *TaxonomyBulkJob) GetFailureReason() *string {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetFailureReason() *string {
+	if t == nil {
 		return nil
 	}
-	return o.FailureReason
+	return t.FailureReason
 }
 
-func (o *TaxonomyBulkJob) GetActionType() *TaxonomyBulkJobActionType {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetActionType() *TaxonomyBulkJobActionType {
+	if t == nil {
 		return nil
 	}
-	return o.ActionType
+	return t.ActionType
 }
 
-func (o *TaxonomyBulkJob) GetRequest() *Request {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetRequest() *Request {
+	if t == nil {
 		return nil
 	}
-	return o.Request
+	return t.Request
 }
 
-func (o *TaxonomyBulkJob) GetOutput() *Output {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetOutput() *Output {
+	if t == nil {
 		return nil
 	}
-	return o.Output
+	return t.Output
 }
 
-func (o *TaxonomyBulkJob) GetCreatedBy() *string {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetCreatedBy() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CreatedBy
+	return t.CreatedBy
 }
 
-func (o *TaxonomyBulkJob) GetCreatedAt() *time.Time {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetCreatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return t.CreatedAt
 }
 
-func (o *TaxonomyBulkJob) GetUpdatedAt() *time.Time {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetUpdatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return t.UpdatedAt
 }
 
-func (o *TaxonomyBulkJob) GetOrg() *string {
-	if o == nil {
+func (t *TaxonomyBulkJob) GetOrg() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Org
-}
-
-func (o *TaxonomyBulkJob) GetProgress() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Progress
+	return t.Org
 }

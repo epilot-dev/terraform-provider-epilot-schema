@@ -1235,6 +1235,55 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     type            = "phone"
     value_formatter = "...my_value_formatter..."
   }
+  portal_access_attribute = {
+    constraints = {
+      # ...
+    }
+    default_value               = "{ \"see\": \"documentation\" }"
+    deprecated                  = true
+    entity_builder_disable_edit = false
+    feature_flag                = "FF_MY_FEATURE_FLAG"
+    group                       = "...my_group..."
+    has_primary                 = true
+    hidden                      = false
+    hide_label                  = true
+    icon                        = "...my_icon..."
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
+    info_helpers = {
+      hint_custom_component  = "...my_hint_custom_component..."
+      hint_text              = "...my_hint_text..."
+      hint_text_key          = "...my_hint_text_key..."
+      hint_tooltip_placement = "top"
+    }
+    label  = "...my_label..."
+    layout = "full_width"
+    manifest = [
+      "123e4567-e89b-12d3-a456-426614174000"
+    ]
+    name                    = "...my_name..."
+    order                   = 0
+    placeholder             = "...my_placeholder..."
+    preview_value_formatter = "...my_preview_value_formatter..."
+    protected               = true
+    purpose = [
+      "taxonomy-slug:classification-slug"
+    ]
+    readonly         = true
+    render_condition = "...my_render_condition..."
+    repeatable       = true
+    required         = false
+    schema           = "contact"
+    settings_flag = [
+      {
+        enabled = true
+        name    = "...my_name..."
+      }
+    ]
+    show_in_table   = true
+    sortable        = true
+    type            = "portal_access"
+    value_formatter = "...my_value_formatter..."
+  }
   price_component_attribute = {
     constraints = {
       # ...
@@ -1285,12 +1334,9 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   purpose_attribute = {
-    archived = false
-    color    = "#FF5733"
     constraints = {
       # ...
     }
-    created_at                  = "2022-04-09T15:18:01.781Z"
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
@@ -1300,7 +1346,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     hidden                      = false
     hide_label                  = true
     icon                        = "...my_icon..."
-    id                          = "taxonomy-slug:classification-slug"
+    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
     info_helpers = {
       hint_custom_component  = "...my_hint_custom_component..."
       hint_text              = "...my_hint_text..."
@@ -1312,11 +1358,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     manifest = [
       "123e4567-e89b-12d3-a456-426614174000"
     ]
-    name  = "Wallbox PV"
-    order = 0
-    parents = [
-      "taxonomy-slug:classification-slug"
-    ]
+    name                    = "...my_name..."
+    order                   = 0
     placeholder             = "...my_placeholder..."
     preview_value_formatter = "...my_preview_value_formatter..."
     protected               = false
@@ -1335,10 +1378,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
       }
     ]
     show_in_table   = false
-    slug            = "wallbox-pv"
     sortable        = false
     type            = "purpose"
-    updated_at      = "2021-01-24T03:23:46.761Z"
     value_formatter = "...my_value_formatter..."
   }
   relation_attribute = {
@@ -1401,7 +1442,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     readonly               = false
     relation_affinity_mode = "strong"
     relation_picker_filter = {
-      q = "AND is_composite_price:true"
+      q = "NOT is_composite_price:true"
     }
     relation_type    = "has_one"
     render_condition = "...my_render_condition..."
@@ -1779,6 +1820,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `payment_attribute` (Attributes) Payment method (see [below for nested schema](#nestedatt--payment_attribute))
 - `payment_method_relation_attribute` (Attributes) Reference to a payment method attribute of another entity (see [below for nested schema](#nestedatt--payment_method_relation_attribute))
 - `phone_attribute` (Attributes) Phone number (see [below for nested schema](#nestedatt--phone_attribute))
+- `portal_access_attribute` (Attributes) Portal access configuration (see [below for nested schema](#nestedatt--portal_access_attribute))
 - `price_component_attribute` (Attributes) Price component (see [below for nested schema](#nestedatt--price_component_attribute))
 - `purpose_attribute` (Attributes) Entity Taxonomy (see [below for nested schema](#nestedatt--purpose_attribute))
 - `relation_attribute` (Attributes) Entity Relationship (see [below for nested schema](#nestedatt--relation_attribute))
@@ -3720,6 +3762,81 @@ Optional:
 
 
 
+<a id="nestedatt--portal_access_attribute"></a>
+### Nested Schema for `portal_access_attribute`
+
+Optional:
+
+- `constraints` (Attributes) A set of constraints applicable to the attribute.
+These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--portal_access_attribute--constraints))
+- `default_value` (String) Parsed as JSON.
+- `deprecated` (Boolean) Default: false
+- `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `feature_flag` (String) This attribute should only be active when the feature flag is enabled
+- `group` (String) Which group the attribute should appear in. Accepts group ID or group name
+- `has_primary` (Boolean)
+- `hidden` (Boolean) Do not render attribute in entity views. Default: false
+- `hide_label` (Boolean) When set to true, will hide the label of the field.
+- `icon` (String) Code name of the icon to used to represent this attribute.
+The value must be a valid @epilot/base-elements Icon name
+- `id` (String) ID for the entity attribute
+- `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--portal_access_attribute--info_helpers))
+- `label` (String) Not Null
+- `layout` (String)
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
+- `name` (String) Not Null
+- `order` (Number) Attribute sort order (ascending) in group
+- `placeholder` (String)
+- `preview_value_formatter` (String)
+- `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
+- `purpose` (List of String)
+- `readonly` (Boolean) Default: false
+- `render_condition` (String) Defines the conditional rendering expression for showing this field.
+When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+Note: Empty or invalid expression have no effect on the field visibility.
+- `repeatable` (Boolean) The attribute is a repeatable
+- `required` (Boolean) Default: false
+- `schema` (String) Schema slug the attribute belongs to
+- `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--portal_access_attribute--settings_flag))
+- `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
+- `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
+- `type` (String) Not Null; must be "portal_access"
+- `value_formatter` (String)
+
+Read-Only:
+
+- `composite_id` (String)
+
+<a id="nestedatt--portal_access_attribute--constraints"></a>
+### Nested Schema for `portal_access_attribute.constraints`
+
+
+<a id="nestedatt--portal_access_attribute--info_helpers"></a>
+### Nested Schema for `portal_access_attribute.info_helpers`
+
+Optional:
+
+- `hint_custom_component` (String) The name of the custom component to be used as the hint helper.
+The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+When specified it overrides the `hint_text` or `hint_text_key` configuration.
+- `hint_text` (String) The text to be displayed in the attribute hint helper.
+When specified it overrides the `hint_text_key` configuration.
+- `hint_text_key` (String) The key of the hint text to be displayed in the attribute hint helper.
+The key should be a valid i18n key.
+- `hint_tooltip_placement` (String) The placement of the hint tooltip.
+The value should be a valid `@mui/core` tooltip placement.
+
+
+<a id="nestedatt--portal_access_attribute--settings_flag"></a>
+### Nested Schema for `portal_access_attribute.settings_flag`
+
+Optional:
+
+- `enabled` (Boolean) Whether the setting should be enabled or not
+- `name` (String) The name of the organization setting to check
+
+
+
 <a id="nestedatt--price_component_attribute"></a>
 ### Nested Schema for `price_component_attribute`
 
@@ -3800,11 +3917,8 @@ Optional:
 
 Optional:
 
-- `archived` (Boolean) Archived classification are not visible in the UI. Default: false
-- `color` (String) Color of the classification
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
-- `created_at` (String)
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
@@ -3815,14 +3929,13 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `hide_label` (Boolean) When set to true, will hide the label of the field.
 - `icon` (String) Code name of the icon to used to represent this attribute.
 The value must be a valid @epilot/base-elements Icon name
-- `id` (String)
+- `id` (String) ID for the entity attribute
 - `info_helpers` (Attributes) A set of configurations meant to document and assist the user in filling the attribute. (see [below for nested schema](#nestedatt--purpose_attribute--info_helpers))
 - `label` (String) Not Null
 - `layout` (String)
-- `manifest` (List of String) Manifest ID used to create/update the taxonomy classification
+- `manifest` (List of String) Manifest ID used to create/update the schema attribute
 - `name` (String) Not Null
 - `order` (Number) Attribute sort order (ascending) in group
-- `parents` (List of String)
 - `placeholder` (String)
 - `preview_value_formatter` (String)
 - `protected` (Boolean) Setting to `true` prevents the attribute from being modified / deleted
@@ -3836,10 +3949,8 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `schema` (String) Schema slug the attribute belongs to
 - `settings_flag` (Attributes List) This attribute should only be active when one of the provided settings have the correct value (see [below for nested schema](#nestedatt--purpose_attribute--settings_flag))
 - `show_in_table` (Boolean) Render as a column in table views. When defined, overrides `hidden`
-- `slug` (String) URL-friendly identifier for the classification
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "purpose"
-- `updated_at` (String)
 - `value_formatter` (String)
 
 Read-Only:
@@ -4499,6 +4610,17 @@ Optional:
 ## Import
 
 Import is supported using the following syntax:
+
+In Terraform v1.5.0 and later, the [`import` block](https://developer.hashicorp.com/terraform/language/import) can be used with the `id` attribute, for example:
+
+```terraform
+import {
+  to = epilot-schema_schema_attribute.my_epilot-schema_schema_attribute
+  id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
+}
+```
+
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
 
 ```shell
 terraform import epilot-schema_schema_attribute.my_epilot-schema_schema_attribute "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"

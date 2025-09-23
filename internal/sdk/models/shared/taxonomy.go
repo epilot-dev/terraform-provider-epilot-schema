@@ -37,6 +37,33 @@ func (e *Kind) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// TaxonomyType - Type of taxonomy. Whether it classifies entities or relations.
+type TaxonomyType string
+
+const (
+	TaxonomyTypeEntity   TaxonomyType = "entity"
+	TaxonomyTypeRelation TaxonomyType = "relation"
+)
+
+func (e TaxonomyType) ToPointer() *TaxonomyType {
+	return &e
+}
+func (e *TaxonomyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "entity":
+		fallthrough
+	case "relation":
+		*e = TaxonomyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TaxonomyType: %v", v)
+	}
+}
+
 type EnabledLocationsType string
 
 const (
@@ -45,8 +72,8 @@ const (
 )
 
 type EnabledLocations struct {
-	TaxonomyLocationID *TaxonomyLocationID `queryParam:"inline"`
-	Str                *string             `queryParam:"inline"`
+	TaxonomyLocationID *TaxonomyLocationID `queryParam:"inline" name:"enabled_locations"`
+	Str                *string             `queryParam:"inline" name:"enabled_locations"`
 
 	Type EnabledLocationsType
 }
@@ -72,14 +99,14 @@ func CreateEnabledLocationsStr(str string) EnabledLocations {
 func (u *EnabledLocations) UnmarshalJSON(data []byte) error {
 
 	var taxonomyLocationID TaxonomyLocationID = TaxonomyLocationID("")
-	if err := utils.UnmarshalJSON(data, &taxonomyLocationID, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &taxonomyLocationID, "", true, nil); err == nil {
 		u.TaxonomyLocationID = &taxonomyLocationID
 		u.Type = EnabledLocationsTypeTaxonomyLocationID
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = EnabledLocationsTypeStr
 		return nil
@@ -109,6 +136,8 @@ type Taxonomy struct {
 	Plural *string `json:"plural,omitempty"`
 	// Kind of taxonomy e.g. system or user_defined. By default, it's empty, which means 'user_defined'
 	Kind *Kind `json:"kind,omitempty"`
+	// Type of taxonomy. Whether it classifies entities or relations.
+	Type *TaxonomyType `default:"entity" json:"type"`
 	// Icon name for the taxonomy (from epilot360/icons icon set)
 	Icon *string `json:"icon,omitempty"`
 	// HEX Color code for the taxonomy
@@ -132,101 +161,108 @@ func (t Taxonomy) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Taxonomy) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Taxonomy) GetSlug() *string {
-	if o == nil {
+func (t *Taxonomy) GetSlug() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Slug
+	return t.Slug
 }
 
-func (o *Taxonomy) GetName() *string {
-	if o == nil {
+func (t *Taxonomy) GetName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *Taxonomy) GetPlural() *string {
-	if o == nil {
+func (t *Taxonomy) GetPlural() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Plural
+	return t.Plural
 }
 
-func (o *Taxonomy) GetKind() *Kind {
-	if o == nil {
+func (t *Taxonomy) GetKind() *Kind {
+	if t == nil {
 		return nil
 	}
-	return o.Kind
+	return t.Kind
 }
 
-func (o *Taxonomy) GetIcon() *string {
-	if o == nil {
+func (t *Taxonomy) GetType() *TaxonomyType {
+	if t == nil {
 		return nil
 	}
-	return o.Icon
+	return t.Type
 }
 
-func (o *Taxonomy) GetColor() *string {
-	if o == nil {
+func (t *Taxonomy) GetIcon() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Color
+	return t.Icon
 }
 
-func (o *Taxonomy) GetCreatedAt() *time.Time {
-	if o == nil {
+func (t *Taxonomy) GetColor() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return t.Color
 }
 
-func (o *Taxonomy) GetUpdatedAt() *time.Time {
-	if o == nil {
+func (t *Taxonomy) GetCreatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.UpdatedAt
+	return t.CreatedAt
 }
 
-func (o *Taxonomy) GetDeletedAt() *time.Time {
-	if o == nil {
+func (t *Taxonomy) GetUpdatedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.DeletedAt
+	return t.UpdatedAt
 }
 
-func (o *Taxonomy) GetCreatedBy() *string {
-	if o == nil {
+func (t *Taxonomy) GetDeletedAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return o.CreatedBy
+	return t.DeletedAt
 }
 
-func (o *Taxonomy) GetEnabled() *bool {
-	if o == nil {
+func (t *Taxonomy) GetCreatedBy() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Enabled
+	return t.CreatedBy
 }
 
-func (o *Taxonomy) GetOrder() *float64 {
-	if o == nil {
+func (t *Taxonomy) GetEnabled() *bool {
+	if t == nil {
 		return nil
 	}
-	return o.Order
+	return t.Enabled
 }
 
-func (o *Taxonomy) GetEnabledLocations() []EnabledLocations {
-	if o == nil {
+func (t *Taxonomy) GetOrder() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.EnabledLocations
+	return t.Order
+}
+
+func (t *Taxonomy) GetEnabledLocations() []EnabledLocations {
+	if t == nil {
+		return nil
+	}
+	return t.EnabledLocations
 }
 
 type TaxonomyInput struct {
@@ -236,6 +272,8 @@ type TaxonomyInput struct {
 	Name *string `json:"name,omitempty"`
 	// Plural name of a Taxonomy e.g. Purposes, Product Categories, Folders, Tags. Defaults to name is not provided.
 	Plural *string `json:"plural,omitempty"`
+	// Type of taxonomy. Whether it classifies entities or relations.
+	Type *TaxonomyType `default:"entity" json:"type"`
 	// Icon name for the taxonomy (from epilot360/icons icon set)
 	Icon *string `json:"icon,omitempty"`
 	// HEX Color code for the taxonomy
@@ -248,58 +286,76 @@ type TaxonomyInput struct {
 	EnabledLocations []EnabledLocations `json:"enabled_locations,omitempty"`
 }
 
-func (o *TaxonomyInput) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
+func (t TaxonomyInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (o *TaxonomyInput) GetName() *string {
-	if o == nil {
-		return nil
+func (t *TaxonomyInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
 	}
-	return o.Name
+	return nil
 }
 
-func (o *TaxonomyInput) GetPlural() *string {
-	if o == nil {
+func (t *TaxonomyInput) GetSlug() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Plural
+	return t.Slug
 }
 
-func (o *TaxonomyInput) GetIcon() *string {
-	if o == nil {
+func (t *TaxonomyInput) GetName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Icon
+	return t.Name
 }
 
-func (o *TaxonomyInput) GetColor() *string {
-	if o == nil {
+func (t *TaxonomyInput) GetPlural() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Color
+	return t.Plural
 }
 
-func (o *TaxonomyInput) GetEnabled() *bool {
-	if o == nil {
+func (t *TaxonomyInput) GetType() *TaxonomyType {
+	if t == nil {
 		return nil
 	}
-	return o.Enabled
+	return t.Type
 }
 
-func (o *TaxonomyInput) GetOrder() *float64 {
-	if o == nil {
+func (t *TaxonomyInput) GetIcon() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Order
+	return t.Icon
 }
 
-func (o *TaxonomyInput) GetEnabledLocations() []EnabledLocations {
-	if o == nil {
+func (t *TaxonomyInput) GetColor() *string {
+	if t == nil {
 		return nil
 	}
-	return o.EnabledLocations
+	return t.Color
+}
+
+func (t *TaxonomyInput) GetEnabled() *bool {
+	if t == nil {
+		return nil
+	}
+	return t.Enabled
+}
+
+func (t *TaxonomyInput) GetOrder() *float64 {
+	if t == nil {
+		return nil
+	}
+	return t.Order
+}
+
+func (t *TaxonomyInput) GetEnabledLocations() []EnabledLocations {
+	if t == nil {
+		return nil
+	}
+	return t.EnabledLocations
 }

@@ -12,11 +12,11 @@ type UpdateRelationRequestBody struct {
 	Tags []string `json:"_tags,omitempty"`
 }
 
-func (o *UpdateRelationRequestBody) GetTags() []string {
-	if o == nil {
+func (u *UpdateRelationRequestBody) GetTags() []string {
+	if u == nil {
 		return nil
 	}
-	return o.Tags
+	return u.Tags
 }
 
 type UpdateRelationRequest struct {
@@ -40,59 +40,59 @@ func (u UpdateRelationRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateRelationRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug", "id", "attribute", "entity_id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UpdateRelationRequest) GetSlug() string {
-	if o == nil {
+func (u *UpdateRelationRequest) GetSlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.Slug
+	return u.Slug
 }
 
-func (o *UpdateRelationRequest) GetID() string {
-	if o == nil {
+func (u *UpdateRelationRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateRelationRequest) GetAttribute() string {
-	if o == nil {
+func (u *UpdateRelationRequest) GetAttribute() string {
+	if u == nil {
 		return ""
 	}
-	return o.Attribute
+	return u.Attribute
 }
 
-func (o *UpdateRelationRequest) GetEntityID() string {
-	if o == nil {
+func (u *UpdateRelationRequest) GetEntityID() string {
+	if u == nil {
 		return ""
 	}
-	return o.EntityID
+	return u.EntityID
 }
 
-func (o *UpdateRelationRequest) GetAsync() *bool {
-	if o == nil {
+func (u *UpdateRelationRequest) GetAsync() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Async
+	return u.Async
 }
 
-func (o *UpdateRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (u *UpdateRelationRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if u == nil {
 		return nil
 	}
-	return o.ActivityID
+	return u.ActivityID
 }
 
-func (o *UpdateRelationRequest) GetRequestBody() *UpdateRelationRequestBody {
-	if o == nil {
+func (u *UpdateRelationRequest) GetRequestBody() *UpdateRelationRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateRelationResponse struct {
@@ -108,37 +108,37 @@ type UpdateRelationResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *UpdateRelationResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateRelationResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateRelationResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateRelationResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateRelationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateRelationResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateRelationResponse) GetRelationItem() *shared.RelationItem {
-	if o == nil {
+func (u *UpdateRelationResponse) GetRelationItem() *shared.RelationItem {
+	if u == nil {
 		return nil
 	}
-	return o.RelationItem
+	return u.RelationItem
 }
 
-func (o *UpdateRelationResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (u *UpdateRelationResponse) GetNotFoundError() *shared.NotFoundError {
+	if u == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return u.NotFoundError
 }
