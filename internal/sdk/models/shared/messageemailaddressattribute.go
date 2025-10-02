@@ -13,6 +13,17 @@ import (
 type MessageEmailAddressAttributeConstraints struct {
 }
 
+func (m MessageEmailAddressAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MessageEmailAddressAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // MessageEmailAddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type MessageEmailAddressAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type MessageEmailAddressAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (m MessageEmailAddressAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MessageEmailAddressAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MessageEmailAddressAttributeInfoHelpers) GetHintText() *string {
@@ -151,7 +173,7 @@ func (m MessageEmailAddressAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

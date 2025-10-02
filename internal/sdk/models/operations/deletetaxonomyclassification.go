@@ -28,6 +28,9 @@ type DeleteTaxonomyClassificationResponse struct {
 	RawResponse *http.Response
 	// Taxonomy classification deleted
 	TaxonomyClassification *shared.TaxonomyClassification
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *DeleteTaxonomyClassificationResponse) GetContentType() string {
@@ -56,4 +59,18 @@ func (o *DeleteTaxonomyClassificationResponse) GetTaxonomyClassification() *shar
 		return nil
 	}
 	return o.TaxonomyClassification
+}
+
+func (o *DeleteTaxonomyClassificationResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *DeleteTaxonomyClassificationResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

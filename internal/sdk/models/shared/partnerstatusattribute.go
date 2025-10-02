@@ -13,6 +13,17 @@ import (
 type PartnerStatusAttributeConstraints struct {
 }
 
+func (p PartnerStatusAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerStatusAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PartnerStatusAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PartnerStatusAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type PartnerStatusAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PartnerStatusAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerStatusAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PartnerStatusAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (p PartnerStatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

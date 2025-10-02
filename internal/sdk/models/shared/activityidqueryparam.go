@@ -40,8 +40,8 @@ const (
 )
 
 type ActivityIDQueryParam struct {
-	Str                   *string                `queryParam:"inline"`
-	ActivityIDQueryParam2 *ActivityIDQueryParam2 `queryParam:"inline"`
+	Str                   *string                `queryParam:"inline" name:"ActivityIdQueryParam"`
+	ActivityIDQueryParam2 *ActivityIDQueryParam2 `queryParam:"inline" name:"ActivityIdQueryParam"`
 
 	Type ActivityIDQueryParamType
 }
@@ -67,14 +67,14 @@ func CreateActivityIDQueryParamActivityIDQueryParam2(activityIDQueryParam2 Activ
 func (u *ActivityIDQueryParam) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = ActivityIDQueryParamTypeStr
 		return nil
 	}
 
 	var activityIDQueryParam2 ActivityIDQueryParam2 = ActivityIDQueryParam2("")
-	if err := utils.UnmarshalJSON(data, &activityIDQueryParam2, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &activityIDQueryParam2, "", true, nil); err == nil {
 		u.ActivityIDQueryParam2 = &activityIDQueryParam2
 		u.Type = ActivityIDQueryParamTypeActivityIDQueryParam2
 		return nil

@@ -13,6 +13,17 @@ import (
 type SelectAttributeConstraints struct {
 }
 
+func (s SelectAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SelectAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SelectAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type SelectAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type SelectAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (s SelectAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SelectAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SelectAttributeInfoHelpers) GetHintText() *string {
@@ -154,7 +176,7 @@ func (s SelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

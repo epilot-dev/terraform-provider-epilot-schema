@@ -13,6 +13,17 @@ import (
 type NumberAttributeConstraints struct {
 }
 
+func (n NumberAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NumberAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // NumberAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type NumberAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type NumberAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (n NumberAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NumberAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *NumberAttributeInfoHelpers) GetHintText() *string {
@@ -151,7 +173,7 @@ func (n NumberAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (n *NumberAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

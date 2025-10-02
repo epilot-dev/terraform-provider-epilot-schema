@@ -7,11 +7,14 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
+	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -24,22 +27,25 @@ func NewSchemaCapabilityDataSource() datasource.DataSource {
 
 // SchemaCapabilityDataSource is the data source implementation.
 type SchemaCapabilityDataSource struct {
+	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // SchemaCapabilityDataSourceModel describes the data model.
 type SchemaCapabilityDataSourceModel struct {
-	Attributes   []tfTypes.Attribute   `tfsdk:"attributes"`
-	CompositeID  types.String          `tfsdk:"composite_id"`
-	FeatureFlag  types.String          `tfsdk:"feature_flag"`
-	ID           types.String          `tfsdk:"id"`
-	Manifest     []types.String        `tfsdk:"manifest"`
-	Name         types.String          `tfsdk:"name"`
-	Purpose      []types.String        `tfsdk:"purpose"`
-	Schema       types.String          `tfsdk:"schema"`
-	SettingsFlag []tfTypes.SettingFlag `tfsdk:"settings_flag"`
-	Title        types.String          `tfsdk:"title"`
-	UIHooks      []tfTypes.UIHooks     `tfsdk:"ui_hooks"`
+	AppID        types.String                                     `tfsdk:"app_id"`
+	Attributes   []tfTypes.Attribute                              `tfsdk:"attributes"`
+	CompositeID  types.String                                     `tfsdk:"composite_id"`
+	FeatureFlag  types.String                                     `tfsdk:"feature_flag"`
+	ID           types.String                                     `tfsdk:"id"`
+	Manifest     []types.String                                   `tfsdk:"manifest"`
+	Name         types.String                                     `tfsdk:"name"`
+	Purpose      []types.String                                   `tfsdk:"purpose"`
+	Schema       types.String                                     `tfsdk:"schema"`
+	SettingsFlag []tfTypes.SettingFlag                            `tfsdk:"settings_flag"`
+	Title        types.String                                     `tfsdk:"title"`
+	UIConfig     *tfTypes.EntityCapabilityWithCompositeIDUIConfig `tfsdk:"ui_config"`
+	UIHooks      []tfTypes.EntityCapabilityWithCompositeIDUIHooks `tfsdk:"ui_hooks"`
 }
 
 // Metadata returns the data source type name.
@@ -53,6 +59,10 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 		MarkdownDescription: "SchemaCapability DataSource",
 
 		Attributes: map[string]schema.Attribute{
+			"app_id": schema.StringAttribute{
+				Computed:    true,
+				Description: `ID of the app if the capability is provided by an app`,
+			},
 			"attributes": schema.ListNestedAttribute{
 				Computed: true,
 				NestedObject: schema.NestedAttributeObject{
@@ -90,6 +100,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -269,6 +280,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`  - company_name`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -424,6 +436,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -579,6 +592,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -748,6 +762,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Description: `A currency field used to format a computed currency value`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -905,6 +920,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1067,6 +1083,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1251,6 +1268,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1406,6 +1424,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1561,6 +1580,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1724,6 +1744,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -1891,6 +1912,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2046,6 +2068,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2201,6 +2224,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2356,6 +2380,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2514,6 +2539,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2683,6 +2709,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -2863,6 +2890,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3025,6 +3053,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3180,6 +3209,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3335,6 +3365,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3490,6 +3521,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3645,6 +3677,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3800,6 +3833,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -3946,6 +3980,162 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 							},
 							Description: `Phone number`,
 						},
+						"portal_access_attribute": schema.SingleNestedAttribute{
+							Computed: true,
+							Attributes: map[string]schema.Attribute{
+								"constraints": schema.SingleNestedAttribute{
+									Computed: true,
+									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
+										`These constraints should and will be enforced by the attribute renderer.`,
+								},
+								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
+									Computed:    true,
+									Description: `Parsed as JSON.`,
+								},
+								"deprecated": schema.BoolAttribute{
+									Computed: true,
+								},
+								"entity_builder_disable_edit": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+								},
+								"feature_flag": schema.StringAttribute{
+									Computed:    true,
+									Description: `This attribute should only be active when the feature flag is enabled`,
+								},
+								"group": schema.StringAttribute{
+									Computed:    true,
+									Description: `Which group the attribute should appear in. Accepts group ID or group name`,
+								},
+								"has_primary": schema.BoolAttribute{
+									Computed: true,
+								},
+								"hidden": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Do not render attribute in entity views`,
+								},
+								"hide_label": schema.BoolAttribute{
+									Computed:    true,
+									Description: `When set to true, will hide the label of the field.`,
+								},
+								"icon": schema.StringAttribute{
+									Computed: true,
+									MarkdownDescription: `Code name of the icon to used to represent this attribute.` + "\n" +
+										`The value must be a valid @epilot/base-elements Icon name`,
+								},
+								"id": schema.StringAttribute{
+									Computed:    true,
+									Description: `ID for the entity attribute`,
+								},
+								"info_helpers": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"hint_custom_component": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The name of the custom component to be used as the hint helper.` + "\n" +
+												`The component should be registered in the ` + "`" + `@epilot360/entity-ui` + "`" + ` on the index of the components directory.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text` + "`" + ` or ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The text to be displayed in the attribute hint helper.` + "\n" +
+												`When specified it overrides the ` + "`" + `hint_text_key` + "`" + ` configuration.`,
+										},
+										"hint_text_key": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The key of the hint text to be displayed in the attribute hint helper.` + "\n" +
+												`The key should be a valid i18n key.`,
+										},
+										"hint_tooltip_placement": schema.StringAttribute{
+											Computed: true,
+											MarkdownDescription: `The placement of the hint tooltip.` + "\n" +
+												`The value should be a valid ` + "`" + `@mui/core` + "`" + ` tooltip placement.`,
+										},
+									},
+									Description: `A set of configurations meant to document and assist the user in filling the attribute.`,
+								},
+								"label": schema.StringAttribute{
+									Computed: true,
+								},
+								"layout": schema.StringAttribute{
+									Computed: true,
+								},
+								"manifest": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+									Description: `Manifest ID used to create/update the schema attribute`,
+								},
+								"name": schema.StringAttribute{
+									Computed: true,
+								},
+								"order": schema.Int64Attribute{
+									Computed:    true,
+									Description: `Attribute sort order (ascending) in group`,
+								},
+								"placeholder": schema.StringAttribute{
+									Computed: true,
+								},
+								"preview_value_formatter": schema.StringAttribute{
+									Computed: true,
+								},
+								"protected": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Setting to ` + "`" + `true` + "`" + ` prevents the attribute from being modified / deleted`,
+								},
+								"purpose": schema.ListAttribute{
+									Computed:    true,
+									ElementType: types.StringType,
+								},
+								"readonly": schema.BoolAttribute{
+									Computed: true,
+								},
+								"render_condition": schema.StringAttribute{
+									Computed: true,
+									MarkdownDescription: `Defines the conditional rendering expression for showing this field.` + "\n" +
+										`When a valid expression is parsed, their evaluation defines the visibility of this attribute.` + "\n" +
+										`Note: Empty or invalid expression have no effect on the field visibility.`,
+								},
+								"repeatable": schema.BoolAttribute{
+									Computed:    true,
+									Description: `The attribute is a repeatable`,
+								},
+								"required": schema.BoolAttribute{
+									Computed: true,
+								},
+								"settings_flag": schema.ListNestedAttribute{
+									Computed: true,
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Computed:    true,
+												Description: `Whether the setting should be enabled or not`,
+											},
+											"name": schema.StringAttribute{
+												Computed:    true,
+												Description: `The name of the organization setting to check`,
+											},
+										},
+									},
+									Description: `This attribute should only be active when one of the provided settings have the correct value`,
+								},
+								"show_in_table": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
+								},
+								"sortable": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
+								},
+								"type": schema.StringAttribute{
+									Computed: true,
+								},
+								"value_formatter": schema.StringAttribute{
+									Computed: true,
+								},
+							},
+							Description: `Portal access configuration`,
+						},
 						"price_component_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
@@ -3955,6 +4145,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4104,23 +4295,13 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 						"purpose_attribute": schema.SingleNestedAttribute{
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
-								"archived": schema.BoolAttribute{
-									Computed:    true,
-									Description: `Archived classification are not visible in the UI`,
-								},
-								"color": schema.StringAttribute{
-									Computed:    true,
-									Description: `Color of the classification`,
-								},
 								"constraints": schema.SingleNestedAttribute{
 									Computed: true,
 									MarkdownDescription: `A set of constraints applicable to the attribute.` + "\n" +
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
-								"created_at": schema.StringAttribute{
-									Computed: true,
-								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4156,7 +4337,8 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`The value must be a valid @epilot/base-elements Icon name`,
 								},
 								"id": schema.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: `ID for the entity attribute`,
 								},
 								"info_helpers": schema.SingleNestedAttribute{
 									Computed: true,
@@ -4194,7 +4376,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"manifest": schema.ListAttribute{
 									Computed:    true,
 									ElementType: types.StringType,
-									Description: `Manifest ID used to create/update the taxonomy classification`,
+									Description: `Manifest ID used to create/update the schema attribute`,
 								},
 								"name": schema.StringAttribute{
 									Computed: true,
@@ -4202,10 +4384,6 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 								"order": schema.Int64Attribute{
 									Computed:    true,
 									Description: `Attribute sort order (ascending) in group`,
-								},
-								"parents": schema.ListAttribute{
-									Computed:    true,
-									ElementType: types.StringType,
 								},
 								"placeholder": schema.StringAttribute{
 									Computed: true,
@@ -4257,18 +4435,11 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed:    true,
 									Description: `Render as a column in table views. When defined, overrides ` + "`" + `hidden` + "`" + ``,
 								},
-								"slug": schema.StringAttribute{
-									Computed:    true,
-									Description: `URL-friendly identifier for the classification`,
-								},
 								"sortable": schema.BoolAttribute{
 									Computed:    true,
 									Description: `Allow sorting by this attribute in table views if ` + "`" + `show_in_table` + "`" + ` is true`,
 								},
 								"type": schema.StringAttribute{
-									Computed: true,
-								},
-								"updated_at": schema.StringAttribute{
 									Computed: true,
 								},
 								"value_formatter": schema.StringAttribute{
@@ -4307,6 +4478,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 												Description: `The action label or action translation key (i18n)`,
 											},
 											"new_entity_item": schema.StringAttribute{
+												CustomType:  jsontypes.NormalizedType{},
 												Computed:    true,
 												Description: `Parsed as JSON.`,
 											},
@@ -4343,6 +4515,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4567,6 +4740,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4647,6 +4821,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"options": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4726,6 +4901,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4888,6 +5064,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -5066,6 +5243,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -5229,6 +5407,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -5349,6 +5528,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 									Computed: true,
 								},
 								"rows": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -5394,6 +5574,7 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 										`These constraints should and will be enforced by the attribute renderer.`,
 								},
 								"default_value": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -5549,6 +5730,9 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 			"composite_id": schema.StringAttribute{
 				Required:    true,
 				Description: `Schema Slug and the Attribute ID`,
+				Validators: []validator.String{
+					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
+				},
 			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
@@ -5595,11 +5779,21 @@ func (r *SchemaCapabilityDataSource) Schema(ctx context.Context, req datasource.
 				Computed:    true,
 				Description: `Human readable title of the capability`,
 			},
+			"ui_config": schema.SingleNestedAttribute{
+				Computed: true,
+				Attributes: map[string]schema.Attribute{
+					"is_filterable": schema.BoolAttribute{
+						Computed:    true,
+						Description: `Whether the capability is filterable`,
+					},
+				},
+			},
 			"ui_hooks": schema.ListNestedAttribute{
 				Computed: true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
 							Computed:    true,
 							Description: `Parsed as JSON.`,
 						},
@@ -5702,13 +5896,13 @@ func (r *SchemaCapabilityDataSource) Read(ctx context.Context, req datasource.Re
 		return
 	}
 
-	var compositeID string
-	compositeID = data.CompositeID.ValueString()
+	request, requestDiags := data.ToOperationsGetSchemaCapabilityRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetSchemaCapabilityRequest{
-		CompositeID: compositeID,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.Schemas.GetSchemaCapability(ctx, request)
+	res, err := r.client.Schemas.GetSchemaCapability(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -5720,10 +5914,6 @@ func (r *SchemaCapabilityDataSource) Read(ctx context.Context, req datasource.Re
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode == 404 {
-		resp.State.RemoveResource(ctx)
-		return
-	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -5732,7 +5922,11 @@ func (r *SchemaCapabilityDataSource) Read(ctx context.Context, req datasource.Re
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedEntityCapabilityWithCompositeID(res.EntityCapabilityWithCompositeID)
+	resp.Diagnostics.Append(data.RefreshFromSharedEntityCapabilityWithCompositeID(ctx, res.EntityCapabilityWithCompositeID)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

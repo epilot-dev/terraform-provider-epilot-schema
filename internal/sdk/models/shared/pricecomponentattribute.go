@@ -13,6 +13,17 @@ import (
 type PriceComponentAttributeConstraints struct {
 }
 
+func (p PriceComponentAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PriceComponentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PriceComponentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type PriceComponentAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PriceComponentAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PriceComponentAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (p PriceComponentAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PriceComponentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

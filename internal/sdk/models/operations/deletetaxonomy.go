@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -34,6 +35,9 @@ type DeleteTaxonomyResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *DeleteTaxonomyResponse) GetContentType() string {
@@ -55,4 +59,18 @@ func (o *DeleteTaxonomyResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *DeleteTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *DeleteTaxonomyResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

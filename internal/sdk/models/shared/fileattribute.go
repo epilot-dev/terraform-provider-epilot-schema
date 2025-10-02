@@ -13,6 +13,17 @@ import (
 type FileAttributeConstraints struct {
 }
 
+func (f FileAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FileAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // FileAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type FileAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type FileAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (f FileAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FileAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *FileAttributeInfoHelpers) GetHintText() *string {
@@ -187,7 +209,7 @@ func (f FileAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

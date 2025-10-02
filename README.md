@@ -65,6 +65,7 @@ Use this API configure and access your business objects like Contacts, Opportuni
 * [terraform](#terraform)
   * [Installation](#installation)
   * [Testing the provider locally](#testing-the-provider-locally)
+  * [Authentication](#authentication)
   * [Available Resources and Data Sources](#available-resources-and-data-sources)
 
 <!-- End Table of Contents [toc] -->
@@ -79,7 +80,7 @@ terraform {
   required_providers {
     epilot-schema = {
       source  = "epilot/epilot-schema"
-      version = "0.16.0"
+      version = "0.17.0"
     }
   }
 }
@@ -131,6 +132,19 @@ provider_installation {
 }
 ```
 <!-- End Testing the provider locally [usage] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+This provider supports authentication configuration via provider configuration.
+
+Available configuration:
+
+| Provider Attribute | Description |
+|---|---|
+| `epilot_auth` | Authorization header with epilot OAuth2 bearer token. |
+| `epilot_org` | Overrides the target organization to allow shared tenantaccess. |
+<!-- End Authentication [security] -->
 
 <!-- Start Available Resources and Data Sources [operations] -->
 ## Available Resources and Data Sources

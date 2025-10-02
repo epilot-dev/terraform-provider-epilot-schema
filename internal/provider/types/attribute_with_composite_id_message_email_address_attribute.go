@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AttributeWithCompositeIDMessageEmailAddressAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -10,7 +13,7 @@ type AttributeWithCompositeIDMessageEmailAddressAttribute struct {
 	Address                  types.String                                         `tfsdk:"address"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EmailType                types.String                                         `tfsdk:"email_type"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`

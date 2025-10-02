@@ -13,6 +13,17 @@ import (
 type AutomationAttributeConstraints struct {
 }
 
+func (a AutomationAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutomationAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AutomationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AutomationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type AutomationAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (a AutomationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutomationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AutomationAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (a AutomationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AutomationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

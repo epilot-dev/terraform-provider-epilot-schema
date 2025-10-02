@@ -49,6 +49,9 @@ type ReindexEntityResponse struct {
 	RawResponse *http.Response
 	// The reindexed entity
 	EntityItem *shared.EntityItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *ReindexEntityResponse) GetContentType() string {
@@ -77,4 +80,18 @@ func (o *ReindexEntityResponse) GetEntityItem() *shared.EntityItem {
 		return nil
 	}
 	return o.EntityItem
+}
+
+func (o *ReindexEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *ReindexEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

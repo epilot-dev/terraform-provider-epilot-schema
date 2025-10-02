@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -31,6 +32,9 @@ type GetSchemaExampleResponse struct {
 	RawResponse *http.Response
 	// Success
 	Object *GetSchemaExampleResponseBody
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *GetSchemaExampleResponse) GetContentType() string {
@@ -59,4 +63,18 @@ func (o *GetSchemaExampleResponse) GetObject() *GetSchemaExampleResponseBody {
 		return nil
 	}
 	return o.Object
+}
+
+func (o *GetSchemaExampleResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *GetSchemaExampleResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

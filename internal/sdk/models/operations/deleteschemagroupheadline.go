@@ -28,6 +28,9 @@ type DeleteSchemaGroupHeadlineResponse struct {
 	RawResponse *http.Response
 	// Success
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *DeleteSchemaGroupHeadlineResponse) GetContentType() string {
@@ -56,4 +59,18 @@ func (o *DeleteSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *s
 		return nil
 	}
 	return o.GroupHeadlineWithCompositeID
+}
+
+func (o *DeleteSchemaGroupHeadlineResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *DeleteSchemaGroupHeadlineResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

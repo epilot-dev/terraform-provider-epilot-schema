@@ -58,6 +58,9 @@ type RestoreEntityResponse struct {
 	RawResponse *http.Response
 	// The restored entity
 	EntityItem *shared.EntityItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *RestoreEntityResponse) GetContentType() string {
@@ -86,4 +89,18 @@ func (o *RestoreEntityResponse) GetEntityItem() *shared.EntityItem {
 		return nil
 	}
 	return o.EntityItem
+}
+
+func (o *RestoreEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *RestoreEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

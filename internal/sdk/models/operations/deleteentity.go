@@ -24,7 +24,7 @@ func (d DeleteEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"slug", "id"}); err != nil {
 		return err
 	}
 	return nil
@@ -65,6 +65,9 @@ type DeleteEntityResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *DeleteEntityResponse) GetContentType() string {
@@ -86,4 +89,18 @@ func (o *DeleteEntityResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *DeleteEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *DeleteEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

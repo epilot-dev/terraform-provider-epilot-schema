@@ -19,8 +19,8 @@ const (
 
 // TaxonomySlug - The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
 type TaxonomySlug struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"taxonomySlug"`
+	ArrayOfStr []string `queryParam:"inline" name:"taxonomySlug"`
 
 	Type TaxonomySlugType
 }
@@ -46,14 +46,14 @@ func CreateTaxonomySlugArrayOfStr(arrayOfStr []string) TaxonomySlug {
 func (u *TaxonomySlug) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = TaxonomySlugTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = TaxonomySlugTypeArrayOfStr
 		return nil
@@ -75,10 +75,10 @@ func (u TaxonomySlug) MarshalJSON() ([]byte, error) {
 }
 
 type TaxonomiesClassificationsSearchRequestBody struct {
-	ClassificationIds []string `json:"classificationIds,omitempty"`
+	ClassificationIds []shared.ClassificationIDOrPattern `json:"classificationIds,omitempty"`
 }
 
-func (o *TaxonomiesClassificationsSearchRequestBody) GetClassificationIds() []string {
+func (o *TaxonomiesClassificationsSearchRequestBody) GetClassificationIds() []shared.ClassificationIDOrPattern {
 	if o == nil {
 		return nil
 	}
@@ -111,7 +111,7 @@ func (t TaxonomiesClassificationsSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomiesClassificationsSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -181,6 +181,9 @@ type TaxonomiesClassificationsSearchResponse struct {
 	RawResponse *http.Response
 	// Returns the classifications for the taxonomy slug provided
 	Object *TaxonomiesClassificationsSearchResponseBody
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *TaxonomiesClassificationsSearchResponse) GetContentType() string {
@@ -209,4 +212,18 @@ func (o *TaxonomiesClassificationsSearchResponse) GetObject() *TaxonomiesClassif
 		return nil
 	}
 	return o.Object
+}
+
+func (o *TaxonomiesClassificationsSearchResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *TaxonomiesClassificationsSearchResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

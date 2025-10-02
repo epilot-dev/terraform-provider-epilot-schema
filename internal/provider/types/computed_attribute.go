@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type ComputedAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -11,7 +14,7 @@ type ComputedAttribute struct {
 	Computed                 types.Bool                                           `tfsdk:"computed"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	CurrencyField            types.String                                         `tfsdk:"currency_field"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`

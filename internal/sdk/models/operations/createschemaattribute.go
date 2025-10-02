@@ -16,6 +16,9 @@ type CreateSchemaAttributeResponse struct {
 	RawResponse *http.Response
 	// Success
 	AttributeWithCompositeID *shared.AttributeWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateSchemaAttributeResponse) GetContentType() string {
@@ -44,4 +47,18 @@ func (o *CreateSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.At
 		return nil
 	}
 	return o.AttributeWithCompositeID
+}
+
+func (o *CreateSchemaAttributeResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateSchemaAttributeResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

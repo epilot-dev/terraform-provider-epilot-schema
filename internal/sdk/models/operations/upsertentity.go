@@ -52,7 +52,7 @@ func (u UpsertEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpsertEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug"}); err != nil {
 		return err
 	}
 	return nil
@@ -125,6 +125,9 @@ type UpsertEntityResponse struct {
 	EntityItem *shared.EntityItem
 	// Entity validation error when `?validate=true`
 	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *UpsertEntityResponse) GetContentType() string {
@@ -160,4 +163,18 @@ func (o *UpsertEntityResponse) GetEntityValidationV2ResultError() *shared.Entity
 		return nil
 	}
 	return o.EntityValidationV2ResultError
+}
+
+func (o *UpsertEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *UpsertEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

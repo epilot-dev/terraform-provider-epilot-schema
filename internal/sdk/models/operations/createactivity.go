@@ -36,6 +36,9 @@ type CreateActivityResponse struct {
 	RawResponse *http.Response
 	// Success
 	BaseActivityItem *shared.BaseActivityItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateActivityResponse) GetContentType() string {
@@ -64,4 +67,18 @@ func (o *CreateActivityResponse) GetBaseActivityItem() *shared.BaseActivityItem 
 		return nil
 	}
 	return o.BaseActivityItem
+}
+
+func (o *CreateActivityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateActivityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

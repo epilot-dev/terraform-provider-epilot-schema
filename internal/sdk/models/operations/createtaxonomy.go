@@ -16,6 +16,9 @@ type CreateTaxonomyResponse struct {
 	RawResponse *http.Response
 	// Taxonomy created
 	Taxonomy *shared.Taxonomy
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateTaxonomyResponse) GetContentType() string {
@@ -44,4 +47,18 @@ func (o *CreateTaxonomyResponse) GetTaxonomy() *shared.Taxonomy {
 		return nil
 	}
 	return o.Taxonomy
+}
+
+func (o *CreateTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateTaxonomyResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -29,7 +29,7 @@ func (c CreateEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"slug"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,6 +88,9 @@ type CreateEntityResponse struct {
 	EntityItem *shared.EntityItem
 	// Entity validation error when `?validate=true`
 	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateEntityResponse) GetContentType() string {
@@ -123,4 +126,18 @@ func (o *CreateEntityResponse) GetEntityValidationV2ResultError() *shared.Entity
 		return nil
 	}
 	return o.EntityValidationV2ResultError
+}
+
+func (o *CreateEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

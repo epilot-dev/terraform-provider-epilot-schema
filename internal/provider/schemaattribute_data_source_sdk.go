@@ -3,14 +3,19 @@
 package provider
 
 import (
+	"context"
 	"encoding/json"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"time"
 )
 
-func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithCompositeID(resp *shared.AttributeWithCompositeID) {
+func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithCompositeID(ctx context.Context, resp *shared.AttributeWithCompositeID) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		if resp.AttributeWithCompositeIDAddressAttribute != nil {
 			r.AddressAttribute = &tfTypes.AttributeWithCompositeIDAddressAttribute{}
@@ -38,10 +43,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				}
 			}
 			if resp.AttributeWithCompositeIDAddressAttribute.DefaultValue == nil {
-				r.AddressAttribute.DefaultValue = types.StringNull()
+				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult, _ := json.Marshal(resp.AttributeWithCompositeIDAddressAttribute.DefaultValue)
-				r.AddressAttribute.DefaultValue = types.StringValue(string(defaultValueResult))
+				r.AddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult))
 			}
 			r.AddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Deprecated)
 			r.Deprecated = r.AddressAttribute.Deprecated
@@ -95,19 +100,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AddressAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Schema)
 			r.Schema = r.AddressAttribute.Schema
 			r.AddressAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.AddressAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag) {
-				r.AddressAttribute.SettingsFlag = r.AddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount, settingsFlagItem := range resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag {
-				var settingsFlag1 tfTypes.SettingFlag
-				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
-				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem.Name)
-				if settingsFlagCount+1 > len(r.AddressAttribute.SettingsFlag) {
-					r.AddressAttribute.SettingsFlag = append(r.AddressAttribute.SettingsFlag, settingsFlag1)
-				} else {
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Enabled = settingsFlag1.Enabled
-					r.AddressAttribute.SettingsFlag[settingsFlagCount].Name = settingsFlag1.Name
-				}
+
+			for _, settingsFlagItem := range resp.AttributeWithCompositeIDAddressAttribute.SettingsFlag {
+				var settingsFlag tfTypes.SettingFlag
+
+				settingsFlag.Enabled = types.BoolPointerValue(settingsFlagItem.Enabled)
+				settingsFlag.Name = types.StringPointerValue(settingsFlagItem.Name)
+
+				r.AddressAttribute.SettingsFlag = append(r.AddressAttribute.SettingsFlag, settingsFlag)
 			}
 			r.AddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ShowInTable)
 			r.ShowInTable = r.AddressAttribute.ShowInTable
@@ -143,10 +143,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				}
 			}
 			if resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue == nil {
-				r.AddressRelationAttribute.DefaultValue = types.StringNull()
+				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult1, _ := json.Marshal(resp.AttributeWithCompositeIDAddressRelationAttribute.DefaultValue)
-				r.AddressRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult1))
+				r.AddressRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult1))
 			}
 			r.AddressRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Deprecated)
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
@@ -200,19 +200,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AddressRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Schema)
 			r.Schema = r.AddressRelationAttribute.Schema
 			r.AddressRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.AddressRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag) {
-				r.AddressRelationAttribute.SettingsFlag = r.AddressRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount1, settingsFlagItem1 := range resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag {
-				var settingsFlag3 tfTypes.SettingFlag
-				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
-				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem1.Name)
-				if settingsFlagCount1+1 > len(r.AddressRelationAttribute.SettingsFlag) {
-					r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag3)
-				} else {
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Enabled = settingsFlag3.Enabled
-					r.AddressRelationAttribute.SettingsFlag[settingsFlagCount1].Name = settingsFlag3.Name
-				}
+
+			for _, settingsFlagItem1 := range resp.AttributeWithCompositeIDAddressRelationAttribute.SettingsFlag {
+				var settingsFlag1 tfTypes.SettingFlag
+
+				settingsFlag1.Enabled = types.BoolPointerValue(settingsFlagItem1.Enabled)
+				settingsFlag1.Name = types.StringPointerValue(settingsFlagItem1.Name)
+
+				r.AddressRelationAttribute.SettingsFlag = append(r.AddressRelationAttribute.SettingsFlag, settingsFlag1)
 			}
 			r.AddressRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ShowInTable)
 			r.ShowInTable = r.AddressRelationAttribute.ShowInTable
@@ -242,10 +237,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.AutomationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue == nil {
-				r.AutomationAttribute.DefaultValue = types.StringNull()
+				r.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult2, _ := json.Marshal(resp.AttributeWithCompositeIDAutomationAttribute.DefaultValue)
-				r.AutomationAttribute.DefaultValue = types.StringValue(string(defaultValueResult2))
+				r.AutomationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult2))
 			}
 			r.AutomationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Deprecated)
 			r.Deprecated = r.AutomationAttribute.Deprecated
@@ -299,19 +294,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.AutomationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Schema)
 			r.Schema = r.AutomationAttribute.Schema
 			r.AutomationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.AutomationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag) {
-				r.AutomationAttribute.SettingsFlag = r.AutomationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount2, settingsFlagItem2 := range resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag {
-				var settingsFlag5 tfTypes.SettingFlag
-				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
-				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem2.Name)
-				if settingsFlagCount2+1 > len(r.AutomationAttribute.SettingsFlag) {
-					r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag5)
-				} else {
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Enabled = settingsFlag5.Enabled
-					r.AutomationAttribute.SettingsFlag[settingsFlagCount2].Name = settingsFlag5.Name
-				}
+
+			for _, settingsFlagItem2 := range resp.AttributeWithCompositeIDAutomationAttribute.SettingsFlag {
+				var settingsFlag2 tfTypes.SettingFlag
+
+				settingsFlag2.Enabled = types.BoolPointerValue(settingsFlagItem2.Enabled)
+				settingsFlag2.Name = types.StringPointerValue(settingsFlagItem2.Name)
+
+				r.AutomationAttribute.SettingsFlag = append(r.AutomationAttribute.SettingsFlag, settingsFlag2)
 			}
 			r.AutomationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ShowInTable)
 			r.ShowInTable = r.AutomationAttribute.ShowInTable
@@ -341,10 +331,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.BooleanAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue == nil {
-				r.BooleanAttribute.DefaultValue = types.StringNull()
+				r.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult3, _ := json.Marshal(resp.AttributeWithCompositeIDBooleanAttribute.DefaultValue)
-				r.BooleanAttribute.DefaultValue = types.StringValue(string(defaultValueResult3))
+				r.BooleanAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult3))
 			}
 			r.BooleanAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Deprecated)
 			r.Deprecated = r.BooleanAttribute.Deprecated
@@ -403,19 +393,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.BooleanAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Schema)
 			r.Schema = r.BooleanAttribute.Schema
 			r.BooleanAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.BooleanAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag) {
-				r.BooleanAttribute.SettingsFlag = r.BooleanAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount3, settingsFlagItem3 := range resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag {
-				var settingsFlag7 tfTypes.SettingFlag
-				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
-				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem3.Name)
-				if settingsFlagCount3+1 > len(r.BooleanAttribute.SettingsFlag) {
-					r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag7)
-				} else {
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Enabled = settingsFlag7.Enabled
-					r.BooleanAttribute.SettingsFlag[settingsFlagCount3].Name = settingsFlag7.Name
-				}
+
+			for _, settingsFlagItem3 := range resp.AttributeWithCompositeIDBooleanAttribute.SettingsFlag {
+				var settingsFlag3 tfTypes.SettingFlag
+
+				settingsFlag3.Enabled = types.BoolPointerValue(settingsFlagItem3.Enabled)
+				settingsFlag3.Name = types.StringPointerValue(settingsFlagItem3.Name)
+
+				r.BooleanAttribute.SettingsFlag = append(r.BooleanAttribute.SettingsFlag, settingsFlag3)
 			}
 			r.BooleanAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ShowInTable)
 			r.ShowInTable = r.BooleanAttribute.ShowInTable
@@ -448,10 +433,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			}
 			r.ComputedAttribute.CurrencyField = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.CurrencyField)
 			if resp.AttributeWithCompositeIDComputedAttribute.DefaultValue == nil {
-				r.ComputedAttribute.DefaultValue = types.StringNull()
+				r.ComputedAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult4, _ := json.Marshal(resp.AttributeWithCompositeIDComputedAttribute.DefaultValue)
-				r.ComputedAttribute.DefaultValue = types.StringValue(string(defaultValueResult4))
+				r.ComputedAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult4))
 			}
 			r.ComputedAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Deprecated)
 			r.Deprecated = r.ComputedAttribute.Deprecated
@@ -505,19 +490,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ComputedAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Schema)
 			r.Schema = r.ComputedAttribute.Schema
 			r.ComputedAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.ComputedAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag) {
-				r.ComputedAttribute.SettingsFlag = r.ComputedAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount4, settingsFlagItem4 := range resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag {
-				var settingsFlag9 tfTypes.SettingFlag
-				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
-				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem4.Name)
-				if settingsFlagCount4+1 > len(r.ComputedAttribute.SettingsFlag) {
-					r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag9)
-				} else {
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Enabled = settingsFlag9.Enabled
-					r.ComputedAttribute.SettingsFlag[settingsFlagCount4].Name = settingsFlag9.Name
-				}
+
+			for _, settingsFlagItem4 := range resp.AttributeWithCompositeIDComputedAttribute.SettingsFlag {
+				var settingsFlag4 tfTypes.SettingFlag
+
+				settingsFlag4.Enabled = types.BoolPointerValue(settingsFlagItem4.Enabled)
+				settingsFlag4.Name = types.StringPointerValue(settingsFlagItem4.Name)
+
+				r.ComputedAttribute.SettingsFlag = append(r.ComputedAttribute.SettingsFlag, settingsFlag4)
 			}
 			r.ComputedAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ShowInTable)
 			r.ShowInTable = r.ComputedAttribute.ShowInTable
@@ -547,10 +527,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.ConsentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDConsentAttribute.DefaultValue == nil {
-				r.ConsentAttribute.DefaultValue = types.StringNull()
+				r.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult5, _ := json.Marshal(resp.AttributeWithCompositeIDConsentAttribute.DefaultValue)
-				r.ConsentAttribute.DefaultValue = types.StringValue(string(defaultValueResult5))
+				r.ConsentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult5))
 			}
 			r.ConsentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Deprecated)
 			r.Deprecated = r.ConsentAttribute.Deprecated
@@ -608,19 +588,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ConsentAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Schema)
 			r.Schema = r.ConsentAttribute.Schema
 			r.ConsentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.ConsentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag) {
-				r.ConsentAttribute.SettingsFlag = r.ConsentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount5, settingsFlagItem5 := range resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag {
-				var settingsFlag11 tfTypes.SettingFlag
-				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
-				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem5.Name)
-				if settingsFlagCount5+1 > len(r.ConsentAttribute.SettingsFlag) {
-					r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag11)
-				} else {
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Enabled = settingsFlag11.Enabled
-					r.ConsentAttribute.SettingsFlag[settingsFlagCount5].Name = settingsFlag11.Name
-				}
+
+			for _, settingsFlagItem5 := range resp.AttributeWithCompositeIDConsentAttribute.SettingsFlag {
+				var settingsFlag5 tfTypes.SettingFlag
+
+				settingsFlag5.Enabled = types.BoolPointerValue(settingsFlagItem5.Enabled)
+				settingsFlag5.Name = types.StringPointerValue(settingsFlagItem5.Name)
+
+				r.ConsentAttribute.SettingsFlag = append(r.ConsentAttribute.SettingsFlag, settingsFlag5)
 			}
 			r.ConsentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ShowInTable)
 			r.ShowInTable = r.ConsentAttribute.ShowInTable
@@ -651,10 +626,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.CountryAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDCountryAttribute.DefaultValue == nil {
-				r.CountryAttribute.DefaultValue = types.StringNull()
+				r.CountryAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult6, _ := json.Marshal(resp.AttributeWithCompositeIDCountryAttribute.DefaultValue)
-				r.CountryAttribute.DefaultValue = types.StringValue(string(defaultValueResult6))
+				r.CountryAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult6))
 			}
 			r.CountryAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Deprecated)
 			r.Deprecated = r.CountryAttribute.Deprecated
@@ -708,19 +683,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.CountryAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Schema)
 			r.Schema = r.CountryAttribute.Schema
 			r.CountryAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.CountryAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag) {
-				r.CountryAttribute.SettingsFlag = r.CountryAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount6, settingsFlagItem6 := range resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag {
-				var settingsFlag13 tfTypes.SettingFlag
-				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
-				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem6.Name)
-				if settingsFlagCount6+1 > len(r.CountryAttribute.SettingsFlag) {
-					r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag13)
-				} else {
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Enabled = settingsFlag13.Enabled
-					r.CountryAttribute.SettingsFlag[settingsFlagCount6].Name = settingsFlag13.Name
-				}
+
+			for _, settingsFlagItem6 := range resp.AttributeWithCompositeIDCountryAttribute.SettingsFlag {
+				var settingsFlag6 tfTypes.SettingFlag
+
+				settingsFlag6.Enabled = types.BoolPointerValue(settingsFlagItem6.Enabled)
+				settingsFlag6.Name = types.StringPointerValue(settingsFlagItem6.Name)
+
+				r.CountryAttribute.SettingsFlag = append(r.CountryAttribute.SettingsFlag, settingsFlag6)
 			}
 			r.CountryAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ShowInTable)
 			r.ShowInTable = r.CountryAttribute.ShowInTable
@@ -750,30 +720,26 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.CurrencyAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			r.CurrencyAttribute.Currency = []tfTypes.CurrencyAttributeCurrency{}
-			if len(r.CurrencyAttribute.Currency) > len(resp.AttributeWithCompositeIDCurrencyAttribute.Currency) {
-				r.CurrencyAttribute.Currency = r.CurrencyAttribute.Currency[:len(resp.AttributeWithCompositeIDCurrencyAttribute.Currency)]
-			}
-			for currencyCount, currencyItem := range resp.AttributeWithCompositeIDCurrencyAttribute.Currency {
-				var currency1 tfTypes.CurrencyAttributeCurrency
-				if currencyItem.CurrencyAttributeCurrency1 != nil {
-					currency1.One = &tfTypes.CurrencyAttributeCurrency1{}
-					currency1.One.Code = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Code)
-					currency1.One.Description = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Description)
-					currency1.One.Flag = types.StringPointerValue(currencyItem.CurrencyAttributeCurrency1.Flag)
-					currency1.One.Symbol = types.StringValue(currencyItem.CurrencyAttributeCurrency1.Symbol)
+
+			for _, currencyItem := range resp.AttributeWithCompositeIDCurrencyAttribute.Currency {
+				var currency tfTypes.CurrencyAttributeCurrency
+
+				if currencyItem.Currency1 != nil {
+					currency.One = &tfTypes.Currency1{}
+					currency.One.Code = types.StringValue(currencyItem.Currency1.Code)
+					currency.One.Description = types.StringValue(currencyItem.Currency1.Description)
+					currency.One.Flag = types.StringPointerValue(currencyItem.Currency1.Flag)
+					currency.One.Symbol = types.StringValue(currencyItem.Currency1.Symbol)
 				}
-				if currencyCount+1 > len(r.CurrencyAttribute.Currency) {
-					r.CurrencyAttribute.Currency = append(r.CurrencyAttribute.Currency, currency1)
-				} else {
-					r.CurrencyAttribute.Currency[currencyCount].One = currency1.One
-				}
+
+				r.CurrencyAttribute.Currency = append(r.CurrencyAttribute.Currency, currency)
 			}
 			r.CurrencyAttribute.CurrencySelectorOnly = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.CurrencySelectorOnly)
 			if resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue == nil {
-				r.CurrencyAttribute.DefaultValue = types.StringNull()
+				r.CurrencyAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult7, _ := json.Marshal(resp.AttributeWithCompositeIDCurrencyAttribute.DefaultValue)
-				r.CurrencyAttribute.DefaultValue = types.StringValue(string(defaultValueResult7))
+				r.CurrencyAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult7))
 			}
 			r.CurrencyAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Deprecated)
 			r.Deprecated = r.CurrencyAttribute.Deprecated
@@ -827,19 +793,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.CurrencyAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Schema)
 			r.Schema = r.CurrencyAttribute.Schema
 			r.CurrencyAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.CurrencyAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag) {
-				r.CurrencyAttribute.SettingsFlag = r.CurrencyAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount7, settingsFlagItem7 := range resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag {
-				var settingsFlag15 tfTypes.SettingFlag
-				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
-				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem7.Name)
-				if settingsFlagCount7+1 > len(r.CurrencyAttribute.SettingsFlag) {
-					r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag15)
-				} else {
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Enabled = settingsFlag15.Enabled
-					r.CurrencyAttribute.SettingsFlag[settingsFlagCount7].Name = settingsFlag15.Name
-				}
+
+			for _, settingsFlagItem7 := range resp.AttributeWithCompositeIDCurrencyAttribute.SettingsFlag {
+				var settingsFlag7 tfTypes.SettingFlag
+
+				settingsFlag7.Enabled = types.BoolPointerValue(settingsFlagItem7.Enabled)
+				settingsFlag7.Name = types.StringPointerValue(settingsFlagItem7.Name)
+
+				r.CurrencyAttribute.SettingsFlag = append(r.CurrencyAttribute.SettingsFlag, settingsFlag7)
 			}
 			r.CurrencyAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ShowInTable)
 			r.ShowInTable = r.CurrencyAttribute.ShowInTable
@@ -869,10 +830,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.DateAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDDateAttribute.DefaultValue == nil {
-				r.DateAttribute.DefaultValue = types.StringNull()
+				r.DateAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult8, _ := json.Marshal(resp.AttributeWithCompositeIDDateAttribute.DefaultValue)
-				r.DateAttribute.DefaultValue = types.StringValue(string(defaultValueResult8))
+				r.DateAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult8))
 			}
 			r.DateAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.Deprecated)
 			r.Deprecated = r.DateAttribute.Deprecated
@@ -926,19 +887,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.DateAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Schema)
 			r.Schema = r.DateAttribute.Schema
 			r.DateAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.DateAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag) {
-				r.DateAttribute.SettingsFlag = r.DateAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDDateAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount8, settingsFlagItem8 := range resp.AttributeWithCompositeIDDateAttribute.SettingsFlag {
-				var settingsFlag17 tfTypes.SettingFlag
-				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
-				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem8.Name)
-				if settingsFlagCount8+1 > len(r.DateAttribute.SettingsFlag) {
-					r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag17)
-				} else {
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Enabled = settingsFlag17.Enabled
-					r.DateAttribute.SettingsFlag[settingsFlagCount8].Name = settingsFlag17.Name
-				}
+
+			for _, settingsFlagItem8 := range resp.AttributeWithCompositeIDDateAttribute.SettingsFlag {
+				var settingsFlag8 tfTypes.SettingFlag
+
+				settingsFlag8.Enabled = types.BoolPointerValue(settingsFlagItem8.Enabled)
+				settingsFlag8.Name = types.StringPointerValue(settingsFlagItem8.Name)
+
+				r.DateAttribute.SettingsFlag = append(r.DateAttribute.SettingsFlag, settingsFlag8)
 			}
 			r.DateAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ShowInTable)
 			r.ShowInTable = r.DateAttribute.ShowInTable
@@ -968,10 +924,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.EmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDEmailAttribute.DefaultValue == nil {
-				r.EmailAttribute.DefaultValue = types.StringNull()
+				r.EmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult9, _ := json.Marshal(resp.AttributeWithCompositeIDEmailAttribute.DefaultValue)
-				r.EmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult9))
+				r.EmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult9))
 			}
 			r.EmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Deprecated)
 			r.Deprecated = r.EmailAttribute.Deprecated
@@ -1025,19 +981,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.EmailAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Schema)
 			r.Schema = r.EmailAttribute.Schema
 			r.EmailAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.EmailAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag) {
-				r.EmailAttribute.SettingsFlag = r.EmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount9, settingsFlagItem9 := range resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag {
-				var settingsFlag19 tfTypes.SettingFlag
-				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
-				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem9.Name)
-				if settingsFlagCount9+1 > len(r.EmailAttribute.SettingsFlag) {
-					r.EmailAttribute.SettingsFlag = append(r.EmailAttribute.SettingsFlag, settingsFlag19)
-				} else {
-					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Enabled = settingsFlag19.Enabled
-					r.EmailAttribute.SettingsFlag[settingsFlagCount9].Name = settingsFlag19.Name
-				}
+
+			for _, settingsFlagItem9 := range resp.AttributeWithCompositeIDEmailAttribute.SettingsFlag {
+				var settingsFlag9 tfTypes.SettingFlag
+
+				settingsFlag9.Enabled = types.BoolPointerValue(settingsFlagItem9.Enabled)
+				settingsFlag9.Name = types.StringPointerValue(settingsFlagItem9.Name)
+
+				r.EmailAttribute.SettingsFlag = append(r.EmailAttribute.SettingsFlag, settingsFlag9)
 			}
 			r.EmailAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ShowInTable)
 			r.ShowInTable = r.EmailAttribute.ShowInTable
@@ -1076,10 +1027,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.FileAttribute.DefaultAccessControl = types.StringNull()
 			}
 			if resp.AttributeWithCompositeIDFileAttribute.DefaultValue == nil {
-				r.FileAttribute.DefaultValue = types.StringNull()
+				r.FileAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult10, _ := json.Marshal(resp.AttributeWithCompositeIDFileAttribute.DefaultValue)
-				r.FileAttribute.DefaultValue = types.StringValue(string(defaultValueResult10))
+				r.FileAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult10))
 			}
 			r.FileAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.Deprecated)
 			r.Deprecated = r.FileAttribute.Deprecated
@@ -1136,19 +1087,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.FileAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Schema)
 			r.Schema = r.FileAttribute.Schema
 			r.FileAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.FileAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag) {
-				r.FileAttribute.SettingsFlag = r.FileAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDFileAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount10, settingsFlagItem10 := range resp.AttributeWithCompositeIDFileAttribute.SettingsFlag {
-				var settingsFlag21 tfTypes.SettingFlag
-				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
-				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem10.Name)
-				if settingsFlagCount10+1 > len(r.FileAttribute.SettingsFlag) {
-					r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag21)
-				} else {
-					r.FileAttribute.SettingsFlag[settingsFlagCount10].Enabled = settingsFlag21.Enabled
-					r.FileAttribute.SettingsFlag[settingsFlagCount10].Name = settingsFlag21.Name
-				}
+
+			for _, settingsFlagItem10 := range resp.AttributeWithCompositeIDFileAttribute.SettingsFlag {
+				var settingsFlag10 tfTypes.SettingFlag
+
+				settingsFlag10.Enabled = types.BoolPointerValue(settingsFlagItem10.Enabled)
+				settingsFlag10.Name = types.StringPointerValue(settingsFlagItem10.Name)
+
+				r.FileAttribute.SettingsFlag = append(r.FileAttribute.SettingsFlag, settingsFlag10)
 			}
 			r.FileAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ShowInTable)
 			r.ShowInTable = r.FileAttribute.ShowInTable
@@ -1178,10 +1124,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.InternalAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDInternalAttribute.DefaultValue == nil {
-				r.InternalAttribute.DefaultValue = types.StringNull()
+				r.InternalAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult11, _ := json.Marshal(resp.AttributeWithCompositeIDInternalAttribute.DefaultValue)
-				r.InternalAttribute.DefaultValue = types.StringValue(string(defaultValueResult11))
+				r.InternalAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult11))
 			}
 			r.InternalAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Deprecated)
 			r.Deprecated = r.InternalAttribute.Deprecated
@@ -1235,19 +1181,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InternalAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Schema)
 			r.Schema = r.InternalAttribute.Schema
 			r.InternalAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.InternalAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag) {
-				r.InternalAttribute.SettingsFlag = r.InternalAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount11, settingsFlagItem11 := range resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag {
-				var settingsFlag23 tfTypes.SettingFlag
-				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
-				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem11.Name)
-				if settingsFlagCount11+1 > len(r.InternalAttribute.SettingsFlag) {
-					r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag23)
-				} else {
-					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Enabled = settingsFlag23.Enabled
-					r.InternalAttribute.SettingsFlag[settingsFlagCount11].Name = settingsFlag23.Name
-				}
+
+			for _, settingsFlagItem11 := range resp.AttributeWithCompositeIDInternalAttribute.SettingsFlag {
+				var settingsFlag11 tfTypes.SettingFlag
+
+				settingsFlag11.Enabled = types.BoolPointerValue(settingsFlagItem11.Enabled)
+				settingsFlag11.Name = types.StringPointerValue(settingsFlagItem11.Name)
+
+				r.InternalAttribute.SettingsFlag = append(r.InternalAttribute.SettingsFlag, settingsFlag11)
 			}
 			r.InternalAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ShowInTable)
 			r.ShowInTable = r.InternalAttribute.ShowInTable
@@ -1277,10 +1218,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.InternalUserAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue == nil {
-				r.InternalUserAttribute.DefaultValue = types.StringNull()
+				r.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult12, _ := json.Marshal(resp.AttributeWithCompositeIDInternalUserAttribute.DefaultValue)
-				r.InternalUserAttribute.DefaultValue = types.StringValue(string(defaultValueResult12))
+				r.InternalUserAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult12))
 			}
 			r.InternalUserAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Deprecated)
 			r.Deprecated = r.InternalUserAttribute.Deprecated
@@ -1334,19 +1275,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InternalUserAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Schema)
 			r.Schema = r.InternalUserAttribute.Schema
 			r.InternalUserAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.InternalUserAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag) {
-				r.InternalUserAttribute.SettingsFlag = r.InternalUserAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount12, settingsFlagItem12 := range resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag {
-				var settingsFlag25 tfTypes.SettingFlag
-				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
-				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem12.Name)
-				if settingsFlagCount12+1 > len(r.InternalUserAttribute.SettingsFlag) {
-					r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag25)
-				} else {
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Enabled = settingsFlag25.Enabled
-					r.InternalUserAttribute.SettingsFlag[settingsFlagCount12].Name = settingsFlag25.Name
-				}
+
+			for _, settingsFlagItem12 := range resp.AttributeWithCompositeIDInternalUserAttribute.SettingsFlag {
+				var settingsFlag12 tfTypes.SettingFlag
+
+				settingsFlag12.Enabled = types.BoolPointerValue(settingsFlagItem12.Enabled)
+				settingsFlag12.Name = types.StringPointerValue(settingsFlagItem12.Name)
+
+				r.InternalUserAttribute.SettingsFlag = append(r.InternalUserAttribute.SettingsFlag, settingsFlag12)
 			}
 			r.InternalUserAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ShowInTable)
 			r.ShowInTable = r.InternalUserAttribute.ShowInTable
@@ -1376,10 +1312,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.InvitationEmailAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue == nil {
-				r.InvitationEmailAttribute.DefaultValue = types.StringNull()
+				r.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult13, _ := json.Marshal(resp.AttributeWithCompositeIDInvitationEmailAttribute.DefaultValue)
-				r.InvitationEmailAttribute.DefaultValue = types.StringValue(string(defaultValueResult13))
+				r.InvitationEmailAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult13))
 			}
 			r.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Deprecated)
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
@@ -1433,19 +1369,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.InvitationEmailAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Schema)
 			r.Schema = r.InvitationEmailAttribute.Schema
 			r.InvitationEmailAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.InvitationEmailAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag) {
-				r.InvitationEmailAttribute.SettingsFlag = r.InvitationEmailAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount13, settingsFlagItem13 := range resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag {
-				var settingsFlag27 tfTypes.SettingFlag
-				settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
-				settingsFlag27.Name = types.StringPointerValue(settingsFlagItem13.Name)
-				if settingsFlagCount13+1 > len(r.InvitationEmailAttribute.SettingsFlag) {
-					r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag27)
-				} else {
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Enabled = settingsFlag27.Enabled
-					r.InvitationEmailAttribute.SettingsFlag[settingsFlagCount13].Name = settingsFlag27.Name
-				}
+
+			for _, settingsFlagItem13 := range resp.AttributeWithCompositeIDInvitationEmailAttribute.SettingsFlag {
+				var settingsFlag13 tfTypes.SettingFlag
+
+				settingsFlag13.Enabled = types.BoolPointerValue(settingsFlagItem13.Enabled)
+				settingsFlag13.Name = types.StringPointerValue(settingsFlagItem13.Name)
+
+				r.InvitationEmailAttribute.SettingsFlag = append(r.InvitationEmailAttribute.SettingsFlag, settingsFlag13)
 			}
 			r.InvitationEmailAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ShowInTable)
 			r.ShowInTable = r.InvitationEmailAttribute.ShowInTable
@@ -1475,10 +1406,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.LinkAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDLinkAttribute.DefaultValue == nil {
-				r.LinkAttribute.DefaultValue = types.StringNull()
+				r.LinkAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult14, _ := json.Marshal(resp.AttributeWithCompositeIDLinkAttribute.DefaultValue)
-				r.LinkAttribute.DefaultValue = types.StringValue(string(defaultValueResult14))
+				r.LinkAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult14))
 			}
 			r.LinkAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Deprecated)
 			r.Deprecated = r.LinkAttribute.Deprecated
@@ -1532,19 +1463,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.LinkAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Schema)
 			r.Schema = r.LinkAttribute.Schema
 			r.LinkAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.LinkAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag) {
-				r.LinkAttribute.SettingsFlag = r.LinkAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount14, settingsFlagItem14 := range resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag {
-				var settingsFlag29 tfTypes.SettingFlag
-				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
-				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem14.Name)
-				if settingsFlagCount14+1 > len(r.LinkAttribute.SettingsFlag) {
-					r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag29)
-				} else {
-					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Enabled = settingsFlag29.Enabled
-					r.LinkAttribute.SettingsFlag[settingsFlagCount14].Name = settingsFlag29.Name
-				}
+
+			for _, settingsFlagItem14 := range resp.AttributeWithCompositeIDLinkAttribute.SettingsFlag {
+				var settingsFlag14 tfTypes.SettingFlag
+
+				settingsFlag14.Enabled = types.BoolPointerValue(settingsFlagItem14.Enabled)
+				settingsFlag14.Name = types.StringPointerValue(settingsFlagItem14.Name)
+
+				r.LinkAttribute.SettingsFlag = append(r.LinkAttribute.SettingsFlag, settingsFlag14)
 			}
 			r.LinkAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ShowInTable)
 			r.ShowInTable = r.LinkAttribute.ShowInTable
@@ -1575,10 +1501,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.MessageEmailAddressAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue == nil {
-				r.MessageEmailAddressAttribute.DefaultValue = types.StringNull()
+				r.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult15, _ := json.Marshal(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.DefaultValue)
-				r.MessageEmailAddressAttribute.DefaultValue = types.StringValue(string(defaultValueResult15))
+				r.MessageEmailAddressAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult15))
 			}
 			r.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Deprecated)
 			r.Deprecated = r.MessageEmailAddressAttribute.Deprecated
@@ -1634,19 +1560,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Schema = r.MessageEmailAddressAttribute.Schema
 			r.MessageEmailAddressAttribute.SendStatus = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SendStatus)
 			r.MessageEmailAddressAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.MessageEmailAddressAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag) {
-				r.MessageEmailAddressAttribute.SettingsFlag = r.MessageEmailAddressAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount15, settingsFlagItem15 := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag {
-				var settingsFlag31 tfTypes.SettingFlag
-				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
-				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem15.Name)
-				if settingsFlagCount15+1 > len(r.MessageEmailAddressAttribute.SettingsFlag) {
-					r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag31)
-				} else {
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Enabled = settingsFlag31.Enabled
-					r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagCount15].Name = settingsFlag31.Name
-				}
+
+			for _, settingsFlagItem15 := range resp.AttributeWithCompositeIDMessageEmailAddressAttribute.SettingsFlag {
+				var settingsFlag15 tfTypes.SettingFlag
+
+				settingsFlag15.Enabled = types.BoolPointerValue(settingsFlagItem15.Enabled)
+				settingsFlag15.Name = types.StringPointerValue(settingsFlagItem15.Name)
+
+				r.MessageEmailAddressAttribute.SettingsFlag = append(r.MessageEmailAddressAttribute.SettingsFlag, settingsFlag15)
 			}
 			r.MessageEmailAddressAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ShowInTable)
 			r.ShowInTable = r.MessageEmailAddressAttribute.ShowInTable
@@ -1678,10 +1599,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.MultiSelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue == nil {
-				r.MultiSelectAttribute.DefaultValue = types.StringNull()
+				r.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult16, _ := json.Marshal(resp.AttributeWithCompositeIDMultiSelectAttribute.DefaultValue)
-				r.MultiSelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult16))
+				r.MultiSelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult16))
 			}
 			r.MultiSelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Deprecated)
 			r.Deprecated = r.MultiSelectAttribute.Deprecated
@@ -1718,25 +1639,20 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MultiSelectAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Name)
 			r.Name = r.MultiSelectAttribute.Name
 			r.MultiSelectAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-			if len(r.MultiSelectAttribute.Options) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.Options) {
-				r.MultiSelectAttribute.Options = r.MultiSelectAttribute.Options[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.Options)]
-			}
-			for optionsVarCount, optionsVarItem := range resp.AttributeWithCompositeIDMultiSelectAttribute.Options {
-				var optionsVar1 tfTypes.MultiSelectAttributeOptions
+
+			for _, optionsVarItem := range resp.AttributeWithCompositeIDMultiSelectAttribute.Options {
+				var optionsVar tfTypes.MultiSelectAttributeOptions
+
 				if optionsVarItem.Str != nil {
-					optionsVar1.Str = types.StringPointerValue(optionsVarItem.Str)
+					optionsVar.Str = types.StringPointerValue(optionsVarItem.Str)
 				}
 				if optionsVarItem.MultiSelectAttributeOptions2 != nil {
-					optionsVar1.Two = &tfTypes.MultiSelectAttributeOptions2{}
-					optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem.MultiSelectAttributeOptions2.Title)
-					optionsVar1.Two.Value = types.StringValue(optionsVarItem.MultiSelectAttributeOptions2.Value)
+					optionsVar.Two = &tfTypes.MultiSelectAttributeOptions2{}
+					optionsVar.Two.Title = types.StringPointerValue(optionsVarItem.MultiSelectAttributeOptions2.Title)
+					optionsVar.Two.Value = types.StringValue(optionsVarItem.MultiSelectAttributeOptions2.Value)
 				}
-				if optionsVarCount+1 > len(r.MultiSelectAttribute.Options) {
-					r.MultiSelectAttribute.Options = append(r.MultiSelectAttribute.Options, optionsVar1)
-				} else {
-					r.MultiSelectAttribute.Options[optionsVarCount].Str = optionsVar1.Str
-					r.MultiSelectAttribute.Options[optionsVarCount].Two = optionsVar1.Two
-				}
+
+				r.MultiSelectAttribute.Options = append(r.MultiSelectAttribute.Options, optionsVar)
 			}
 			r.MultiSelectAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Order)
 			r.Order = r.MultiSelectAttribute.Order
@@ -1757,19 +1673,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.MultiSelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Schema)
 			r.Schema = r.MultiSelectAttribute.Schema
 			r.MultiSelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.MultiSelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag) {
-				r.MultiSelectAttribute.SettingsFlag = r.MultiSelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount16, settingsFlagItem16 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
-				var settingsFlag33 tfTypes.SettingFlag
-				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
-				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem16.Name)
-				if settingsFlagCount16+1 > len(r.MultiSelectAttribute.SettingsFlag) {
-					r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag33)
-				} else {
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Enabled = settingsFlag33.Enabled
-					r.MultiSelectAttribute.SettingsFlag[settingsFlagCount16].Name = settingsFlag33.Name
-				}
+
+			for _, settingsFlagItem16 := range resp.AttributeWithCompositeIDMultiSelectAttribute.SettingsFlag {
+				var settingsFlag16 tfTypes.SettingFlag
+
+				settingsFlag16.Enabled = types.BoolPointerValue(settingsFlagItem16.Enabled)
+				settingsFlag16.Name = types.StringPointerValue(settingsFlagItem16.Name)
+
+				r.MultiSelectAttribute.SettingsFlag = append(r.MultiSelectAttribute.SettingsFlag, settingsFlag16)
 			}
 			r.MultiSelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ShowInTable)
 			r.ShowInTable = r.MultiSelectAttribute.ShowInTable
@@ -1799,10 +1710,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDNumberAttribute.DefaultValue == nil {
-				r.NumberAttribute.DefaultValue = types.StringNull()
+				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult17, _ := json.Marshal(resp.AttributeWithCompositeIDNumberAttribute.DefaultValue)
-				r.NumberAttribute.DefaultValue = types.StringValue(string(defaultValueResult17))
+				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult17))
 			}
 			r.NumberAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Deprecated)
 			r.Deprecated = r.NumberAttribute.Deprecated
@@ -1857,19 +1768,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.NumberAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Schema)
 			r.Schema = r.NumberAttribute.Schema
 			r.NumberAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.NumberAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag) {
-				r.NumberAttribute.SettingsFlag = r.NumberAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount17, settingsFlagItem17 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
-				var settingsFlag35 tfTypes.SettingFlag
-				settingsFlag35.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
-				settingsFlag35.Name = types.StringPointerValue(settingsFlagItem17.Name)
-				if settingsFlagCount17+1 > len(r.NumberAttribute.SettingsFlag) {
-					r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag35)
-				} else {
-					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Enabled = settingsFlag35.Enabled
-					r.NumberAttribute.SettingsFlag[settingsFlagCount17].Name = settingsFlag35.Name
-				}
+
+			for _, settingsFlagItem17 := range resp.AttributeWithCompositeIDNumberAttribute.SettingsFlag {
+				var settingsFlag17 tfTypes.SettingFlag
+
+				settingsFlag17.Enabled = types.BoolPointerValue(settingsFlagItem17.Enabled)
+				settingsFlag17.Name = types.StringPointerValue(settingsFlagItem17.Name)
+
+				r.NumberAttribute.SettingsFlag = append(r.NumberAttribute.SettingsFlag, settingsFlag17)
 			}
 			r.NumberAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ShowInTable)
 			r.ShowInTable = r.NumberAttribute.ShowInTable
@@ -1900,10 +1806,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.OrderedListAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue == nil {
-				r.OrderedListAttribute.DefaultValue = types.StringNull()
+				r.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult18, _ := json.Marshal(resp.AttributeWithCompositeIDOrderedListAttribute.DefaultValue)
-				r.OrderedListAttribute.DefaultValue = types.StringValue(string(defaultValueResult18))
+				r.OrderedListAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult18))
 			}
 			r.OrderedListAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Deprecated)
 			r.Deprecated = r.OrderedListAttribute.Deprecated
@@ -1957,19 +1863,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.OrderedListAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Schema)
 			r.Schema = r.OrderedListAttribute.Schema
 			r.OrderedListAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.OrderedListAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag) {
-				r.OrderedListAttribute.SettingsFlag = r.OrderedListAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount18, settingsFlagItem18 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
-				var settingsFlag37 tfTypes.SettingFlag
-				settingsFlag37.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
-				settingsFlag37.Name = types.StringPointerValue(settingsFlagItem18.Name)
-				if settingsFlagCount18+1 > len(r.OrderedListAttribute.SettingsFlag) {
-					r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag37)
-				} else {
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Enabled = settingsFlag37.Enabled
-					r.OrderedListAttribute.SettingsFlag[settingsFlagCount18].Name = settingsFlag37.Name
-				}
+
+			for _, settingsFlagItem18 := range resp.AttributeWithCompositeIDOrderedListAttribute.SettingsFlag {
+				var settingsFlag18 tfTypes.SettingFlag
+
+				settingsFlag18.Enabled = types.BoolPointerValue(settingsFlagItem18.Enabled)
+				settingsFlag18.Name = types.StringPointerValue(settingsFlagItem18.Name)
+
+				r.OrderedListAttribute.SettingsFlag = append(r.OrderedListAttribute.SettingsFlag, settingsFlag18)
 			}
 			r.OrderedListAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ShowInTable)
 			r.ShowInTable = r.OrderedListAttribute.ShowInTable
@@ -1999,10 +1900,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PartnerOrganisationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue == nil {
-				r.PartnerOrganisationAttribute.DefaultValue = types.StringNull()
+				r.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult19, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.DefaultValue)
-				r.PartnerOrganisationAttribute.DefaultValue = types.StringValue(string(defaultValueResult19))
+				r.PartnerOrganisationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult19))
 			}
 			r.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Deprecated)
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
@@ -2056,19 +1957,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PartnerOrganisationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Schema)
 			r.Schema = r.PartnerOrganisationAttribute.Schema
 			r.PartnerOrganisationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PartnerOrganisationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag) {
-				r.PartnerOrganisationAttribute.SettingsFlag = r.PartnerOrganisationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount19, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
-				var settingsFlag39 tfTypes.SettingFlag
-				settingsFlag39.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
-				settingsFlag39.Name = types.StringPointerValue(settingsFlagItem19.Name)
-				if settingsFlagCount19+1 > len(r.PartnerOrganisationAttribute.SettingsFlag) {
-					r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag39)
-				} else {
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Enabled = settingsFlag39.Enabled
-					r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagCount19].Name = settingsFlag39.Name
-				}
+
+			for _, settingsFlagItem19 := range resp.AttributeWithCompositeIDPartnerOrganisationAttribute.SettingsFlag {
+				var settingsFlag19 tfTypes.SettingFlag
+
+				settingsFlag19.Enabled = types.BoolPointerValue(settingsFlagItem19.Enabled)
+				settingsFlag19.Name = types.StringPointerValue(settingsFlagItem19.Name)
+
+				r.PartnerOrganisationAttribute.SettingsFlag = append(r.PartnerOrganisationAttribute.SettingsFlag, settingsFlag19)
 			}
 			r.PartnerOrganisationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ShowInTable)
 			r.ShowInTable = r.PartnerOrganisationAttribute.ShowInTable
@@ -2098,10 +1994,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PartnerStatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue == nil {
-				r.PartnerStatusAttribute.DefaultValue = types.StringNull()
+				r.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult20, _ := json.Marshal(resp.AttributeWithCompositeIDPartnerStatusAttribute.DefaultValue)
-				r.PartnerStatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult20))
+				r.PartnerStatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult20))
 			}
 			r.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Deprecated)
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
@@ -2155,19 +2051,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PartnerStatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Schema)
 			r.Schema = r.PartnerStatusAttribute.Schema
 			r.PartnerStatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PartnerStatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag) {
-				r.PartnerStatusAttribute.SettingsFlag = r.PartnerStatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount20, settingsFlagItem20 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
-				var settingsFlag41 tfTypes.SettingFlag
-				settingsFlag41.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
-				settingsFlag41.Name = types.StringPointerValue(settingsFlagItem20.Name)
-				if settingsFlagCount20+1 > len(r.PartnerStatusAttribute.SettingsFlag) {
-					r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag41)
-				} else {
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Enabled = settingsFlag41.Enabled
-					r.PartnerStatusAttribute.SettingsFlag[settingsFlagCount20].Name = settingsFlag41.Name
-				}
+
+			for _, settingsFlagItem20 := range resp.AttributeWithCompositeIDPartnerStatusAttribute.SettingsFlag {
+				var settingsFlag20 tfTypes.SettingFlag
+
+				settingsFlag20.Enabled = types.BoolPointerValue(settingsFlagItem20.Enabled)
+				settingsFlag20.Name = types.StringPointerValue(settingsFlagItem20.Name)
+
+				r.PartnerStatusAttribute.SettingsFlag = append(r.PartnerStatusAttribute.SettingsFlag, settingsFlag20)
 			}
 			r.PartnerStatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ShowInTable)
 			r.ShowInTable = r.PartnerStatusAttribute.ShowInTable
@@ -2197,10 +2088,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PaymentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue == nil {
-				r.PaymentAttribute.DefaultValue = types.StringNull()
+				r.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult21, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentAttribute.DefaultValue)
-				r.PaymentAttribute.DefaultValue = types.StringValue(string(defaultValueResult21))
+				r.PaymentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult21))
 			}
 			r.PaymentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Deprecated)
 			r.Deprecated = r.PaymentAttribute.Deprecated
@@ -2254,19 +2145,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PaymentAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Schema)
 			r.Schema = r.PaymentAttribute.Schema
 			r.PaymentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PaymentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag) {
-				r.PaymentAttribute.SettingsFlag = r.PaymentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount21, settingsFlagItem21 := range resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag {
-				var settingsFlag43 tfTypes.SettingFlag
-				settingsFlag43.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
-				settingsFlag43.Name = types.StringPointerValue(settingsFlagItem21.Name)
-				if settingsFlagCount21+1 > len(r.PaymentAttribute.SettingsFlag) {
-					r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag43)
-				} else {
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Enabled = settingsFlag43.Enabled
-					r.PaymentAttribute.SettingsFlag[settingsFlagCount21].Name = settingsFlag43.Name
-				}
+
+			for _, settingsFlagItem21 := range resp.AttributeWithCompositeIDPaymentAttribute.SettingsFlag {
+				var settingsFlag21 tfTypes.SettingFlag
+
+				settingsFlag21.Enabled = types.BoolPointerValue(settingsFlagItem21.Enabled)
+				settingsFlag21.Name = types.StringPointerValue(settingsFlagItem21.Name)
+
+				r.PaymentAttribute.SettingsFlag = append(r.PaymentAttribute.SettingsFlag, settingsFlag21)
 			}
 			r.PaymentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ShowInTable)
 			r.ShowInTable = r.PaymentAttribute.ShowInTable
@@ -2296,10 +2182,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PaymentMethodRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue == nil {
-				r.PaymentMethodRelationAttribute.DefaultValue = types.StringNull()
+				r.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult22, _ := json.Marshal(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.DefaultValue)
-				r.PaymentMethodRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult22))
+				r.PaymentMethodRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult22))
 			}
 			r.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Deprecated)
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
@@ -2353,19 +2239,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PaymentMethodRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Schema)
 			r.Schema = r.PaymentMethodRelationAttribute.Schema
 			r.PaymentMethodRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PaymentMethodRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag) {
-				r.PaymentMethodRelationAttribute.SettingsFlag = r.PaymentMethodRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount22, settingsFlagItem22 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
-				var settingsFlag45 tfTypes.SettingFlag
-				settingsFlag45.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
-				settingsFlag45.Name = types.StringPointerValue(settingsFlagItem22.Name)
-				if settingsFlagCount22+1 > len(r.PaymentMethodRelationAttribute.SettingsFlag) {
-					r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag45)
-				} else {
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Enabled = settingsFlag45.Enabled
-					r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagCount22].Name = settingsFlag45.Name
-				}
+
+			for _, settingsFlagItem22 := range resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.SettingsFlag {
+				var settingsFlag22 tfTypes.SettingFlag
+
+				settingsFlag22.Enabled = types.BoolPointerValue(settingsFlagItem22.Enabled)
+				settingsFlag22.Name = types.StringPointerValue(settingsFlagItem22.Name)
+
+				r.PaymentMethodRelationAttribute.SettingsFlag = append(r.PaymentMethodRelationAttribute.SettingsFlag, settingsFlag22)
 			}
 			r.PaymentMethodRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ShowInTable)
 			r.ShowInTable = r.PaymentMethodRelationAttribute.ShowInTable
@@ -2395,10 +2276,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PhoneAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue == nil {
-				r.PhoneAttribute.DefaultValue = types.StringNull()
+				r.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
 				defaultValueResult23, _ := json.Marshal(resp.AttributeWithCompositeIDPhoneAttribute.DefaultValue)
-				r.PhoneAttribute.DefaultValue = types.StringValue(string(defaultValueResult23))
+				r.PhoneAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult23))
 			}
 			r.PhoneAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Deprecated)
 			r.Deprecated = r.PhoneAttribute.Deprecated
@@ -2452,19 +2333,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PhoneAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Schema)
 			r.Schema = r.PhoneAttribute.Schema
 			r.PhoneAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PhoneAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag) {
-				r.PhoneAttribute.SettingsFlag = r.PhoneAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount23, settingsFlagItem23 := range resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag {
-				var settingsFlag47 tfTypes.SettingFlag
-				settingsFlag47.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
-				settingsFlag47.Name = types.StringPointerValue(settingsFlagItem23.Name)
-				if settingsFlagCount23+1 > len(r.PhoneAttribute.SettingsFlag) {
-					r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag47)
-				} else {
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Enabled = settingsFlag47.Enabled
-					r.PhoneAttribute.SettingsFlag[settingsFlagCount23].Name = settingsFlag47.Name
-				}
+
+			for _, settingsFlagItem23 := range resp.AttributeWithCompositeIDPhoneAttribute.SettingsFlag {
+				var settingsFlag23 tfTypes.SettingFlag
+
+				settingsFlag23.Enabled = types.BoolPointerValue(settingsFlagItem23.Enabled)
+				settingsFlag23.Name = types.StringPointerValue(settingsFlagItem23.Name)
+
+				r.PhoneAttribute.SettingsFlag = append(r.PhoneAttribute.SettingsFlag, settingsFlag23)
 			}
 			r.PhoneAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ShowInTable)
 			r.ShowInTable = r.PhoneAttribute.ShowInTable
@@ -2473,6 +2349,100 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PhoneAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPhoneAttribute.Type))
 			r.PhoneAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ValueFormatter)
 			r.ValueFormatter = r.PhoneAttribute.ValueFormatter
+		}
+		if resp.AttributeWithCompositeIDPortalAccessAttribute != nil {
+			r.PortalAccessAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
+			if resp.AttributeWithCompositeIDPortalAccessAttribute.Manifest != nil {
+				r.PortalAccessAttribute.Manifest = make([]types.String, 0, len(resp.AttributeWithCompositeIDPortalAccessAttribute.Manifest))
+				for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Manifest {
+					r.PortalAccessAttribute.Manifest = append(r.PortalAccessAttribute.Manifest, types.StringValue(v))
+				}
+			}
+			r.PortalAccessAttribute.Purpose = make([]types.String, 0, len(resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose))
+			for _, v := range resp.AttributeWithCompositeIDPortalAccessAttribute.Purpose {
+				r.PortalAccessAttribute.Purpose = append(r.PortalAccessAttribute.Purpose, types.StringValue(v))
+			}
+			r.PortalAccessAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.CompositeID)
+			r.CompositeID = r.PortalAccessAttribute.CompositeID
+			if resp.AttributeWithCompositeIDPortalAccessAttribute.Constraints == nil {
+				r.PortalAccessAttribute.Constraints = nil
+			} else {
+				r.PortalAccessAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
+			}
+			if resp.AttributeWithCompositeIDPortalAccessAttribute.DefaultValue == nil {
+				r.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedNull()
+			} else {
+				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPortalAccessAttribute.DefaultValue)
+				r.PortalAccessAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult24))
+			}
+			r.PortalAccessAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Deprecated)
+			r.Deprecated = r.PortalAccessAttribute.Deprecated
+			r.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.EntityBuilderDisableEdit)
+			r.EntityBuilderDisableEdit = r.PortalAccessAttribute.EntityBuilderDisableEdit
+			r.PortalAccessAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.FeatureFlag)
+			r.FeatureFlag = r.PortalAccessAttribute.FeatureFlag
+			r.PortalAccessAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Group)
+			r.Group = r.PortalAccessAttribute.Group
+			r.PortalAccessAttribute.HasPrimary = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.HasPrimary)
+			r.HasPrimary = r.PortalAccessAttribute.HasPrimary
+			r.PortalAccessAttribute.Hidden = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Hidden)
+			r.Hidden = r.PortalAccessAttribute.Hidden
+			r.PortalAccessAttribute.HideLabel = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.HideLabel)
+			r.HideLabel = r.PortalAccessAttribute.HideLabel
+			r.PortalAccessAttribute.Icon = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Icon)
+			r.Icon = r.PortalAccessAttribute.Icon
+			r.PortalAccessAttribute.ID = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ID)
+			r.ID = r.PortalAccessAttribute.ID
+			if resp.AttributeWithCompositeIDPortalAccessAttribute.InfoHelpers == nil {
+				r.PortalAccessAttribute.InfoHelpers = nil
+			} else {
+				r.PortalAccessAttribute.InfoHelpers = &tfTypes.AddressAttributeAttributeWithCompositeIDInfoHelpers{}
+				r.PortalAccessAttribute.InfoHelpers.HintCustomComponent = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.InfoHelpers.HintCustomComponent)
+				r.PortalAccessAttribute.InfoHelpers.HintText = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.InfoHelpers.HintText)
+				r.PortalAccessAttribute.InfoHelpers.HintTextKey = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.InfoHelpers.HintTextKey)
+				r.PortalAccessAttribute.InfoHelpers.HintTooltipPlacement = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.InfoHelpers.HintTooltipPlacement)
+			}
+			r.PortalAccessAttribute.Label = types.StringValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Label)
+			r.Label = r.PortalAccessAttribute.Label
+			r.PortalAccessAttribute.Layout = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Layout)
+			r.Layout = r.PortalAccessAttribute.Layout
+			r.PortalAccessAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Name)
+			r.Name = r.PortalAccessAttribute.Name
+			r.PortalAccessAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Order)
+			r.Order = r.PortalAccessAttribute.Order
+			r.PortalAccessAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Placeholder)
+			r.Placeholder = r.PortalAccessAttribute.Placeholder
+			r.PortalAccessAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.PreviewValueFormatter)
+			r.PreviewValueFormatter = r.PortalAccessAttribute.PreviewValueFormatter
+			r.PortalAccessAttribute.Protected = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Protected)
+			r.Protected = r.PortalAccessAttribute.Protected
+			r.PortalAccessAttribute.Readonly = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Readonly)
+			r.Readonly = r.PortalAccessAttribute.Readonly
+			r.PortalAccessAttribute.RenderCondition = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.RenderCondition)
+			r.RenderCondition = r.PortalAccessAttribute.RenderCondition
+			r.PortalAccessAttribute.Repeatable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Repeatable)
+			r.Repeatable = r.PortalAccessAttribute.Repeatable
+			r.PortalAccessAttribute.Required = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Required)
+			r.Required = r.PortalAccessAttribute.Required
+			r.PortalAccessAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Schema)
+			r.Schema = r.PortalAccessAttribute.Schema
+			r.PortalAccessAttribute.SettingsFlag = []tfTypes.SettingFlag{}
+
+			for _, settingsFlagItem24 := range resp.AttributeWithCompositeIDPortalAccessAttribute.SettingsFlag {
+				var settingsFlag24 tfTypes.SettingFlag
+
+				settingsFlag24.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
+				settingsFlag24.Name = types.StringPointerValue(settingsFlagItem24.Name)
+
+				r.PortalAccessAttribute.SettingsFlag = append(r.PortalAccessAttribute.SettingsFlag, settingsFlag24)
+			}
+			r.PortalAccessAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ShowInTable)
+			r.ShowInTable = r.PortalAccessAttribute.ShowInTable
+			r.PortalAccessAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Sortable)
+			r.Sortable = r.PortalAccessAttribute.Sortable
+			r.PortalAccessAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPortalAccessAttribute.Type))
+			r.PortalAccessAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ValueFormatter)
+			r.ValueFormatter = r.PortalAccessAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPriceComponentAttribute != nil {
 			r.PriceComponentAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
@@ -2494,10 +2464,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.PriceComponentAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue == nil {
-				r.PriceComponentAttribute.DefaultValue = types.StringNull()
+				r.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult24, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
-				r.PriceComponentAttribute.DefaultValue = types.StringValue(string(defaultValueResult24))
+				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDPriceComponentAttribute.DefaultValue)
+				r.PriceComponentAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult25))
 			}
 			r.PriceComponentAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Deprecated)
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
@@ -2551,19 +2521,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PriceComponentAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Schema)
 			r.Schema = r.PriceComponentAttribute.Schema
 			r.PriceComponentAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PriceComponentAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag) {
-				r.PriceComponentAttribute.SettingsFlag = r.PriceComponentAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount24, settingsFlagItem24 := range resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag {
-				var settingsFlag49 tfTypes.SettingFlag
-				settingsFlag49.Enabled = types.BoolPointerValue(settingsFlagItem24.Enabled)
-				settingsFlag49.Name = types.StringPointerValue(settingsFlagItem24.Name)
-				if settingsFlagCount24+1 > len(r.PriceComponentAttribute.SettingsFlag) {
-					r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag49)
-				} else {
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Enabled = settingsFlag49.Enabled
-					r.PriceComponentAttribute.SettingsFlag[settingsFlagCount24].Name = settingsFlag49.Name
-				}
+
+			for _, settingsFlagItem25 := range resp.AttributeWithCompositeIDPriceComponentAttribute.SettingsFlag {
+				var settingsFlag25 tfTypes.SettingFlag
+
+				settingsFlag25.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
+				settingsFlag25.Name = types.StringPointerValue(settingsFlagItem25.Name)
+
+				r.PriceComponentAttribute.SettingsFlag = append(r.PriceComponentAttribute.SettingsFlag, settingsFlag25)
 			}
 			r.PriceComponentAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ShowInTable)
 			r.ShowInTable = r.PriceComponentAttribute.ShowInTable
@@ -2574,7 +2539,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.PriceComponentAttribute.ValueFormatter
 		}
 		if resp.AttributeWithCompositeIDPurposeAttribute != nil {
-			r.PurposeAttribute = &tfTypes.AttributeWithCompositeIDPurposeAttribute{}
+			r.PurposeAttribute = &tfTypes.AttributeWithCompositeIDAutomationAttribute{}
 			if resp.AttributeWithCompositeIDPurposeAttribute.Manifest != nil {
 				r.PurposeAttribute.Manifest = make([]types.String, 0, len(resp.AttributeWithCompositeIDPurposeAttribute.Manifest))
 				for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Manifest {
@@ -2585,8 +2550,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Purpose {
 				r.PurposeAttribute.Purpose = append(r.PurposeAttribute.Purpose, types.StringValue(v))
 			}
-			r.PurposeAttribute.Archived = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Archived)
-			r.PurposeAttribute.Color = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Color)
 			r.PurposeAttribute.CompositeID = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.CompositeID)
 			r.CompositeID = r.PurposeAttribute.CompositeID
 			if resp.AttributeWithCompositeIDPurposeAttribute.Constraints == nil {
@@ -2594,16 +2557,11 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			} else {
 				r.PurposeAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
-			if resp.AttributeWithCompositeIDPurposeAttribute.CreatedAt != nil {
-				r.PurposeAttribute.CreatedAt = types.StringValue(resp.AttributeWithCompositeIDPurposeAttribute.CreatedAt.Format(time.RFC3339Nano))
-			} else {
-				r.PurposeAttribute.CreatedAt = types.StringNull()
-			}
 			if resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue == nil {
-				r.PurposeAttribute.DefaultValue = types.StringNull()
+				r.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult25, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
-				r.PurposeAttribute.DefaultValue = types.StringValue(string(defaultValueResult25))
+				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDPurposeAttribute.DefaultValue)
+				r.PurposeAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult26))
 			}
 			r.PurposeAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Deprecated)
 			r.Deprecated = r.PurposeAttribute.Deprecated
@@ -2640,10 +2598,6 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Name = r.PurposeAttribute.Name
 			r.PurposeAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Order)
 			r.Order = r.PurposeAttribute.Order
-			r.PurposeAttribute.Parents = make([]types.String, 0, len(resp.AttributeWithCompositeIDPurposeAttribute.Parents))
-			for _, v := range resp.AttributeWithCompositeIDPurposeAttribute.Parents {
-				r.PurposeAttribute.Parents = append(r.PurposeAttribute.Parents, types.StringValue(v))
-			}
 			r.PurposeAttribute.Placeholder = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Placeholder)
 			r.Placeholder = r.PurposeAttribute.Placeholder
 			r.PurposeAttribute.PreviewValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.PreviewValueFormatter)
@@ -2661,31 +2615,20 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.PurposeAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Schema)
 			r.Schema = r.PurposeAttribute.Schema
 			r.PurposeAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.PurposeAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag) {
-				r.PurposeAttribute.SettingsFlag = r.PurposeAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount25, settingsFlagItem25 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
-				var settingsFlag51 tfTypes.SettingFlag
-				settingsFlag51.Enabled = types.BoolPointerValue(settingsFlagItem25.Enabled)
-				settingsFlag51.Name = types.StringPointerValue(settingsFlagItem25.Name)
-				if settingsFlagCount25+1 > len(r.PurposeAttribute.SettingsFlag) {
-					r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag51)
-				} else {
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Enabled = settingsFlag51.Enabled
-					r.PurposeAttribute.SettingsFlag[settingsFlagCount25].Name = settingsFlag51.Name
-				}
+
+			for _, settingsFlagItem26 := range resp.AttributeWithCompositeIDPurposeAttribute.SettingsFlag {
+				var settingsFlag26 tfTypes.SettingFlag
+
+				settingsFlag26.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
+				settingsFlag26.Name = types.StringPointerValue(settingsFlagItem26.Name)
+
+				r.PurposeAttribute.SettingsFlag = append(r.PurposeAttribute.SettingsFlag, settingsFlag26)
 			}
 			r.PurposeAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ShowInTable)
 			r.ShowInTable = r.PurposeAttribute.ShowInTable
-			r.PurposeAttribute.Slug = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Slug)
 			r.PurposeAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Sortable)
 			r.Sortable = r.PurposeAttribute.Sortable
 			r.PurposeAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDPurposeAttribute.Type))
-			if resp.AttributeWithCompositeIDPurposeAttribute.UpdatedAt != nil {
-				r.PurposeAttribute.UpdatedAt = types.StringValue(resp.AttributeWithCompositeIDPurposeAttribute.UpdatedAt.Format(time.RFC3339Nano))
-			} else {
-				r.PurposeAttribute.UpdatedAt = types.StringNull()
-			}
 			r.PurposeAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ValueFormatter)
 			r.ValueFormatter = r.PurposeAttribute.ValueFormatter
 		}
@@ -2702,47 +2645,36 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.RelationAttribute.Purpose = append(r.RelationAttribute.Purpose, types.StringValue(v))
 			}
 			r.RelationAttribute.Actions = []tfTypes.RelationAttributeActions{}
-			if len(r.RelationAttribute.Actions) > len(resp.AttributeWithCompositeIDRelationAttribute.Actions) {
-				r.RelationAttribute.Actions = r.RelationAttribute.Actions[:len(resp.AttributeWithCompositeIDRelationAttribute.Actions)]
-			}
-			for actionsCount, actionsItem := range resp.AttributeWithCompositeIDRelationAttribute.Actions {
-				var actions1 tfTypes.RelationAttributeActions
+
+			for _, actionsItem := range resp.AttributeWithCompositeIDRelationAttribute.Actions {
+				var actions tfTypes.RelationAttributeActions
+
 				if actionsItem.ActionType != nil {
-					actions1.ActionType = types.StringValue(string(*actionsItem.ActionType))
+					actions.ActionType = types.StringValue(string(*actionsItem.ActionType))
 				} else {
-					actions1.ActionType = types.StringNull()
+					actions.ActionType = types.StringNull()
 				}
-				actions1.Default = types.BoolPointerValue(actionsItem.Default)
-				actions1.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
-				actions1.Label = types.StringPointerValue(actionsItem.Label)
+				actions.Default = types.BoolPointerValue(actionsItem.Default)
+				actions.FeatureFlag = types.StringPointerValue(actionsItem.FeatureFlag)
+				actions.Label = types.StringPointerValue(actionsItem.Label)
 				if actionsItem.NewEntityItem == nil {
-					actions1.NewEntityItem = types.StringNull()
+					actions.NewEntityItem = jsontypes.NewNormalizedNull()
 				} else {
 					newEntityItemResult, _ := json.Marshal(actionsItem.NewEntityItem)
-					actions1.NewEntityItem = types.StringValue(string(newEntityItemResult))
+					actions.NewEntityItem = jsontypes.NewNormalizedValue(string(newEntityItemResult))
 				}
-				actions1.SettingsFlag = []tfTypes.SettingFlag{}
-				for settingsFlagCount26, settingsFlagItem26 := range actionsItem.SettingsFlag {
-					var settingsFlag53 tfTypes.SettingFlag
-					settingsFlag53.Enabled = types.BoolPointerValue(settingsFlagItem26.Enabled)
-					settingsFlag53.Name = types.StringPointerValue(settingsFlagItem26.Name)
-					if settingsFlagCount26+1 > len(actions1.SettingsFlag) {
-						actions1.SettingsFlag = append(actions1.SettingsFlag, settingsFlag53)
-					} else {
-						actions1.SettingsFlag[settingsFlagCount26].Enabled = settingsFlag53.Enabled
-						actions1.SettingsFlag[settingsFlagCount26].Name = settingsFlag53.Name
-					}
+				actions.SettingsFlag = []tfTypes.SettingFlag{}
+
+				for _, settingsFlagItem27 := range actionsItem.SettingsFlag {
+					var settingsFlag27 tfTypes.SettingFlag
+
+					settingsFlag27.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
+					settingsFlag27.Name = types.StringPointerValue(settingsFlagItem27.Name)
+
+					actions.SettingsFlag = append(actions.SettingsFlag, settingsFlag27)
 				}
-				if actionsCount+1 > len(r.RelationAttribute.Actions) {
-					r.RelationAttribute.Actions = append(r.RelationAttribute.Actions, actions1)
-				} else {
-					r.RelationAttribute.Actions[actionsCount].ActionType = actions1.ActionType
-					r.RelationAttribute.Actions[actionsCount].Default = actions1.Default
-					r.RelationAttribute.Actions[actionsCount].FeatureFlag = actions1.FeatureFlag
-					r.RelationAttribute.Actions[actionsCount].Label = actions1.Label
-					r.RelationAttribute.Actions[actionsCount].NewEntityItem = actions1.NewEntityItem
-					r.RelationAttribute.Actions[actionsCount].SettingsFlag = actions1.SettingsFlag
-				}
+
+				r.RelationAttribute.Actions = append(r.RelationAttribute.Actions, actions)
 			}
 			r.RelationAttribute.AddButtonLabel = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.AddButtonLabel)
 			r.RelationAttribute.AllowedSchemas = make([]types.String, 0, len(resp.AttributeWithCompositeIDRelationAttribute.AllowedSchemas))
@@ -2757,10 +2689,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.RelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDRelationAttribute.DefaultValue == nil {
-				r.RelationAttribute.DefaultValue = types.StringNull()
+				r.RelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult26, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
-				r.RelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult26))
+				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDRelationAttribute.DefaultValue)
+				r.RelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult27))
 			}
 			r.RelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Deprecated)
 			r.Deprecated = r.RelationAttribute.Deprecated
@@ -2827,7 +2759,7 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.RelationAttribute.RelationPickerFilter = nil
 			} else {
 				r.RelationAttribute.RelationPickerFilter = &tfTypes.RelationAttributeRelationPickerFilter{}
-				r.RelationAttribute.RelationPickerFilter.Q = types.StringValue(resp.AttributeWithCompositeIDRelationAttribute.RelationPickerFilter.Q)
+				r.RelationAttribute.RelationPickerFilter.Q = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.RelationPickerFilter.Q)
 			}
 			if resp.AttributeWithCompositeIDRelationAttribute.RelationType != nil {
 				r.RelationAttribute.RelationType = types.StringValue(string(*resp.AttributeWithCompositeIDRelationAttribute.RelationType))
@@ -2842,52 +2774,42 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Required = r.RelationAttribute.Required
 			if len(resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes) > 0 {
 				r.RelationAttribute.ReverseAttributes = make(map[string]types.String, len(resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes))
-				for key, value1 := range resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes {
-					r.RelationAttribute.ReverseAttributes[key] = types.StringValue(value1)
+				for key, value := range resp.AttributeWithCompositeIDRelationAttribute.ReverseAttributes {
+					r.RelationAttribute.ReverseAttributes[key] = types.StringValue(value)
 				}
 			}
 			r.RelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Schema)
 			r.Schema = r.RelationAttribute.Schema
 			r.RelationAttribute.SearchPlaceholder = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.SearchPlaceholder)
 			r.RelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.RelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag) {
-				r.RelationAttribute.SettingsFlag = r.RelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount27, settingsFlagItem27 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
-				var settingsFlag55 tfTypes.SettingFlag
-				settingsFlag55.Enabled = types.BoolPointerValue(settingsFlagItem27.Enabled)
-				settingsFlag55.Name = types.StringPointerValue(settingsFlagItem27.Name)
-				if settingsFlagCount27+1 > len(r.RelationAttribute.SettingsFlag) {
-					r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag55)
-				} else {
-					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Enabled = settingsFlag55.Enabled
-					r.RelationAttribute.SettingsFlag[settingsFlagCount27].Name = settingsFlag55.Name
-				}
+
+			for _, settingsFlagItem28 := range resp.AttributeWithCompositeIDRelationAttribute.SettingsFlag {
+				var settingsFlag28 tfTypes.SettingFlag
+
+				settingsFlag28.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
+				settingsFlag28.Name = types.StringPointerValue(settingsFlagItem28.Name)
+
+				r.RelationAttribute.SettingsFlag = append(r.RelationAttribute.SettingsFlag, settingsFlag28)
 			}
 			r.RelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ShowInTable)
 			r.ShowInTable = r.RelationAttribute.ShowInTable
 			r.RelationAttribute.Sortable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Sortable)
 			r.Sortable = r.RelationAttribute.Sortable
 			r.RelationAttribute.SummaryFields = []tfTypes.RelationAttributeSummaryFields{}
-			if len(r.RelationAttribute.SummaryFields) > len(resp.AttributeWithCompositeIDRelationAttribute.SummaryFields) {
-				r.RelationAttribute.SummaryFields = r.RelationAttribute.SummaryFields[:len(resp.AttributeWithCompositeIDRelationAttribute.SummaryFields)]
-			}
-			for summaryFieldsCount, summaryFieldsItem := range resp.AttributeWithCompositeIDRelationAttribute.SummaryFields {
-				var summaryFields1 tfTypes.RelationAttributeSummaryFields
+
+			for _, summaryFieldsItem := range resp.AttributeWithCompositeIDRelationAttribute.SummaryFields {
+				var summaryFields tfTypes.RelationAttributeSummaryFields
+
 				if summaryFieldsItem.Str != nil {
-					summaryFields1.Str = types.StringPointerValue(summaryFieldsItem.Str)
+					summaryFields.Str = types.StringPointerValue(summaryFieldsItem.Str)
 				}
 				if summaryFieldsItem.SummaryField != nil {
-					summaryFields1.SummaryField = &tfTypes.SummaryField{}
-					summaryFields1.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
-					summaryFields1.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
+					summaryFields.SummaryField = &tfTypes.SummaryField{}
+					summaryFields.SummaryField.DisplayAs = types.StringPointerValue(summaryFieldsItem.SummaryField.DisplayAs)
+					summaryFields.SummaryField.Field = types.StringPointerValue(summaryFieldsItem.SummaryField.Field)
 				}
-				if summaryFieldsCount+1 > len(r.RelationAttribute.SummaryFields) {
-					r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields1)
-				} else {
-					r.RelationAttribute.SummaryFields[summaryFieldsCount].Str = summaryFields1.Str
-					r.RelationAttribute.SummaryFields[summaryFieldsCount].SummaryField = summaryFields1.SummaryField
-				}
+
+				r.RelationAttribute.SummaryFields = append(r.RelationAttribute.SummaryFields, summaryFields)
 			}
 			r.RelationAttribute.Type = types.StringValue(string(resp.AttributeWithCompositeIDRelationAttribute.Type))
 			r.RelationAttribute.ValueFormatter = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ValueFormatter)
@@ -2914,10 +2836,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.SelectAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDSelectAttribute.DefaultValue == nil {
-				r.SelectAttribute.DefaultValue = types.StringNull()
+				r.SelectAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult27, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
-				r.SelectAttribute.DefaultValue = types.StringValue(string(defaultValueResult27))
+				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.DefaultValue)
+				r.SelectAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult28))
 			}
 			r.SelectAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Deprecated)
 			r.Deprecated = r.SelectAttribute.Deprecated
@@ -2953,10 +2875,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.SelectAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDSelectAttribute.Name)
 			r.Name = r.SelectAttribute.Name
 			if resp.AttributeWithCompositeIDSelectAttribute.Options == nil {
-				r.SelectAttribute.Options = types.StringNull()
+				r.SelectAttribute.Options = jsontypes.NewNormalizedNull()
 			} else {
 				optionsVarResult, _ := json.Marshal(resp.AttributeWithCompositeIDSelectAttribute.Options)
-				r.SelectAttribute.Options = types.StringValue(string(optionsVarResult))
+				r.SelectAttribute.Options = jsontypes.NewNormalizedValue(string(optionsVarResult))
 			}
 			r.SelectAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDSelectAttribute.Order)
 			r.Order = r.SelectAttribute.Order
@@ -2977,19 +2899,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.SelectAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Schema)
 			r.Schema = r.SelectAttribute.Schema
 			r.SelectAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.SelectAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag) {
-				r.SelectAttribute.SettingsFlag = r.SelectAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount28, settingsFlagItem28 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
-				var settingsFlag57 tfTypes.SettingFlag
-				settingsFlag57.Enabled = types.BoolPointerValue(settingsFlagItem28.Enabled)
-				settingsFlag57.Name = types.StringPointerValue(settingsFlagItem28.Name)
-				if settingsFlagCount28+1 > len(r.SelectAttribute.SettingsFlag) {
-					r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag57)
-				} else {
-					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Enabled = settingsFlag57.Enabled
-					r.SelectAttribute.SettingsFlag[settingsFlagCount28].Name = settingsFlag57.Name
-				}
+
+			for _, settingsFlagItem29 := range resp.AttributeWithCompositeIDSelectAttribute.SettingsFlag {
+				var settingsFlag29 tfTypes.SettingFlag
+
+				settingsFlag29.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
+				settingsFlag29.Name = types.StringPointerValue(settingsFlagItem29.Name)
+
+				r.SelectAttribute.SettingsFlag = append(r.SelectAttribute.SettingsFlag, settingsFlag29)
 			}
 			r.SelectAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ShowInTable)
 			r.ShowInTable = r.SelectAttribute.ShowInTable
@@ -3019,10 +2936,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.SequenceAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue == nil {
-				r.SequenceAttribute.DefaultValue = types.StringNull()
+				r.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult28, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
-				r.SequenceAttribute.DefaultValue = types.StringValue(string(defaultValueResult28))
+				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDSequenceAttribute.DefaultValue)
+				r.SequenceAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult29))
 			}
 			r.SequenceAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Deprecated)
 			r.Deprecated = r.SequenceAttribute.Deprecated
@@ -3077,19 +2994,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.SequenceAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Schema)
 			r.Schema = r.SequenceAttribute.Schema
 			r.SequenceAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.SequenceAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag) {
-				r.SequenceAttribute.SettingsFlag = r.SequenceAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount29, settingsFlagItem29 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
-				var settingsFlag59 tfTypes.SettingFlag
-				settingsFlag59.Enabled = types.BoolPointerValue(settingsFlagItem29.Enabled)
-				settingsFlag59.Name = types.StringPointerValue(settingsFlagItem29.Name)
-				if settingsFlagCount29+1 > len(r.SequenceAttribute.SettingsFlag) {
-					r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag59)
-				} else {
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Enabled = settingsFlag59.Enabled
-					r.SequenceAttribute.SettingsFlag[settingsFlagCount29].Name = settingsFlag59.Name
-				}
+
+			for _, settingsFlagItem30 := range resp.AttributeWithCompositeIDSequenceAttribute.SettingsFlag {
+				var settingsFlag30 tfTypes.SettingFlag
+
+				settingsFlag30.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
+				settingsFlag30.Name = types.StringPointerValue(settingsFlagItem30.Name)
+
+				r.SequenceAttribute.SettingsFlag = append(r.SequenceAttribute.SettingsFlag, settingsFlag30)
 			}
 			r.SequenceAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ShowInTable)
 			r.ShowInTable = r.SequenceAttribute.ShowInTable
@@ -3120,10 +3032,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.StatusAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDStatusAttribute.DefaultValue == nil {
-				r.StatusAttribute.DefaultValue = types.StringNull()
+				r.StatusAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult29, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
-				r.StatusAttribute.DefaultValue = types.StringValue(string(defaultValueResult29))
+				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDStatusAttribute.DefaultValue)
+				r.StatusAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult30))
 			}
 			r.StatusAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Deprecated)
 			r.Deprecated = r.StatusAttribute.Deprecated
@@ -3159,25 +3071,20 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.StatusAttribute.Name = types.StringValue(resp.AttributeWithCompositeIDStatusAttribute.Name)
 			r.Name = r.StatusAttribute.Name
 			r.StatusAttribute.Options = []tfTypes.MultiSelectAttributeOptions{}
-			if len(r.StatusAttribute.Options) > len(resp.AttributeWithCompositeIDStatusAttribute.Options) {
-				r.StatusAttribute.Options = r.StatusAttribute.Options[:len(resp.AttributeWithCompositeIDStatusAttribute.Options)]
-			}
-			for optionsVarCount1, optionsVarItem1 := range resp.AttributeWithCompositeIDStatusAttribute.Options {
-				var optionsVar2 tfTypes.MultiSelectAttributeOptions
+
+			for _, optionsVarItem1 := range resp.AttributeWithCompositeIDStatusAttribute.Options {
+				var optionsVar1 tfTypes.MultiSelectAttributeOptions
+
 				if optionsVarItem1.Str != nil {
-					optionsVar2.Str = types.StringPointerValue(optionsVarItem1.Str)
+					optionsVar1.Str = types.StringPointerValue(optionsVarItem1.Str)
 				}
-				if optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2 != nil {
-					optionsVar2.Two = &tfTypes.MultiSelectAttributeOptions2{}
-					optionsVar2.Two.Title = types.StringPointerValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Title)
-					optionsVar2.Two.Value = types.StringValue(optionsVarItem1.StatusAttributeOptionsAttributeWithCompositeID2.Value)
+				if optionsVarItem1.StatusAttributeOptions2 != nil {
+					optionsVar1.Two = &tfTypes.MultiSelectAttributeOptions2{}
+					optionsVar1.Two.Title = types.StringPointerValue(optionsVarItem1.StatusAttributeOptions2.Title)
+					optionsVar1.Two.Value = types.StringValue(optionsVarItem1.StatusAttributeOptions2.Value)
 				}
-				if optionsVarCount1+1 > len(r.StatusAttribute.Options) {
-					r.StatusAttribute.Options = append(r.StatusAttribute.Options, optionsVar2)
-				} else {
-					r.StatusAttribute.Options[optionsVarCount1].Str = optionsVar2.Str
-					r.StatusAttribute.Options[optionsVarCount1].Two = optionsVar2.Two
-				}
+
+				r.StatusAttribute.Options = append(r.StatusAttribute.Options, optionsVar1)
 			}
 			r.StatusAttribute.Order = types.Int64PointerValue(resp.AttributeWithCompositeIDStatusAttribute.Order)
 			r.Order = r.StatusAttribute.Order
@@ -3198,19 +3105,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.StatusAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Schema)
 			r.Schema = r.StatusAttribute.Schema
 			r.StatusAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.StatusAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag) {
-				r.StatusAttribute.SettingsFlag = r.StatusAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount30, settingsFlagItem30 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
-				var settingsFlag61 tfTypes.SettingFlag
-				settingsFlag61.Enabled = types.BoolPointerValue(settingsFlagItem30.Enabled)
-				settingsFlag61.Name = types.StringPointerValue(settingsFlagItem30.Name)
-				if settingsFlagCount30+1 > len(r.StatusAttribute.SettingsFlag) {
-					r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag61)
-				} else {
-					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Enabled = settingsFlag61.Enabled
-					r.StatusAttribute.SettingsFlag[settingsFlagCount30].Name = settingsFlag61.Name
-				}
+
+			for _, settingsFlagItem31 := range resp.AttributeWithCompositeIDStatusAttribute.SettingsFlag {
+				var settingsFlag31 tfTypes.SettingFlag
+
+				settingsFlag31.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
+				settingsFlag31.Name = types.StringPointerValue(settingsFlagItem31.Name)
+
+				r.StatusAttribute.SettingsFlag = append(r.StatusAttribute.SettingsFlag, settingsFlag31)
 			}
 			r.StatusAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ShowInTable)
 			r.ShowInTable = r.StatusAttribute.ShowInTable
@@ -3240,10 +3142,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.TagsAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDTagsAttribute.DefaultValue == nil {
-				r.TagsAttribute.DefaultValue = types.StringNull()
+				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult30, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
-				r.TagsAttribute.DefaultValue = types.StringValue(string(defaultValueResult30))
+				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTagsAttribute.DefaultValue)
+				r.TagsAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult31))
 			}
 			r.TagsAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Deprecated)
 			r.Deprecated = r.TagsAttribute.Deprecated
@@ -3301,19 +3203,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.TagsAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Schema)
 			r.Schema = r.TagsAttribute.Schema
 			r.TagsAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.TagsAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag) {
-				r.TagsAttribute.SettingsFlag = r.TagsAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount31, settingsFlagItem31 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
-				var settingsFlag63 tfTypes.SettingFlag
-				settingsFlag63.Enabled = types.BoolPointerValue(settingsFlagItem31.Enabled)
-				settingsFlag63.Name = types.StringPointerValue(settingsFlagItem31.Name)
-				if settingsFlagCount31+1 > len(r.TagsAttribute.SettingsFlag) {
-					r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag63)
-				} else {
-					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Enabled = settingsFlag63.Enabled
-					r.TagsAttribute.SettingsFlag[settingsFlagCount31].Name = settingsFlag63.Name
-				}
+
+			for _, settingsFlagItem32 := range resp.AttributeWithCompositeIDTagsAttribute.SettingsFlag {
+				var settingsFlag32 tfTypes.SettingFlag
+
+				settingsFlag32.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
+				settingsFlag32.Name = types.StringPointerValue(settingsFlagItem32.Name)
+
+				r.TagsAttribute.SettingsFlag = append(r.TagsAttribute.SettingsFlag, settingsFlag32)
 			}
 			r.TagsAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ShowInTable)
 			r.ShowInTable = r.TagsAttribute.ShowInTable
@@ -3347,10 +3244,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.TextAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDTextAttribute.DefaultValue == nil {
-				r.TextAttribute.DefaultValue = types.StringNull()
+				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult31, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
-				r.TextAttribute.DefaultValue = types.StringValue(string(defaultValueResult31))
+				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.DefaultValue)
+				r.TextAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult32))
 			}
 			r.TextAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.Deprecated)
 			r.Deprecated = r.TextAttribute.Deprecated
@@ -3404,27 +3301,22 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.Required = r.TextAttribute.Required
 			r.TextAttribute.RichText = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.RichText)
 			if resp.AttributeWithCompositeIDTextAttribute.Rows == nil {
-				r.TextAttribute.Rows = types.StringNull()
+				r.TextAttribute.Rows = jsontypes.NewNormalizedNull()
 			} else {
 				rowsResult, _ := json.Marshal(resp.AttributeWithCompositeIDTextAttribute.Rows)
-				r.TextAttribute.Rows = types.StringValue(string(rowsResult))
+				r.TextAttribute.Rows = jsontypes.NewNormalizedValue(string(rowsResult))
 			}
 			r.TextAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Schema)
 			r.Schema = r.TextAttribute.Schema
 			r.TextAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.TextAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag) {
-				r.TextAttribute.SettingsFlag = r.TextAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDTextAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount32, settingsFlagItem32 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
-				var settingsFlag65 tfTypes.SettingFlag
-				settingsFlag65.Enabled = types.BoolPointerValue(settingsFlagItem32.Enabled)
-				settingsFlag65.Name = types.StringPointerValue(settingsFlagItem32.Name)
-				if settingsFlagCount32+1 > len(r.TextAttribute.SettingsFlag) {
-					r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag65)
-				} else {
-					r.TextAttribute.SettingsFlag[settingsFlagCount32].Enabled = settingsFlag65.Enabled
-					r.TextAttribute.SettingsFlag[settingsFlagCount32].Name = settingsFlag65.Name
-				}
+
+			for _, settingsFlagItem33 := range resp.AttributeWithCompositeIDTextAttribute.SettingsFlag {
+				var settingsFlag33 tfTypes.SettingFlag
+
+				settingsFlag33.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
+				settingsFlag33.Name = types.StringPointerValue(settingsFlagItem33.Name)
+
+				r.TextAttribute.SettingsFlag = append(r.TextAttribute.SettingsFlag, settingsFlag33)
 			}
 			r.TextAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ShowInTable)
 			r.ShowInTable = r.TextAttribute.ShowInTable
@@ -3454,10 +3346,10 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 				r.UserRelationAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
 			if resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue == nil {
-				r.UserRelationAttribute.DefaultValue = types.StringNull()
+				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
-				defaultValueResult32, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
-				r.UserRelationAttribute.DefaultValue = types.StringValue(string(defaultValueResult32))
+				defaultValueResult33, _ := json.Marshal(resp.AttributeWithCompositeIDUserRelationAttribute.DefaultValue)
+				r.UserRelationAttribute.DefaultValue = jsontypes.NewNormalizedValue(string(defaultValueResult33))
 			}
 			r.UserRelationAttribute.Deprecated = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Deprecated)
 			r.Deprecated = r.UserRelationAttribute.Deprecated
@@ -3512,19 +3404,14 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.UserRelationAttribute.Schema = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Schema)
 			r.Schema = r.UserRelationAttribute.Schema
 			r.UserRelationAttribute.SettingsFlag = []tfTypes.SettingFlag{}
-			if len(r.UserRelationAttribute.SettingsFlag) > len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag) {
-				r.UserRelationAttribute.SettingsFlag = r.UserRelationAttribute.SettingsFlag[:len(resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag)]
-			}
-			for settingsFlagCount33, settingsFlagItem33 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
-				var settingsFlag67 tfTypes.SettingFlag
-				settingsFlag67.Enabled = types.BoolPointerValue(settingsFlagItem33.Enabled)
-				settingsFlag67.Name = types.StringPointerValue(settingsFlagItem33.Name)
-				if settingsFlagCount33+1 > len(r.UserRelationAttribute.SettingsFlag) {
-					r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag67)
-				} else {
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Enabled = settingsFlag67.Enabled
-					r.UserRelationAttribute.SettingsFlag[settingsFlagCount33].Name = settingsFlag67.Name
-				}
+
+			for _, settingsFlagItem34 := range resp.AttributeWithCompositeIDUserRelationAttribute.SettingsFlag {
+				var settingsFlag34 tfTypes.SettingFlag
+
+				settingsFlag34.Enabled = types.BoolPointerValue(settingsFlagItem34.Enabled)
+				settingsFlag34.Name = types.StringPointerValue(settingsFlagItem34.Name)
+
+				r.UserRelationAttribute.SettingsFlag = append(r.UserRelationAttribute.SettingsFlag, settingsFlag34)
 			}
 			r.UserRelationAttribute.ShowInTable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ShowInTable)
 			r.ShowInTable = r.UserRelationAttribute.ShowInTable
@@ -3535,4 +3422,19 @@ func (r *SchemaAttributeDataSourceModel) RefreshFromSharedAttributeWithComposite
 			r.ValueFormatter = r.UserRelationAttribute.ValueFormatter
 		}
 	}
+
+	return diags
+}
+
+func (r *SchemaAttributeDataSourceModel) ToOperationsGetSchemaAttributeRequest(ctx context.Context) (*operations.GetSchemaAttributeRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var compositeID string
+	compositeID = r.CompositeID.ValueString()
+
+	out := operations.GetSchemaAttributeRequest{
+		CompositeID: compositeID,
+	}
+
+	return &out, diags
 }

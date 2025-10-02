@@ -6,12 +6,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-	"time"
 )
 
 // PurposeAttributeConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PurposeAttributeConstraints struct {
+}
+
+func (p PurposeAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurposeAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PurposeAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -33,6 +43,17 @@ type PurposeAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PurposeAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurposeAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PurposeAttributeInfoHelpers) GetHintText() *string {
@@ -88,6 +109,7 @@ func (e *PurposeAttributeType) UnmarshalJSON(data []byte) error {
 
 // PurposeAttribute - Entity Taxonomy
 type PurposeAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
@@ -119,7 +141,7 @@ type PurposeAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the taxonomy classification
+	// Manifest ID used to create/update the schema attribute
 	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
@@ -138,18 +160,9 @@ type PurposeAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool `json:"repeatable,omitempty"`
-	HasPrimary *bool `json:"has_primary,omitempty"`
-	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
-	Parents []string `json:"parents,omitempty"`
-	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                `default:"false" json:"archived"`
-	Type     PurposeAttributeType `json:"type"`
+	Repeatable *bool                `json:"repeatable,omitempty"`
+	HasPrimary *bool                `json:"has_primary,omitempty"`
+	Type       PurposeAttributeType `json:"type"`
 }
 
 func (p PurposeAttribute) MarshalJSON() ([]byte, error) {
@@ -157,7 +170,7 @@ func (p PurposeAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PurposeAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -364,48 +377,6 @@ func (o *PurposeAttribute) GetHasPrimary() *bool {
 		return nil
 	}
 	return o.HasPrimary
-}
-
-func (o *PurposeAttribute) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *PurposeAttribute) GetParents() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Parents
-}
-
-func (o *PurposeAttribute) GetColor() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Color
-}
-
-func (o *PurposeAttribute) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *PurposeAttribute) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *PurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
 }
 
 func (o *PurposeAttribute) GetType() PurposeAttributeType {

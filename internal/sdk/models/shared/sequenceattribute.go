@@ -13,6 +13,17 @@ import (
 type SequenceAttributeConstraints struct {
 }
 
+func (s SequenceAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SequenceAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SequenceAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type SequenceAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type SequenceAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (s SequenceAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SequenceAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SequenceAttributeInfoHelpers) GetHintText() *string {
@@ -151,7 +173,7 @@ func (s SequenceAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SequenceAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

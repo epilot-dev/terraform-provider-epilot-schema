@@ -16,6 +16,9 @@ type CreateSchemaGroupHeadlineResponse struct {
 	RawResponse *http.Response
 	// Success
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateSchemaGroupHeadlineResponse) GetContentType() string {
@@ -44,4 +47,18 @@ func (o *CreateSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *s
 		return nil
 	}
 	return o.GroupHeadlineWithCompositeID
+}
+
+func (o *CreateSchemaGroupHeadlineResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateSchemaGroupHeadlineResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

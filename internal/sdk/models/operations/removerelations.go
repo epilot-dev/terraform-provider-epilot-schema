@@ -25,7 +25,7 @@ func (r RemoveRelationsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RemoveRelationsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"slug", "id"}); err != nil {
 		return err
 	}
 	return nil
@@ -75,6 +75,9 @@ type RemoveRelationsResponse struct {
 	RawResponse *http.Response
 	// The requested resource was not found
 	NotFoundError *shared.NotFoundError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *RemoveRelationsResponse) GetContentType() string {
@@ -103,4 +106,18 @@ func (o *RemoveRelationsResponse) GetNotFoundError() *shared.NotFoundError {
 		return nil
 	}
 	return o.NotFoundError
+}
+
+func (o *RemoveRelationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *RemoveRelationsResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type MultiSelectAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -10,7 +13,7 @@ type MultiSelectAttribute struct {
 	AllowAny                 types.Bool                                           `tfsdk:"allow_any"`
 	AllowExtraOptions        types.Bool                                           `tfsdk:"allow_extra_options"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DisableCaseSensitive     types.Bool                                           `tfsdk:"disable_case_sensitive"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`

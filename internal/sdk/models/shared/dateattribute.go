@@ -13,6 +13,17 @@ import (
 type DateAttributeConstraints struct {
 }
 
+func (d DateAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DateAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // DateAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type DateAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type DateAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (d DateAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DateAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DateAttributeInfoHelpers) GetHintText() *string {
@@ -151,7 +173,7 @@ func (d DateAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DateAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

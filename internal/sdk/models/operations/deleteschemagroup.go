@@ -28,6 +28,9 @@ type DeleteSchemaGroupResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntitySchemaGroupWithCompositeID *shared.EntitySchemaGroupWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *DeleteSchemaGroupResponse) GetContentType() string {
@@ -56,4 +59,18 @@ func (o *DeleteSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *share
 		return nil
 	}
 	return o.EntitySchemaGroupWithCompositeID
+}
+
+func (o *DeleteSchemaGroupResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *DeleteSchemaGroupResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

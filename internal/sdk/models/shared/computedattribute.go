@@ -13,6 +13,17 @@ import (
 type ComputedAttributeConstraints struct {
 }
 
+func (c ComputedAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ComputedAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ComputedAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ComputedAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type ComputedAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c ComputedAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ComputedAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ComputedAttributeInfoHelpers) GetHintText() *string {
@@ -155,7 +177,7 @@ func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
 		return err
 	}
 	return nil

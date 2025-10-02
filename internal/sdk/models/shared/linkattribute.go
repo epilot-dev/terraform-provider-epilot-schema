@@ -13,6 +13,17 @@ import (
 type LinkAttributeConstraints struct {
 }
 
+func (l LinkAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // LinkAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type LinkAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type LinkAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (l LinkAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (l LinkAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

@@ -13,6 +13,17 @@ import (
 type TagsAttributeConstraints struct {
 }
 
+func (t TagsAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TagsAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type TagsAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type TagsAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (t TagsAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TagsAttributeInfoHelpers) GetHintText() *string {
@@ -150,7 +172,7 @@ func (t TagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

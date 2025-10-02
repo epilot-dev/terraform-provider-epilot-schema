@@ -33,7 +33,7 @@ func (p PatchEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PatchEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"slug", "id", "Entity"}); err != nil {
 		return err
 	}
 	return nil

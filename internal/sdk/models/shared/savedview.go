@@ -35,43 +35,54 @@ func (e *Source) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Two - A system-created view
-type Two struct {
+// CreatedBy2 - A system-created view
+type CreatedBy2 struct {
 	Source               *Source `json:"source,omitempty"`
 	AdditionalProperties any     `additionalProperties:"true" json:"-"`
 }
 
-func (t Two) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
+func (c CreatedBy2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (t *Two) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Two) GetSource() *Source {
+func (o *CreatedBy2) GetSource() *Source {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *Two) GetAdditionalProperties() any {
+func (o *CreatedBy2) GetAdditionalProperties() any {
 	if o == nil {
 		return nil
 	}
 	return o.AdditionalProperties
 }
 
-// One - A user that created the view
-type One struct {
+// CreatedBy1 - A user that created the view
+type CreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (o *One) GetUserID() *string {
+func (c CreatedBy1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatedBy1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CreatedBy1) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
@@ -81,48 +92,48 @@ func (o *One) GetUserID() *string {
 type CreatedByType string
 
 const (
-	CreatedByTypeOne CreatedByType = "1"
-	CreatedByTypeTwo CreatedByType = "2"
+	CreatedByTypeCreatedBy1 CreatedByType = "created_by_1"
+	CreatedByTypeCreatedBy2 CreatedByType = "created_by_2"
 )
 
 type CreatedBy struct {
-	One *One `queryParam:"inline"`
-	Two *Two `queryParam:"inline"`
+	CreatedBy1 *CreatedBy1 `queryParam:"inline" name:"created_by"`
+	CreatedBy2 *CreatedBy2 `queryParam:"inline" name:"created_by"`
 
 	Type CreatedByType
 }
 
-func CreateCreatedByOne(one One) CreatedBy {
-	typ := CreatedByTypeOne
+func CreateCreatedByCreatedBy1(createdBy1 CreatedBy1) CreatedBy {
+	typ := CreatedByTypeCreatedBy1
 
 	return CreatedBy{
-		One:  &one,
-		Type: typ,
+		CreatedBy1: &createdBy1,
+		Type:       typ,
 	}
 }
 
-func CreateCreatedByTwo(two Two) CreatedBy {
-	typ := CreatedByTypeTwo
+func CreateCreatedByCreatedBy2(createdBy2 CreatedBy2) CreatedBy {
+	typ := CreatedByTypeCreatedBy2
 
 	return CreatedBy{
-		Two:  &two,
-		Type: typ,
+		CreatedBy2: &createdBy2,
+		Type:       typ,
 	}
 }
 
 func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 
-	var one One = One{}
-	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
-		u.One = &one
-		u.Type = CreatedByTypeOne
+	var createdBy1 CreatedBy1 = CreatedBy1{}
+	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, nil); err == nil {
+		u.CreatedBy1 = &createdBy1
+		u.Type = CreatedByTypeCreatedBy1
 		return nil
 	}
 
-	var two Two = Two{}
-	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
-		u.Two = &two
-		u.Type = CreatedByTypeTwo
+	var createdBy2 CreatedBy2 = CreatedBy2{}
+	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, nil); err == nil {
+		u.CreatedBy2 = &createdBy2
+		u.Type = CreatedByTypeCreatedBy2
 		return nil
 	}
 
@@ -130,12 +141,12 @@ func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 }
 
 func (u CreatedBy) MarshalJSON() ([]byte, error) {
-	if u.One != nil {
-		return utils.MarshalJSON(u.One, "", true)
+	if u.CreatedBy1 != nil {
+		return utils.MarshalJSON(u.CreatedBy1, "", true)
 	}
 
-	if u.Two != nil {
-		return utils.MarshalJSON(u.Two, "", true)
+	if u.CreatedBy2 != nil {
+		return utils.MarshalJSON(u.CreatedBy2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CreatedBy: all fields are null")
@@ -153,7 +164,7 @@ type SavedView struct {
 	Shared *bool `json:"shared,omitempty"`
 	// List of users (IDs) that have favorited the view
 	IsFavoritedBy []string       `json:"isFavoritedBy,omitempty"`
-	CreatedBy     CreatedBy      `json:"created_by"`
+	CreatedBy     *CreatedBy     `json:"created_by,omitempty"`
 	UIConfig      map[string]any `json:"ui_config"`
 	// List of users ('${userId}'), user groups ('group_${groupId}'), or partner users ('${partnerOrgId}_${partnerUserId}') that the view is shared with
 	SharedWith []string `json:"shared_with,omitempty"`
@@ -194,9 +205,9 @@ func (o *SavedView) GetIsFavoritedBy() []string {
 	return o.IsFavoritedBy
 }
 
-func (o *SavedView) GetCreatedBy() CreatedBy {
+func (o *SavedView) GetCreatedBy() *CreatedBy {
 	if o == nil {
-		return CreatedBy{}
+		return nil
 	}
 	return o.CreatedBy
 }

@@ -38,6 +38,9 @@ type ValidateEntityResponse struct {
 	EntityValidationResultSuccess *shared.EntityValidationResultSuccess
 	// Error
 	EntityValidationResultError *shared.EntityValidationResultError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *ValidateEntityResponse) GetContentType() string {
@@ -73,4 +76,18 @@ func (o *ValidateEntityResponse) GetEntityValidationResultError() *shared.Entity
 		return nil
 	}
 	return o.EntityValidationResultError
+}
+
+func (o *ValidateEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *ValidateEntityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

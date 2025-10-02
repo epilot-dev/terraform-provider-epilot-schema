@@ -36,6 +36,9 @@ type BulkDeleteClassificationsResponse struct {
 	RawResponse *http.Response
 	// Returns the job id for the async job and current status
 	TaxonomyBulkJobTriggerResponse *shared.TaxonomyBulkJobTriggerResponse
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *BulkDeleteClassificationsResponse) GetContentType() string {
@@ -64,4 +67,18 @@ func (o *BulkDeleteClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() 
 		return nil
 	}
 	return o.TaxonomyBulkJobTriggerResponse
+}
+
+func (o *BulkDeleteClassificationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *BulkDeleteClassificationsResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

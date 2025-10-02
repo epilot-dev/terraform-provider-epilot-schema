@@ -13,6 +13,17 @@ import (
 type AddressRelationAttributeConstraints struct {
 }
 
+func (a AddressRelationAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressRelationAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AddressRelationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AddressRelationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type AddressRelationAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (a AddressRelationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AddressRelationAttributeInfoHelpers) GetHintText() *string {
@@ -170,7 +192,7 @@ func (a AddressRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AddressRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

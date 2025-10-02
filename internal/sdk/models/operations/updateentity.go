@@ -31,7 +31,7 @@ func (u UpdateEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug", "id"}); err != nil {
 		return err
 	}
 	return nil

@@ -18,6 +18,9 @@ type SearchEntitiesResponse struct {
 	EntitySearchResults *shared.EntitySearchResults
 	// Success
 	Res *string
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *SearchEntitiesResponse) GetContentType() string {
@@ -53,4 +56,18 @@ func (o *SearchEntitiesResponse) GetRes() *string {
 		return nil
 	}
 	return o.Res
+}
+
+func (o *SearchEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *SearchEntitiesResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -13,6 +13,17 @@ import (
 type Constraints struct {
 }
 
+func (c Constraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Constraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type InfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (i InfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InfoHelpers) GetHintText() *string {
@@ -151,7 +173,7 @@ func (t TextAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TextAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

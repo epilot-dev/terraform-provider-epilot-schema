@@ -44,6 +44,9 @@ type BulkMergeClassificationsResponse struct {
 	RawResponse *http.Response
 	// Returns the job id for the async job and current status
 	TaxonomyBulkJobTriggerResponse *shared.TaxonomyBulkJobTriggerResponse
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *BulkMergeClassificationsResponse) GetContentType() string {
@@ -72,4 +75,18 @@ func (o *BulkMergeClassificationsResponse) GetTaxonomyBulkJobTriggerResponse() *
 		return nil
 	}
 	return o.TaxonomyBulkJobTriggerResponse
+}
+
+func (o *BulkMergeClassificationsResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *BulkMergeClassificationsResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

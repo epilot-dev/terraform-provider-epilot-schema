@@ -39,6 +39,9 @@ type AttachActivityResponse struct {
 	BaseActivityItem *shared.BaseActivityItem
 	// The requested resource was not found
 	NotFoundError *shared.NotFoundError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *AttachActivityResponse) GetContentType() string {
@@ -74,4 +77,18 @@ func (o *AttachActivityResponse) GetNotFoundError() *shared.NotFoundError {
 		return nil
 	}
 	return o.NotFoundError
+}
+
+func (o *AttachActivityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *AttachActivityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

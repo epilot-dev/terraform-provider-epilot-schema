@@ -20,7 +20,7 @@ func (p PutSchemaRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PutSchemaRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"slug"}); err != nil {
 		return err
 	}
 	return nil
@@ -56,6 +56,9 @@ type PutSchemaResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntitySchemaItem *shared.EntitySchemaItem
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *PutSchemaResponse) GetContentType() string {
@@ -84,4 +87,18 @@ func (o *PutSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
 		return nil
 	}
 	return o.EntitySchemaItem
+}
+
+func (o *PutSchemaResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *PutSchemaResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -13,6 +13,17 @@ import (
 type PhoneAttributeConstraints struct {
 }
 
+func (p PhoneAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PhoneAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PhoneAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type PhoneAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PhoneAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PhoneAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (p PhoneAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PhoneAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

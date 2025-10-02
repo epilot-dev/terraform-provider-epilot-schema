@@ -7,12 +7,22 @@ import (
 	"errors"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-	"time"
 )
 
 // PriceComponentAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PriceComponentAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PriceComponentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PriceComponentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -34,6 +44,17 @@ type PriceComponentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PriceComponentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -153,7 +174,7 @@ func (a AttributeWithCompositeIDPriceComponentAttribute) MarshalJSON() ([]byte, 
 }
 
 func (a *AttributeWithCompositeIDPriceComponentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -388,6 +409,17 @@ func (o *AttributeWithCompositeIDPriceComponentAttribute) GetSchema() *string {
 type PaymentAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (p PaymentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PaymentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PaymentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -407,6 +439,17 @@ type PaymentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PaymentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PaymentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -526,7 +569,7 @@ func (a AttributeWithCompositeIDPaymentAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDPaymentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -761,6 +804,17 @@ func (o *AttributeWithCompositeIDPaymentAttribute) GetSchema() *string {
 type EmailAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (e EmailAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmailAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // EmailAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type EmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -780,6 +834,17 @@ type EmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (e EmailAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmailAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -899,7 +964,7 @@ func (a AttributeWithCompositeIDEmailAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -1134,6 +1199,17 @@ func (o *AttributeWithCompositeIDEmailAttribute) GetSchema() *string {
 type PhoneAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (p PhoneAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PhoneAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PhoneAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -1153,6 +1229,17 @@ type PhoneAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PhoneAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PhoneAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -1272,7 +1359,7 @@ func (a AttributeWithCompositeIDPhoneAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDPhoneAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -1502,9 +1589,415 @@ func (o *AttributeWithCompositeIDPhoneAttribute) GetSchema() *string {
 	return o.Schema
 }
 
+// PortalAccessAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
+// These constraints should and will be enforced by the attribute renderer.
+type PortalAccessAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PortalAccessAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+// PortalAccessAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
+type PortalAccessAttributeAttributeWithCompositeIDInfoHelpers struct {
+	// The text to be displayed in the attribute hint helper.
+	// When specified it overrides the `hint_text_key` configuration.
+	//
+	HintText *string `json:"hint_text,omitempty"`
+	// The key of the hint text to be displayed in the attribute hint helper.
+	// The key should be a valid i18n key.
+	//
+	HintTextKey *string `json:"hint_text_key,omitempty"`
+	// The name of the custom component to be used as the hint helper.
+	// The component should be registered in the `@epilot360/entity-ui` on the index of the components directory.
+	// When specified it overrides the `hint_text` or `hint_text_key` configuration.
+	//
+	HintCustomComponent *string `json:"hint_custom_component,omitempty"`
+	// The placement of the hint tooltip.
+	// The value should be a valid `@mui/core` tooltip placement.
+	//
+	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintText
+}
+
+func (o *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintTextKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTextKey
+}
+
+func (o *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintCustomComponent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintCustomComponent
+}
+
+func (o *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers) GetHintTooltipPlacement() *string {
+	if o == nil {
+		return nil
+	}
+	return o.HintTooltipPlacement
+}
+
+type PortalAccessAttributeAttributeWithCompositeIDType string
+
+const (
+	PortalAccessAttributeAttributeWithCompositeIDTypePortalAccess PortalAccessAttributeAttributeWithCompositeIDType = "portal_access"
+)
+
+func (e PortalAccessAttributeAttributeWithCompositeIDType) ToPointer() *PortalAccessAttributeAttributeWithCompositeIDType {
+	return &e
+}
+func (e *PortalAccessAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "portal_access":
+		*e = PortalAccessAttributeAttributeWithCompositeIDType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PortalAccessAttributeAttributeWithCompositeIDType: %v", v)
+	}
+}
+
+// AttributeWithCompositeIDPortalAccessAttribute - Portal access configuration
+type AttributeWithCompositeIDPortalAccessAttribute struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *PortalAccessAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable  *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                             `json:"has_primary,omitempty"`
+	Type        PortalAccessAttributeAttributeWithCompositeIDType `json:"type"`
+	CompositeID *string                                           `json:"composite_id,omitempty"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDPortalAccessAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetConstraints() *PortalAccessAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetInfoHelpers() *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetType() PortalAccessAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return PortalAccessAttributeAttributeWithCompositeIDType("")
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetCompositeID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompositeID
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttribute) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // PartnerOrganisationAttributeAttributeWithCompositeIDConstraints - A set of constraints applicable to the attribute.
 // These constraints should and will be enforced by the attribute renderer.
 type PartnerOrganisationAttributeAttributeWithCompositeIDConstraints struct {
+}
+
+func (p PartnerOrganisationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 // PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
@@ -1526,6 +2019,17 @@ type PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PartnerOrganisationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -1645,7 +2149,7 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttribute) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -1880,6 +2384,17 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttribute) GetSchema() *stri
 type PurposeAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (p PurposeAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurposeAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PurposeAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PurposeAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -1899,6 +2414,17 @@ type PurposeAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PurposeAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PurposeAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PurposeAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -1954,6 +2480,7 @@ func (e *PurposeAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte
 
 // AttributeWithCompositeIDPurposeAttribute - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttribute struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
@@ -1985,7 +2512,7 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the taxonomy classification
+	// Manifest ID used to create/update the schema attribute
 	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
@@ -2004,17 +2531,8 @@ type AttributeWithCompositeIDPurposeAttribute struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool `json:"repeatable,omitempty"`
-	HasPrimary *bool `json:"has_primary,omitempty"`
-	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
-	Parents []string `json:"parents,omitempty"`
-	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived    *bool                                        `default:"false" json:"archived"`
+	Repeatable  *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary  *bool                                        `json:"has_primary,omitempty"`
 	Type        PurposeAttributeAttributeWithCompositeIDType `json:"type"`
 	CompositeID *string                                      `json:"composite_id,omitempty"`
 	// Schema slug the attribute belongs to
@@ -2026,7 +2544,7 @@ func (a AttributeWithCompositeIDPurposeAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDPurposeAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -2235,48 +2753,6 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPurposeAttribute) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetParents() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Parents
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetColor() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Color
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttribute) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
-}
-
 func (o *AttributeWithCompositeIDPurposeAttribute) GetType() PurposeAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return PurposeAttributeAttributeWithCompositeIDType("")
@@ -2303,6 +2779,17 @@ func (o *AttributeWithCompositeIDPurposeAttribute) GetSchema() *string {
 type InternalUserAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (i InternalUserAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalUserAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InternalUserAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InternalUserAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -2322,6 +2809,17 @@ type InternalUserAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (i InternalUserAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InternalUserAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -2441,7 +2939,7 @@ func (a AttributeWithCompositeIDInternalUserAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -2676,6 +3174,17 @@ func (o *AttributeWithCompositeIDInternalUserAttribute) GetSchema() *string {
 type AutomationAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (a AutomationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutomationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AutomationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AutomationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -2695,6 +3204,17 @@ type AutomationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (a AutomationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutomationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AutomationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -2814,7 +3334,7 @@ func (a AttributeWithCompositeIDAutomationAttribute) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDAutomationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -3049,6 +3569,17 @@ func (o *AttributeWithCompositeIDAutomationAttribute) GetSchema() *string {
 type InvitationEmailAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (i InvitationEmailAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvitationEmailAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -3068,6 +3599,17 @@ type InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (i InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InvitationEmailAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -3187,7 +3729,7 @@ func (a AttributeWithCompositeIDInvitationEmailAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -3422,6 +3964,17 @@ func (o *AttributeWithCompositeIDInvitationEmailAttribute) GetSchema() *string {
 type PartnerStatusAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (p PartnerStatusAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerStatusAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -3441,6 +3994,17 @@ type PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PartnerStatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -3560,7 +4124,7 @@ func (a AttributeWithCompositeIDPartnerStatusAttribute) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -3795,6 +4359,17 @@ func (o *AttributeWithCompositeIDPartnerStatusAttribute) GetSchema() *string {
 type ComputedAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (c ComputedAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ComputedAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ComputedAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ComputedAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -3814,6 +4389,17 @@ type ComputedAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c ComputedAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ComputedAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ComputedAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -3940,7 +4526,7 @@ func (a AttributeWithCompositeIDComputedAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -4196,6 +4782,17 @@ func (o *AttributeWithCompositeIDComputedAttribute) GetSchema() *string {
 type FileAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (f FileAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FileAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // FileAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type FileAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -4215,6 +4812,17 @@ type FileAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (f FileAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FileAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *FileAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -4373,7 +4981,7 @@ func (a AttributeWithCompositeIDFileAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDFileAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -4643,6 +5251,17 @@ func (o *AttributeWithCompositeIDFileAttribute) GetSchema() *string {
 type OrderedListAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (o OrderedListAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // OrderedListAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type OrderedListAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -4662,6 +5281,17 @@ type OrderedListAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (o OrderedListAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrderedListAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OrderedListAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -4781,7 +5411,7 @@ func (a AttributeWithCompositeIDOrderedListAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -5016,6 +5646,17 @@ func (o *AttributeWithCompositeIDOrderedListAttribute) GetSchema() *string {
 type InternalAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (i InternalAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InternalAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InternalAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -5035,6 +5676,17 @@ type InternalAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (i InternalAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InternalAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -5154,7 +5806,7 @@ func (a AttributeWithCompositeIDInternalAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDInternalAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -5389,6 +6041,17 @@ func (o *AttributeWithCompositeIDInternalAttribute) GetSchema() *string {
 type ConsentAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (c ConsentAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConsentAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ConsentAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ConsentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -5408,6 +6071,17 @@ type ConsentAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c ConsentAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConsentAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ConsentAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -5529,7 +6203,7 @@ func (a AttributeWithCompositeIDConsentAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDConsentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "topic"}); err != nil {
 		return err
 	}
 	return nil
@@ -5778,6 +6452,17 @@ func (o *AttributeWithCompositeIDConsentAttribute) GetSchema() *string {
 type NumberAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (n NumberAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NumberAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // NumberAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type NumberAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -5797,6 +6482,17 @@ type NumberAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (n NumberAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NumberAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *NumberAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -5919,7 +6615,7 @@ func (a AttributeWithCompositeIDNumberAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDNumberAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -6168,6 +6864,17 @@ func (o *AttributeWithCompositeIDNumberAttribute) GetSchema() *string {
 type MessageEmailAddressAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (m MessageEmailAddressAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -6187,6 +6894,17 @@ type MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (m MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MessageEmailAddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -6309,7 +7027,7 @@ func (a AttributeWithCompositeIDMessageEmailAddressAttribute) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDMessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -6565,6 +7283,17 @@ func (o *AttributeWithCompositeIDMessageEmailAddressAttribute) GetSchema() *stri
 type TagsAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (t TagsAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TagsAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type TagsAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -6584,6 +7313,17 @@ type TagsAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (t TagsAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagsAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TagsAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -6705,7 +7445,7 @@ func (a AttributeWithCompositeIDTagsAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTagsAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -6954,6 +7694,17 @@ func (o *AttributeWithCompositeIDTagsAttribute) GetSchema() *string {
 type CurrencyAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (c CurrencyAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // CurrencyAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CurrencyAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -6973,6 +7724,17 @@ type CurrencyAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c CurrencyAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CurrencyAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -7026,36 +7788,47 @@ func (e *CurrencyAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byt
 	}
 }
 
-// CurrencyAttributeCurrency1 - A currency configuration
-type CurrencyAttributeCurrency1 struct {
+// Currency1 - A currency configuration
+type Currency1 struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *CurrencyAttributeCurrency1) GetCode() string {
+func (c Currency1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Currency1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"code", "description", "symbol"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Currency1) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *CurrencyAttributeCurrency1) GetDescription() string {
+func (o *Currency1) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *CurrencyAttributeCurrency1) GetSymbol() string {
+func (o *Currency1) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *CurrencyAttributeCurrency1) GetFlag() *string {
+func (o *Currency1) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -7065,30 +7838,30 @@ func (o *CurrencyAttributeCurrency1) GetFlag() *string {
 type CurrencyAttributeCurrencyType string
 
 const (
-	CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1 CurrencyAttributeCurrencyType = "CurrencyAttribute_currency_1"
+	CurrencyAttributeCurrencyTypeCurrency1 CurrencyAttributeCurrencyType = "currency_1"
 )
 
 type CurrencyAttributeCurrency struct {
-	CurrencyAttributeCurrency1 *CurrencyAttributeCurrency1 `queryParam:"inline"`
+	Currency1 *Currency1 `queryParam:"inline" name:"currency"`
 
 	Type CurrencyAttributeCurrencyType
 }
 
-func CreateCurrencyAttributeCurrencyCurrencyAttributeCurrency1(currencyAttributeCurrency1 CurrencyAttributeCurrency1) CurrencyAttributeCurrency {
-	typ := CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+func CreateCurrencyAttributeCurrencyCurrency1(currency1 Currency1) CurrencyAttributeCurrency {
+	typ := CurrencyAttributeCurrencyTypeCurrency1
 
 	return CurrencyAttributeCurrency{
-		CurrencyAttributeCurrency1: &currencyAttributeCurrency1,
-		Type:                       typ,
+		Currency1: &currency1,
+		Type:      typ,
 	}
 }
 
 func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 
-	var currencyAttributeCurrency1 CurrencyAttributeCurrency1 = CurrencyAttributeCurrency1{}
-	if err := utils.UnmarshalJSON(data, &currencyAttributeCurrency1, "", true, false); err == nil {
-		u.CurrencyAttributeCurrency1 = &currencyAttributeCurrency1
-		u.Type = CurrencyAttributeCurrencyTypeCurrencyAttributeCurrency1
+	var currency1 Currency1 = Currency1{}
+	if err := utils.UnmarshalJSON(data, &currency1, "", true, nil); err == nil {
+		u.Currency1 = &currency1
+		u.Type = CurrencyAttributeCurrencyTypeCurrency1
 		return nil
 	}
 
@@ -7096,8 +7869,8 @@ func (u *CurrencyAttributeCurrency) UnmarshalJSON(data []byte) error {
 }
 
 func (u CurrencyAttributeCurrency) MarshalJSON() ([]byte, error) {
-	if u.CurrencyAttributeCurrency1 != nil {
-		return utils.MarshalJSON(u.CurrencyAttributeCurrency1, "", true)
+	if u.Currency1 != nil {
+		return utils.MarshalJSON(u.Currency1, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CurrencyAttributeCurrency: all fields are null")
@@ -7172,7 +7945,7 @@ func (a AttributeWithCompositeIDCurrencyAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil
@@ -7421,6 +8194,17 @@ func (o *AttributeWithCompositeIDCurrencyAttribute) GetSchema() *string {
 type PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (p PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -7440,6 +8224,17 @@ type PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (p PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PaymentMethodRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -7559,7 +8354,7 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttribute) MarshalJSON() ([
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -7794,6 +8589,17 @@ func (o *AttributeWithCompositeIDPaymentMethodRelationAttribute) GetSchema() *st
 type AddressRelationAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (a AddressRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AddressRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AddressRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -7813,6 +8619,17 @@ type AddressRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (a AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AddressRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -7954,7 +8771,7 @@ func (a AttributeWithCompositeIDAddressRelationAttribute) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -8196,6 +9013,17 @@ func (o *AttributeWithCompositeIDAddressRelationAttribute) GetSchema() *string {
 type AddressAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (a AddressAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AddressAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -8215,6 +9043,17 @@ type AddressAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (a AddressAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AddressAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AddressAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -8356,7 +9195,7 @@ func (a AttributeWithCompositeIDAddressAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -8598,6 +9437,17 @@ func (o *AttributeWithCompositeIDAddressAttribute) GetSchema() *string {
 type UserRelationAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (u UserRelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserRelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // UserRelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type UserRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -8617,6 +9467,17 @@ type UserRelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (u UserRelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UserRelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -8737,7 +9598,7 @@ func (a AttributeWithCompositeIDUserRelationAttribute) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -8979,6 +9840,17 @@ func (o *AttributeWithCompositeIDUserRelationAttribute) GetSchema() *string {
 type RelationAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (r RelationAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // RelationAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type RelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -8998,6 +9870,17 @@ type RelationAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (r RelationAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *RelationAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -9129,12 +10012,23 @@ func (e *RelationAttributeEditMode) UnmarshalJSON(data []byte) error {
 
 // RelationAttributeRelationPickerFilter - Additional entity search filter for relation picker
 type RelationAttributeRelationPickerFilter struct {
-	Q string `json:"q"`
+	Q *string `json:"q"`
 }
 
-func (o *RelationAttributeRelationPickerFilter) GetQ() string {
+func (r RelationAttributeRelationPickerFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeRelationPickerFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"q"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *RelationAttributeRelationPickerFilter) GetQ() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Q
 }
@@ -9194,6 +10088,17 @@ type RelationAttributeActions struct {
 	// This action should only be active when all the settings have the correct value
 	SettingsFlag  []SettingFlag `json:"settings_flag,omitempty"`
 	NewEntityItem any           `json:"new_entity_item,omitempty"`
+}
+
+func (r RelationAttributeActions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationAttributeActions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *RelationAttributeActions) GetActionType() *RelationAttributeActionType {
@@ -9275,8 +10180,8 @@ const (
 )
 
 type RelationAttributeSummaryFields struct {
-	Str          *string       `queryParam:"inline"`
-	SummaryField *SummaryField `queryParam:"inline"`
+	Str          *string       `queryParam:"inline" name:"summary_fields"`
+	SummaryField *SummaryField `queryParam:"inline" name:"summary_fields"`
 
 	Type RelationAttributeSummaryFieldsType
 }
@@ -9302,14 +10207,14 @@ func CreateRelationAttributeSummaryFieldsSummaryField(summaryField SummaryField)
 func (u *RelationAttributeSummaryFields) UnmarshalJSON(data []byte) error {
 
 	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, nil); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = RelationAttributeSummaryFieldsTypeSummaryField
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = RelationAttributeSummaryFieldsTypeStr
 		return nil
@@ -9415,7 +10320,7 @@ func (a AttributeWithCompositeIDRelationAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -9748,6 +10653,17 @@ func (o *AttributeWithCompositeIDRelationAttribute) GetSchema() *string {
 type SequenceAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (s SequenceAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SequenceAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SequenceAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type SequenceAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -9767,6 +10683,17 @@ type SequenceAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (s SequenceAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SequenceAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SequenceAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -9889,7 +10816,7 @@ func (a AttributeWithCompositeIDSequenceAttribute) MarshalJSON() ([]byte, error)
 }
 
 func (a *AttributeWithCompositeIDSequenceAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -10138,6 +11065,17 @@ func (o *AttributeWithCompositeIDSequenceAttribute) GetSchema() *string {
 type StatusAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (s StatusAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // StatusAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type StatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -10157,6 +11095,17 @@ type StatusAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (s StatusAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *StatusAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -10210,21 +11159,32 @@ func (e *StatusAttributeAttributeWithCompositeIDType) UnmarshalJSON(data []byte)
 	}
 }
 
-type StatusAttributeOptionsAttributeWithCompositeID2 struct {
+type StatusAttributeOptions2 struct {
 	// The stored value of the option
 	Value string `json:"value"`
 	// The displayed title of the option
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetValue() string {
+func (s StatusAttributeOptions2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StatusAttributeOptions2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *StatusAttributeOptions2) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetTitle() *string {
+func (o *StatusAttributeOptions2) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -10234,13 +11194,13 @@ func (o *StatusAttributeOptionsAttributeWithCompositeID2) GetTitle() *string {
 type StatusAttributeAttributeWithCompositeIDOptionsType string
 
 const (
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                                             StatusAttributeAttributeWithCompositeIDOptionsType = "str"
-	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_AttributeWithCompositeID_2"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStr                     StatusAttributeAttributeWithCompositeIDOptionsType = "str"
+	StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2 StatusAttributeAttributeWithCompositeIDOptionsType = "StatusAttribute_options_2"
 )
 
 type StatusAttributeAttributeWithCompositeIDOptions struct {
-	Str                                             *string                                          `queryParam:"inline"`
-	StatusAttributeOptionsAttributeWithCompositeID2 *StatusAttributeOptionsAttributeWithCompositeID2 `queryParam:"inline"`
+	Str                     *string                  `queryParam:"inline" name:"options"`
+	StatusAttributeOptions2 *StatusAttributeOptions2 `queryParam:"inline" name:"options"`
 
 	Type StatusAttributeAttributeWithCompositeIDOptionsType
 }
@@ -10254,26 +11214,26 @@ func CreateStatusAttributeAttributeWithCompositeIDOptionsStr(str string) StatusA
 	}
 }
 
-func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptionsAttributeWithCompositeID2(statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2) StatusAttributeAttributeWithCompositeIDOptions {
-	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
+func CreateStatusAttributeAttributeWithCompositeIDOptionsStatusAttributeOptions2(statusAttributeOptions2 StatusAttributeOptions2) StatusAttributeAttributeWithCompositeIDOptions {
+	typ := StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 
 	return StatusAttributeAttributeWithCompositeIDOptions{
-		StatusAttributeOptionsAttributeWithCompositeID2: &statusAttributeOptionsAttributeWithCompositeID2,
-		Type: typ,
+		StatusAttributeOptions2: &statusAttributeOptions2,
+		Type:                    typ,
 	}
 }
 
 func (u *StatusAttributeAttributeWithCompositeIDOptions) UnmarshalJSON(data []byte) error {
 
-	var statusAttributeOptionsAttributeWithCompositeID2 StatusAttributeOptionsAttributeWithCompositeID2 = StatusAttributeOptionsAttributeWithCompositeID2{}
-	if err := utils.UnmarshalJSON(data, &statusAttributeOptionsAttributeWithCompositeID2, "", true, false); err == nil {
-		u.StatusAttributeOptionsAttributeWithCompositeID2 = &statusAttributeOptionsAttributeWithCompositeID2
-		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptionsAttributeWithCompositeID2
+	var statusAttributeOptions2 StatusAttributeOptions2 = StatusAttributeOptions2{}
+	if err := utils.UnmarshalJSON(data, &statusAttributeOptions2, "", true, nil); err == nil {
+		u.StatusAttributeOptions2 = &statusAttributeOptions2
+		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStatusAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeAttributeWithCompositeIDOptionsTypeStr
 		return nil
@@ -10287,8 +11247,8 @@ func (u StatusAttributeAttributeWithCompositeIDOptions) MarshalJSON() ([]byte, e
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.StatusAttributeOptionsAttributeWithCompositeID2 != nil {
-		return utils.MarshalJSON(u.StatusAttributeOptionsAttributeWithCompositeID2, "", true)
+	if u.StatusAttributeOptions2 != nil {
+		return utils.MarshalJSON(u.StatusAttributeOptions2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type StatusAttributeAttributeWithCompositeIDOptions: all fields are null")
@@ -10361,7 +11321,7 @@ func (a AttributeWithCompositeIDStatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDStatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -10603,6 +11563,17 @@ func (o *AttributeWithCompositeIDStatusAttribute) GetSchema() *string {
 type MultiSelectAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (m MultiSelectAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // MultiSelectAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type MultiSelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -10622,6 +11593,17 @@ type MultiSelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (m MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MultiSelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -10683,6 +11665,17 @@ type MultiSelectAttributeOptions2 struct {
 	Title *string `json:"title,omitempty"`
 }
 
+func (m MultiSelectAttributeOptions2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeOptions2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *MultiSelectAttributeOptions2) GetValue() string {
 	if o == nil {
 		return ""
@@ -10705,8 +11698,8 @@ const (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str                          *string                       `queryParam:"inline"`
-	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline"`
+	Str                          *string                       `queryParam:"inline" name:"options"`
+	MultiSelectAttributeOptions2 *MultiSelectAttributeOptions2 `queryParam:"inline" name:"options"`
 
 	Type MultiSelectAttributeOptionsType
 }
@@ -10732,14 +11725,14 @@ func CreateMultiSelectAttributeOptionsMultiSelectAttributeOptions2(multiSelectAt
 func (u *MultiSelectAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var multiSelectAttributeOptions2 MultiSelectAttributeOptions2 = MultiSelectAttributeOptions2{}
-	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &multiSelectAttributeOptions2, "", true, nil); err == nil {
 		u.MultiSelectAttributeOptions2 = &multiSelectAttributeOptions2
 		u.Type = MultiSelectAttributeOptionsTypeMultiSelectAttributeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = MultiSelectAttributeOptionsTypeStr
 		return nil
@@ -10833,7 +11826,7 @@ func (a AttributeWithCompositeIDMultiSelectAttribute) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -11096,6 +12089,17 @@ func (o *AttributeWithCompositeIDMultiSelectAttribute) GetSchema() *string {
 type SelectAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (s SelectAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SelectAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SelectAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type SelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -11115,6 +12119,17 @@ type SelectAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (s SelectAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SelectAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SelectAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -11240,7 +12255,7 @@ func (a AttributeWithCompositeIDSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -11489,6 +12504,17 @@ func (o *AttributeWithCompositeIDSelectAttribute) GetSchema() *string {
 type BooleanAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (b BooleanAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // BooleanAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type BooleanAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -11508,6 +12534,17 @@ type BooleanAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (b BooleanAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BooleanAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -11654,7 +12691,7 @@ func (a AttributeWithCompositeIDBooleanAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDBooleanAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -11896,6 +12933,17 @@ func (o *AttributeWithCompositeIDBooleanAttribute) GetSchema() *string {
 type CountryAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (c CountryAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CountryAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // CountryAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CountryAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -11915,6 +12963,17 @@ type CountryAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c CountryAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CountryAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CountryAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -12034,7 +13093,7 @@ func (a AttributeWithCompositeIDCountryAttribute) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AttributeWithCompositeIDCountryAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -12269,6 +13328,17 @@ func (o *AttributeWithCompositeIDCountryAttribute) GetSchema() *string {
 type DateAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (d DateAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DateAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // DateAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type DateAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -12288,6 +13358,17 @@ type DateAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (d DateAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DateAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DateAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -12410,7 +13491,7 @@ func (a AttributeWithCompositeIDDateAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDDateAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -12645,6 +13726,17 @@ func (o *AttributeWithCompositeIDDateAttribute) GetSchema() *string {
 type LinkAttributeAttributeWithCompositeIDConstraints struct {
 }
 
+func (l LinkAttributeAttributeWithCompositeIDConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkAttributeAttributeWithCompositeIDConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // LinkAttributeAttributeWithCompositeIDInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type LinkAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -12664,6 +13756,17 @@ type LinkAttributeAttributeWithCompositeIDInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (l LinkAttributeAttributeWithCompositeIDInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkAttributeAttributeWithCompositeIDInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkAttributeAttributeWithCompositeIDInfoHelpers) GetHintText() *string {
@@ -12783,7 +13886,7 @@ func (a AttributeWithCompositeIDLinkAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDLinkAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -13018,6 +14121,17 @@ func (o *AttributeWithCompositeIDLinkAttribute) GetSchema() *string {
 type TextAttributeConstraints struct {
 }
 
+func (t TextAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TextAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // TextAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type TextAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -13037,6 +14151,17 @@ type TextAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (t TextAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TextAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TextAttributeInfoHelpers) GetHintText() *string {
@@ -13159,7 +14284,7 @@ func (a AttributeWithCompositeIDTextAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttributeWithCompositeIDTextAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -13442,6 +14567,7 @@ const (
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_InternalUserAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PurposeAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute   AttributeWithCompositeIDType = "AttributeWithCompositeID_PartnerOrganisationAttribute"
+	AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute          AttributeWithCompositeIDType = "AttributeWithCompositeID_PortalAccessAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_PhoneAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute                 AttributeWithCompositeIDType = "AttributeWithCompositeID_EmailAttribute"
 	AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute               AttributeWithCompositeIDType = "AttributeWithCompositeID_PaymentAttribute"
@@ -13450,39 +14576,40 @@ const (
 
 // AttributeWithCompositeID - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeID struct {
-	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttribute                  *AttributeWithCompositeIDTextAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDLinkAttribute                  *AttributeWithCompositeIDLinkAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDDateAttribute                  *AttributeWithCompositeIDDateAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCountryAttribute               *AttributeWithCompositeIDCountryAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDBooleanAttribute               *AttributeWithCompositeIDBooleanAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSelectAttribute                *AttributeWithCompositeIDSelectAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMultiSelectAttribute           *AttributeWithCompositeIDMultiSelectAttribute           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDStatusAttribute                *AttributeWithCompositeIDStatusAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSequenceAttribute              *AttributeWithCompositeIDSequenceAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDRelationAttribute              *AttributeWithCompositeIDRelationAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDUserRelationAttribute          *AttributeWithCompositeIDUserRelationAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressAttribute               *AttributeWithCompositeIDAddressAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressRelationAttribute       *AttributeWithCompositeIDAddressRelationAttribute       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentMethodRelationAttribute *AttributeWithCompositeIDPaymentMethodRelationAttribute `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCurrencyAttribute              *AttributeWithCompositeIDCurrencyAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDTagsAttribute                  *AttributeWithCompositeIDTagsAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMessageEmailAddressAttribute   *AttributeWithCompositeIDMessageEmailAddressAttribute   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDNumberAttribute                *AttributeWithCompositeIDNumberAttribute                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDConsentAttribute               *AttributeWithCompositeIDConsentAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalAttribute              *AttributeWithCompositeIDInternalAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDOrderedListAttribute           *AttributeWithCompositeIDOrderedListAttribute           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDFileAttribute                  *AttributeWithCompositeIDFileAttribute                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDComputedAttribute              *AttributeWithCompositeIDComputedAttribute              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerStatusAttribute         *AttributeWithCompositeIDPartnerStatusAttribute         `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInvitationEmailAttribute       *AttributeWithCompositeIDInvitationEmailAttribute       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAutomationAttribute            *AttributeWithCompositeIDAutomationAttribute            `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalUserAttribute          *AttributeWithCompositeIDInternalUserAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPurposeAttribute               *AttributeWithCompositeIDPurposeAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerOrganisationAttribute   *AttributeWithCompositeIDPartnerOrganisationAttribute   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPortalAccessAttribute          *AttributeWithCompositeIDPortalAccessAttribute          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPhoneAttribute                 *AttributeWithCompositeIDPhoneAttribute                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDEmailAttribute                 *AttributeWithCompositeIDEmailAttribute                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentAttribute               *AttributeWithCompositeIDPaymentAttribute               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPriceComponentAttribute        *AttributeWithCompositeIDPriceComponentAttribute        `queryParam:"inline" name:"AttributeWithCompositeID"`
 
 	Type AttributeWithCompositeIDType
 }
@@ -13748,6 +14875,15 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPartnerOrganisationAt
 	}
 }
 
+func CreateAttributeWithCompositeIDAttributeWithCompositeIDPortalAccessAttribute(attributeWithCompositeIDPortalAccessAttribute AttributeWithCompositeIDPortalAccessAttribute) AttributeWithCompositeID {
+	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute
+
+	return AttributeWithCompositeID{
+		AttributeWithCompositeIDPortalAccessAttribute: &attributeWithCompositeIDPortalAccessAttribute,
+		Type: typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDAttributeWithCompositeIDPhoneAttribute(attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute) AttributeWithCompositeID {
 	typ := AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
 
@@ -13786,234 +14922,241 @@ func CreateAttributeWithCompositeIDAttributeWithCompositeIDPriceComponentAttribu
 
 func (u *AttributeWithCompositeID) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
+	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttribute AttributeWithCompositeIDLinkAttribute = AttributeWithCompositeIDLinkAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDLinkAttribute = &attributeWithCompositeIDLinkAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDLinkAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttribute AttributeWithCompositeIDDateAttribute = AttributeWithCompositeIDDateAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDDateAttribute = &attributeWithCompositeIDDateAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDDateAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttribute AttributeWithCompositeIDCountryAttribute = AttributeWithCompositeIDCountryAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDCountryAttribute = &attributeWithCompositeIDCountryAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCountryAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPriceComponentAttribute AttributeWithCompositeIDPriceComponentAttribute = AttributeWithCompositeIDPriceComponentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPriceComponentAttribute = &attributeWithCompositeIDPriceComponentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPriceComponentAttribute
+	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentAttribute AttributeWithCompositeIDPaymentAttribute = AttributeWithCompositeIDPaymentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentAttribute = &attributeWithCompositeIDPaymentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute
+	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
+	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
+	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttribute AttributeWithCompositeIDUserRelationAttribute = AttributeWithCompositeIDUserRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttribute = &attributeWithCompositeIDUserRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDUserRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressAttribute AttributeWithCompositeIDAddressAttribute = AttributeWithCompositeIDAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressAttribute = &attributeWithCompositeIDAddressAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttribute AttributeWithCompositeIDAddressRelationAttribute = AttributeWithCompositeIDAddressRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttribute = &attributeWithCompositeIDAddressRelationAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAddressRelationAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDStatusAttribute AttributeWithCompositeIDStatusAttribute = AttributeWithCompositeIDStatusAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDStatusAttribute = &attributeWithCompositeIDStatusAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDStatusAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDBooleanAttribute AttributeWithCompositeIDBooleanAttribute = AttributeWithCompositeIDBooleanAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttribute = &attributeWithCompositeIDBooleanAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDBooleanAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttribute AttributeWithCompositeIDSequenceAttribute = AttributeWithCompositeIDSequenceAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttribute = &attributeWithCompositeIDSequenceAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSequenceAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDConsentAttribute AttributeWithCompositeIDConsentAttribute = AttributeWithCompositeIDConsentAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDConsentAttribute = &attributeWithCompositeIDConsentAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDConsentAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
+	var attributeWithCompositeIDPaymentMethodRelationAttribute AttributeWithCompositeIDPaymentMethodRelationAttribute = AttributeWithCompositeIDPaymentMethodRelationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttribute = &attributeWithCompositeIDPaymentMethodRelationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentMethodRelationAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttribute AttributeWithCompositeIDTagsAttribute = AttributeWithCompositeIDTagsAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDTagsAttribute = &attributeWithCompositeIDTagsAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTagsAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDCurrencyAttribute AttributeWithCompositeIDCurrencyAttribute = AttributeWithCompositeIDCurrencyAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCurrencyAttribute = &attributeWithCompositeIDCurrencyAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDCurrencyAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDSelectAttribute AttributeWithCompositeIDSelectAttribute = AttributeWithCompositeIDSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSelectAttribute = &attributeWithCompositeIDSelectAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDSelectAttribute
-		return nil
-	}
-
-	var attributeWithCompositeIDComputedAttribute AttributeWithCompositeIDComputedAttribute = AttributeWithCompositeIDComputedAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttribute = &attributeWithCompositeIDComputedAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDComputedAttribute
-		return nil
-	}
-
 	var attributeWithCompositeIDMessageEmailAddressAttribute AttributeWithCompositeIDMessageEmailAddressAttribute = AttributeWithCompositeIDMessageEmailAddressAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDMessageEmailAddressAttribute = &attributeWithCompositeIDMessageEmailAddressAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMessageEmailAddressAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttribute AttributeWithCompositeIDTextAttribute = AttributeWithCompositeIDTextAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttribute = &attributeWithCompositeIDTextAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDTextAttribute
+	var attributeWithCompositeIDNumberAttribute AttributeWithCompositeIDNumberAttribute = AttributeWithCompositeIDNumberAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDNumberAttribute = &attributeWithCompositeIDNumberAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDNumberAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDMultiSelectAttribute AttributeWithCompositeIDMultiSelectAttribute = AttributeWithCompositeIDMultiSelectAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMultiSelectAttribute = &attributeWithCompositeIDMultiSelectAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDMultiSelectAttribute
+	var attributeWithCompositeIDInternalAttribute AttributeWithCompositeIDInternalAttribute = AttributeWithCompositeIDInternalAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalAttribute = &attributeWithCompositeIDInternalAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDOrderedListAttribute AttributeWithCompositeIDOrderedListAttribute = AttributeWithCompositeIDOrderedListAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttribute = &attributeWithCompositeIDOrderedListAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDOrderedListAttribute
 		return nil
 	}
 
 	var attributeWithCompositeIDFileAttribute AttributeWithCompositeIDFileAttribute = AttributeWithCompositeIDFileAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDFileAttribute = &attributeWithCompositeIDFileAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDFileAttribute
 		return nil
 	}
 
+	var attributeWithCompositeIDPartnerStatusAttribute AttributeWithCompositeIDPartnerStatusAttribute = AttributeWithCompositeIDPartnerStatusAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerStatusAttribute = &attributeWithCompositeIDPartnerStatusAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerStatusAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttribute AttributeWithCompositeIDInvitationEmailAttribute = AttributeWithCompositeIDInvitationEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttribute = &attributeWithCompositeIDInvitationEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInvitationEmailAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttribute AttributeWithCompositeIDAutomationAttribute = AttributeWithCompositeIDAutomationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDAutomationAttribute = &attributeWithCompositeIDAutomationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDAutomationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDInternalUserAttribute AttributeWithCompositeIDInternalUserAttribute = AttributeWithCompositeIDInternalUserAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalUserAttribute = &attributeWithCompositeIDInternalUserAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDInternalUserAttribute
+		return nil
+	}
+
 	var attributeWithCompositeIDPurposeAttribute AttributeWithCompositeIDPurposeAttribute = AttributeWithCompositeIDPurposeAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttribute, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDPurposeAttribute = &attributeWithCompositeIDPurposeAttribute
 		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPurposeAttribute
 		return nil
 	}
 
-	var attributeWithCompositeIDRelationAttribute AttributeWithCompositeIDRelationAttribute = AttributeWithCompositeIDRelationAttribute{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttribute, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRelationAttribute = &attributeWithCompositeIDRelationAttribute
-		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDRelationAttribute
+	var attributeWithCompositeIDPartnerOrganisationAttribute AttributeWithCompositeIDPartnerOrganisationAttribute = AttributeWithCompositeIDPartnerOrganisationAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttribute = &attributeWithCompositeIDPartnerOrganisationAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPartnerOrganisationAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPortalAccessAttribute AttributeWithCompositeIDPortalAccessAttribute = AttributeWithCompositeIDPortalAccessAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPortalAccessAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPortalAccessAttribute = &attributeWithCompositeIDPortalAccessAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPortalAccessAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttribute AttributeWithCompositeIDPhoneAttribute = AttributeWithCompositeIDPhoneAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPhoneAttribute = &attributeWithCompositeIDPhoneAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPhoneAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttribute AttributeWithCompositeIDEmailAttribute = AttributeWithCompositeIDEmailAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDEmailAttribute = &attributeWithCompositeIDEmailAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDEmailAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentAttribute AttributeWithCompositeIDPaymentAttribute = AttributeWithCompositeIDPaymentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentAttribute = &attributeWithCompositeIDPaymentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPaymentAttribute
+		return nil
+	}
+
+	var attributeWithCompositeIDPriceComponentAttribute AttributeWithCompositeIDPriceComponentAttribute = AttributeWithCompositeIDPriceComponentAttribute{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttribute, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPriceComponentAttribute = &attributeWithCompositeIDPriceComponentAttribute
+		u.Type = AttributeWithCompositeIDTypeAttributeWithCompositeIDPriceComponentAttribute
 		return nil
 	}
 
@@ -14137,6 +15280,10 @@ func (u AttributeWithCompositeID) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttribute, "", true)
 	}
 
+	if u.AttributeWithCompositeIDPortalAccessAttribute != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDPortalAccessAttribute, "", true)
+	}
+
 	if u.AttributeWithCompositeIDPhoneAttribute != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPhoneAttribute, "", true)
 	}
@@ -14221,7 +15368,7 @@ func (a AttributeWithCompositeIDPriceComponentAttributeInput) MarshalJSON() ([]b
 }
 
 func (a *AttributeWithCompositeIDPriceComponentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -14509,7 +15656,7 @@ func (a AttributeWithCompositeIDPaymentAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDPaymentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -14797,7 +15944,7 @@ func (a AttributeWithCompositeIDEmailAttributeInput) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDEmailAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -15085,7 +16232,7 @@ func (a AttributeWithCompositeIDPhoneAttributeInput) MarshalJSON() ([]byte, erro
 }
 
 func (a *AttributeWithCompositeIDPhoneAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -15308,6 +16455,294 @@ func (o *AttributeWithCompositeIDPhoneAttributeInput) GetSchema() *string {
 	return o.Schema
 }
 
+// AttributeWithCompositeIDPortalAccessAttributeInput - Portal access configuration
+type AttributeWithCompositeIDPortalAccessAttributeInput struct {
+	// ID for the entity attribute
+	ID          *string `json:"id,omitempty"`
+	Name        string  `json:"name"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	// Do not render attribute in entity views
+	Hidden *bool `default:"false" json:"hidden"`
+	// Render as a column in table views. When defined, overrides `hidden`
+	ShowInTable *bool `json:"show_in_table,omitempty"`
+	// Allow sorting by this attribute in table views if `show_in_table` is true
+	Sortable     *bool `default:"true" json:"sortable"`
+	Required     *bool `default:"false" json:"required"`
+	Readonly     *bool `default:"false" json:"readonly"`
+	Deprecated   *bool `default:"false" json:"deprecated"`
+	DefaultValue any   `json:"default_value,omitempty"`
+	// Which group the attribute should appear in. Accepts group ID or group name
+	Group *string `json:"group,omitempty"`
+	// Attribute sort order (ascending) in group
+	Order  *int64  `json:"order,omitempty"`
+	Layout *string `json:"layout,omitempty"`
+	// When set to true, will hide the label of the field.
+	HideLabel *bool `json:"hide_label,omitempty"`
+	// Code name of the icon to used to represent this attribute.
+	// The value must be a valid @epilot/base-elements Icon name
+	//
+	Icon *string `json:"icon,omitempty"`
+	// Defines the conditional rendering expression for showing this field.
+	// When a valid expression is parsed, their evaluation defines the visibility of this attribute.
+	// Note: Empty or invalid expression have no effect on the field visibility.
+	//
+	RenderCondition *string  `json:"render_condition,omitempty"`
+	Purpose         []string `json:"_purpose,omitempty"`
+	// Manifest ID used to create/update the schema attribute
+	Manifest []string `json:"_manifest,omitempty"`
+	// A set of constraints applicable to the attribute.
+	// These constraints should and will be enforced by the attribute renderer.
+	//
+	Constraints *PortalAccessAttributeAttributeWithCompositeIDConstraints `json:"constraints,omitempty"`
+	// This attribute should only be active when the feature flag is enabled
+	FeatureFlag *string `json:"feature_flag,omitempty"`
+	// This attribute should only be active when one of the provided settings have the correct value
+	SettingsFlag          []SettingFlag `json:"settings_flag,omitempty"`
+	ValueFormatter        *string       `json:"value_formatter,omitempty"`
+	PreviewValueFormatter *string       `json:"preview_value_formatter,omitempty"`
+	// Setting to `true` disables editing the attribute on the entity builder UI
+	EntityBuilderDisableEdit *bool `default:"false" json:"entity_builder_disable_edit"`
+	// Setting to `true` prevents the attribute from being modified / deleted
+	Protected *bool `json:"protected,omitempty"`
+	// A set of configurations meant to document and assist the user in filling the attribute.
+	InfoHelpers *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
+	// The attribute is a repeatable
+	Repeatable *bool                                             `json:"repeatable,omitempty"`
+	HasPrimary *bool                                             `json:"has_primary,omitempty"`
+	Type       PortalAccessAttributeAttributeWithCompositeIDType `json:"type"`
+	// Schema slug the attribute belongs to
+	Schema *string `json:"schema,omitempty"`
+}
+
+func (a AttributeWithCompositeIDPortalAccessAttributeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttributeWithCompositeIDPortalAccessAttributeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Label
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetPlaceholder() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Placeholder
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetShowInTable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ShowInTable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetSortable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Sortable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetReadonly() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Readonly
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetDeprecated() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Deprecated
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetDefaultValue() any {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultValue
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetOrder() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetLayout() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Layout
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetHideLabel() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLabel
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetRenderCondition() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RenderCondition
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetPurpose() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Purpose
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetManifest() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Manifest
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetConstraints() *PortalAccessAttributeAttributeWithCompositeIDConstraints {
+	if o == nil {
+		return nil
+	}
+	return o.Constraints
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetFeatureFlag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FeatureFlag
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetSettingsFlag() []SettingFlag {
+	if o == nil {
+		return nil
+	}
+	return o.SettingsFlag
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ValueFormatter
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetPreviewValueFormatter() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PreviewValueFormatter
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetEntityBuilderDisableEdit() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EntityBuilderDisableEdit
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetProtected() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Protected
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetInfoHelpers() *PortalAccessAttributeAttributeWithCompositeIDInfoHelpers {
+	if o == nil {
+		return nil
+	}
+	return o.InfoHelpers
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetRepeatable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Repeatable
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetHasPrimary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasPrimary
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetType() PortalAccessAttributeAttributeWithCompositeIDType {
+	if o == nil {
+		return PortalAccessAttributeAttributeWithCompositeIDType("")
+	}
+	return o.Type
+}
+
+func (o *AttributeWithCompositeIDPortalAccessAttributeInput) GetSchema() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Schema
+}
+
 // AttributeWithCompositeIDPartnerOrganisationAttributeInput - Shared Partner Organisations
 type AttributeWithCompositeIDPartnerOrganisationAttributeInput struct {
 	// ID for the entity attribute
@@ -15373,7 +16808,7 @@ func (a AttributeWithCompositeIDPartnerOrganisationAttributeInput) MarshalJSON()
 }
 
 func (a *AttributeWithCompositeIDPartnerOrganisationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -15598,6 +17033,7 @@ func (o *AttributeWithCompositeIDPartnerOrganisationAttributeInput) GetSchema() 
 
 // AttributeWithCompositeIDPurposeAttributeInput - Entity Taxonomy
 type AttributeWithCompositeIDPurposeAttributeInput struct {
+	// ID for the entity attribute
 	ID          *string `json:"id,omitempty"`
 	Name        string  `json:"name"`
 	Label       string  `json:"label"`
@@ -15629,7 +17065,7 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	//
 	RenderCondition *string  `json:"render_condition,omitempty"`
 	Purpose         []string `json:"_purpose,omitempty"`
-	// Manifest ID used to create/update the taxonomy classification
+	// Manifest ID used to create/update the schema attribute
 	Manifest []string `json:"_manifest,omitempty"`
 	// A set of constraints applicable to the attribute.
 	// These constraints should and will be enforced by the attribute renderer.
@@ -15648,18 +17084,9 @@ type AttributeWithCompositeIDPurposeAttributeInput struct {
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PurposeAttributeAttributeWithCompositeIDInfoHelpers `json:"info_helpers,omitempty"`
 	// The attribute is a repeatable
-	Repeatable *bool `json:"repeatable,omitempty"`
-	HasPrimary *bool `json:"has_primary,omitempty"`
-	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
-	Parents []string `json:"parents,omitempty"`
-	// Color of the classification
-	Color     *string    `json:"color,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	// Archived classification are not visible in the UI
-	Archived *bool                                        `default:"false" json:"archived"`
-	Type     PurposeAttributeAttributeWithCompositeIDType `json:"type"`
+	Repeatable *bool                                        `json:"repeatable,omitempty"`
+	HasPrimary *bool                                        `json:"has_primary,omitempty"`
+	Type       PurposeAttributeAttributeWithCompositeIDType `json:"type"`
 	// Schema slug the attribute belongs to
 	Schema *string `json:"schema,omitempty"`
 }
@@ -15669,7 +17096,7 @@ func (a AttributeWithCompositeIDPurposeAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDPurposeAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -15878,48 +17305,6 @@ func (o *AttributeWithCompositeIDPurposeAttributeInput) GetHasPrimary() *bool {
 	return o.HasPrimary
 }
 
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Slug
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetParents() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Parents
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetColor() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Color
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetCreatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetUpdatedAt() *time.Time {
-	if o == nil {
-		return nil
-	}
-	return o.UpdatedAt
-}
-
-func (o *AttributeWithCompositeIDPurposeAttributeInput) GetArchived() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Archived
-}
-
 func (o *AttributeWithCompositeIDPurposeAttributeInput) GetType() PurposeAttributeAttributeWithCompositeIDType {
 	if o == nil {
 		return PurposeAttributeAttributeWithCompositeIDType("")
@@ -15999,7 +17384,7 @@ func (a AttributeWithCompositeIDInternalUserAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDInternalUserAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -16287,7 +17672,7 @@ func (a AttributeWithCompositeIDAutomationAttributeInput) MarshalJSON() ([]byte,
 }
 
 func (a *AttributeWithCompositeIDAutomationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -16575,7 +17960,7 @@ func (a AttributeWithCompositeIDInvitationEmailAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDInvitationEmailAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -16863,7 +18248,7 @@ func (a AttributeWithCompositeIDPartnerStatusAttributeInput) MarshalJSON() ([]by
 }
 
 func (a *AttributeWithCompositeIDPartnerStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -17158,7 +18543,7 @@ func (a AttributeWithCompositeIDComputedAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDComputedAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -17477,7 +18862,7 @@ func (a AttributeWithCompositeIDFileAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDFileAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -17800,7 +19185,7 @@ func (a AttributeWithCompositeIDOrderedListAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDOrderedListAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -18088,7 +19473,7 @@ func (a AttributeWithCompositeIDInternalAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDInternalAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -18378,7 +19763,7 @@ func (a AttributeWithCompositeIDConsentAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDConsentAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "topic"}); err != nil {
 		return err
 	}
 	return nil
@@ -18683,7 +20068,7 @@ func (a AttributeWithCompositeIDNumberAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDNumberAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -18988,7 +20373,7 @@ func (a AttributeWithCompositeIDMessageEmailAddressAttributeInput) MarshalJSON()
 }
 
 func (a *AttributeWithCompositeIDMessageEmailAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -19299,7 +20684,7 @@ func (a AttributeWithCompositeIDTagsAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTagsAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -19604,7 +20989,7 @@ func (a AttributeWithCompositeIDCurrencyAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDCurrencyAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil
@@ -19906,7 +21291,7 @@ func (a AttributeWithCompositeIDPaymentMethodRelationAttributeInput) MarshalJSON
 }
 
 func (a *AttributeWithCompositeIDPaymentMethodRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -20216,7 +21601,7 @@ func (a AttributeWithCompositeIDAddressRelationAttributeInput) MarshalJSON() ([]
 }
 
 func (a *AttributeWithCompositeIDAddressRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -20533,7 +21918,7 @@ func (a AttributeWithCompositeIDAddressAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDAddressAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -20829,7 +22214,7 @@ func (a AttributeWithCompositeIDUserRelationAttributeInput) MarshalJSON() ([]byt
 }
 
 func (a *AttributeWithCompositeIDUserRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -21143,7 +22528,7 @@ func (a AttributeWithCompositeIDRelationAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDRelationAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -21532,7 +22917,7 @@ func (a AttributeWithCompositeIDSequenceAttributeInput) MarshalJSON() ([]byte, e
 }
 
 func (a *AttributeWithCompositeIDSequenceAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -21835,7 +23220,7 @@ func (a AttributeWithCompositeIDStatusAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDStatusAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -22137,7 +23522,7 @@ func (a AttributeWithCompositeIDMultiSelectAttributeInput) MarshalJSON() ([]byte
 }
 
 func (a *AttributeWithCompositeIDMultiSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -22456,7 +23841,7 @@ func (a AttributeWithCompositeIDSelectAttributeInput) MarshalJSON() ([]byte, err
 }
 
 func (a *AttributeWithCompositeIDSelectAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -22759,7 +24144,7 @@ func (a AttributeWithCompositeIDBooleanAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDBooleanAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -23054,7 +24439,7 @@ func (a AttributeWithCompositeIDCountryAttributeInput) MarshalJSON() ([]byte, er
 }
 
 func (a *AttributeWithCompositeIDCountryAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -23342,7 +24727,7 @@ func (a AttributeWithCompositeIDDateAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDDateAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -23630,7 +25015,7 @@ func (a AttributeWithCompositeIDLinkAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDLinkAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -23921,7 +25306,7 @@ func (a AttributeWithCompositeIDTextAttributeInput) MarshalJSON() ([]byte, error
 }
 
 func (a *AttributeWithCompositeIDTextAttributeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -24197,6 +25582,7 @@ const (
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_InternalUserAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PurposeAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput   AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PartnerOrganisationAttribute_input"
+	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput          AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PortalAccessAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PhoneAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput                 AttributeWithCompositeIDInputType = "AttributeWithCompositeID_EmailAttribute_input"
 	AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput               AttributeWithCompositeIDInputType = "AttributeWithCompositeID_PaymentAttribute_input"
@@ -24205,39 +25591,40 @@ const (
 
 // AttributeWithCompositeIDInput - a readonly computed ID for the attribute including schema slug and the attribute ID
 type AttributeWithCompositeIDInput struct {
-	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline"`
-	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline"`
-	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline"`
-	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline"`
-	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline"`
-	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline"`
-	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline"`
-	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline"`
-	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline"`
-	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline"`
-	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline"`
-	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline"`
-	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline"`
+	AttributeWithCompositeIDTextAttributeInput                  *AttributeWithCompositeIDTextAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDLinkAttributeInput                  *AttributeWithCompositeIDLinkAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDDateAttributeInput                  *AttributeWithCompositeIDDateAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCountryAttributeInput               *AttributeWithCompositeIDCountryAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDBooleanAttributeInput               *AttributeWithCompositeIDBooleanAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSelectAttributeInput                *AttributeWithCompositeIDSelectAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMultiSelectAttributeInput           *AttributeWithCompositeIDMultiSelectAttributeInput           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDStatusAttributeInput                *AttributeWithCompositeIDStatusAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDSequenceAttributeInput              *AttributeWithCompositeIDSequenceAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDRelationAttributeInput              *AttributeWithCompositeIDRelationAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDUserRelationAttributeInput          *AttributeWithCompositeIDUserRelationAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressAttributeInput               *AttributeWithCompositeIDAddressAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAddressRelationAttributeInput       *AttributeWithCompositeIDAddressRelationAttributeInput       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentMethodRelationAttributeInput *AttributeWithCompositeIDPaymentMethodRelationAttributeInput `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDCurrencyAttributeInput              *AttributeWithCompositeIDCurrencyAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDTagsAttributeInput                  *AttributeWithCompositeIDTagsAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDMessageEmailAddressAttributeInput   *AttributeWithCompositeIDMessageEmailAddressAttributeInput   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDNumberAttributeInput                *AttributeWithCompositeIDNumberAttributeInput                `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDConsentAttributeInput               *AttributeWithCompositeIDConsentAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalAttributeInput              *AttributeWithCompositeIDInternalAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDOrderedListAttributeInput           *AttributeWithCompositeIDOrderedListAttributeInput           `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDFileAttributeInput                  *AttributeWithCompositeIDFileAttributeInput                  `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDComputedAttributeInput              *AttributeWithCompositeIDComputedAttributeInput              `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerStatusAttributeInput         *AttributeWithCompositeIDPartnerStatusAttributeInput         `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInvitationEmailAttributeInput       *AttributeWithCompositeIDInvitationEmailAttributeInput       `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDAutomationAttributeInput            *AttributeWithCompositeIDAutomationAttributeInput            `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDInternalUserAttributeInput          *AttributeWithCompositeIDInternalUserAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPurposeAttributeInput               *AttributeWithCompositeIDPurposeAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPartnerOrganisationAttributeInput   *AttributeWithCompositeIDPartnerOrganisationAttributeInput   `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPortalAccessAttributeInput          *AttributeWithCompositeIDPortalAccessAttributeInput          `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPhoneAttributeInput                 *AttributeWithCompositeIDPhoneAttributeInput                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDEmailAttributeInput                 *AttributeWithCompositeIDEmailAttributeInput                 `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPaymentAttributeInput               *AttributeWithCompositeIDPaymentAttributeInput               `queryParam:"inline" name:"AttributeWithCompositeID"`
+	AttributeWithCompositeIDPriceComponentAttributeInput        *AttributeWithCompositeIDPriceComponentAttributeInput        `queryParam:"inline" name:"AttributeWithCompositeID"`
 
 	Type AttributeWithCompositeIDInputType
 }
@@ -24503,6 +25890,15 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPartnerOrganisat
 	}
 }
 
+func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPortalAccessAttributeInput(attributeWithCompositeIDPortalAccessAttributeInput AttributeWithCompositeIDPortalAccessAttributeInput) AttributeWithCompositeIDInput {
+	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput
+
+	return AttributeWithCompositeIDInput{
+		AttributeWithCompositeIDPortalAccessAttributeInput: &attributeWithCompositeIDPortalAccessAttributeInput,
+		Type: typ,
+	}
+}
+
 func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPhoneAttributeInput(attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput) AttributeWithCompositeIDInput {
 	typ := AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
 
@@ -24541,234 +25937,241 @@ func CreateAttributeWithCompositeIDInputAttributeWithCompositeIDPriceComponentAt
 
 func (u *AttributeWithCompositeIDInput) UnmarshalJSON(data []byte) error {
 
-	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
+	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDLinkAttributeInput AttributeWithCompositeIDLinkAttributeInput = AttributeWithCompositeIDLinkAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDLinkAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDLinkAttributeInput = &attributeWithCompositeIDLinkAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDLinkAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDDateAttributeInput AttributeWithCompositeIDDateAttributeInput = AttributeWithCompositeIDDateAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDDateAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDDateAttributeInput = &attributeWithCompositeIDDateAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDDateAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDCountryAttributeInput AttributeWithCompositeIDCountryAttributeInput = AttributeWithCompositeIDCountryAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCountryAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDCountryAttributeInput = &attributeWithCompositeIDCountryAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCountryAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPriceComponentAttributeInput AttributeWithCompositeIDPriceComponentAttributeInput = AttributeWithCompositeIDPriceComponentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPriceComponentAttributeInput = &attributeWithCompositeIDPriceComponentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPriceComponentAttributeInput
+	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPaymentAttributeInput AttributeWithCompositeIDPaymentAttributeInput = AttributeWithCompositeIDPaymentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentAttributeInput = &attributeWithCompositeIDPaymentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput
+	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
+	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
+	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDUserRelationAttributeInput AttributeWithCompositeIDUserRelationAttributeInput = AttributeWithCompositeIDUserRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDUserRelationAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDUserRelationAttributeInput = &attributeWithCompositeIDUserRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDUserRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressAttributeInput AttributeWithCompositeIDAddressAttributeInput = AttributeWithCompositeIDAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressAttributeInput = &attributeWithCompositeIDAddressAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDAddressRelationAttributeInput AttributeWithCompositeIDAddressRelationAttributeInput = AttributeWithCompositeIDAddressRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAddressRelationAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDAddressRelationAttributeInput = &attributeWithCompositeIDAddressRelationAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAddressRelationAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDStatusAttributeInput AttributeWithCompositeIDStatusAttributeInput = AttributeWithCompositeIDStatusAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDStatusAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDStatusAttributeInput = &attributeWithCompositeIDStatusAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDStatusAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDBooleanAttributeInput AttributeWithCompositeIDBooleanAttributeInput = AttributeWithCompositeIDBooleanAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDBooleanAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDBooleanAttributeInput = &attributeWithCompositeIDBooleanAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDBooleanAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDSequenceAttributeInput AttributeWithCompositeIDSequenceAttributeInput = AttributeWithCompositeIDSequenceAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSequenceAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSequenceAttributeInput = &attributeWithCompositeIDSequenceAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSequenceAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDConsentAttributeInput AttributeWithCompositeIDConsentAttributeInput = AttributeWithCompositeIDConsentAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDConsentAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDConsentAttributeInput = &attributeWithCompositeIDConsentAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDConsentAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
+	var attributeWithCompositeIDPaymentMethodRelationAttributeInput AttributeWithCompositeIDPaymentMethodRelationAttributeInput = AttributeWithCompositeIDPaymentMethodRelationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentMethodRelationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentMethodRelationAttributeInput = &attributeWithCompositeIDPaymentMethodRelationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentMethodRelationAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDTagsAttributeInput AttributeWithCompositeIDTagsAttributeInput = AttributeWithCompositeIDTagsAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTagsAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDTagsAttributeInput = &attributeWithCompositeIDTagsAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTagsAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDCurrencyAttributeInput AttributeWithCompositeIDCurrencyAttributeInput = AttributeWithCompositeIDCurrencyAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDCurrencyAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDCurrencyAttributeInput = &attributeWithCompositeIDCurrencyAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDCurrencyAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDSelectAttributeInput AttributeWithCompositeIDSelectAttributeInput = AttributeWithCompositeIDSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDSelectAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDSelectAttributeInput = &attributeWithCompositeIDSelectAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDSelectAttributeInput
-		return nil
-	}
-
-	var attributeWithCompositeIDComputedAttributeInput AttributeWithCompositeIDComputedAttributeInput = AttributeWithCompositeIDComputedAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDComputedAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDComputedAttributeInput = &attributeWithCompositeIDComputedAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDComputedAttributeInput
-		return nil
-	}
-
 	var attributeWithCompositeIDMessageEmailAddressAttributeInput AttributeWithCompositeIDMessageEmailAddressAttributeInput = AttributeWithCompositeIDMessageEmailAddressAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMessageEmailAddressAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDMessageEmailAddressAttributeInput = &attributeWithCompositeIDMessageEmailAddressAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMessageEmailAddressAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDTextAttributeInput AttributeWithCompositeIDTextAttributeInput = AttributeWithCompositeIDTextAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDTextAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDTextAttributeInput = &attributeWithCompositeIDTextAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDTextAttributeInput
+	var attributeWithCompositeIDNumberAttributeInput AttributeWithCompositeIDNumberAttributeInput = AttributeWithCompositeIDNumberAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDNumberAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDNumberAttributeInput = &attributeWithCompositeIDNumberAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDNumberAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDMultiSelectAttributeInput AttributeWithCompositeIDMultiSelectAttributeInput = AttributeWithCompositeIDMultiSelectAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDMultiSelectAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDMultiSelectAttributeInput = &attributeWithCompositeIDMultiSelectAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDMultiSelectAttributeInput
+	var attributeWithCompositeIDInternalAttributeInput AttributeWithCompositeIDInternalAttributeInput = AttributeWithCompositeIDInternalAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalAttributeInput = &attributeWithCompositeIDInternalAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDOrderedListAttributeInput AttributeWithCompositeIDOrderedListAttributeInput = AttributeWithCompositeIDOrderedListAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDOrderedListAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDOrderedListAttributeInput = &attributeWithCompositeIDOrderedListAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDOrderedListAttributeInput
 		return nil
 	}
 
 	var attributeWithCompositeIDFileAttributeInput AttributeWithCompositeIDFileAttributeInput = AttributeWithCompositeIDFileAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDFileAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDFileAttributeInput = &attributeWithCompositeIDFileAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDFileAttributeInput
 		return nil
 	}
 
+	var attributeWithCompositeIDPartnerStatusAttributeInput AttributeWithCompositeIDPartnerStatusAttributeInput = AttributeWithCompositeIDPartnerStatusAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerStatusAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerStatusAttributeInput = &attributeWithCompositeIDPartnerStatusAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerStatusAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInvitationEmailAttributeInput AttributeWithCompositeIDInvitationEmailAttributeInput = AttributeWithCompositeIDInvitationEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInvitationEmailAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInvitationEmailAttributeInput = &attributeWithCompositeIDInvitationEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInvitationEmailAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDAutomationAttributeInput AttributeWithCompositeIDAutomationAttributeInput = AttributeWithCompositeIDAutomationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDAutomationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDAutomationAttributeInput = &attributeWithCompositeIDAutomationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDAutomationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDInternalUserAttributeInput AttributeWithCompositeIDInternalUserAttributeInput = AttributeWithCompositeIDInternalUserAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDInternalUserAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDInternalUserAttributeInput = &attributeWithCompositeIDInternalUserAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDInternalUserAttributeInput
+		return nil
+	}
+
 	var attributeWithCompositeIDPurposeAttributeInput AttributeWithCompositeIDPurposeAttributeInput = AttributeWithCompositeIDPurposeAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPurposeAttributeInput, "", true, nil); err == nil {
 		u.AttributeWithCompositeIDPurposeAttributeInput = &attributeWithCompositeIDPurposeAttributeInput
 		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPurposeAttributeInput
 		return nil
 	}
 
-	var attributeWithCompositeIDRelationAttributeInput AttributeWithCompositeIDRelationAttributeInput = AttributeWithCompositeIDRelationAttributeInput{}
-	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDRelationAttributeInput, "", true, false); err == nil {
-		u.AttributeWithCompositeIDRelationAttributeInput = &attributeWithCompositeIDRelationAttributeInput
-		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDRelationAttributeInput
+	var attributeWithCompositeIDPartnerOrganisationAttributeInput AttributeWithCompositeIDPartnerOrganisationAttributeInput = AttributeWithCompositeIDPartnerOrganisationAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPartnerOrganisationAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPartnerOrganisationAttributeInput = &attributeWithCompositeIDPartnerOrganisationAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPartnerOrganisationAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPortalAccessAttributeInput AttributeWithCompositeIDPortalAccessAttributeInput = AttributeWithCompositeIDPortalAccessAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPortalAccessAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPortalAccessAttributeInput = &attributeWithCompositeIDPortalAccessAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPortalAccessAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPhoneAttributeInput AttributeWithCompositeIDPhoneAttributeInput = AttributeWithCompositeIDPhoneAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPhoneAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPhoneAttributeInput = &attributeWithCompositeIDPhoneAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPhoneAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDEmailAttributeInput AttributeWithCompositeIDEmailAttributeInput = AttributeWithCompositeIDEmailAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDEmailAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDEmailAttributeInput = &attributeWithCompositeIDEmailAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDEmailAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPaymentAttributeInput AttributeWithCompositeIDPaymentAttributeInput = AttributeWithCompositeIDPaymentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPaymentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPaymentAttributeInput = &attributeWithCompositeIDPaymentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPaymentAttributeInput
+		return nil
+	}
+
+	var attributeWithCompositeIDPriceComponentAttributeInput AttributeWithCompositeIDPriceComponentAttributeInput = AttributeWithCompositeIDPriceComponentAttributeInput{}
+	if err := utils.UnmarshalJSON(data, &attributeWithCompositeIDPriceComponentAttributeInput, "", true, nil); err == nil {
+		u.AttributeWithCompositeIDPriceComponentAttributeInput = &attributeWithCompositeIDPriceComponentAttributeInput
+		u.Type = AttributeWithCompositeIDInputTypeAttributeWithCompositeIDPriceComponentAttributeInput
 		return nil
 	}
 
@@ -24890,6 +26293,10 @@ func (u AttributeWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 
 	if u.AttributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
 		return utils.MarshalJSON(u.AttributeWithCompositeIDPartnerOrganisationAttributeInput, "", true)
+	}
+
+	if u.AttributeWithCompositeIDPortalAccessAttributeInput != nil {
+		return utils.MarshalJSON(u.AttributeWithCompositeIDPortalAccessAttributeInput, "", true)
 	}
 
 	if u.AttributeWithCompositeIDPhoneAttributeInput != nil {

@@ -69,6 +69,9 @@ type UpdateClassificationsForTaxonomyResponse struct {
 	Object *UpdateClassificationsForTaxonomyResponseBody
 	// The requested resource was not found
 	NotFoundError *shared.NotFoundError
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *UpdateClassificationsForTaxonomyResponse) GetContentType() string {
@@ -104,4 +107,18 @@ func (o *UpdateClassificationsForTaxonomyResponse) GetNotFoundError() *shared.No
 		return nil
 	}
 	return o.NotFoundError
+}
+
+func (o *UpdateClassificationsForTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *UpdateClassificationsForTaxonomyResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -13,6 +13,17 @@ import (
 type InternalUserAttributeConstraints struct {
 }
 
+func (i InternalUserAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalUserAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // InternalUserAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InternalUserAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type InternalUserAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (i InternalUserAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InternalUserAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InternalUserAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (i InternalUserAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InternalUserAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

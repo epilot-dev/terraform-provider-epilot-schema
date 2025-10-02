@@ -12,11 +12,16 @@ import (
 type Operation string
 
 const (
-	OperationCreateEntity     Operation = "createEntity"
-	OperationUpdateEntity     Operation = "updateEntity"
-	OperationDeleteEntity     Operation = "deleteEntity"
-	OperationSoftDeleteEntity Operation = "softDeleteEntity"
-	OperationRestoreEntity    Operation = "restoreEntity"
+	OperationCreateEntity         Operation = "createEntity"
+	OperationUpdateEntity         Operation = "updateEntity"
+	OperationDeleteEntity         Operation = "deleteEntity"
+	OperationSoftDeleteEntity     Operation = "softDeleteEntity"
+	OperationRestoreEntity        Operation = "restoreEntity"
+	OperationRelationsAdded       Operation = "relationsAdded"
+	OperationRelationsRemoved     Operation = "relationsRemoved"
+	OperationRelationsSoftDeleted Operation = "relationsSoftDeleted"
+	OperationRelationsRestored    Operation = "relationsRestored"
+	OperationRelationsDeleted     Operation = "relationsDeleted"
 )
 
 func (e Operation) ToPointer() *Operation {
@@ -37,6 +42,16 @@ func (e *Operation) UnmarshalJSON(data []byte) error {
 	case "softDeleteEntity":
 		fallthrough
 	case "restoreEntity":
+		fallthrough
+	case "relationsAdded":
+		fallthrough
+	case "relationsRemoved":
+		fallthrough
+	case "relationsSoftDeleted":
+		fallthrough
+	case "relationsRestored":
+		fallthrough
+	case "relationsDeleted":
 		*e = Operation(v)
 		return nil
 	default:
@@ -77,7 +92,7 @@ func (e EntityOperationACL) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityOperationACL) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -136,7 +151,7 @@ func (p Payload) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Payload) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil

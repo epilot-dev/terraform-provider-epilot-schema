@@ -1,17 +1,24 @@
 resource "epilot-schema_schema_capability" "my_schemacapability" {
+  app_id = "123e4567-e89b-12d3-a456-426614174000"
   attributes = [
     {
-      tags_attribute = {
+      file_attribute = {
+        allowed_extensions = [
+          "csv"
+        ]
         constraints = {
           # ...
         }
+        default_access_control      = "private"
         default_value               = "{ \"see\": \"documentation\" }"
-        deprecated                  = true
-        entity_builder_disable_edit = false
+        deprecated                  = false
+        display_images_landscaped   = false
+        enable_description          = true
+        entity_builder_disable_edit = true
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
-        has_primary                 = true
-        hidden                      = true
+        has_primary                 = false
+        hidden                      = false
         hide_label                  = false
         icon                        = "...my_icon..."
         id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
@@ -26,10 +33,8 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         manifest = [
           "123e4567-e89b-12d3-a456-426614174000"
         ]
-        name = "...my_name..."
-        options = [
-          "..."
-        ]
+        multiple                = false
+        name                    = "...my_name..."
         order                   = 0
         placeholder             = "...my_placeholder..."
         preview_value_formatter = "...my_preview_value_formatter..."
@@ -39,20 +44,17 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         ]
         readonly         = false
         render_condition = "...my_render_condition..."
-        repeatable       = true
-        required         = true
+        repeatable       = false
+        required         = false
         settings_flag = [
           {
             enabled = true
             name    = "...my_name..."
           }
         ]
-        show_in_table = false
-        sortable      = true
-        suggestions = [
-          "..."
-        ]
-        type            = "tags"
+        show_in_table   = true
+        sortable        = true
+        type            = "file"
         value_formatter = "...my_value_formatter..."
       }
     }
@@ -74,6 +76,9 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
     }
   ]
   title = "Messaging"
+  ui_config = {
+    is_filterable = true
+  }
   ui_hooks = [
     {
       additional_properties = "{ \"see\": \"documentation\" }"

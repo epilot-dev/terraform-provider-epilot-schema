@@ -29,7 +29,7 @@ func (b BaseActivityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BaseActivityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"type", "title", "message"}); err != nil {
 		return err
 	}
 	return nil

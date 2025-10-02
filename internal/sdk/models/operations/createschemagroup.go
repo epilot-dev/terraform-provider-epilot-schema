@@ -16,6 +16,9 @@ type CreateSchemaGroupResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntitySchemaGroupWithCompositeID *shared.EntitySchemaGroupWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateSchemaGroupResponse) GetContentType() string {
@@ -44,4 +47,18 @@ func (o *CreateSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *share
 		return nil
 	}
 	return o.EntitySchemaGroupWithCompositeID
+}
+
+func (o *CreateSchemaGroupResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateSchemaGroupResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

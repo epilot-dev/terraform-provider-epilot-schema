@@ -10,7 +10,7 @@ import (
 type TaxonomyClassification struct {
 	ID *string `json:"id,omitempty"`
 	// URL-friendly identifier for the classification
-	Slug    *string  `json:"slug,omitempty"`
+	Slug    string   `json:"slug"`
 	Name    string   `json:"name"`
 	Parents []string `json:"parents,omitempty"`
 	// Color of the classification
@@ -19,6 +19,8 @@ type TaxonomyClassification struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Archived classification are not visible in the UI
 	Archived *bool `default:"false" json:"archived"`
+	// Starred taxonomy classifications can represent "favorites" or commonly used classifications
+	Starred *bool `default:"false" json:"starred"`
 	// Manifest ID used to create/update the taxonomy classification
 	Manifest []string `json:"_manifest,omitempty"`
 }
@@ -28,7 +30,7 @@ func (t TaxonomyClassification) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomyClassification) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"slug", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -41,9 +43,9 @@ func (o *TaxonomyClassification) GetID() *string {
 	return o.ID
 }
 
-func (o *TaxonomyClassification) GetSlug() *string {
+func (o *TaxonomyClassification) GetSlug() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Slug
 }
@@ -88,6 +90,13 @@ func (o *TaxonomyClassification) GetArchived() *bool {
 		return nil
 	}
 	return o.Archived
+}
+
+func (o *TaxonomyClassification) GetStarred() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Starred
 }
 
 func (o *TaxonomyClassification) GetManifest() []string {

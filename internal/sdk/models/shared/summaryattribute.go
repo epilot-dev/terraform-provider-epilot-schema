@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 // DisplayMode - Defines the display mode of the summary attribute.
@@ -116,6 +117,17 @@ type SummaryAttribute struct {
 	HideLabel *bool `json:"hide_label,omitempty"`
 	// When set to true, will highlight the container of the field.
 	HighlightContainer *bool `json:"highlight_container,omitempty"`
+}
+
+func (s SummaryAttribute) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SummaryAttribute) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"label", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SummaryAttribute) GetLabel() string {

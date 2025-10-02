@@ -2,9 +2,11 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
-type RequiredPermission struct {
+type EntityCapabilityWithCompositeIDRequiredPermission struct {
 	Action   types.String `tfsdk:"action"`
 	Resource types.String `tfsdk:"resource"`
 }

@@ -16,6 +16,9 @@ type CreateSchemaCapabilityResponse struct {
 	RawResponse *http.Response
 	// Success
 	EntityCapabilityWithCompositeID *shared.EntityCapabilityWithCompositeID
+	// Too many requests
+	TooManyRequestsError *shared.TooManyRequestsError
+	Headers              map[string][]string
 }
 
 func (o *CreateSchemaCapabilityResponse) GetContentType() string {
@@ -44,4 +47,18 @@ func (o *CreateSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *s
 		return nil
 	}
 	return o.EntityCapabilityWithCompositeID
+}
+
+func (o *CreateSchemaCapabilityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if o == nil {
+		return nil
+	}
+	return o.TooManyRequestsError
+}
+
+func (o *CreateSchemaCapabilityResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

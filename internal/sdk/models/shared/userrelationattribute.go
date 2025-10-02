@@ -13,6 +13,17 @@ import (
 type UserRelationAttributeConstraints struct {
 }
 
+func (u UserRelationAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserRelationAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // UserRelationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type UserRelationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type UserRelationAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (u UserRelationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UserRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UserRelationAttributeInfoHelpers) GetHintText() *string {
@@ -149,7 +171,7 @@ func (u UserRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

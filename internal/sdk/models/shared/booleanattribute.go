@@ -13,6 +13,17 @@ import (
 type BooleanAttributeConstraints struct {
 }
 
+func (b BooleanAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // BooleanAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type BooleanAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type BooleanAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (b BooleanAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BooleanAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BooleanAttributeInfoHelpers) GetHintText() *string {
@@ -175,7 +197,7 @@ func (b BooleanAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BooleanAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

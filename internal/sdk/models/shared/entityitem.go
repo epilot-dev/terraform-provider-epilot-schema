@@ -20,7 +20,7 @@ func (a ACL) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ACL) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -79,7 +79,7 @@ func (e EntityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"_id", "_org", "_schema", "_title", "_created_at", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil

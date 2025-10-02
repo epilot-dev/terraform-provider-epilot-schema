@@ -14,6 +14,17 @@ import (
 type CurrencyAttributeConstraints struct {
 }
 
+func (c CurrencyAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // CurrencyAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CurrencyAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -33,6 +44,17 @@ type CurrencyAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c CurrencyAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CurrencyAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CurrencyAttributeInfoHelpers) GetHintText() *string {
@@ -86,36 +108,47 @@ func (e *CurrencyAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Currency1 - A currency configuration
-type Currency1 struct {
+// One - A currency configuration
+type One struct {
 	Code        string  `json:"code"`
 	Description string  `json:"description"`
 	Symbol      string  `json:"symbol"`
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o *Currency1) GetCode() string {
+func (o One) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *One) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"code", "description", "symbol"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *One) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *Currency1) GetDescription() string {
+func (o *One) GetDescription() string {
 	if o == nil {
 		return ""
 	}
 	return o.Description
 }
 
-func (o *Currency1) GetSymbol() string {
+func (o *One) GetSymbol() string {
 	if o == nil {
 		return ""
 	}
 	return o.Symbol
 }
 
-func (o *Currency1) GetFlag() *string {
+func (o *One) GetFlag() *string {
 	if o == nil {
 		return nil
 	}
@@ -125,30 +158,30 @@ func (o *Currency1) GetFlag() *string {
 type CurrencyType string
 
 const (
-	CurrencyTypeCurrency1 CurrencyType = "currency_1"
+	CurrencyTypeOne CurrencyType = "1"
 )
 
 type Currency struct {
-	Currency1 *Currency1 `queryParam:"inline"`
+	One *One `queryParam:"inline" name:"currency"`
 
 	Type CurrencyType
 }
 
-func CreateCurrencyCurrency1(currency1 Currency1) Currency {
-	typ := CurrencyTypeCurrency1
+func CreateCurrencyOne(one One) Currency {
+	typ := CurrencyTypeOne
 
 	return Currency{
-		Currency1: &currency1,
-		Type:      typ,
+		One:  &one,
+		Type: typ,
 	}
 }
 
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
-	var currency1 Currency1 = Currency1{}
-	if err := utils.UnmarshalJSON(data, &currency1, "", true, false); err == nil {
-		u.Currency1 = &currency1
-		u.Type = CurrencyTypeCurrency1
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
+		u.One = &one
+		u.Type = CurrencyTypeOne
 		return nil
 	}
 
@@ -156,8 +189,8 @@ func (u *Currency) UnmarshalJSON(data []byte) error {
 }
 
 func (u Currency) MarshalJSON() ([]byte, error) {
-	if u.Currency1 != nil {
-		return utils.MarshalJSON(u.Currency1, "", true)
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Currency: all fields are null")
@@ -229,7 +262,7 @@ func (c CurrencyAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type", "currency"}); err != nil {
 		return err
 	}
 	return nil

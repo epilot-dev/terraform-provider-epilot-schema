@@ -14,6 +14,17 @@ import (
 type MultiSelectAttributeConstraints struct {
 }
 
+func (m MultiSelectAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // MultiSelectAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type MultiSelectAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -33,6 +44,17 @@ type MultiSelectAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (m MultiSelectAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MultiSelectAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MultiSelectAttributeInfoHelpers) GetHintText() *string {
@@ -89,19 +111,30 @@ func (e *MultiSelectAttributeType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Options2 struct {
+type Two struct {
 	Value string  `json:"value"`
 	Title *string `json:"title,omitempty"`
 }
 
-func (o *Options2) GetValue() string {
+func (t Two) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Two) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"value"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Two) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *Options2) GetTitle() *string {
+func (o *Two) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
@@ -111,13 +144,13 @@ func (o *Options2) GetTitle() *string {
 type OptionsObjType string
 
 const (
-	OptionsObjTypeStr      OptionsObjType = "str"
-	OptionsObjTypeOptions2 OptionsObjType = "options_2"
+	OptionsObjTypeStr OptionsObjType = "str"
+	OptionsObjTypeTwo OptionsObjType = "2"
 )
 
 type OptionsObj struct {
-	Str      *string   `queryParam:"inline"`
-	Options2 *Options2 `queryParam:"inline"`
+	Str *string `queryParam:"inline" name:"options"`
+	Two *Two    `queryParam:"inline" name:"options"`
 
 	Type OptionsObjType
 }
@@ -131,26 +164,26 @@ func CreateOptionsObjStr(str string) OptionsObj {
 	}
 }
 
-func CreateOptionsObjOptions2(options2 Options2) OptionsObj {
-	typ := OptionsObjTypeOptions2
+func CreateOptionsObjTwo(two Two) OptionsObj {
+	typ := OptionsObjTypeTwo
 
 	return OptionsObj{
-		Options2: &options2,
-		Type:     typ,
+		Two:  &two,
+		Type: typ,
 	}
 }
 
 func (u *OptionsObj) UnmarshalJSON(data []byte) error {
 
-	var options2 Options2 = Options2{}
-	if err := utils.UnmarshalJSON(data, &options2, "", true, false); err == nil {
-		u.Options2 = &options2
-		u.Type = OptionsObjTypeOptions2
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
+		u.Two = &two
+		u.Type = OptionsObjTypeTwo
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = OptionsObjTypeStr
 		return nil
@@ -164,8 +197,8 @@ func (u OptionsObj) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.Options2 != nil {
-		return utils.MarshalJSON(u.Options2, "", true)
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type OptionsObj: all fields are null")
@@ -241,7 +274,7 @@ func (m MultiSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

@@ -13,6 +13,17 @@ import (
 type CountryAttributeConstraints struct {
 }
 
+func (c CountryAttributeConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CountryAttributeConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // CountryAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CountryAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -32,6 +43,17 @@ type CountryAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
+}
+
+func (c CountryAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CountryAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CountryAttributeInfoHelpers) GetHintText() *string {
@@ -148,7 +170,7 @@ func (c CountryAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CountryAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type"}); err != nil {
 		return err
 	}
 	return nil

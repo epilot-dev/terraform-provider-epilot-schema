@@ -2,7 +2,10 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type RelationAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -11,7 +14,7 @@ type RelationAttribute struct {
 	AddButtonLabel           types.String                                         `tfsdk:"add_button_label"`
 	AllowedSchemas           []types.String                                       `tfsdk:"allowed_schemas"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             types.String                                         `tfsdk:"default_value"`
+	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DetailsViewModeEnabled   types.Bool                                           `tfsdk:"details_view_mode_enabled"`
 	DrawerSize               types.String                                         `tfsdk:"drawer_size"`

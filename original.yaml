@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Entity API
-  version: 1.0.0
+  version: 2.0.0
   description: |
     Flexible data layer for epilot Entities.
 
@@ -25,6 +25,10 @@ tags:
   description: Taxonomies and Classifications
 - name: Elastic Cluster Assignment
   description: Elastic Cluster assignment for organizations
+- name: Internal
+  description: Internal APIs
+- name: Public
+  description: Public
 security:
 - EpilotAuth: []
 - EpilotOrg: []
@@ -102,6 +106,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitySchemaItem'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
     delete:
       operationId: deleteSchema
       summary: deleteSchema
@@ -113,6 +119,8 @@ paths:
       responses:
         '200':
           description: Success
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/{slug}/json/schema:
     get:
       operationId: getJsonSchema
@@ -122,6 +130,11 @@ paths:
       - Schemas
       parameters:
       - $ref: '#/components/parameters/EntitySlugPathParam'
+      - in: query
+        name: dereference
+        schema:
+          default: false
+          type: boolean
       responses:
         '200':
           description: Success
@@ -376,6 +389,8 @@ paths:
               examples:
                 contact:
                   $ref: '#/components/examples/ContactEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/{slug}/versions:
     get:
       operationId: getSchemaVersions
@@ -389,18 +404,22 @@ paths:
         name: versions_from
         schema:
           type: number
+          default: 0
       - in: query
         name: versions_size
         schema:
           type: number
+          default: 20
       - in: query
         name: drafts_from
         schema:
           type: number
+          default: 0
       - in: query
         name: drafts_size
         schema:
           type: number
+          default: 0
       - in: query
         name: fields
         required: false
@@ -430,6 +449,36 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/EntitySchemaItem'
+                  versions_more:
+                    description: 'Pagination: Whether more versions are available'
+                    type: boolean
+                  drafts_more:
+                    description: 'Pagination: Whether more drafts are available'
+                    type: boolean
+                required:
+                - versions
+                - versions_more
+  /v1/entity/schemas/{slug}/capabilities/available:
+    get:
+      operationId: listAvailableCapabilities
+      summary: listAvailableCapabilities
+      description: List available capabilities for schema
+      tags:
+      - Schemas
+      parameters:
+      - $ref: '#/components/parameters/EntitySlugPathParam'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntityCapability'
   /v1/entity/schemas/blueprints:
     get:
       operationId: listSchemaBlueprints
@@ -453,6 +502,10 @@ paths:
     post:
       operationId: searchEntities
       summary: searchEntities
+      x-rate-limit:
+        limit: 5000
+        window: 60
+        pool: search
       description: |
         Search for entities. Supports ordering and pagination. [Lucene query syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax) supported for complex querying.
 
@@ -536,10 +589,16 @@ paths:
             text/csv:
               schema:
                 type: string
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity:list:
     post:
       operationId: listEntities
       summary: listEntities
+      x-rate-limit:
+        limit: 5000
+        window: 60
+        pool: search
       description: |
         List entities that meet the specified conditions.
 
@@ -561,6 +620,8 @@ paths:
             text/csv:
               schema:
                 type: string
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/{slug}:
     post:
       operationId: createEntity
@@ -640,6 +701,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityValidationV2ResultError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/{slug}:validate:
     post:
       operationId: validateEntity
@@ -672,6 +735,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityValidationResultError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v2/entity/{slug}:validate:
     post:
       operationId: validateEntityV2
@@ -704,6 +769,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityValidationV2ResultError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/{slug}:upsert:
     patch:
       operationId: upsertEntity
@@ -775,6 +842,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityValidationV2ResultError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v2/entity/{slug}/{id}:
     get:
       operationId: getEntityV2
@@ -838,6 +907,38 @@ paths:
           description: The entity is not deleted
         '404':
           description: The entity was not found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
+  /v1/entity/{slug}/{id}:reindex:
+    post:
+      operationId: reindexEntity
+      summary: reindexEntity
+      description: |
+        Triggers a reindex for the Entity for search.
+      tags:
+      - Entities
+      parameters:
+      - $ref: '#/components/parameters/EntityIdPathParam'
+      - $ref: '#/components/parameters/EntitySlugPathParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: This endpoint doesn't require a payload, but an empty object can be sent to satisfy certain HTTP clients.
+      responses:
+        '200':
+          description: The reindexed entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityItem'
+        '404':
+          description: The entity was not found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
+        '500':
+          description: The entity could not be indexed
   /v1/entity/{slug}/{id}:
     get:
       operationId: getEntity
@@ -1076,6 +1177,8 @@ paths:
       responses:
         '200':
           description: Success
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity:autocomplete:
     get:
       operationId: autocomplete
@@ -1131,6 +1234,27 @@ paths:
                         additionalProperties: true
                     example:
                     - value
+  /v1/entity:wipeAllEntities:
+    post:
+      operationId: wipeAllEntities
+      summary: wipeAllEntities
+      description: |
+        Creates a request to queue the deletion of all entities in the system. This is a destructive operation and should only be used in sandbox environments.
+      tags:
+      - Entities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schemas:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EntitySlug'
+      responses:
+        '201':
+          description: Wipe request was created
   /v1/entity/activity:
     post:
       operationId: createActivity
@@ -1164,6 +1288,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaseActivityItem'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/activity/{id}:
     get:
       operationId: getActivity
@@ -1226,6 +1352,8 @@ paths:
                 $ref: '#/components/schemas/BaseActivityItem'
         '404':
           $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/{slug}/{id}/activity:
     get:
       operationId: getEntityActivityFeed
@@ -1239,16 +1367,38 @@ paths:
       - $ref: '#/components/parameters/EntityIdPathParam'
       - in: query
         name: after
-        description: Get activities after this timestamp
+        description: Get activities strictly after this timestamp. Cannot be used with 'before', 'start_date', 'end_date', or 'preset_range'.
         schema:
           type: string
           format: date-time
       - in: query
         name: before
-        description: get activities before this timestamp
+        description: Get activities strictly before this timestamp. Cannot be used with 'after', 'start_date', 'end_date', or 'preset_range'.
         schema:
           type: string
           format: date-time
+      - in: query
+        name: start_date
+        description: The inclusive start timestamp for a date range filter. Requires 'end_date' to also be provided. Cannot be used with 'before', 'after', or 'preset_range'.
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: end_date
+        description: The inclusive end timestamp for a date range filter. Requires 'start_date' to also be provided. Cannot be used with 'before', 'after', or 'preset_range'.
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: preset_range
+        description: Get activities within a predefined date range (e.g., 'today', 'last_week'). Cannot be used with 'before', 'after', 'start_date', or 'end_date'.
+        schema:
+          type: string
+          example: last_week
+          enum:
+          - today
+          - this_week
+          - last_week
       - $ref: '#/components/parameters/FromPageQueryParam'
       - in: query
         name: size
@@ -1269,6 +1419,12 @@ paths:
         schema:
           type: boolean
           default: false
+      - in: query
+        name: exclude_activity_groups
+        description: Exclude all activity types that are part of an activity group from results
+        schema:
+          type: string
+          example: workflow
       responses:
         '200':
           description: Success
@@ -1331,6 +1487,9 @@ paths:
               - attribute: contacts
                 entity_id: fadfc950-6e43-4e38-bae0-ffcf4b8b90e1
               - _id: 9924c4de-d3ed-4752-821d-fc0b9bd57c1b
+                _title: John Doe
+                attribute: contacts
+                entity_id: 9924c4de-d3ed-4752-821d-fc0b9bd57c1b
                 order_number: a34234jd
                 customer_email: johndoe@epilot.cloud
                 billing_first_name: john
@@ -1417,6 +1576,8 @@ paths:
           description: Relations deleted with success.
         '404':
           $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v2/entity/{slug}/{id}/relations:
     get:
       operationId: getRelationsV2
@@ -1492,6 +1653,11 @@ paths:
       - $ref: '#/components/parameters/IncludeSchemasQueryParam'
       - $ref: '#/components/parameters/ExcludeSchemasQueryParam'
       - $ref: '#/components/parameters/EntityRelationsModeQueryParam'
+      - in: query
+        name: fields
+        description: List of entity fields to include in results
+        schema:
+          $ref: '#/components/schemas/FieldsParam'
       responses:
         '200':
           description: Success
@@ -1598,6 +1764,8 @@ paths:
           description: Relation deleted with success.
         '404':
           $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity:export:
     post:
       operationId: exportEntities
@@ -1633,6 +1801,8 @@ paths:
       responses:
         '201':
           description: created export url and download url
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity:import:
     post:
       operationId: importEntities
@@ -1659,6 +1829,8 @@ paths:
           description: |
             The import operation was initiated successfully.
             The response includes the URLs for the files containing the successful and failed imported entities.
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/views:
     get:
       operationId: listSavedViews
@@ -1727,6 +1899,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SavedViewItem'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/view/{id}:
     get:
       operationId: getSavedView
@@ -1796,6 +1970,8 @@ paths:
       responses:
         '200':
           description: List of all available saved views
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/views/favorites:
     get:
       operationId: listFavoriteViewsForUser
@@ -1827,6 +2003,15 @@ paths:
         schema:
           type: boolean
           default: false
+      - in: query
+        name: type
+        description: Type of taxonomy to include
+        schema:
+          type: string
+          enum:
+          - entity
+          - relation
+          default: entity
       tags:
       - Taxonomy
       responses:
@@ -1861,6 +2046,8 @@ paths:
                 $ref: '#/components/schemas/Taxonomy'
         '409':
           description: Taxonomy already exists
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/taxonomies/{taxonomySlug}:
     get:
       operationId: getTaxonomy
@@ -1915,6 +2102,8 @@ paths:
       responses:
         '204':
           description: Taxonomy deleted
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/taxonomies/{taxonomySlug}/classifications:
     post:
       operationId: updateClassificationsForTaxonomy
@@ -1951,11 +2140,40 @@ paths:
                       $ref: '#/components/schemas/ClassificationId'
         '404':
           $ref: '#/components/responses/NotFoundError'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
+  /v2/entity/taxonomies/classifications:
+    post:
+      operationId: createTaxonomyClassification
+      summary: createTaxonomyClassification
+      description: |
+        Create a new classification for a taxonomy
+      tags:
+      - Taxonomy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxonomyClassification'
+      responses:
+        '201':
+          description: Created taxonomy classification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyClassification'
+        '409':
+          description: Taxonomy classification already exists
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v2/entity/taxonomies/classifications/{classificationSlug}:
     get:
       operationId: getTaxonomyClassification
       summary: getTaxonomyClassification
-      description: Get a classification for a taxonomy
+      description: |
+        Get a classification for a taxonomy by slug
+
+        For backwards compatibility with purposes, you can also pass the classification id instead of the slug.
       tags:
       - Taxonomy
       parameters:
@@ -2006,6 +2224,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaxonomyClassification'
+        '403':
+          description: Taxonomy classification deletion not allowed
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/taxonomies/{taxonomySlug}:autocomplete:
     get:
       operationId: taxonomyAutocomplete
@@ -2045,19 +2267,33 @@ paths:
       tags:
       - Taxonomy
       parameters:
-      - $ref: '#/components/parameters/TaxonomySlugQueryParamOptional'
+      - in: query
+        name: taxonomySlug
+        description: |
+          The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
+        schema:
+          anyOf:
+          - type: string
+          - type: array
+            items:
+              type: string
       - in: query
         name: query
-        description: Input to search
+        description: The label names to search for (lowercase insensitive)
         schema:
           type: string
           example: sales
       - in: query
         name: archived
-        description: Filter by archived status
+        description: Filter by archived status. Deprecated. Use `include_archived` instead.
+        deprecated: true
         schema:
           type: boolean
           example: false
+      - in: query
+        name: include_archived
+        schema:
+          $ref: '#/components/schemas/TaxonomySearchIncludeArchivedParam'
       requestBody:
         content:
           application/json:
@@ -2067,7 +2303,7 @@ paths:
                 classificationIds:
                   type: array
                   items:
-                    $ref: '#/components/schemas/ClassificationId'
+                    $ref: '#/components/schemas/ClassificationIdOrPattern'
       responses:
         '200':
           description: Returns the classifications for the taxonomy slug provided
@@ -2080,6 +2316,11 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/TaxonomyClassification'
+                  hits:
+                    type: integer
+                    example: 10
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/{slug}/taxonomy/{taxonomySlug}:
     get:
       operationId: listTaxonomyClassificationsForSchema
@@ -2127,13 +2368,38 @@ paths:
         description: The status of the jobs to return
         name: status
         schema:
-          $ref: '#/components/schemas/TaxonomyBulkJobStatus'
+          description: A comma separated list of job statuses to return
+          type: array
+          items:
+            type: string
       - in: query
         name: size
         schema:
           description: The maximum number of jobs to return (defaults to 20)
           type: number
           default: 20
+      - in: query
+        name: created_after
+        schema:
+          description: ISO 8601 timestamp to filter jobs created after this time (e.g., 2023-01-01T00:00:00Z).
+          type: string
+          format: date-time
+          example: 2023-01-01T00:00:00.000Z
+      - in: query
+        name: sort_pending_first
+        schema:
+          description: When true, sorts PENDING status jobs to the top of the results.
+          type: boolean
+          default: false
+      - in: query
+        name: scope
+        schema:
+          description: Scope of jobs to return. 'me' returns only jobs created by the current user, 'all' returns jobs from all users in the organization.
+          type: string
+          enum:
+          - me
+          - all
+          default: me
       responses:
         '200':
           description: Returns the jobs matching the given query or the active jobs if no status is provided
@@ -2162,9 +2428,40 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TaxonomyBulkJob'
+                $ref: '#/components/schemas/TaxonomyBulkJob'
+  /v1/entity/taxonomies/bulk-jobs/{job_id}/cancel:
+    post:
+      operationId: cancelBulkAction
+      summary: cancelBulkAction
+      description: |
+        Cancels a running bulk action job. The job status will be updated to CANCELLED
+        and the job will be stopped.
+      tags:
+      - Taxonomy
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Job ID of the bulk operation to cancel
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyBulkJob'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
+        '500':
+          description: Internal Server Error
   /v1/entity/taxonomies/classifications:move:
     post:
       operationId: bulkMoveClassifications
@@ -2184,8 +2481,9 @@ paths:
                   description: Job ID for tracking the status of a bulk operation request
                   type: string
                 target_taxonomy:
-                  description: The target taxonomy to which the classifications will be moved
-                  $ref: '#/components/schemas/TaxonomySlug'
+                  allOf:
+                  - description: The target taxonomy to which the classifications will be moved
+                  - $ref: '#/components/schemas/TaxonomySlug'
                 classification_ids:
                   type: array
                   items:
@@ -2201,8 +2499,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TaxonomyBulkJobTriggerResponse'
               example:
-                job_id: '123'
+                job_id: 5684fcb1-62ef-45e4-9187-ebf96dcbff12
                 status: PENDING
+        '400':
+          description: Invalid request
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/taxonomies/classifications:merge:
     post:
       operationId: bulkMergeClassifications
@@ -2222,8 +2524,9 @@ paths:
                   description: Job ID for tracking the status of a bulk operation request
                   type: string
                 target_classification:
-                  description: The target classification id to which the classifications will be merged into
-                  $ref: '#/components/schemas/TaxonomySlug'
+                  allOf:
+                  - description: The target classification id to which the classifications will be merged into
+                  - $ref: '#/components/schemas/TaxonomySlug'
                 classification_ids:
                   type: array
                   items:
@@ -2239,8 +2542,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TaxonomyBulkJobTriggerResponse'
               example:
-                job_id: '123'
+                job_id: 5684fcb1-62ef-45e4-9187-ebf96dcbff12
                 status: PENDING
+        '400':
+          description: Invalid request
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/taxonomies/classifications:delete:
     post:
       operationId: bulkDeleteClassifications
@@ -2275,8 +2582,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TaxonomyBulkJobTriggerResponse'
               example:
-                job_id: '123'
+                job_id: 5684fcb1-62ef-45e4-9187-ebf96dcbff12
                 status: PENDING
+        '400':
+          description: Invalid request
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/attributes:
     post:
       operationId: createSchemaAttribute
@@ -2296,6 +2607,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttributeWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/attributes/{composite_id}:
     get:
       operationId: getSchemaAttribute
@@ -2370,6 +2683,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttributeWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/capabilities:
     post:
       operationId: createSchemaCapability
@@ -2389,6 +2704,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityCapabilityWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/capabilities/{composite_id}:
     get:
       operationId: getSchemaCapability
@@ -2463,6 +2780,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntityCapabilityWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/group:
     post:
       operationId: createSchemaGroup
@@ -2482,6 +2801,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitySchemaGroupWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/group/{composite_id}:
     get:
       operationId: getSchemaGroup
@@ -2556,6 +2877,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitySchemaGroupWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/headline:
     post:
       operationId: createSchemaGroupHeadline
@@ -2575,6 +2898,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupHeadlineWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
   /v1/entity/schemas/headline/{composite_id}:
     get:
       operationId: getSchemaGroupHeadline
@@ -2649,6 +2974,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupHeadlineWithCompositeID'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsError'
 components:
   securitySchemes:
     EpilotAuth:
@@ -3059,6 +3386,7 @@ components:
       - $ref: '#/components/schemas/InternalUserAttribute'
       - $ref: '#/components/schemas/PurposeAttribute'
       - $ref: '#/components/schemas/PartnerOrganisationAttribute'
+      - $ref: '#/components/schemas/PortalAccessAttribute'
       - $ref: '#/components/schemas/PhoneAttribute'
       - $ref: '#/components/schemas/EmailAttribute'
       - $ref: '#/components/schemas/PaymentAttribute'
@@ -3208,7 +3536,7 @@ components:
       required:
       - name
       - label
-      additionalProperties: false
+      - type
     TextAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
@@ -3549,7 +3877,8 @@ components:
             properties:
               q:
                 type: string
-                example: AND is_composite_price:true
+                example: NOT is_composite_price:true
+                nullable: true
             required:
             - q
           actions:
@@ -3593,14 +3922,13 @@ components:
                   example:
                     _schema: order
             example:
-              value:
-              - action_type: add_existing
-                label: entityrelation.add_existing
-                default: true
-              - action_type: create_new
-                label: entityrelation.create_new
-              - action_type: create_from_existing
-                label: entityrelation.create_from_existing
+            - action_type: add_existing
+              label: entityrelation.add_existing
+              default: true
+            - action_type: create_new
+              label: entityrelation.create_new
+            - action_type: create_from_existing
+              label: entityrelation.create_from_existing
           drawer_size:
             type: string
             enum:
@@ -3659,34 +3987,42 @@ components:
             type: string
             enum:
             - partner_organisation
+    PortalAccessAttribute:
+      allOf:
+      - $ref: '#/components/schemas/BaseAttribute'
+      - type: object
+        description: Portal access configuration
+        properties:
+          type:
+            type: string
+            enum:
+            - portal_access
     DefaultAddressFields:
       type: array
-      description: Default fields visible on addresses
+      nullable: true
+      description: |
+        Default fields visible on addresses
+
+        Valid values are:
+          - postal_code (default)
+          - city (default)
+          - street (default)
+          - street_number (default)
+          - plot_area
+          - plot_of_land
+          - suburb
+          - country
+          - additional_info
+          - coordinates
+          - start_date
+          - end_date
+          - salutation
+          - title
+          - first_name
+          - last_name
+          - company_name
       items:
         type: string
-        enum:
-        - postal_code
-        - city
-        - street
-        - street_number
-        - plot_area
-        - plot_of_land
-        - suburb
-        - country
-        - additional_info
-        - coordinates
-        - start_date
-        - end_date
-        - salutation
-        - title
-        - first_name
-        - last_name
-        - company_name
-      default:
-      - postal_code
-      - city
-      - street
-      - street_number
     AddressAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
@@ -3758,7 +4094,6 @@ components:
     PurposeAttribute:
       allOf:
       - $ref: '#/components/schemas/BaseAttribute'
-      - $ref: '#/components/schemas/TaxonomyClassification'
       - type: object
         description: Entity Taxonomy
         properties:
@@ -4076,6 +4411,7 @@ components:
     EntitySlug:
       description: URL-friendly identifier for the entity schema
       type: string
+      pattern: ^[a-zA-Z0-9_-]+$
       example: contact
     EntityCapability:
       description: Capabilities the Entity has. Turn features on/off for entities.
@@ -4109,6 +4445,18 @@ components:
             format: uuid
             example: 123e4567-e89b-12d3-a456-426614174000
           nullable: true
+        app_id:
+          type: string
+          description: ID of the app if the capability is provided by an app
+          example: 123e4567-e89b-12d3-a456-426614174000
+        ui_config:
+          type: object
+          properties:
+            is_filterable:
+              type: boolean
+              description: Whether the capability is filterable
+              example: true
+              default: false
         ui_hooks:
           type: array
           items:
@@ -4163,7 +4511,7 @@ components:
                     example: note:view
                   resource:
                     type: string
-                    example: 123
+                    example: '123'
                 required:
                 - action
             required:
@@ -4302,8 +4650,9 @@ components:
       additionalProperties: true
       properties:
         _id:
-          readOnly: true
-          $ref: '#/components/schemas/EntityId'
+          allOf:
+          - readOnly: true
+          - $ref: '#/components/schemas/EntityId'
         _org:
           type: string
           readOnly: true
@@ -4340,8 +4689,9 @@ components:
           nullable: true
           readOnly: true
         _acl:
-          readOnly: true
-          $ref: '#/components/schemas/EntityAcl'
+          allOf:
+          - readOnly: true
+          - $ref: '#/components/schemas/EntityAcl'
         _purpose:
           type: array
           items:
@@ -4692,6 +5042,9 @@ components:
           aggs: {}
           include_deleted: {}
           highlight: {}
+          stable_for: {}
+          stable_query_id: {}
+          search_after: {}
         additionalProperties: false
         required:
         - q
@@ -4700,6 +5053,42 @@ components:
       allOf:
       - type: object
         properties:
+          query:
+            description: Query configuration object for searching entities
+            type: object
+            properties:
+              query_string:
+                description: Query string configuration based on Elasticsearch query_string query
+                type: object
+                properties:
+                  query:
+                    description: The actual query string using Lucene query syntax
+                    type: string
+                    example: status:active
+                  fields:
+                    description: List of fields to search in. If not provided, searches in default fields
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - _title
+                    - _tags
+                    - status
+                  default_operator:
+                    description: The default boolean operator used if no explicit operator is specified
+                    type: string
+                    enum:
+                    - AND
+                    - OR
+                    default: OR
+                  lenient:
+                    description: If true, format-based errors are ignored
+                    type: boolean
+                    default: true
+                required:
+                - query
+            required:
+            - query_string
           filter:
             $ref: '#/components/schemas/SearchFilter'
           allow_targeting_all_schemas:
@@ -4713,6 +5102,11 @@ components:
           fields: {}
           aggs: {}
           include_deleted: {}
+          include_scores: {}
+          highlight: {}
+          stable_for: {}
+          stable_query_id: {}
+          search_after: {}
         additionalProperties: false
         required:
         - filter
@@ -4848,6 +5242,9 @@ components:
           type: integer
           minimum: 0
           default: 0
+          description: |
+            The offset from which to start the search results.
+            Only one of `from` or `search_after` should be used.
         size:
           type: integer
           minimum: 0
@@ -4868,6 +5265,39 @@ components:
                 field: _tags.keyword
         include_deleted:
           $ref: '#/components/schemas/EntitySearchIncludeDeletedParam'
+        include_scores:
+          type: boolean
+          description: Adds a `_score` number field to results that can be used to rank by match score
+          default: false
+        stable_for:
+          type: integer
+          minimum: 0
+          maximum: 60
+          description: |
+            A TTL (in seconds) that specifies how long the context should be maintained.
+            Defaults to 30 seconds; configurable up to 60 seconds to prevent abuse.
+            A value of 0 can be provided the close the context after the query.
+            Defaults to none.
+        stable_query_id:
+          type: string
+          description: |
+            A unique identifier of the query context from the last stable query.
+            The context is maintained for the duration of the stable_for value.
+        search_after:
+          type: array
+          items:
+            oneOf:
+            - type: string
+              nullable: true
+            - type: number
+              nullable: true
+          description: |
+            The sort values from which to start the search results.
+            Only one of `from` or `search_after` should be used.
+            It is strongly recommended to always use the `sort_end` field from the last search result.
+            Used for deep pagination, typically together with `stable_query_id` to maintain the context between requests.
+            Requires explicit sort to work reliably.
+            Typically used sort fields are `_id` or `_created_at`.
     FieldsParam:
       type: array
       description: |
@@ -4933,6 +5363,25 @@ components:
                 doc_count: 108
               - key: primary
                 doc_count: 66
+        stable_query_id:
+          type: string
+          description: |
+            A unique identifier of the query context.
+            Should be used on the input for the next query that needs to be executed in the same context.
+        sort_end:
+          type: array
+          items:
+            oneOf:
+            - type: string
+              nullable: true
+            - type: number
+              nullable: true
+          description: |
+            The sort value of the last item returned in `results`.
+            Can be used as the input for the `search_after` in the next query.
+          example:
+          - 1747905443332
+          - '0.000023312468'
     SearchMappings:
       description: |
         Advanced: explicit Elasticsearch index mapping definitions for entity data
@@ -5056,6 +5505,13 @@ components:
           - createEntity
           - updateEntity
           - deleteEntity
+          - softDeleteEntity
+          - restoreEntity
+          - relationsAdded
+          - relationsRemoved
+          - relationsSoftDeleted
+          - relationsRestored
+          - relationsDeleted
         params:
           type: object
           properties:
@@ -5170,7 +5626,7 @@ components:
           type: array
           items:
             type: string
-            example: 11701
+            example: '11701'
         created_by:
           anyOf:
           - type: object
@@ -5215,7 +5671,6 @@ components:
         required:
         - slug
         - name
-        - created_by
         - ui_config
     Taxonomy:
       type: object
@@ -5238,6 +5693,14 @@ components:
           - user_defined
           description: Kind of taxonomy e.g. system or user_defined. By default, it's empty, which means 'user_defined'
           example: system
+        type:
+          type: string
+          enum:
+          - entity
+          - relation
+          description: Type of taxonomy. Whether it classifies entities or relations.
+          default: entity
+          example: entity
         icon:
           type: string
           description: Icon name for the taxonomy (from epilot360/icons icon set)
@@ -5276,7 +5739,9 @@ components:
           description: List of locations where the taxonomy is enabled to be used. If empty, it's enabled for all locations.
           type: array
           items:
-            $ref: '#/components/schemas/TaxonomyLocationId'
+            anyOf:
+            - $ref: '#/components/schemas/TaxonomyLocationId'
+            - type: string
     TaxonomyLocationId:
       type: string
       enum:
@@ -5299,6 +5764,20 @@ components:
       - portal_user
       - request
       - comment
+    TaxonomySearchIncludeArchivedParam:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      - only
+      description: |
+        Whether to include archived labels in the search results
+        - `true`: include archived labels
+        - `false`: exclude archived labels
+        - `only`: include only archived labels
+
+        By default, no archived labels are included in the search results.
+      default: 'false'
     TaxonomyClassification:
       type: object
       properties:
@@ -5329,6 +5808,10 @@ components:
           type: boolean
           description: Archived classification are not visible in the UI
           default: false
+        starred:
+          type: boolean
+          description: Starred taxonomy classifications can represent "favorites" or commonly used classifications
+          default: false
         _manifest:
           type: array
           description: Manifest ID used to create/update the taxonomy classification
@@ -5339,9 +5822,22 @@ components:
           nullable: true
       required:
       - name
+      - slug
     ClassificationId:
       type: string
       example: taxonomy-slug:classification-slug
+      readOnly: true
+    ClassificationIdOrPattern:
+      anyOf:
+      - $ref: '#/components/schemas/ClassificationId'
+      - type: object
+        properties:
+          pattern:
+            type: string
+            example: taxonomy-slug:*
+            description: Wildcard pattern to match classification IDs starting with the prefix before ':*'
+        required:
+        - pattern
     ClassificationSlug:
       type: string
       description: URL-friendly identifier for the classification
@@ -5416,14 +5912,10 @@ components:
         output:
           type: object
           properties:
-            target_entities:
-              type: array
-              items:
-                $ref: '#/components/schemas/EntityId'
-            affected_entities:
-              type: array
-              items:
-                $ref: '#/components/schemas/EntityId'
+            target_entities_count:
+              type: number
+            affected_entities_count:
+              type: number
             failures_count:
               type: number
             failed_entities:
@@ -5440,18 +5932,14 @@ components:
           format: date-time
         org:
           type: string
-        progress:
-          description: Progress of the job on a scale of 0 to 1
-          type: number
       example:
         job_id: 123e4567-e89b-12d3-a456-426614174000
         status: PENDING
-        action_type: MOVE_LABELS
-        created_by: 10598
+        action_type: MOVE_CLASSIFICATIONS
+        created_by: '10598'
         created_at: 2024-01-01T00:00:00.000Z
         updated_at: 2024-01-01T00:00:00.000Z
-        org: 66
-        progress: 0.5
+        org: '66'
     ESClusterAssignment:
       type: object
       properties:
@@ -5608,7 +6096,9 @@ components:
       required: false
       style: form
       explode: false
-      example: contact,account
+      example:
+      - contact
+      - account
       schema:
         type: array
         items:
@@ -5620,7 +6110,9 @@ components:
       required: false
       style: form
       explode: false
-      example: file,message
+      example:
+      - file
+      - message
       schema:
         type: array
         items:
@@ -6141,6 +6633,22 @@ components:
             - example:
                 status: 404
                 error: Not Found
+    TooManyRequestsError:
+      description: Too many requests
+      headers:
+        Retry-After:
+          description: Time to wait in seconds before retrying
+          schema:
+            type: integer
+            example: 10
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/ErrorObject'
+            - example:
+                status: 429
+                error: Too many requests. Try again later.
 servers:
-- url: https://entity.dev.sls.epilot.io
+- url: https://entity.sls.epilot.io
 

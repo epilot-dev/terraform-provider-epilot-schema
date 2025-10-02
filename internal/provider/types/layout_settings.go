@@ -2,10 +2,13 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type LayoutSettings struct {
-	AdditionalProperties types.String `tfsdk:"additional_properties"`
-	GridGap              types.String `tfsdk:"grid_gap"`
-	GridTemplateColumns  types.String `tfsdk:"grid_template_columns"`
+	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
+	GridGap              types.String         `tfsdk:"grid_gap"`
+	GridTemplateColumns  types.String         `tfsdk:"grid_template_columns"`
 }

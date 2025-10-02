@@ -2,6 +2,10 @@
 
 package shared
 
+import (
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
+)
+
 type RelationItem struct {
 	EntityID string `json:"entity_id"`
 	// Organization Id the entity belongs to
@@ -10,6 +14,17 @@ type RelationItem struct {
 	Tags      []string `json:"_tags,omitempty"`
 	// Whether this is a reverse relation
 	Reverse *bool `json:"reverse,omitempty"`
+}
+
+func (r RelationItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RelationItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"entity_id", "attribute"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *RelationItem) GetEntityID() string {
