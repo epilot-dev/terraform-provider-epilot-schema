@@ -9,6 +9,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -61,6 +62,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -110,6 +112,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -160,6 +163,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     deprecated                  = false
     display_type                = "checkbox"
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -212,6 +216,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -261,6 +266,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -314,6 +320,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -374,6 +381,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -423,6 +431,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -472,6 +481,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -527,6 +537,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     display_images_landscaped   = true
     enable_description          = false
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -577,6 +588,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -626,6 +638,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -675,6 +688,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -724,6 +738,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -775,6 +790,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     deprecated                  = false
     email_type                  = "...my_email_type..."
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -828,6 +844,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     deprecated                  = false
     disable_case_sensitive      = false
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -882,6 +899,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = true
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     format                      = "...my_format..."
     group                       = "...my_group..."
@@ -933,6 +951,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -982,6 +1001,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1031,6 +1051,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1080,6 +1101,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1129,6 +1151,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1178,6 +1201,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1227,6 +1251,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1276,6 +1301,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1325,6 +1351,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1398,6 +1425,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     enable_relation_picker      = false
     enable_relation_tags        = true
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1465,6 +1493,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1515,6 +1544,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1566,6 +1596,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1623,6 +1654,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true
@@ -1678,6 +1710,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = false
     entity_builder_disable_edit = true
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -1730,6 +1763,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    explicit_searchable         = false
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = true

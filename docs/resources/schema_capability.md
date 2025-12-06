@@ -30,6 +30,7 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         display_images_landscaped   = false
         enable_description          = true
         entity_builder_disable_edit = true
+        explicit_searchable         = false
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
         has_primary                 = false
@@ -212,6 +213,10 @@ Valid values are:
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -302,6 +307,10 @@ Valid values are:
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -372,6 +381,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -443,6 +456,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `display_type` (String) Default: "switch"; must be one of ["switch", "checkbox"]
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -516,6 +533,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -586,6 +607,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -658,6 +683,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -730,6 +759,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -819,6 +852,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -889,6 +926,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -964,6 +1005,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1035,6 +1080,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1105,6 +1154,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1175,6 +1228,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1245,6 +1302,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1317,6 +1378,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `email_type` (String)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1391,6 +1456,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1480,6 +1549,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `format` (String)
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -1552,6 +1625,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1622,6 +1699,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1692,6 +1773,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1762,6 +1847,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1832,6 +1921,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1902,6 +1995,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1972,6 +2069,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2042,6 +2143,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2112,6 +2217,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2190,6 +2299,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2321,6 +2434,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2392,6 +2509,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2464,6 +2585,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2553,6 +2678,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2625,6 +2754,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2698,6 +2831,10 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2807,17 +2944,6 @@ Optional:
 ## Import
 
 Import is supported using the following syntax:
-
-In Terraform v1.5.0 and later, the [`import` block](https://developer.hashicorp.com/terraform/language/import) can be used with the `id` attribute, for example:
-
-```terraform
-import {
-  to = epilot-schema_schema_capability.my_epilot-schema_schema_capability
-  id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-}
-```
-
-The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
 
 ```shell
 terraform import epilot-schema_schema_capability.my_epilot-schema_schema_capability "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"

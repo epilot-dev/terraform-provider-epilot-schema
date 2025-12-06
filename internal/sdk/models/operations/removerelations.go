@@ -25,7 +25,7 @@ func (r RemoveRelationsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RemoveRelationsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"slug", "id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil

@@ -16,7 +16,7 @@ func (e EntityCapabilityWithCompositeIDUIConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityCapabilityWithCompositeIDUIConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -80,7 +80,7 @@ func (e EntityCapabilityWithCompositeIDUIHooks) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityCapabilityWithCompositeIDUIHooks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"hook"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil

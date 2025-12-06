@@ -83,7 +83,7 @@ func (g GroupHeadlineWithCompositeID) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GroupHeadlineWithCompositeID) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"name", "label", "group", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -205,7 +205,7 @@ func (g GroupHeadlineWithCompositeIDInput) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GroupHeadlineWithCompositeIDInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"name", "label", "group", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil

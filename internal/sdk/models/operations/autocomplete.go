@@ -25,7 +25,7 @@ func (a AutocompleteRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AutocompleteRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"attribute"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -68,9 +68,9 @@ const (
 )
 
 type Results struct {
-	Str      *string        `queryParam:"inline" name:"results"`
-	Boolean  *bool          `queryParam:"inline" name:"results"`
-	MapOfAny map[string]any `queryParam:"inline" name:"results"`
+	Str      *string        `queryParam:"inline"`
+	Boolean  *bool          `queryParam:"inline"`
+	MapOfAny map[string]any `queryParam:"inline"`
 
 	Type ResultsType
 }
@@ -105,21 +105,21 @@ func CreateResultsMapOfAny(mapOfAny map[string]any) Results {
 func (u *Results) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = ResultsTypeStr
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, false); err == nil {
 		u.Boolean = &boolean
 		u.Type = ResultsTypeBoolean
 		return nil
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, false); err == nil {
 		u.MapOfAny = mapOfAny
 		u.Type = ResultsTypeMapOfAny
 		return nil

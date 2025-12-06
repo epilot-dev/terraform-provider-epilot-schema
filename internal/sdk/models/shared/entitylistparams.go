@@ -53,7 +53,7 @@ func (q QueryString) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryString) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"query"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -109,8 +109,8 @@ const (
 
 // EntityListParamsSort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type EntityListParamsSort struct {
-	Str        *string  `queryParam:"inline" name:"sort"`
-	ArrayOfStr []string `queryParam:"inline" name:"sort"`
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type EntityListParamsSortType
 }
@@ -136,14 +136,14 @@ func CreateEntityListParamsSortArrayOfStr(arrayOfStr []string) EntityListParamsS
 func (u *EntityListParamsSort) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = EntityListParamsSortTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = EntityListParamsSortTypeArrayOfStr
 		return nil
@@ -176,8 +176,8 @@ const (
 )
 
 type EntityListParamsSearchAfter struct {
-	Str    *string  `queryParam:"inline" name:"search_after"`
-	Number *float64 `queryParam:"inline" name:"search_after"`
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
 
 	Type EntityListParamsSearchAfterType
 }
@@ -203,14 +203,14 @@ func CreateEntityListParamsSearchAfterNumber(number float64) EntityListParamsSea
 func (u *EntityListParamsSearchAfter) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = EntityListParamsSearchAfterTypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
 		u.Number = &number
 		u.Type = EntityListParamsSearchAfterTypeNumber
 		return nil
@@ -293,7 +293,7 @@ func (e EntityListParams) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityListParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"filter"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil

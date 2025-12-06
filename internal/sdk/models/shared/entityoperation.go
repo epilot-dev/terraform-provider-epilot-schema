@@ -92,7 +92,7 @@ func (e EntityOperationACL) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityOperationACL) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -151,7 +151,7 @@ func (p Payload) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Payload) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -279,11 +279,26 @@ type EntityOperation struct {
 	Entity string `json:"entity"`
 	Org    string `json:"org"`
 	// See https://github.com/ulid/spec
-	ActivityID *string                `json:"activity_id,omitempty"`
-	Operation  Operation              `json:"operation"`
-	Params     *EntityOperationParams `json:"params,omitempty"`
-	Payload    *Payload               `json:"payload,omitempty"`
-	Diff       *Diff                  `json:"diff,omitempty"`
+	ActivityID *string `json:"activity_id,omitempty"`
+	// A type for the activity. Used to categorize activities in the activity feed and for event subscriptions.
+	//
+	// Built-in entity activity types (custom activities can be defined as well):
+	// - EntityCreated
+	// - EntityUpdated
+	// - EntityDeleted
+	// - EntitySoftDeleted
+	// - EntityRestored
+	// - RelationsAdded
+	// - RelationsRemoved
+	// - RelationsSoftDeleted
+	// - RelationsRestored
+	// - RelationsDeleted
+	//
+	ActivityType *string                `json:"activity_type,omitempty"`
+	Operation    Operation              `json:"operation"`
+	Params       *EntityOperationParams `json:"params,omitempty"`
+	Payload      *Payload               `json:"payload,omitempty"`
+	Diff         *Diff                  `json:"diff,omitempty"`
 }
 
 func (o *EntityOperation) GetEntity() string {
@@ -305,6 +320,13 @@ func (o *EntityOperation) GetActivityID() *string {
 		return nil
 	}
 	return o.ActivityID
+}
+
+func (o *EntityOperation) GetActivityType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ActivityType
 }
 
 func (o *EntityOperation) GetOperation() Operation {

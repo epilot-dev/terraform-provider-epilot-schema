@@ -89,7 +89,7 @@ func (t TaxonomyBulkJob) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomyBulkJob) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil

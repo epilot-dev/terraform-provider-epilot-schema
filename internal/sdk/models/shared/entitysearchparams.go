@@ -17,8 +17,8 @@ const (
 
 // Sort - You can pass one sort field or an array of sort fields. Each sort field can be a string
 type Sort struct {
-	Str        *string  `queryParam:"inline" name:"sort"`
-	ArrayOfStr []string `queryParam:"inline" name:"sort"`
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type SortType
 }
@@ -44,14 +44,14 @@ func CreateSortArrayOfStr(arrayOfStr []string) Sort {
 func (u *Sort) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SortTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = SortTypeArrayOfStr
 		return nil
@@ -84,8 +84,8 @@ const (
 )
 
 type SearchAfter struct {
-	Str    *string  `queryParam:"inline" name:"search_after"`
-	Number *float64 `queryParam:"inline" name:"search_after"`
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
 
 	Type SearchAfterType
 }
@@ -111,14 +111,14 @@ func CreateSearchAfterNumber(number float64) SearchAfter {
 func (u *SearchAfter) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SearchAfterTypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
 		u.Number = &number
 		u.Type = SearchAfterTypeNumber
 		return nil
@@ -197,7 +197,7 @@ func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntitySearchParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"q"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil

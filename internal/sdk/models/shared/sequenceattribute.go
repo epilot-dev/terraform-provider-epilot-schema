@@ -13,17 +13,6 @@ import (
 type SequenceAttributeConstraints struct {
 }
 
-func (s SequenceAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SequenceAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // SequenceAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type SequenceAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type SequenceAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (s SequenceAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SequenceAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *SequenceAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type SequenceAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SequenceAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
@@ -173,7 +156,7 @@ func (s SequenceAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SequenceAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -366,6 +349,13 @@ func (o *SequenceAttribute) GetInfoHelpers() *SequenceAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *SequenceAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *SequenceAttribute) GetRepeatable() *bool {

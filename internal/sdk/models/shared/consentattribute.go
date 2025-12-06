@@ -13,17 +13,6 @@ import (
 type ConsentAttributeConstraints struct {
 }
 
-func (c ConsentAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ConsentAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // ConsentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ConsentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type ConsentAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (c ConsentAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ConsentAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *ConsentAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type ConsentAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ConsentAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable  *bool                `json:"repeatable,omitempty"`
 	HasPrimary  *bool                `json:"has_primary,omitempty"`
@@ -172,7 +155,7 @@ func (c ConsentAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConsentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type", "topic"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -365,6 +348,13 @@ func (o *ConsentAttribute) GetInfoHelpers() *ConsentAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ConsentAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *ConsentAttribute) GetRepeatable() *bool {

@@ -40,7 +40,7 @@ func (u UpdateRelationRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateRelationRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug", "id", "attribute", "entity_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
 	return nil

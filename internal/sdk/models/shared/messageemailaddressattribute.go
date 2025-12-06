@@ -13,17 +13,6 @@ import (
 type MessageEmailAddressAttributeConstraints struct {
 }
 
-func (m MessageEmailAddressAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
-}
-
-func (m *MessageEmailAddressAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // MessageEmailAddressAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type MessageEmailAddressAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type MessageEmailAddressAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (m MessageEmailAddressAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
-}
-
-func (m *MessageEmailAddressAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *MessageEmailAddressAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type MessageEmailAddressAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MessageEmailAddressAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                            `json:"repeatable,omitempty"`
 	HasPrimary *bool                            `json:"has_primary,omitempty"`
@@ -173,7 +156,7 @@ func (m MessageEmailAddressAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MessageEmailAddressAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -366,6 +349,13 @@ func (o *MessageEmailAddressAttribute) GetInfoHelpers() *MessageEmailAddressAttr
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *MessageEmailAddressAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *MessageEmailAddressAttribute) GetRepeatable() *bool {

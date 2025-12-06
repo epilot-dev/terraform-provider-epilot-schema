@@ -2,18 +2,16 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type ConsentAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

@@ -2,18 +2,16 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type TextAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
@@ -35,7 +33,7 @@ type TextAttribute struct {
 	Repeatable               types.Bool                                           `tfsdk:"repeatable"`
 	Required                 types.Bool                                           `tfsdk:"required"`
 	RichText                 types.Bool                                           `tfsdk:"rich_text"`
-	Rows                     jsontypes.Normalized                                 `tfsdk:"rows"`
+	Rows                     types.String                                         `tfsdk:"rows"`
 	SettingsFlag             []SettingFlag                                        `tfsdk:"settings_flag"`
 	ShowInTable              types.Bool                                           `tfsdk:"show_in_table"`
 	Sortable                 types.Bool                                           `tfsdk:"sortable"`

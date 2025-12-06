@@ -13,17 +13,6 @@ import (
 type PaymentAttributeConstraints struct {
 }
 
-func (p PaymentAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *PaymentAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // PaymentAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type PaymentAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type PaymentAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (p PaymentAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *PaymentAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *PaymentAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type PaymentAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PaymentAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                `json:"repeatable,omitempty"`
 	HasPrimary *bool                `json:"has_primary,omitempty"`
@@ -170,7 +153,7 @@ func (p PaymentAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -363,6 +346,13 @@ func (o *PaymentAttribute) GetInfoHelpers() *PaymentAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *PaymentAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *PaymentAttribute) GetRepeatable() *bool {

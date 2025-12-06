@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -27,7 +28,6 @@ func NewSchemaGroupHeadlineResource() resource.Resource {
 
 // SchemaGroupHeadlineResource defines the resource implementation.
 type SchemaGroupHeadlineResource struct {
-	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
@@ -168,12 +168,7 @@ func (r *SchemaGroupHeadlineResource) Create(ctx context.Context, req resource.C
 		return
 	}
 
-	request, requestDiags := data.ToSharedGroupHeadlineWithCompositeIDInput(ctx)
-	resp.Diagnostics.Append(requestDiags...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	request := data.ToSharedGroupHeadlineWithCompositeIDInput()
 	res, err := r.client.Schemas.CreateSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
@@ -194,17 +189,8 @@ func (r *SchemaGroupHeadlineResource) Create(ctx context.Context, req resource.C
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedGroupHeadlineWithCompositeID(ctx, res.GroupHeadlineWithCompositeID)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
+	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -228,13 +214,13 @@ func (r *SchemaGroupHeadlineResource) Read(ctx context.Context, req resource.Rea
 		return
 	}
 
-	request, requestDiags := data.ToOperationsGetSchemaGroupHeadlineRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var compositeID string
+	compositeID = data.CompositeID.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	request := operations.GetSchemaGroupHeadlineRequest{
+		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.GetSchemaGroupHeadline(ctx, *request)
+	res, err := r.client.Schemas.GetSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -258,11 +244,7 @@ func (r *SchemaGroupHeadlineResource) Read(ctx context.Context, req resource.Rea
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedGroupHeadlineWithCompositeID(ctx, res.GroupHeadlineWithCompositeID)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -282,13 +264,15 @@ func (r *SchemaGroupHeadlineResource) Update(ctx context.Context, req resource.U
 		return
 	}
 
-	request, requestDiags := data.ToOperationsPutSchemaGroupHeadlineRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var compositeID string
+	compositeID = data.CompositeID.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	groupHeadlineWithCompositeID := data.ToSharedGroupHeadlineWithCompositeIDInput()
+	request := operations.PutSchemaGroupHeadlineRequest{
+		CompositeID:                  compositeID,
+		GroupHeadlineWithCompositeID: groupHeadlineWithCompositeID,
 	}
-	res, err := r.client.Schemas.PutSchemaGroupHeadline(ctx, *request)
+	res, err := r.client.Schemas.PutSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -308,17 +292,8 @@ func (r *SchemaGroupHeadlineResource) Update(ctx context.Context, req resource.U
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedGroupHeadlineWithCompositeID(ctx, res.GroupHeadlineWithCompositeID)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedGroupHeadlineWithCompositeID(res.GroupHeadlineWithCompositeID)
+	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -342,13 +317,13 @@ func (r *SchemaGroupHeadlineResource) Delete(ctx context.Context, req resource.D
 		return
 	}
 
-	request, requestDiags := data.ToOperationsDeleteSchemaGroupHeadlineRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var compositeID string
+	compositeID = data.CompositeID.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	request := operations.DeleteSchemaGroupHeadlineRequest{
+		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.DeleteSchemaGroupHeadline(ctx, *request)
+	res, err := r.client.Schemas.DeleteSchemaGroupHeadline(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

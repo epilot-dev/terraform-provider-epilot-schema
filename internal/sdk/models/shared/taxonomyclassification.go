@@ -30,7 +30,7 @@ func (t TaxonomyClassification) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomyClassification) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"slug", "name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil

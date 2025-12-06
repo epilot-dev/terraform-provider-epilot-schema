@@ -2,10 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type AttributeWithCompositeIDComputedAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -15,9 +12,10 @@ type AttributeWithCompositeIDComputedAttribute struct {
 	Computed                 types.Bool                                           `tfsdk:"computed"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	CurrencyField            types.String                                         `tfsdk:"currency_field"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

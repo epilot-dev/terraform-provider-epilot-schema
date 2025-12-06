@@ -7,14 +7,11 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -27,7 +24,6 @@ func NewSchemaAttributeDataSource() datasource.DataSource {
 
 // SchemaAttributeDataSource is the data source implementation.
 type SchemaAttributeDataSource struct {
-	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
@@ -46,6 +42,7 @@ type SchemaAttributeDataSourceModel struct {
 	Deprecated                     types.Bool                                                    `tfsdk:"deprecated"`
 	EmailAttribute                 *tfTypes.AttributeWithCompositeIDAutomationAttribute          `queryParam:"inline" tfsdk:"email_attribute" tfPlanOnly:"true"`
 	EntityBuilderDisableEdit       types.Bool                                                    `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable             types.Bool                                                    `tfsdk:"explicit_searchable"`
 	FeatureFlag                    types.String                                                  `tfsdk:"feature_flag"`
 	FileAttribute                  *tfTypes.AttributeWithCompositeIDFileAttribute                `queryParam:"inline" tfsdk:"file_attribute" tfPlanOnly:"true"`
 	Group                          types.String                                                  `tfsdk:"group"`
@@ -141,7 +138,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -151,6 +147,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -328,7 +330,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`  - company_name`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -338,6 +339,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -491,7 +498,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -501,6 +507,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -654,7 +666,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -667,6 +678,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -811,9 +828,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 			"composite_id": schema.StringAttribute{
 				Required:    true,
 				Description: `Schema Slug and the Attribute ID`,
-				Validators: []validator.String{
-					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
-				},
 			},
 			"computed_attribute": schema.SingleNestedAttribute{
 				Computed: true,
@@ -838,7 +852,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Description: `A currency field used to format a computed currency value`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -848,6 +861,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1003,7 +1022,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1013,6 +1031,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1173,7 +1197,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1183,6 +1206,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1365,7 +1394,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed: true,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1375,6 +1403,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1528,7 +1562,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1538,6 +1571,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1694,7 +1733,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1704,6 +1742,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -1849,6 +1893,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 				Computed:    true,
 				Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
 			},
+			"explicit_searchable": schema.BoolAttribute{
+				Computed: true,
+				MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+					`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+					`that must always be included in search operations.`,
+			},
 			"feature_flag": schema.StringAttribute{
 				Computed:    true,
 				Description: `This attribute should only be active when the feature flag is enabled`,
@@ -1873,7 +1923,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed: true,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -1892,6 +1941,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2072,7 +2127,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2082,6 +2136,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2235,7 +2295,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2245,6 +2304,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2398,7 +2463,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2408,6 +2472,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2567,7 +2637,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2577,6 +2646,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2733,7 +2808,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2746,6 +2820,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -2910,7 +2990,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -2924,6 +3003,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3101,7 +3186,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3111,6 +3195,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3275,7 +3365,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3285,6 +3374,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3438,7 +3533,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3448,6 +3542,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3601,7 +3701,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3611,6 +3710,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3764,7 +3869,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3774,6 +3878,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -3927,7 +4037,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -3937,6 +4046,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4090,7 +4205,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -4100,6 +4214,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4256,7 +4376,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -4266,6 +4385,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4422,7 +4547,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -4432,6 +4556,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4589,7 +4719,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -4599,6 +4728,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -4773,7 +4908,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 									Description: `The action label or action translation key (i18n)`,
 								},
 								"new_entity_item": schema.StringAttribute{
-									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -4813,7 +4947,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -4841,6 +4974,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5062,7 +5201,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5072,6 +5210,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5143,7 +5287,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed: true,
 					},
 					"options": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5230,7 +5373,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5240,6 +5382,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5408,7 +5556,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5418,6 +5565,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5594,7 +5747,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5604,6 +5756,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5765,7 +5923,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5775,6 +5932,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -5886,7 +6049,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 						Computed: true,
 					},
 					"rows": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5939,7 +6101,6 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 							`These constraints should and will be enforced by the attribute renderer.`,
 					},
 					"default_value": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -5949,6 +6110,12 @@ func (r *SchemaAttributeDataSource) Schema(ctx context.Context, req datasource.S
 					"entity_builder_disable_edit": schema.BoolAttribute{
 						Computed:    true,
 						Description: `Setting to ` + "`" + `true` + "`" + ` disables editing the attribute on the entity builder UI`,
+					},
+					"explicit_searchable": schema.BoolAttribute{
+						Computed: true,
+						MarkdownDescription: `When set to true, this attribute will always be searchable regardless of` + "\n" +
+							`the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields` + "\n" +
+							`that must always be included in search operations.`,
 					},
 					"feature_flag": schema.StringAttribute{
 						Computed:    true,
@@ -6138,13 +6305,13 @@ func (r *SchemaAttributeDataSource) Read(ctx context.Context, req datasource.Rea
 		return
 	}
 
-	request, requestDiags := data.ToOperationsGetSchemaAttributeRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var compositeID string
+	compositeID = data.CompositeID.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	request := operations.GetSchemaAttributeRequest{
+		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.GetSchemaAttribute(ctx, *request)
+	res, err := r.client.Schemas.GetSchemaAttribute(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -6156,6 +6323,10 @@ func (r *SchemaAttributeDataSource) Read(ctx context.Context, req datasource.Rea
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -6164,11 +6335,7 @@ func (r *SchemaAttributeDataSource) Read(ctx context.Context, req datasource.Rea
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedAttributeWithCompositeID(ctx, res.AttributeWithCompositeID)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedAttributeWithCompositeID(res.AttributeWithCompositeID)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

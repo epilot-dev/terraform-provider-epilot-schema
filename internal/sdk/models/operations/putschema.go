@@ -20,7 +20,7 @@ func (p PutSchemaRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PutSchemaRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil

@@ -2,10 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type AttributeWithCompositeIDMultiSelectAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -14,10 +11,11 @@ type AttributeWithCompositeIDMultiSelectAttribute struct {
 	AllowExtraOptions        types.Bool                                           `tfsdk:"allow_extra_options"`
 	CompositeID              types.String                                         `tfsdk:"composite_id"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DisableCaseSensitive     types.Bool                                           `tfsdk:"disable_case_sensitive"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

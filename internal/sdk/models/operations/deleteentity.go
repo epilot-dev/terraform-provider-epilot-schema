@@ -24,7 +24,7 @@ func (d DeleteEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"slug", "id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
 		return err
 	}
 	return nil

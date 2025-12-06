@@ -14,17 +14,6 @@ import (
 type RelationAttributeConstraints struct {
 }
 
-func (r RelationAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RelationAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // RelationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type RelationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -44,17 +33,6 @@ type RelationAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (r RelationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *RelationAttributeInfoHelpers) GetHintText() *string {
@@ -189,17 +167,6 @@ type RelationPickerFilter struct {
 	Q *string `json:"q"`
 }
 
-func (r RelationPickerFilter) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RelationPickerFilter) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"q"}); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *RelationPickerFilter) GetQ() *string {
 	if o == nil {
 		return nil
@@ -262,17 +229,6 @@ type Actions struct {
 	// This action should only be active when all the settings have the correct value
 	SettingsFlag  []SettingFlag `json:"settings_flag,omitempty"`
 	NewEntityItem any           `json:"new_entity_item,omitempty"`
-}
-
-func (a Actions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *Actions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *Actions) GetActionType() *ActionType {
@@ -354,8 +310,8 @@ const (
 )
 
 type SummaryFields struct {
-	Str          *string       `queryParam:"inline" name:"summary_fields"`
-	SummaryField *SummaryField `queryParam:"inline" name:"summary_fields"`
+	Str          *string       `queryParam:"inline"`
+	SummaryField *SummaryField `queryParam:"inline"`
 
 	Type SummaryFieldsType
 }
@@ -381,14 +337,14 @@ func CreateSummaryFieldsSummaryField(summaryField SummaryField) SummaryFields {
 func (u *SummaryFields) UnmarshalJSON(data []byte) error {
 
 	var summaryField SummaryField = SummaryField{}
-	if err := utils.UnmarshalJSON(data, &summaryField, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryField, "", true, false); err == nil {
 		u.SummaryField = &summaryField
 		u.Type = SummaryFieldsTypeSummaryField
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SummaryFieldsTypeStr
 		return nil
@@ -458,6 +414,11 @@ type RelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *RelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// Relations are always repeatables
 	Repeatable   *bool                 `default:"true" json:"repeatable"`
 	HasPrimary   *bool                 `json:"has_primary,omitempty"`
@@ -491,7 +452,7 @@ func (r RelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -684,6 +645,13 @@ func (o *RelationAttribute) GetInfoHelpers() *RelationAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *RelationAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *RelationAttribute) GetRepeatable() *bool {

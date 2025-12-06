@@ -11,7 +11,21 @@ type BaseActivityItem struct {
 	// See https://github.com/ulid/spec
 	ID        *string    `json:"_id,omitempty"`
 	Timestamp *time.Time `json:"timestamp,omitempty"`
-	Type      string     `json:"type"`
+	// A type for the activity. Used to categorize activities in the activity feed and for event subscriptions.
+	//
+	// Built-in entity activity types (custom activities can be defined as well):
+	// - EntityCreated
+	// - EntityUpdated
+	// - EntityDeleted
+	// - EntitySoftDeleted
+	// - EntityRestored
+	// - RelationsAdded
+	// - RelationsRemoved
+	// - RelationsSoftDeleted
+	// - RelationsRestored
+	// - RelationsDeleted
+	//
+	Type string `json:"type"`
 	// Title for activity. Supports handlebars syntax.
 	Title string `json:"title"`
 	// Message for activity. Supports handlebars syntax.
@@ -29,7 +43,7 @@ func (b BaseActivityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BaseActivityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"type", "title", "message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
 		return err
 	}
 	return nil

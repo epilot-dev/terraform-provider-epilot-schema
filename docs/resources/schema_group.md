@@ -85,17 +85,6 @@ Optional:
 
 Import is supported using the following syntax:
 
-In Terraform v1.5.0 and later, the [`import` block](https://developer.hashicorp.com/terraform/language/import) can be used with the `id` attribute, for example:
-
-```terraform
-import {
-  to = epilot-schema_schema_group.my_epilot-schema_schema_group
-  id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-}
-```
-
-The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
-
 ```shell
 terraform import epilot-schema_schema_group.my_epilot-schema_schema_group "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
 ```

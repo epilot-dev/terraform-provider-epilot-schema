@@ -5,7 +5,6 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 )
 
 type RedirectEntityViewViewType string
@@ -34,17 +33,6 @@ func (e *RedirectEntityViewViewType) UnmarshalJSON(data []byte) error {
 type RedirectEntityView struct {
 	ViewType *RedirectEntityViewViewType `json:"view_type,omitempty"`
 	Route    *string                     `json:"route,omitempty"`
-}
-
-func (r RedirectEntityView) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *RedirectEntityView) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *RedirectEntityView) GetViewType() *RedirectEntityViewViewType {

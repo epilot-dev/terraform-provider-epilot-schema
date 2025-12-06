@@ -7,14 +7,11 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -27,26 +24,25 @@ func NewSchemaDataSource() datasource.DataSource {
 
 // SchemaDataSource is the data source implementation.
 type SchemaDataSource struct {
-	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // SchemaDataSourceModel describes the data model.
 type SchemaDataSourceModel struct {
-	Attributes             jsontypes.Normalized              `tfsdk:"attributes"`
+	Attributes             types.String                      `tfsdk:"attributes"`
 	Blueprint              types.String                      `tfsdk:"blueprint"`
-	Capabilities           jsontypes.Normalized              `tfsdk:"capabilities"`
+	Capabilities           types.String                      `tfsdk:"capabilities"`
 	Category               types.String                      `tfsdk:"category"`
 	CreatedAt              types.String                      `tfsdk:"created_at"`
 	Description            types.String                      `tfsdk:"description"`
-	DialogConfig           map[string]jsontypes.Normalized   `tfsdk:"dialog_config"`
+	DialogConfig           map[string]types.String           `tfsdk:"dialog_config"`
 	DocsURL                types.String                      `tfsdk:"docs_url"`
 	Draft                  types.Bool                        `tfsdk:"draft"`
 	EnableSetting          []types.String                    `tfsdk:"enable_setting"`
 	ExplicitSearchMappings map[string]tfTypes.SearchMappings `tfsdk:"explicit_search_mappings"`
 	FeatureFlag            types.String                      `tfsdk:"feature_flag"`
-	GroupHeadlines         jsontypes.Normalized              `tfsdk:"group_headlines"`
-	GroupSettings          jsontypes.Normalized              `tfsdk:"group_settings"`
+	GroupHeadlines         types.String                      `tfsdk:"group_headlines"`
+	GroupSettings          types.String                      `tfsdk:"group_settings"`
 	Icon                   types.String                      `tfsdk:"icon"`
 	ID                     types.String                      `queryParam:"style=form,explode=true,name=id" tfsdk:"id"`
 	LayoutSettings         *tfTypes.LayoutSettings           `tfsdk:"layout_settings"`
@@ -73,7 +69,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 
 		Attributes: map[string]schema.Attribute{
 			"attributes": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
@@ -82,7 +77,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Description: `Reference to blueprint`,
 			},
 			"capabilities": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
@@ -97,7 +91,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			},
 			"dialog_config": schema.MapAttribute{
 				Computed:    true,
-				ElementType: jsontypes.NormalizedType{},
+				ElementType: types.StringType,
 			},
 			"docs_url": schema.StringAttribute{
 				Computed: true,
@@ -116,7 +110,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 					Attributes: map[string]schema.Attribute{
 						"fields": schema.MapAttribute{
 							Computed:    true,
-							ElementType: jsontypes.NormalizedType{},
+							ElementType: types.StringType,
 						},
 						"index": schema.BoolAttribute{
 							Computed: true,
@@ -133,12 +127,10 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Description: `This schema should only be active when the feature flag is enabled`,
 			},
 			"group_headlines": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
 			"group_settings": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
@@ -153,7 +145,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
 					"additional_properties": schema.StringAttribute{
-						CustomType:  jsontypes.NormalizedType{},
 						Computed:    true,
 						Description: `Parsed as JSON.`,
 					},
@@ -187,9 +178,6 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			"slug": schema.StringAttribute{
 				Required:    true,
 				Description: `Entity Type`,
-				Validators: []validator.String{
-					stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), "must match pattern "+regexp.MustCompile(`^[a-zA-Z0-9_-]+$`).String()),
-				},
 			},
 			"title_template": schema.StringAttribute{
 				Computed:    true,
@@ -310,7 +298,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										"summary_attribute": schema.SingleNestedAttribute{
 											Computed: true,
 											Attributes: map[string]schema.Attribute{
-												"content_line_cap": schema.Float64Attribute{
+												"content_line_cap": schema.NumberAttribute{
 													Computed: true,
 													MarkdownDescription: `Defines the line numbers of the content.` + "\n" +
 														`For instance, When set to 1, the content will be displayed in a single line.`,
@@ -623,13 +611,20 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		return
 	}
 
-	request, requestDiags := data.ToOperationsGetSchemaRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var slug string
+	slug = data.Slug.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	id := new(string)
+	if !data.ID.IsUnknown() && !data.ID.IsNull() {
+		*id = data.ID.ValueString()
+	} else {
+		id = nil
 	}
-	res, err := r.client.Schemas.GetSchema(ctx, *request)
+	request := operations.GetSchemaRequest{
+		Slug: slug,
+		ID:   id,
+	}
+	res, err := r.client.Schemas.GetSchema(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -641,6 +636,10 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -649,11 +648,7 @@ func (r *SchemaDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaItem(ctx, res.EntitySchemaItem)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedEntitySchemaItem(res.EntitySchemaItem)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

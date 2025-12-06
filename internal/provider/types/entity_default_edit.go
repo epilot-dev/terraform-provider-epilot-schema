@@ -2,9 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntityDefaultEdit struct {
 	SearchParams      map[string]types.String `tfsdk:"search_params"`

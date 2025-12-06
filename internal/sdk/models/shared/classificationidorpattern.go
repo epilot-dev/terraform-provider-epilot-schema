@@ -13,17 +13,6 @@ type ClassificationIDOrPattern2 struct {
 	Pattern string `json:"pattern"`
 }
 
-func (c ClassificationIDOrPattern2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ClassificationIDOrPattern2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"pattern"}); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *ClassificationIDOrPattern2) GetPattern() string {
 	if o == nil {
 		return ""
@@ -39,8 +28,8 @@ const (
 )
 
 type ClassificationIDOrPattern struct {
-	Str                        *string                     `queryParam:"inline" name:"ClassificationIdOrPattern"`
-	ClassificationIDOrPattern2 *ClassificationIDOrPattern2 `queryParam:"inline" name:"ClassificationIdOrPattern"`
+	Str                        *string                     `queryParam:"inline"`
+	ClassificationIDOrPattern2 *ClassificationIDOrPattern2 `queryParam:"inline"`
 
 	Type ClassificationIDOrPatternType
 }
@@ -66,14 +55,14 @@ func CreateClassificationIDOrPatternClassificationIDOrPattern2(classificationIDO
 func (u *ClassificationIDOrPattern) UnmarshalJSON(data []byte) error {
 
 	var classificationIDOrPattern2 ClassificationIDOrPattern2 = ClassificationIDOrPattern2{}
-	if err := utils.UnmarshalJSON(data, &classificationIDOrPattern2, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &classificationIDOrPattern2, "", true, false); err == nil {
 		u.ClassificationIDOrPattern2 = &classificationIDOrPattern2
 		u.Type = ClassificationIDOrPatternTypeClassificationIDOrPattern2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = ClassificationIDOrPatternTypeStr
 		return nil

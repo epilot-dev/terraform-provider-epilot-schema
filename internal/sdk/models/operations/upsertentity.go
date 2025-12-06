@@ -52,7 +52,7 @@ func (u UpsertEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpsertEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
 	return nil

@@ -2,12 +2,9 @@
 
 package sdk
 
-// Generated from OpenAPI doc version 2.0.0 and generator version 2.694.1
-
 import (
 	"context"
 	"fmt"
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/config"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/hooks"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
@@ -21,7 +18,7 @@ var ServerList = []string{
 	"https://entity.sls.epilot.io",
 }
 
-// HTTPClient provides an interface for supplying the SDK with a custom HTTP client
+// HTTPClient provides an interface for suplying the SDK with a custom HTTP client
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
@@ -47,13 +44,35 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
+type sdkConfiguration struct {
+	Client            HTTPClient
+	Security          func(context.Context) (interface{}, error)
+	ServerURL         string
+	ServerIndex       int
+	Language          string
+	OpenAPIDocVersion string
+	SDKVersion        string
+	GenVersion        string
+	UserAgent         string
+	RetryConfig       *retry.Config
+	Hooks             *hooks.Hooks
+	Timeout           *time.Duration
+}
+
+func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
+	if c.ServerURL != "" {
+		return c.ServerURL, nil
+	}
+
+	return ServerList[c.ServerIndex], nil
+}
+
 // SDK - Entity API: Flexible data layer for epilot Entities.
 //
 // Use this API configure and access your business objects like Contacts, Opportunities and Products.
 //
 // [Feature Documentation](https://docs.epilot.io/docs/entities/flexible-entities)
 type SDK struct {
-	SDKVersion string
 	// Model Entities
 	Schemas *Schemas
 	// CRUD Access for Entities
@@ -69,8 +88,7 @@ type SDK struct {
 	// Taxonomies and Classifications
 	Taxonomy *Taxonomy
 
-	sdkConfiguration config.SDKConfiguration
-	hooks            *hooks.Hooks
+	sdkConfiguration sdkConfiguration
 }
 
 type SDKOption func(*SDK)
@@ -143,12 +161,14 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.17.0",
-		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/terraform 0.17.0 2.694.1 2.0.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
-			ServerList: ServerList,
+		sdkConfiguration: sdkConfiguration{
+			Language:          "go",
+			OpenAPIDocVersion: "2.2.0",
+			SDKVersion:        "0.19.0",
+			GenVersion:        "2.566.5",
+			UserAgent:         "speakeasy-sdk/terraform 0.19.0 2.566.5 2.2.0 github.com/epilot/terraform-provider-epilot-schema/internal/sdk",
+			Hooks:             hooks.New(),
 		},
-		hooks: hooks.New(),
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -161,18 +181,24 @@ func New(opts ...SDKOption) *SDK {
 
 	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
 	serverURL := currentServerURL
-	serverURL, sdk.sdkConfiguration.Client = sdk.hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
-	if currentServerURL != serverURL {
+	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if serverURL != currentServerURL {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
-	sdk.Schemas = newSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Entities = newEntities(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Relations = newRelations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ImportExport = newImportExport(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SavedViews = newSavedViews(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Taxonomy = newTaxonomy(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Schemas = newSchemas(sdk.sdkConfiguration)
+
+	sdk.Entities = newEntities(sdk.sdkConfiguration)
+
+	sdk.Activity = newActivity(sdk.sdkConfiguration)
+
+	sdk.Relations = newRelations(sdk.sdkConfiguration)
+
+	sdk.ImportExport = newImportExport(sdk.sdkConfiguration)
+
+	sdk.SavedViews = newSavedViews(sdk.sdkConfiguration)
+
+	sdk.Taxonomy = newTaxonomy(sdk.sdkConfiguration)
 
 	return sdk
 }

@@ -49,7 +49,7 @@ func (l ListTaxonomiesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListTaxonomiesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil

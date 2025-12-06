@@ -2,9 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntityDefaultTable struct {
 	BulkActions      []BulkActions   `tfsdk:"bulk_actions"`

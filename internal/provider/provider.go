@@ -7,7 +7,6 @@ import (
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
-	"github.com/hashicorp/terraform-plugin-framework/ephemeral"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -15,8 +14,7 @@ import (
 	"net/http"
 )
 
-var _ provider.Provider = (*EpilotSchemaProvider)(nil)
-var _ provider.ProviderWithEphemeralResources = (*EpilotSchemaProvider)(nil)
+var _ provider.Provider = &EpilotSchemaProvider{}
 
 type EpilotSchemaProvider struct {
 	// version is set to the provider version on release, "dev" when the
@@ -41,14 +39,12 @@ func (p *EpilotSchemaProvider) Schema(ctx context.Context, req provider.SchemaRe
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"epilot_auth": schema.StringAttribute{
-				MarkdownDescription: `Authorization header with epilot OAuth2 bearer token.`,
-				Optional:            true,
-				Sensitive:           true,
+				Optional:  true,
+				Sensitive: true,
 			},
 			"epilot_org": schema.StringAttribute{
-				MarkdownDescription: `Overrides the target organization to allow shared tenantaccess.`,
-				Optional:            true,
-				Sensitive:           true,
+				Optional:  true,
+				Sensitive: true,
 			},
 			"server_url": schema.StringAttribute{
 				Description: `Server URL (defaults to https://entity.sls.epilot.io)`,
@@ -72,20 +68,27 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 		return
 	}
 
-	serverUrl := data.ServerURL.ValueString()
+	ServerURL := data.ServerURL.ValueString()
 
-	if serverUrl == "" {
-		serverUrl = "https://entity.sls.epilot.io"
+	if ServerURL == "" {
+		ServerURL = "https://entity.sls.epilot.io"
 	}
 
-	security := shared.Security{}
-
-	if !data.EpilotAuth.IsUnknown() {
-		security.EpilotAuth = data.EpilotAuth.ValueStringPointer()
+	epilotAuth := new(string)
+	if !data.EpilotAuth.IsUnknown() && !data.EpilotAuth.IsNull() {
+		*epilotAuth = data.EpilotAuth.ValueString()
+	} else {
+		epilotAuth = nil
 	}
-
-	if !data.EpilotOrg.IsUnknown() {
-		security.EpilotOrg = data.EpilotOrg.ValueStringPointer()
+	epilotOrg := new(string)
+	if !data.EpilotOrg.IsUnknown() && !data.EpilotOrg.IsNull() {
+		*epilotOrg = data.EpilotOrg.ValueString()
+	} else {
+		epilotOrg = nil
+	}
+	security := shared.Security{
+		EpilotAuth: epilotAuth,
+		EpilotOrg:  epilotOrg,
 	}
 
 	providerHTTPTransportOpts := ProviderHTTPTransportOpts{
@@ -97,14 +100,13 @@ func (p *EpilotSchemaProvider) Configure(ctx context.Context, req provider.Confi
 	httpClient.Transport = NewProviderHTTPTransport(providerHTTPTransportOpts)
 
 	opts := []sdk.SDKOption{
-		sdk.WithServerURL(serverUrl),
+		sdk.WithServerURL(ServerURL),
 		sdk.WithSecurity(security),
 		sdk.WithClient(httpClient),
 	}
-
 	client := sdk.New(opts...)
+
 	resp.DataSourceData = client
-	resp.EphemeralResourceData = client
 	resp.ResourceData = client
 }
 
@@ -126,10 +128,6 @@ func (p *EpilotSchemaProvider) DataSources(ctx context.Context) []func() datasou
 		NewSchemaGroupDataSource,
 		NewSchemaGroupHeadlineDataSource,
 	}
-}
-
-func (p *EpilotSchemaProvider) EphemeralResources(ctx context.Context) []func() ephemeral.EphemeralResource {
-	return []func() ephemeral.EphemeralResource{}
 }
 
 func New(version string) func() provider.Provider {

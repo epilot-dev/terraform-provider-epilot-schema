@@ -24,7 +24,7 @@ func (g GetActivityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetActivityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil

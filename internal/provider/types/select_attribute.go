@@ -2,19 +2,17 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SelectAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	AllowAny                 types.Bool                                           `tfsdk:"allow_any"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`
@@ -26,7 +24,7 @@ type SelectAttribute struct {
 	Label                    types.String                                         `tfsdk:"label"`
 	Layout                   types.String                                         `tfsdk:"layout"`
 	Name                     types.String                                         `tfsdk:"name"`
-	Options                  jsontypes.Normalized                                 `tfsdk:"options"`
+	Options                  types.String                                         `tfsdk:"options"`
 	Order                    types.Int64                                          `tfsdk:"order"`
 	Placeholder              types.String                                         `tfsdk:"placeholder"`
 	PreviewValueFormatter    types.String                                         `tfsdk:"preview_value_formatter"`

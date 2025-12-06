@@ -7,6 +7,20 @@ import (
 )
 
 type Activity struct {
+	// A type for the activity. Used to categorize activities in the activity feed and for event subscriptions.
+	//
+	// Built-in entity activity types (custom activities can be defined as well):
+	// - EntityCreated
+	// - EntityUpdated
+	// - EntityDeleted
+	// - EntitySoftDeleted
+	// - EntityRestored
+	// - RelationsAdded
+	// - RelationsRemoved
+	// - RelationsSoftDeleted
+	// - RelationsRestored
+	// - RelationsDeleted
+	//
 	Type string `json:"type"`
 	// Title for activity. Supports handlebars syntax.
 	Title string `json:"title"`
@@ -24,7 +38,7 @@ func (a Activity) MarshalJSON() ([]byte, error) {
 }
 
 func (a *Activity) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "title", "message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil

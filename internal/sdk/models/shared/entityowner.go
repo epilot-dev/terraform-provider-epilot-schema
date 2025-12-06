@@ -2,27 +2,12 @@
 
 package shared
 
-import (
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-)
-
 // EntityOwner - The user / organization owning this entity.
 //
 // Note: Owner implicitly has access to the entity regardless of ACLs.
 type EntityOwner struct {
 	OrgID  string  `json:"org_id"`
 	UserID *string `json:"user_id,omitempty"`
-}
-
-func (e EntityOwner) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *EntityOwner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"org_id"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *EntityOwner) GetOrgID() string {

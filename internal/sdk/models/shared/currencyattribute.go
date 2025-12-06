@@ -14,17 +14,6 @@ import (
 type CurrencyAttributeConstraints struct {
 }
 
-func (c CurrencyAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CurrencyAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // CurrencyAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type CurrencyAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -44,17 +33,6 @@ type CurrencyAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (c CurrencyAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CurrencyAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *CurrencyAttributeInfoHelpers) GetHintText() *string {
@@ -116,17 +94,6 @@ type One struct {
 	Flag        *string `json:"flag,omitempty"`
 }
 
-func (o One) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *One) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"code", "description", "symbol"}); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *One) GetCode() string {
 	if o == nil {
 		return ""
@@ -162,7 +129,7 @@ const (
 )
 
 type Currency struct {
-	One *One `queryParam:"inline" name:"currency"`
+	One *One `queryParam:"inline"`
 
 	Type CurrencyType
 }
@@ -179,7 +146,7 @@ func CreateCurrencyOne(one One) Currency {
 func (u *Currency) UnmarshalJSON(data []byte) error {
 
 	var one One = One{}
-	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
 		u.One = &one
 		u.Type = CurrencyTypeOne
 		return nil
@@ -248,6 +215,11 @@ type CurrencyAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *CurrencyAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable           *bool                 `json:"repeatable,omitempty"`
 	HasPrimary           *bool                 `json:"has_primary,omitempty"`
@@ -262,7 +234,7 @@ func (c CurrencyAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CurrencyAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "type", "currency"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -455,6 +427,13 @@ func (o *CurrencyAttribute) GetInfoHelpers() *CurrencyAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *CurrencyAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *CurrencyAttribute) GetRepeatable() *bool {

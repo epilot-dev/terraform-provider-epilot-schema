@@ -10,7 +10,7 @@ import (
 type DeleteTaxonomyRequest struct {
 	// Taxonomy slug
 	TaxonomySlug string `pathParam:"style=simple,explode=false,name=taxonomySlug"`
-	// If true, the taxonomy will be permanently deleted
+	// ⚠️ NOT IMPLEMENTED - If true, the taxonomy will be permanently deleted
 	Permanent *bool `queryParam:"style=form,explode=true,name=permanent"`
 }
 

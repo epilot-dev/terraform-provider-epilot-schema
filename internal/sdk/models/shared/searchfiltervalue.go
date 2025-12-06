@@ -18,9 +18,9 @@ const (
 
 // SearchFilterValue - A filter field value.
 type SearchFilterValue struct {
-	Str     *string  `queryParam:"inline" name:"SearchFilterValue"`
-	Number  *float64 `queryParam:"inline" name:"SearchFilterValue"`
-	Boolean *bool    `queryParam:"inline" name:"SearchFilterValue"`
+	Str     *string  `queryParam:"inline"`
+	Number  *float64 `queryParam:"inline"`
+	Boolean *bool    `queryParam:"inline"`
 
 	Type SearchFilterValueType
 }
@@ -55,21 +55,21 @@ func CreateSearchFilterValueBoolean(boolean bool) SearchFilterValue {
 func (u *SearchFilterValue) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SearchFilterValueTypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
 		u.Number = &number
 		u.Type = SearchFilterValueTypeNumber
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, false); err == nil {
 		u.Boolean = &boolean
 		u.Type = SearchFilterValueTypeBoolean
 		return nil

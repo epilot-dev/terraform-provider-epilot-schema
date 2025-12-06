@@ -18,7 +18,7 @@ func (g GetJSONSchemaRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetJSONSchemaRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil

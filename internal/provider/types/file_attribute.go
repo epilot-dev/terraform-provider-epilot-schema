@@ -2,10 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type FileAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
@@ -13,11 +10,12 @@ type FileAttribute struct {
 	AllowedExtensions        []types.String                                       `tfsdk:"allowed_extensions"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
 	DefaultAccessControl     types.String                                         `tfsdk:"default_access_control"`
-	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
+	DefaultValue             types.String                                         `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DisplayImagesLandscaped  types.Bool                                           `tfsdk:"display_images_landscaped"`
 	EnableDescription        types.Bool                                           `tfsdk:"enable_description"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

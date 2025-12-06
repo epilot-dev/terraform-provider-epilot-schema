@@ -7,13 +7,11 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot/terraform-provider-epilot-schema/internal/provider/types"
 	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk"
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -26,7 +24,6 @@ func NewSchemaGroupDataSource() datasource.DataSource {
 
 // SchemaGroupDataSource is the data source implementation.
 type SchemaGroupDataSource struct {
-	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
@@ -60,9 +57,6 @@ func (r *SchemaGroupDataSource) Schema(ctx context.Context, req datasource.Schem
 			"composite_id": schema.StringAttribute{
 				Required:    true,
 				Description: `Schema Slug and the Group ID`,
-				Validators: []validator.String{
-					stringvalidator.RegexMatches(regexp.MustCompile(`^.+:.+$`), "must match pattern "+regexp.MustCompile(`^.+:.+$`).String()),
-				},
 			},
 			"expanded": schema.BoolAttribute{
 				Computed:    true,
@@ -171,13 +165,13 @@ func (r *SchemaGroupDataSource) Read(ctx context.Context, req datasource.ReadReq
 		return
 	}
 
-	request, requestDiags := data.ToOperationsGetSchemaGroupRequest(ctx)
-	resp.Diagnostics.Append(requestDiags...)
+	var compositeID string
+	compositeID = data.CompositeID.ValueString()
 
-	if resp.Diagnostics.HasError() {
-		return
+	request := operations.GetSchemaGroupRequest{
+		CompositeID: compositeID,
 	}
-	res, err := r.client.Schemas.GetSchemaGroup(ctx, *request)
+	res, err := r.client.Schemas.GetSchemaGroup(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -189,6 +183,10 @@ func (r *SchemaGroupDataSource) Read(ctx context.Context, req datasource.ReadReq
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
+		return
+	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -197,11 +195,7 @@ func (r *SchemaGroupDataSource) Read(ctx context.Context, req datasource.ReadReq
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	resp.Diagnostics.Append(data.RefreshFromSharedEntitySchemaGroupWithCompositeID(ctx, res.EntitySchemaGroupWithCompositeID)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+	data.RefreshFromSharedEntitySchemaGroupWithCompositeID(res.EntitySchemaGroupWithCompositeID)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

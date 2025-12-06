@@ -19,8 +19,8 @@ const (
 )
 
 type SortEnd struct {
-	Str    *string  `queryParam:"inline" name:"sort_end"`
-	Number *float64 `queryParam:"inline" name:"sort_end"`
+	Str    *string  `queryParam:"inline"`
+	Number *float64 `queryParam:"inline"`
 
 	Type SortEndType
 }
@@ -46,14 +46,14 @@ func CreateSortEndNumber(number float64) SortEnd {
 func (u *SortEnd) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SortEndTypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, false); err == nil {
 		u.Number = &number
 		u.Type = SortEndTypeNumber
 		return nil

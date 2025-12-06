@@ -46,7 +46,7 @@ func (c CreatedBy2) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -71,17 +71,6 @@ type CreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (c CreatedBy1) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CreatedBy1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *CreatedBy1) GetUserID() *string {
 	if o == nil {
 		return nil
@@ -97,8 +86,8 @@ const (
 )
 
 type CreatedBy struct {
-	CreatedBy1 *CreatedBy1 `queryParam:"inline" name:"created_by"`
-	CreatedBy2 *CreatedBy2 `queryParam:"inline" name:"created_by"`
+	CreatedBy1 *CreatedBy1 `queryParam:"inline"`
+	CreatedBy2 *CreatedBy2 `queryParam:"inline"`
 
 	Type CreatedByType
 }
@@ -124,14 +113,14 @@ func CreateCreatedByCreatedBy2(createdBy2 CreatedBy2) CreatedBy {
 func (u *CreatedBy) UnmarshalJSON(data []byte) error {
 
 	var createdBy1 CreatedBy1 = CreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &createdBy1, "", true, false); err == nil {
 		u.CreatedBy1 = &createdBy1
 		u.Type = CreatedByTypeCreatedBy1
 		return nil
 	}
 
 	var createdBy2 CreatedBy2 = CreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &createdBy2, "", true, false); err == nil {
 		u.CreatedBy2 = &createdBy2
 		u.Type = CreatedByTypeCreatedBy2
 		return nil

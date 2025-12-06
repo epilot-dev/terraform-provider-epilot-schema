@@ -13,17 +13,6 @@ import (
 type ComputedAttributeConstraints struct {
 }
 
-func (c ComputedAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ComputedAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // ComputedAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type ComputedAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type ComputedAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (c ComputedAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ComputedAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *ComputedAttributeInfoHelpers) GetHintText() *string {
@@ -161,6 +139,11 @@ type ComputedAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
@@ -177,7 +160,7 @@ func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -370,6 +353,13 @@ func (o *ComputedAttribute) GetInfoHelpers() *ComputedAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *ComputedAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *ComputedAttribute) GetRepeatable() *bool {

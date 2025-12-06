@@ -16,8 +16,8 @@ const (
 )
 
 type GetRelationsResp struct {
-	RelationItem   *RelationItem   `queryParam:"inline" name:"GetRelationsResp"`
-	RelationEntity *RelationEntity `queryParam:"inline" name:"GetRelationsResp"`
+	RelationItem   *RelationItem   `queryParam:"inline"`
+	RelationEntity *RelationEntity `queryParam:"inline"`
 
 	Type GetRelationsRespType
 }
@@ -42,17 +42,17 @@ func CreateGetRelationsRespRelationEntity(relationEntity RelationEntity) GetRela
 
 func (u *GetRelationsResp) UnmarshalJSON(data []byte) error {
 
-	var relationEntity RelationEntity = RelationEntity{}
-	if err := utils.UnmarshalJSON(data, &relationEntity, "", true, nil); err == nil {
-		u.RelationEntity = &relationEntity
-		u.Type = GetRelationsRespTypeRelationEntity
+	var relationItem RelationItem = RelationItem{}
+	if err := utils.UnmarshalJSON(data, &relationItem, "", true, false); err == nil {
+		u.RelationItem = &relationItem
+		u.Type = GetRelationsRespTypeRelationItem
 		return nil
 	}
 
-	var relationItem RelationItem = RelationItem{}
-	if err := utils.UnmarshalJSON(data, &relationItem, "", true, nil); err == nil {
-		u.RelationItem = &relationItem
-		u.Type = GetRelationsRespTypeRelationItem
+	var relationEntity RelationEntity = RelationEntity{}
+	if err := utils.UnmarshalJSON(data, &relationEntity, "", true, false); err == nil {
+		u.RelationEntity = &relationEntity
+		u.Type = GetRelationsRespTypeRelationEntity
 		return nil
 	}
 

@@ -2,10 +2,6 @@
 
 package shared
 
-import (
-	"github.com/epilot/terraform-provider-epilot-schema/internal/sdk/internal/utils"
-)
-
 // EntityAction - An entity action configured from the entity schema
 type EntityAction struct {
 	// A unique action name
@@ -16,17 +12,6 @@ type EntityAction struct {
 	// If not provided, the action will be shown to all users.
 	//
 	Permission *string `json:"permission,omitempty"`
-}
-
-func (e EntityAction) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *EntityAction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"action", "label"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *EntityAction) GetAction() string {

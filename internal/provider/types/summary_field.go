@@ -2,9 +2,7 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SummaryField struct {
 	DisplayAs types.String `tfsdk:"display_as"`

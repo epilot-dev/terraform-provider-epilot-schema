@@ -16,7 +16,7 @@ func (e EntityCapabilityUIConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityCapabilityUIConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -80,7 +80,7 @@ func (u UIHooks) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UIHooks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"hook"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
 	return nil

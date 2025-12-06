@@ -18,9 +18,9 @@ const (
 )
 
 type TableView struct {
-	EntityDefaultTable *EntityDefaultTable `queryParam:"inline" name:"table_view"`
-	RedirectEntityView *RedirectEntityView `queryParam:"inline" name:"table_view"`
-	EntityViewDisabled *EntityViewDisabled `queryParam:"inline" name:"table_view"`
+	EntityDefaultTable *EntityDefaultTable `queryParam:"inline"`
+	RedirectEntityView *RedirectEntityView `queryParam:"inline"`
+	EntityViewDisabled *EntityViewDisabled `queryParam:"inline"`
 
 	Type TableViewType
 }
@@ -54,24 +54,24 @@ func CreateTableViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) Ta
 
 func (u *TableView) UnmarshalJSON(data []byte) error {
 
-	var entityDefaultTable EntityDefaultTable = EntityDefaultTable{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultTable, "", true, nil); err == nil {
-		u.EntityDefaultTable = &entityDefaultTable
-		u.Type = TableViewTypeEntityDefaultTable
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
+	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err == nil {
+		u.EntityViewDisabled = &entityViewDisabled
+		u.Type = TableViewTypeEntityViewDisabled
 		return nil
 	}
 
 	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = TableViewTypeRedirectEntityView
 		return nil
 	}
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, nil); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = TableViewTypeEntityViewDisabled
+	var entityDefaultTable EntityDefaultTable = EntityDefaultTable{}
+	if err := utils.UnmarshalJSON(data, &entityDefaultTable, "", true, false); err == nil {
+		u.EntityDefaultTable = &entityDefaultTable
+		u.Type = TableViewTypeEntityDefaultTable
 		return nil
 	}
 
@@ -103,9 +103,9 @@ const (
 )
 
 type CreateView struct {
-	EntityDefaultCreate *EntityDefaultCreate `queryParam:"inline" name:"create_view"`
-	RedirectEntityView  *RedirectEntityView  `queryParam:"inline" name:"create_view"`
-	EntityViewDisabled  *EntityViewDisabled  `queryParam:"inline" name:"create_view"`
+	EntityDefaultCreate *EntityDefaultCreate `queryParam:"inline"`
+	RedirectEntityView  *RedirectEntityView  `queryParam:"inline"`
+	EntityViewDisabled  *EntityViewDisabled  `queryParam:"inline"`
 
 	Type CreateViewType
 }
@@ -139,24 +139,24 @@ func CreateCreateViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) C
 
 func (u *CreateView) UnmarshalJSON(data []byte) error {
 
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
+	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err == nil {
+		u.EntityViewDisabled = &entityViewDisabled
+		u.Type = CreateViewTypeEntityViewDisabled
+		return nil
+	}
+
 	var entityDefaultCreate EntityDefaultCreate = EntityDefaultCreate{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultCreate, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityDefaultCreate, "", true, false); err == nil {
 		u.EntityDefaultCreate = &entityDefaultCreate
 		u.Type = CreateViewTypeEntityDefaultCreate
 		return nil
 	}
 
 	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = CreateViewTypeRedirectEntityView
-		return nil
-	}
-
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, nil); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = CreateViewTypeEntityViewDisabled
 		return nil
 	}
 
@@ -188,9 +188,9 @@ const (
 )
 
 type EditView struct {
-	EntityDefaultEdit  *EntityDefaultEdit  `queryParam:"inline" name:"edit_view"`
-	RedirectEntityView *RedirectEntityView `queryParam:"inline" name:"edit_view"`
-	EntityViewDisabled *EntityViewDisabled `queryParam:"inline" name:"edit_view"`
+	EntityDefaultEdit  *EntityDefaultEdit  `queryParam:"inline"`
+	RedirectEntityView *RedirectEntityView `queryParam:"inline"`
+	EntityViewDisabled *EntityViewDisabled `queryParam:"inline"`
 
 	Type EditViewType
 }
@@ -224,24 +224,24 @@ func CreateEditViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) Edi
 
 func (u *EditView) UnmarshalJSON(data []byte) error {
 
-	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, nil); err == nil {
-		u.EntityDefaultEdit = &entityDefaultEdit
-		u.Type = EditViewTypeEntityDefaultEdit
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
+	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err == nil {
+		u.EntityViewDisabled = &entityViewDisabled
+		u.Type = EditViewTypeEntityViewDisabled
 		return nil
 	}
 
 	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = EditViewTypeRedirectEntityView
 		return nil
 	}
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, nil); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = EditViewTypeEntityViewDisabled
+	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
+	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, false); err == nil {
+		u.EntityDefaultEdit = &entityDefaultEdit
+		u.Type = EditViewTypeEntityDefaultEdit
 		return nil
 	}
 
@@ -273,9 +273,9 @@ const (
 )
 
 type SingleView struct {
-	EntityDefaultEdit  *EntityDefaultEdit  `queryParam:"inline" name:"single_view"`
-	RedirectEntityView *RedirectEntityView `queryParam:"inline" name:"single_view"`
-	EntityViewDisabled *EntityViewDisabled `queryParam:"inline" name:"single_view"`
+	EntityDefaultEdit  *EntityDefaultEdit  `queryParam:"inline"`
+	RedirectEntityView *RedirectEntityView `queryParam:"inline"`
+	EntityViewDisabled *EntityViewDisabled `queryParam:"inline"`
 
 	Type SingleViewType
 }
@@ -309,24 +309,24 @@ func CreateSingleViewEntityViewDisabled(entityViewDisabled EntityViewDisabled) S
 
 func (u *SingleView) UnmarshalJSON(data []byte) error {
 
-	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
-	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, nil); err == nil {
-		u.EntityDefaultEdit = &entityDefaultEdit
-		u.Type = SingleViewTypeEntityDefaultEdit
+	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
+	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, false); err == nil {
+		u.EntityViewDisabled = &entityViewDisabled
+		u.Type = SingleViewTypeEntityViewDisabled
 		return nil
 	}
 
 	var redirectEntityView RedirectEntityView = RedirectEntityView{}
-	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &redirectEntityView, "", true, false); err == nil {
 		u.RedirectEntityView = &redirectEntityView
 		u.Type = SingleViewTypeRedirectEntityView
 		return nil
 	}
 
-	var entityViewDisabled EntityViewDisabled = EntityViewDisabled{}
-	if err := utils.UnmarshalJSON(data, &entityViewDisabled, "", true, nil); err == nil {
-		u.EntityViewDisabled = &entityViewDisabled
-		u.Type = SingleViewTypeEntityViewDisabled
+	var entityDefaultEdit EntityDefaultEdit = EntityDefaultEdit{}
+	if err := utils.UnmarshalJSON(data, &entityDefaultEdit, "", true, false); err == nil {
+		u.EntityDefaultEdit = &entityDefaultEdit
+		u.Type = SingleViewTypeEntityDefaultEdit
 		return nil
 	}
 
@@ -357,8 +357,8 @@ const (
 )
 
 type SummaryAttributes struct {
-	SummaryAttribute *SummaryAttribute `queryParam:"inline" name:"summary_attributes"`
-	Str              *string           `queryParam:"inline" name:"summary_attributes"`
+	SummaryAttribute *SummaryAttribute `queryParam:"inline"`
+	Str              *string           `queryParam:"inline"`
 
 	Type SummaryAttributesType
 }
@@ -384,14 +384,14 @@ func CreateSummaryAttributesStr(str string) SummaryAttributes {
 func (u *SummaryAttributes) UnmarshalJSON(data []byte) error {
 
 	var summaryAttribute SummaryAttribute = SummaryAttribute{}
-	if err := utils.UnmarshalJSON(data, &summaryAttribute, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &summaryAttribute, "", true, false); err == nil {
 		u.SummaryAttribute = &summaryAttribute
 		u.Type = SummaryAttributesTypeSummaryAttribute
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = SummaryAttributesTypeStr
 		return nil
@@ -557,7 +557,7 @@ func (l LayoutSettings) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LayoutSettings) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil

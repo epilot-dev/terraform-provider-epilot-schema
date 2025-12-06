@@ -46,7 +46,7 @@ func (g GetRelationsV3Request) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRelationsV3Request) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug", "id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil

@@ -46,7 +46,7 @@ func (s SavedViewPartialCreatedBy2) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SavedViewPartialCreatedBy2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -71,17 +71,6 @@ type SavedViewPartialCreatedBy1 struct {
 	UserID *string `json:"user_id,omitempty"`
 }
 
-func (s SavedViewPartialCreatedBy1) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SavedViewPartialCreatedBy1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *SavedViewPartialCreatedBy1) GetUserID() *string {
 	if o == nil {
 		return nil
@@ -97,8 +86,8 @@ const (
 )
 
 type SavedViewPartialCreatedBy struct {
-	SavedViewPartialCreatedBy1 *SavedViewPartialCreatedBy1 `queryParam:"inline" name:"created_by"`
-	SavedViewPartialCreatedBy2 *SavedViewPartialCreatedBy2 `queryParam:"inline" name:"created_by"`
+	SavedViewPartialCreatedBy1 *SavedViewPartialCreatedBy1 `queryParam:"inline"`
+	SavedViewPartialCreatedBy2 *SavedViewPartialCreatedBy2 `queryParam:"inline"`
 
 	Type SavedViewPartialCreatedByType
 }
@@ -124,14 +113,14 @@ func CreateSavedViewPartialCreatedBySavedViewPartialCreatedBy2(savedViewPartialC
 func (u *SavedViewPartialCreatedBy) UnmarshalJSON(data []byte) error {
 
 	var savedViewPartialCreatedBy1 SavedViewPartialCreatedBy1 = SavedViewPartialCreatedBy1{}
-	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy1, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy1, "", true, false); err == nil {
 		u.SavedViewPartialCreatedBy1 = &savedViewPartialCreatedBy1
 		u.Type = SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy1
 		return nil
 	}
 
 	var savedViewPartialCreatedBy2 SavedViewPartialCreatedBy2 = SavedViewPartialCreatedBy2{}
-	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy2, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &savedViewPartialCreatedBy2, "", true, false); err == nil {
 		u.SavedViewPartialCreatedBy2 = &savedViewPartialCreatedBy2
 		u.Type = SavedViewPartialCreatedByTypeSavedViewPartialCreatedBy2
 		return nil

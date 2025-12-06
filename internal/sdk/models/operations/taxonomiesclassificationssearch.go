@@ -19,8 +19,8 @@ const (
 
 // TaxonomySlug - The taxonomy slug(s) to search within. When provided with multiple taxonomy slugs, the search will be performed across all the provided taxonomies.
 type TaxonomySlug struct {
-	Str        *string  `queryParam:"inline" name:"taxonomySlug"`
-	ArrayOfStr []string `queryParam:"inline" name:"taxonomySlug"`
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type TaxonomySlugType
 }
@@ -46,14 +46,14 @@ func CreateTaxonomySlugArrayOfStr(arrayOfStr []string) TaxonomySlug {
 func (u *TaxonomySlug) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = TaxonomySlugTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = TaxonomySlugTypeArrayOfStr
 		return nil
@@ -111,7 +111,7 @@ func (t TaxonomiesClassificationsSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TaxonomiesClassificationsSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil

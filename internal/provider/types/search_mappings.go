@@ -2,13 +2,10 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type SearchMappings struct {
-	Fields map[string]jsontypes.Normalized `tfsdk:"fields"`
-	Index  types.Bool                      `tfsdk:"index"`
-	Type   types.String                    `tfsdk:"type"`
+	Fields map[string]types.String `tfsdk:"fields"`
+	Index  types.Bool              `tfsdk:"index"`
+	Type   types.String            `tfsdk:"type"`
 }

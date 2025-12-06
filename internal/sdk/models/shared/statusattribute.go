@@ -14,17 +14,6 @@ import (
 type StatusAttributeConstraints struct {
 }
 
-func (s StatusAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *StatusAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // StatusAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type StatusAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -44,17 +33,6 @@ type StatusAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (s StatusAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *StatusAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *StatusAttributeInfoHelpers) GetHintText() *string {
@@ -115,17 +93,6 @@ type Options2 struct {
 	Title *string `json:"title,omitempty"`
 }
 
-func (o Options2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *Options2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"value"}); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *Options2) GetValue() string {
 	if o == nil {
 		return ""
@@ -148,8 +115,8 @@ const (
 )
 
 type StatusAttributeOptions struct {
-	Str      *string   `queryParam:"inline" name:"options"`
-	Options2 *Options2 `queryParam:"inline" name:"options"`
+	Str      *string   `queryParam:"inline"`
+	Options2 *Options2 `queryParam:"inline"`
 
 	Type StatusAttributeOptionsType
 }
@@ -175,14 +142,14 @@ func CreateStatusAttributeOptionsOptions2(options2 Options2) StatusAttributeOpti
 func (u *StatusAttributeOptions) UnmarshalJSON(data []byte) error {
 
 	var options2 Options2 = Options2{}
-	if err := utils.UnmarshalJSON(data, &options2, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &options2, "", true, false); err == nil {
 		u.Options2 = &options2
 		u.Type = StatusAttributeOptionsTypeOptions2
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = StatusAttributeOptionsTypeStr
 		return nil
@@ -255,6 +222,11 @@ type StatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                     `json:"repeatable,omitempty"`
 	HasPrimary *bool                     `json:"has_primary,omitempty"`
@@ -267,7 +239,7 @@ func (s StatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -460,6 +432,13 @@ func (o *StatusAttribute) GetInfoHelpers() *StatusAttributeInfoHelpers {
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *StatusAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *StatusAttribute) GetRepeatable() *bool {

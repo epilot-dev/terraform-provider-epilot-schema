@@ -13,17 +13,6 @@ import (
 type UserRelationAttributeConstraints struct {
 }
 
-func (u UserRelationAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(u, "", false)
-}
-
-func (u *UserRelationAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // UserRelationAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type UserRelationAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type UserRelationAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (u UserRelationAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(u, "", false)
-}
-
-func (u *UserRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *UserRelationAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type UserRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *UserRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                     `json:"repeatable,omitempty"`
 	HasPrimary *bool                     `json:"has_primary,omitempty"`
@@ -171,7 +154,7 @@ func (u UserRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UserRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -364,6 +347,13 @@ func (o *UserRelationAttribute) GetInfoHelpers() *UserRelationAttributeInfoHelpe
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *UserRelationAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *UserRelationAttribute) GetRepeatable() *bool {

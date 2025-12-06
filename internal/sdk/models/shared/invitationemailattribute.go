@@ -13,17 +13,6 @@ import (
 type InvitationEmailAttributeConstraints struct {
 }
 
-func (i InvitationEmailAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
-}
-
-func (i *InvitationEmailAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // InvitationEmailAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type InvitationEmailAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type InvitationEmailAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (i InvitationEmailAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
-}
-
-func (i *InvitationEmailAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *InvitationEmailAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type InvitationEmailAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *InvitationEmailAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                        `json:"repeatable,omitempty"`
 	HasPrimary *bool                        `json:"has_primary,omitempty"`
@@ -170,7 +153,7 @@ func (i InvitationEmailAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InvitationEmailAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -363,6 +346,13 @@ func (o *InvitationEmailAttribute) GetInfoHelpers() *InvitationEmailAttributeInf
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *InvitationEmailAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *InvitationEmailAttribute) GetRepeatable() *bool {

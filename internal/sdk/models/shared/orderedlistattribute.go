@@ -13,17 +13,6 @@ import (
 type OrderedListAttributeConstraints struct {
 }
 
-func (o OrderedListAttributeConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *OrderedListAttributeConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // OrderedListAttributeInfoHelpers - A set of configurations meant to document and assist the user in filling the attribute.
 type OrderedListAttributeInfoHelpers struct {
 	// The text to be displayed in the attribute hint helper.
@@ -43,17 +32,6 @@ type OrderedListAttributeInfoHelpers struct {
 	// The value should be a valid `@mui/core` tooltip placement.
 	//
 	HintTooltipPlacement *string `json:"hint_tooltip_placement,omitempty"`
-}
-
-func (o OrderedListAttributeInfoHelpers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *OrderedListAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *OrderedListAttributeInfoHelpers) GetHintText() *string {
@@ -159,6 +137,11 @@ type OrderedListAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *OrderedListAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
 	// The attribute is a repeatable
 	Repeatable *bool                    `json:"repeatable,omitempty"`
 	HasPrimary *bool                    `json:"has_primary,omitempty"`
@@ -170,7 +153,7 @@ func (o OrderedListAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrderedListAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -363,6 +346,13 @@ func (o *OrderedListAttribute) GetInfoHelpers() *OrderedListAttributeInfoHelpers
 		return nil
 	}
 	return o.InfoHelpers
+}
+
+func (o *OrderedListAttribute) GetExplicitSearchable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ExplicitSearchable
 }
 
 func (o *OrderedListAttribute) GetRepeatable() *bool {

@@ -2,13 +2,10 @@
 
 package types
 
-import (
-	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-)
+import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type EntityCapabilityWithCompositeIDUIHooks struct {
-	AdditionalProperties jsontypes.Normalized                               `tfsdk:"additional_properties"`
+	AdditionalProperties types.String                                       `tfsdk:"additional_properties"`
 	Component            types.String                                       `tfsdk:"component"`
 	Disabled             types.Bool                                         `tfsdk:"disabled"`
 	GroupExpanded        types.Bool                                         `tfsdk:"group_expanded"`

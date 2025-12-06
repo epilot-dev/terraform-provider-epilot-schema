@@ -40,8 +40,8 @@ const (
 )
 
 type RowActions struct {
-	Str          *string       `queryParam:"inline" name:"row_actions"`
-	EntityAction *EntityAction `queryParam:"inline" name:"row_actions"`
+	Str          *string       `queryParam:"inline"`
+	EntityAction *EntityAction `queryParam:"inline"`
 
 	Type RowActionsType
 }
@@ -67,14 +67,14 @@ func CreateRowActionsEntityAction(entityAction EntityAction) RowActions {
 func (u *RowActions) UnmarshalJSON(data []byte) error {
 
 	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, false); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = RowActionsTypeEntityAction
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = RowActionsTypeStr
 		return nil
@@ -103,8 +103,8 @@ const (
 )
 
 type BulkActions struct {
-	Str          *string       `queryParam:"inline" name:"bulk_actions"`
-	EntityAction *EntityAction `queryParam:"inline" name:"bulk_actions"`
+	Str          *string       `queryParam:"inline"`
+	EntityAction *EntityAction `queryParam:"inline"`
 
 	Type BulkActionsType
 }
@@ -130,14 +130,14 @@ func CreateBulkActionsEntityAction(entityAction EntityAction) BulkActions {
 func (u *BulkActions) UnmarshalJSON(data []byte) error {
 
 	var entityAction EntityAction = EntityAction{}
-	if err := utils.UnmarshalJSON(data, &entityAction, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityAction, "", true, false); err == nil {
 		u.EntityAction = &entityAction
 		u.Type = BulkActionsTypeEntityAction
 		return nil
 	}
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkActionsTypeStr
 		return nil
@@ -161,31 +161,9 @@ func (u BulkActions) MarshalJSON() ([]byte, error) {
 type EntityDefaultTableParams struct {
 }
 
-func (e EntityDefaultTableParams) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *EntityDefaultTableParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 type EntityDefaultTableOptions struct {
 	Label  string                    `json:"label"`
 	Params *EntityDefaultTableParams `json:"params,omitempty"`
-}
-
-func (e EntityDefaultTableOptions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *EntityDefaultTableOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"label"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *EntityDefaultTableOptions) GetLabel() string {
@@ -205,17 +183,6 @@ func (o *EntityDefaultTableOptions) GetParams() *EntityDefaultTableParams {
 type NavbarActions struct {
 	Type    string                      `json:"type"`
 	Options []EntityDefaultTableOptions `json:"options,omitempty"`
-}
-
-func (n NavbarActions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(n, "", false)
-}
-
-func (n *NavbarActions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"type"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *NavbarActions) GetType() string {
@@ -246,7 +213,7 @@ func (e EntityDefaultTable) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityDefaultTable) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
 		return err
 	}
 	return nil

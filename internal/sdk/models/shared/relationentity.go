@@ -20,7 +20,7 @@ func (r RelationEntityACL) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationEntityACL) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -80,7 +80,7 @@ func (r RelationEntity) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationEntity) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"_id", "_org", "_schema", "_title", "_created_at", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
