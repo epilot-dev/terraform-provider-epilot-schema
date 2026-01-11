@@ -15,6 +15,7 @@ SchemaAttribute Resource
 ```terraform
 resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   address_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -67,6 +68,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   address_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -119,6 +121,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   automation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -168,6 +171,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   boolean_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -219,6 +223,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   }
   computed_attribute = {
     amount_field = "...my_amount_field..."
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     computed     = true
     constraints = {
       # ...
@@ -270,6 +275,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "{{formatCurrencyAttribute entity attribute locale}}"
   }
   consent_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -323,6 +329,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   country_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -372,6 +379,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   currency_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -432,6 +440,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   date_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -481,6 +490,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   email_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -533,6 +543,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     allowed_extensions = [
       "csv"
     ]
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -586,6 +597,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   internal_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -635,6 +647,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   internal_user_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -684,6 +697,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   invitation_email_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -733,6 +747,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   link_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -782,7 +797,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   message_email_address_attribute = {
-    address = "...my_address..."
+    address      = "...my_address..."
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -836,6 +852,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   multi_select_attribute = {
     allow_any           = true
     allow_extra_options = true
+    composite_id        = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -891,6 +908,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   number_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -942,6 +960,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   ordered_list_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -991,6 +1010,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   partner_organisation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1040,6 +1060,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   partner_status_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1089,6 +1110,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   payment_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1138,6 +1160,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   payment_method_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1187,6 +1210,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   phone_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1236,6 +1260,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   portal_access_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1285,6 +1310,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   price_component_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1334,6 +1360,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   purpose_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1402,6 +1429,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     allowed_schemas = [
       "contact"
     ]
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1473,7 +1501,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   select_attribute = {
-    allow_any = false
+    allow_any    = false
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1524,6 +1553,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   sequence_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1575,6 +1605,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   status_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1632,6 +1663,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   tags_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1687,6 +1719,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   text_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1739,6 +1772,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   user_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1867,6 +1901,7 @@ Note: Empty or invalid expression have no effect on the field visibility.
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
@@ -1923,10 +1958,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "address"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--address_attribute--constraints"></a>
 ### Nested Schema for `address_attribute.constraints`
 
@@ -1962,6 +1993,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--address_relation_attribute--constraints))
 - `default_address_fields` (List of String) Default fields visible on addresses
@@ -2018,10 +2050,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "relation_address"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--address_relation_attribute--constraints"></a>
 ### Nested Schema for `address_relation_attribute.constraints`
 
@@ -2057,6 +2085,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--automation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2093,10 +2122,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "automation"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--automation_attribute--constraints"></a>
 ### Nested Schema for `automation_attribute.constraints`
 
@@ -2132,6 +2157,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--boolean_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2169,10 +2195,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "boolean"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--boolean_attribute--constraints"></a>
 ### Nested Schema for `boolean_attribute.constraints`
 
@@ -2209,6 +2231,7 @@ Optional:
 Optional:
 
 - `amount_field` (String) A source amount field that is used to compute the value of the attribute
+- `composite_id` (String)
 - `computed` (Boolean) Default: true
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--computed_attribute--constraints))
@@ -2247,10 +2270,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "computed"
 - `value_formatter` (String) Variable template used to format the computed value. Not Null
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--computed_attribute--constraints"></a>
 ### Nested Schema for `computed_attribute.constraints`
 
@@ -2286,6 +2305,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--consent_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2324,10 +2344,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "consent"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--consent_attribute--constraints"></a>
 ### Nested Schema for `consent_attribute.constraints`
 
@@ -2363,6 +2379,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--country_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2399,10 +2416,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "country"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--country_attribute--constraints"></a>
 ### Nested Schema for `country_attribute.constraints`
 
@@ -2438,6 +2451,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--currency_attribute--constraints))
 - `currency` (Attributes List) An array of currency configurations with a country code (ISO-4217). Not Null (see [below for nested schema](#nestedatt--currency_attribute--currency))
@@ -2475,10 +2489,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "currency"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--currency_attribute--constraints"></a>
 ### Nested Schema for `currency_attribute.constraints`
@@ -2534,6 +2544,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--date_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2570,10 +2581,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be one of ["date", "datetime"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--date_attribute--constraints"></a>
 ### Nested Schema for `date_attribute.constraints`
 
@@ -2609,6 +2616,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2644,10 +2652,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "email"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--email_attribute--constraints"></a>
 ### Nested Schema for `email_attribute.constraints`
@@ -2685,6 +2689,7 @@ Optional:
 Optional:
 
 - `allowed_extensions` (List of String) List of file extensions (without the dot suffix)
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--file_attribute--constraints))
 - `default_access_control` (String) must be one of ["public-read", "private"]
@@ -2726,10 +2731,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be one of ["image", "file"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--file_attribute--constraints"></a>
 ### Nested Schema for `file_attribute.constraints`
 
@@ -2765,6 +2766,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2801,10 +2803,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "internal"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--internal_attribute--constraints"></a>
 ### Nested Schema for `internal_attribute.constraints`
 
@@ -2840,6 +2838,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--internal_user_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2876,10 +2875,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "internal_user"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--internal_user_attribute--constraints"></a>
 ### Nested Schema for `internal_user_attribute.constraints`
 
@@ -2915,6 +2910,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--invitation_email_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -2951,10 +2947,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "invitation_email"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--invitation_email_attribute--constraints"></a>
 ### Nested Schema for `invitation_email_attribute.constraints`
 
@@ -2990,6 +2982,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--link_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3025,10 +3018,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "link"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--link_attribute--constraints"></a>
 ### Nested Schema for `link_attribute.constraints`
@@ -3066,6 +3055,7 @@ Optional:
 Optional:
 
 - `address` (String)
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--message_email_address_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3104,10 +3094,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "message_email_address"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--message_email_address_attribute--constraints"></a>
 ### Nested Schema for `message_email_address_attribute.constraints`
 
@@ -3145,6 +3131,7 @@ Optional:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
 - `allow_extra_options` (Boolean) controls if the 360 ui will allow the user to enter a value which is not defined by the options
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--multi_select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3182,10 +3169,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be one of ["multiselect", "checkbox"]
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--multi_select_attribute--constraints"></a>
 ### Nested Schema for `multi_select_attribute.constraints`
@@ -3240,6 +3223,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--number_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3278,10 +3262,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "number"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--number_attribute--constraints"></a>
 ### Nested Schema for `number_attribute.constraints`
 
@@ -3317,6 +3297,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--ordered_list_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3353,10 +3334,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "ordered_list"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--ordered_list_attribute--constraints"></a>
 ### Nested Schema for `ordered_list_attribute.constraints`
 
@@ -3392,6 +3369,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_organisation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3428,10 +3406,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "partner_organisation"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--partner_organisation_attribute--constraints"></a>
 ### Nested Schema for `partner_organisation_attribute.constraints`
 
@@ -3467,6 +3441,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--partner_status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3503,10 +3478,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "partner_status"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--partner_status_attribute--constraints"></a>
 ### Nested Schema for `partner_status_attribute.constraints`
 
@@ -3542,6 +3513,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--payment_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3578,10 +3550,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "payment"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--payment_attribute--constraints"></a>
 ### Nested Schema for `payment_attribute.constraints`
 
@@ -3617,6 +3585,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--payment_method_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3653,10 +3622,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "relation_payment_method"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--payment_method_relation_attribute--constraints"></a>
 ### Nested Schema for `payment_method_relation_attribute.constraints`
 
@@ -3692,6 +3657,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--phone_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3728,10 +3694,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "phone"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--phone_attribute--constraints"></a>
 ### Nested Schema for `phone_attribute.constraints`
 
@@ -3767,6 +3729,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--portal_access_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3803,10 +3766,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "portal_access"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--portal_access_attribute--constraints"></a>
 ### Nested Schema for `portal_access_attribute.constraints`
 
@@ -3842,6 +3801,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--price_component_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3878,10 +3838,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "price_component"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--price_component_attribute--constraints"></a>
 ### Nested Schema for `price_component_attribute.constraints`
 
@@ -3917,6 +3873,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--purpose_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -3952,10 +3909,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "purpose"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--purpose_attribute--constraints"></a>
 ### Nested Schema for `purpose_attribute.constraints`
@@ -3995,6 +3948,7 @@ Optional:
 - `actions` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--actions))
 - `add_button_label` (String) Optional label for the add button. The translated value for add_button_lable is used, if found else the string is used as is.
 - `allowed_schemas` (List of String)
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4040,10 +3994,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `summary_fields` (Attributes List) (see [below for nested schema](#nestedatt--relation_attribute--summary_fields))
 - `type` (String) Not Null; must be "relation"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--relation_attribute--actions"></a>
 ### Nested Schema for `relation_attribute.actions`
@@ -4136,6 +4086,7 @@ Optional:
 Optional:
 
 - `allow_any` (Boolean) Allow arbitrary input values in addition to provided options
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--select_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4173,10 +4124,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be one of ["select", "radio"]
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--select_attribute--constraints"></a>
 ### Nested Schema for `select_attribute.constraints`
 
@@ -4212,6 +4159,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--sequence_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4250,10 +4198,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "sequence"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--sequence_attribute--constraints"></a>
 ### Nested Schema for `sequence_attribute.constraints`
 
@@ -4289,6 +4233,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--status_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4325,10 +4270,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "status"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--status_attribute--constraints"></a>
 ### Nested Schema for `status_attribute.constraints`
@@ -4383,6 +4324,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--tags_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4421,10 +4363,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "tags"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--tags_attribute--constraints"></a>
 ### Nested Schema for `tags_attribute.constraints`
 
@@ -4460,6 +4398,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--text_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4499,10 +4438,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `type` (String) Not Null; must be "string"
 - `value_formatter` (String)
 
-Read-Only:
-
-- `composite_id` (String)
-
 <a id="nestedatt--text_attribute--constraints"></a>
 ### Nested Schema for `text_attribute.constraints`
 
@@ -4538,6 +4473,7 @@ Optional:
 
 Optional:
 
+- `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--user_relation_attribute--constraints))
 - `default_value` (String) Parsed as JSON.
@@ -4574,10 +4510,6 @@ Note: Empty or invalid expression have no effect on the field visibility.
 - `sortable` (Boolean) Allow sorting by this attribute in table views if `show_in_table` is true. Default: true
 - `type` (String) Not Null; must be "relation_user"
 - `value_formatter` (String)
-
-Read-Only:
-
-- `composite_id` (String)
 
 <a id="nestedatt--user_relation_attribute--constraints"></a>
 ### Nested Schema for `user_relation_attribute.constraints`

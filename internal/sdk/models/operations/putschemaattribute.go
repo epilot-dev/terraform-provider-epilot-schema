@@ -9,8 +9,8 @@ import (
 
 type PutSchemaAttributeRequest struct {
 	// Schema Slug and the Attribute ID
-	CompositeID              string                                `pathParam:"style=simple,explode=false,name=composite_id"`
-	AttributeWithCompositeID *shared.AttributeWithCompositeIDInput `request:"mediaType=application/json"`
+	CompositeID              string                           `pathParam:"style=simple,explode=false,name=composite_id"`
+	AttributeWithCompositeID *shared.AttributeWithCompositeID `request:"mediaType=application/json"`
 }
 
 func (o *PutSchemaAttributeRequest) GetCompositeID() string {
@@ -20,7 +20,7 @@ func (o *PutSchemaAttributeRequest) GetCompositeID() string {
 	return o.CompositeID
 }
 
-func (o *PutSchemaAttributeRequest) GetAttributeWithCompositeID() *shared.AttributeWithCompositeIDInput {
+func (o *PutSchemaAttributeRequest) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
 	if o == nil {
 		return nil
 	}

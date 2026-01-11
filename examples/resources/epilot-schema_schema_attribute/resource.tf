@@ -1,5 +1,6 @@
 resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   address_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -52,6 +53,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   address_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -104,6 +106,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   automation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -153,6 +156,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   boolean_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -204,6 +208,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   }
   computed_attribute = {
     amount_field = "...my_amount_field..."
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     computed     = true
     constraints = {
       # ...
@@ -255,6 +260,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "{{formatCurrencyAttribute entity attribute locale}}"
   }
   consent_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -308,6 +314,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   country_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -357,6 +364,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   currency_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -417,6 +425,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   date_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -466,6 +475,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   email_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -518,6 +528,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     allowed_extensions = [
       "csv"
     ]
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -571,6 +582,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   internal_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -620,6 +632,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   internal_user_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -669,6 +682,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   invitation_email_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -718,6 +732,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   link_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -767,7 +782,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   message_email_address_attribute = {
-    address = "...my_address..."
+    address      = "...my_address..."
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -821,6 +837,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
   multi_select_attribute = {
     allow_any           = true
     allow_extra_options = true
+    composite_id        = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -876,6 +893,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   number_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -927,6 +945,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   ordered_list_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -976,6 +995,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   partner_organisation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1025,6 +1045,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   partner_status_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1074,6 +1095,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   payment_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1123,6 +1145,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   payment_method_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1172,6 +1195,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   phone_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1221,6 +1245,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   portal_access_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1270,6 +1295,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   price_component_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1319,6 +1345,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   purpose_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1387,6 +1414,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     allowed_schemas = [
       "contact"
     ]
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1458,7 +1486,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   select_attribute = {
-    allow_any = false
+    allow_any    = false
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1509,6 +1538,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   sequence_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1560,6 +1590,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   status_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1617,6 +1648,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   tags_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1672,6 +1704,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   text_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }
@@ -1724,6 +1757,7 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     value_formatter = "...my_value_formatter..."
   }
   user_relation_attribute = {
+    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
     constraints = {
       # ...
     }

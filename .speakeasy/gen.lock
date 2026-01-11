@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1300c9c0-985d-410d-a64e-d96ec26c685a
 management:
-  docChecksum: 59be0fe0a51738df370eb15499a21d57
+  docChecksum: 016b55f7509b7db45af517fca35e0b20
   docVersion: 2.0.0
   speakeasyVersion: 1.611.0
   generationVersion: 2.694.1
-  releaseVersion: 0.17.0
-  configChecksum: aed2406898cfd95fbddd4d2c9aefc5d1
+  releaseVersion: 0.17.1
+  configChecksum: b614a0ed8cc60aa358353dc75bcbedfc
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-schema.git
   repoSubDirectory: .
   published: true
@@ -413,7 +413,7 @@ examples:
           slug: "contact"
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
         "404":
           application/json: {"status": 404, "error": "Not Found"}
   putSchema:
@@ -424,10 +424,10 @@ examples:
         query:
           draft: false
       requestBody:
-        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
+        application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
       responses:
         "200":
-          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
+          application/json: {"slug": "contact", "feature_flag": "FF_MY_FEATURE_FLAG", "enable_setting": ["360_features"], "name": "Contact", "plural": "Contacts", "description": "Example description", "docs_url": "https://docs.epilot.io/docs/pricing/entities", "category": "customer_relations", "published": false, "draft": false, "icon": "person", "title_template": "{{first_name}} {{last_name}}", "ui_config": {"table_view": {"enable_thumbnails": false}, "create_view": {}, "edit_view": {"summary_attributes": ["email"]}, "single_view": {"route": "/app/pricing-hub/product/:entityId"}, "list_item": {"summary_attributes": ["email"], "quick_actions": [{"action": "preview_file", "label": "Preview File", "icon": "visibility", "permission": "entity:edit"}]}, "sharing": {"show_sharing_button": true}}, "explicit_search_mappings": {"image": {"index": false, "type": "keyword"}}, "attributes": "<value>", "capabilities": "<value>"}
         "429":
           application/json: {"status": 429, "error": "Too many requests. Try again later."}
   deleteSchema:

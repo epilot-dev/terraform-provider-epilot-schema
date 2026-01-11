@@ -2125,7 +2125,7 @@ func (s *Schemas) ListTaxonomyClassificationsForSchema(ctx context.Context, requ
 
 // CreateSchemaAttribute - createSchemaAttribute
 // Create a schema attribute
-func (s *Schemas) CreateSchemaAttribute(ctx context.Context, request *shared.AttributeWithCompositeIDInput, opts ...operations.Option) (*operations.CreateSchemaAttributeResponse, error) {
+func (s *Schemas) CreateSchemaAttribute(ctx context.Context, request *shared.AttributeWithCompositeID, opts ...operations.Option) (*operations.CreateSchemaAttributeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,

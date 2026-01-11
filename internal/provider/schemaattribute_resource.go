@@ -115,6 +115,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -403,6 +404,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -693,6 +695,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -958,6 +961,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -1245,6 +1249,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"computed": schema.BoolAttribute{
 						Computed:    true,
@@ -1524,6 +1529,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -1800,6 +1806,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -2063,6 +2070,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -2382,6 +2390,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -2653,6 +2662,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -2931,6 +2941,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -3248,6 +3259,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -3511,6 +3523,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -3776,6 +3789,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -4047,6 +4061,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -4314,6 +4329,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -4597,6 +4613,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -4914,6 +4931,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -5191,6 +5209,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -5456,6 +5475,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -5721,6 +5741,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -5986,6 +6007,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -6249,6 +6271,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -6514,6 +6537,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -6780,6 +6804,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -7048,6 +7073,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -7317,6 +7343,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -7668,6 +7695,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -8080,6 +8108,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 					},
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -8352,6 +8381,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -8633,6 +8663,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -8940,6 +8971,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -9213,6 +9245,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -9490,6 +9523,7 @@ func (r *SchemaAttributeResource) Schema(ctx context.Context, req resource.Schem
 				Attributes: map[string]schema.Attribute{
 					"composite_id": schema.StringAttribute{
 						Computed: true,
+						Optional: true,
 					},
 					"constraints": schema.SingleNestedAttribute{
 						Computed: true,
@@ -9800,7 +9834,7 @@ func (r *SchemaAttributeResource) Create(ctx context.Context, req resource.Creat
 		return
 	}
 
-	request, requestDiags := data.ToSharedAttributeWithCompositeIDInput(ctx)
+	request, requestDiags := data.ToSharedAttributeWithCompositeID(ctx)
 	resp.Diagnostics.Append(requestDiags...)
 
 	if resp.Diagnostics.HasError() {

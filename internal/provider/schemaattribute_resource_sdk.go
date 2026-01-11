@@ -3458,7 +3458,7 @@ func (r *SchemaAttributeResourceModel) ToOperationsPutSchemaAttributeRequest(ctx
 	var compositeID string
 	compositeID = r.CompositeID.ValueString()
 
-	attributeWithCompositeID, attributeWithCompositeIDDiags := r.ToSharedAttributeWithCompositeIDInput(ctx)
+	attributeWithCompositeID, attributeWithCompositeIDDiags := r.ToSharedAttributeWithCompositeID(ctx)
 	diags.Append(attributeWithCompositeIDDiags...)
 
 	if diags.HasError() {
@@ -3473,11 +3473,11 @@ func (r *SchemaAttributeResourceModel) ToOperationsPutSchemaAttributeRequest(ctx
 	return &out, diags
 }
 
-func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx context.Context) (*shared.AttributeWithCompositeIDInput, diag.Diagnostics) {
+func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx context.Context) (*shared.AttributeWithCompositeID, diag.Diagnostics) {
 	var diags diag.Diagnostics
 
-	var out shared.AttributeWithCompositeIDInput
-	var attributeWithCompositeIDTextAttributeInput *shared.AttributeWithCompositeIDTextAttributeInput
+	var out shared.AttributeWithCompositeID
+	var attributeWithCompositeIDTextAttribute *shared.AttributeWithCompositeIDTextAttribute
 	if r.TextAttribute != nil {
 		id := new(string)
 		if !r.TextAttribute.ID.IsUnknown() && !r.TextAttribute.ID.IsNull() {
@@ -3699,13 +3699,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		if !r.TextAttribute.Rows.IsUnknown() && !r.TextAttribute.Rows.IsNull() {
 			_ = json.Unmarshal([]byte(r.TextAttribute.Rows.ValueString()), &rows)
 		}
+		compositeID := new(string)
+		if !r.TextAttribute.CompositeID.IsUnknown() && !r.TextAttribute.CompositeID.IsNull() {
+			*compositeID = r.TextAttribute.CompositeID.ValueString()
+		} else {
+			compositeID = nil
+		}
 		schema := new(string)
 		if !r.TextAttribute.Schema.IsUnknown() && !r.TextAttribute.Schema.IsNull() {
 			*schema = r.TextAttribute.Schema.ValueString()
 		} else {
 			schema = nil
 		}
-		attributeWithCompositeIDTextAttributeInput = &shared.AttributeWithCompositeIDTextAttributeInput{
+		attributeWithCompositeIDTextAttribute = &shared.AttributeWithCompositeIDTextAttribute{
 			ID:                       id,
 			Name:                     name,
 			Label:                    label,
@@ -3739,15 +3745,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Multiline:                multiline,
 			RichText:                 richText,
 			Rows:                     rows,
+			CompositeID:              compositeID,
 			Schema:                   schema,
 		}
 	}
-	if attributeWithCompositeIDTextAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDTextAttributeInput: attributeWithCompositeIDTextAttributeInput,
+	if attributeWithCompositeIDTextAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDTextAttribute: attributeWithCompositeIDTextAttribute,
 		}
 	}
-	var attributeWithCompositeIDLinkAttributeInput *shared.AttributeWithCompositeIDLinkAttributeInput
+	var attributeWithCompositeIDLinkAttribute *shared.AttributeWithCompositeIDLinkAttribute
 	if r.LinkAttribute != nil {
 		id1 := new(string)
 		if !r.LinkAttribute.ID.IsUnknown() && !r.LinkAttribute.ID.IsNull() {
@@ -3953,13 +3960,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary1 = nil
 		}
 		typeVar1 := shared.LinkAttributeAttributeWithCompositeIDType(r.LinkAttribute.Type.ValueString())
+		compositeId1 := new(string)
+		if !r.LinkAttribute.CompositeID.IsUnknown() && !r.LinkAttribute.CompositeID.IsNull() {
+			*compositeId1 = r.LinkAttribute.CompositeID.ValueString()
+		} else {
+			compositeId1 = nil
+		}
 		schema1 := new(string)
 		if !r.LinkAttribute.Schema.IsUnknown() && !r.LinkAttribute.Schema.IsNull() {
 			*schema1 = r.LinkAttribute.Schema.ValueString()
 		} else {
 			schema1 = nil
 		}
-		attributeWithCompositeIDLinkAttributeInput = &shared.AttributeWithCompositeIDLinkAttributeInput{
+		attributeWithCompositeIDLinkAttribute = &shared.AttributeWithCompositeIDLinkAttribute{
 			ID:                       id1,
 			Name:                     name2,
 			Label:                    label1,
@@ -3990,15 +4003,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable1,
 			HasPrimary:               hasPrimary1,
 			Type:                     typeVar1,
+			CompositeID:              compositeId1,
 			Schema:                   schema1,
 		}
 	}
-	if attributeWithCompositeIDLinkAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDLinkAttributeInput: attributeWithCompositeIDLinkAttributeInput,
+	if attributeWithCompositeIDLinkAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDLinkAttribute: attributeWithCompositeIDLinkAttribute,
 		}
 	}
-	var attributeWithCompositeIDDateAttributeInput *shared.AttributeWithCompositeIDDateAttributeInput
+	var attributeWithCompositeIDDateAttribute *shared.AttributeWithCompositeIDDateAttribute
 	if r.DateAttribute != nil {
 		id2 := new(string)
 		if !r.DateAttribute.ID.IsUnknown() && !r.DateAttribute.ID.IsNull() {
@@ -4204,13 +4218,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary2 = nil
 		}
 		typeVar2 := shared.DateAttributeAttributeWithCompositeIDType(r.DateAttribute.Type.ValueString())
+		compositeId2 := new(string)
+		if !r.DateAttribute.CompositeID.IsUnknown() && !r.DateAttribute.CompositeID.IsNull() {
+			*compositeId2 = r.DateAttribute.CompositeID.ValueString()
+		} else {
+			compositeId2 = nil
+		}
 		schema2 := new(string)
 		if !r.DateAttribute.Schema.IsUnknown() && !r.DateAttribute.Schema.IsNull() {
 			*schema2 = r.DateAttribute.Schema.ValueString()
 		} else {
 			schema2 = nil
 		}
-		attributeWithCompositeIDDateAttributeInput = &shared.AttributeWithCompositeIDDateAttributeInput{
+		attributeWithCompositeIDDateAttribute = &shared.AttributeWithCompositeIDDateAttribute{
 			ID:                       id2,
 			Name:                     name4,
 			Label:                    label2,
@@ -4241,15 +4261,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable2,
 			HasPrimary:               hasPrimary2,
 			Type:                     typeVar2,
+			CompositeID:              compositeId2,
 			Schema:                   schema2,
 		}
 	}
-	if attributeWithCompositeIDDateAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDDateAttributeInput: attributeWithCompositeIDDateAttributeInput,
+	if attributeWithCompositeIDDateAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDDateAttribute: attributeWithCompositeIDDateAttribute,
 		}
 	}
-	var attributeWithCompositeIDCountryAttributeInput *shared.AttributeWithCompositeIDCountryAttributeInput
+	var attributeWithCompositeIDCountryAttribute *shared.AttributeWithCompositeIDCountryAttribute
 	if r.CountryAttribute != nil {
 		id3 := new(string)
 		if !r.CountryAttribute.ID.IsUnknown() && !r.CountryAttribute.ID.IsNull() {
@@ -4455,13 +4476,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary3 = nil
 		}
 		typeVar3 := shared.CountryAttributeAttributeWithCompositeIDType(r.CountryAttribute.Type.ValueString())
+		compositeId3 := new(string)
+		if !r.CountryAttribute.CompositeID.IsUnknown() && !r.CountryAttribute.CompositeID.IsNull() {
+			*compositeId3 = r.CountryAttribute.CompositeID.ValueString()
+		} else {
+			compositeId3 = nil
+		}
 		schema3 := new(string)
 		if !r.CountryAttribute.Schema.IsUnknown() && !r.CountryAttribute.Schema.IsNull() {
 			*schema3 = r.CountryAttribute.Schema.ValueString()
 		} else {
 			schema3 = nil
 		}
-		attributeWithCompositeIDCountryAttributeInput = &shared.AttributeWithCompositeIDCountryAttributeInput{
+		attributeWithCompositeIDCountryAttribute = &shared.AttributeWithCompositeIDCountryAttribute{
 			ID:                       id3,
 			Name:                     name6,
 			Label:                    label3,
@@ -4492,15 +4519,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable3,
 			HasPrimary:               hasPrimary3,
 			Type:                     typeVar3,
+			CompositeID:              compositeId3,
 			Schema:                   schema3,
 		}
 	}
-	if attributeWithCompositeIDCountryAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDCountryAttributeInput: attributeWithCompositeIDCountryAttributeInput,
+	if attributeWithCompositeIDCountryAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDCountryAttribute: attributeWithCompositeIDCountryAttribute,
 		}
 	}
-	var attributeWithCompositeIDBooleanAttributeInput *shared.AttributeWithCompositeIDBooleanAttributeInput
+	var attributeWithCompositeIDBooleanAttribute *shared.AttributeWithCompositeIDBooleanAttribute
 	if r.BooleanAttribute != nil {
 		id4 := new(string)
 		if !r.BooleanAttribute.ID.IsUnknown() && !r.BooleanAttribute.ID.IsNull() {
@@ -4712,13 +4740,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			displayType = nil
 		}
+		compositeId4 := new(string)
+		if !r.BooleanAttribute.CompositeID.IsUnknown() && !r.BooleanAttribute.CompositeID.IsNull() {
+			*compositeId4 = r.BooleanAttribute.CompositeID.ValueString()
+		} else {
+			compositeId4 = nil
+		}
 		schema4 := new(string)
 		if !r.BooleanAttribute.Schema.IsUnknown() && !r.BooleanAttribute.Schema.IsNull() {
 			*schema4 = r.BooleanAttribute.Schema.ValueString()
 		} else {
 			schema4 = nil
 		}
-		attributeWithCompositeIDBooleanAttributeInput = &shared.AttributeWithCompositeIDBooleanAttributeInput{
+		attributeWithCompositeIDBooleanAttribute = &shared.AttributeWithCompositeIDBooleanAttribute{
 			ID:                       id4,
 			Name:                     name8,
 			Label:                    label4,
@@ -4750,15 +4784,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			HasPrimary:               hasPrimary4,
 			Type:                     typeVar4,
 			DisplayType:              displayType,
+			CompositeID:              compositeId4,
 			Schema:                   schema4,
 		}
 	}
-	if attributeWithCompositeIDBooleanAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDBooleanAttributeInput: attributeWithCompositeIDBooleanAttributeInput,
+	if attributeWithCompositeIDBooleanAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDBooleanAttribute: attributeWithCompositeIDBooleanAttribute,
 		}
 	}
-	var attributeWithCompositeIDSelectAttributeInput *shared.AttributeWithCompositeIDSelectAttributeInput
+	var attributeWithCompositeIDSelectAttribute *shared.AttributeWithCompositeIDSelectAttribute
 	if r.SelectAttribute != nil {
 		id5 := new(string)
 		if !r.SelectAttribute.ID.IsUnknown() && !r.SelectAttribute.ID.IsNull() {
@@ -4974,13 +5009,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			allowAny = nil
 		}
+		compositeId5 := new(string)
+		if !r.SelectAttribute.CompositeID.IsUnknown() && !r.SelectAttribute.CompositeID.IsNull() {
+			*compositeId5 = r.SelectAttribute.CompositeID.ValueString()
+		} else {
+			compositeId5 = nil
+		}
 		schema5 := new(string)
 		if !r.SelectAttribute.Schema.IsUnknown() && !r.SelectAttribute.Schema.IsNull() {
 			*schema5 = r.SelectAttribute.Schema.ValueString()
 		} else {
 			schema5 = nil
 		}
-		attributeWithCompositeIDSelectAttributeInput = &shared.AttributeWithCompositeIDSelectAttributeInput{
+		attributeWithCompositeIDSelectAttribute = &shared.AttributeWithCompositeIDSelectAttribute{
 			ID:                       id5,
 			Name:                     name10,
 			Label:                    label5,
@@ -5013,15 +5054,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar5,
 			Options:                  optionsVar,
 			AllowAny:                 allowAny,
+			CompositeID:              compositeId5,
 			Schema:                   schema5,
 		}
 	}
-	if attributeWithCompositeIDSelectAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDSelectAttributeInput: attributeWithCompositeIDSelectAttributeInput,
+	if attributeWithCompositeIDSelectAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDSelectAttribute: attributeWithCompositeIDSelectAttribute,
 		}
 	}
-	var attributeWithCompositeIDMultiSelectAttributeInput *shared.AttributeWithCompositeIDMultiSelectAttributeInput
+	var attributeWithCompositeIDMultiSelectAttribute *shared.AttributeWithCompositeIDMultiSelectAttribute
 	if r.MultiSelectAttribute != nil {
 		id6 := new(string)
 		if !r.MultiSelectAttribute.ID.IsUnknown() && !r.MultiSelectAttribute.ID.IsNull() {
@@ -5274,13 +5316,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			allowAny1 = nil
 		}
+		compositeId6 := new(string)
+		if !r.MultiSelectAttribute.CompositeID.IsUnknown() && !r.MultiSelectAttribute.CompositeID.IsNull() {
+			*compositeId6 = r.MultiSelectAttribute.CompositeID.ValueString()
+		} else {
+			compositeId6 = nil
+		}
 		schema6 := new(string)
 		if !r.MultiSelectAttribute.Schema.IsUnknown() && !r.MultiSelectAttribute.Schema.IsNull() {
 			*schema6 = r.MultiSelectAttribute.Schema.ValueString()
 		} else {
 			schema6 = nil
 		}
-		attributeWithCompositeIDMultiSelectAttributeInput = &shared.AttributeWithCompositeIDMultiSelectAttributeInput{
+		attributeWithCompositeIDMultiSelectAttribute = &shared.AttributeWithCompositeIDMultiSelectAttribute{
 			ID:                       id6,
 			Name:                     name12,
 			Label:                    label6,
@@ -5315,15 +5363,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			AllowExtraOptions:        allowExtraOptions,
 			Options:                  optionsVar1,
 			AllowAny:                 allowAny1,
+			CompositeID:              compositeId6,
 			Schema:                   schema6,
 		}
 	}
-	if attributeWithCompositeIDMultiSelectAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDMultiSelectAttributeInput: attributeWithCompositeIDMultiSelectAttributeInput,
+	if attributeWithCompositeIDMultiSelectAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDMultiSelectAttribute: attributeWithCompositeIDMultiSelectAttribute,
 		}
 	}
-	var attributeWithCompositeIDStatusAttributeInput *shared.AttributeWithCompositeIDStatusAttributeInput
+	var attributeWithCompositeIDStatusAttribute *shared.AttributeWithCompositeIDStatusAttribute
 	if r.StatusAttribute != nil {
 		id7 := new(string)
 		if !r.StatusAttribute.ID.IsUnknown() && !r.StatusAttribute.ID.IsNull() {
@@ -5558,13 +5607,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 				})
 			}
 		}
+		compositeId7 := new(string)
+		if !r.StatusAttribute.CompositeID.IsUnknown() && !r.StatusAttribute.CompositeID.IsNull() {
+			*compositeId7 = r.StatusAttribute.CompositeID.ValueString()
+		} else {
+			compositeId7 = nil
+		}
 		schema7 := new(string)
 		if !r.StatusAttribute.Schema.IsUnknown() && !r.StatusAttribute.Schema.IsNull() {
 			*schema7 = r.StatusAttribute.Schema.ValueString()
 		} else {
 			schema7 = nil
 		}
-		attributeWithCompositeIDStatusAttributeInput = &shared.AttributeWithCompositeIDStatusAttributeInput{
+		attributeWithCompositeIDStatusAttribute = &shared.AttributeWithCompositeIDStatusAttribute{
 			ID:                       id7,
 			Name:                     name14,
 			Label:                    label7,
@@ -5596,15 +5651,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			HasPrimary:               hasPrimary7,
 			Type:                     typeVar7,
 			Options:                  optionsVar2,
+			CompositeID:              compositeId7,
 			Schema:                   schema7,
 		}
 	}
-	if attributeWithCompositeIDStatusAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDStatusAttributeInput: attributeWithCompositeIDStatusAttributeInput,
+	if attributeWithCompositeIDStatusAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDStatusAttribute: attributeWithCompositeIDStatusAttribute,
 		}
 	}
-	var attributeWithCompositeIDSequenceAttributeInput *shared.AttributeWithCompositeIDSequenceAttributeInput
+	var attributeWithCompositeIDSequenceAttribute *shared.AttributeWithCompositeIDSequenceAttribute
 	if r.SequenceAttribute != nil {
 		id8 := new(string)
 		if !r.SequenceAttribute.ID.IsUnknown() && !r.SequenceAttribute.ID.IsNull() {
@@ -5822,13 +5878,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			startNumber = nil
 		}
+		compositeId8 := new(string)
+		if !r.SequenceAttribute.CompositeID.IsUnknown() && !r.SequenceAttribute.CompositeID.IsNull() {
+			*compositeId8 = r.SequenceAttribute.CompositeID.ValueString()
+		} else {
+			compositeId8 = nil
+		}
 		schema8 := new(string)
 		if !r.SequenceAttribute.Schema.IsUnknown() && !r.SequenceAttribute.Schema.IsNull() {
 			*schema8 = r.SequenceAttribute.Schema.ValueString()
 		} else {
 			schema8 = nil
 		}
-		attributeWithCompositeIDSequenceAttributeInput = &shared.AttributeWithCompositeIDSequenceAttributeInput{
+		attributeWithCompositeIDSequenceAttribute = &shared.AttributeWithCompositeIDSequenceAttribute{
 			ID:                       id8,
 			Name:                     name16,
 			Label:                    label8,
@@ -5861,15 +5923,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar8,
 			Prefix:                   prefix,
 			StartNumber:              startNumber,
+			CompositeID:              compositeId8,
 			Schema:                   schema8,
 		}
 	}
-	if attributeWithCompositeIDSequenceAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDSequenceAttributeInput: attributeWithCompositeIDSequenceAttributeInput,
+	if attributeWithCompositeIDSequenceAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDSequenceAttribute: attributeWithCompositeIDSequenceAttribute,
 		}
 	}
-	var attributeWithCompositeIDRelationAttributeInput *shared.AttributeWithCompositeIDRelationAttributeInput
+	var attributeWithCompositeIDRelationAttribute *shared.AttributeWithCompositeIDRelationAttribute
 	if r.RelationAttribute != nil {
 		id9 := new(string)
 		if !r.RelationAttribute.ID.IsUnknown() && !r.RelationAttribute.ID.IsNull() {
@@ -6242,13 +6305,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			searchPlaceholder = nil
 		}
+		compositeId9 := new(string)
+		if !r.RelationAttribute.CompositeID.IsUnknown() && !r.RelationAttribute.CompositeID.IsNull() {
+			*compositeId9 = r.RelationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId9 = nil
+		}
 		schema9 := new(string)
 		if !r.RelationAttribute.Schema.IsUnknown() && !r.RelationAttribute.Schema.IsNull() {
 			*schema9 = r.RelationAttribute.Schema.ValueString()
 		} else {
 			schema9 = nil
 		}
-		attributeWithCompositeIDRelationAttributeInput = &shared.AttributeWithCompositeIDRelationAttributeInput{
+		attributeWithCompositeIDRelationAttribute = &shared.AttributeWithCompositeIDRelationAttribute{
 			ID:                       id9,
 			Name:                     name18,
 			Label:                    label9,
@@ -6293,15 +6362,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			EnableRelationTags:       enableRelationTags,
 			AddButtonLabel:           addButtonLabel,
 			SearchPlaceholder:        searchPlaceholder,
+			CompositeID:              compositeId9,
 			Schema:                   schema9,
 		}
 	}
-	if attributeWithCompositeIDRelationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDRelationAttributeInput: attributeWithCompositeIDRelationAttributeInput,
+	if attributeWithCompositeIDRelationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDRelationAttribute: attributeWithCompositeIDRelationAttribute,
 		}
 	}
-	var attributeWithCompositeIDUserRelationAttributeInput *shared.AttributeWithCompositeIDUserRelationAttributeInput
+	var attributeWithCompositeIDUserRelationAttribute *shared.AttributeWithCompositeIDUserRelationAttribute
 	if r.UserRelationAttribute != nil {
 		id10 := new(string)
 		if !r.UserRelationAttribute.ID.IsUnknown() && !r.UserRelationAttribute.ID.IsNull() {
@@ -6513,13 +6583,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			multiple = nil
 		}
+		compositeId10 := new(string)
+		if !r.UserRelationAttribute.CompositeID.IsUnknown() && !r.UserRelationAttribute.CompositeID.IsNull() {
+			*compositeId10 = r.UserRelationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId10 = nil
+		}
 		schema10 := new(string)
 		if !r.UserRelationAttribute.Schema.IsUnknown() && !r.UserRelationAttribute.Schema.IsNull() {
 			*schema10 = r.UserRelationAttribute.Schema.ValueString()
 		} else {
 			schema10 = nil
 		}
-		attributeWithCompositeIDUserRelationAttributeInput = &shared.AttributeWithCompositeIDUserRelationAttributeInput{
+		attributeWithCompositeIDUserRelationAttribute = &shared.AttributeWithCompositeIDUserRelationAttribute{
 			ID:                       id10,
 			Name:                     name21,
 			Label:                    label11,
@@ -6551,15 +6627,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			HasPrimary:               hasPrimary10,
 			Type:                     typeVar10,
 			Multiple:                 multiple,
+			CompositeID:              compositeId10,
 			Schema:                   schema10,
 		}
 	}
-	if attributeWithCompositeIDUserRelationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDUserRelationAttributeInput: attributeWithCompositeIDUserRelationAttributeInput,
+	if attributeWithCompositeIDUserRelationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDUserRelationAttribute: attributeWithCompositeIDUserRelationAttribute,
 		}
 	}
-	var attributeWithCompositeIDAddressAttributeInput *shared.AttributeWithCompositeIDAddressAttributeInput
+	var attributeWithCompositeIDAddressAttribute *shared.AttributeWithCompositeIDAddressAttribute
 	if r.AddressAttribute != nil {
 		id11 := new(string)
 		if !r.AddressAttribute.ID.IsUnknown() && !r.AddressAttribute.ID.IsNull() {
@@ -6772,13 +6849,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 				defaultAddressFields = append(defaultAddressFields, defaultAddressFieldsItem.ValueString())
 			}
 		}
+		compositeId11 := new(string)
+		if !r.AddressAttribute.CompositeID.IsUnknown() && !r.AddressAttribute.CompositeID.IsNull() {
+			*compositeId11 = r.AddressAttribute.CompositeID.ValueString()
+		} else {
+			compositeId11 = nil
+		}
 		schema11 := new(string)
 		if !r.AddressAttribute.Schema.IsUnknown() && !r.AddressAttribute.Schema.IsNull() {
 			*schema11 = r.AddressAttribute.Schema.ValueString()
 		} else {
 			schema11 = nil
 		}
-		attributeWithCompositeIDAddressAttributeInput = &shared.AttributeWithCompositeIDAddressAttributeInput{
+		attributeWithCompositeIDAddressAttribute = &shared.AttributeWithCompositeIDAddressAttribute{
 			ID:                       id11,
 			Name:                     name23,
 			Label:                    label12,
@@ -6810,15 +6893,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			HasPrimary:               hasPrimary11,
 			Type:                     typeVar11,
 			DefaultAddressFields:     defaultAddressFields,
+			CompositeID:              compositeId11,
 			Schema:                   schema11,
 		}
 	}
-	if attributeWithCompositeIDAddressAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAddressAttributeInput: attributeWithCompositeIDAddressAttributeInput,
+	if attributeWithCompositeIDAddressAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDAddressAttribute: attributeWithCompositeIDAddressAttribute,
 		}
 	}
-	var attributeWithCompositeIDAddressRelationAttributeInput *shared.AttributeWithCompositeIDAddressRelationAttributeInput
+	var attributeWithCompositeIDAddressRelationAttribute *shared.AttributeWithCompositeIDAddressRelationAttribute
 	if r.AddressRelationAttribute != nil {
 		id12 := new(string)
 		if !r.AddressRelationAttribute.ID.IsUnknown() && !r.AddressRelationAttribute.ID.IsNull() {
@@ -7031,13 +7115,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 				defaultAddressFields1 = append(defaultAddressFields1, defaultAddressFieldsItem1.ValueString())
 			}
 		}
+		compositeId12 := new(string)
+		if !r.AddressRelationAttribute.CompositeID.IsUnknown() && !r.AddressRelationAttribute.CompositeID.IsNull() {
+			*compositeId12 = r.AddressRelationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId12 = nil
+		}
 		schema12 := new(string)
 		if !r.AddressRelationAttribute.Schema.IsUnknown() && !r.AddressRelationAttribute.Schema.IsNull() {
 			*schema12 = r.AddressRelationAttribute.Schema.ValueString()
 		} else {
 			schema12 = nil
 		}
-		attributeWithCompositeIDAddressRelationAttributeInput = &shared.AttributeWithCompositeIDAddressRelationAttributeInput{
+		attributeWithCompositeIDAddressRelationAttribute = &shared.AttributeWithCompositeIDAddressRelationAttribute{
 			ID:                       id12,
 			Name:                     name25,
 			Label:                    label13,
@@ -7069,15 +7159,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			HasPrimary:               hasPrimary12,
 			Type:                     typeVar12,
 			DefaultAddressFields:     defaultAddressFields1,
+			CompositeID:              compositeId12,
 			Schema:                   schema12,
 		}
 	}
-	if attributeWithCompositeIDAddressRelationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAddressRelationAttributeInput: attributeWithCompositeIDAddressRelationAttributeInput,
+	if attributeWithCompositeIDAddressRelationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDAddressRelationAttribute: attributeWithCompositeIDAddressRelationAttribute,
 		}
 	}
-	var attributeWithCompositeIDPaymentMethodRelationAttributeInput *shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput
+	var attributeWithCompositeIDPaymentMethodRelationAttribute *shared.AttributeWithCompositeIDPaymentMethodRelationAttribute
 	if r.PaymentMethodRelationAttribute != nil {
 		id13 := new(string)
 		if !r.PaymentMethodRelationAttribute.ID.IsUnknown() && !r.PaymentMethodRelationAttribute.ID.IsNull() {
@@ -7283,13 +7374,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary13 = nil
 		}
 		typeVar13 := shared.PaymentMethodRelationAttributeAttributeWithCompositeIDType(r.PaymentMethodRelationAttribute.Type.ValueString())
+		compositeId13 := new(string)
+		if !r.PaymentMethodRelationAttribute.CompositeID.IsUnknown() && !r.PaymentMethodRelationAttribute.CompositeID.IsNull() {
+			*compositeId13 = r.PaymentMethodRelationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId13 = nil
+		}
 		schema13 := new(string)
 		if !r.PaymentMethodRelationAttribute.Schema.IsUnknown() && !r.PaymentMethodRelationAttribute.Schema.IsNull() {
 			*schema13 = r.PaymentMethodRelationAttribute.Schema.ValueString()
 		} else {
 			schema13 = nil
 		}
-		attributeWithCompositeIDPaymentMethodRelationAttributeInput = &shared.AttributeWithCompositeIDPaymentMethodRelationAttributeInput{
+		attributeWithCompositeIDPaymentMethodRelationAttribute = &shared.AttributeWithCompositeIDPaymentMethodRelationAttribute{
 			ID:                       id13,
 			Name:                     name27,
 			Label:                    label14,
@@ -7320,15 +7417,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable13,
 			HasPrimary:               hasPrimary13,
 			Type:                     typeVar13,
+			CompositeID:              compositeId13,
 			Schema:                   schema13,
 		}
 	}
-	if attributeWithCompositeIDPaymentMethodRelationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPaymentMethodRelationAttributeInput: attributeWithCompositeIDPaymentMethodRelationAttributeInput,
+	if attributeWithCompositeIDPaymentMethodRelationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPaymentMethodRelationAttribute: attributeWithCompositeIDPaymentMethodRelationAttribute,
 		}
 	}
-	var attributeWithCompositeIDCurrencyAttributeInput *shared.AttributeWithCompositeIDCurrencyAttributeInput
+	var attributeWithCompositeIDCurrencyAttribute *shared.AttributeWithCompositeIDCurrencyAttribute
 	if r.CurrencyAttribute != nil {
 		id14 := new(string)
 		if !r.CurrencyAttribute.ID.IsUnknown() && !r.CurrencyAttribute.ID.IsNull() {
@@ -7569,13 +7667,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 				})
 			}
 		}
+		compositeId14 := new(string)
+		if !r.CurrencyAttribute.CompositeID.IsUnknown() && !r.CurrencyAttribute.CompositeID.IsNull() {
+			*compositeId14 = r.CurrencyAttribute.CompositeID.ValueString()
+		} else {
+			compositeId14 = nil
+		}
 		schema14 := new(string)
 		if !r.CurrencyAttribute.Schema.IsUnknown() && !r.CurrencyAttribute.Schema.IsNull() {
 			*schema14 = r.CurrencyAttribute.Schema.ValueString()
 		} else {
 			schema14 = nil
 		}
-		attributeWithCompositeIDCurrencyAttributeInput = &shared.AttributeWithCompositeIDCurrencyAttributeInput{
+		attributeWithCompositeIDCurrencyAttribute = &shared.AttributeWithCompositeIDCurrencyAttribute{
 			ID:                       id14,
 			Name:                     name29,
 			Label:                    label15,
@@ -7608,15 +7712,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar14,
 			CurrencySelectorOnly:     currencySelectorOnly,
 			Currency:                 currency,
+			CompositeID:              compositeId14,
 			Schema:                   schema14,
 		}
 	}
-	if attributeWithCompositeIDCurrencyAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDCurrencyAttributeInput: attributeWithCompositeIDCurrencyAttributeInput,
+	if attributeWithCompositeIDCurrencyAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDCurrencyAttribute: attributeWithCompositeIDCurrencyAttribute,
 		}
 	}
-	var attributeWithCompositeIDTagsAttributeInput *shared.AttributeWithCompositeIDTagsAttributeInput
+	var attributeWithCompositeIDTagsAttribute *shared.AttributeWithCompositeIDTagsAttribute
 	if r.TagsAttribute != nil {
 		id15 := new(string)
 		if !r.TagsAttribute.ID.IsUnknown() && !r.TagsAttribute.ID.IsNull() {
@@ -7830,13 +7935,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
 			suggestions = append(suggestions, suggestionsItem.ValueString())
 		}
+		compositeId15 := new(string)
+		if !r.TagsAttribute.CompositeID.IsUnknown() && !r.TagsAttribute.CompositeID.IsNull() {
+			*compositeId15 = r.TagsAttribute.CompositeID.ValueString()
+		} else {
+			compositeId15 = nil
+		}
 		schema15 := new(string)
 		if !r.TagsAttribute.Schema.IsUnknown() && !r.TagsAttribute.Schema.IsNull() {
 			*schema15 = r.TagsAttribute.Schema.ValueString()
 		} else {
 			schema15 = nil
 		}
-		attributeWithCompositeIDTagsAttributeInput = &shared.AttributeWithCompositeIDTagsAttributeInput{
+		attributeWithCompositeIDTagsAttribute = &shared.AttributeWithCompositeIDTagsAttribute{
 			ID:                       id15,
 			Name:                     name31,
 			Label:                    label16,
@@ -7869,15 +7980,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar15,
 			Options:                  optionsVar3,
 			Suggestions:              suggestions,
+			CompositeID:              compositeId15,
 			Schema:                   schema15,
 		}
 	}
-	if attributeWithCompositeIDTagsAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDTagsAttributeInput: attributeWithCompositeIDTagsAttributeInput,
+	if attributeWithCompositeIDTagsAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDTagsAttribute: attributeWithCompositeIDTagsAttribute,
 		}
 	}
-	var attributeWithCompositeIDMessageEmailAddressAttributeInput *shared.AttributeWithCompositeIDMessageEmailAddressAttributeInput
+	var attributeWithCompositeIDMessageEmailAddressAttribute *shared.AttributeWithCompositeIDMessageEmailAddressAttribute
 	if r.MessageEmailAddressAttribute != nil {
 		id16 := new(string)
 		if !r.MessageEmailAddressAttribute.ID.IsUnknown() && !r.MessageEmailAddressAttribute.ID.IsNull() {
@@ -8101,13 +8213,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			emailType = nil
 		}
+		compositeId16 := new(string)
+		if !r.MessageEmailAddressAttribute.CompositeID.IsUnknown() && !r.MessageEmailAddressAttribute.CompositeID.IsNull() {
+			*compositeId16 = r.MessageEmailAddressAttribute.CompositeID.ValueString()
+		} else {
+			compositeId16 = nil
+		}
 		schema16 := new(string)
 		if !r.MessageEmailAddressAttribute.Schema.IsUnknown() && !r.MessageEmailAddressAttribute.Schema.IsNull() {
 			*schema16 = r.MessageEmailAddressAttribute.Schema.ValueString()
 		} else {
 			schema16 = nil
 		}
-		attributeWithCompositeIDMessageEmailAddressAttributeInput = &shared.AttributeWithCompositeIDMessageEmailAddressAttributeInput{
+		attributeWithCompositeIDMessageEmailAddressAttribute = &shared.AttributeWithCompositeIDMessageEmailAddressAttribute{
 			ID:                       id16,
 			Name:                     name33,
 			Label:                    label17,
@@ -8141,15 +8259,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Address:                  address,
 			SendStatus:               sendStatus,
 			EmailType:                emailType,
+			CompositeID:              compositeId16,
 			Schema:                   schema16,
 		}
 	}
-	if attributeWithCompositeIDMessageEmailAddressAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDMessageEmailAddressAttributeInput: attributeWithCompositeIDMessageEmailAddressAttributeInput,
+	if attributeWithCompositeIDMessageEmailAddressAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDMessageEmailAddressAttribute: attributeWithCompositeIDMessageEmailAddressAttribute,
 		}
 	}
-	var attributeWithCompositeIDNumberAttributeInput *shared.AttributeWithCompositeIDNumberAttributeInput
+	var attributeWithCompositeIDNumberAttribute *shared.AttributeWithCompositeIDNumberAttribute
 	if r.NumberAttribute != nil {
 		id17 := new(string)
 		if !r.NumberAttribute.ID.IsUnknown() && !r.NumberAttribute.ID.IsNull() {
@@ -8367,13 +8486,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			showSeparator = nil
 		}
+		compositeId17 := new(string)
+		if !r.NumberAttribute.CompositeID.IsUnknown() && !r.NumberAttribute.CompositeID.IsNull() {
+			*compositeId17 = r.NumberAttribute.CompositeID.ValueString()
+		} else {
+			compositeId17 = nil
+		}
 		schema17 := new(string)
 		if !r.NumberAttribute.Schema.IsUnknown() && !r.NumberAttribute.Schema.IsNull() {
 			*schema17 = r.NumberAttribute.Schema.ValueString()
 		} else {
 			schema17 = nil
 		}
-		attributeWithCompositeIDNumberAttributeInput = &shared.AttributeWithCompositeIDNumberAttributeInput{
+		attributeWithCompositeIDNumberAttribute = &shared.AttributeWithCompositeIDNumberAttribute{
 			ID:                       id17,
 			Name:                     name35,
 			Label:                    label18,
@@ -8406,15 +8531,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar17,
 			Format:                   format,
 			ShowSeparator:            showSeparator,
+			CompositeID:              compositeId17,
 			Schema:                   schema17,
 		}
 	}
-	if attributeWithCompositeIDNumberAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDNumberAttributeInput: attributeWithCompositeIDNumberAttributeInput,
+	if attributeWithCompositeIDNumberAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDNumberAttribute: attributeWithCompositeIDNumberAttribute,
 		}
 	}
-	var attributeWithCompositeIDConsentAttributeInput *shared.AttributeWithCompositeIDConsentAttributeInput
+	var attributeWithCompositeIDConsentAttribute *shared.AttributeWithCompositeIDConsentAttribute
 	if r.ConsentAttribute != nil {
 		id18 := new(string)
 		if !r.ConsentAttribute.ID.IsUnknown() && !r.ConsentAttribute.ID.IsNull() {
@@ -8627,13 +8753,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
 			identifiers = append(identifiers, identifiersItem.ValueString())
 		}
+		compositeId18 := new(string)
+		if !r.ConsentAttribute.CompositeID.IsUnknown() && !r.ConsentAttribute.CompositeID.IsNull() {
+			*compositeId18 = r.ConsentAttribute.CompositeID.ValueString()
+		} else {
+			compositeId18 = nil
+		}
 		schema18 := new(string)
 		if !r.ConsentAttribute.Schema.IsUnknown() && !r.ConsentAttribute.Schema.IsNull() {
 			*schema18 = r.ConsentAttribute.Schema.ValueString()
 		} else {
 			schema18 = nil
 		}
-		attributeWithCompositeIDConsentAttributeInput = &shared.AttributeWithCompositeIDConsentAttributeInput{
+		attributeWithCompositeIDConsentAttribute = &shared.AttributeWithCompositeIDConsentAttribute{
 			ID:                       id18,
 			Name:                     name37,
 			Label:                    label19,
@@ -8666,15 +8798,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Type:                     typeVar18,
 			Topic:                    topic,
 			Identifiers:              identifiers,
+			CompositeID:              compositeId18,
 			Schema:                   schema18,
 		}
 	}
-	if attributeWithCompositeIDConsentAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDConsentAttributeInput: attributeWithCompositeIDConsentAttributeInput,
+	if attributeWithCompositeIDConsentAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDConsentAttribute: attributeWithCompositeIDConsentAttribute,
 		}
 	}
-	var attributeWithCompositeIDInternalAttributeInput *shared.AttributeWithCompositeIDInternalAttributeInput
+	var attributeWithCompositeIDInternalAttribute *shared.AttributeWithCompositeIDInternalAttribute
 	if r.InternalAttribute != nil {
 		id19 := new(string)
 		if !r.InternalAttribute.ID.IsUnknown() && !r.InternalAttribute.ID.IsNull() {
@@ -8880,13 +9013,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary19 = nil
 		}
 		typeVar19 := shared.InternalAttributeAttributeWithCompositeIDType(r.InternalAttribute.Type.ValueString())
+		compositeId19 := new(string)
+		if !r.InternalAttribute.CompositeID.IsUnknown() && !r.InternalAttribute.CompositeID.IsNull() {
+			*compositeId19 = r.InternalAttribute.CompositeID.ValueString()
+		} else {
+			compositeId19 = nil
+		}
 		schema19 := new(string)
 		if !r.InternalAttribute.Schema.IsUnknown() && !r.InternalAttribute.Schema.IsNull() {
 			*schema19 = r.InternalAttribute.Schema.ValueString()
 		} else {
 			schema19 = nil
 		}
-		attributeWithCompositeIDInternalAttributeInput = &shared.AttributeWithCompositeIDInternalAttributeInput{
+		attributeWithCompositeIDInternalAttribute = &shared.AttributeWithCompositeIDInternalAttribute{
 			ID:                       id19,
 			Name:                     name39,
 			Label:                    label20,
@@ -8917,15 +9056,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable19,
 			HasPrimary:               hasPrimary19,
 			Type:                     typeVar19,
+			CompositeID:              compositeId19,
 			Schema:                   schema19,
 		}
 	}
-	if attributeWithCompositeIDInternalAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInternalAttributeInput: attributeWithCompositeIDInternalAttributeInput,
+	if attributeWithCompositeIDInternalAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDInternalAttribute: attributeWithCompositeIDInternalAttribute,
 		}
 	}
-	var attributeWithCompositeIDOrderedListAttributeInput *shared.AttributeWithCompositeIDOrderedListAttributeInput
+	var attributeWithCompositeIDOrderedListAttribute *shared.AttributeWithCompositeIDOrderedListAttribute
 	if r.OrderedListAttribute != nil {
 		id20 := new(string)
 		if !r.OrderedListAttribute.ID.IsUnknown() && !r.OrderedListAttribute.ID.IsNull() {
@@ -9131,13 +9271,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary20 = nil
 		}
 		typeVar20 := shared.OrderedListAttributeAttributeWithCompositeIDType(r.OrderedListAttribute.Type.ValueString())
+		compositeId20 := new(string)
+		if !r.OrderedListAttribute.CompositeID.IsUnknown() && !r.OrderedListAttribute.CompositeID.IsNull() {
+			*compositeId20 = r.OrderedListAttribute.CompositeID.ValueString()
+		} else {
+			compositeId20 = nil
+		}
 		schema20 := new(string)
 		if !r.OrderedListAttribute.Schema.IsUnknown() && !r.OrderedListAttribute.Schema.IsNull() {
 			*schema20 = r.OrderedListAttribute.Schema.ValueString()
 		} else {
 			schema20 = nil
 		}
-		attributeWithCompositeIDOrderedListAttributeInput = &shared.AttributeWithCompositeIDOrderedListAttributeInput{
+		attributeWithCompositeIDOrderedListAttribute = &shared.AttributeWithCompositeIDOrderedListAttribute{
 			ID:                       id20,
 			Name:                     name41,
 			Label:                    label21,
@@ -9168,15 +9314,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable20,
 			HasPrimary:               hasPrimary20,
 			Type:                     typeVar20,
+			CompositeID:              compositeId20,
 			Schema:                   schema20,
 		}
 	}
-	if attributeWithCompositeIDOrderedListAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDOrderedListAttributeInput: attributeWithCompositeIDOrderedListAttributeInput,
+	if attributeWithCompositeIDOrderedListAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDOrderedListAttribute: attributeWithCompositeIDOrderedListAttribute,
 		}
 	}
-	var attributeWithCompositeIDFileAttributeInput *shared.AttributeWithCompositeIDFileAttributeInput
+	var attributeWithCompositeIDFileAttribute *shared.AttributeWithCompositeIDFileAttribute
 	if r.FileAttribute != nil {
 		id21 := new(string)
 		if !r.FileAttribute.ID.IsUnknown() && !r.FileAttribute.ID.IsNull() {
@@ -9410,13 +9557,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			defaultAccessControl = nil
 		}
+		compositeId21 := new(string)
+		if !r.FileAttribute.CompositeID.IsUnknown() && !r.FileAttribute.CompositeID.IsNull() {
+			*compositeId21 = r.FileAttribute.CompositeID.ValueString()
+		} else {
+			compositeId21 = nil
+		}
 		schema21 := new(string)
 		if !r.FileAttribute.Schema.IsUnknown() && !r.FileAttribute.Schema.IsNull() {
 			*schema21 = r.FileAttribute.Schema.ValueString()
 		} else {
 			schema21 = nil
 		}
-		attributeWithCompositeIDFileAttributeInput = &shared.AttributeWithCompositeIDFileAttributeInput{
+		attributeWithCompositeIDFileAttribute = &shared.AttributeWithCompositeIDFileAttribute{
 			ID:                       id21,
 			Name:                     name43,
 			Label:                    label22,
@@ -9452,15 +9605,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			DisplayImagesLandscaped:  displayImagesLandscaped,
 			EnableDescription:        enableDescription,
 			DefaultAccessControl:     defaultAccessControl,
+			CompositeID:              compositeId21,
 			Schema:                   schema21,
 		}
 	}
-	if attributeWithCompositeIDFileAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDFileAttributeInput: attributeWithCompositeIDFileAttributeInput,
+	if attributeWithCompositeIDFileAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDFileAttribute: attributeWithCompositeIDFileAttribute,
 		}
 	}
-	var attributeWithCompositeIDComputedAttributeInput *shared.AttributeWithCompositeIDComputedAttributeInput
+	var attributeWithCompositeIDComputedAttribute *shared.AttributeWithCompositeIDComputedAttribute
 	if r.ComputedAttribute != nil {
 		id22 := new(string)
 		if !r.ComputedAttribute.ID.IsUnknown() && !r.ComputedAttribute.ID.IsNull() {
@@ -9681,13 +9835,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 		} else {
 			currencyField = nil
 		}
+		compositeId22 := new(string)
+		if !r.ComputedAttribute.CompositeID.IsUnknown() && !r.ComputedAttribute.CompositeID.IsNull() {
+			*compositeId22 = r.ComputedAttribute.CompositeID.ValueString()
+		} else {
+			compositeId22 = nil
+		}
 		schema22 := new(string)
 		if !r.ComputedAttribute.Schema.IsUnknown() && !r.ComputedAttribute.Schema.IsNull() {
 			*schema22 = r.ComputedAttribute.Schema.ValueString()
 		} else {
 			schema22 = nil
 		}
-		attributeWithCompositeIDComputedAttributeInput = &shared.AttributeWithCompositeIDComputedAttributeInput{
+		attributeWithCompositeIDComputedAttribute = &shared.AttributeWithCompositeIDComputedAttribute{
 			ID:                       id22,
 			Name:                     name45,
 			Label:                    label23,
@@ -9721,15 +9881,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Computed:                 computed,
 			AmountField:              amountField,
 			CurrencyField:            currencyField,
+			CompositeID:              compositeId22,
 			Schema:                   schema22,
 		}
 	}
-	if attributeWithCompositeIDComputedAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDComputedAttributeInput: attributeWithCompositeIDComputedAttributeInput,
+	if attributeWithCompositeIDComputedAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDComputedAttribute: attributeWithCompositeIDComputedAttribute,
 		}
 	}
-	var attributeWithCompositeIDPartnerStatusAttributeInput *shared.AttributeWithCompositeIDPartnerStatusAttributeInput
+	var attributeWithCompositeIDPartnerStatusAttribute *shared.AttributeWithCompositeIDPartnerStatusAttribute
 	if r.PartnerStatusAttribute != nil {
 		id23 := new(string)
 		if !r.PartnerStatusAttribute.ID.IsUnknown() && !r.PartnerStatusAttribute.ID.IsNull() {
@@ -9935,13 +10096,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary23 = nil
 		}
 		typeVar23 := shared.PartnerStatusAttributeAttributeWithCompositeIDType(r.PartnerStatusAttribute.Type.ValueString())
+		compositeId23 := new(string)
+		if !r.PartnerStatusAttribute.CompositeID.IsUnknown() && !r.PartnerStatusAttribute.CompositeID.IsNull() {
+			*compositeId23 = r.PartnerStatusAttribute.CompositeID.ValueString()
+		} else {
+			compositeId23 = nil
+		}
 		schema23 := new(string)
 		if !r.PartnerStatusAttribute.Schema.IsUnknown() && !r.PartnerStatusAttribute.Schema.IsNull() {
 			*schema23 = r.PartnerStatusAttribute.Schema.ValueString()
 		} else {
 			schema23 = nil
 		}
-		attributeWithCompositeIDPartnerStatusAttributeInput = &shared.AttributeWithCompositeIDPartnerStatusAttributeInput{
+		attributeWithCompositeIDPartnerStatusAttribute = &shared.AttributeWithCompositeIDPartnerStatusAttribute{
 			ID:                       id23,
 			Name:                     name47,
 			Label:                    label24,
@@ -9972,15 +10139,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable23,
 			HasPrimary:               hasPrimary23,
 			Type:                     typeVar23,
+			CompositeID:              compositeId23,
 			Schema:                   schema23,
 		}
 	}
-	if attributeWithCompositeIDPartnerStatusAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPartnerStatusAttributeInput: attributeWithCompositeIDPartnerStatusAttributeInput,
+	if attributeWithCompositeIDPartnerStatusAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPartnerStatusAttribute: attributeWithCompositeIDPartnerStatusAttribute,
 		}
 	}
-	var attributeWithCompositeIDInvitationEmailAttributeInput *shared.AttributeWithCompositeIDInvitationEmailAttributeInput
+	var attributeWithCompositeIDInvitationEmailAttribute *shared.AttributeWithCompositeIDInvitationEmailAttribute
 	if r.InvitationEmailAttribute != nil {
 		id24 := new(string)
 		if !r.InvitationEmailAttribute.ID.IsUnknown() && !r.InvitationEmailAttribute.ID.IsNull() {
@@ -10186,13 +10354,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary24 = nil
 		}
 		typeVar24 := shared.InvitationEmailAttributeAttributeWithCompositeIDType(r.InvitationEmailAttribute.Type.ValueString())
+		compositeId24 := new(string)
+		if !r.InvitationEmailAttribute.CompositeID.IsUnknown() && !r.InvitationEmailAttribute.CompositeID.IsNull() {
+			*compositeId24 = r.InvitationEmailAttribute.CompositeID.ValueString()
+		} else {
+			compositeId24 = nil
+		}
 		schema24 := new(string)
 		if !r.InvitationEmailAttribute.Schema.IsUnknown() && !r.InvitationEmailAttribute.Schema.IsNull() {
 			*schema24 = r.InvitationEmailAttribute.Schema.ValueString()
 		} else {
 			schema24 = nil
 		}
-		attributeWithCompositeIDInvitationEmailAttributeInput = &shared.AttributeWithCompositeIDInvitationEmailAttributeInput{
+		attributeWithCompositeIDInvitationEmailAttribute = &shared.AttributeWithCompositeIDInvitationEmailAttribute{
 			ID:                       id24,
 			Name:                     name49,
 			Label:                    label25,
@@ -10223,15 +10397,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable24,
 			HasPrimary:               hasPrimary24,
 			Type:                     typeVar24,
+			CompositeID:              compositeId24,
 			Schema:                   schema24,
 		}
 	}
-	if attributeWithCompositeIDInvitationEmailAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInvitationEmailAttributeInput: attributeWithCompositeIDInvitationEmailAttributeInput,
+	if attributeWithCompositeIDInvitationEmailAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDInvitationEmailAttribute: attributeWithCompositeIDInvitationEmailAttribute,
 		}
 	}
-	var attributeWithCompositeIDAutomationAttributeInput *shared.AttributeWithCompositeIDAutomationAttributeInput
+	var attributeWithCompositeIDAutomationAttribute *shared.AttributeWithCompositeIDAutomationAttribute
 	if r.AutomationAttribute != nil {
 		id25 := new(string)
 		if !r.AutomationAttribute.ID.IsUnknown() && !r.AutomationAttribute.ID.IsNull() {
@@ -10437,13 +10612,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary25 = nil
 		}
 		typeVar25 := shared.AutomationAttributeAttributeWithCompositeIDType(r.AutomationAttribute.Type.ValueString())
+		compositeId25 := new(string)
+		if !r.AutomationAttribute.CompositeID.IsUnknown() && !r.AutomationAttribute.CompositeID.IsNull() {
+			*compositeId25 = r.AutomationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId25 = nil
+		}
 		schema25 := new(string)
 		if !r.AutomationAttribute.Schema.IsUnknown() && !r.AutomationAttribute.Schema.IsNull() {
 			*schema25 = r.AutomationAttribute.Schema.ValueString()
 		} else {
 			schema25 = nil
 		}
-		attributeWithCompositeIDAutomationAttributeInput = &shared.AttributeWithCompositeIDAutomationAttributeInput{
+		attributeWithCompositeIDAutomationAttribute = &shared.AttributeWithCompositeIDAutomationAttribute{
 			ID:                       id25,
 			Name:                     name51,
 			Label:                    label26,
@@ -10474,15 +10655,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable25,
 			HasPrimary:               hasPrimary25,
 			Type:                     typeVar25,
+			CompositeID:              compositeId25,
 			Schema:                   schema25,
 		}
 	}
-	if attributeWithCompositeIDAutomationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDAutomationAttributeInput: attributeWithCompositeIDAutomationAttributeInput,
+	if attributeWithCompositeIDAutomationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDAutomationAttribute: attributeWithCompositeIDAutomationAttribute,
 		}
 	}
-	var attributeWithCompositeIDInternalUserAttributeInput *shared.AttributeWithCompositeIDInternalUserAttributeInput
+	var attributeWithCompositeIDInternalUserAttribute *shared.AttributeWithCompositeIDInternalUserAttribute
 	if r.InternalUserAttribute != nil {
 		id26 := new(string)
 		if !r.InternalUserAttribute.ID.IsUnknown() && !r.InternalUserAttribute.ID.IsNull() {
@@ -10688,13 +10870,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary26 = nil
 		}
 		typeVar26 := shared.InternalUserAttributeAttributeWithCompositeIDType(r.InternalUserAttribute.Type.ValueString())
+		compositeId26 := new(string)
+		if !r.InternalUserAttribute.CompositeID.IsUnknown() && !r.InternalUserAttribute.CompositeID.IsNull() {
+			*compositeId26 = r.InternalUserAttribute.CompositeID.ValueString()
+		} else {
+			compositeId26 = nil
+		}
 		schema26 := new(string)
 		if !r.InternalUserAttribute.Schema.IsUnknown() && !r.InternalUserAttribute.Schema.IsNull() {
 			*schema26 = r.InternalUserAttribute.Schema.ValueString()
 		} else {
 			schema26 = nil
 		}
-		attributeWithCompositeIDInternalUserAttributeInput = &shared.AttributeWithCompositeIDInternalUserAttributeInput{
+		attributeWithCompositeIDInternalUserAttribute = &shared.AttributeWithCompositeIDInternalUserAttribute{
 			ID:                       id26,
 			Name:                     name53,
 			Label:                    label27,
@@ -10725,15 +10913,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable26,
 			HasPrimary:               hasPrimary26,
 			Type:                     typeVar26,
+			CompositeID:              compositeId26,
 			Schema:                   schema26,
 		}
 	}
-	if attributeWithCompositeIDInternalUserAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDInternalUserAttributeInput: attributeWithCompositeIDInternalUserAttributeInput,
+	if attributeWithCompositeIDInternalUserAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDInternalUserAttribute: attributeWithCompositeIDInternalUserAttribute,
 		}
 	}
-	var attributeWithCompositeIDPurposeAttributeInput *shared.AttributeWithCompositeIDPurposeAttributeInput
+	var attributeWithCompositeIDPurposeAttribute *shared.AttributeWithCompositeIDPurposeAttribute
 	if r.PurposeAttribute != nil {
 		id27 := new(string)
 		if !r.PurposeAttribute.ID.IsUnknown() && !r.PurposeAttribute.ID.IsNull() {
@@ -10939,13 +11128,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary27 = nil
 		}
 		typeVar27 := shared.PurposeAttributeAttributeWithCompositeIDType(r.PurposeAttribute.Type.ValueString())
+		compositeId27 := new(string)
+		if !r.PurposeAttribute.CompositeID.IsUnknown() && !r.PurposeAttribute.CompositeID.IsNull() {
+			*compositeId27 = r.PurposeAttribute.CompositeID.ValueString()
+		} else {
+			compositeId27 = nil
+		}
 		schema27 := new(string)
 		if !r.PurposeAttribute.Schema.IsUnknown() && !r.PurposeAttribute.Schema.IsNull() {
 			*schema27 = r.PurposeAttribute.Schema.ValueString()
 		} else {
 			schema27 = nil
 		}
-		attributeWithCompositeIDPurposeAttributeInput = &shared.AttributeWithCompositeIDPurposeAttributeInput{
+		attributeWithCompositeIDPurposeAttribute = &shared.AttributeWithCompositeIDPurposeAttribute{
 			ID:                       id27,
 			Name:                     name55,
 			Label:                    label28,
@@ -10976,15 +11171,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable27,
 			HasPrimary:               hasPrimary27,
 			Type:                     typeVar27,
+			CompositeID:              compositeId27,
 			Schema:                   schema27,
 		}
 	}
-	if attributeWithCompositeIDPurposeAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPurposeAttributeInput: attributeWithCompositeIDPurposeAttributeInput,
+	if attributeWithCompositeIDPurposeAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPurposeAttribute: attributeWithCompositeIDPurposeAttribute,
 		}
 	}
-	var attributeWithCompositeIDPartnerOrganisationAttributeInput *shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput
+	var attributeWithCompositeIDPartnerOrganisationAttribute *shared.AttributeWithCompositeIDPartnerOrganisationAttribute
 	if r.PartnerOrganisationAttribute != nil {
 		id28 := new(string)
 		if !r.PartnerOrganisationAttribute.ID.IsUnknown() && !r.PartnerOrganisationAttribute.ID.IsNull() {
@@ -11190,13 +11386,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary28 = nil
 		}
 		typeVar28 := shared.PartnerOrganisationAttributeAttributeWithCompositeIDType(r.PartnerOrganisationAttribute.Type.ValueString())
+		compositeId28 := new(string)
+		if !r.PartnerOrganisationAttribute.CompositeID.IsUnknown() && !r.PartnerOrganisationAttribute.CompositeID.IsNull() {
+			*compositeId28 = r.PartnerOrganisationAttribute.CompositeID.ValueString()
+		} else {
+			compositeId28 = nil
+		}
 		schema28 := new(string)
 		if !r.PartnerOrganisationAttribute.Schema.IsUnknown() && !r.PartnerOrganisationAttribute.Schema.IsNull() {
 			*schema28 = r.PartnerOrganisationAttribute.Schema.ValueString()
 		} else {
 			schema28 = nil
 		}
-		attributeWithCompositeIDPartnerOrganisationAttributeInput = &shared.AttributeWithCompositeIDPartnerOrganisationAttributeInput{
+		attributeWithCompositeIDPartnerOrganisationAttribute = &shared.AttributeWithCompositeIDPartnerOrganisationAttribute{
 			ID:                       id28,
 			Name:                     name57,
 			Label:                    label29,
@@ -11227,15 +11429,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable28,
 			HasPrimary:               hasPrimary28,
 			Type:                     typeVar28,
+			CompositeID:              compositeId28,
 			Schema:                   schema28,
 		}
 	}
-	if attributeWithCompositeIDPartnerOrganisationAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPartnerOrganisationAttributeInput: attributeWithCompositeIDPartnerOrganisationAttributeInput,
+	if attributeWithCompositeIDPartnerOrganisationAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPartnerOrganisationAttribute: attributeWithCompositeIDPartnerOrganisationAttribute,
 		}
 	}
-	var attributeWithCompositeIDPortalAccessAttributeInput *shared.AttributeWithCompositeIDPortalAccessAttributeInput
+	var attributeWithCompositeIDPortalAccessAttribute *shared.AttributeWithCompositeIDPortalAccessAttribute
 	if r.PortalAccessAttribute != nil {
 		id29 := new(string)
 		if !r.PortalAccessAttribute.ID.IsUnknown() && !r.PortalAccessAttribute.ID.IsNull() {
@@ -11441,13 +11644,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary29 = nil
 		}
 		typeVar29 := shared.PortalAccessAttributeAttributeWithCompositeIDType(r.PortalAccessAttribute.Type.ValueString())
+		compositeId29 := new(string)
+		if !r.PortalAccessAttribute.CompositeID.IsUnknown() && !r.PortalAccessAttribute.CompositeID.IsNull() {
+			*compositeId29 = r.PortalAccessAttribute.CompositeID.ValueString()
+		} else {
+			compositeId29 = nil
+		}
 		schema29 := new(string)
 		if !r.PortalAccessAttribute.Schema.IsUnknown() && !r.PortalAccessAttribute.Schema.IsNull() {
 			*schema29 = r.PortalAccessAttribute.Schema.ValueString()
 		} else {
 			schema29 = nil
 		}
-		attributeWithCompositeIDPortalAccessAttributeInput = &shared.AttributeWithCompositeIDPortalAccessAttributeInput{
+		attributeWithCompositeIDPortalAccessAttribute = &shared.AttributeWithCompositeIDPortalAccessAttribute{
 			ID:                       id29,
 			Name:                     name59,
 			Label:                    label30,
@@ -11478,15 +11687,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable29,
 			HasPrimary:               hasPrimary29,
 			Type:                     typeVar29,
+			CompositeID:              compositeId29,
 			Schema:                   schema29,
 		}
 	}
-	if attributeWithCompositeIDPortalAccessAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPortalAccessAttributeInput: attributeWithCompositeIDPortalAccessAttributeInput,
+	if attributeWithCompositeIDPortalAccessAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPortalAccessAttribute: attributeWithCompositeIDPortalAccessAttribute,
 		}
 	}
-	var attributeWithCompositeIDPhoneAttributeInput *shared.AttributeWithCompositeIDPhoneAttributeInput
+	var attributeWithCompositeIDPhoneAttribute *shared.AttributeWithCompositeIDPhoneAttribute
 	if r.PhoneAttribute != nil {
 		id30 := new(string)
 		if !r.PhoneAttribute.ID.IsUnknown() && !r.PhoneAttribute.ID.IsNull() {
@@ -11692,13 +11902,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary30 = nil
 		}
 		typeVar30 := shared.PhoneAttributeAttributeWithCompositeIDType(r.PhoneAttribute.Type.ValueString())
+		compositeId30 := new(string)
+		if !r.PhoneAttribute.CompositeID.IsUnknown() && !r.PhoneAttribute.CompositeID.IsNull() {
+			*compositeId30 = r.PhoneAttribute.CompositeID.ValueString()
+		} else {
+			compositeId30 = nil
+		}
 		schema30 := new(string)
 		if !r.PhoneAttribute.Schema.IsUnknown() && !r.PhoneAttribute.Schema.IsNull() {
 			*schema30 = r.PhoneAttribute.Schema.ValueString()
 		} else {
 			schema30 = nil
 		}
-		attributeWithCompositeIDPhoneAttributeInput = &shared.AttributeWithCompositeIDPhoneAttributeInput{
+		attributeWithCompositeIDPhoneAttribute = &shared.AttributeWithCompositeIDPhoneAttribute{
 			ID:                       id30,
 			Name:                     name61,
 			Label:                    label31,
@@ -11729,15 +11945,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable30,
 			HasPrimary:               hasPrimary30,
 			Type:                     typeVar30,
+			CompositeID:              compositeId30,
 			Schema:                   schema30,
 		}
 	}
-	if attributeWithCompositeIDPhoneAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPhoneAttributeInput: attributeWithCompositeIDPhoneAttributeInput,
+	if attributeWithCompositeIDPhoneAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPhoneAttribute: attributeWithCompositeIDPhoneAttribute,
 		}
 	}
-	var attributeWithCompositeIDEmailAttributeInput *shared.AttributeWithCompositeIDEmailAttributeInput
+	var attributeWithCompositeIDEmailAttribute *shared.AttributeWithCompositeIDEmailAttribute
 	if r.EmailAttribute != nil {
 		id31 := new(string)
 		if !r.EmailAttribute.ID.IsUnknown() && !r.EmailAttribute.ID.IsNull() {
@@ -11943,13 +12160,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary31 = nil
 		}
 		typeVar31 := shared.EmailAttributeAttributeWithCompositeIDType(r.EmailAttribute.Type.ValueString())
+		compositeId31 := new(string)
+		if !r.EmailAttribute.CompositeID.IsUnknown() && !r.EmailAttribute.CompositeID.IsNull() {
+			*compositeId31 = r.EmailAttribute.CompositeID.ValueString()
+		} else {
+			compositeId31 = nil
+		}
 		schema31 := new(string)
 		if !r.EmailAttribute.Schema.IsUnknown() && !r.EmailAttribute.Schema.IsNull() {
 			*schema31 = r.EmailAttribute.Schema.ValueString()
 		} else {
 			schema31 = nil
 		}
-		attributeWithCompositeIDEmailAttributeInput = &shared.AttributeWithCompositeIDEmailAttributeInput{
+		attributeWithCompositeIDEmailAttribute = &shared.AttributeWithCompositeIDEmailAttribute{
 			ID:                       id31,
 			Name:                     name63,
 			Label:                    label32,
@@ -11980,15 +12203,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable31,
 			HasPrimary:               hasPrimary31,
 			Type:                     typeVar31,
+			CompositeID:              compositeId31,
 			Schema:                   schema31,
 		}
 	}
-	if attributeWithCompositeIDEmailAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDEmailAttributeInput: attributeWithCompositeIDEmailAttributeInput,
+	if attributeWithCompositeIDEmailAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDEmailAttribute: attributeWithCompositeIDEmailAttribute,
 		}
 	}
-	var attributeWithCompositeIDPaymentAttributeInput *shared.AttributeWithCompositeIDPaymentAttributeInput
+	var attributeWithCompositeIDPaymentAttribute *shared.AttributeWithCompositeIDPaymentAttribute
 	if r.PaymentAttribute != nil {
 		id32 := new(string)
 		if !r.PaymentAttribute.ID.IsUnknown() && !r.PaymentAttribute.ID.IsNull() {
@@ -12194,13 +12418,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary32 = nil
 		}
 		typeVar32 := shared.PaymentAttributeAttributeWithCompositeIDType(r.PaymentAttribute.Type.ValueString())
+		compositeId32 := new(string)
+		if !r.PaymentAttribute.CompositeID.IsUnknown() && !r.PaymentAttribute.CompositeID.IsNull() {
+			*compositeId32 = r.PaymentAttribute.CompositeID.ValueString()
+		} else {
+			compositeId32 = nil
+		}
 		schema32 := new(string)
 		if !r.PaymentAttribute.Schema.IsUnknown() && !r.PaymentAttribute.Schema.IsNull() {
 			*schema32 = r.PaymentAttribute.Schema.ValueString()
 		} else {
 			schema32 = nil
 		}
-		attributeWithCompositeIDPaymentAttributeInput = &shared.AttributeWithCompositeIDPaymentAttributeInput{
+		attributeWithCompositeIDPaymentAttribute = &shared.AttributeWithCompositeIDPaymentAttribute{
 			ID:                       id32,
 			Name:                     name65,
 			Label:                    label33,
@@ -12231,15 +12461,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable32,
 			HasPrimary:               hasPrimary32,
 			Type:                     typeVar32,
+			CompositeID:              compositeId32,
 			Schema:                   schema32,
 		}
 	}
-	if attributeWithCompositeIDPaymentAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPaymentAttributeInput: attributeWithCompositeIDPaymentAttributeInput,
+	if attributeWithCompositeIDPaymentAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPaymentAttribute: attributeWithCompositeIDPaymentAttribute,
 		}
 	}
-	var attributeWithCompositeIDPriceComponentAttributeInput *shared.AttributeWithCompositeIDPriceComponentAttributeInput
+	var attributeWithCompositeIDPriceComponentAttribute *shared.AttributeWithCompositeIDPriceComponentAttribute
 	if r.PriceComponentAttribute != nil {
 		id33 := new(string)
 		if !r.PriceComponentAttribute.ID.IsUnknown() && !r.PriceComponentAttribute.ID.IsNull() {
@@ -12445,13 +12676,19 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			hasPrimary33 = nil
 		}
 		typeVar33 := shared.PriceComponentAttributeAttributeWithCompositeIDType(r.PriceComponentAttribute.Type.ValueString())
+		compositeId33 := new(string)
+		if !r.PriceComponentAttribute.CompositeID.IsUnknown() && !r.PriceComponentAttribute.CompositeID.IsNull() {
+			*compositeId33 = r.PriceComponentAttribute.CompositeID.ValueString()
+		} else {
+			compositeId33 = nil
+		}
 		schema33 := new(string)
 		if !r.PriceComponentAttribute.Schema.IsUnknown() && !r.PriceComponentAttribute.Schema.IsNull() {
 			*schema33 = r.PriceComponentAttribute.Schema.ValueString()
 		} else {
 			schema33 = nil
 		}
-		attributeWithCompositeIDPriceComponentAttributeInput = &shared.AttributeWithCompositeIDPriceComponentAttributeInput{
+		attributeWithCompositeIDPriceComponentAttribute = &shared.AttributeWithCompositeIDPriceComponentAttribute{
 			ID:                       id33,
 			Name:                     name67,
 			Label:                    label34,
@@ -12482,12 +12719,13 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeIDInput(ctx
 			Repeatable:               repeatable33,
 			HasPrimary:               hasPrimary33,
 			Type:                     typeVar33,
+			CompositeID:              compositeId33,
 			Schema:                   schema33,
 		}
 	}
-	if attributeWithCompositeIDPriceComponentAttributeInput != nil {
-		out = shared.AttributeWithCompositeIDInput{
-			AttributeWithCompositeIDPriceComponentAttributeInput: attributeWithCompositeIDPriceComponentAttributeInput,
+	if attributeWithCompositeIDPriceComponentAttribute != nil {
+		out = shared.AttributeWithCompositeID{
+			AttributeWithCompositeIDPriceComponentAttribute: attributeWithCompositeIDPriceComponentAttribute,
 		}
 	}
 

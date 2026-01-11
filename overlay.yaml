@@ -178,6 +178,11 @@ actions:
           contact: account
           opportunity: customer
 
+
+  # Remove readOnly from composite_id - which was causing the option as false
+  - target: $["components"]["schemas"]["AttributeWithCompositeID"]["allOf"][1]["properties"]["composite_id"]["readOnly"]
+    remove: true
+
   # jsonencode rows in textattribute
   - target: $["components"]["schemas"]["TextAttribute"]["allOf"][1]["properties"]["rows"]
     remove: true
