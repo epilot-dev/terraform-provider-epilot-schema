@@ -19,22 +19,22 @@ func (e EntityOwner) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityOwner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"org_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityOwner) GetOrgID() string {
-	if o == nil {
+func (e *EntityOwner) GetOrgID() string {
+	if e == nil {
 		return ""
 	}
-	return o.OrgID
+	return e.OrgID
 }
 
-func (o *EntityOwner) GetUserID() *string {
-	if o == nil {
+func (e *EntityOwner) GetUserID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.UserID
+	return e.UserID
 }

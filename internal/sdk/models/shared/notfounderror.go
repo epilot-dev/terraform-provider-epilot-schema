@@ -10,16 +10,16 @@ type NotFoundError struct {
 	Error *string `json:"error,omitempty"`
 }
 
-func (o *NotFoundError) GetStatus() *int64 {
-	if o == nil {
+func (n *NotFoundError) GetStatus() *int64 {
+	if n == nil {
 		return nil
 	}
-	return o.Status
+	return n.Status
 }
 
-func (o *NotFoundError) GetError() *string {
-	if o == nil {
+func (n *NotFoundError) GetError() *string {
+	if n == nil {
 		return nil
 	}
-	return o.Error
+	return n.Error
 }

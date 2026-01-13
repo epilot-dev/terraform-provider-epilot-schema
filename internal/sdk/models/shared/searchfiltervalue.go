@@ -18,9 +18,9 @@ const (
 
 // SearchFilterValue - A filter field value.
 type SearchFilterValue struct {
-	Str     *string  `queryParam:"inline" name:"SearchFilterValue"`
-	Number  *float64 `queryParam:"inline" name:"SearchFilterValue"`
-	Boolean *bool    `queryParam:"inline" name:"SearchFilterValue"`
+	Str     *string  `queryParam:"inline" union:"member"`
+	Number  *float64 `queryParam:"inline" union:"member"`
+	Boolean *bool    `queryParam:"inline" union:"member"`
 
 	Type SearchFilterValueType
 }
@@ -54,24 +54,54 @@ func CreateSearchFilterValueBoolean(boolean bool) SearchFilterValue {
 
 func (u *SearchFilterValue) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = SearchFilterValueTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SearchFilterValueTypeStr,
+			Value: &str,
+		})
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
-		u.Number = &number
-		u.Type = SearchFilterValueTypeNumber
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SearchFilterValueTypeNumber,
+			Value: &number,
+		})
 	}
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
-		u.Boolean = &boolean
-		u.Type = SearchFilterValueTypeBoolean
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SearchFilterValueTypeBoolean,
+			Value: &boolean,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchFilterValue", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchFilterValue", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(SearchFilterValueType)
+	switch best.Type {
+	case SearchFilterValueTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case SearchFilterValueTypeNumber:
+		u.Number = best.Value.(*float64)
+		return nil
+	case SearchFilterValueTypeBoolean:
+		u.Boolean = best.Value.(*bool)
 		return nil
 	}
 

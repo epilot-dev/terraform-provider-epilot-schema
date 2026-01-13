@@ -12,11 +12,11 @@ type GetSchemaCapabilityRequest struct {
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
-func (o *GetSchemaCapabilityRequest) GetCompositeID() string {
-	if o == nil {
+func (g *GetSchemaCapabilityRequest) GetCompositeID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CompositeID
+	return g.CompositeID
 }
 
 type GetSchemaCapabilityResponse struct {
@@ -32,37 +32,37 @@ type GetSchemaCapabilityResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetSchemaCapabilityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaCapabilityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaCapabilityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaCapabilityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaCapabilityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaCapabilityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
-	if o == nil {
+func (g *GetSchemaCapabilityResponse) GetEntityCapabilityWithCompositeID() *shared.EntityCapabilityWithCompositeID {
+	if g == nil {
 		return nil
 	}
-	return o.EntityCapabilityWithCompositeID
+	return g.EntityCapabilityWithCompositeID
 }
 
-func (o *GetSchemaCapabilityResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetSchemaCapabilityResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

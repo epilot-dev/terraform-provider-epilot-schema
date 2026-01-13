@@ -17,6 +17,8 @@ type MultiSelectAttribute struct {
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	DisableCaseSensitive     types.Bool                                           `tfsdk:"disable_case_sensitive"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExcludeFromSearch        types.Bool                                           `tfsdk:"exclude_from_search"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Group                    types.String                                         `tfsdk:"group"`
 	HasPrimary               types.Bool                                           `tfsdk:"has_primary"`

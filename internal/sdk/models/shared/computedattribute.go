@@ -56,32 +56,32 @@ func (c *ComputedAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ComputedAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (c *ComputedAttributeInfoHelpers) GetHintText() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintText
+	return c.HintText
 }
 
-func (o *ComputedAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (c *ComputedAttributeInfoHelpers) GetHintTextKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return c.HintTextKey
 }
 
-func (o *ComputedAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (c *ComputedAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return c.HintCustomComponent
 }
 
-func (o *ComputedAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (c *ComputedAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if c == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return c.HintTooltipPlacement
 }
 
 type ComputedAttributeType string
@@ -161,6 +161,16 @@ type ComputedAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *ComputedAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                 `json:"repeatable,omitempty"`
 	HasPrimary *bool                 `json:"has_primary,omitempty"`
@@ -177,239 +187,253 @@ func (c ComputedAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ComputedAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "label", "value_formatter", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ComputedAttribute) GetID() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *ComputedAttribute) GetName() string {
-	if o == nil {
+func (c *ComputedAttribute) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *ComputedAttribute) GetLabel() string {
-	if o == nil {
+func (c *ComputedAttribute) GetLabel() string {
+	if c == nil {
 		return ""
 	}
-	return o.Label
+	return c.Label
 }
 
-func (o *ComputedAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetPlaceholder() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Placeholder
+	return c.Placeholder
 }
 
-func (o *ComputedAttribute) GetHidden() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetHidden() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Hidden
+	return c.Hidden
 }
 
-func (o *ComputedAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetShowInTable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return c.ShowInTable
 }
 
-func (o *ComputedAttribute) GetSortable() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetSortable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Sortable
+	return c.Sortable
 }
 
-func (o *ComputedAttribute) GetRequired() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetRequired() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Required
+	return c.Required
 }
 
-func (o *ComputedAttribute) GetReadonly() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetReadonly() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Readonly
+	return c.Readonly
 }
 
-func (o *ComputedAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetDeprecated() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Deprecated
+	return c.Deprecated
 }
 
-func (o *ComputedAttribute) GetDefaultValue() any {
-	if o == nil {
+func (c *ComputedAttribute) GetDefaultValue() any {
+	if c == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return c.DefaultValue
 }
 
-func (o *ComputedAttribute) GetGroup() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetGroup() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Group
+	return c.Group
 }
 
-func (o *ComputedAttribute) GetOrder() *int64 {
-	if o == nil {
+func (c *ComputedAttribute) GetOrder() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.Order
+	return c.Order
 }
 
-func (o *ComputedAttribute) GetLayout() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetLayout() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Layout
+	return c.Layout
 }
 
-func (o *ComputedAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetHideLabel() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HideLabel
+	return c.HideLabel
 }
 
-func (o *ComputedAttribute) GetIcon() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetIcon() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Icon
+	return c.Icon
 }
 
-func (o *ComputedAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetRenderCondition() *string {
+	if c == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return c.RenderCondition
 }
 
-func (o *ComputedAttribute) GetPurpose() []string {
-	if o == nil {
+func (c *ComputedAttribute) GetPurpose() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Purpose
+	return c.Purpose
 }
 
-func (o *ComputedAttribute) GetManifest() []string {
-	if o == nil {
+func (c *ComputedAttribute) GetManifest() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Manifest
+	return c.Manifest
 }
 
-func (o *ComputedAttribute) GetConstraints() *ComputedAttributeConstraints {
-	if o == nil {
+func (c *ComputedAttribute) GetConstraints() *ComputedAttributeConstraints {
+	if c == nil {
 		return nil
 	}
-	return o.Constraints
+	return c.Constraints
 }
 
-func (o *ComputedAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetFeatureFlag() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return c.FeatureFlag
 }
 
-func (o *ComputedAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (c *ComputedAttribute) GetSettingsFlag() []SettingFlag {
+	if c == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return c.SettingsFlag
 }
 
-func (o *ComputedAttribute) GetValueFormatter() string {
-	if o == nil {
+func (c *ComputedAttribute) GetValueFormatter() string {
+	if c == nil {
 		return ""
 	}
-	return o.ValueFormatter
+	return c.ValueFormatter
 }
 
-func (o *ComputedAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetPreviewValueFormatter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return c.PreviewValueFormatter
 }
 
-func (o *ComputedAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetEntityBuilderDisableEdit() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return c.EntityBuilderDisableEdit
 }
 
-func (o *ComputedAttribute) GetProtected() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetProtected() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Protected
+	return c.Protected
 }
 
-func (o *ComputedAttribute) GetInfoHelpers() *ComputedAttributeInfoHelpers {
-	if o == nil {
+func (c *ComputedAttribute) GetInfoHelpers() *ComputedAttributeInfoHelpers {
+	if c == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return c.InfoHelpers
 }
 
-func (o *ComputedAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetExplicitSearchable() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Repeatable
+	return c.ExplicitSearchable
 }
 
-func (o *ComputedAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetExcludeFromSearch() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return c.ExcludeFromSearch
 }
 
-func (o *ComputedAttribute) GetType() ComputedAttributeType {
-	if o == nil {
+func (c *ComputedAttribute) GetRepeatable() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.Repeatable
+}
+
+func (c *ComputedAttribute) GetHasPrimary() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.HasPrimary
+}
+
+func (c *ComputedAttribute) GetType() ComputedAttributeType {
+	if c == nil {
 		return ComputedAttributeType("")
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *ComputedAttribute) GetComputed() *bool {
-	if o == nil {
+func (c *ComputedAttribute) GetComputed() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Computed
+	return c.Computed
 }
 
-func (o *ComputedAttribute) GetAmountField() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetAmountField() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AmountField
+	return c.AmountField
 }
 
-func (o *ComputedAttribute) GetCurrencyField() *string {
-	if o == nil {
+func (c *ComputedAttribute) GetCurrencyField() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CurrencyField
+	return c.CurrencyField
 }

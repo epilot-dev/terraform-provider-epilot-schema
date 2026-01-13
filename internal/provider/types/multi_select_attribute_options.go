@@ -7,6 +7,6 @@ import (
 )
 
 type MultiSelectAttributeOptions struct {
-	Str types.String                  `queryParam:"inline" tfsdk:"str" tfPlanOnly:"true"`
-	Two *MultiSelectAttributeOptions2 `queryParam:"inline" tfsdk:"two" tfPlanOnly:"true"`
+	Str types.String                  `queryParam:"inline" tfsdk:"str"`
+	Two *MultiSelectAttributeOptions2 `queryParam:"inline" tfsdk:"two"`
 }

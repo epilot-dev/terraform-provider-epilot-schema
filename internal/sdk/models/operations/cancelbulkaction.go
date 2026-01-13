@@ -12,11 +12,11 @@ type CancelBulkActionRequest struct {
 	JobID string `pathParam:"style=simple,explode=false,name=job_id"`
 }
 
-func (o *CancelBulkActionRequest) GetJobID() string {
-	if o == nil {
+func (c *CancelBulkActionRequest) GetJobID() string {
+	if c == nil {
 		return ""
 	}
-	return o.JobID
+	return c.JobID
 }
 
 type CancelBulkActionResponse struct {
@@ -33,44 +33,44 @@ type CancelBulkActionResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CancelBulkActionResponse) GetContentType() string {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CancelBulkActionResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CancelBulkActionResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CancelBulkActionResponse) GetTaxonomyBulkJob() *shared.TaxonomyBulkJob {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetTaxonomyBulkJob() *shared.TaxonomyBulkJob {
+	if c == nil {
 		return nil
 	}
-	return o.TaxonomyBulkJob
+	return c.TaxonomyBulkJob
 }
 
-func (o *CancelBulkActionResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CancelBulkActionResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CancelBulkActionResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

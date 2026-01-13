@@ -14,18 +14,18 @@ type AttachActivityRequest struct {
 	Entities []string `queryParam:"style=form,explode=false,name=entities"`
 }
 
-func (o *AttachActivityRequest) GetID() string {
-	if o == nil {
+func (a *AttachActivityRequest) GetID() string {
+	if a == nil {
 		return ""
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AttachActivityRequest) GetEntities() []string {
-	if o == nil {
+func (a *AttachActivityRequest) GetEntities() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Entities
+	return a.Entities
 }
 
 type AttachActivityResponse struct {
@@ -44,51 +44,51 @@ type AttachActivityResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *AttachActivityResponse) GetContentType() string {
-	if o == nil {
+func (a *AttachActivityResponse) GetContentType() string {
+	if a == nil {
 		return ""
 	}
-	return o.ContentType
+	return a.ContentType
 }
 
-func (o *AttachActivityResponse) GetStatusCode() int {
-	if o == nil {
+func (a *AttachActivityResponse) GetStatusCode() int {
+	if a == nil {
 		return 0
 	}
-	return o.StatusCode
+	return a.StatusCode
 }
 
-func (o *AttachActivityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (a *AttachActivityResponse) GetRawResponse() *http.Response {
+	if a == nil {
 		return nil
 	}
-	return o.RawResponse
+	return a.RawResponse
 }
 
-func (o *AttachActivityResponse) GetBaseActivityItem() *shared.BaseActivityItem {
-	if o == nil {
+func (a *AttachActivityResponse) GetBaseActivityItem() *shared.BaseActivityItem {
+	if a == nil {
 		return nil
 	}
-	return o.BaseActivityItem
+	return a.BaseActivityItem
 }
 
-func (o *AttachActivityResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (a *AttachActivityResponse) GetNotFoundError() *shared.NotFoundError {
+	if a == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return a.NotFoundError
 }
 
-func (o *AttachActivityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (a *AttachActivityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if a == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return a.TooManyRequestsError
 }
 
-func (o *AttachActivityResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (a *AttachActivityResponse) GetHeaders() map[string][]string {
+	if a == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return a.Headers
 }

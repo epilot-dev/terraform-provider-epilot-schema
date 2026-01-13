@@ -57,32 +57,32 @@ func (m *MultiSelectAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MultiSelectAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (m *MultiSelectAttributeInfoHelpers) GetHintText() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintText
+	return m.HintText
 }
 
-func (o *MultiSelectAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (m *MultiSelectAttributeInfoHelpers) GetHintTextKey() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return m.HintTextKey
 }
 
-func (o *MultiSelectAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (m *MultiSelectAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return m.HintCustomComponent
 }
 
-func (o *MultiSelectAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (m *MultiSelectAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if m == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return m.HintTooltipPlacement
 }
 
 type MultiSelectAttributeType string
@@ -121,24 +121,24 @@ func (t Two) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Two) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"value"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Two) GetValue() string {
-	if o == nil {
+func (t *Two) GetValue() string {
+	if t == nil {
 		return ""
 	}
-	return o.Value
+	return t.Value
 }
 
-func (o *Two) GetTitle() *string {
-	if o == nil {
+func (t *Two) GetTitle() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Title
+	return t.Title
 }
 
 type OptionsObjType string
@@ -149,8 +149,8 @@ const (
 )
 
 type OptionsObj struct {
-	Str *string `queryParam:"inline" name:"options"`
-	Two *Two    `queryParam:"inline" name:"options"`
+	Str *string `queryParam:"inline" union:"member"`
+	Two *Two    `queryParam:"inline" union:"member"`
 
 	Type OptionsObjType
 }
@@ -175,17 +175,43 @@ func CreateOptionsObjTwo(two Two) OptionsObj {
 
 func (u *OptionsObj) UnmarshalJSON(data []byte) error {
 
-	var two Two = Two{}
-	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
-		u.Two = &two
-		u.Type = OptionsObjTypeTwo
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = OptionsObjTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  OptionsObjTypeStr,
+			Value: &str,
+		})
+	}
+
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  OptionsObjTypeTwo,
+			Value: &two,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for OptionsObj", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for OptionsObj", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(OptionsObjType)
+	switch best.Type {
+	case OptionsObjTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case OptionsObjTypeTwo:
+		u.Two = best.Value.(*Two)
 		return nil
 	}
 
@@ -256,6 +282,16 @@ type MultiSelectAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *MultiSelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                    `json:"repeatable,omitempty"`
 	HasPrimary *bool                    `json:"has_primary,omitempty"`
@@ -274,246 +310,260 @@ func (m MultiSelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MultiSelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MultiSelectAttribute) GetID() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *MultiSelectAttribute) GetName() string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetName() string {
+	if m == nil {
 		return ""
 	}
-	return o.Name
+	return m.Name
 }
 
-func (o *MultiSelectAttribute) GetLabel() string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetLabel() string {
+	if m == nil {
 		return ""
 	}
-	return o.Label
+	return m.Label
 }
 
-func (o *MultiSelectAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetPlaceholder() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Placeholder
+	return m.Placeholder
 }
 
-func (o *MultiSelectAttribute) GetHidden() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetHidden() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Hidden
+	return m.Hidden
 }
 
-func (o *MultiSelectAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetShowInTable() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return m.ShowInTable
 }
 
-func (o *MultiSelectAttribute) GetSortable() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetSortable() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Sortable
+	return m.Sortable
 }
 
-func (o *MultiSelectAttribute) GetRequired() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetRequired() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Required
+	return m.Required
 }
 
-func (o *MultiSelectAttribute) GetReadonly() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetReadonly() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Readonly
+	return m.Readonly
 }
 
-func (o *MultiSelectAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetDeprecated() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Deprecated
+	return m.Deprecated
 }
 
-func (o *MultiSelectAttribute) GetDefaultValue() any {
-	if o == nil {
+func (m *MultiSelectAttribute) GetDefaultValue() any {
+	if m == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return m.DefaultValue
 }
 
-func (o *MultiSelectAttribute) GetGroup() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetGroup() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Group
+	return m.Group
 }
 
-func (o *MultiSelectAttribute) GetOrder() *int64 {
-	if o == nil {
+func (m *MultiSelectAttribute) GetOrder() *int64 {
+	if m == nil {
 		return nil
 	}
-	return o.Order
+	return m.Order
 }
 
-func (o *MultiSelectAttribute) GetLayout() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetLayout() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Layout
+	return m.Layout
 }
 
-func (o *MultiSelectAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetHideLabel() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.HideLabel
+	return m.HideLabel
 }
 
-func (o *MultiSelectAttribute) GetIcon() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetIcon() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Icon
+	return m.Icon
 }
 
-func (o *MultiSelectAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetRenderCondition() *string {
+	if m == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return m.RenderCondition
 }
 
-func (o *MultiSelectAttribute) GetPurpose() []string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetPurpose() []string {
+	if m == nil {
 		return nil
 	}
-	return o.Purpose
+	return m.Purpose
 }
 
-func (o *MultiSelectAttribute) GetManifest() []string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetManifest() []string {
+	if m == nil {
 		return nil
 	}
-	return o.Manifest
+	return m.Manifest
 }
 
-func (o *MultiSelectAttribute) GetConstraints() *MultiSelectAttributeConstraints {
-	if o == nil {
+func (m *MultiSelectAttribute) GetConstraints() *MultiSelectAttributeConstraints {
+	if m == nil {
 		return nil
 	}
-	return o.Constraints
+	return m.Constraints
 }
 
-func (o *MultiSelectAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetFeatureFlag() *string {
+	if m == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return m.FeatureFlag
 }
 
-func (o *MultiSelectAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (m *MultiSelectAttribute) GetSettingsFlag() []SettingFlag {
+	if m == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return m.SettingsFlag
 }
 
-func (o *MultiSelectAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetValueFormatter() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return m.ValueFormatter
 }
 
-func (o *MultiSelectAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (m *MultiSelectAttribute) GetPreviewValueFormatter() *string {
+	if m == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return m.PreviewValueFormatter
 }
 
-func (o *MultiSelectAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetEntityBuilderDisableEdit() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return m.EntityBuilderDisableEdit
 }
 
-func (o *MultiSelectAttribute) GetProtected() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetProtected() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Protected
+	return m.Protected
 }
 
-func (o *MultiSelectAttribute) GetInfoHelpers() *MultiSelectAttributeInfoHelpers {
-	if o == nil {
+func (m *MultiSelectAttribute) GetInfoHelpers() *MultiSelectAttributeInfoHelpers {
+	if m == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return m.InfoHelpers
 }
 
-func (o *MultiSelectAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetExplicitSearchable() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.Repeatable
+	return m.ExplicitSearchable
 }
 
-func (o *MultiSelectAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetExcludeFromSearch() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return m.ExcludeFromSearch
 }
 
-func (o *MultiSelectAttribute) GetType() MultiSelectAttributeType {
-	if o == nil {
+func (m *MultiSelectAttribute) GetRepeatable() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.Repeatable
+}
+
+func (m *MultiSelectAttribute) GetHasPrimary() *bool {
+	if m == nil {
+		return nil
+	}
+	return m.HasPrimary
+}
+
+func (m *MultiSelectAttribute) GetType() MultiSelectAttributeType {
+	if m == nil {
 		return MultiSelectAttributeType("")
 	}
-	return o.Type
+	return m.Type
 }
 
-func (o *MultiSelectAttribute) GetDisableCaseSensitive() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetDisableCaseSensitive() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.DisableCaseSensitive
+	return m.DisableCaseSensitive
 }
 
-func (o *MultiSelectAttribute) GetAllowExtraOptions() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetAllowExtraOptions() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowExtraOptions
+	return m.AllowExtraOptions
 }
 
-func (o *MultiSelectAttribute) GetOptions() []*OptionsObj {
-	if o == nil {
+func (m *MultiSelectAttribute) GetOptions() []*OptionsObj {
+	if m == nil {
 		return nil
 	}
-	return o.Options
+	return m.Options
 }
 
-func (o *MultiSelectAttribute) GetAllowAny() *bool {
-	if o == nil {
+func (m *MultiSelectAttribute) GetAllowAny() *bool {
+	if m == nil {
 		return nil
 	}
-	return o.AllowAny
+	return m.AllowAny
 }

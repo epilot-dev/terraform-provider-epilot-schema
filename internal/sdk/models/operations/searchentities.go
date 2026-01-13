@@ -23,51 +23,51 @@ type SearchEntitiesResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *SearchEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SearchEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SearchEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SearchEntitiesResponse) GetEntitySearchResults() *shared.EntitySearchResults {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetEntitySearchResults() *shared.EntitySearchResults {
+	if s == nil {
 		return nil
 	}
-	return o.EntitySearchResults
+	return s.EntitySearchResults
 }
 
-func (o *SearchEntitiesResponse) GetRes() *string {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetRes() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Res
+	return s.Res
 }
 
-func (o *SearchEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if s == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return s.TooManyRequestsError
 }
 
-func (o *SearchEntitiesResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (s *SearchEntitiesResponse) GetHeaders() map[string][]string {
+	if s == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return s.Headers
 }

@@ -13,18 +13,18 @@ type GetSchemaRequest struct {
 	ID   *string `queryParam:"style=form,explode=true,name=id"`
 }
 
-func (o *GetSchemaRequest) GetSlug() string {
-	if o == nil {
+func (g *GetSchemaRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetSchemaRequest) GetID() *string {
-	if o == nil {
+func (g *GetSchemaRequest) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetSchemaResponse struct {
@@ -40,37 +40,37 @@ type GetSchemaResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetSchemaResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
-	if o == nil {
+func (g *GetSchemaResponse) GetEntitySchemaItem() *shared.EntitySchemaItem {
+	if g == nil {
 		return nil
 	}
-	return o.EntitySchemaItem
+	return g.EntitySchemaItem
 }
 
-func (o *GetSchemaResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetSchemaResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

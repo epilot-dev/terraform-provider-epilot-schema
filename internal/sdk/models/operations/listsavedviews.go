@@ -30,39 +30,39 @@ func (l *ListSavedViewsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListSavedViewsRequest) GetSlug() *string {
-	if o == nil {
+func (l *ListSavedViewsRequest) GetSlug() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Slug
+	return l.Slug
 }
 
-func (o *ListSavedViewsRequest) GetSort() *string {
-	if o == nil {
+func (l *ListSavedViewsRequest) GetSort() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Sort
+	return l.Sort
 }
 
-func (o *ListSavedViewsRequest) GetFrom() *int64 {
-	if o == nil {
+func (l *ListSavedViewsRequest) GetFrom() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListSavedViewsRequest) GetSize() *int64 {
-	if o == nil {
+func (l *ListSavedViewsRequest) GetSize() *int64 {
+	if l == nil {
 		return nil
 	}
-	return o.Size
+	return l.Size
 }
 
-func (o *ListSavedViewsRequest) GetFields() []string {
-	if o == nil {
+func (l *ListSavedViewsRequest) GetFields() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Fields
+	return l.Fields
 }
 
 type ListSavedViewsResponse struct {
@@ -76,30 +76,30 @@ type ListSavedViewsResponse struct {
 	ListSavedViewsResults *shared.ListSavedViewsResults
 }
 
-func (o *ListSavedViewsResponse) GetContentType() string {
-	if o == nil {
+func (l *ListSavedViewsResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListSavedViewsResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListSavedViewsResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListSavedViewsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListSavedViewsResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListSavedViewsResponse) GetListSavedViewsResults() *shared.ListSavedViewsResults {
-	if o == nil {
+func (l *ListSavedViewsResponse) GetListSavedViewsResults() *shared.ListSavedViewsResults {
+	if l == nil {
 		return nil
 	}
-	return o.ListSavedViewsResults
+	return l.ListSavedViewsResults
 }

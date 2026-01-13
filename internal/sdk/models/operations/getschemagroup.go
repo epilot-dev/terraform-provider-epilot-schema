@@ -12,11 +12,11 @@ type GetSchemaGroupRequest struct {
 	CompositeID string `pathParam:"style=simple,explode=false,name=composite_id"`
 }
 
-func (o *GetSchemaGroupRequest) GetCompositeID() string {
-	if o == nil {
+func (g *GetSchemaGroupRequest) GetCompositeID() string {
+	if g == nil {
 		return ""
 	}
-	return o.CompositeID
+	return g.CompositeID
 }
 
 type GetSchemaGroupResponse struct {
@@ -32,37 +32,37 @@ type GetSchemaGroupResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetSchemaGroupResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemaGroupResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemaGroupResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemaGroupResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemaGroupResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemaGroupResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
-	if o == nil {
+func (g *GetSchemaGroupResponse) GetEntitySchemaGroupWithCompositeID() *shared.EntitySchemaGroupWithCompositeID {
+	if g == nil {
 		return nil
 	}
-	return o.EntitySchemaGroupWithCompositeID
+	return g.EntitySchemaGroupWithCompositeID
 }
 
-func (o *GetSchemaGroupResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetSchemaGroupResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

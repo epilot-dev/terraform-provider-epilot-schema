@@ -64,6 +64,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.AddressAttribute.Deprecated = types.BoolPointerValue(attributesItem.AddressAttribute.Deprecated)
 				attributes.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AddressAttribute.EntityBuilderDisableEdit)
+				attributes.AddressAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.AddressAttribute.ExcludeFromSearch)
+				attributes.AddressAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.AddressAttribute.ExplicitSearchable)
 				attributes.AddressAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AddressAttribute.FeatureFlag)
 				attributes.AddressAttribute.Group = types.StringPointerValue(attributesItem.AddressAttribute.Group)
 				attributes.AddressAttribute.HasPrimary = types.BoolPointerValue(attributesItem.AddressAttribute.HasPrimary)
@@ -137,6 +139,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.AddressRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AddressRelationAttribute.Deprecated)
 				attributes.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AddressRelationAttribute.EntityBuilderDisableEdit)
+				attributes.AddressRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.AddressRelationAttribute.ExcludeFromSearch)
+				attributes.AddressRelationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.AddressRelationAttribute.ExplicitSearchable)
 				attributes.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AddressRelationAttribute.FeatureFlag)
 				attributes.AddressRelationAttribute.Group = types.StringPointerValue(attributesItem.AddressRelationAttribute.Group)
 				attributes.AddressRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.AddressRelationAttribute.HasPrimary)
@@ -204,6 +208,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.AutomationAttribute.Deprecated = types.BoolPointerValue(attributesItem.AutomationAttribute.Deprecated)
 				attributes.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.AutomationAttribute.EntityBuilderDisableEdit)
+				attributes.AutomationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.AutomationAttribute.ExcludeFromSearch)
+				attributes.AutomationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.AutomationAttribute.ExplicitSearchable)
 				attributes.AutomationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.AutomationAttribute.FeatureFlag)
 				attributes.AutomationAttribute.Group = types.StringPointerValue(attributesItem.AutomationAttribute.Group)
 				attributes.AutomationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.AutomationAttribute.HasPrimary)
@@ -276,6 +282,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 					attributes.BooleanAttribute.DisplayType = types.StringNull()
 				}
 				attributes.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.BooleanAttribute.EntityBuilderDisableEdit)
+				attributes.BooleanAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.BooleanAttribute.ExcludeFromSearch)
+				attributes.BooleanAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.BooleanAttribute.ExplicitSearchable)
 				attributes.BooleanAttribute.FeatureFlag = types.StringPointerValue(attributesItem.BooleanAttribute.FeatureFlag)
 				attributes.BooleanAttribute.Group = types.StringPointerValue(attributesItem.BooleanAttribute.Group)
 				attributes.BooleanAttribute.HasPrimary = types.BoolPointerValue(attributesItem.BooleanAttribute.HasPrimary)
@@ -346,6 +354,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.ComputedAttribute.Deprecated = types.BoolPointerValue(attributesItem.ComputedAttribute.Deprecated)
 				attributes.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ComputedAttribute.EntityBuilderDisableEdit)
+				attributes.ComputedAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.ComputedAttribute.ExcludeFromSearch)
+				attributes.ComputedAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.ComputedAttribute.ExplicitSearchable)
 				attributes.ComputedAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ComputedAttribute.FeatureFlag)
 				attributes.ComputedAttribute.Group = types.StringPointerValue(attributesItem.ComputedAttribute.Group)
 				attributes.ComputedAttribute.HasPrimary = types.BoolPointerValue(attributesItem.ComputedAttribute.HasPrimary)
@@ -413,6 +423,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.ConsentAttribute.Deprecated = types.BoolPointerValue(attributesItem.ConsentAttribute.Deprecated)
 				attributes.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.ConsentAttribute.EntityBuilderDisableEdit)
+				attributes.ConsentAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.ConsentAttribute.ExcludeFromSearch)
+				attributes.ConsentAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.ConsentAttribute.ExplicitSearchable)
 				attributes.ConsentAttribute.FeatureFlag = types.StringPointerValue(attributesItem.ConsentAttribute.FeatureFlag)
 				attributes.ConsentAttribute.Group = types.StringPointerValue(attributesItem.ConsentAttribute.Group)
 				attributes.ConsentAttribute.HasPrimary = types.BoolPointerValue(attributesItem.ConsentAttribute.HasPrimary)
@@ -485,6 +497,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.CountryAttribute.Deprecated = types.BoolPointerValue(attributesItem.CountryAttribute.Deprecated)
 				attributes.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CountryAttribute.EntityBuilderDisableEdit)
+				attributes.CountryAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.CountryAttribute.ExcludeFromSearch)
+				attributes.CountryAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.CountryAttribute.ExplicitSearchable)
 				attributes.CountryAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CountryAttribute.FeatureFlag)
 				attributes.CountryAttribute.Group = types.StringPointerValue(attributesItem.CountryAttribute.Group)
 				attributes.CountryAttribute.HasPrimary = types.BoolPointerValue(attributesItem.CountryAttribute.HasPrimary)
@@ -568,6 +582,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.CurrencyAttribute.Deprecated = types.BoolPointerValue(attributesItem.CurrencyAttribute.Deprecated)
 				attributes.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.CurrencyAttribute.EntityBuilderDisableEdit)
+				attributes.CurrencyAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.CurrencyAttribute.ExcludeFromSearch)
+				attributes.CurrencyAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.CurrencyAttribute.ExplicitSearchable)
 				attributes.CurrencyAttribute.FeatureFlag = types.StringPointerValue(attributesItem.CurrencyAttribute.FeatureFlag)
 				attributes.CurrencyAttribute.Group = types.StringPointerValue(attributesItem.CurrencyAttribute.Group)
 				attributes.CurrencyAttribute.HasPrimary = types.BoolPointerValue(attributesItem.CurrencyAttribute.HasPrimary)
@@ -635,6 +651,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.DateAttribute.Deprecated = types.BoolPointerValue(attributesItem.DateAttribute.Deprecated)
 				attributes.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.DateAttribute.EntityBuilderDisableEdit)
+				attributes.DateAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.DateAttribute.ExcludeFromSearch)
+				attributes.DateAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.DateAttribute.ExplicitSearchable)
 				attributes.DateAttribute.FeatureFlag = types.StringPointerValue(attributesItem.DateAttribute.FeatureFlag)
 				attributes.DateAttribute.Group = types.StringPointerValue(attributesItem.DateAttribute.Group)
 				attributes.DateAttribute.HasPrimary = types.BoolPointerValue(attributesItem.DateAttribute.HasPrimary)
@@ -702,6 +720,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.EmailAttribute.Deprecated = types.BoolPointerValue(attributesItem.EmailAttribute.Deprecated)
 				attributes.EmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.EmailAttribute.EntityBuilderDisableEdit)
+				attributes.EmailAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.EmailAttribute.ExcludeFromSearch)
+				attributes.EmailAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.EmailAttribute.ExplicitSearchable)
 				attributes.EmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem.EmailAttribute.FeatureFlag)
 				attributes.EmailAttribute.Group = types.StringPointerValue(attributesItem.EmailAttribute.Group)
 				attributes.EmailAttribute.HasPrimary = types.BoolPointerValue(attributesItem.EmailAttribute.HasPrimary)
@@ -780,6 +800,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes.FileAttribute.DisplayImagesLandscaped = types.BoolPointerValue(attributesItem.FileAttribute.DisplayImagesLandscaped)
 				attributes.FileAttribute.EnableDescription = types.BoolPointerValue(attributesItem.FileAttribute.EnableDescription)
 				attributes.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.FileAttribute.EntityBuilderDisableEdit)
+				attributes.FileAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.FileAttribute.ExcludeFromSearch)
+				attributes.FileAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.FileAttribute.ExplicitSearchable)
 				attributes.FileAttribute.FeatureFlag = types.StringPointerValue(attributesItem.FileAttribute.FeatureFlag)
 				attributes.FileAttribute.Group = types.StringPointerValue(attributesItem.FileAttribute.Group)
 				attributes.FileAttribute.HasPrimary = types.BoolPointerValue(attributesItem.FileAttribute.HasPrimary)
@@ -848,6 +870,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.InternalAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalAttribute.Deprecated)
 				attributes.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalAttribute.EntityBuilderDisableEdit)
+				attributes.InternalAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.InternalAttribute.ExcludeFromSearch)
+				attributes.InternalAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.InternalAttribute.ExplicitSearchable)
 				attributes.InternalAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalAttribute.FeatureFlag)
 				attributes.InternalAttribute.Group = types.StringPointerValue(attributesItem.InternalAttribute.Group)
 				attributes.InternalAttribute.HasPrimary = types.BoolPointerValue(attributesItem.InternalAttribute.HasPrimary)
@@ -915,6 +939,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.InternalUserAttribute.Deprecated = types.BoolPointerValue(attributesItem.InternalUserAttribute.Deprecated)
 				attributes.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InternalUserAttribute.EntityBuilderDisableEdit)
+				attributes.InternalUserAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.InternalUserAttribute.ExcludeFromSearch)
+				attributes.InternalUserAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.InternalUserAttribute.ExplicitSearchable)
 				attributes.InternalUserAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InternalUserAttribute.FeatureFlag)
 				attributes.InternalUserAttribute.Group = types.StringPointerValue(attributesItem.InternalUserAttribute.Group)
 				attributes.InternalUserAttribute.HasPrimary = types.BoolPointerValue(attributesItem.InternalUserAttribute.HasPrimary)
@@ -982,6 +1008,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.InvitationEmailAttribute.Deprecated = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.Deprecated)
 				attributes.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.EntityBuilderDisableEdit)
+				attributes.InvitationEmailAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.ExcludeFromSearch)
+				attributes.InvitationEmailAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.ExplicitSearchable)
 				attributes.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(attributesItem.InvitationEmailAttribute.FeatureFlag)
 				attributes.InvitationEmailAttribute.Group = types.StringPointerValue(attributesItem.InvitationEmailAttribute.Group)
 				attributes.InvitationEmailAttribute.HasPrimary = types.BoolPointerValue(attributesItem.InvitationEmailAttribute.HasPrimary)
@@ -1049,6 +1077,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.LinkAttribute.Deprecated = types.BoolPointerValue(attributesItem.LinkAttribute.Deprecated)
 				attributes.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.LinkAttribute.EntityBuilderDisableEdit)
+				attributes.LinkAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.LinkAttribute.ExcludeFromSearch)
+				attributes.LinkAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.LinkAttribute.ExplicitSearchable)
 				attributes.LinkAttribute.FeatureFlag = types.StringPointerValue(attributesItem.LinkAttribute.FeatureFlag)
 				attributes.LinkAttribute.Group = types.StringPointerValue(attributesItem.LinkAttribute.Group)
 				attributes.LinkAttribute.HasPrimary = types.BoolPointerValue(attributesItem.LinkAttribute.HasPrimary)
@@ -1118,6 +1148,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes.MessageEmailAddressAttribute.Deprecated = types.BoolPointerValue(attributesItem.MessageEmailAddressAttribute.Deprecated)
 				attributes.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(attributesItem.MessageEmailAddressAttribute.EmailType)
 				attributes.MessageEmailAddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.MessageEmailAddressAttribute.EntityBuilderDisableEdit)
+				attributes.MessageEmailAddressAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.MessageEmailAddressAttribute.ExcludeFromSearch)
+				attributes.MessageEmailAddressAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.MessageEmailAddressAttribute.ExplicitSearchable)
 				attributes.MessageEmailAddressAttribute.FeatureFlag = types.StringPointerValue(attributesItem.MessageEmailAddressAttribute.FeatureFlag)
 				attributes.MessageEmailAddressAttribute.Group = types.StringPointerValue(attributesItem.MessageEmailAddressAttribute.Group)
 				attributes.MessageEmailAddressAttribute.HasPrimary = types.BoolPointerValue(attributesItem.MessageEmailAddressAttribute.HasPrimary)
@@ -1189,6 +1221,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes.MultiSelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.MultiSelectAttribute.Deprecated)
 				attributes.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(attributesItem.MultiSelectAttribute.DisableCaseSensitive)
 				attributes.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.MultiSelectAttribute.EntityBuilderDisableEdit)
+				attributes.MultiSelectAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.MultiSelectAttribute.ExcludeFromSearch)
+				attributes.MultiSelectAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.MultiSelectAttribute.ExplicitSearchable)
 				attributes.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.MultiSelectAttribute.FeatureFlag)
 				attributes.MultiSelectAttribute.Group = types.StringPointerValue(attributesItem.MultiSelectAttribute.Group)
 				attributes.MultiSelectAttribute.HasPrimary = types.BoolPointerValue(attributesItem.MultiSelectAttribute.HasPrimary)
@@ -1264,6 +1298,11 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				} else {
 					attributes.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 				}
+				if attributesItem.NumberAttribute.DataType != nil {
+					attributes.NumberAttribute.DataType = types.StringValue(string(*attributesItem.NumberAttribute.DataType))
+				} else {
+					attributes.NumberAttribute.DataType = types.StringNull()
+				}
 				if attributesItem.NumberAttribute.DefaultValue == nil {
 					attributes.NumberAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 				} else {
@@ -1272,6 +1311,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.NumberAttribute.Deprecated = types.BoolPointerValue(attributesItem.NumberAttribute.Deprecated)
 				attributes.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.NumberAttribute.EntityBuilderDisableEdit)
+				attributes.NumberAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.NumberAttribute.ExcludeFromSearch)
+				attributes.NumberAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.NumberAttribute.ExplicitSearchable)
 				attributes.NumberAttribute.FeatureFlag = types.StringPointerValue(attributesItem.NumberAttribute.FeatureFlag)
 				attributes.NumberAttribute.Format = types.StringPointerValue(attributesItem.NumberAttribute.Format)
 				attributes.NumberAttribute.Group = types.StringPointerValue(attributesItem.NumberAttribute.Group)
@@ -1341,6 +1382,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.OrderedListAttribute.Deprecated = types.BoolPointerValue(attributesItem.OrderedListAttribute.Deprecated)
 				attributes.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.OrderedListAttribute.EntityBuilderDisableEdit)
+				attributes.OrderedListAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.OrderedListAttribute.ExcludeFromSearch)
+				attributes.OrderedListAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.OrderedListAttribute.ExplicitSearchable)
 				attributes.OrderedListAttribute.FeatureFlag = types.StringPointerValue(attributesItem.OrderedListAttribute.FeatureFlag)
 				attributes.OrderedListAttribute.Group = types.StringPointerValue(attributesItem.OrderedListAttribute.Group)
 				attributes.OrderedListAttribute.HasPrimary = types.BoolPointerValue(attributesItem.OrderedListAttribute.HasPrimary)
@@ -1408,6 +1451,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PartnerOrganisationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.Deprecated)
 				attributes.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.EntityBuilderDisableEdit)
+				attributes.PartnerOrganisationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.ExcludeFromSearch)
+				attributes.PartnerOrganisationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.ExplicitSearchable)
 				attributes.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.FeatureFlag)
 				attributes.PartnerOrganisationAttribute.Group = types.StringPointerValue(attributesItem.PartnerOrganisationAttribute.Group)
 				attributes.PartnerOrganisationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PartnerOrganisationAttribute.HasPrimary)
@@ -1475,6 +1520,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PartnerStatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.Deprecated)
 				attributes.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.EntityBuilderDisableEdit)
+				attributes.PartnerStatusAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.ExcludeFromSearch)
+				attributes.PartnerStatusAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.ExplicitSearchable)
 				attributes.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PartnerStatusAttribute.FeatureFlag)
 				attributes.PartnerStatusAttribute.Group = types.StringPointerValue(attributesItem.PartnerStatusAttribute.Group)
 				attributes.PartnerStatusAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PartnerStatusAttribute.HasPrimary)
@@ -1542,6 +1589,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PaymentAttribute.Deprecated = types.BoolPointerValue(attributesItem.PaymentAttribute.Deprecated)
 				attributes.PaymentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PaymentAttribute.EntityBuilderDisableEdit)
+				attributes.PaymentAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PaymentAttribute.ExcludeFromSearch)
+				attributes.PaymentAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PaymentAttribute.ExplicitSearchable)
 				attributes.PaymentAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PaymentAttribute.FeatureFlag)
 				attributes.PaymentAttribute.Group = types.StringPointerValue(attributesItem.PaymentAttribute.Group)
 				attributes.PaymentAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PaymentAttribute.HasPrimary)
@@ -1609,6 +1658,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PaymentMethodRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.Deprecated)
 				attributes.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.EntityBuilderDisableEdit)
+				attributes.PaymentMethodRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.ExcludeFromSearch)
+				attributes.PaymentMethodRelationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.ExplicitSearchable)
 				attributes.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.FeatureFlag)
 				attributes.PaymentMethodRelationAttribute.Group = types.StringPointerValue(attributesItem.PaymentMethodRelationAttribute.Group)
 				attributes.PaymentMethodRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PaymentMethodRelationAttribute.HasPrimary)
@@ -1676,6 +1727,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PhoneAttribute.Deprecated = types.BoolPointerValue(attributesItem.PhoneAttribute.Deprecated)
 				attributes.PhoneAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PhoneAttribute.EntityBuilderDisableEdit)
+				attributes.PhoneAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PhoneAttribute.ExcludeFromSearch)
+				attributes.PhoneAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PhoneAttribute.ExplicitSearchable)
 				attributes.PhoneAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PhoneAttribute.FeatureFlag)
 				attributes.PhoneAttribute.Group = types.StringPointerValue(attributesItem.PhoneAttribute.Group)
 				attributes.PhoneAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PhoneAttribute.HasPrimary)
@@ -1743,6 +1796,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PortalAccessAttribute.Deprecated = types.BoolPointerValue(attributesItem.PortalAccessAttribute.Deprecated)
 				attributes.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PortalAccessAttribute.EntityBuilderDisableEdit)
+				attributes.PortalAccessAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PortalAccessAttribute.ExcludeFromSearch)
+				attributes.PortalAccessAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PortalAccessAttribute.ExplicitSearchable)
 				attributes.PortalAccessAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PortalAccessAttribute.FeatureFlag)
 				attributes.PortalAccessAttribute.Group = types.StringPointerValue(attributesItem.PortalAccessAttribute.Group)
 				attributes.PortalAccessAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PortalAccessAttribute.HasPrimary)
@@ -1810,6 +1865,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PriceComponentAttribute.Deprecated = types.BoolPointerValue(attributesItem.PriceComponentAttribute.Deprecated)
 				attributes.PriceComponentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PriceComponentAttribute.EntityBuilderDisableEdit)
+				attributes.PriceComponentAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PriceComponentAttribute.ExcludeFromSearch)
+				attributes.PriceComponentAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PriceComponentAttribute.ExplicitSearchable)
 				attributes.PriceComponentAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PriceComponentAttribute.FeatureFlag)
 				attributes.PriceComponentAttribute.Group = types.StringPointerValue(attributesItem.PriceComponentAttribute.Group)
 				attributes.PriceComponentAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PriceComponentAttribute.HasPrimary)
@@ -1877,6 +1934,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.PurposeAttribute.Deprecated = types.BoolPointerValue(attributesItem.PurposeAttribute.Deprecated)
 				attributes.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.PurposeAttribute.EntityBuilderDisableEdit)
+				attributes.PurposeAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.PurposeAttribute.ExcludeFromSearch)
+				attributes.PurposeAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.PurposeAttribute.ExplicitSearchable)
 				attributes.PurposeAttribute.FeatureFlag = types.StringPointerValue(attributesItem.PurposeAttribute.FeatureFlag)
 				attributes.PurposeAttribute.Group = types.StringPointerValue(attributesItem.PurposeAttribute.Group)
 				attributes.PurposeAttribute.HasPrimary = types.BoolPointerValue(attributesItem.PurposeAttribute.HasPrimary)
@@ -1994,6 +2053,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				attributes.RelationAttribute.EnableRelationPicker = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationPicker)
 				attributes.RelationAttribute.EnableRelationTags = types.BoolPointerValue(attributesItem.RelationAttribute.EnableRelationTags)
 				attributes.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.RelationAttribute.EntityBuilderDisableEdit)
+				attributes.RelationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.RelationAttribute.ExcludeFromSearch)
+				attributes.RelationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.RelationAttribute.ExplicitSearchable)
 				attributes.RelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.RelationAttribute.FeatureFlag)
 				attributes.RelationAttribute.Group = types.StringPointerValue(attributesItem.RelationAttribute.Group)
 				attributes.RelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.RelationAttribute.HasPrimary)
@@ -2101,6 +2162,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.SelectAttribute.Deprecated = types.BoolPointerValue(attributesItem.SelectAttribute.Deprecated)
 				attributes.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SelectAttribute.EntityBuilderDisableEdit)
+				attributes.SelectAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.SelectAttribute.ExcludeFromSearch)
+				attributes.SelectAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.SelectAttribute.ExplicitSearchable)
 				attributes.SelectAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SelectAttribute.FeatureFlag)
 				attributes.SelectAttribute.Group = types.StringPointerValue(attributesItem.SelectAttribute.Group)
 				attributes.SelectAttribute.HasPrimary = types.BoolPointerValue(attributesItem.SelectAttribute.HasPrimary)
@@ -2174,6 +2237,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.SequenceAttribute.Deprecated = types.BoolPointerValue(attributesItem.SequenceAttribute.Deprecated)
 				attributes.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.SequenceAttribute.EntityBuilderDisableEdit)
+				attributes.SequenceAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.SequenceAttribute.ExcludeFromSearch)
+				attributes.SequenceAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.SequenceAttribute.ExplicitSearchable)
 				attributes.SequenceAttribute.FeatureFlag = types.StringPointerValue(attributesItem.SequenceAttribute.FeatureFlag)
 				attributes.SequenceAttribute.Group = types.StringPointerValue(attributesItem.SequenceAttribute.Group)
 				attributes.SequenceAttribute.HasPrimary = types.BoolPointerValue(attributesItem.SequenceAttribute.HasPrimary)
@@ -2243,6 +2308,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.StatusAttribute.Deprecated = types.BoolPointerValue(attributesItem.StatusAttribute.Deprecated)
 				attributes.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.StatusAttribute.EntityBuilderDisableEdit)
+				attributes.StatusAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.StatusAttribute.ExcludeFromSearch)
+				attributes.StatusAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.StatusAttribute.ExplicitSearchable)
 				attributes.StatusAttribute.FeatureFlag = types.StringPointerValue(attributesItem.StatusAttribute.FeatureFlag)
 				attributes.StatusAttribute.Group = types.StringPointerValue(attributesItem.StatusAttribute.Group)
 				attributes.StatusAttribute.HasPrimary = types.BoolPointerValue(attributesItem.StatusAttribute.HasPrimary)
@@ -2326,6 +2393,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.TagsAttribute.Deprecated = types.BoolPointerValue(attributesItem.TagsAttribute.Deprecated)
 				attributes.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TagsAttribute.EntityBuilderDisableEdit)
+				attributes.TagsAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.TagsAttribute.ExcludeFromSearch)
+				attributes.TagsAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.TagsAttribute.ExplicitSearchable)
 				attributes.TagsAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TagsAttribute.FeatureFlag)
 				attributes.TagsAttribute.Group = types.StringPointerValue(attributesItem.TagsAttribute.Group)
 				attributes.TagsAttribute.HasPrimary = types.BoolPointerValue(attributesItem.TagsAttribute.HasPrimary)
@@ -2401,6 +2470,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.TextAttribute.Deprecated = types.BoolPointerValue(attributesItem.TextAttribute.Deprecated)
 				attributes.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.TextAttribute.EntityBuilderDisableEdit)
+				attributes.TextAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.TextAttribute.ExcludeFromSearch)
+				attributes.TextAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.TextAttribute.ExplicitSearchable)
 				attributes.TextAttribute.FeatureFlag = types.StringPointerValue(attributesItem.TextAttribute.FeatureFlag)
 				attributes.TextAttribute.Group = types.StringPointerValue(attributesItem.TextAttribute.Group)
 				attributes.TextAttribute.HasPrimary = types.BoolPointerValue(attributesItem.TextAttribute.HasPrimary)
@@ -2476,6 +2547,8 @@ func (r *SchemaCapabilityDataSourceModel) RefreshFromSharedEntityCapabilityWithC
 				}
 				attributes.UserRelationAttribute.Deprecated = types.BoolPointerValue(attributesItem.UserRelationAttribute.Deprecated)
 				attributes.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(attributesItem.UserRelationAttribute.EntityBuilderDisableEdit)
+				attributes.UserRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(attributesItem.UserRelationAttribute.ExcludeFromSearch)
+				attributes.UserRelationAttribute.ExplicitSearchable = types.BoolPointerValue(attributesItem.UserRelationAttribute.ExplicitSearchable)
 				attributes.UserRelationAttribute.FeatureFlag = types.StringPointerValue(attributesItem.UserRelationAttribute.FeatureFlag)
 				attributes.UserRelationAttribute.Group = types.StringPointerValue(attributesItem.UserRelationAttribute.Group)
 				attributes.UserRelationAttribute.HasPrimary = types.BoolPointerValue(attributesItem.UserRelationAttribute.HasPrimary)

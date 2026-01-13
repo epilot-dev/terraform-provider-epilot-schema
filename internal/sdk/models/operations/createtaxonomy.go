@@ -21,44 +21,44 @@ type CreateTaxonomyResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CreateTaxonomyResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateTaxonomyResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateTaxonomyResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateTaxonomyResponse) GetTaxonomy() *shared.Taxonomy {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetTaxonomy() *shared.Taxonomy {
+	if c == nil {
 		return nil
 	}
-	return o.Taxonomy
+	return c.Taxonomy
 }
 
-func (o *CreateTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CreateTaxonomyResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CreateTaxonomyResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

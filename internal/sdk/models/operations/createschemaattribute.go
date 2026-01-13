@@ -21,44 +21,44 @@ type CreateSchemaAttributeResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *CreateSchemaAttributeResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateSchemaAttributeResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateSchemaAttributeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
+	if c == nil {
 		return nil
 	}
-	return o.AttributeWithCompositeID
+	return c.AttributeWithCompositeID
 }
 
-func (o *CreateSchemaAttributeResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if c == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return c.TooManyRequestsError
 }
 
-func (o *CreateSchemaAttributeResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (c *CreateSchemaAttributeResponse) GetHeaders() map[string][]string {
+	if c == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return c.Headers
 }

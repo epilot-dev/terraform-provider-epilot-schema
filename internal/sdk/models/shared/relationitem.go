@@ -9,7 +9,9 @@ import (
 type RelationItem struct {
 	EntityID string `json:"entity_id"`
 	// Organization Id the entity belongs to
-	OrgID     *string  `json:"org_id,omitempty"`
+	OrgID *string `json:"org_id,omitempty"`
+	// URL-friendly identifier for the entity schema
+	Schema    *string  `json:"_schema,omitempty"`
 	Attribute string   `json:"attribute"`
 	Tags      []string `json:"_tags,omitempty"`
 	// Whether this is a reverse relation
@@ -21,43 +23,50 @@ func (r RelationItem) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RelationItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"entity_id", "attribute"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RelationItem) GetEntityID() string {
-	if o == nil {
+func (r *RelationItem) GetEntityID() string {
+	if r == nil {
 		return ""
 	}
-	return o.EntityID
+	return r.EntityID
 }
 
-func (o *RelationItem) GetOrgID() *string {
-	if o == nil {
+func (r *RelationItem) GetOrgID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.OrgID
+	return r.OrgID
 }
 
-func (o *RelationItem) GetAttribute() string {
-	if o == nil {
+func (r *RelationItem) GetSchema() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Schema
+}
+
+func (r *RelationItem) GetAttribute() string {
+	if r == nil {
 		return ""
 	}
-	return o.Attribute
+	return r.Attribute
 }
 
-func (o *RelationItem) GetTags() []string {
-	if o == nil {
+func (r *RelationItem) GetTags() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Tags
+	return r.Tags
 }
 
-func (o *RelationItem) GetReverse() *bool {
-	if o == nil {
+func (r *RelationItem) GetReverse() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Reverse
+	return r.Reverse
 }

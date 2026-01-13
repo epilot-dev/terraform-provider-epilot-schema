@@ -13,18 +13,18 @@ type PutSchemaAttributeRequest struct {
 	AttributeWithCompositeID *shared.AttributeWithCompositeID `request:"mediaType=application/json"`
 }
 
-func (o *PutSchemaAttributeRequest) GetCompositeID() string {
-	if o == nil {
+func (p *PutSchemaAttributeRequest) GetCompositeID() string {
+	if p == nil {
 		return ""
 	}
-	return o.CompositeID
+	return p.CompositeID
 }
 
-func (o *PutSchemaAttributeRequest) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
-	if o == nil {
+func (p *PutSchemaAttributeRequest) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
+	if p == nil {
 		return nil
 	}
-	return o.AttributeWithCompositeID
+	return p.AttributeWithCompositeID
 }
 
 type PutSchemaAttributeResponse struct {
@@ -38,30 +38,30 @@ type PutSchemaAttributeResponse struct {
 	AttributeWithCompositeID *shared.AttributeWithCompositeID
 }
 
-func (o *PutSchemaAttributeResponse) GetContentType() string {
-	if o == nil {
+func (p *PutSchemaAttributeResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutSchemaAttributeResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutSchemaAttributeResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutSchemaAttributeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutSchemaAttributeResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PutSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
-	if o == nil {
+func (p *PutSchemaAttributeResponse) GetAttributeWithCompositeID() *shared.AttributeWithCompositeID {
+	if p == nil {
 		return nil
 	}
-	return o.AttributeWithCompositeID
+	return p.AttributeWithCompositeID
 }

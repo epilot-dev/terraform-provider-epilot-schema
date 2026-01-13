@@ -146,8 +146,9 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 				Computed: true,
 			},
 			"id": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
+				Computed:    true,
+				Optional:    true,
+				Description: `Generated uuid for schema`,
 			},
 			"layout_settings": schema.SingleNestedAttribute{
 				Computed: true,
@@ -186,7 +187,7 @@ func (r *SchemaDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 			},
 			"slug": schema.StringAttribute{
 				Required:    true,
-				Description: `Entity Type`,
+				Description: `URL-friendly identifier for the entity schema`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), "must match pattern "+regexp.MustCompile(`^[a-zA-Z0-9_-]+$`).String()),
 				},

@@ -22,31 +22,31 @@ func (g GetEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetEntityRequest) GetID() string {
-	if o == nil {
+func (g *GetEntityRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetEntityRequest) GetSlug() string {
-	if o == nil {
+func (g *GetEntityRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetEntityRequest) GetHydrate() *bool {
-	if o == nil {
+func (g *GetEntityRequest) GetHydrate() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Hydrate
+	return g.Hydrate
 }
 
 // GetEntityResponseBody - Success
@@ -55,18 +55,18 @@ type GetEntityResponseBody struct {
 	Relations []shared.EntityItem `json:"relations,omitempty"`
 }
 
-func (o *GetEntityResponseBody) GetEntity() *shared.EntityItem {
-	if o == nil {
+func (g *GetEntityResponseBody) GetEntity() *shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Entity
+	return g.Entity
 }
 
-func (o *GetEntityResponseBody) GetRelations() []shared.EntityItem {
-	if o == nil {
+func (g *GetEntityResponseBody) GetRelations() []shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }
 
 type GetEntityResponse struct {
@@ -82,37 +82,37 @@ type GetEntityResponse struct {
 	NotFoundError *shared.NotFoundError
 }
 
-func (o *GetEntityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetEntityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetEntityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetEntityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetEntityResponse) GetObject() *GetEntityResponseBody {
-	if o == nil {
+func (g *GetEntityResponse) GetObject() *GetEntityResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }
 
-func (o *GetEntityResponse) GetNotFoundError() *shared.NotFoundError {
-	if o == nil {
+func (g *GetEntityResponse) GetNotFoundError() *shared.NotFoundError {
+	if g == nil {
 		return nil
 	}
-	return o.NotFoundError
+	return g.NotFoundError
 }

@@ -56,32 +56,32 @@ func (s *SelectAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SelectAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (s *SelectAttributeInfoHelpers) GetHintText() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintText
+	return s.HintText
 }
 
-func (o *SelectAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (s *SelectAttributeInfoHelpers) GetHintTextKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return s.HintTextKey
 }
 
-func (o *SelectAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (s *SelectAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return s.HintCustomComponent
 }
 
-func (o *SelectAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (s *SelectAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return s.HintTooltipPlacement
 }
 
 type SelectAttributeType string
@@ -162,6 +162,16 @@ type SelectAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *SelectAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool               `json:"repeatable,omitempty"`
 	HasPrimary *bool               `json:"has_primary,omitempty"`
@@ -176,232 +186,246 @@ func (s SelectAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SelectAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SelectAttribute) GetID() *string {
-	if o == nil {
+func (s *SelectAttribute) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SelectAttribute) GetName() string {
-	if o == nil {
+func (s *SelectAttribute) GetName() string {
+	if s == nil {
 		return ""
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *SelectAttribute) GetLabel() string {
-	if o == nil {
+func (s *SelectAttribute) GetLabel() string {
+	if s == nil {
 		return ""
 	}
-	return o.Label
+	return s.Label
 }
 
-func (o *SelectAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (s *SelectAttribute) GetPlaceholder() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Placeholder
+	return s.Placeholder
 }
 
-func (o *SelectAttribute) GetHidden() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetHidden() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Hidden
+	return s.Hidden
 }
 
-func (o *SelectAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetShowInTable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return s.ShowInTable
 }
 
-func (o *SelectAttribute) GetSortable() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetSortable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Sortable
+	return s.Sortable
 }
 
-func (o *SelectAttribute) GetRequired() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetRequired() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Required
+	return s.Required
 }
 
-func (o *SelectAttribute) GetReadonly() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetReadonly() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Readonly
+	return s.Readonly
 }
 
-func (o *SelectAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetDeprecated() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Deprecated
+	return s.Deprecated
 }
 
-func (o *SelectAttribute) GetDefaultValue() any {
-	if o == nil {
+func (s *SelectAttribute) GetDefaultValue() any {
+	if s == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return s.DefaultValue
 }
 
-func (o *SelectAttribute) GetGroup() *string {
-	if o == nil {
+func (s *SelectAttribute) GetGroup() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Group
+	return s.Group
 }
 
-func (o *SelectAttribute) GetOrder() *int64 {
-	if o == nil {
+func (s *SelectAttribute) GetOrder() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Order
+	return s.Order
 }
 
-func (o *SelectAttribute) GetLayout() *string {
-	if o == nil {
+func (s *SelectAttribute) GetLayout() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Layout
+	return s.Layout
 }
 
-func (o *SelectAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetHideLabel() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HideLabel
+	return s.HideLabel
 }
 
-func (o *SelectAttribute) GetIcon() *string {
-	if o == nil {
+func (s *SelectAttribute) GetIcon() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Icon
+	return s.Icon
 }
 
-func (o *SelectAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (s *SelectAttribute) GetRenderCondition() *string {
+	if s == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return s.RenderCondition
 }
 
-func (o *SelectAttribute) GetPurpose() []string {
-	if o == nil {
+func (s *SelectAttribute) GetPurpose() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Purpose
+	return s.Purpose
 }
 
-func (o *SelectAttribute) GetManifest() []string {
-	if o == nil {
+func (s *SelectAttribute) GetManifest() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Manifest
+	return s.Manifest
 }
 
-func (o *SelectAttribute) GetConstraints() *SelectAttributeConstraints {
-	if o == nil {
+func (s *SelectAttribute) GetConstraints() *SelectAttributeConstraints {
+	if s == nil {
 		return nil
 	}
-	return o.Constraints
+	return s.Constraints
 }
 
-func (o *SelectAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (s *SelectAttribute) GetFeatureFlag() *string {
+	if s == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return s.FeatureFlag
 }
 
-func (o *SelectAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (s *SelectAttribute) GetSettingsFlag() []SettingFlag {
+	if s == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return s.SettingsFlag
 }
 
-func (o *SelectAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (s *SelectAttribute) GetValueFormatter() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return s.ValueFormatter
 }
 
-func (o *SelectAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (s *SelectAttribute) GetPreviewValueFormatter() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return s.PreviewValueFormatter
 }
 
-func (o *SelectAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetEntityBuilderDisableEdit() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return s.EntityBuilderDisableEdit
 }
 
-func (o *SelectAttribute) GetProtected() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetProtected() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Protected
+	return s.Protected
 }
 
-func (o *SelectAttribute) GetInfoHelpers() *SelectAttributeInfoHelpers {
-	if o == nil {
+func (s *SelectAttribute) GetInfoHelpers() *SelectAttributeInfoHelpers {
+	if s == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return s.InfoHelpers
 }
 
-func (o *SelectAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetExplicitSearchable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Repeatable
+	return s.ExplicitSearchable
 }
 
-func (o *SelectAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetExcludeFromSearch() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return s.ExcludeFromSearch
 }
 
-func (o *SelectAttribute) GetType() SelectAttributeType {
-	if o == nil {
+func (s *SelectAttribute) GetRepeatable() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Repeatable
+}
+
+func (s *SelectAttribute) GetHasPrimary() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.HasPrimary
+}
+
+func (s *SelectAttribute) GetType() SelectAttributeType {
+	if s == nil {
 		return SelectAttributeType("")
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *SelectAttribute) GetOptions() any {
-	if o == nil {
+func (s *SelectAttribute) GetOptions() any {
+	if s == nil {
 		return nil
 	}
-	return o.Options
+	return s.Options
 }
 
-func (o *SelectAttribute) GetAllowAny() *bool {
-	if o == nil {
+func (s *SelectAttribute) GetAllowAny() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.AllowAny
+	return s.AllowAny
 }

@@ -25,16 +25,16 @@ func (s *SummaryField) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SummaryField) GetField() *string {
-	if o == nil {
+func (s *SummaryField) GetField() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Field
+	return s.Field
 }
 
-func (o *SummaryField) GetDisplayAs() *string {
-	if o == nil {
+func (s *SummaryField) GetDisplayAs() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DisplayAs
+	return s.DisplayAs
 }

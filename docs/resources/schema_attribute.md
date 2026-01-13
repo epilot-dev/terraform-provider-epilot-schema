@@ -14,213 +14,6 @@ SchemaAttribute Resource
 
 ```terraform
 resource "epilot-schema_schema_attribute" "my_schemaattribute" {
-  address_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_address_fields = [
-      "..."
-    ]
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "address"
-    value_formatter = "...my_value_formatter..."
-  }
-  address_relation_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_address_fields = [
-      "..."
-    ]
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "relation_address"
-    value_formatter = "...my_value_formatter..."
-  }
-  automation_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "automation"
-    value_formatter = "...my_value_formatter..."
-  }
-  boolean_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    display_type                = "checkbox"
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "boolean"
-    value_formatter = "...my_value_formatter..."
-  }
   computed_attribute = {
     amount_field = "...my_amount_field..."
     composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
@@ -232,6 +25,8 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     default_value               = "{ \"see\": \"documentation\" }"
     deprecated                  = true
     entity_builder_disable_edit = false
+    exclude_from_search         = false
+    explicit_searchable         = true
     feature_flag                = "FF_MY_FEATURE_FLAG"
     group                       = "...my_group..."
     has_primary                 = false
@@ -273,1554 +68,6 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
     sortable        = true
     type            = "computed"
     value_formatter = "{{formatCurrencyAttribute entity attribute locale}}"
-  }
-  consent_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    identifiers = [
-      "..."
-    ]
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    topic           = "...my_topic..."
-    type            = "consent"
-    value_formatter = "...my_value_formatter..."
-  }
-  country_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "country"
-    value_formatter = "...my_value_formatter..."
-  }
-  currency_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    currency = [
-      {
-        one = {
-          code        = "...my_code..."
-          description = "...my_description..."
-          flag        = "...my_flag..."
-          symbol      = "...my_symbol..."
-        }
-      }
-    ]
-    currency_selector_only      = false
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "currency"
-    value_formatter = "...my_value_formatter..."
-  }
-  date_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "date"
-    value_formatter = "...my_value_formatter..."
-  }
-  email_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "email"
-    value_formatter = "...my_value_formatter..."
-  }
-  file_attribute = {
-    allowed_extensions = [
-      "csv"
-    ]
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_access_control      = "private"
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    display_images_landscaped   = true
-    enable_description          = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    multiple                = true
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "file"
-    value_formatter = "...my_value_formatter..."
-  }
-  internal_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "internal"
-    value_formatter = "...my_value_formatter..."
-  }
-  internal_user_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = false
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "internal_user"
-    value_formatter = "...my_value_formatter..."
-  }
-  invitation_email_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "invitation_email"
-    value_formatter = "...my_value_formatter..."
-  }
-  link_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "link"
-    value_formatter = "...my_value_formatter..."
-  }
-  message_email_address_attribute = {
-    address      = "...my_address..."
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    email_type                  = "...my_email_type..."
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    send_status      = "...my_send_status..."
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "message_email_address"
-    value_formatter = "...my_value_formatter..."
-  }
-  multi_select_attribute = {
-    allow_any           = true
-    allow_extra_options = true
-    composite_id        = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    disable_case_sensitive      = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name = "...my_name..."
-    options = [
-      {
-        str = "...my_str..."
-      }
-    ]
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "checkbox"
-    value_formatter = "...my_value_formatter..."
-  }
-  number_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    format                      = "...my_format..."
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    show_separator  = true
-    sortable        = true
-    type            = "number"
-    value_formatter = "...my_value_formatter..."
-  }
-  ordered_list_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "ordered_list"
-    value_formatter = "...my_value_formatter..."
-  }
-  partner_organisation_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = false
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "partner_organisation"
-    value_formatter = "...my_value_formatter..."
-  }
-  partner_status_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = false
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "partner_status"
-    value_formatter = "...my_value_formatter..."
-  }
-  payment_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "payment"
-    value_formatter = "...my_value_formatter..."
-  }
-  payment_method_relation_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "relation_payment_method"
-    value_formatter = "...my_value_formatter..."
-  }
-  phone_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "phone"
-    value_formatter = "...my_value_formatter..."
-  }
-  portal_access_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = false
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    type            = "portal_access"
-    value_formatter = "...my_value_formatter..."
-  }
-  price_component_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "price_component"
-    value_formatter = "...my_value_formatter..."
-  }
-  purpose_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = false
-    type            = "purpose"
-    value_formatter = "...my_value_formatter..."
-  }
-  relation_attribute = {
-    actions = [
-      {
-        action_type     = "create_new"
-        default         = false
-        feature_flag    = "...my_feature_flag..."
-        label           = "...my_label..."
-        new_entity_item = "{ \"see\": \"documentation\" }"
-        settings_flag = [
-          {
-            enabled = true
-            name    = "...my_name..."
-          }
-        ]
-      }
-    ]
-    add_button_label = "...my_add_button_label..."
-    allowed_schemas = [
-      "contact"
-    ]
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    details_view_mode_enabled   = true
-    drawer_size                 = "large"
-    edit_mode                   = "list-view"
-    enable_relation_picker      = false
-    enable_relation_tags        = true
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly               = false
-    relation_affinity_mode = "strong"
-    relation_picker_filter = {
-      q = "NOT is_composite_price:true"
-    }
-    relation_type    = "has_one"
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = false
-    reverse_attributes = {
-      key = "value"
-    }
-    schema             = "contact"
-    search_placeholder = "...my_search_placeholder..."
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table = false
-    sortable      = false
-    summary_fields = [
-      {
-        summary_field = {
-          display_as = "...my_display_as..."
-          field      = "...my_field..."
-        }
-      }
-    ]
-    type            = "relation"
-    value_formatter = "...my_value_formatter..."
-  }
-  select_attribute = {
-    allow_any    = false
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    options                 = "{ \"see\": \"documentation\" }"
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "radio"
-    value_formatter = "...my_value_formatter..."
-  }
-  sequence_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = false
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    prefix                  = "OR-"
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = true
-    start_number    = 3
-    type            = "sequence"
-    value_formatter = "...my_value_formatter..."
-  }
-  status_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name = "...my_name..."
-    options = [
-      {
-        two = {
-          title = "...my_title..."
-          value = "...my_value..."
-        }
-      }
-    ]
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "status"
-    value_formatter = "...my_value_formatter..."
-  }
-  tags_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    name = "...my_name..."
-    options = [
-      "..."
-    ]
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = false
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = true
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table = true
-    sortable      = true
-    suggestions = [
-      "..."
-    ]
-    type            = "tags"
-    value_formatter = "...my_value_formatter..."
-  }
-  text_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = false
-    entity_builder_disable_edit = true
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = false
-    hidden                      = true
-    hide_label                  = false
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    multiline               = true
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = false
-    render_condition = "...my_render_condition..."
-    repeatable       = true
-    required         = false
-    rich_text        = true
-    rows             = "{ \"see\": \"documentation\" }"
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = true
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = true
-    sortable        = false
-    type            = "string"
-    value_formatter = "...my_value_formatter..."
-  }
-  user_relation_attribute = {
-    composite_id = "contact:97644baa-083f-4e49-9188-fcff2ecaad7d"
-    constraints = {
-      # ...
-    }
-    default_value               = "{ \"see\": \"documentation\" }"
-    deprecated                  = true
-    entity_builder_disable_edit = false
-    feature_flag                = "FF_MY_FEATURE_FLAG"
-    group                       = "...my_group..."
-    has_primary                 = true
-    hidden                      = true
-    hide_label                  = true
-    icon                        = "...my_icon..."
-    id                          = "d5839b94-ba20-4225-a78e-76951d352bd6"
-    info_helpers = {
-      hint_custom_component  = "...my_hint_custom_component..."
-      hint_text              = "...my_hint_text..."
-      hint_text_key          = "...my_hint_text_key..."
-      hint_tooltip_placement = "top"
-    }
-    label  = "...my_label..."
-    layout = "full_width"
-    manifest = [
-      "123e4567-e89b-12d3-a456-426614174000"
-    ]
-    multiple                = true
-    name                    = "...my_name..."
-    order                   = 0
-    placeholder             = "...my_placeholder..."
-    preview_value_formatter = "...my_preview_value_formatter..."
-    protected               = true
-    purpose = [
-      "taxonomy-slug:classification-slug"
-    ]
-    readonly         = true
-    render_condition = "...my_render_condition..."
-    repeatable       = false
-    required         = false
-    schema           = "contact"
-    settings_flag = [
-      {
-        enabled = false
-        name    = "...my_name..."
-      }
-    ]
-    show_in_table   = false
-    sortable        = true
-    type            = "relation_user"
-    value_formatter = "...my_value_formatter..."
   }
 }
 ```
@@ -1870,6 +117,14 @@ resource "epilot-schema_schema_attribute" "my_schemaattribute" {
 - `composite_id` (String) Schema Slug and the Attribute ID
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -1915,6 +170,7 @@ Valid values are:
   - plot_of_land
   - suburb
   - country
+  - postbox
   - additional_info
   - coordinates
   - start_date
@@ -1923,10 +179,19 @@ Valid values are:
   - title
   - first_name
   - last_name
+  - name_suffix
   - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2007,6 +272,7 @@ Valid values are:
   - plot_of_land
   - suburb
   - country
+  - postbox
   - additional_info
   - coordinates
   - start_date
@@ -2015,10 +281,19 @@ Valid values are:
   - title
   - first_name
   - last_name
+  - name_suffix
   - company_name
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2091,6 +366,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2164,6 +447,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `display_type` (String) Default: "switch"; must be one of ["switch", "checkbox"]
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2239,6 +530,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2311,6 +610,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2385,6 +692,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2459,6 +774,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2550,6 +873,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2622,6 +953,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2699,6 +1038,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `enable_description` (Boolean) When set to true, an i18n description will be used alongside the attribute label.
 This description should be set through the platform locales in the form: `file.{attribute_name}.description_text`.
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2772,6 +1119,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2844,6 +1199,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2916,6 +1279,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -2988,6 +1359,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3062,6 +1441,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `email_type` (String)
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3138,6 +1525,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `deprecated` (Boolean) Default: false
 - `disable_case_sensitive` (Boolean) controls if the matching of values against the options is case sensitive or not
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3226,9 +1621,18 @@ Optional:
 - `composite_id` (String)
 - `constraints` (Attributes) A set of constraints applicable to the attribute.
 These constraints should and will be enforced by the attribute renderer. (see [below for nested schema](#nestedatt--number_attribute--constraints))
+- `data_type` (String) Optional data type override. When set to 'number', the value is stored as a number instead of a string. Defaults to 'string'. Default: "string"; must be one of ["number", "string"]
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `format` (String)
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
@@ -3303,6 +1707,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3375,6 +1787,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3447,6 +1867,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3519,6 +1947,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3591,6 +2027,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3663,6 +2107,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3735,6 +2187,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3807,6 +2267,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3879,6 +2347,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -3959,6 +2435,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `enable_relation_picker` (Boolean) When enable_relation_picker is set to true the user will be able to pick existing relations as values. Otherwise, the user will need to create new relation to link. Default: true
 - `enable_relation_tags` (Boolean) When enable_relation_tags is set to true the user will be able to set tags(labels) in each relation item. Default: true
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4092,6 +2576,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4165,6 +2657,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4239,6 +2739,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4330,6 +2838,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4404,6 +2920,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)
@@ -4479,6 +3003,14 @@ These constraints should and will be enforced by the attribute renderer. (see [b
 - `default_value` (String) Parsed as JSON.
 - `deprecated` (Boolean) Default: false
 - `entity_builder_disable_edit` (Boolean) Setting to `true` disables editing the attribute on the entity builder UI. Default: false
+- `exclude_from_search` (Boolean) When set to true, this attribute will be excluded from search fields.
+Use this for fields that should not be matched during entity search operations,
+such as internal hashes or identifiers that might accidentally match search terms.
+Default: false
+- `explicit_searchable` (Boolean) When set to true, this attribute will always be searchable regardless of
+the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+that must always be included in search operations.
+Default: false
 - `feature_flag` (String) This attribute should only be active when the feature flag is enabled
 - `group` (String) Which group the attribute should appear in. Accepts group ID or group name
 - `has_primary` (Boolean)

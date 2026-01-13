@@ -55,18 +55,18 @@ func (l *ListTaxonomiesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListTaxonomiesRequest) GetIncludeDisabled() *bool {
-	if o == nil {
+func (l *ListTaxonomiesRequest) GetIncludeDisabled() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.IncludeDisabled
+	return l.IncludeDisabled
 }
 
-func (o *ListTaxonomiesRequest) GetType() *Type {
-	if o == nil {
+func (l *ListTaxonomiesRequest) GetType() *Type {
+	if l == nil {
 		return nil
 	}
-	return o.Type
+	return l.Type
 }
 
 // ListTaxonomiesResponseBody - Returns list of taxonomies in an organization
@@ -74,11 +74,11 @@ type ListTaxonomiesResponseBody struct {
 	Results []shared.Taxonomy `json:"results,omitempty"`
 }
 
-func (o *ListTaxonomiesResponseBody) GetResults() []shared.Taxonomy {
-	if o == nil {
+func (l *ListTaxonomiesResponseBody) GetResults() []shared.Taxonomy {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListTaxonomiesResponse struct {
@@ -92,30 +92,30 @@ type ListTaxonomiesResponse struct {
 	Object *ListTaxonomiesResponseBody
 }
 
-func (o *ListTaxonomiesResponse) GetContentType() string {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListTaxonomiesResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListTaxonomiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListTaxonomiesResponse) GetObject() *ListTaxonomiesResponseBody {
-	if o == nil {
+func (l *ListTaxonomiesResponse) GetObject() *ListTaxonomiesResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

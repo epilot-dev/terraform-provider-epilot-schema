@@ -19,25 +19,25 @@ type ReindexEntityRequest struct {
 	RequestBody *ReindexEntityRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *ReindexEntityRequest) GetID() string {
-	if o == nil {
+func (r *ReindexEntityRequest) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *ReindexEntityRequest) GetSlug() string {
-	if o == nil {
+func (r *ReindexEntityRequest) GetSlug() string {
+	if r == nil {
 		return ""
 	}
-	return o.Slug
+	return r.Slug
 }
 
-func (o *ReindexEntityRequest) GetRequestBody() *ReindexEntityRequestBody {
-	if o == nil {
+func (r *ReindexEntityRequest) GetRequestBody() *ReindexEntityRequestBody {
+	if r == nil {
 		return nil
 	}
-	return o.RequestBody
+	return r.RequestBody
 }
 
 type ReindexEntityResponse struct {
@@ -54,44 +54,44 @@ type ReindexEntityResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *ReindexEntityResponse) GetContentType() string {
-	if o == nil {
+func (r *ReindexEntityResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *ReindexEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (r *ReindexEntityResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *ReindexEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *ReindexEntityResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *ReindexEntityResponse) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (r *ReindexEntityResponse) GetEntityItem() *shared.EntityItem {
+	if r == nil {
 		return nil
 	}
-	return o.EntityItem
+	return r.EntityItem
 }
 
-func (o *ReindexEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (r *ReindexEntityResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if r == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return r.TooManyRequestsError
 }
 
-func (o *ReindexEntityResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (r *ReindexEntityResponse) GetHeaders() map[string][]string {
+	if r == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return r.Headers
 }

@@ -13,18 +13,18 @@ type ImportEntitiesRequest struct {
 	EntityImportParams *shared.EntityImportParams `request:"mediaType=application/json"`
 }
 
-func (o *ImportEntitiesRequest) GetJobID() *string {
-	if o == nil {
+func (i *ImportEntitiesRequest) GetJobID() *string {
+	if i == nil {
 		return nil
 	}
-	return o.JobID
+	return i.JobID
 }
 
-func (o *ImportEntitiesRequest) GetEntityImportParams() *shared.EntityImportParams {
-	if o == nil {
+func (i *ImportEntitiesRequest) GetEntityImportParams() *shared.EntityImportParams {
+	if i == nil {
 		return nil
 	}
-	return o.EntityImportParams
+	return i.EntityImportParams
 }
 
 type ImportEntitiesResponse struct {
@@ -39,37 +39,37 @@ type ImportEntitiesResponse struct {
 	Headers              map[string][]string
 }
 
-func (o *ImportEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (i *ImportEntitiesResponse) GetContentType() string {
+	if i == nil {
 		return ""
 	}
-	return o.ContentType
+	return i.ContentType
 }
 
-func (o *ImportEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (i *ImportEntitiesResponse) GetStatusCode() int {
+	if i == nil {
 		return 0
 	}
-	return o.StatusCode
+	return i.StatusCode
 }
 
-func (o *ImportEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (i *ImportEntitiesResponse) GetRawResponse() *http.Response {
+	if i == nil {
 		return nil
 	}
-	return o.RawResponse
+	return i.RawResponse
 }
 
-func (o *ImportEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
-	if o == nil {
+func (i *ImportEntitiesResponse) GetTooManyRequestsError() *shared.TooManyRequestsError {
+	if i == nil {
 		return nil
 	}
-	return o.TooManyRequestsError
+	return i.TooManyRequestsError
 }
 
-func (o *ImportEntitiesResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (i *ImportEntitiesResponse) GetHeaders() map[string][]string {
+	if i == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return i.Headers
 }

@@ -52,6 +52,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.AddressAttribute.Deprecated
 			r.AddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AddressAttribute.EntityBuilderDisableEdit
+			r.AddressAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AddressAttribute.ExcludeFromSearch
+			r.AddressAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AddressAttribute.ExplicitSearchable
 			r.AddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.FeatureFlag)
 			r.FeatureFlag = r.AddressAttribute.FeatureFlag
 			r.AddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressAttribute.Group)
@@ -152,6 +156,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.AddressRelationAttribute.Deprecated
 			r.AddressRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AddressRelationAttribute.EntityBuilderDisableEdit
+			r.AddressRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AddressRelationAttribute.ExcludeFromSearch
+			r.AddressRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AddressRelationAttribute.ExplicitSearchable
 			r.AddressRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.AddressRelationAttribute.FeatureFlag
 			r.AddressRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAddressRelationAttribute.Group)
@@ -246,6 +254,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.AutomationAttribute.Deprecated
 			r.AutomationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.AutomationAttribute.EntityBuilderDisableEdit
+			r.AutomationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.AutomationAttribute.ExcludeFromSearch
+			r.AutomationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.AutomationAttribute.ExplicitSearchable
 			r.AutomationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.FeatureFlag)
 			r.FeatureFlag = r.AutomationAttribute.FeatureFlag
 			r.AutomationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDAutomationAttribute.Group)
@@ -345,6 +357,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			}
 			r.BooleanAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.BooleanAttribute.EntityBuilderDisableEdit
+			r.BooleanAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.BooleanAttribute.ExcludeFromSearch
+			r.BooleanAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.BooleanAttribute.ExplicitSearchable
 			r.BooleanAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.FeatureFlag)
 			r.FeatureFlag = r.BooleanAttribute.FeatureFlag
 			r.BooleanAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDBooleanAttribute.Group)
@@ -442,6 +458,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.ComputedAttribute.Deprecated
 			r.ComputedAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ComputedAttribute.EntityBuilderDisableEdit
+			r.ComputedAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.ComputedAttribute.ExcludeFromSearch
+			r.ComputedAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDComputedAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.ComputedAttribute.ExplicitSearchable
 			r.ComputedAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.FeatureFlag)
 			r.FeatureFlag = r.ComputedAttribute.FeatureFlag
 			r.ComputedAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDComputedAttribute.Group)
@@ -536,6 +556,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.ConsentAttribute.Deprecated
 			r.ConsentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.ConsentAttribute.EntityBuilderDisableEdit
+			r.ConsentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.ConsentAttribute.ExcludeFromSearch
+			r.ConsentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDConsentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.ConsentAttribute.ExplicitSearchable
 			r.ConsentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.FeatureFlag)
 			r.FeatureFlag = r.ConsentAttribute.FeatureFlag
 			r.ConsentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDConsentAttribute.Group)
@@ -635,6 +659,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.CountryAttribute.Deprecated
 			r.CountryAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CountryAttribute.EntityBuilderDisableEdit
+			r.CountryAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.CountryAttribute.ExcludeFromSearch
+			r.CountryAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDCountryAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.CountryAttribute.ExplicitSearchable
 			r.CountryAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.FeatureFlag)
 			r.FeatureFlag = r.CountryAttribute.FeatureFlag
 			r.CountryAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCountryAttribute.Group)
@@ -745,6 +773,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.CurrencyAttribute.Deprecated
 			r.CurrencyAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.CurrencyAttribute.EntityBuilderDisableEdit
+			r.CurrencyAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.CurrencyAttribute.ExcludeFromSearch
+			r.CurrencyAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.CurrencyAttribute.ExplicitSearchable
 			r.CurrencyAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.FeatureFlag)
 			r.FeatureFlag = r.CurrencyAttribute.FeatureFlag
 			r.CurrencyAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDCurrencyAttribute.Group)
@@ -839,6 +871,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.DateAttribute.Deprecated
 			r.DateAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.DateAttribute.EntityBuilderDisableEdit
+			r.DateAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.DateAttribute.ExcludeFromSearch
+			r.DateAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDDateAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.DateAttribute.ExplicitSearchable
 			r.DateAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.FeatureFlag)
 			r.FeatureFlag = r.DateAttribute.FeatureFlag
 			r.DateAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDDateAttribute.Group)
@@ -933,6 +969,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.EmailAttribute.Deprecated
 			r.EmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.EmailAttribute.EntityBuilderDisableEdit
+			r.EmailAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.EmailAttribute.ExcludeFromSearch
+			r.EmailAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDEmailAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.EmailAttribute.ExplicitSearchable
 			r.EmailAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.FeatureFlag)
 			r.FeatureFlag = r.EmailAttribute.FeatureFlag
 			r.EmailAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDEmailAttribute.Group)
@@ -1038,6 +1078,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.FileAttribute.EnableDescription = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EnableDescription)
 			r.FileAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.FileAttribute.EntityBuilderDisableEdit
+			r.FileAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.FileAttribute.ExcludeFromSearch
+			r.FileAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDFileAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.FileAttribute.ExplicitSearchable
 			r.FileAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.FeatureFlag)
 			r.FeatureFlag = r.FileAttribute.FeatureFlag
 			r.FileAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDFileAttribute.Group)
@@ -1133,6 +1177,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.InternalAttribute.Deprecated
 			r.InternalAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalAttribute.EntityBuilderDisableEdit
+			r.InternalAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InternalAttribute.ExcludeFromSearch
+			r.InternalAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InternalAttribute.ExplicitSearchable
 			r.InternalAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalAttribute.FeatureFlag
 			r.InternalAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalAttribute.Group)
@@ -1227,6 +1275,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.InternalUserAttribute.Deprecated
 			r.InternalUserAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InternalUserAttribute.EntityBuilderDisableEdit
+			r.InternalUserAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InternalUserAttribute.ExcludeFromSearch
+			r.InternalUserAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InternalUserAttribute.ExplicitSearchable
 			r.InternalUserAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.FeatureFlag)
 			r.FeatureFlag = r.InternalUserAttribute.FeatureFlag
 			r.InternalUserAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInternalUserAttribute.Group)
@@ -1321,6 +1373,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.InvitationEmailAttribute.Deprecated
 			r.InvitationEmailAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.InvitationEmailAttribute.EntityBuilderDisableEdit
+			r.InvitationEmailAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.InvitationEmailAttribute.ExcludeFromSearch
+			r.InvitationEmailAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.InvitationEmailAttribute.ExplicitSearchable
 			r.InvitationEmailAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.FeatureFlag)
 			r.FeatureFlag = r.InvitationEmailAttribute.FeatureFlag
 			r.InvitationEmailAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDInvitationEmailAttribute.Group)
@@ -1415,6 +1471,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.LinkAttribute.Deprecated
 			r.LinkAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.LinkAttribute.EntityBuilderDisableEdit
+			r.LinkAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.LinkAttribute.ExcludeFromSearch
+			r.LinkAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDLinkAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.LinkAttribute.ExplicitSearchable
 			r.LinkAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.FeatureFlag)
 			r.FeatureFlag = r.LinkAttribute.FeatureFlag
 			r.LinkAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDLinkAttribute.Group)
@@ -1511,6 +1571,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.MessageEmailAddressAttribute.EmailType = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EmailType)
 			r.MessageEmailAddressAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.MessageEmailAddressAttribute.EntityBuilderDisableEdit
+			r.MessageEmailAddressAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.MessageEmailAddressAttribute.ExcludeFromSearch
+			r.MessageEmailAddressAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.MessageEmailAddressAttribute.ExplicitSearchable
 			r.MessageEmailAddressAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.FeatureFlag)
 			r.FeatureFlag = r.MessageEmailAddressAttribute.FeatureFlag
 			r.MessageEmailAddressAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMessageEmailAddressAttribute.Group)
@@ -1609,6 +1673,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.MultiSelectAttribute.DisableCaseSensitive = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.DisableCaseSensitive)
 			r.MultiSelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.MultiSelectAttribute.EntityBuilderDisableEdit
+			r.MultiSelectAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.MultiSelectAttribute.ExcludeFromSearch
+			r.MultiSelectAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.MultiSelectAttribute.ExplicitSearchable
 			r.MultiSelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.MultiSelectAttribute.FeatureFlag
 			r.MultiSelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDMultiSelectAttribute.Group)
@@ -1709,6 +1777,11 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			} else {
 				r.NumberAttribute.Constraints = &tfTypes.EntityDefaultTableParams{}
 			}
+			if resp.AttributeWithCompositeIDNumberAttribute.DataType != nil {
+				r.NumberAttribute.DataType = types.StringValue(string(*resp.AttributeWithCompositeIDNumberAttribute.DataType))
+			} else {
+				r.NumberAttribute.DataType = types.StringNull()
+			}
 			if resp.AttributeWithCompositeIDNumberAttribute.DefaultValue == nil {
 				r.NumberAttribute.DefaultValue = jsontypes.NewNormalizedNull()
 			} else {
@@ -1719,6 +1792,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.NumberAttribute.Deprecated
 			r.NumberAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.NumberAttribute.EntityBuilderDisableEdit
+			r.NumberAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.NumberAttribute.ExcludeFromSearch
+			r.NumberAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDNumberAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.NumberAttribute.ExplicitSearchable
 			r.NumberAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.FeatureFlag)
 			r.FeatureFlag = r.NumberAttribute.FeatureFlag
 			r.NumberAttribute.Format = types.StringPointerValue(resp.AttributeWithCompositeIDNumberAttribute.Format)
@@ -1815,6 +1892,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.OrderedListAttribute.Deprecated
 			r.OrderedListAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.OrderedListAttribute.EntityBuilderDisableEdit
+			r.OrderedListAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.OrderedListAttribute.ExcludeFromSearch
+			r.OrderedListAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.OrderedListAttribute.ExplicitSearchable
 			r.OrderedListAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.FeatureFlag)
 			r.FeatureFlag = r.OrderedListAttribute.FeatureFlag
 			r.OrderedListAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDOrderedListAttribute.Group)
@@ -1909,6 +1990,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PartnerOrganisationAttribute.Deprecated
 			r.PartnerOrganisationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerOrganisationAttribute.EntityBuilderDisableEdit
+			r.PartnerOrganisationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PartnerOrganisationAttribute.ExcludeFromSearch
+			r.PartnerOrganisationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PartnerOrganisationAttribute.ExplicitSearchable
 			r.PartnerOrganisationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerOrganisationAttribute.FeatureFlag
 			r.PartnerOrganisationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerOrganisationAttribute.Group)
@@ -2003,6 +2088,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PartnerStatusAttribute.Deprecated
 			r.PartnerStatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PartnerStatusAttribute.EntityBuilderDisableEdit
+			r.PartnerStatusAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PartnerStatusAttribute.ExcludeFromSearch
+			r.PartnerStatusAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PartnerStatusAttribute.ExplicitSearchable
 			r.PartnerStatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.PartnerStatusAttribute.FeatureFlag
 			r.PartnerStatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPartnerStatusAttribute.Group)
@@ -2097,6 +2186,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PaymentAttribute.Deprecated
 			r.PaymentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PaymentAttribute.EntityBuilderDisableEdit
+			r.PaymentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PaymentAttribute.ExcludeFromSearch
+			r.PaymentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PaymentAttribute.ExplicitSearchable
 			r.PaymentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.FeatureFlag)
 			r.FeatureFlag = r.PaymentAttribute.FeatureFlag
 			r.PaymentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentAttribute.Group)
@@ -2191,6 +2284,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PaymentMethodRelationAttribute.Deprecated
 			r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PaymentMethodRelationAttribute.EntityBuilderDisableEdit
+			r.PaymentMethodRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PaymentMethodRelationAttribute.ExcludeFromSearch
+			r.PaymentMethodRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PaymentMethodRelationAttribute.ExplicitSearchable
 			r.PaymentMethodRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.PaymentMethodRelationAttribute.FeatureFlag
 			r.PaymentMethodRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPaymentMethodRelationAttribute.Group)
@@ -2285,6 +2382,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PhoneAttribute.Deprecated
 			r.PhoneAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PhoneAttribute.EntityBuilderDisableEdit
+			r.PhoneAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PhoneAttribute.ExcludeFromSearch
+			r.PhoneAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PhoneAttribute.ExplicitSearchable
 			r.PhoneAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.FeatureFlag)
 			r.FeatureFlag = r.PhoneAttribute.FeatureFlag
 			r.PhoneAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPhoneAttribute.Group)
@@ -2379,6 +2480,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PortalAccessAttribute.Deprecated
 			r.PortalAccessAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PortalAccessAttribute.EntityBuilderDisableEdit
+			r.PortalAccessAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PortalAccessAttribute.ExcludeFromSearch
+			r.PortalAccessAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PortalAccessAttribute.ExplicitSearchable
 			r.PortalAccessAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.FeatureFlag)
 			r.FeatureFlag = r.PortalAccessAttribute.FeatureFlag
 			r.PortalAccessAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPortalAccessAttribute.Group)
@@ -2473,6 +2578,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PriceComponentAttribute.Deprecated
 			r.PriceComponentAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PriceComponentAttribute.EntityBuilderDisableEdit
+			r.PriceComponentAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PriceComponentAttribute.ExcludeFromSearch
+			r.PriceComponentAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PriceComponentAttribute.ExplicitSearchable
 			r.PriceComponentAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.FeatureFlag)
 			r.FeatureFlag = r.PriceComponentAttribute.FeatureFlag
 			r.PriceComponentAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPriceComponentAttribute.Group)
@@ -2567,6 +2676,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.PurposeAttribute.Deprecated
 			r.PurposeAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.PurposeAttribute.EntityBuilderDisableEdit
+			r.PurposeAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.PurposeAttribute.ExcludeFromSearch
+			r.PurposeAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.PurposeAttribute.ExplicitSearchable
 			r.PurposeAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.FeatureFlag)
 			r.FeatureFlag = r.PurposeAttribute.FeatureFlag
 			r.PurposeAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDPurposeAttribute.Group)
@@ -2711,6 +2824,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.RelationAttribute.EnableRelationTags = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EnableRelationTags)
 			r.RelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.RelationAttribute.EntityBuilderDisableEdit
+			r.RelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.RelationAttribute.ExcludeFromSearch
+			r.RelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.RelationAttribute.ExplicitSearchable
 			r.RelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.RelationAttribute.FeatureFlag
 			r.RelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDRelationAttribute.Group)
@@ -2845,6 +2962,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.SelectAttribute.Deprecated
 			r.SelectAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SelectAttribute.EntityBuilderDisableEdit
+			r.SelectAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.SelectAttribute.ExcludeFromSearch
+			r.SelectAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDSelectAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.SelectAttribute.ExplicitSearchable
 			r.SelectAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.FeatureFlag)
 			r.FeatureFlag = r.SelectAttribute.FeatureFlag
 			r.SelectAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSelectAttribute.Group)
@@ -2945,6 +3066,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.SequenceAttribute.Deprecated
 			r.SequenceAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.SequenceAttribute.EntityBuilderDisableEdit
+			r.SequenceAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.SequenceAttribute.ExcludeFromSearch
+			r.SequenceAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.SequenceAttribute.ExplicitSearchable
 			r.SequenceAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.FeatureFlag)
 			r.FeatureFlag = r.SequenceAttribute.FeatureFlag
 			r.SequenceAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDSequenceAttribute.Group)
@@ -3041,6 +3166,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.StatusAttribute.Deprecated
 			r.StatusAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.StatusAttribute.EntityBuilderDisableEdit
+			r.StatusAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.StatusAttribute.ExcludeFromSearch
+			r.StatusAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDStatusAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.StatusAttribute.ExplicitSearchable
 			r.StatusAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.FeatureFlag)
 			r.FeatureFlag = r.StatusAttribute.FeatureFlag
 			r.StatusAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDStatusAttribute.Group)
@@ -3151,6 +3280,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.TagsAttribute.Deprecated
 			r.TagsAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TagsAttribute.EntityBuilderDisableEdit
+			r.TagsAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.TagsAttribute.ExcludeFromSearch
+			r.TagsAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDTagsAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.TagsAttribute.ExplicitSearchable
 			r.TagsAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.FeatureFlag)
 			r.FeatureFlag = r.TagsAttribute.FeatureFlag
 			r.TagsAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTagsAttribute.Group)
@@ -3253,6 +3386,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.TextAttribute.Deprecated
 			r.TextAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.TextAttribute.EntityBuilderDisableEdit
+			r.TextAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.TextAttribute.ExcludeFromSearch
+			r.TextAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDTextAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.TextAttribute.ExplicitSearchable
 			r.TextAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.FeatureFlag)
 			r.FeatureFlag = r.TextAttribute.FeatureFlag
 			r.TextAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDTextAttribute.Group)
@@ -3355,6 +3492,10 @@ func (r *SchemaAttributeResourceModel) RefreshFromSharedAttributeWithCompositeID
 			r.Deprecated = r.UserRelationAttribute.Deprecated
 			r.UserRelationAttribute.EntityBuilderDisableEdit = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.EntityBuilderDisableEdit)
 			r.EntityBuilderDisableEdit = r.UserRelationAttribute.EntityBuilderDisableEdit
+			r.UserRelationAttribute.ExcludeFromSearch = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ExcludeFromSearch)
+			r.ExcludeFromSearch = r.UserRelationAttribute.ExcludeFromSearch
+			r.UserRelationAttribute.ExplicitSearchable = types.BoolPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.ExplicitSearchable)
+			r.ExplicitSearchable = r.UserRelationAttribute.ExplicitSearchable
 			r.UserRelationAttribute.FeatureFlag = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.FeatureFlag)
 			r.FeatureFlag = r.UserRelationAttribute.FeatureFlag
 			r.UserRelationAttribute.Group = types.StringPointerValue(resp.AttributeWithCompositeIDUserRelationAttribute.Group)
@@ -3574,14 +3715,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition = nil
 		}
 		purpose := make([]string, 0, len(r.TextAttribute.Purpose))
-		for _, purposeItem := range r.TextAttribute.Purpose {
-			purpose = append(purpose, purposeItem.ValueString())
+		for purposeIndex := range r.TextAttribute.Purpose {
+			purpose = append(purpose, r.TextAttribute.Purpose[purposeIndex].ValueString())
 		}
 		var manifest []string
 		if r.TextAttribute.Manifest != nil {
 			manifest = make([]string, 0, len(r.TextAttribute.Manifest))
-			for _, manifestItem := range r.TextAttribute.Manifest {
-				manifest = append(manifest, manifestItem.ValueString())
+			for manifestIndex := range r.TextAttribute.Manifest {
+				manifest = append(manifest, r.TextAttribute.Manifest[manifestIndex].ValueString())
 			}
 		}
 		var constraints *shared.TextAttributeConstraints
@@ -3595,16 +3736,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag = nil
 		}
 		settingsFlag := make([]shared.SettingFlag, 0, len(r.TextAttribute.SettingsFlag))
-		for _, settingsFlagItem := range r.TextAttribute.SettingsFlag {
+		for settingsFlagIndex := range r.TextAttribute.SettingsFlag {
 			name1 := new(string)
-			if !settingsFlagItem.Name.IsUnknown() && !settingsFlagItem.Name.IsNull() {
-				*name1 = settingsFlagItem.Name.ValueString()
+			if !r.TextAttribute.SettingsFlag[settingsFlagIndex].Name.IsUnknown() && !r.TextAttribute.SettingsFlag[settingsFlagIndex].Name.IsNull() {
+				*name1 = r.TextAttribute.SettingsFlag[settingsFlagIndex].Name.ValueString()
 			} else {
 				name1 = nil
 			}
 			enabled := new(bool)
-			if !settingsFlagItem.Enabled.IsUnknown() && !settingsFlagItem.Enabled.IsNull() {
-				*enabled = settingsFlagItem.Enabled.ValueBool()
+			if !r.TextAttribute.SettingsFlag[settingsFlagIndex].Enabled.IsUnknown() && !r.TextAttribute.SettingsFlag[settingsFlagIndex].Enabled.IsNull() {
+				*enabled = r.TextAttribute.SettingsFlag[settingsFlagIndex].Enabled.ValueBool()
 			} else {
 				enabled = nil
 			}
@@ -3669,6 +3810,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintCustomComponent:  hintCustomComponent,
 				HintTooltipPlacement: hintTooltipPlacement,
 			}
+		}
+		explicitSearchable := new(bool)
+		if !r.TextAttribute.ExplicitSearchable.IsUnknown() && !r.TextAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable = r.TextAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable = nil
+		}
+		excludeFromSearch := new(bool)
+		if !r.TextAttribute.ExcludeFromSearch.IsUnknown() && !r.TextAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch = r.TextAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch = nil
 		}
 		repeatable := new(bool)
 		if !r.TextAttribute.Repeatable.IsUnknown() && !r.TextAttribute.Repeatable.IsNull() {
@@ -3739,6 +3892,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit,
 			Protected:                protected,
 			InfoHelpers:              infoHelpers,
+			ExplicitSearchable:       explicitSearchable,
+			ExcludeFromSearch:        excludeFromSearch,
 			Repeatable:               repeatable,
 			HasPrimary:               hasPrimary,
 			Type:                     typeVar,
@@ -3851,14 +4006,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition1 = nil
 		}
 		purpose1 := make([]string, 0, len(r.LinkAttribute.Purpose))
-		for _, purposeItem1 := range r.LinkAttribute.Purpose {
-			purpose1 = append(purpose1, purposeItem1.ValueString())
+		for purposeIndex1 := range r.LinkAttribute.Purpose {
+			purpose1 = append(purpose1, r.LinkAttribute.Purpose[purposeIndex1].ValueString())
 		}
 		var manifest1 []string
 		if r.LinkAttribute.Manifest != nil {
 			manifest1 = make([]string, 0, len(r.LinkAttribute.Manifest))
-			for _, manifestItem1 := range r.LinkAttribute.Manifest {
-				manifest1 = append(manifest1, manifestItem1.ValueString())
+			for manifestIndex1 := range r.LinkAttribute.Manifest {
+				manifest1 = append(manifest1, r.LinkAttribute.Manifest[manifestIndex1].ValueString())
 			}
 		}
 		var constraints1 *shared.LinkAttributeAttributeWithCompositeIDConstraints
@@ -3872,16 +4027,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag1 = nil
 		}
 		settingsFlag1 := make([]shared.SettingFlag, 0, len(r.LinkAttribute.SettingsFlag))
-		for _, settingsFlagItem1 := range r.LinkAttribute.SettingsFlag {
+		for settingsFlagIndex1 := range r.LinkAttribute.SettingsFlag {
 			name3 := new(string)
-			if !settingsFlagItem1.Name.IsUnknown() && !settingsFlagItem1.Name.IsNull() {
-				*name3 = settingsFlagItem1.Name.ValueString()
+			if !r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Name.IsUnknown() && !r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Name.IsNull() {
+				*name3 = r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Name.ValueString()
 			} else {
 				name3 = nil
 			}
 			enabled1 := new(bool)
-			if !settingsFlagItem1.Enabled.IsUnknown() && !settingsFlagItem1.Enabled.IsNull() {
-				*enabled1 = settingsFlagItem1.Enabled.ValueBool()
+			if !r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Enabled.IsUnknown() && !r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Enabled.IsNull() {
+				*enabled1 = r.LinkAttribute.SettingsFlag[settingsFlagIndex1].Enabled.ValueBool()
 			} else {
 				enabled1 = nil
 			}
@@ -3947,6 +4102,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement1,
 			}
 		}
+		explicitSearchable1 := new(bool)
+		if !r.LinkAttribute.ExplicitSearchable.IsUnknown() && !r.LinkAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable1 = r.LinkAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable1 = nil
+		}
+		excludeFromSearch1 := new(bool)
+		if !r.LinkAttribute.ExcludeFromSearch.IsUnknown() && !r.LinkAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch1 = r.LinkAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch1 = nil
+		}
 		repeatable1 := new(bool)
 		if !r.LinkAttribute.Repeatable.IsUnknown() && !r.LinkAttribute.Repeatable.IsNull() {
 			*repeatable1 = r.LinkAttribute.Repeatable.ValueBool()
@@ -4000,6 +4167,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit1,
 			Protected:                protected1,
 			InfoHelpers:              infoHelpers1,
+			ExplicitSearchable:       explicitSearchable1,
+			ExcludeFromSearch:        excludeFromSearch1,
 			Repeatable:               repeatable1,
 			HasPrimary:               hasPrimary1,
 			Type:                     typeVar1,
@@ -4109,14 +4278,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition2 = nil
 		}
 		purpose2 := make([]string, 0, len(r.DateAttribute.Purpose))
-		for _, purposeItem2 := range r.DateAttribute.Purpose {
-			purpose2 = append(purpose2, purposeItem2.ValueString())
+		for purposeIndex2 := range r.DateAttribute.Purpose {
+			purpose2 = append(purpose2, r.DateAttribute.Purpose[purposeIndex2].ValueString())
 		}
 		var manifest2 []string
 		if r.DateAttribute.Manifest != nil {
 			manifest2 = make([]string, 0, len(r.DateAttribute.Manifest))
-			for _, manifestItem2 := range r.DateAttribute.Manifest {
-				manifest2 = append(manifest2, manifestItem2.ValueString())
+			for manifestIndex2 := range r.DateAttribute.Manifest {
+				manifest2 = append(manifest2, r.DateAttribute.Manifest[manifestIndex2].ValueString())
 			}
 		}
 		var constraints2 *shared.DateAttributeAttributeWithCompositeIDConstraints
@@ -4130,16 +4299,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag2 = nil
 		}
 		settingsFlag2 := make([]shared.SettingFlag, 0, len(r.DateAttribute.SettingsFlag))
-		for _, settingsFlagItem2 := range r.DateAttribute.SettingsFlag {
+		for settingsFlagIndex2 := range r.DateAttribute.SettingsFlag {
 			name5 := new(string)
-			if !settingsFlagItem2.Name.IsUnknown() && !settingsFlagItem2.Name.IsNull() {
-				*name5 = settingsFlagItem2.Name.ValueString()
+			if !r.DateAttribute.SettingsFlag[settingsFlagIndex2].Name.IsUnknown() && !r.DateAttribute.SettingsFlag[settingsFlagIndex2].Name.IsNull() {
+				*name5 = r.DateAttribute.SettingsFlag[settingsFlagIndex2].Name.ValueString()
 			} else {
 				name5 = nil
 			}
 			enabled2 := new(bool)
-			if !settingsFlagItem2.Enabled.IsUnknown() && !settingsFlagItem2.Enabled.IsNull() {
-				*enabled2 = settingsFlagItem2.Enabled.ValueBool()
+			if !r.DateAttribute.SettingsFlag[settingsFlagIndex2].Enabled.IsUnknown() && !r.DateAttribute.SettingsFlag[settingsFlagIndex2].Enabled.IsNull() {
+				*enabled2 = r.DateAttribute.SettingsFlag[settingsFlagIndex2].Enabled.ValueBool()
 			} else {
 				enabled2 = nil
 			}
@@ -4205,6 +4374,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement2,
 			}
 		}
+		explicitSearchable2 := new(bool)
+		if !r.DateAttribute.ExplicitSearchable.IsUnknown() && !r.DateAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable2 = r.DateAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable2 = nil
+		}
+		excludeFromSearch2 := new(bool)
+		if !r.DateAttribute.ExcludeFromSearch.IsUnknown() && !r.DateAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch2 = r.DateAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch2 = nil
+		}
 		repeatable2 := new(bool)
 		if !r.DateAttribute.Repeatable.IsUnknown() && !r.DateAttribute.Repeatable.IsNull() {
 			*repeatable2 = r.DateAttribute.Repeatable.ValueBool()
@@ -4258,6 +4439,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit2,
 			Protected:                protected2,
 			InfoHelpers:              infoHelpers2,
+			ExplicitSearchable:       explicitSearchable2,
+			ExcludeFromSearch:        excludeFromSearch2,
 			Repeatable:               repeatable2,
 			HasPrimary:               hasPrimary2,
 			Type:                     typeVar2,
@@ -4367,14 +4550,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition3 = nil
 		}
 		purpose3 := make([]string, 0, len(r.CountryAttribute.Purpose))
-		for _, purposeItem3 := range r.CountryAttribute.Purpose {
-			purpose3 = append(purpose3, purposeItem3.ValueString())
+		for purposeIndex3 := range r.CountryAttribute.Purpose {
+			purpose3 = append(purpose3, r.CountryAttribute.Purpose[purposeIndex3].ValueString())
 		}
 		var manifest3 []string
 		if r.CountryAttribute.Manifest != nil {
 			manifest3 = make([]string, 0, len(r.CountryAttribute.Manifest))
-			for _, manifestItem3 := range r.CountryAttribute.Manifest {
-				manifest3 = append(manifest3, manifestItem3.ValueString())
+			for manifestIndex3 := range r.CountryAttribute.Manifest {
+				manifest3 = append(manifest3, r.CountryAttribute.Manifest[manifestIndex3].ValueString())
 			}
 		}
 		var constraints3 *shared.CountryAttributeAttributeWithCompositeIDConstraints
@@ -4388,16 +4571,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag3 = nil
 		}
 		settingsFlag3 := make([]shared.SettingFlag, 0, len(r.CountryAttribute.SettingsFlag))
-		for _, settingsFlagItem3 := range r.CountryAttribute.SettingsFlag {
+		for settingsFlagIndex3 := range r.CountryAttribute.SettingsFlag {
 			name7 := new(string)
-			if !settingsFlagItem3.Name.IsUnknown() && !settingsFlagItem3.Name.IsNull() {
-				*name7 = settingsFlagItem3.Name.ValueString()
+			if !r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Name.IsUnknown() && !r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Name.IsNull() {
+				*name7 = r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Name.ValueString()
 			} else {
 				name7 = nil
 			}
 			enabled3 := new(bool)
-			if !settingsFlagItem3.Enabled.IsUnknown() && !settingsFlagItem3.Enabled.IsNull() {
-				*enabled3 = settingsFlagItem3.Enabled.ValueBool()
+			if !r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Enabled.IsUnknown() && !r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Enabled.IsNull() {
+				*enabled3 = r.CountryAttribute.SettingsFlag[settingsFlagIndex3].Enabled.ValueBool()
 			} else {
 				enabled3 = nil
 			}
@@ -4463,6 +4646,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement3,
 			}
 		}
+		explicitSearchable3 := new(bool)
+		if !r.CountryAttribute.ExplicitSearchable.IsUnknown() && !r.CountryAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable3 = r.CountryAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable3 = nil
+		}
+		excludeFromSearch3 := new(bool)
+		if !r.CountryAttribute.ExcludeFromSearch.IsUnknown() && !r.CountryAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch3 = r.CountryAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch3 = nil
+		}
 		repeatable3 := new(bool)
 		if !r.CountryAttribute.Repeatable.IsUnknown() && !r.CountryAttribute.Repeatable.IsNull() {
 			*repeatable3 = r.CountryAttribute.Repeatable.ValueBool()
@@ -4516,6 +4711,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit3,
 			Protected:                protected3,
 			InfoHelpers:              infoHelpers3,
+			ExplicitSearchable:       explicitSearchable3,
+			ExcludeFromSearch:        excludeFromSearch3,
 			Repeatable:               repeatable3,
 			HasPrimary:               hasPrimary3,
 			Type:                     typeVar3,
@@ -4625,14 +4822,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition4 = nil
 		}
 		purpose4 := make([]string, 0, len(r.BooleanAttribute.Purpose))
-		for _, purposeItem4 := range r.BooleanAttribute.Purpose {
-			purpose4 = append(purpose4, purposeItem4.ValueString())
+		for purposeIndex4 := range r.BooleanAttribute.Purpose {
+			purpose4 = append(purpose4, r.BooleanAttribute.Purpose[purposeIndex4].ValueString())
 		}
 		var manifest4 []string
 		if r.BooleanAttribute.Manifest != nil {
 			manifest4 = make([]string, 0, len(r.BooleanAttribute.Manifest))
-			for _, manifestItem4 := range r.BooleanAttribute.Manifest {
-				manifest4 = append(manifest4, manifestItem4.ValueString())
+			for manifestIndex4 := range r.BooleanAttribute.Manifest {
+				manifest4 = append(manifest4, r.BooleanAttribute.Manifest[manifestIndex4].ValueString())
 			}
 		}
 		var constraints4 *shared.BooleanAttributeAttributeWithCompositeIDConstraints
@@ -4646,16 +4843,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag4 = nil
 		}
 		settingsFlag4 := make([]shared.SettingFlag, 0, len(r.BooleanAttribute.SettingsFlag))
-		for _, settingsFlagItem4 := range r.BooleanAttribute.SettingsFlag {
+		for settingsFlagIndex4 := range r.BooleanAttribute.SettingsFlag {
 			name9 := new(string)
-			if !settingsFlagItem4.Name.IsUnknown() && !settingsFlagItem4.Name.IsNull() {
-				*name9 = settingsFlagItem4.Name.ValueString()
+			if !r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Name.IsUnknown() && !r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Name.IsNull() {
+				*name9 = r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Name.ValueString()
 			} else {
 				name9 = nil
 			}
 			enabled4 := new(bool)
-			if !settingsFlagItem4.Enabled.IsUnknown() && !settingsFlagItem4.Enabled.IsNull() {
-				*enabled4 = settingsFlagItem4.Enabled.ValueBool()
+			if !r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Enabled.IsUnknown() && !r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Enabled.IsNull() {
+				*enabled4 = r.BooleanAttribute.SettingsFlag[settingsFlagIndex4].Enabled.ValueBool()
 			} else {
 				enabled4 = nil
 			}
@@ -4721,6 +4918,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement4,
 			}
 		}
+		explicitSearchable4 := new(bool)
+		if !r.BooleanAttribute.ExplicitSearchable.IsUnknown() && !r.BooleanAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable4 = r.BooleanAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable4 = nil
+		}
+		excludeFromSearch4 := new(bool)
+		if !r.BooleanAttribute.ExcludeFromSearch.IsUnknown() && !r.BooleanAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch4 = r.BooleanAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch4 = nil
+		}
 		repeatable4 := new(bool)
 		if !r.BooleanAttribute.Repeatable.IsUnknown() && !r.BooleanAttribute.Repeatable.IsNull() {
 			*repeatable4 = r.BooleanAttribute.Repeatable.ValueBool()
@@ -4780,6 +4989,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit4,
 			Protected:                protected4,
 			InfoHelpers:              infoHelpers4,
+			ExplicitSearchable:       explicitSearchable4,
+			ExcludeFromSearch:        excludeFromSearch4,
 			Repeatable:               repeatable4,
 			HasPrimary:               hasPrimary4,
 			Type:                     typeVar4,
@@ -4890,14 +5101,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition5 = nil
 		}
 		purpose5 := make([]string, 0, len(r.SelectAttribute.Purpose))
-		for _, purposeItem5 := range r.SelectAttribute.Purpose {
-			purpose5 = append(purpose5, purposeItem5.ValueString())
+		for purposeIndex5 := range r.SelectAttribute.Purpose {
+			purpose5 = append(purpose5, r.SelectAttribute.Purpose[purposeIndex5].ValueString())
 		}
 		var manifest5 []string
 		if r.SelectAttribute.Manifest != nil {
 			manifest5 = make([]string, 0, len(r.SelectAttribute.Manifest))
-			for _, manifestItem5 := range r.SelectAttribute.Manifest {
-				manifest5 = append(manifest5, manifestItem5.ValueString())
+			for manifestIndex5 := range r.SelectAttribute.Manifest {
+				manifest5 = append(manifest5, r.SelectAttribute.Manifest[manifestIndex5].ValueString())
 			}
 		}
 		var constraints5 *shared.SelectAttributeAttributeWithCompositeIDConstraints
@@ -4911,16 +5122,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag5 = nil
 		}
 		settingsFlag5 := make([]shared.SettingFlag, 0, len(r.SelectAttribute.SettingsFlag))
-		for _, settingsFlagItem5 := range r.SelectAttribute.SettingsFlag {
+		for settingsFlagIndex5 := range r.SelectAttribute.SettingsFlag {
 			name11 := new(string)
-			if !settingsFlagItem5.Name.IsUnknown() && !settingsFlagItem5.Name.IsNull() {
-				*name11 = settingsFlagItem5.Name.ValueString()
+			if !r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Name.IsUnknown() && !r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Name.IsNull() {
+				*name11 = r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Name.ValueString()
 			} else {
 				name11 = nil
 			}
 			enabled5 := new(bool)
-			if !settingsFlagItem5.Enabled.IsUnknown() && !settingsFlagItem5.Enabled.IsNull() {
-				*enabled5 = settingsFlagItem5.Enabled.ValueBool()
+			if !r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Enabled.IsUnknown() && !r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Enabled.IsNull() {
+				*enabled5 = r.SelectAttribute.SettingsFlag[settingsFlagIndex5].Enabled.ValueBool()
 			} else {
 				enabled5 = nil
 			}
@@ -4986,6 +5197,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement5,
 			}
 		}
+		explicitSearchable5 := new(bool)
+		if !r.SelectAttribute.ExplicitSearchable.IsUnknown() && !r.SelectAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable5 = r.SelectAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable5 = nil
+		}
+		excludeFromSearch5 := new(bool)
+		if !r.SelectAttribute.ExcludeFromSearch.IsUnknown() && !r.SelectAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch5 = r.SelectAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch5 = nil
+		}
 		repeatable5 := new(bool)
 		if !r.SelectAttribute.Repeatable.IsUnknown() && !r.SelectAttribute.Repeatable.IsNull() {
 			*repeatable5 = r.SelectAttribute.Repeatable.ValueBool()
@@ -5049,6 +5272,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit5,
 			Protected:                protected5,
 			InfoHelpers:              infoHelpers5,
+			ExplicitSearchable:       explicitSearchable5,
+			ExcludeFromSearch:        excludeFromSearch5,
 			Repeatable:               repeatable5,
 			HasPrimary:               hasPrimary5,
 			Type:                     typeVar5,
@@ -5160,14 +5385,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition6 = nil
 		}
 		purpose6 := make([]string, 0, len(r.MultiSelectAttribute.Purpose))
-		for _, purposeItem6 := range r.MultiSelectAttribute.Purpose {
-			purpose6 = append(purpose6, purposeItem6.ValueString())
+		for purposeIndex6 := range r.MultiSelectAttribute.Purpose {
+			purpose6 = append(purpose6, r.MultiSelectAttribute.Purpose[purposeIndex6].ValueString())
 		}
 		var manifest6 []string
 		if r.MultiSelectAttribute.Manifest != nil {
 			manifest6 = make([]string, 0, len(r.MultiSelectAttribute.Manifest))
-			for _, manifestItem6 := range r.MultiSelectAttribute.Manifest {
-				manifest6 = append(manifest6, manifestItem6.ValueString())
+			for manifestIndex6 := range r.MultiSelectAttribute.Manifest {
+				manifest6 = append(manifest6, r.MultiSelectAttribute.Manifest[manifestIndex6].ValueString())
 			}
 		}
 		var constraints6 *shared.MultiSelectAttributeAttributeWithCompositeIDConstraints
@@ -5181,16 +5406,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag6 = nil
 		}
 		settingsFlag6 := make([]shared.SettingFlag, 0, len(r.MultiSelectAttribute.SettingsFlag))
-		for _, settingsFlagItem6 := range r.MultiSelectAttribute.SettingsFlag {
+		for settingsFlagIndex6 := range r.MultiSelectAttribute.SettingsFlag {
 			name13 := new(string)
-			if !settingsFlagItem6.Name.IsUnknown() && !settingsFlagItem6.Name.IsNull() {
-				*name13 = settingsFlagItem6.Name.ValueString()
+			if !r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Name.IsUnknown() && !r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Name.IsNull() {
+				*name13 = r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Name.ValueString()
 			} else {
 				name13 = nil
 			}
 			enabled6 := new(bool)
-			if !settingsFlagItem6.Enabled.IsUnknown() && !settingsFlagItem6.Enabled.IsNull() {
-				*enabled6 = settingsFlagItem6.Enabled.ValueBool()
+			if !r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Enabled.IsUnknown() && !r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Enabled.IsNull() {
+				*enabled6 = r.MultiSelectAttribute.SettingsFlag[settingsFlagIndex6].Enabled.ValueBool()
 			} else {
 				enabled6 = nil
 			}
@@ -5256,6 +5481,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement6,
 			}
 		}
+		explicitSearchable6 := new(bool)
+		if !r.MultiSelectAttribute.ExplicitSearchable.IsUnknown() && !r.MultiSelectAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable6 = r.MultiSelectAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable6 = nil
+		}
+		excludeFromSearch6 := new(bool)
+		if !r.MultiSelectAttribute.ExcludeFromSearch.IsUnknown() && !r.MultiSelectAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch6 = r.MultiSelectAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch6 = nil
+		}
 		repeatable6 := new(bool)
 		if !r.MultiSelectAttribute.Repeatable.IsUnknown() && !r.MultiSelectAttribute.Repeatable.IsNull() {
 			*repeatable6 = r.MultiSelectAttribute.Repeatable.ValueBool()
@@ -5282,22 +5519,22 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			allowExtraOptions = nil
 		}
 		optionsVar1 := make([]*shared.MultiSelectAttributeOptions, 0, len(r.MultiSelectAttribute.Options))
-		for _, optionsItem := range r.MultiSelectAttribute.Options {
-			if !optionsItem.Str.IsUnknown() && !optionsItem.Str.IsNull() {
+		for optionsItem := range r.MultiSelectAttribute.Options {
+			if !r.MultiSelectAttribute.Options[optionsItem].Str.IsUnknown() && !r.MultiSelectAttribute.Options[optionsItem].Str.IsNull() {
 				var str string
-				str = optionsItem.Str.ValueString()
+				str = r.MultiSelectAttribute.Options[optionsItem].Str.ValueString()
 
 				optionsVar1 = append(optionsVar1, &shared.MultiSelectAttributeOptions{
 					Str: &str,
 				})
 			}
-			if optionsItem.Two != nil {
+			if r.MultiSelectAttribute.Options[optionsItem].Two != nil {
 				var value string
-				value = optionsItem.Two.Value.ValueString()
+				value = r.MultiSelectAttribute.Options[optionsItem].Two.Value.ValueString()
 
 				title := new(string)
-				if !optionsItem.Two.Title.IsUnknown() && !optionsItem.Two.Title.IsNull() {
-					*title = optionsItem.Two.Title.ValueString()
+				if !r.MultiSelectAttribute.Options[optionsItem].Two.Title.IsUnknown() && !r.MultiSelectAttribute.Options[optionsItem].Two.Title.IsNull() {
+					*title = r.MultiSelectAttribute.Options[optionsItem].Two.Title.ValueString()
 				} else {
 					title = nil
 				}
@@ -5356,6 +5593,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit6,
 			Protected:                protected6,
 			InfoHelpers:              infoHelpers6,
+			ExplicitSearchable:       explicitSearchable6,
+			ExcludeFromSearch:        excludeFromSearch6,
 			Repeatable:               repeatable6,
 			HasPrimary:               hasPrimary6,
 			Type:                     typeVar6,
@@ -5469,14 +5708,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition7 = nil
 		}
 		purpose7 := make([]string, 0, len(r.StatusAttribute.Purpose))
-		for _, purposeItem7 := range r.StatusAttribute.Purpose {
-			purpose7 = append(purpose7, purposeItem7.ValueString())
+		for purposeIndex7 := range r.StatusAttribute.Purpose {
+			purpose7 = append(purpose7, r.StatusAttribute.Purpose[purposeIndex7].ValueString())
 		}
 		var manifest7 []string
 		if r.StatusAttribute.Manifest != nil {
 			manifest7 = make([]string, 0, len(r.StatusAttribute.Manifest))
-			for _, manifestItem7 := range r.StatusAttribute.Manifest {
-				manifest7 = append(manifest7, manifestItem7.ValueString())
+			for manifestIndex7 := range r.StatusAttribute.Manifest {
+				manifest7 = append(manifest7, r.StatusAttribute.Manifest[manifestIndex7].ValueString())
 			}
 		}
 		var constraints7 *shared.StatusAttributeAttributeWithCompositeIDConstraints
@@ -5490,16 +5729,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag7 = nil
 		}
 		settingsFlag7 := make([]shared.SettingFlag, 0, len(r.StatusAttribute.SettingsFlag))
-		for _, settingsFlagItem7 := range r.StatusAttribute.SettingsFlag {
+		for settingsFlagIndex7 := range r.StatusAttribute.SettingsFlag {
 			name15 := new(string)
-			if !settingsFlagItem7.Name.IsUnknown() && !settingsFlagItem7.Name.IsNull() {
-				*name15 = settingsFlagItem7.Name.ValueString()
+			if !r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Name.IsUnknown() && !r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Name.IsNull() {
+				*name15 = r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Name.ValueString()
 			} else {
 				name15 = nil
 			}
 			enabled7 := new(bool)
-			if !settingsFlagItem7.Enabled.IsUnknown() && !settingsFlagItem7.Enabled.IsNull() {
-				*enabled7 = settingsFlagItem7.Enabled.ValueBool()
+			if !r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Enabled.IsUnknown() && !r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Enabled.IsNull() {
+				*enabled7 = r.StatusAttribute.SettingsFlag[settingsFlagIndex7].Enabled.ValueBool()
 			} else {
 				enabled7 = nil
 			}
@@ -5565,6 +5804,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement7,
 			}
 		}
+		explicitSearchable7 := new(bool)
+		if !r.StatusAttribute.ExplicitSearchable.IsUnknown() && !r.StatusAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable7 = r.StatusAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable7 = nil
+		}
+		excludeFromSearch7 := new(bool)
+		if !r.StatusAttribute.ExcludeFromSearch.IsUnknown() && !r.StatusAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch7 = r.StatusAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch7 = nil
+		}
 		repeatable7 := new(bool)
 		if !r.StatusAttribute.Repeatable.IsUnknown() && !r.StatusAttribute.Repeatable.IsNull() {
 			*repeatable7 = r.StatusAttribute.Repeatable.ValueBool()
@@ -5579,22 +5830,22 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 		}
 		typeVar7 := shared.StatusAttributeAttributeWithCompositeIDType(r.StatusAttribute.Type.ValueString())
 		optionsVar2 := make([]*shared.StatusAttributeAttributeWithCompositeIDOptions, 0, len(r.StatusAttribute.Options))
-		for _, optionsItem1 := range r.StatusAttribute.Options {
-			if !optionsItem1.Str.IsUnknown() && !optionsItem1.Str.IsNull() {
+		for optionsItem1 := range r.StatusAttribute.Options {
+			if !r.StatusAttribute.Options[optionsItem1].Str.IsUnknown() && !r.StatusAttribute.Options[optionsItem1].Str.IsNull() {
 				var str1 string
-				str1 = optionsItem1.Str.ValueString()
+				str1 = r.StatusAttribute.Options[optionsItem1].Str.ValueString()
 
 				optionsVar2 = append(optionsVar2, &shared.StatusAttributeAttributeWithCompositeIDOptions{
 					Str: &str1,
 				})
 			}
-			if optionsItem1.Two != nil {
+			if r.StatusAttribute.Options[optionsItem1].Two != nil {
 				var value1 string
-				value1 = optionsItem1.Two.Value.ValueString()
+				value1 = r.StatusAttribute.Options[optionsItem1].Two.Value.ValueString()
 
 				title1 := new(string)
-				if !optionsItem1.Two.Title.IsUnknown() && !optionsItem1.Two.Title.IsNull() {
-					*title1 = optionsItem1.Two.Title.ValueString()
+				if !r.StatusAttribute.Options[optionsItem1].Two.Title.IsUnknown() && !r.StatusAttribute.Options[optionsItem1].Two.Title.IsNull() {
+					*title1 = r.StatusAttribute.Options[optionsItem1].Two.Title.ValueString()
 				} else {
 					title1 = nil
 				}
@@ -5647,6 +5898,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit7,
 			Protected:                protected7,
 			InfoHelpers:              infoHelpers7,
+			ExplicitSearchable:       explicitSearchable7,
+			ExcludeFromSearch:        excludeFromSearch7,
 			Repeatable:               repeatable7,
 			HasPrimary:               hasPrimary7,
 			Type:                     typeVar7,
@@ -5757,14 +6010,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition8 = nil
 		}
 		purpose8 := make([]string, 0, len(r.SequenceAttribute.Purpose))
-		for _, purposeItem8 := range r.SequenceAttribute.Purpose {
-			purpose8 = append(purpose8, purposeItem8.ValueString())
+		for purposeIndex8 := range r.SequenceAttribute.Purpose {
+			purpose8 = append(purpose8, r.SequenceAttribute.Purpose[purposeIndex8].ValueString())
 		}
 		var manifest8 []string
 		if r.SequenceAttribute.Manifest != nil {
 			manifest8 = make([]string, 0, len(r.SequenceAttribute.Manifest))
-			for _, manifestItem8 := range r.SequenceAttribute.Manifest {
-				manifest8 = append(manifest8, manifestItem8.ValueString())
+			for manifestIndex8 := range r.SequenceAttribute.Manifest {
+				manifest8 = append(manifest8, r.SequenceAttribute.Manifest[manifestIndex8].ValueString())
 			}
 		}
 		var constraints8 *shared.SequenceAttributeAttributeWithCompositeIDConstraints
@@ -5778,16 +6031,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag8 = nil
 		}
 		settingsFlag8 := make([]shared.SettingFlag, 0, len(r.SequenceAttribute.SettingsFlag))
-		for _, settingsFlagItem8 := range r.SequenceAttribute.SettingsFlag {
+		for settingsFlagIndex8 := range r.SequenceAttribute.SettingsFlag {
 			name17 := new(string)
-			if !settingsFlagItem8.Name.IsUnknown() && !settingsFlagItem8.Name.IsNull() {
-				*name17 = settingsFlagItem8.Name.ValueString()
+			if !r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Name.IsUnknown() && !r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Name.IsNull() {
+				*name17 = r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Name.ValueString()
 			} else {
 				name17 = nil
 			}
 			enabled8 := new(bool)
-			if !settingsFlagItem8.Enabled.IsUnknown() && !settingsFlagItem8.Enabled.IsNull() {
-				*enabled8 = settingsFlagItem8.Enabled.ValueBool()
+			if !r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Enabled.IsUnknown() && !r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Enabled.IsNull() {
+				*enabled8 = r.SequenceAttribute.SettingsFlag[settingsFlagIndex8].Enabled.ValueBool()
 			} else {
 				enabled8 = nil
 			}
@@ -5852,6 +6105,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintCustomComponent:  hintCustomComponent8,
 				HintTooltipPlacement: hintTooltipPlacement8,
 			}
+		}
+		explicitSearchable8 := new(bool)
+		if !r.SequenceAttribute.ExplicitSearchable.IsUnknown() && !r.SequenceAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable8 = r.SequenceAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable8 = nil
+		}
+		excludeFromSearch8 := new(bool)
+		if !r.SequenceAttribute.ExcludeFromSearch.IsUnknown() && !r.SequenceAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch8 = r.SequenceAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch8 = nil
 		}
 		repeatable8 := new(bool)
 		if !r.SequenceAttribute.Repeatable.IsUnknown() && !r.SequenceAttribute.Repeatable.IsNull() {
@@ -5918,6 +6183,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit8,
 			Protected:                protected8,
 			InfoHelpers:              infoHelpers8,
+			ExplicitSearchable:       explicitSearchable8,
+			ExcludeFromSearch:        excludeFromSearch8,
 			Repeatable:               repeatable8,
 			HasPrimary:               hasPrimary8,
 			Type:                     typeVar8,
@@ -6029,14 +6296,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition9 = nil
 		}
 		purpose9 := make([]string, 0, len(r.RelationAttribute.Purpose))
-		for _, purposeItem9 := range r.RelationAttribute.Purpose {
-			purpose9 = append(purpose9, purposeItem9.ValueString())
+		for purposeIndex9 := range r.RelationAttribute.Purpose {
+			purpose9 = append(purpose9, r.RelationAttribute.Purpose[purposeIndex9].ValueString())
 		}
 		var manifest9 []string
 		if r.RelationAttribute.Manifest != nil {
 			manifest9 = make([]string, 0, len(r.RelationAttribute.Manifest))
-			for _, manifestItem9 := range r.RelationAttribute.Manifest {
-				manifest9 = append(manifest9, manifestItem9.ValueString())
+			for manifestIndex9 := range r.RelationAttribute.Manifest {
+				manifest9 = append(manifest9, r.RelationAttribute.Manifest[manifestIndex9].ValueString())
 			}
 		}
 		var constraints9 *shared.RelationAttributeAttributeWithCompositeIDConstraints
@@ -6050,16 +6317,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag9 = nil
 		}
 		settingsFlag9 := make([]shared.SettingFlag, 0, len(r.RelationAttribute.SettingsFlag))
-		for _, settingsFlagItem9 := range r.RelationAttribute.SettingsFlag {
+		for settingsFlagIndex9 := range r.RelationAttribute.SettingsFlag {
 			name19 := new(string)
-			if !settingsFlagItem9.Name.IsUnknown() && !settingsFlagItem9.Name.IsNull() {
-				*name19 = settingsFlagItem9.Name.ValueString()
+			if !r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Name.IsUnknown() && !r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Name.IsNull() {
+				*name19 = r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Name.ValueString()
 			} else {
 				name19 = nil
 			}
 			enabled9 := new(bool)
-			if !settingsFlagItem9.Enabled.IsUnknown() && !settingsFlagItem9.Enabled.IsNull() {
-				*enabled9 = settingsFlagItem9.Enabled.ValueBool()
+			if !r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Enabled.IsUnknown() && !r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Enabled.IsNull() {
+				*enabled9 = r.RelationAttribute.SettingsFlag[settingsFlagIndex9].Enabled.ValueBool()
 			} else {
 				enabled9 = nil
 			}
@@ -6125,6 +6392,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement9,
 			}
 		}
+		explicitSearchable9 := new(bool)
+		if !r.RelationAttribute.ExplicitSearchable.IsUnknown() && !r.RelationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable9 = r.RelationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable9 = nil
+		}
+		excludeFromSearch9 := new(bool)
+		if !r.RelationAttribute.ExcludeFromSearch.IsUnknown() && !r.RelationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch9 = r.RelationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch9 = nil
+		}
 		repeatable9 := new(bool)
 		if !r.RelationAttribute.Repeatable.IsUnknown() && !r.RelationAttribute.Repeatable.IsNull() {
 			*repeatable9 = r.RelationAttribute.Repeatable.ValueBool()
@@ -6145,9 +6424,9 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			relationType = nil
 		}
 		reverseAttributes := make(map[string]string)
-		for reverseAttributesKey, reverseAttributesValue := range r.RelationAttribute.ReverseAttributes {
+		for reverseAttributesKey := range r.RelationAttribute.ReverseAttributes {
 			var reverseAttributesInst string
-			reverseAttributesInst = reverseAttributesValue.ValueString()
+			reverseAttributesInst = r.RelationAttribute.ReverseAttributes[reverseAttributesKey].ValueString()
 
 			reverseAttributes[reverseAttributesKey] = reverseAttributesInst
 		}
@@ -6188,42 +6467,42 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			}
 		}
 		actions := make([]shared.RelationAttributeActions, 0, len(r.RelationAttribute.Actions))
-		for _, actionsItem := range r.RelationAttribute.Actions {
+		for actionsIndex := range r.RelationAttribute.Actions {
 			actionType := new(shared.RelationAttributeActionType)
-			if !actionsItem.ActionType.IsUnknown() && !actionsItem.ActionType.IsNull() {
-				*actionType = shared.RelationAttributeActionType(actionsItem.ActionType.ValueString())
+			if !r.RelationAttribute.Actions[actionsIndex].ActionType.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].ActionType.IsNull() {
+				*actionType = shared.RelationAttributeActionType(r.RelationAttribute.Actions[actionsIndex].ActionType.ValueString())
 			} else {
 				actionType = nil
 			}
 			label10 := new(string)
-			if !actionsItem.Label.IsUnknown() && !actionsItem.Label.IsNull() {
-				*label10 = actionsItem.Label.ValueString()
+			if !r.RelationAttribute.Actions[actionsIndex].Label.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].Label.IsNull() {
+				*label10 = r.RelationAttribute.Actions[actionsIndex].Label.ValueString()
 			} else {
 				label10 = nil
 			}
 			defaultVar := new(bool)
-			if !actionsItem.Default.IsUnknown() && !actionsItem.Default.IsNull() {
-				*defaultVar = actionsItem.Default.ValueBool()
+			if !r.RelationAttribute.Actions[actionsIndex].Default.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].Default.IsNull() {
+				*defaultVar = r.RelationAttribute.Actions[actionsIndex].Default.ValueBool()
 			} else {
 				defaultVar = nil
 			}
 			featureFlag10 := new(string)
-			if !actionsItem.FeatureFlag.IsUnknown() && !actionsItem.FeatureFlag.IsNull() {
-				*featureFlag10 = actionsItem.FeatureFlag.ValueString()
+			if !r.RelationAttribute.Actions[actionsIndex].FeatureFlag.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].FeatureFlag.IsNull() {
+				*featureFlag10 = r.RelationAttribute.Actions[actionsIndex].FeatureFlag.ValueString()
 			} else {
 				featureFlag10 = nil
 			}
-			settingsFlag10 := make([]shared.SettingFlag, 0, len(actionsItem.SettingsFlag))
-			for _, settingsFlagItem10 := range actionsItem.SettingsFlag {
+			settingsFlag10 := make([]shared.SettingFlag, 0, len(r.RelationAttribute.Actions[actionsIndex].SettingsFlag))
+			for settingsFlagIndex10 := range r.RelationAttribute.Actions[actionsIndex].SettingsFlag {
 				name20 := new(string)
-				if !settingsFlagItem10.Name.IsUnknown() && !settingsFlagItem10.Name.IsNull() {
-					*name20 = settingsFlagItem10.Name.ValueString()
+				if !r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Name.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Name.IsNull() {
+					*name20 = r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Name.ValueString()
 				} else {
 					name20 = nil
 				}
 				enabled10 := new(bool)
-				if !settingsFlagItem10.Enabled.IsUnknown() && !settingsFlagItem10.Enabled.IsNull() {
-					*enabled10 = settingsFlagItem10.Enabled.ValueBool()
+				if !r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Enabled.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Enabled.IsNull() {
+					*enabled10 = r.RelationAttribute.Actions[actionsIndex].SettingsFlag[settingsFlagIndex10].Enabled.ValueBool()
 				} else {
 					enabled10 = nil
 				}
@@ -6233,8 +6512,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				})
 			}
 			var newEntityItem interface{}
-			if !actionsItem.NewEntityItem.IsUnknown() && !actionsItem.NewEntityItem.IsNull() {
-				_ = json.Unmarshal([]byte(actionsItem.NewEntityItem.ValueString()), &newEntityItem)
+			if !r.RelationAttribute.Actions[actionsIndex].NewEntityItem.IsUnknown() && !r.RelationAttribute.Actions[actionsIndex].NewEntityItem.IsNull() {
+				_ = json.Unmarshal([]byte(r.RelationAttribute.Actions[actionsIndex].NewEntityItem.ValueString()), &newEntityItem)
 			}
 			actions = append(actions, shared.RelationAttributeActions{
 				ActionType:    actionType,
@@ -6252,25 +6531,25 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			drawerSize = nil
 		}
 		summaryFields := make([]shared.RelationAttributeSummaryFields, 0, len(r.RelationAttribute.SummaryFields))
-		for _, summaryFieldsItem := range r.RelationAttribute.SummaryFields {
-			if !summaryFieldsItem.Str.IsUnknown() && !summaryFieldsItem.Str.IsNull() {
+		for summaryFieldsItem := range r.RelationAttribute.SummaryFields {
+			if !r.RelationAttribute.SummaryFields[summaryFieldsItem].Str.IsUnknown() && !r.RelationAttribute.SummaryFields[summaryFieldsItem].Str.IsNull() {
 				var str2 string
-				str2 = summaryFieldsItem.Str.ValueString()
+				str2 = r.RelationAttribute.SummaryFields[summaryFieldsItem].Str.ValueString()
 
 				summaryFields = append(summaryFields, shared.RelationAttributeSummaryFields{
 					Str: &str2,
 				})
 			}
-			if summaryFieldsItem.SummaryField != nil {
+			if r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField != nil {
 				field := new(string)
-				if !summaryFieldsItem.SummaryField.Field.IsUnknown() && !summaryFieldsItem.SummaryField.Field.IsNull() {
-					*field = summaryFieldsItem.SummaryField.Field.ValueString()
+				if !r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.Field.IsUnknown() && !r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.Field.IsNull() {
+					*field = r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.Field.ValueString()
 				} else {
 					field = nil
 				}
 				displayAs := new(string)
-				if !summaryFieldsItem.SummaryField.DisplayAs.IsUnknown() && !summaryFieldsItem.SummaryField.DisplayAs.IsNull() {
-					*displayAs = summaryFieldsItem.SummaryField.DisplayAs.ValueString()
+				if !r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.DisplayAs.IsUnknown() && !r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.DisplayAs.IsNull() {
+					*displayAs = r.RelationAttribute.SummaryFields[summaryFieldsItem].SummaryField.DisplayAs.ValueString()
 				} else {
 					displayAs = nil
 				}
@@ -6284,8 +6563,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			}
 		}
 		allowedSchemas := make([]string, 0, len(r.RelationAttribute.AllowedSchemas))
-		for _, allowedSchemasItem := range r.RelationAttribute.AllowedSchemas {
-			allowedSchemas = append(allowedSchemas, allowedSchemasItem.ValueString())
+		for allowedSchemasIndex := range r.RelationAttribute.AllowedSchemas {
+			allowedSchemas = append(allowedSchemas, r.RelationAttribute.AllowedSchemas[allowedSchemasIndex].ValueString())
 		}
 		enableRelationTags := new(bool)
 		if !r.RelationAttribute.EnableRelationTags.IsUnknown() && !r.RelationAttribute.EnableRelationTags.IsNull() {
@@ -6345,6 +6624,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit9,
 			Protected:                protected9,
 			InfoHelpers:              infoHelpers9,
+			ExplicitSearchable:       explicitSearchable9,
+			ExcludeFromSearch:        excludeFromSearch9,
 			Repeatable:               repeatable9,
 			HasPrimary:               hasPrimary9,
 			Type:                     typeVar9,
@@ -6468,14 +6749,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition10 = nil
 		}
 		purpose10 := make([]string, 0, len(r.UserRelationAttribute.Purpose))
-		for _, purposeItem10 := range r.UserRelationAttribute.Purpose {
-			purpose10 = append(purpose10, purposeItem10.ValueString())
+		for purposeIndex10 := range r.UserRelationAttribute.Purpose {
+			purpose10 = append(purpose10, r.UserRelationAttribute.Purpose[purposeIndex10].ValueString())
 		}
 		var manifest10 []string
 		if r.UserRelationAttribute.Manifest != nil {
 			manifest10 = make([]string, 0, len(r.UserRelationAttribute.Manifest))
-			for _, manifestItem10 := range r.UserRelationAttribute.Manifest {
-				manifest10 = append(manifest10, manifestItem10.ValueString())
+			for manifestIndex10 := range r.UserRelationAttribute.Manifest {
+				manifest10 = append(manifest10, r.UserRelationAttribute.Manifest[manifestIndex10].ValueString())
 			}
 		}
 		var constraints10 *shared.UserRelationAttributeAttributeWithCompositeIDConstraints
@@ -6489,16 +6770,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag11 = nil
 		}
 		settingsFlag11 := make([]shared.SettingFlag, 0, len(r.UserRelationAttribute.SettingsFlag))
-		for _, settingsFlagItem11 := range r.UserRelationAttribute.SettingsFlag {
+		for settingsFlagIndex11 := range r.UserRelationAttribute.SettingsFlag {
 			name22 := new(string)
-			if !settingsFlagItem11.Name.IsUnknown() && !settingsFlagItem11.Name.IsNull() {
-				*name22 = settingsFlagItem11.Name.ValueString()
+			if !r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Name.IsUnknown() && !r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Name.IsNull() {
+				*name22 = r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Name.ValueString()
 			} else {
 				name22 = nil
 			}
 			enabled11 := new(bool)
-			if !settingsFlagItem11.Enabled.IsUnknown() && !settingsFlagItem11.Enabled.IsNull() {
-				*enabled11 = settingsFlagItem11.Enabled.ValueBool()
+			if !r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Enabled.IsUnknown() && !r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Enabled.IsNull() {
+				*enabled11 = r.UserRelationAttribute.SettingsFlag[settingsFlagIndex11].Enabled.ValueBool()
 			} else {
 				enabled11 = nil
 			}
@@ -6564,6 +6845,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement10,
 			}
 		}
+		explicitSearchable10 := new(bool)
+		if !r.UserRelationAttribute.ExplicitSearchable.IsUnknown() && !r.UserRelationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable10 = r.UserRelationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable10 = nil
+		}
+		excludeFromSearch10 := new(bool)
+		if !r.UserRelationAttribute.ExcludeFromSearch.IsUnknown() && !r.UserRelationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch10 = r.UserRelationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch10 = nil
+		}
 		repeatable10 := new(bool)
 		if !r.UserRelationAttribute.Repeatable.IsUnknown() && !r.UserRelationAttribute.Repeatable.IsNull() {
 			*repeatable10 = r.UserRelationAttribute.Repeatable.ValueBool()
@@ -6623,6 +6916,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit10,
 			Protected:                protected10,
 			InfoHelpers:              infoHelpers10,
+			ExplicitSearchable:       explicitSearchable10,
+			ExcludeFromSearch:        excludeFromSearch10,
 			Repeatable:               repeatable10,
 			HasPrimary:               hasPrimary10,
 			Type:                     typeVar10,
@@ -6733,14 +7028,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition11 = nil
 		}
 		purpose11 := make([]string, 0, len(r.AddressAttribute.Purpose))
-		for _, purposeItem11 := range r.AddressAttribute.Purpose {
-			purpose11 = append(purpose11, purposeItem11.ValueString())
+		for purposeIndex11 := range r.AddressAttribute.Purpose {
+			purpose11 = append(purpose11, r.AddressAttribute.Purpose[purposeIndex11].ValueString())
 		}
 		var manifest11 []string
 		if r.AddressAttribute.Manifest != nil {
 			manifest11 = make([]string, 0, len(r.AddressAttribute.Manifest))
-			for _, manifestItem11 := range r.AddressAttribute.Manifest {
-				manifest11 = append(manifest11, manifestItem11.ValueString())
+			for manifestIndex11 := range r.AddressAttribute.Manifest {
+				manifest11 = append(manifest11, r.AddressAttribute.Manifest[manifestIndex11].ValueString())
 			}
 		}
 		var constraints11 *shared.AddressAttributeAttributeWithCompositeIDConstraints
@@ -6754,16 +7049,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag12 = nil
 		}
 		settingsFlag12 := make([]shared.SettingFlag, 0, len(r.AddressAttribute.SettingsFlag))
-		for _, settingsFlagItem12 := range r.AddressAttribute.SettingsFlag {
+		for settingsFlagIndex12 := range r.AddressAttribute.SettingsFlag {
 			name24 := new(string)
-			if !settingsFlagItem12.Name.IsUnknown() && !settingsFlagItem12.Name.IsNull() {
-				*name24 = settingsFlagItem12.Name.ValueString()
+			if !r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Name.IsUnknown() && !r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Name.IsNull() {
+				*name24 = r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Name.ValueString()
 			} else {
 				name24 = nil
 			}
 			enabled12 := new(bool)
-			if !settingsFlagItem12.Enabled.IsUnknown() && !settingsFlagItem12.Enabled.IsNull() {
-				*enabled12 = settingsFlagItem12.Enabled.ValueBool()
+			if !r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Enabled.IsUnknown() && !r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Enabled.IsNull() {
+				*enabled12 = r.AddressAttribute.SettingsFlag[settingsFlagIndex12].Enabled.ValueBool()
 			} else {
 				enabled12 = nil
 			}
@@ -6829,6 +7124,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement11,
 			}
 		}
+		explicitSearchable11 := new(bool)
+		if !r.AddressAttribute.ExplicitSearchable.IsUnknown() && !r.AddressAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable11 = r.AddressAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable11 = nil
+		}
+		excludeFromSearch11 := new(bool)
+		if !r.AddressAttribute.ExcludeFromSearch.IsUnknown() && !r.AddressAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch11 = r.AddressAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch11 = nil
+		}
 		repeatable11 := new(bool)
 		if !r.AddressAttribute.Repeatable.IsUnknown() && !r.AddressAttribute.Repeatable.IsNull() {
 			*repeatable11 = r.AddressAttribute.Repeatable.ValueBool()
@@ -6845,8 +7152,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 		var defaultAddressFields []string
 		if r.AddressAttribute.DefaultAddressFields != nil {
 			defaultAddressFields = make([]string, 0, len(r.AddressAttribute.DefaultAddressFields))
-			for _, defaultAddressFieldsItem := range r.AddressAttribute.DefaultAddressFields {
-				defaultAddressFields = append(defaultAddressFields, defaultAddressFieldsItem.ValueString())
+			for defaultAddressFieldsIndex := range r.AddressAttribute.DefaultAddressFields {
+				defaultAddressFields = append(defaultAddressFields, r.AddressAttribute.DefaultAddressFields[defaultAddressFieldsIndex].ValueString())
 			}
 		}
 		compositeId11 := new(string)
@@ -6889,6 +7196,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit11,
 			Protected:                protected11,
 			InfoHelpers:              infoHelpers11,
+			ExplicitSearchable:       explicitSearchable11,
+			ExcludeFromSearch:        excludeFromSearch11,
 			Repeatable:               repeatable11,
 			HasPrimary:               hasPrimary11,
 			Type:                     typeVar11,
@@ -6999,14 +7308,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition12 = nil
 		}
 		purpose12 := make([]string, 0, len(r.AddressRelationAttribute.Purpose))
-		for _, purposeItem12 := range r.AddressRelationAttribute.Purpose {
-			purpose12 = append(purpose12, purposeItem12.ValueString())
+		for purposeIndex12 := range r.AddressRelationAttribute.Purpose {
+			purpose12 = append(purpose12, r.AddressRelationAttribute.Purpose[purposeIndex12].ValueString())
 		}
 		var manifest12 []string
 		if r.AddressRelationAttribute.Manifest != nil {
 			manifest12 = make([]string, 0, len(r.AddressRelationAttribute.Manifest))
-			for _, manifestItem12 := range r.AddressRelationAttribute.Manifest {
-				manifest12 = append(manifest12, manifestItem12.ValueString())
+			for manifestIndex12 := range r.AddressRelationAttribute.Manifest {
+				manifest12 = append(manifest12, r.AddressRelationAttribute.Manifest[manifestIndex12].ValueString())
 			}
 		}
 		var constraints12 *shared.AddressRelationAttributeAttributeWithCompositeIDConstraints
@@ -7020,16 +7329,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag13 = nil
 		}
 		settingsFlag13 := make([]shared.SettingFlag, 0, len(r.AddressRelationAttribute.SettingsFlag))
-		for _, settingsFlagItem13 := range r.AddressRelationAttribute.SettingsFlag {
+		for settingsFlagIndex13 := range r.AddressRelationAttribute.SettingsFlag {
 			name26 := new(string)
-			if !settingsFlagItem13.Name.IsUnknown() && !settingsFlagItem13.Name.IsNull() {
-				*name26 = settingsFlagItem13.Name.ValueString()
+			if !r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Name.IsUnknown() && !r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Name.IsNull() {
+				*name26 = r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Name.ValueString()
 			} else {
 				name26 = nil
 			}
 			enabled13 := new(bool)
-			if !settingsFlagItem13.Enabled.IsUnknown() && !settingsFlagItem13.Enabled.IsNull() {
-				*enabled13 = settingsFlagItem13.Enabled.ValueBool()
+			if !r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Enabled.IsUnknown() && !r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Enabled.IsNull() {
+				*enabled13 = r.AddressRelationAttribute.SettingsFlag[settingsFlagIndex13].Enabled.ValueBool()
 			} else {
 				enabled13 = nil
 			}
@@ -7095,6 +7404,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement12,
 			}
 		}
+		explicitSearchable12 := new(bool)
+		if !r.AddressRelationAttribute.ExplicitSearchable.IsUnknown() && !r.AddressRelationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable12 = r.AddressRelationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable12 = nil
+		}
+		excludeFromSearch12 := new(bool)
+		if !r.AddressRelationAttribute.ExcludeFromSearch.IsUnknown() && !r.AddressRelationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch12 = r.AddressRelationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch12 = nil
+		}
 		repeatable12 := new(bool)
 		if !r.AddressRelationAttribute.Repeatable.IsUnknown() && !r.AddressRelationAttribute.Repeatable.IsNull() {
 			*repeatable12 = r.AddressRelationAttribute.Repeatable.ValueBool()
@@ -7111,8 +7432,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 		var defaultAddressFields1 []string
 		if r.AddressRelationAttribute.DefaultAddressFields != nil {
 			defaultAddressFields1 = make([]string, 0, len(r.AddressRelationAttribute.DefaultAddressFields))
-			for _, defaultAddressFieldsItem1 := range r.AddressRelationAttribute.DefaultAddressFields {
-				defaultAddressFields1 = append(defaultAddressFields1, defaultAddressFieldsItem1.ValueString())
+			for defaultAddressFieldsIndex1 := range r.AddressRelationAttribute.DefaultAddressFields {
+				defaultAddressFields1 = append(defaultAddressFields1, r.AddressRelationAttribute.DefaultAddressFields[defaultAddressFieldsIndex1].ValueString())
 			}
 		}
 		compositeId12 := new(string)
@@ -7155,6 +7476,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit12,
 			Protected:                protected12,
 			InfoHelpers:              infoHelpers12,
+			ExplicitSearchable:       explicitSearchable12,
+			ExcludeFromSearch:        excludeFromSearch12,
 			Repeatable:               repeatable12,
 			HasPrimary:               hasPrimary12,
 			Type:                     typeVar12,
@@ -7265,14 +7588,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition13 = nil
 		}
 		purpose13 := make([]string, 0, len(r.PaymentMethodRelationAttribute.Purpose))
-		for _, purposeItem13 := range r.PaymentMethodRelationAttribute.Purpose {
-			purpose13 = append(purpose13, purposeItem13.ValueString())
+		for purposeIndex13 := range r.PaymentMethodRelationAttribute.Purpose {
+			purpose13 = append(purpose13, r.PaymentMethodRelationAttribute.Purpose[purposeIndex13].ValueString())
 		}
 		var manifest13 []string
 		if r.PaymentMethodRelationAttribute.Manifest != nil {
 			manifest13 = make([]string, 0, len(r.PaymentMethodRelationAttribute.Manifest))
-			for _, manifestItem13 := range r.PaymentMethodRelationAttribute.Manifest {
-				manifest13 = append(manifest13, manifestItem13.ValueString())
+			for manifestIndex13 := range r.PaymentMethodRelationAttribute.Manifest {
+				manifest13 = append(manifest13, r.PaymentMethodRelationAttribute.Manifest[manifestIndex13].ValueString())
 			}
 		}
 		var constraints13 *shared.PaymentMethodRelationAttributeAttributeWithCompositeIDConstraints
@@ -7286,16 +7609,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag14 = nil
 		}
 		settingsFlag14 := make([]shared.SettingFlag, 0, len(r.PaymentMethodRelationAttribute.SettingsFlag))
-		for _, settingsFlagItem14 := range r.PaymentMethodRelationAttribute.SettingsFlag {
+		for settingsFlagIndex14 := range r.PaymentMethodRelationAttribute.SettingsFlag {
 			name28 := new(string)
-			if !settingsFlagItem14.Name.IsUnknown() && !settingsFlagItem14.Name.IsNull() {
-				*name28 = settingsFlagItem14.Name.ValueString()
+			if !r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Name.IsUnknown() && !r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Name.IsNull() {
+				*name28 = r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Name.ValueString()
 			} else {
 				name28 = nil
 			}
 			enabled14 := new(bool)
-			if !settingsFlagItem14.Enabled.IsUnknown() && !settingsFlagItem14.Enabled.IsNull() {
-				*enabled14 = settingsFlagItem14.Enabled.ValueBool()
+			if !r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Enabled.IsUnknown() && !r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Enabled.IsNull() {
+				*enabled14 = r.PaymentMethodRelationAttribute.SettingsFlag[settingsFlagIndex14].Enabled.ValueBool()
 			} else {
 				enabled14 = nil
 			}
@@ -7361,6 +7684,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement13,
 			}
 		}
+		explicitSearchable13 := new(bool)
+		if !r.PaymentMethodRelationAttribute.ExplicitSearchable.IsUnknown() && !r.PaymentMethodRelationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable13 = r.PaymentMethodRelationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable13 = nil
+		}
+		excludeFromSearch13 := new(bool)
+		if !r.PaymentMethodRelationAttribute.ExcludeFromSearch.IsUnknown() && !r.PaymentMethodRelationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch13 = r.PaymentMethodRelationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch13 = nil
+		}
 		repeatable13 := new(bool)
 		if !r.PaymentMethodRelationAttribute.Repeatable.IsUnknown() && !r.PaymentMethodRelationAttribute.Repeatable.IsNull() {
 			*repeatable13 = r.PaymentMethodRelationAttribute.Repeatable.ValueBool()
@@ -7414,6 +7749,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit13,
 			Protected:                protected13,
 			InfoHelpers:              infoHelpers13,
+			ExplicitSearchable:       explicitSearchable13,
+			ExcludeFromSearch:        excludeFromSearch13,
 			Repeatable:               repeatable13,
 			HasPrimary:               hasPrimary13,
 			Type:                     typeVar13,
@@ -7523,14 +7860,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition14 = nil
 		}
 		purpose14 := make([]string, 0, len(r.CurrencyAttribute.Purpose))
-		for _, purposeItem14 := range r.CurrencyAttribute.Purpose {
-			purpose14 = append(purpose14, purposeItem14.ValueString())
+		for purposeIndex14 := range r.CurrencyAttribute.Purpose {
+			purpose14 = append(purpose14, r.CurrencyAttribute.Purpose[purposeIndex14].ValueString())
 		}
 		var manifest14 []string
 		if r.CurrencyAttribute.Manifest != nil {
 			manifest14 = make([]string, 0, len(r.CurrencyAttribute.Manifest))
-			for _, manifestItem14 := range r.CurrencyAttribute.Manifest {
-				manifest14 = append(manifest14, manifestItem14.ValueString())
+			for manifestIndex14 := range r.CurrencyAttribute.Manifest {
+				manifest14 = append(manifest14, r.CurrencyAttribute.Manifest[manifestIndex14].ValueString())
 			}
 		}
 		var constraints14 *shared.CurrencyAttributeAttributeWithCompositeIDConstraints
@@ -7544,16 +7881,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag15 = nil
 		}
 		settingsFlag15 := make([]shared.SettingFlag, 0, len(r.CurrencyAttribute.SettingsFlag))
-		for _, settingsFlagItem15 := range r.CurrencyAttribute.SettingsFlag {
+		for settingsFlagIndex15 := range r.CurrencyAttribute.SettingsFlag {
 			name30 := new(string)
-			if !settingsFlagItem15.Name.IsUnknown() && !settingsFlagItem15.Name.IsNull() {
-				*name30 = settingsFlagItem15.Name.ValueString()
+			if !r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Name.IsUnknown() && !r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Name.IsNull() {
+				*name30 = r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Name.ValueString()
 			} else {
 				name30 = nil
 			}
 			enabled15 := new(bool)
-			if !settingsFlagItem15.Enabled.IsUnknown() && !settingsFlagItem15.Enabled.IsNull() {
-				*enabled15 = settingsFlagItem15.Enabled.ValueBool()
+			if !r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Enabled.IsUnknown() && !r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Enabled.IsNull() {
+				*enabled15 = r.CurrencyAttribute.SettingsFlag[settingsFlagIndex15].Enabled.ValueBool()
 			} else {
 				enabled15 = nil
 			}
@@ -7619,6 +7956,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement14,
 			}
 		}
+		explicitSearchable14 := new(bool)
+		if !r.CurrencyAttribute.ExplicitSearchable.IsUnknown() && !r.CurrencyAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable14 = r.CurrencyAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable14 = nil
+		}
+		excludeFromSearch14 := new(bool)
+		if !r.CurrencyAttribute.ExcludeFromSearch.IsUnknown() && !r.CurrencyAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch14 = r.CurrencyAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch14 = nil
+		}
 		repeatable14 := new(bool)
 		if !r.CurrencyAttribute.Repeatable.IsUnknown() && !r.CurrencyAttribute.Repeatable.IsNull() {
 			*repeatable14 = r.CurrencyAttribute.Repeatable.ValueBool()
@@ -7639,20 +7988,20 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			currencySelectorOnly = nil
 		}
 		currency := make([]shared.CurrencyAttributeCurrency, 0, len(r.CurrencyAttribute.Currency))
-		for _, currencyItem := range r.CurrencyAttribute.Currency {
-			if currencyItem.One != nil {
+		for currencyItem := range r.CurrencyAttribute.Currency {
+			if r.CurrencyAttribute.Currency[currencyItem].One != nil {
 				var code string
-				code = currencyItem.One.Code.ValueString()
+				code = r.CurrencyAttribute.Currency[currencyItem].One.Code.ValueString()
 
 				var description string
-				description = currencyItem.One.Description.ValueString()
+				description = r.CurrencyAttribute.Currency[currencyItem].One.Description.ValueString()
 
 				var symbol string
-				symbol = currencyItem.One.Symbol.ValueString()
+				symbol = r.CurrencyAttribute.Currency[currencyItem].One.Symbol.ValueString()
 
 				flag := new(string)
-				if !currencyItem.One.Flag.IsUnknown() && !currencyItem.One.Flag.IsNull() {
-					*flag = currencyItem.One.Flag.ValueString()
+				if !r.CurrencyAttribute.Currency[currencyItem].One.Flag.IsUnknown() && !r.CurrencyAttribute.Currency[currencyItem].One.Flag.IsNull() {
+					*flag = r.CurrencyAttribute.Currency[currencyItem].One.Flag.ValueString()
 				} else {
 					flag = nil
 				}
@@ -7707,6 +8056,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit14,
 			Protected:                protected14,
 			InfoHelpers:              infoHelpers14,
+			ExplicitSearchable:       explicitSearchable14,
+			ExcludeFromSearch:        excludeFromSearch14,
 			Repeatable:               repeatable14,
 			HasPrimary:               hasPrimary14,
 			Type:                     typeVar14,
@@ -7818,14 +8169,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition15 = nil
 		}
 		purpose15 := make([]string, 0, len(r.TagsAttribute.Purpose))
-		for _, purposeItem15 := range r.TagsAttribute.Purpose {
-			purpose15 = append(purpose15, purposeItem15.ValueString())
+		for purposeIndex15 := range r.TagsAttribute.Purpose {
+			purpose15 = append(purpose15, r.TagsAttribute.Purpose[purposeIndex15].ValueString())
 		}
 		var manifest15 []string
 		if r.TagsAttribute.Manifest != nil {
 			manifest15 = make([]string, 0, len(r.TagsAttribute.Manifest))
-			for _, manifestItem15 := range r.TagsAttribute.Manifest {
-				manifest15 = append(manifest15, manifestItem15.ValueString())
+			for manifestIndex15 := range r.TagsAttribute.Manifest {
+				manifest15 = append(manifest15, r.TagsAttribute.Manifest[manifestIndex15].ValueString())
 			}
 		}
 		var constraints15 *shared.TagsAttributeAttributeWithCompositeIDConstraints
@@ -7839,16 +8190,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag16 = nil
 		}
 		settingsFlag16 := make([]shared.SettingFlag, 0, len(r.TagsAttribute.SettingsFlag))
-		for _, settingsFlagItem16 := range r.TagsAttribute.SettingsFlag {
+		for settingsFlagIndex16 := range r.TagsAttribute.SettingsFlag {
 			name32 := new(string)
-			if !settingsFlagItem16.Name.IsUnknown() && !settingsFlagItem16.Name.IsNull() {
-				*name32 = settingsFlagItem16.Name.ValueString()
+			if !r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Name.IsUnknown() && !r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Name.IsNull() {
+				*name32 = r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Name.ValueString()
 			} else {
 				name32 = nil
 			}
 			enabled16 := new(bool)
-			if !settingsFlagItem16.Enabled.IsUnknown() && !settingsFlagItem16.Enabled.IsNull() {
-				*enabled16 = settingsFlagItem16.Enabled.ValueBool()
+			if !r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Enabled.IsUnknown() && !r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Enabled.IsNull() {
+				*enabled16 = r.TagsAttribute.SettingsFlag[settingsFlagIndex16].Enabled.ValueBool()
 			} else {
 				enabled16 = nil
 			}
@@ -7914,6 +8265,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement15,
 			}
 		}
+		explicitSearchable15 := new(bool)
+		if !r.TagsAttribute.ExplicitSearchable.IsUnknown() && !r.TagsAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable15 = r.TagsAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable15 = nil
+		}
+		excludeFromSearch15 := new(bool)
+		if !r.TagsAttribute.ExcludeFromSearch.IsUnknown() && !r.TagsAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch15 = r.TagsAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch15 = nil
+		}
 		repeatable15 := new(bool)
 		if !r.TagsAttribute.Repeatable.IsUnknown() && !r.TagsAttribute.Repeatable.IsNull() {
 			*repeatable15 = r.TagsAttribute.Repeatable.ValueBool()
@@ -7928,12 +8291,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 		}
 		typeVar15 := shared.TagsAttributeAttributeWithCompositeIDType(r.TagsAttribute.Type.ValueString())
 		optionsVar3 := make([]string, 0, len(r.TagsAttribute.Options))
-		for _, optionsItem2 := range r.TagsAttribute.Options {
-			optionsVar3 = append(optionsVar3, optionsItem2.ValueString())
+		for optionsIndex := range r.TagsAttribute.Options {
+			optionsVar3 = append(optionsVar3, r.TagsAttribute.Options[optionsIndex].ValueString())
 		}
 		suggestions := make([]string, 0, len(r.TagsAttribute.Suggestions))
-		for _, suggestionsItem := range r.TagsAttribute.Suggestions {
-			suggestions = append(suggestions, suggestionsItem.ValueString())
+		for suggestionsIndex := range r.TagsAttribute.Suggestions {
+			suggestions = append(suggestions, r.TagsAttribute.Suggestions[suggestionsIndex].ValueString())
 		}
 		compositeId15 := new(string)
 		if !r.TagsAttribute.CompositeID.IsUnknown() && !r.TagsAttribute.CompositeID.IsNull() {
@@ -7975,6 +8338,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit15,
 			Protected:                protected15,
 			InfoHelpers:              infoHelpers15,
+			ExplicitSearchable:       explicitSearchable15,
+			ExcludeFromSearch:        excludeFromSearch15,
 			Repeatable:               repeatable15,
 			HasPrimary:               hasPrimary15,
 			Type:                     typeVar15,
@@ -8086,14 +8451,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition16 = nil
 		}
 		purpose16 := make([]string, 0, len(r.MessageEmailAddressAttribute.Purpose))
-		for _, purposeItem16 := range r.MessageEmailAddressAttribute.Purpose {
-			purpose16 = append(purpose16, purposeItem16.ValueString())
+		for purposeIndex16 := range r.MessageEmailAddressAttribute.Purpose {
+			purpose16 = append(purpose16, r.MessageEmailAddressAttribute.Purpose[purposeIndex16].ValueString())
 		}
 		var manifest16 []string
 		if r.MessageEmailAddressAttribute.Manifest != nil {
 			manifest16 = make([]string, 0, len(r.MessageEmailAddressAttribute.Manifest))
-			for _, manifestItem16 := range r.MessageEmailAddressAttribute.Manifest {
-				manifest16 = append(manifest16, manifestItem16.ValueString())
+			for manifestIndex16 := range r.MessageEmailAddressAttribute.Manifest {
+				manifest16 = append(manifest16, r.MessageEmailAddressAttribute.Manifest[manifestIndex16].ValueString())
 			}
 		}
 		var constraints16 *shared.MessageEmailAddressAttributeAttributeWithCompositeIDConstraints
@@ -8107,16 +8472,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag17 = nil
 		}
 		settingsFlag17 := make([]shared.SettingFlag, 0, len(r.MessageEmailAddressAttribute.SettingsFlag))
-		for _, settingsFlagItem17 := range r.MessageEmailAddressAttribute.SettingsFlag {
+		for settingsFlagIndex17 := range r.MessageEmailAddressAttribute.SettingsFlag {
 			name34 := new(string)
-			if !settingsFlagItem17.Name.IsUnknown() && !settingsFlagItem17.Name.IsNull() {
-				*name34 = settingsFlagItem17.Name.ValueString()
+			if !r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Name.IsUnknown() && !r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Name.IsNull() {
+				*name34 = r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Name.ValueString()
 			} else {
 				name34 = nil
 			}
 			enabled17 := new(bool)
-			if !settingsFlagItem17.Enabled.IsUnknown() && !settingsFlagItem17.Enabled.IsNull() {
-				*enabled17 = settingsFlagItem17.Enabled.ValueBool()
+			if !r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Enabled.IsUnknown() && !r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Enabled.IsNull() {
+				*enabled17 = r.MessageEmailAddressAttribute.SettingsFlag[settingsFlagIndex17].Enabled.ValueBool()
 			} else {
 				enabled17 = nil
 			}
@@ -8181,6 +8546,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintCustomComponent:  hintCustomComponent16,
 				HintTooltipPlacement: hintTooltipPlacement16,
 			}
+		}
+		explicitSearchable16 := new(bool)
+		if !r.MessageEmailAddressAttribute.ExplicitSearchable.IsUnknown() && !r.MessageEmailAddressAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable16 = r.MessageEmailAddressAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable16 = nil
+		}
+		excludeFromSearch16 := new(bool)
+		if !r.MessageEmailAddressAttribute.ExcludeFromSearch.IsUnknown() && !r.MessageEmailAddressAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch16 = r.MessageEmailAddressAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch16 = nil
 		}
 		repeatable16 := new(bool)
 		if !r.MessageEmailAddressAttribute.Repeatable.IsUnknown() && !r.MessageEmailAddressAttribute.Repeatable.IsNull() {
@@ -8253,6 +8630,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit16,
 			Protected:                protected16,
 			InfoHelpers:              infoHelpers16,
+			ExplicitSearchable:       explicitSearchable16,
+			ExcludeFromSearch:        excludeFromSearch16,
 			Repeatable:               repeatable16,
 			HasPrimary:               hasPrimary16,
 			Type:                     typeVar16,
@@ -8365,14 +8744,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition17 = nil
 		}
 		purpose17 := make([]string, 0, len(r.NumberAttribute.Purpose))
-		for _, purposeItem17 := range r.NumberAttribute.Purpose {
-			purpose17 = append(purpose17, purposeItem17.ValueString())
+		for purposeIndex17 := range r.NumberAttribute.Purpose {
+			purpose17 = append(purpose17, r.NumberAttribute.Purpose[purposeIndex17].ValueString())
 		}
 		var manifest17 []string
 		if r.NumberAttribute.Manifest != nil {
 			manifest17 = make([]string, 0, len(r.NumberAttribute.Manifest))
-			for _, manifestItem17 := range r.NumberAttribute.Manifest {
-				manifest17 = append(manifest17, manifestItem17.ValueString())
+			for manifestIndex17 := range r.NumberAttribute.Manifest {
+				manifest17 = append(manifest17, r.NumberAttribute.Manifest[manifestIndex17].ValueString())
 			}
 		}
 		var constraints17 *shared.NumberAttributeAttributeWithCompositeIDConstraints
@@ -8386,16 +8765,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag18 = nil
 		}
 		settingsFlag18 := make([]shared.SettingFlag, 0, len(r.NumberAttribute.SettingsFlag))
-		for _, settingsFlagItem18 := range r.NumberAttribute.SettingsFlag {
+		for settingsFlagIndex18 := range r.NumberAttribute.SettingsFlag {
 			name36 := new(string)
-			if !settingsFlagItem18.Name.IsUnknown() && !settingsFlagItem18.Name.IsNull() {
-				*name36 = settingsFlagItem18.Name.ValueString()
+			if !r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Name.IsUnknown() && !r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Name.IsNull() {
+				*name36 = r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Name.ValueString()
 			} else {
 				name36 = nil
 			}
 			enabled18 := new(bool)
-			if !settingsFlagItem18.Enabled.IsUnknown() && !settingsFlagItem18.Enabled.IsNull() {
-				*enabled18 = settingsFlagItem18.Enabled.ValueBool()
+			if !r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Enabled.IsUnknown() && !r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Enabled.IsNull() {
+				*enabled18 = r.NumberAttribute.SettingsFlag[settingsFlagIndex18].Enabled.ValueBool()
 			} else {
 				enabled18 = nil
 			}
@@ -8461,6 +8840,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement17,
 			}
 		}
+		explicitSearchable17 := new(bool)
+		if !r.NumberAttribute.ExplicitSearchable.IsUnknown() && !r.NumberAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable17 = r.NumberAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable17 = nil
+		}
+		excludeFromSearch17 := new(bool)
+		if !r.NumberAttribute.ExcludeFromSearch.IsUnknown() && !r.NumberAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch17 = r.NumberAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch17 = nil
+		}
 		repeatable17 := new(bool)
 		if !r.NumberAttribute.Repeatable.IsUnknown() && !r.NumberAttribute.Repeatable.IsNull() {
 			*repeatable17 = r.NumberAttribute.Repeatable.ValueBool()
@@ -8474,6 +8865,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			hasPrimary17 = nil
 		}
 		typeVar17 := shared.NumberAttributeAttributeWithCompositeIDType(r.NumberAttribute.Type.ValueString())
+		dataType := new(shared.NumberAttributeDataType)
+		if !r.NumberAttribute.DataType.IsUnknown() && !r.NumberAttribute.DataType.IsNull() {
+			*dataType = shared.NumberAttributeDataType(r.NumberAttribute.DataType.ValueString())
+		} else {
+			dataType = nil
+		}
 		format := new(string)
 		if !r.NumberAttribute.Format.IsUnknown() && !r.NumberAttribute.Format.IsNull() {
 			*format = r.NumberAttribute.Format.ValueString()
@@ -8526,9 +8923,12 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit17,
 			Protected:                protected17,
 			InfoHelpers:              infoHelpers17,
+			ExplicitSearchable:       explicitSearchable17,
+			ExcludeFromSearch:        excludeFromSearch17,
 			Repeatable:               repeatable17,
 			HasPrimary:               hasPrimary17,
 			Type:                     typeVar17,
+			DataType:                 dataType,
 			Format:                   format,
 			ShowSeparator:            showSeparator,
 			CompositeID:              compositeId17,
@@ -8637,14 +9037,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition18 = nil
 		}
 		purpose18 := make([]string, 0, len(r.ConsentAttribute.Purpose))
-		for _, purposeItem18 := range r.ConsentAttribute.Purpose {
-			purpose18 = append(purpose18, purposeItem18.ValueString())
+		for purposeIndex18 := range r.ConsentAttribute.Purpose {
+			purpose18 = append(purpose18, r.ConsentAttribute.Purpose[purposeIndex18].ValueString())
 		}
 		var manifest18 []string
 		if r.ConsentAttribute.Manifest != nil {
 			manifest18 = make([]string, 0, len(r.ConsentAttribute.Manifest))
-			for _, manifestItem18 := range r.ConsentAttribute.Manifest {
-				manifest18 = append(manifest18, manifestItem18.ValueString())
+			for manifestIndex18 := range r.ConsentAttribute.Manifest {
+				manifest18 = append(manifest18, r.ConsentAttribute.Manifest[manifestIndex18].ValueString())
 			}
 		}
 		var constraints18 *shared.ConsentAttributeAttributeWithCompositeIDConstraints
@@ -8658,16 +9058,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag19 = nil
 		}
 		settingsFlag19 := make([]shared.SettingFlag, 0, len(r.ConsentAttribute.SettingsFlag))
-		for _, settingsFlagItem19 := range r.ConsentAttribute.SettingsFlag {
+		for settingsFlagIndex19 := range r.ConsentAttribute.SettingsFlag {
 			name38 := new(string)
-			if !settingsFlagItem19.Name.IsUnknown() && !settingsFlagItem19.Name.IsNull() {
-				*name38 = settingsFlagItem19.Name.ValueString()
+			if !r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Name.IsUnknown() && !r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Name.IsNull() {
+				*name38 = r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Name.ValueString()
 			} else {
 				name38 = nil
 			}
 			enabled19 := new(bool)
-			if !settingsFlagItem19.Enabled.IsUnknown() && !settingsFlagItem19.Enabled.IsNull() {
-				*enabled19 = settingsFlagItem19.Enabled.ValueBool()
+			if !r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Enabled.IsUnknown() && !r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Enabled.IsNull() {
+				*enabled19 = r.ConsentAttribute.SettingsFlag[settingsFlagIndex19].Enabled.ValueBool()
 			} else {
 				enabled19 = nil
 			}
@@ -8733,6 +9133,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement18,
 			}
 		}
+		explicitSearchable18 := new(bool)
+		if !r.ConsentAttribute.ExplicitSearchable.IsUnknown() && !r.ConsentAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable18 = r.ConsentAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable18 = nil
+		}
+		excludeFromSearch18 := new(bool)
+		if !r.ConsentAttribute.ExcludeFromSearch.IsUnknown() && !r.ConsentAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch18 = r.ConsentAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch18 = nil
+		}
 		repeatable18 := new(bool)
 		if !r.ConsentAttribute.Repeatable.IsUnknown() && !r.ConsentAttribute.Repeatable.IsNull() {
 			*repeatable18 = r.ConsentAttribute.Repeatable.ValueBool()
@@ -8750,8 +9162,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 		topic = r.ConsentAttribute.Topic.ValueString()
 
 		identifiers := make([]string, 0, len(r.ConsentAttribute.Identifiers))
-		for _, identifiersItem := range r.ConsentAttribute.Identifiers {
-			identifiers = append(identifiers, identifiersItem.ValueString())
+		for identifiersIndex := range r.ConsentAttribute.Identifiers {
+			identifiers = append(identifiers, r.ConsentAttribute.Identifiers[identifiersIndex].ValueString())
 		}
 		compositeId18 := new(string)
 		if !r.ConsentAttribute.CompositeID.IsUnknown() && !r.ConsentAttribute.CompositeID.IsNull() {
@@ -8793,6 +9205,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit18,
 			Protected:                protected18,
 			InfoHelpers:              infoHelpers18,
+			ExplicitSearchable:       explicitSearchable18,
+			ExcludeFromSearch:        excludeFromSearch18,
 			Repeatable:               repeatable18,
 			HasPrimary:               hasPrimary18,
 			Type:                     typeVar18,
@@ -8904,14 +9318,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition19 = nil
 		}
 		purpose19 := make([]string, 0, len(r.InternalAttribute.Purpose))
-		for _, purposeItem19 := range r.InternalAttribute.Purpose {
-			purpose19 = append(purpose19, purposeItem19.ValueString())
+		for purposeIndex19 := range r.InternalAttribute.Purpose {
+			purpose19 = append(purpose19, r.InternalAttribute.Purpose[purposeIndex19].ValueString())
 		}
 		var manifest19 []string
 		if r.InternalAttribute.Manifest != nil {
 			manifest19 = make([]string, 0, len(r.InternalAttribute.Manifest))
-			for _, manifestItem19 := range r.InternalAttribute.Manifest {
-				manifest19 = append(manifest19, manifestItem19.ValueString())
+			for manifestIndex19 := range r.InternalAttribute.Manifest {
+				manifest19 = append(manifest19, r.InternalAttribute.Manifest[manifestIndex19].ValueString())
 			}
 		}
 		var constraints19 *shared.InternalAttributeAttributeWithCompositeIDConstraints
@@ -8925,16 +9339,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag20 = nil
 		}
 		settingsFlag20 := make([]shared.SettingFlag, 0, len(r.InternalAttribute.SettingsFlag))
-		for _, settingsFlagItem20 := range r.InternalAttribute.SettingsFlag {
+		for settingsFlagIndex20 := range r.InternalAttribute.SettingsFlag {
 			name40 := new(string)
-			if !settingsFlagItem20.Name.IsUnknown() && !settingsFlagItem20.Name.IsNull() {
-				*name40 = settingsFlagItem20.Name.ValueString()
+			if !r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Name.IsUnknown() && !r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Name.IsNull() {
+				*name40 = r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Name.ValueString()
 			} else {
 				name40 = nil
 			}
 			enabled20 := new(bool)
-			if !settingsFlagItem20.Enabled.IsUnknown() && !settingsFlagItem20.Enabled.IsNull() {
-				*enabled20 = settingsFlagItem20.Enabled.ValueBool()
+			if !r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Enabled.IsUnknown() && !r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Enabled.IsNull() {
+				*enabled20 = r.InternalAttribute.SettingsFlag[settingsFlagIndex20].Enabled.ValueBool()
 			} else {
 				enabled20 = nil
 			}
@@ -9000,6 +9414,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement19,
 			}
 		}
+		explicitSearchable19 := new(bool)
+		if !r.InternalAttribute.ExplicitSearchable.IsUnknown() && !r.InternalAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable19 = r.InternalAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable19 = nil
+		}
+		excludeFromSearch19 := new(bool)
+		if !r.InternalAttribute.ExcludeFromSearch.IsUnknown() && !r.InternalAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch19 = r.InternalAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch19 = nil
+		}
 		repeatable19 := new(bool)
 		if !r.InternalAttribute.Repeatable.IsUnknown() && !r.InternalAttribute.Repeatable.IsNull() {
 			*repeatable19 = r.InternalAttribute.Repeatable.ValueBool()
@@ -9053,6 +9479,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit19,
 			Protected:                protected19,
 			InfoHelpers:              infoHelpers19,
+			ExplicitSearchable:       explicitSearchable19,
+			ExcludeFromSearch:        excludeFromSearch19,
 			Repeatable:               repeatable19,
 			HasPrimary:               hasPrimary19,
 			Type:                     typeVar19,
@@ -9162,14 +9590,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition20 = nil
 		}
 		purpose20 := make([]string, 0, len(r.OrderedListAttribute.Purpose))
-		for _, purposeItem20 := range r.OrderedListAttribute.Purpose {
-			purpose20 = append(purpose20, purposeItem20.ValueString())
+		for purposeIndex20 := range r.OrderedListAttribute.Purpose {
+			purpose20 = append(purpose20, r.OrderedListAttribute.Purpose[purposeIndex20].ValueString())
 		}
 		var manifest20 []string
 		if r.OrderedListAttribute.Manifest != nil {
 			manifest20 = make([]string, 0, len(r.OrderedListAttribute.Manifest))
-			for _, manifestItem20 := range r.OrderedListAttribute.Manifest {
-				manifest20 = append(manifest20, manifestItem20.ValueString())
+			for manifestIndex20 := range r.OrderedListAttribute.Manifest {
+				manifest20 = append(manifest20, r.OrderedListAttribute.Manifest[manifestIndex20].ValueString())
 			}
 		}
 		var constraints20 *shared.OrderedListAttributeAttributeWithCompositeIDConstraints
@@ -9183,16 +9611,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag21 = nil
 		}
 		settingsFlag21 := make([]shared.SettingFlag, 0, len(r.OrderedListAttribute.SettingsFlag))
-		for _, settingsFlagItem21 := range r.OrderedListAttribute.SettingsFlag {
+		for settingsFlagIndex21 := range r.OrderedListAttribute.SettingsFlag {
 			name42 := new(string)
-			if !settingsFlagItem21.Name.IsUnknown() && !settingsFlagItem21.Name.IsNull() {
-				*name42 = settingsFlagItem21.Name.ValueString()
+			if !r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Name.IsUnknown() && !r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Name.IsNull() {
+				*name42 = r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Name.ValueString()
 			} else {
 				name42 = nil
 			}
 			enabled21 := new(bool)
-			if !settingsFlagItem21.Enabled.IsUnknown() && !settingsFlagItem21.Enabled.IsNull() {
-				*enabled21 = settingsFlagItem21.Enabled.ValueBool()
+			if !r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Enabled.IsUnknown() && !r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Enabled.IsNull() {
+				*enabled21 = r.OrderedListAttribute.SettingsFlag[settingsFlagIndex21].Enabled.ValueBool()
 			} else {
 				enabled21 = nil
 			}
@@ -9258,6 +9686,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement20,
 			}
 		}
+		explicitSearchable20 := new(bool)
+		if !r.OrderedListAttribute.ExplicitSearchable.IsUnknown() && !r.OrderedListAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable20 = r.OrderedListAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable20 = nil
+		}
+		excludeFromSearch20 := new(bool)
+		if !r.OrderedListAttribute.ExcludeFromSearch.IsUnknown() && !r.OrderedListAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch20 = r.OrderedListAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch20 = nil
+		}
 		repeatable20 := new(bool)
 		if !r.OrderedListAttribute.Repeatable.IsUnknown() && !r.OrderedListAttribute.Repeatable.IsNull() {
 			*repeatable20 = r.OrderedListAttribute.Repeatable.ValueBool()
@@ -9311,6 +9751,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit20,
 			Protected:                protected20,
 			InfoHelpers:              infoHelpers20,
+			ExplicitSearchable:       explicitSearchable20,
+			ExcludeFromSearch:        excludeFromSearch20,
 			Repeatable:               repeatable20,
 			HasPrimary:               hasPrimary20,
 			Type:                     typeVar20,
@@ -9420,14 +9862,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition21 = nil
 		}
 		purpose21 := make([]string, 0, len(r.FileAttribute.Purpose))
-		for _, purposeItem21 := range r.FileAttribute.Purpose {
-			purpose21 = append(purpose21, purposeItem21.ValueString())
+		for purposeIndex21 := range r.FileAttribute.Purpose {
+			purpose21 = append(purpose21, r.FileAttribute.Purpose[purposeIndex21].ValueString())
 		}
 		var manifest21 []string
 		if r.FileAttribute.Manifest != nil {
 			manifest21 = make([]string, 0, len(r.FileAttribute.Manifest))
-			for _, manifestItem21 := range r.FileAttribute.Manifest {
-				manifest21 = append(manifest21, manifestItem21.ValueString())
+			for manifestIndex21 := range r.FileAttribute.Manifest {
+				manifest21 = append(manifest21, r.FileAttribute.Manifest[manifestIndex21].ValueString())
 			}
 		}
 		var constraints21 *shared.FileAttributeAttributeWithCompositeIDConstraints
@@ -9441,16 +9883,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag22 = nil
 		}
 		settingsFlag22 := make([]shared.SettingFlag, 0, len(r.FileAttribute.SettingsFlag))
-		for _, settingsFlagItem22 := range r.FileAttribute.SettingsFlag {
+		for settingsFlagIndex22 := range r.FileAttribute.SettingsFlag {
 			name44 := new(string)
-			if !settingsFlagItem22.Name.IsUnknown() && !settingsFlagItem22.Name.IsNull() {
-				*name44 = settingsFlagItem22.Name.ValueString()
+			if !r.FileAttribute.SettingsFlag[settingsFlagIndex22].Name.IsUnknown() && !r.FileAttribute.SettingsFlag[settingsFlagIndex22].Name.IsNull() {
+				*name44 = r.FileAttribute.SettingsFlag[settingsFlagIndex22].Name.ValueString()
 			} else {
 				name44 = nil
 			}
 			enabled22 := new(bool)
-			if !settingsFlagItem22.Enabled.IsUnknown() && !settingsFlagItem22.Enabled.IsNull() {
-				*enabled22 = settingsFlagItem22.Enabled.ValueBool()
+			if !r.FileAttribute.SettingsFlag[settingsFlagIndex22].Enabled.IsUnknown() && !r.FileAttribute.SettingsFlag[settingsFlagIndex22].Enabled.IsNull() {
+				*enabled22 = r.FileAttribute.SettingsFlag[settingsFlagIndex22].Enabled.ValueBool()
 			} else {
 				enabled22 = nil
 			}
@@ -9516,6 +9958,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement21,
 			}
 		}
+		explicitSearchable21 := new(bool)
+		if !r.FileAttribute.ExplicitSearchable.IsUnknown() && !r.FileAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable21 = r.FileAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable21 = nil
+		}
+		excludeFromSearch21 := new(bool)
+		if !r.FileAttribute.ExcludeFromSearch.IsUnknown() && !r.FileAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch21 = r.FileAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch21 = nil
+		}
 		repeatable21 := new(bool)
 		if !r.FileAttribute.Repeatable.IsUnknown() && !r.FileAttribute.Repeatable.IsNull() {
 			*repeatable21 = r.FileAttribute.Repeatable.ValueBool()
@@ -9536,8 +9990,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			multiple1 = nil
 		}
 		allowedExtensions := make([]string, 0, len(r.FileAttribute.AllowedExtensions))
-		for _, allowedExtensionsItem := range r.FileAttribute.AllowedExtensions {
-			allowedExtensions = append(allowedExtensions, allowedExtensionsItem.ValueString())
+		for allowedExtensionsIndex := range r.FileAttribute.AllowedExtensions {
+			allowedExtensions = append(allowedExtensions, r.FileAttribute.AllowedExtensions[allowedExtensionsIndex].ValueString())
 		}
 		displayImagesLandscaped := new(bool)
 		if !r.FileAttribute.DisplayImagesLandscaped.IsUnknown() && !r.FileAttribute.DisplayImagesLandscaped.IsNull() {
@@ -9597,6 +10051,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit21,
 			Protected:                protected21,
 			InfoHelpers:              infoHelpers21,
+			ExplicitSearchable:       explicitSearchable21,
+			ExcludeFromSearch:        excludeFromSearch21,
 			Repeatable:               repeatable21,
 			HasPrimary:               hasPrimary21,
 			Type:                     typeVar21,
@@ -9711,14 +10167,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition22 = nil
 		}
 		purpose22 := make([]string, 0, len(r.ComputedAttribute.Purpose))
-		for _, purposeItem22 := range r.ComputedAttribute.Purpose {
-			purpose22 = append(purpose22, purposeItem22.ValueString())
+		for purposeIndex22 := range r.ComputedAttribute.Purpose {
+			purpose22 = append(purpose22, r.ComputedAttribute.Purpose[purposeIndex22].ValueString())
 		}
 		var manifest22 []string
 		if r.ComputedAttribute.Manifest != nil {
 			manifest22 = make([]string, 0, len(r.ComputedAttribute.Manifest))
-			for _, manifestItem22 := range r.ComputedAttribute.Manifest {
-				manifest22 = append(manifest22, manifestItem22.ValueString())
+			for manifestIndex22 := range r.ComputedAttribute.Manifest {
+				manifest22 = append(manifest22, r.ComputedAttribute.Manifest[manifestIndex22].ValueString())
 			}
 		}
 		var constraints22 *shared.ComputedAttributeAttributeWithCompositeIDConstraints
@@ -9732,16 +10188,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag23 = nil
 		}
 		settingsFlag23 := make([]shared.SettingFlag, 0, len(r.ComputedAttribute.SettingsFlag))
-		for _, settingsFlagItem23 := range r.ComputedAttribute.SettingsFlag {
+		for settingsFlagIndex23 := range r.ComputedAttribute.SettingsFlag {
 			name46 := new(string)
-			if !settingsFlagItem23.Name.IsUnknown() && !settingsFlagItem23.Name.IsNull() {
-				*name46 = settingsFlagItem23.Name.ValueString()
+			if !r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Name.IsUnknown() && !r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Name.IsNull() {
+				*name46 = r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Name.ValueString()
 			} else {
 				name46 = nil
 			}
 			enabled23 := new(bool)
-			if !settingsFlagItem23.Enabled.IsUnknown() && !settingsFlagItem23.Enabled.IsNull() {
-				*enabled23 = settingsFlagItem23.Enabled.ValueBool()
+			if !r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Enabled.IsUnknown() && !r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Enabled.IsNull() {
+				*enabled23 = r.ComputedAttribute.SettingsFlag[settingsFlagIndex23].Enabled.ValueBool()
 			} else {
 				enabled23 = nil
 			}
@@ -9803,6 +10259,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintCustomComponent:  hintCustomComponent22,
 				HintTooltipPlacement: hintTooltipPlacement22,
 			}
+		}
+		explicitSearchable22 := new(bool)
+		if !r.ComputedAttribute.ExplicitSearchable.IsUnknown() && !r.ComputedAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable22 = r.ComputedAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable22 = nil
+		}
+		excludeFromSearch22 := new(bool)
+		if !r.ComputedAttribute.ExcludeFromSearch.IsUnknown() && !r.ComputedAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch22 = r.ComputedAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch22 = nil
 		}
 		repeatable22 := new(bool)
 		if !r.ComputedAttribute.Repeatable.IsUnknown() && !r.ComputedAttribute.Repeatable.IsNull() {
@@ -9875,6 +10343,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit22,
 			Protected:                protected22,
 			InfoHelpers:              infoHelpers22,
+			ExplicitSearchable:       explicitSearchable22,
+			ExcludeFromSearch:        excludeFromSearch22,
 			Repeatable:               repeatable22,
 			HasPrimary:               hasPrimary22,
 			Type:                     typeVar22,
@@ -9987,14 +10457,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition23 = nil
 		}
 		purpose23 := make([]string, 0, len(r.PartnerStatusAttribute.Purpose))
-		for _, purposeItem23 := range r.PartnerStatusAttribute.Purpose {
-			purpose23 = append(purpose23, purposeItem23.ValueString())
+		for purposeIndex23 := range r.PartnerStatusAttribute.Purpose {
+			purpose23 = append(purpose23, r.PartnerStatusAttribute.Purpose[purposeIndex23].ValueString())
 		}
 		var manifest23 []string
 		if r.PartnerStatusAttribute.Manifest != nil {
 			manifest23 = make([]string, 0, len(r.PartnerStatusAttribute.Manifest))
-			for _, manifestItem23 := range r.PartnerStatusAttribute.Manifest {
-				manifest23 = append(manifest23, manifestItem23.ValueString())
+			for manifestIndex23 := range r.PartnerStatusAttribute.Manifest {
+				manifest23 = append(manifest23, r.PartnerStatusAttribute.Manifest[manifestIndex23].ValueString())
 			}
 		}
 		var constraints23 *shared.PartnerStatusAttributeAttributeWithCompositeIDConstraints
@@ -10008,16 +10478,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag24 = nil
 		}
 		settingsFlag24 := make([]shared.SettingFlag, 0, len(r.PartnerStatusAttribute.SettingsFlag))
-		for _, settingsFlagItem24 := range r.PartnerStatusAttribute.SettingsFlag {
+		for settingsFlagIndex24 := range r.PartnerStatusAttribute.SettingsFlag {
 			name48 := new(string)
-			if !settingsFlagItem24.Name.IsUnknown() && !settingsFlagItem24.Name.IsNull() {
-				*name48 = settingsFlagItem24.Name.ValueString()
+			if !r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Name.IsUnknown() && !r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Name.IsNull() {
+				*name48 = r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Name.ValueString()
 			} else {
 				name48 = nil
 			}
 			enabled24 := new(bool)
-			if !settingsFlagItem24.Enabled.IsUnknown() && !settingsFlagItem24.Enabled.IsNull() {
-				*enabled24 = settingsFlagItem24.Enabled.ValueBool()
+			if !r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Enabled.IsUnknown() && !r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Enabled.IsNull() {
+				*enabled24 = r.PartnerStatusAttribute.SettingsFlag[settingsFlagIndex24].Enabled.ValueBool()
 			} else {
 				enabled24 = nil
 			}
@@ -10083,6 +10553,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement23,
 			}
 		}
+		explicitSearchable23 := new(bool)
+		if !r.PartnerStatusAttribute.ExplicitSearchable.IsUnknown() && !r.PartnerStatusAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable23 = r.PartnerStatusAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable23 = nil
+		}
+		excludeFromSearch23 := new(bool)
+		if !r.PartnerStatusAttribute.ExcludeFromSearch.IsUnknown() && !r.PartnerStatusAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch23 = r.PartnerStatusAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch23 = nil
+		}
 		repeatable23 := new(bool)
 		if !r.PartnerStatusAttribute.Repeatable.IsUnknown() && !r.PartnerStatusAttribute.Repeatable.IsNull() {
 			*repeatable23 = r.PartnerStatusAttribute.Repeatable.ValueBool()
@@ -10136,6 +10618,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit23,
 			Protected:                protected23,
 			InfoHelpers:              infoHelpers23,
+			ExplicitSearchable:       explicitSearchable23,
+			ExcludeFromSearch:        excludeFromSearch23,
 			Repeatable:               repeatable23,
 			HasPrimary:               hasPrimary23,
 			Type:                     typeVar23,
@@ -10245,14 +10729,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition24 = nil
 		}
 		purpose24 := make([]string, 0, len(r.InvitationEmailAttribute.Purpose))
-		for _, purposeItem24 := range r.InvitationEmailAttribute.Purpose {
-			purpose24 = append(purpose24, purposeItem24.ValueString())
+		for purposeIndex24 := range r.InvitationEmailAttribute.Purpose {
+			purpose24 = append(purpose24, r.InvitationEmailAttribute.Purpose[purposeIndex24].ValueString())
 		}
 		var manifest24 []string
 		if r.InvitationEmailAttribute.Manifest != nil {
 			manifest24 = make([]string, 0, len(r.InvitationEmailAttribute.Manifest))
-			for _, manifestItem24 := range r.InvitationEmailAttribute.Manifest {
-				manifest24 = append(manifest24, manifestItem24.ValueString())
+			for manifestIndex24 := range r.InvitationEmailAttribute.Manifest {
+				manifest24 = append(manifest24, r.InvitationEmailAttribute.Manifest[manifestIndex24].ValueString())
 			}
 		}
 		var constraints24 *shared.InvitationEmailAttributeAttributeWithCompositeIDConstraints
@@ -10266,16 +10750,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag25 = nil
 		}
 		settingsFlag25 := make([]shared.SettingFlag, 0, len(r.InvitationEmailAttribute.SettingsFlag))
-		for _, settingsFlagItem25 := range r.InvitationEmailAttribute.SettingsFlag {
+		for settingsFlagIndex25 := range r.InvitationEmailAttribute.SettingsFlag {
 			name50 := new(string)
-			if !settingsFlagItem25.Name.IsUnknown() && !settingsFlagItem25.Name.IsNull() {
-				*name50 = settingsFlagItem25.Name.ValueString()
+			if !r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Name.IsUnknown() && !r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Name.IsNull() {
+				*name50 = r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Name.ValueString()
 			} else {
 				name50 = nil
 			}
 			enabled25 := new(bool)
-			if !settingsFlagItem25.Enabled.IsUnknown() && !settingsFlagItem25.Enabled.IsNull() {
-				*enabled25 = settingsFlagItem25.Enabled.ValueBool()
+			if !r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Enabled.IsUnknown() && !r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Enabled.IsNull() {
+				*enabled25 = r.InvitationEmailAttribute.SettingsFlag[settingsFlagIndex25].Enabled.ValueBool()
 			} else {
 				enabled25 = nil
 			}
@@ -10341,6 +10825,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement24,
 			}
 		}
+		explicitSearchable24 := new(bool)
+		if !r.InvitationEmailAttribute.ExplicitSearchable.IsUnknown() && !r.InvitationEmailAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable24 = r.InvitationEmailAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable24 = nil
+		}
+		excludeFromSearch24 := new(bool)
+		if !r.InvitationEmailAttribute.ExcludeFromSearch.IsUnknown() && !r.InvitationEmailAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch24 = r.InvitationEmailAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch24 = nil
+		}
 		repeatable24 := new(bool)
 		if !r.InvitationEmailAttribute.Repeatable.IsUnknown() && !r.InvitationEmailAttribute.Repeatable.IsNull() {
 			*repeatable24 = r.InvitationEmailAttribute.Repeatable.ValueBool()
@@ -10394,6 +10890,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit24,
 			Protected:                protected24,
 			InfoHelpers:              infoHelpers24,
+			ExplicitSearchable:       explicitSearchable24,
+			ExcludeFromSearch:        excludeFromSearch24,
 			Repeatable:               repeatable24,
 			HasPrimary:               hasPrimary24,
 			Type:                     typeVar24,
@@ -10503,14 +11001,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition25 = nil
 		}
 		purpose25 := make([]string, 0, len(r.AutomationAttribute.Purpose))
-		for _, purposeItem25 := range r.AutomationAttribute.Purpose {
-			purpose25 = append(purpose25, purposeItem25.ValueString())
+		for purposeIndex25 := range r.AutomationAttribute.Purpose {
+			purpose25 = append(purpose25, r.AutomationAttribute.Purpose[purposeIndex25].ValueString())
 		}
 		var manifest25 []string
 		if r.AutomationAttribute.Manifest != nil {
 			manifest25 = make([]string, 0, len(r.AutomationAttribute.Manifest))
-			for _, manifestItem25 := range r.AutomationAttribute.Manifest {
-				manifest25 = append(manifest25, manifestItem25.ValueString())
+			for manifestIndex25 := range r.AutomationAttribute.Manifest {
+				manifest25 = append(manifest25, r.AutomationAttribute.Manifest[manifestIndex25].ValueString())
 			}
 		}
 		var constraints25 *shared.AutomationAttributeAttributeWithCompositeIDConstraints
@@ -10524,16 +11022,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag26 = nil
 		}
 		settingsFlag26 := make([]shared.SettingFlag, 0, len(r.AutomationAttribute.SettingsFlag))
-		for _, settingsFlagItem26 := range r.AutomationAttribute.SettingsFlag {
+		for settingsFlagIndex26 := range r.AutomationAttribute.SettingsFlag {
 			name52 := new(string)
-			if !settingsFlagItem26.Name.IsUnknown() && !settingsFlagItem26.Name.IsNull() {
-				*name52 = settingsFlagItem26.Name.ValueString()
+			if !r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Name.IsUnknown() && !r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Name.IsNull() {
+				*name52 = r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Name.ValueString()
 			} else {
 				name52 = nil
 			}
 			enabled26 := new(bool)
-			if !settingsFlagItem26.Enabled.IsUnknown() && !settingsFlagItem26.Enabled.IsNull() {
-				*enabled26 = settingsFlagItem26.Enabled.ValueBool()
+			if !r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Enabled.IsUnknown() && !r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Enabled.IsNull() {
+				*enabled26 = r.AutomationAttribute.SettingsFlag[settingsFlagIndex26].Enabled.ValueBool()
 			} else {
 				enabled26 = nil
 			}
@@ -10599,6 +11097,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement25,
 			}
 		}
+		explicitSearchable25 := new(bool)
+		if !r.AutomationAttribute.ExplicitSearchable.IsUnknown() && !r.AutomationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable25 = r.AutomationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable25 = nil
+		}
+		excludeFromSearch25 := new(bool)
+		if !r.AutomationAttribute.ExcludeFromSearch.IsUnknown() && !r.AutomationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch25 = r.AutomationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch25 = nil
+		}
 		repeatable25 := new(bool)
 		if !r.AutomationAttribute.Repeatable.IsUnknown() && !r.AutomationAttribute.Repeatable.IsNull() {
 			*repeatable25 = r.AutomationAttribute.Repeatable.ValueBool()
@@ -10652,6 +11162,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit25,
 			Protected:                protected25,
 			InfoHelpers:              infoHelpers25,
+			ExplicitSearchable:       explicitSearchable25,
+			ExcludeFromSearch:        excludeFromSearch25,
 			Repeatable:               repeatable25,
 			HasPrimary:               hasPrimary25,
 			Type:                     typeVar25,
@@ -10761,14 +11273,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition26 = nil
 		}
 		purpose26 := make([]string, 0, len(r.InternalUserAttribute.Purpose))
-		for _, purposeItem26 := range r.InternalUserAttribute.Purpose {
-			purpose26 = append(purpose26, purposeItem26.ValueString())
+		for purposeIndex26 := range r.InternalUserAttribute.Purpose {
+			purpose26 = append(purpose26, r.InternalUserAttribute.Purpose[purposeIndex26].ValueString())
 		}
 		var manifest26 []string
 		if r.InternalUserAttribute.Manifest != nil {
 			manifest26 = make([]string, 0, len(r.InternalUserAttribute.Manifest))
-			for _, manifestItem26 := range r.InternalUserAttribute.Manifest {
-				manifest26 = append(manifest26, manifestItem26.ValueString())
+			for manifestIndex26 := range r.InternalUserAttribute.Manifest {
+				manifest26 = append(manifest26, r.InternalUserAttribute.Manifest[manifestIndex26].ValueString())
 			}
 		}
 		var constraints26 *shared.InternalUserAttributeAttributeWithCompositeIDConstraints
@@ -10782,16 +11294,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag27 = nil
 		}
 		settingsFlag27 := make([]shared.SettingFlag, 0, len(r.InternalUserAttribute.SettingsFlag))
-		for _, settingsFlagItem27 := range r.InternalUserAttribute.SettingsFlag {
+		for settingsFlagIndex27 := range r.InternalUserAttribute.SettingsFlag {
 			name54 := new(string)
-			if !settingsFlagItem27.Name.IsUnknown() && !settingsFlagItem27.Name.IsNull() {
-				*name54 = settingsFlagItem27.Name.ValueString()
+			if !r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Name.IsUnknown() && !r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Name.IsNull() {
+				*name54 = r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Name.ValueString()
 			} else {
 				name54 = nil
 			}
 			enabled27 := new(bool)
-			if !settingsFlagItem27.Enabled.IsUnknown() && !settingsFlagItem27.Enabled.IsNull() {
-				*enabled27 = settingsFlagItem27.Enabled.ValueBool()
+			if !r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Enabled.IsUnknown() && !r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Enabled.IsNull() {
+				*enabled27 = r.InternalUserAttribute.SettingsFlag[settingsFlagIndex27].Enabled.ValueBool()
 			} else {
 				enabled27 = nil
 			}
@@ -10857,6 +11369,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement26,
 			}
 		}
+		explicitSearchable26 := new(bool)
+		if !r.InternalUserAttribute.ExplicitSearchable.IsUnknown() && !r.InternalUserAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable26 = r.InternalUserAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable26 = nil
+		}
+		excludeFromSearch26 := new(bool)
+		if !r.InternalUserAttribute.ExcludeFromSearch.IsUnknown() && !r.InternalUserAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch26 = r.InternalUserAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch26 = nil
+		}
 		repeatable26 := new(bool)
 		if !r.InternalUserAttribute.Repeatable.IsUnknown() && !r.InternalUserAttribute.Repeatable.IsNull() {
 			*repeatable26 = r.InternalUserAttribute.Repeatable.ValueBool()
@@ -10910,6 +11434,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit26,
 			Protected:                protected26,
 			InfoHelpers:              infoHelpers26,
+			ExplicitSearchable:       explicitSearchable26,
+			ExcludeFromSearch:        excludeFromSearch26,
 			Repeatable:               repeatable26,
 			HasPrimary:               hasPrimary26,
 			Type:                     typeVar26,
@@ -11019,14 +11545,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition27 = nil
 		}
 		purpose27 := make([]string, 0, len(r.PurposeAttribute.Purpose))
-		for _, purposeItem27 := range r.PurposeAttribute.Purpose {
-			purpose27 = append(purpose27, purposeItem27.ValueString())
+		for purposeIndex27 := range r.PurposeAttribute.Purpose {
+			purpose27 = append(purpose27, r.PurposeAttribute.Purpose[purposeIndex27].ValueString())
 		}
 		var manifest27 []string
 		if r.PurposeAttribute.Manifest != nil {
 			manifest27 = make([]string, 0, len(r.PurposeAttribute.Manifest))
-			for _, manifestItem27 := range r.PurposeAttribute.Manifest {
-				manifest27 = append(manifest27, manifestItem27.ValueString())
+			for manifestIndex27 := range r.PurposeAttribute.Manifest {
+				manifest27 = append(manifest27, r.PurposeAttribute.Manifest[manifestIndex27].ValueString())
 			}
 		}
 		var constraints27 *shared.PurposeAttributeAttributeWithCompositeIDConstraints
@@ -11040,16 +11566,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag28 = nil
 		}
 		settingsFlag28 := make([]shared.SettingFlag, 0, len(r.PurposeAttribute.SettingsFlag))
-		for _, settingsFlagItem28 := range r.PurposeAttribute.SettingsFlag {
+		for settingsFlagIndex28 := range r.PurposeAttribute.SettingsFlag {
 			name56 := new(string)
-			if !settingsFlagItem28.Name.IsUnknown() && !settingsFlagItem28.Name.IsNull() {
-				*name56 = settingsFlagItem28.Name.ValueString()
+			if !r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Name.IsUnknown() && !r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Name.IsNull() {
+				*name56 = r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Name.ValueString()
 			} else {
 				name56 = nil
 			}
 			enabled28 := new(bool)
-			if !settingsFlagItem28.Enabled.IsUnknown() && !settingsFlagItem28.Enabled.IsNull() {
-				*enabled28 = settingsFlagItem28.Enabled.ValueBool()
+			if !r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Enabled.IsUnknown() && !r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Enabled.IsNull() {
+				*enabled28 = r.PurposeAttribute.SettingsFlag[settingsFlagIndex28].Enabled.ValueBool()
 			} else {
 				enabled28 = nil
 			}
@@ -11115,6 +11641,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement27,
 			}
 		}
+		explicitSearchable27 := new(bool)
+		if !r.PurposeAttribute.ExplicitSearchable.IsUnknown() && !r.PurposeAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable27 = r.PurposeAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable27 = nil
+		}
+		excludeFromSearch27 := new(bool)
+		if !r.PurposeAttribute.ExcludeFromSearch.IsUnknown() && !r.PurposeAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch27 = r.PurposeAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch27 = nil
+		}
 		repeatable27 := new(bool)
 		if !r.PurposeAttribute.Repeatable.IsUnknown() && !r.PurposeAttribute.Repeatable.IsNull() {
 			*repeatable27 = r.PurposeAttribute.Repeatable.ValueBool()
@@ -11168,6 +11706,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit27,
 			Protected:                protected27,
 			InfoHelpers:              infoHelpers27,
+			ExplicitSearchable:       explicitSearchable27,
+			ExcludeFromSearch:        excludeFromSearch27,
 			Repeatable:               repeatable27,
 			HasPrimary:               hasPrimary27,
 			Type:                     typeVar27,
@@ -11277,14 +11817,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition28 = nil
 		}
 		purpose28 := make([]string, 0, len(r.PartnerOrganisationAttribute.Purpose))
-		for _, purposeItem28 := range r.PartnerOrganisationAttribute.Purpose {
-			purpose28 = append(purpose28, purposeItem28.ValueString())
+		for purposeIndex28 := range r.PartnerOrganisationAttribute.Purpose {
+			purpose28 = append(purpose28, r.PartnerOrganisationAttribute.Purpose[purposeIndex28].ValueString())
 		}
 		var manifest28 []string
 		if r.PartnerOrganisationAttribute.Manifest != nil {
 			manifest28 = make([]string, 0, len(r.PartnerOrganisationAttribute.Manifest))
-			for _, manifestItem28 := range r.PartnerOrganisationAttribute.Manifest {
-				manifest28 = append(manifest28, manifestItem28.ValueString())
+			for manifestIndex28 := range r.PartnerOrganisationAttribute.Manifest {
+				manifest28 = append(manifest28, r.PartnerOrganisationAttribute.Manifest[manifestIndex28].ValueString())
 			}
 		}
 		var constraints28 *shared.PartnerOrganisationAttributeAttributeWithCompositeIDConstraints
@@ -11298,16 +11838,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag29 = nil
 		}
 		settingsFlag29 := make([]shared.SettingFlag, 0, len(r.PartnerOrganisationAttribute.SettingsFlag))
-		for _, settingsFlagItem29 := range r.PartnerOrganisationAttribute.SettingsFlag {
+		for settingsFlagIndex29 := range r.PartnerOrganisationAttribute.SettingsFlag {
 			name58 := new(string)
-			if !settingsFlagItem29.Name.IsUnknown() && !settingsFlagItem29.Name.IsNull() {
-				*name58 = settingsFlagItem29.Name.ValueString()
+			if !r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Name.IsUnknown() && !r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Name.IsNull() {
+				*name58 = r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Name.ValueString()
 			} else {
 				name58 = nil
 			}
 			enabled29 := new(bool)
-			if !settingsFlagItem29.Enabled.IsUnknown() && !settingsFlagItem29.Enabled.IsNull() {
-				*enabled29 = settingsFlagItem29.Enabled.ValueBool()
+			if !r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Enabled.IsUnknown() && !r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Enabled.IsNull() {
+				*enabled29 = r.PartnerOrganisationAttribute.SettingsFlag[settingsFlagIndex29].Enabled.ValueBool()
 			} else {
 				enabled29 = nil
 			}
@@ -11373,6 +11913,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement28,
 			}
 		}
+		explicitSearchable28 := new(bool)
+		if !r.PartnerOrganisationAttribute.ExplicitSearchable.IsUnknown() && !r.PartnerOrganisationAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable28 = r.PartnerOrganisationAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable28 = nil
+		}
+		excludeFromSearch28 := new(bool)
+		if !r.PartnerOrganisationAttribute.ExcludeFromSearch.IsUnknown() && !r.PartnerOrganisationAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch28 = r.PartnerOrganisationAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch28 = nil
+		}
 		repeatable28 := new(bool)
 		if !r.PartnerOrganisationAttribute.Repeatable.IsUnknown() && !r.PartnerOrganisationAttribute.Repeatable.IsNull() {
 			*repeatable28 = r.PartnerOrganisationAttribute.Repeatable.ValueBool()
@@ -11426,6 +11978,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit28,
 			Protected:                protected28,
 			InfoHelpers:              infoHelpers28,
+			ExplicitSearchable:       explicitSearchable28,
+			ExcludeFromSearch:        excludeFromSearch28,
 			Repeatable:               repeatable28,
 			HasPrimary:               hasPrimary28,
 			Type:                     typeVar28,
@@ -11535,14 +12089,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition29 = nil
 		}
 		purpose29 := make([]string, 0, len(r.PortalAccessAttribute.Purpose))
-		for _, purposeItem29 := range r.PortalAccessAttribute.Purpose {
-			purpose29 = append(purpose29, purposeItem29.ValueString())
+		for purposeIndex29 := range r.PortalAccessAttribute.Purpose {
+			purpose29 = append(purpose29, r.PortalAccessAttribute.Purpose[purposeIndex29].ValueString())
 		}
 		var manifest29 []string
 		if r.PortalAccessAttribute.Manifest != nil {
 			manifest29 = make([]string, 0, len(r.PortalAccessAttribute.Manifest))
-			for _, manifestItem29 := range r.PortalAccessAttribute.Manifest {
-				manifest29 = append(manifest29, manifestItem29.ValueString())
+			for manifestIndex29 := range r.PortalAccessAttribute.Manifest {
+				manifest29 = append(manifest29, r.PortalAccessAttribute.Manifest[manifestIndex29].ValueString())
 			}
 		}
 		var constraints29 *shared.PortalAccessAttributeAttributeWithCompositeIDConstraints
@@ -11556,16 +12110,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag30 = nil
 		}
 		settingsFlag30 := make([]shared.SettingFlag, 0, len(r.PortalAccessAttribute.SettingsFlag))
-		for _, settingsFlagItem30 := range r.PortalAccessAttribute.SettingsFlag {
+		for settingsFlagIndex30 := range r.PortalAccessAttribute.SettingsFlag {
 			name60 := new(string)
-			if !settingsFlagItem30.Name.IsUnknown() && !settingsFlagItem30.Name.IsNull() {
-				*name60 = settingsFlagItem30.Name.ValueString()
+			if !r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Name.IsUnknown() && !r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Name.IsNull() {
+				*name60 = r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Name.ValueString()
 			} else {
 				name60 = nil
 			}
 			enabled30 := new(bool)
-			if !settingsFlagItem30.Enabled.IsUnknown() && !settingsFlagItem30.Enabled.IsNull() {
-				*enabled30 = settingsFlagItem30.Enabled.ValueBool()
+			if !r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Enabled.IsUnknown() && !r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Enabled.IsNull() {
+				*enabled30 = r.PortalAccessAttribute.SettingsFlag[settingsFlagIndex30].Enabled.ValueBool()
 			} else {
 				enabled30 = nil
 			}
@@ -11631,6 +12185,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement29,
 			}
 		}
+		explicitSearchable29 := new(bool)
+		if !r.PortalAccessAttribute.ExplicitSearchable.IsUnknown() && !r.PortalAccessAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable29 = r.PortalAccessAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable29 = nil
+		}
+		excludeFromSearch29 := new(bool)
+		if !r.PortalAccessAttribute.ExcludeFromSearch.IsUnknown() && !r.PortalAccessAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch29 = r.PortalAccessAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch29 = nil
+		}
 		repeatable29 := new(bool)
 		if !r.PortalAccessAttribute.Repeatable.IsUnknown() && !r.PortalAccessAttribute.Repeatable.IsNull() {
 			*repeatable29 = r.PortalAccessAttribute.Repeatable.ValueBool()
@@ -11684,6 +12250,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit29,
 			Protected:                protected29,
 			InfoHelpers:              infoHelpers29,
+			ExplicitSearchable:       explicitSearchable29,
+			ExcludeFromSearch:        excludeFromSearch29,
 			Repeatable:               repeatable29,
 			HasPrimary:               hasPrimary29,
 			Type:                     typeVar29,
@@ -11793,14 +12361,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition30 = nil
 		}
 		purpose30 := make([]string, 0, len(r.PhoneAttribute.Purpose))
-		for _, purposeItem30 := range r.PhoneAttribute.Purpose {
-			purpose30 = append(purpose30, purposeItem30.ValueString())
+		for purposeIndex30 := range r.PhoneAttribute.Purpose {
+			purpose30 = append(purpose30, r.PhoneAttribute.Purpose[purposeIndex30].ValueString())
 		}
 		var manifest30 []string
 		if r.PhoneAttribute.Manifest != nil {
 			manifest30 = make([]string, 0, len(r.PhoneAttribute.Manifest))
-			for _, manifestItem30 := range r.PhoneAttribute.Manifest {
-				manifest30 = append(manifest30, manifestItem30.ValueString())
+			for manifestIndex30 := range r.PhoneAttribute.Manifest {
+				manifest30 = append(manifest30, r.PhoneAttribute.Manifest[manifestIndex30].ValueString())
 			}
 		}
 		var constraints30 *shared.PhoneAttributeAttributeWithCompositeIDConstraints
@@ -11814,16 +12382,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag31 = nil
 		}
 		settingsFlag31 := make([]shared.SettingFlag, 0, len(r.PhoneAttribute.SettingsFlag))
-		for _, settingsFlagItem31 := range r.PhoneAttribute.SettingsFlag {
+		for settingsFlagIndex31 := range r.PhoneAttribute.SettingsFlag {
 			name62 := new(string)
-			if !settingsFlagItem31.Name.IsUnknown() && !settingsFlagItem31.Name.IsNull() {
-				*name62 = settingsFlagItem31.Name.ValueString()
+			if !r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Name.IsUnknown() && !r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Name.IsNull() {
+				*name62 = r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Name.ValueString()
 			} else {
 				name62 = nil
 			}
 			enabled31 := new(bool)
-			if !settingsFlagItem31.Enabled.IsUnknown() && !settingsFlagItem31.Enabled.IsNull() {
-				*enabled31 = settingsFlagItem31.Enabled.ValueBool()
+			if !r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Enabled.IsUnknown() && !r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Enabled.IsNull() {
+				*enabled31 = r.PhoneAttribute.SettingsFlag[settingsFlagIndex31].Enabled.ValueBool()
 			} else {
 				enabled31 = nil
 			}
@@ -11889,6 +12457,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement30,
 			}
 		}
+		explicitSearchable30 := new(bool)
+		if !r.PhoneAttribute.ExplicitSearchable.IsUnknown() && !r.PhoneAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable30 = r.PhoneAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable30 = nil
+		}
+		excludeFromSearch30 := new(bool)
+		if !r.PhoneAttribute.ExcludeFromSearch.IsUnknown() && !r.PhoneAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch30 = r.PhoneAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch30 = nil
+		}
 		repeatable30 := new(bool)
 		if !r.PhoneAttribute.Repeatable.IsUnknown() && !r.PhoneAttribute.Repeatable.IsNull() {
 			*repeatable30 = r.PhoneAttribute.Repeatable.ValueBool()
@@ -11942,6 +12522,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit30,
 			Protected:                protected30,
 			InfoHelpers:              infoHelpers30,
+			ExplicitSearchable:       explicitSearchable30,
+			ExcludeFromSearch:        excludeFromSearch30,
 			Repeatable:               repeatable30,
 			HasPrimary:               hasPrimary30,
 			Type:                     typeVar30,
@@ -12051,14 +12633,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition31 = nil
 		}
 		purpose31 := make([]string, 0, len(r.EmailAttribute.Purpose))
-		for _, purposeItem31 := range r.EmailAttribute.Purpose {
-			purpose31 = append(purpose31, purposeItem31.ValueString())
+		for purposeIndex31 := range r.EmailAttribute.Purpose {
+			purpose31 = append(purpose31, r.EmailAttribute.Purpose[purposeIndex31].ValueString())
 		}
 		var manifest31 []string
 		if r.EmailAttribute.Manifest != nil {
 			manifest31 = make([]string, 0, len(r.EmailAttribute.Manifest))
-			for _, manifestItem31 := range r.EmailAttribute.Manifest {
-				manifest31 = append(manifest31, manifestItem31.ValueString())
+			for manifestIndex31 := range r.EmailAttribute.Manifest {
+				manifest31 = append(manifest31, r.EmailAttribute.Manifest[manifestIndex31].ValueString())
 			}
 		}
 		var constraints31 *shared.EmailAttributeAttributeWithCompositeIDConstraints
@@ -12072,16 +12654,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag32 = nil
 		}
 		settingsFlag32 := make([]shared.SettingFlag, 0, len(r.EmailAttribute.SettingsFlag))
-		for _, settingsFlagItem32 := range r.EmailAttribute.SettingsFlag {
+		for settingsFlagIndex32 := range r.EmailAttribute.SettingsFlag {
 			name64 := new(string)
-			if !settingsFlagItem32.Name.IsUnknown() && !settingsFlagItem32.Name.IsNull() {
-				*name64 = settingsFlagItem32.Name.ValueString()
+			if !r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Name.IsUnknown() && !r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Name.IsNull() {
+				*name64 = r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Name.ValueString()
 			} else {
 				name64 = nil
 			}
 			enabled32 := new(bool)
-			if !settingsFlagItem32.Enabled.IsUnknown() && !settingsFlagItem32.Enabled.IsNull() {
-				*enabled32 = settingsFlagItem32.Enabled.ValueBool()
+			if !r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Enabled.IsUnknown() && !r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Enabled.IsNull() {
+				*enabled32 = r.EmailAttribute.SettingsFlag[settingsFlagIndex32].Enabled.ValueBool()
 			} else {
 				enabled32 = nil
 			}
@@ -12147,6 +12729,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement31,
 			}
 		}
+		explicitSearchable31 := new(bool)
+		if !r.EmailAttribute.ExplicitSearchable.IsUnknown() && !r.EmailAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable31 = r.EmailAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable31 = nil
+		}
+		excludeFromSearch31 := new(bool)
+		if !r.EmailAttribute.ExcludeFromSearch.IsUnknown() && !r.EmailAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch31 = r.EmailAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch31 = nil
+		}
 		repeatable31 := new(bool)
 		if !r.EmailAttribute.Repeatable.IsUnknown() && !r.EmailAttribute.Repeatable.IsNull() {
 			*repeatable31 = r.EmailAttribute.Repeatable.ValueBool()
@@ -12200,6 +12794,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit31,
 			Protected:                protected31,
 			InfoHelpers:              infoHelpers31,
+			ExplicitSearchable:       explicitSearchable31,
+			ExcludeFromSearch:        excludeFromSearch31,
 			Repeatable:               repeatable31,
 			HasPrimary:               hasPrimary31,
 			Type:                     typeVar31,
@@ -12309,14 +12905,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition32 = nil
 		}
 		purpose32 := make([]string, 0, len(r.PaymentAttribute.Purpose))
-		for _, purposeItem32 := range r.PaymentAttribute.Purpose {
-			purpose32 = append(purpose32, purposeItem32.ValueString())
+		for purposeIndex32 := range r.PaymentAttribute.Purpose {
+			purpose32 = append(purpose32, r.PaymentAttribute.Purpose[purposeIndex32].ValueString())
 		}
 		var manifest32 []string
 		if r.PaymentAttribute.Manifest != nil {
 			manifest32 = make([]string, 0, len(r.PaymentAttribute.Manifest))
-			for _, manifestItem32 := range r.PaymentAttribute.Manifest {
-				manifest32 = append(manifest32, manifestItem32.ValueString())
+			for manifestIndex32 := range r.PaymentAttribute.Manifest {
+				manifest32 = append(manifest32, r.PaymentAttribute.Manifest[manifestIndex32].ValueString())
 			}
 		}
 		var constraints32 *shared.PaymentAttributeAttributeWithCompositeIDConstraints
@@ -12330,16 +12926,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag33 = nil
 		}
 		settingsFlag33 := make([]shared.SettingFlag, 0, len(r.PaymentAttribute.SettingsFlag))
-		for _, settingsFlagItem33 := range r.PaymentAttribute.SettingsFlag {
+		for settingsFlagIndex33 := range r.PaymentAttribute.SettingsFlag {
 			name66 := new(string)
-			if !settingsFlagItem33.Name.IsUnknown() && !settingsFlagItem33.Name.IsNull() {
-				*name66 = settingsFlagItem33.Name.ValueString()
+			if !r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Name.IsUnknown() && !r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Name.IsNull() {
+				*name66 = r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Name.ValueString()
 			} else {
 				name66 = nil
 			}
 			enabled33 := new(bool)
-			if !settingsFlagItem33.Enabled.IsUnknown() && !settingsFlagItem33.Enabled.IsNull() {
-				*enabled33 = settingsFlagItem33.Enabled.ValueBool()
+			if !r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Enabled.IsUnknown() && !r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Enabled.IsNull() {
+				*enabled33 = r.PaymentAttribute.SettingsFlag[settingsFlagIndex33].Enabled.ValueBool()
 			} else {
 				enabled33 = nil
 			}
@@ -12405,6 +13001,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement32,
 			}
 		}
+		explicitSearchable32 := new(bool)
+		if !r.PaymentAttribute.ExplicitSearchable.IsUnknown() && !r.PaymentAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable32 = r.PaymentAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable32 = nil
+		}
+		excludeFromSearch32 := new(bool)
+		if !r.PaymentAttribute.ExcludeFromSearch.IsUnknown() && !r.PaymentAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch32 = r.PaymentAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch32 = nil
+		}
 		repeatable32 := new(bool)
 		if !r.PaymentAttribute.Repeatable.IsUnknown() && !r.PaymentAttribute.Repeatable.IsNull() {
 			*repeatable32 = r.PaymentAttribute.Repeatable.ValueBool()
@@ -12458,6 +13066,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit32,
 			Protected:                protected32,
 			InfoHelpers:              infoHelpers32,
+			ExplicitSearchable:       explicitSearchable32,
+			ExcludeFromSearch:        excludeFromSearch32,
 			Repeatable:               repeatable32,
 			HasPrimary:               hasPrimary32,
 			Type:                     typeVar32,
@@ -12567,14 +13177,14 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			renderCondition33 = nil
 		}
 		purpose33 := make([]string, 0, len(r.PriceComponentAttribute.Purpose))
-		for _, purposeItem33 := range r.PriceComponentAttribute.Purpose {
-			purpose33 = append(purpose33, purposeItem33.ValueString())
+		for purposeIndex33 := range r.PriceComponentAttribute.Purpose {
+			purpose33 = append(purpose33, r.PriceComponentAttribute.Purpose[purposeIndex33].ValueString())
 		}
 		var manifest33 []string
 		if r.PriceComponentAttribute.Manifest != nil {
 			manifest33 = make([]string, 0, len(r.PriceComponentAttribute.Manifest))
-			for _, manifestItem33 := range r.PriceComponentAttribute.Manifest {
-				manifest33 = append(manifest33, manifestItem33.ValueString())
+			for manifestIndex33 := range r.PriceComponentAttribute.Manifest {
+				manifest33 = append(manifest33, r.PriceComponentAttribute.Manifest[manifestIndex33].ValueString())
 			}
 		}
 		var constraints33 *shared.PriceComponentAttributeAttributeWithCompositeIDConstraints
@@ -12588,16 +13198,16 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			featureFlag34 = nil
 		}
 		settingsFlag34 := make([]shared.SettingFlag, 0, len(r.PriceComponentAttribute.SettingsFlag))
-		for _, settingsFlagItem34 := range r.PriceComponentAttribute.SettingsFlag {
+		for settingsFlagIndex34 := range r.PriceComponentAttribute.SettingsFlag {
 			name68 := new(string)
-			if !settingsFlagItem34.Name.IsUnknown() && !settingsFlagItem34.Name.IsNull() {
-				*name68 = settingsFlagItem34.Name.ValueString()
+			if !r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Name.IsUnknown() && !r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Name.IsNull() {
+				*name68 = r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Name.ValueString()
 			} else {
 				name68 = nil
 			}
 			enabled34 := new(bool)
-			if !settingsFlagItem34.Enabled.IsUnknown() && !settingsFlagItem34.Enabled.IsNull() {
-				*enabled34 = settingsFlagItem34.Enabled.ValueBool()
+			if !r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Enabled.IsUnknown() && !r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Enabled.IsNull() {
+				*enabled34 = r.PriceComponentAttribute.SettingsFlag[settingsFlagIndex34].Enabled.ValueBool()
 			} else {
 				enabled34 = nil
 			}
@@ -12663,6 +13273,18 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 				HintTooltipPlacement: hintTooltipPlacement33,
 			}
 		}
+		explicitSearchable33 := new(bool)
+		if !r.PriceComponentAttribute.ExplicitSearchable.IsUnknown() && !r.PriceComponentAttribute.ExplicitSearchable.IsNull() {
+			*explicitSearchable33 = r.PriceComponentAttribute.ExplicitSearchable.ValueBool()
+		} else {
+			explicitSearchable33 = nil
+		}
+		excludeFromSearch33 := new(bool)
+		if !r.PriceComponentAttribute.ExcludeFromSearch.IsUnknown() && !r.PriceComponentAttribute.ExcludeFromSearch.IsNull() {
+			*excludeFromSearch33 = r.PriceComponentAttribute.ExcludeFromSearch.ValueBool()
+		} else {
+			excludeFromSearch33 = nil
+		}
 		repeatable33 := new(bool)
 		if !r.PriceComponentAttribute.Repeatable.IsUnknown() && !r.PriceComponentAttribute.Repeatable.IsNull() {
 			*repeatable33 = r.PriceComponentAttribute.Repeatable.ValueBool()
@@ -12716,6 +13338,8 @@ func (r *SchemaAttributeResourceModel) ToSharedAttributeWithCompositeID(ctx cont
 			EntityBuilderDisableEdit: entityBuilderDisableEdit33,
 			Protected:                protected33,
 			InfoHelpers:              infoHelpers33,
+			ExplicitSearchable:       explicitSearchable33,
+			ExcludeFromSearch:        excludeFromSearch33,
 			Repeatable:               repeatable33,
 			HasPrimary:               hasPrimary33,
 			Type:                     typeVar33,

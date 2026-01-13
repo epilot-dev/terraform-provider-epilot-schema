@@ -23,36 +23,36 @@ func (e EntityAction) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityAction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"action", "label"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityAction) GetAction() string {
-	if o == nil {
+func (e *EntityAction) GetAction() string {
+	if e == nil {
 		return ""
 	}
-	return o.Action
+	return e.Action
 }
 
-func (o *EntityAction) GetLabel() string {
-	if o == nil {
+func (e *EntityAction) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *EntityAction) GetIcon() *string {
-	if o == nil {
+func (e *EntityAction) GetIcon() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Icon
+	return e.Icon
 }
 
-func (o *EntityAction) GetPermission() *string {
-	if o == nil {
+func (e *EntityAction) GetPermission() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Permission
+	return e.Permission
 }

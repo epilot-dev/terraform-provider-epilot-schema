@@ -18,24 +18,24 @@ func (g GetJSONSchemaRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetJSONSchemaRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetJSONSchemaRequest) GetSlug() string {
-	if o == nil {
+func (g *GetJSONSchemaRequest) GetSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.Slug
+	return g.Slug
 }
 
-func (o *GetJSONSchemaRequest) GetDereference() *bool {
-	if o == nil {
+func (g *GetJSONSchemaRequest) GetDereference() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Dereference
+	return g.Dereference
 }
 
 // GetJSONSchemaResponseBody - Success
@@ -53,30 +53,30 @@ type GetJSONSchemaResponse struct {
 	Object *GetJSONSchemaResponseBody
 }
 
-func (o *GetJSONSchemaResponse) GetContentType() string {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetJSONSchemaResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetJSONSchemaResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetJSONSchemaResponse) GetObject() *GetJSONSchemaResponseBody {
-	if o == nil {
+func (g *GetJSONSchemaResponse) GetObject() *GetJSONSchemaResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -33,66 +33,66 @@ func (p PatchEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PatchEntityRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"slug", "id", "Entity"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PatchEntityRequest) GetSlug() string {
-	if o == nil {
+func (p *PatchEntityRequest) GetSlug() string {
+	if p == nil {
 		return ""
 	}
-	return o.Slug
+	return p.Slug
 }
 
-func (o *PatchEntityRequest) GetID() string {
-	if o == nil {
+func (p *PatchEntityRequest) GetID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PatchEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
-	if o == nil {
+func (p *PatchEntityRequest) GetActivityID() *shared.ActivityIDQueryParam {
+	if p == nil {
 		return nil
 	}
-	return o.ActivityID
+	return p.ActivityID
 }
 
-func (o *PatchEntityRequest) GetFillActivity() *bool {
-	if o == nil {
+func (p *PatchEntityRequest) GetFillActivity() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.FillActivity
+	return p.FillActivity
 }
 
-func (o *PatchEntityRequest) GetDryRun() *bool {
-	if o == nil {
+func (p *PatchEntityRequest) GetDryRun() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.DryRun
+	return p.DryRun
 }
 
-func (o *PatchEntityRequest) GetAsync() *bool {
-	if o == nil {
+func (p *PatchEntityRequest) GetAsync() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Async
+	return p.Async
 }
 
-func (o *PatchEntityRequest) GetValidate() *bool {
-	if o == nil {
+func (p *PatchEntityRequest) GetValidate() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Validate
+	return p.Validate
 }
 
-func (o *PatchEntityRequest) GetEntity() shared.EntityInput {
-	if o == nil {
+func (p *PatchEntityRequest) GetEntity() shared.EntityInput {
+	if p == nil {
 		return shared.EntityInput{}
 	}
-	return o.Entity
+	return p.Entity
 }
 
 type PatchEntityResponse struct {
@@ -108,37 +108,37 @@ type PatchEntityResponse struct {
 	EntityValidationV2ResultError *shared.EntityValidationV2ResultError
 }
 
-func (o *PatchEntityResponse) GetContentType() string {
-	if o == nil {
+func (p *PatchEntityResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PatchEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PatchEntityResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PatchEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PatchEntityResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PatchEntityResponse) GetEntityItem() *shared.EntityItem {
-	if o == nil {
+func (p *PatchEntityResponse) GetEntityItem() *shared.EntityItem {
+	if p == nil {
 		return nil
 	}
-	return o.EntityItem
+	return p.EntityItem
 }
 
-func (o *PatchEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
-	if o == nil {
+func (p *PatchEntityResponse) GetEntityValidationV2ResultError() *shared.EntityValidationV2ResultError {
+	if p == nil {
 		return nil
 	}
-	return o.EntityValidationV2ResultError
+	return p.EntityValidationV2ResultError
 }

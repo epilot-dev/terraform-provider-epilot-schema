@@ -11,9 +11,12 @@ type NumberAttribute struct {
 	Manifest                 []types.String                                       `tfsdk:"manifest"`
 	Purpose                  []types.String                                       `tfsdk:"purpose"`
 	Constraints              *EntityDefaultTableParams                            `tfsdk:"constraints"`
+	DataType                 types.String                                         `tfsdk:"data_type"`
 	DefaultValue             jsontypes.Normalized                                 `tfsdk:"default_value"`
 	Deprecated               types.Bool                                           `tfsdk:"deprecated"`
 	EntityBuilderDisableEdit types.Bool                                           `tfsdk:"entity_builder_disable_edit"`
+	ExcludeFromSearch        types.Bool                                           `tfsdk:"exclude_from_search"`
+	ExplicitSearchable       types.Bool                                           `tfsdk:"explicit_searchable"`
 	FeatureFlag              types.String                                         `tfsdk:"feature_flag"`
 	Format                   types.String                                         `tfsdk:"format"`
 	Group                    types.String                                         `tfsdk:"group"`

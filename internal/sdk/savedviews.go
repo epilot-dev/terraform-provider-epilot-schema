@@ -64,7 +64,7 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listSavedViews",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -86,7 +86,7 @@ func (s *SavedViews) ListSavedViews(ctx context.Context, request operations.List
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -267,7 +267,7 @@ func (s *SavedViews) CreateSavedView(ctx context.Context, request *shared.SavedV
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createSavedView",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -496,7 +496,7 @@ func (s *SavedViews) GetSavedView(ctx context.Context, request operations.GetSav
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getSavedView",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -716,7 +716,7 @@ func (s *SavedViews) UpdateSavedView(ctx context.Context, request operations.Upd
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateSavedView",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -922,7 +922,7 @@ func (s *SavedViews) PatchSavedView(ctx context.Context, request operations.Patc
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "patchSavedView",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "SavedViewPartial", "json", `request:"mediaType=application/json"`)
@@ -1128,7 +1128,7 @@ func (s *SavedViews) DeleteSavedView(ctx context.Context, request operations.Del
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteSavedView",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1330,7 +1330,7 @@ func (s *SavedViews) ListFavoriteViewsForUser(ctx context.Context, opts ...opera
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listFavoriteViewsForUser",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

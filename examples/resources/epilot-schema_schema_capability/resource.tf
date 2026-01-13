@@ -15,6 +15,8 @@ resource "epilot-schema_schema_capability" "my_schemacapability" {
         display_images_landscaped   = false
         enable_description          = true
         entity_builder_disable_edit = true
+        exclude_from_search         = true
+        explicit_searchable         = false
         feature_flag                = "FF_MY_FEATURE_FLAG"
         group                       = "...my_group..."
         has_primary                 = false

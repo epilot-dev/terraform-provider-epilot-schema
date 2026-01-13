@@ -25,38 +25,38 @@ func (a AutocompleteRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AutocompleteRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"attribute"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AutocompleteRequest) GetInput() *string {
-	if o == nil {
+func (a *AutocompleteRequest) GetInput() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Input
+	return a.Input
 }
 
-func (o *AutocompleteRequest) GetAttribute() string {
-	if o == nil {
+func (a *AutocompleteRequest) GetAttribute() string {
+	if a == nil {
 		return ""
 	}
-	return o.Attribute
+	return a.Attribute
 }
 
-func (o *AutocompleteRequest) GetSlug() *string {
-	if o == nil {
+func (a *AutocompleteRequest) GetSlug() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Slug
+	return a.Slug
 }
 
-func (o *AutocompleteRequest) GetSize() *int64 {
-	if o == nil {
+func (a *AutocompleteRequest) GetSize() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Size
+	return a.Size
 }
 
 type ResultsType string
@@ -68,9 +68,9 @@ const (
 )
 
 type Results struct {
-	Str      *string        `queryParam:"inline" name:"results"`
-	Boolean  *bool          `queryParam:"inline" name:"results"`
-	MapOfAny map[string]any `queryParam:"inline" name:"results"`
+	Str      *string        `queryParam:"inline" union:"member"`
+	Boolean  *bool          `queryParam:"inline" union:"member"`
+	MapOfAny map[string]any `queryParam:"inline" union:"member"`
 
 	Type ResultsType
 }
@@ -104,24 +104,54 @@ func CreateResultsMapOfAny(mapOfAny map[string]any) Results {
 
 func (u *Results) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = ResultsTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ResultsTypeStr,
+			Value: &str,
+		})
 	}
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
-		u.Boolean = &boolean
-		u.Type = ResultsTypeBoolean
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ResultsTypeBoolean,
+			Value: &boolean,
+		})
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
 	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
-		u.MapOfAny = mapOfAny
-		u.Type = ResultsTypeMapOfAny
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ResultsTypeMapOfAny,
+			Value: mapOfAny,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Results", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Results", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(ResultsType)
+	switch best.Type {
+	case ResultsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case ResultsTypeBoolean:
+		u.Boolean = best.Value.(*bool)
+		return nil
+	case ResultsTypeMapOfAny:
+		u.MapOfAny = best.Value.(map[string]any)
 		return nil
 	}
 
@@ -150,18 +180,18 @@ type AutocompleteResponseBody struct {
 	Results []Results `json:"results,omitempty"`
 }
 
-func (o *AutocompleteResponseBody) GetHits() *float64 {
-	if o == nil {
+func (a *AutocompleteResponseBody) GetHits() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Hits
+	return a.Hits
 }
 
-func (o *AutocompleteResponseBody) GetResults() []Results {
-	if o == nil {
+func (a *AutocompleteResponseBody) GetResults() []Results {
+	if a == nil {
 		return nil
 	}
-	return o.Results
+	return a.Results
 }
 
 type AutocompleteResponse struct {
@@ -175,30 +205,30 @@ type AutocompleteResponse struct {
 	Object *AutocompleteResponseBody
 }
 
-func (o *AutocompleteResponse) GetContentType() string {
-	if o == nil {
+func (a *AutocompleteResponse) GetContentType() string {
+	if a == nil {
 		return ""
 	}
-	return o.ContentType
+	return a.ContentType
 }
 
-func (o *AutocompleteResponse) GetStatusCode() int {
-	if o == nil {
+func (a *AutocompleteResponse) GetStatusCode() int {
+	if a == nil {
 		return 0
 	}
-	return o.StatusCode
+	return a.StatusCode
 }
 
-func (o *AutocompleteResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (a *AutocompleteResponse) GetRawResponse() *http.Response {
+	if a == nil {
 		return nil
 	}
-	return o.RawResponse
+	return a.RawResponse
 }
 
-func (o *AutocompleteResponse) GetObject() *AutocompleteResponseBody {
-	if o == nil {
+func (a *AutocompleteResponse) GetObject() *AutocompleteResponseBody {
+	if a == nil {
 		return nil
 	}
-	return o.Object
+	return a.Object
 }

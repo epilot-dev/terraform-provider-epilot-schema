@@ -56,32 +56,32 @@ func (p *PhoneAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PhoneAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (p *PhoneAttributeInfoHelpers) GetHintText() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintText
+	return p.HintText
 }
 
-func (o *PhoneAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (p *PhoneAttributeInfoHelpers) GetHintTextKey() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return p.HintTextKey
 }
 
-func (o *PhoneAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (p *PhoneAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return p.HintCustomComponent
 }
 
-func (o *PhoneAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (p *PhoneAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if p == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return p.HintTooltipPlacement
 }
 
 type PhoneAttributeType string
@@ -159,6 +159,16 @@ type PhoneAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *PhoneAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool              `json:"repeatable,omitempty"`
 	HasPrimary *bool              `json:"has_primary,omitempty"`
@@ -170,218 +180,232 @@ func (p PhoneAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PhoneAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PhoneAttribute) GetID() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PhoneAttribute) GetName() string {
-	if o == nil {
+func (p *PhoneAttribute) GetName() string {
+	if p == nil {
 		return ""
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PhoneAttribute) GetLabel() string {
-	if o == nil {
+func (p *PhoneAttribute) GetLabel() string {
+	if p == nil {
 		return ""
 	}
-	return o.Label
+	return p.Label
 }
 
-func (o *PhoneAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetPlaceholder() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Placeholder
+	return p.Placeholder
 }
 
-func (o *PhoneAttribute) GetHidden() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetHidden() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Hidden
+	return p.Hidden
 }
 
-func (o *PhoneAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetShowInTable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return p.ShowInTable
 }
 
-func (o *PhoneAttribute) GetSortable() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetSortable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Sortable
+	return p.Sortable
 }
 
-func (o *PhoneAttribute) GetRequired() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetRequired() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Required
+	return p.Required
 }
 
-func (o *PhoneAttribute) GetReadonly() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetReadonly() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Readonly
+	return p.Readonly
 }
 
-func (o *PhoneAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetDeprecated() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Deprecated
+	return p.Deprecated
 }
 
-func (o *PhoneAttribute) GetDefaultValue() any {
-	if o == nil {
+func (p *PhoneAttribute) GetDefaultValue() any {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return p.DefaultValue
 }
 
-func (o *PhoneAttribute) GetGroup() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetGroup() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Group
+	return p.Group
 }
 
-func (o *PhoneAttribute) GetOrder() *int64 {
-	if o == nil {
+func (p *PhoneAttribute) GetOrder() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *PhoneAttribute) GetLayout() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetLayout() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Layout
+	return p.Layout
 }
 
-func (o *PhoneAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetHideLabel() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HideLabel
+	return p.HideLabel
 }
 
-func (o *PhoneAttribute) GetIcon() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetIcon() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Icon
+	return p.Icon
 }
 
-func (o *PhoneAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetRenderCondition() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return p.RenderCondition
 }
 
-func (o *PhoneAttribute) GetPurpose() []string {
-	if o == nil {
+func (p *PhoneAttribute) GetPurpose() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Purpose
+	return p.Purpose
 }
 
-func (o *PhoneAttribute) GetManifest() []string {
-	if o == nil {
+func (p *PhoneAttribute) GetManifest() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Manifest
+	return p.Manifest
 }
 
-func (o *PhoneAttribute) GetConstraints() *PhoneAttributeConstraints {
-	if o == nil {
+func (p *PhoneAttribute) GetConstraints() *PhoneAttributeConstraints {
+	if p == nil {
 		return nil
 	}
-	return o.Constraints
+	return p.Constraints
 }
 
-func (o *PhoneAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetFeatureFlag() *string {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return p.FeatureFlag
 }
 
-func (o *PhoneAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (p *PhoneAttribute) GetSettingsFlag() []SettingFlag {
+	if p == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return p.SettingsFlag
 }
 
-func (o *PhoneAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return p.ValueFormatter
 }
 
-func (o *PhoneAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (p *PhoneAttribute) GetPreviewValueFormatter() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return p.PreviewValueFormatter
 }
 
-func (o *PhoneAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetEntityBuilderDisableEdit() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return p.EntityBuilderDisableEdit
 }
 
-func (o *PhoneAttribute) GetProtected() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetProtected() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Protected
+	return p.Protected
 }
 
-func (o *PhoneAttribute) GetInfoHelpers() *PhoneAttributeInfoHelpers {
-	if o == nil {
+func (p *PhoneAttribute) GetInfoHelpers() *PhoneAttributeInfoHelpers {
+	if p == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return p.InfoHelpers
 }
 
-func (o *PhoneAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetExplicitSearchable() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Repeatable
+	return p.ExplicitSearchable
 }
 
-func (o *PhoneAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (p *PhoneAttribute) GetExcludeFromSearch() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return p.ExcludeFromSearch
 }
 
-func (o *PhoneAttribute) GetType() PhoneAttributeType {
-	if o == nil {
+func (p *PhoneAttribute) GetRepeatable() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.Repeatable
+}
+
+func (p *PhoneAttribute) GetHasPrimary() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.HasPrimary
+}
+
+func (p *PhoneAttribute) GetType() PhoneAttributeType {
+	if p == nil {
 		return PhoneAttributeType("")
 	}
-	return o.Type
+	return p.Type
 }

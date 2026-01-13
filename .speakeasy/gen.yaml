@@ -16,12 +16,17 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 terraform:
-  version: 0.17.1
+  version: 0.18.0
   additionalDataSources: []
   additionalDependencies: {}
   additionalEphemeralResources: []
@@ -32,7 +37,16 @@ terraform:
   allowUnknownFieldsInWeakUnions: true
   author: epilot
   baseErrorName: SDKBaseError
+  debugLogging: {}
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
+  enableOperationSecurity: false
+  enableOperationServers: false
   enableTypeDeduplication: true
   environmentVariables: []
+  excludeEmptyObjectSchemas: false
+  includeEmptyObjects: false
+  inferUnionDiscriminators: false
   packageName: epilot-schema
+  respectRequiredFields: false
+  unionStrategy: populated-fields

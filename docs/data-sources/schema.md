@@ -24,7 +24,11 @@ data "epilot-schema_schema" "my_schema" {
 
 ### Required
 
-- `slug` (String) Entity Type
+- `slug` (String) URL-friendly identifier for the entity schema
+
+### Optional
+
+- `id` (String) Generated uuid for schema
 
 ### Read-Only
 
@@ -43,7 +47,6 @@ data "epilot-schema_schema" "my_schema" {
 - `group_headlines` (String) Parsed as JSON.
 - `group_settings` (String) Parsed as JSON.
 - `icon` (String)
-- `id` (String) The ID of this resource.
 - `layout_settings` (Attributes) Custom grid definitions for the layout. These settings are composed by managed and un-managed properties:
 - Managed Properties: are interpreted and transformed into layout styles
 - Un-managed Properties: are appended as styles into the attribute mounting node (see [below for nested schema](#nestedatt--layout_settings))

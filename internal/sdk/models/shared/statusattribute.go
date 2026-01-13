@@ -57,32 +57,32 @@ func (s *StatusAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *StatusAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (s *StatusAttributeInfoHelpers) GetHintText() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintText
+	return s.HintText
 }
 
-func (o *StatusAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (s *StatusAttributeInfoHelpers) GetHintTextKey() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return s.HintTextKey
 }
 
-func (o *StatusAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (s *StatusAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return s.HintCustomComponent
 }
 
-func (o *StatusAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (s *StatusAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if s == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return s.HintTooltipPlacement
 }
 
 type StatusAttributeType string
@@ -120,7 +120,7 @@ func (o Options2) MarshalJSON() ([]byte, error) {
 }
 
 func (o *Options2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"value"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -148,8 +148,8 @@ const (
 )
 
 type StatusAttributeOptions struct {
-	Str      *string   `queryParam:"inline" name:"options"`
-	Options2 *Options2 `queryParam:"inline" name:"options"`
+	Str      *string   `queryParam:"inline" union:"member"`
+	Options2 *Options2 `queryParam:"inline" union:"member"`
 
 	Type StatusAttributeOptionsType
 }
@@ -174,17 +174,43 @@ func CreateStatusAttributeOptionsOptions2(options2 Options2) StatusAttributeOpti
 
 func (u *StatusAttributeOptions) UnmarshalJSON(data []byte) error {
 
-	var options2 Options2 = Options2{}
-	if err := utils.UnmarshalJSON(data, &options2, "", true, nil); err == nil {
-		u.Options2 = &options2
-		u.Type = StatusAttributeOptionsTypeOptions2
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = StatusAttributeOptionsTypeStr
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  StatusAttributeOptionsTypeStr,
+			Value: &str,
+		})
+	}
+
+	var options2 Options2 = Options2{}
+	if err := utils.UnmarshalJSON(data, &options2, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  StatusAttributeOptionsTypeOptions2,
+			Value: &options2,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for StatusAttributeOptions", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for StatusAttributeOptions", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(StatusAttributeOptionsType)
+	switch best.Type {
+	case StatusAttributeOptionsTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case StatusAttributeOptionsTypeOptions2:
+		u.Options2 = best.Value.(*Options2)
 		return nil
 	}
 
@@ -255,6 +281,16 @@ type StatusAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *StatusAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                     `json:"repeatable,omitempty"`
 	HasPrimary *bool                     `json:"has_primary,omitempty"`
@@ -267,225 +303,239 @@ func (s StatusAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StatusAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *StatusAttribute) GetID() *string {
-	if o == nil {
+func (s *StatusAttribute) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *StatusAttribute) GetName() string {
-	if o == nil {
+func (s *StatusAttribute) GetName() string {
+	if s == nil {
 		return ""
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *StatusAttribute) GetLabel() string {
-	if o == nil {
+func (s *StatusAttribute) GetLabel() string {
+	if s == nil {
 		return ""
 	}
-	return o.Label
+	return s.Label
 }
 
-func (o *StatusAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (s *StatusAttribute) GetPlaceholder() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Placeholder
+	return s.Placeholder
 }
 
-func (o *StatusAttribute) GetHidden() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetHidden() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Hidden
+	return s.Hidden
 }
 
-func (o *StatusAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetShowInTable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return s.ShowInTable
 }
 
-func (o *StatusAttribute) GetSortable() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetSortable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Sortable
+	return s.Sortable
 }
 
-func (o *StatusAttribute) GetRequired() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetRequired() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Required
+	return s.Required
 }
 
-func (o *StatusAttribute) GetReadonly() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetReadonly() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Readonly
+	return s.Readonly
 }
 
-func (o *StatusAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetDeprecated() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Deprecated
+	return s.Deprecated
 }
 
-func (o *StatusAttribute) GetDefaultValue() any {
-	if o == nil {
+func (s *StatusAttribute) GetDefaultValue() any {
+	if s == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return s.DefaultValue
 }
 
-func (o *StatusAttribute) GetGroup() *string {
-	if o == nil {
+func (s *StatusAttribute) GetGroup() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Group
+	return s.Group
 }
 
-func (o *StatusAttribute) GetOrder() *int64 {
-	if o == nil {
+func (s *StatusAttribute) GetOrder() *int64 {
+	if s == nil {
 		return nil
 	}
-	return o.Order
+	return s.Order
 }
 
-func (o *StatusAttribute) GetLayout() *string {
-	if o == nil {
+func (s *StatusAttribute) GetLayout() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Layout
+	return s.Layout
 }
 
-func (o *StatusAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetHideLabel() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HideLabel
+	return s.HideLabel
 }
 
-func (o *StatusAttribute) GetIcon() *string {
-	if o == nil {
+func (s *StatusAttribute) GetIcon() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Icon
+	return s.Icon
 }
 
-func (o *StatusAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (s *StatusAttribute) GetRenderCondition() *string {
+	if s == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return s.RenderCondition
 }
 
-func (o *StatusAttribute) GetPurpose() []string {
-	if o == nil {
+func (s *StatusAttribute) GetPurpose() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Purpose
+	return s.Purpose
 }
 
-func (o *StatusAttribute) GetManifest() []string {
-	if o == nil {
+func (s *StatusAttribute) GetManifest() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Manifest
+	return s.Manifest
 }
 
-func (o *StatusAttribute) GetConstraints() *StatusAttributeConstraints {
-	if o == nil {
+func (s *StatusAttribute) GetConstraints() *StatusAttributeConstraints {
+	if s == nil {
 		return nil
 	}
-	return o.Constraints
+	return s.Constraints
 }
 
-func (o *StatusAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (s *StatusAttribute) GetFeatureFlag() *string {
+	if s == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return s.FeatureFlag
 }
 
-func (o *StatusAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (s *StatusAttribute) GetSettingsFlag() []SettingFlag {
+	if s == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return s.SettingsFlag
 }
 
-func (o *StatusAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (s *StatusAttribute) GetValueFormatter() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return s.ValueFormatter
 }
 
-func (o *StatusAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (s *StatusAttribute) GetPreviewValueFormatter() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return s.PreviewValueFormatter
 }
 
-func (o *StatusAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetEntityBuilderDisableEdit() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return s.EntityBuilderDisableEdit
 }
 
-func (o *StatusAttribute) GetProtected() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetProtected() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Protected
+	return s.Protected
 }
 
-func (o *StatusAttribute) GetInfoHelpers() *StatusAttributeInfoHelpers {
-	if o == nil {
+func (s *StatusAttribute) GetInfoHelpers() *StatusAttributeInfoHelpers {
+	if s == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return s.InfoHelpers
 }
 
-func (o *StatusAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetExplicitSearchable() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Repeatable
+	return s.ExplicitSearchable
 }
 
-func (o *StatusAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (s *StatusAttribute) GetExcludeFromSearch() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return s.ExcludeFromSearch
 }
 
-func (o *StatusAttribute) GetType() StatusAttributeType {
-	if o == nil {
+func (s *StatusAttribute) GetRepeatable() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.Repeatable
+}
+
+func (s *StatusAttribute) GetHasPrimary() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.HasPrimary
+}
+
+func (s *StatusAttribute) GetType() StatusAttributeType {
+	if s == nil {
 		return StatusAttributeType("")
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *StatusAttribute) GetOptions() []*StatusAttributeOptions {
-	if o == nil {
+func (s *StatusAttribute) GetOptions() []*StatusAttributeOptions {
+	if s == nil {
 		return nil
 	}
-	return o.Options
+	return s.Options
 }

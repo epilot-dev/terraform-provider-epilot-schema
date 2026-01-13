@@ -7,6 +7,20 @@ import (
 )
 
 type Activity struct {
+	// A type for the activity. Used to categorize activities in the activity feed and for event subscriptions.
+	//
+	// Built-in entity activity types (custom activities can be defined as well):
+	// - EntityCreated
+	// - EntityUpdated
+	// - EntityDeleted
+	// - EntitySoftDeleted
+	// - EntityRestored
+	// - RelationsAdded
+	// - RelationsRemoved
+	// - RelationsSoftDeleted
+	// - RelationsRestored
+	// - RelationsDeleted
+	//
 	Type string `json:"type"`
 	// Title for activity. Supports handlebars syntax.
 	Title string `json:"title"`
@@ -24,43 +38,43 @@ func (a Activity) MarshalJSON() ([]byte, error) {
 }
 
 func (a *Activity) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "title", "message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Activity) GetType() string {
-	if o == nil {
+func (a *Activity) GetType() string {
+	if a == nil {
 		return ""
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *Activity) GetTitle() string {
-	if o == nil {
+func (a *Activity) GetTitle() string {
+	if a == nil {
 		return ""
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *Activity) GetMessage() string {
-	if o == nil {
+func (a *Activity) GetMessage() string {
+	if a == nil {
 		return ""
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *Activity) GetPayload() map[string]any {
-	if o == nil {
+func (a *Activity) GetPayload() map[string]any {
+	if a == nil {
 		return nil
 	}
-	return o.Payload
+	return a.Payload
 }
 
-func (o *Activity) GetPending() *bool {
-	if o == nil {
+func (a *Activity) GetPending() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Pending
+	return a.Pending
 }

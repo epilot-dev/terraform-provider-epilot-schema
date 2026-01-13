@@ -47,16 +47,16 @@ func (e *EntityDefaultCreate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityDefaultCreate) GetViewType() *EntityDefaultCreateViewType {
-	if o == nil {
+func (e *EntityDefaultCreate) GetViewType() *EntityDefaultCreateViewType {
+	if e == nil {
 		return nil
 	}
-	return o.ViewType
+	return e.ViewType
 }
 
-func (o *EntityDefaultCreate) GetSearchParams() map[string]string {
-	if o == nil {
+func (e *EntityDefaultCreate) GetSearchParams() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.SearchParams
+	return e.SearchParams
 }

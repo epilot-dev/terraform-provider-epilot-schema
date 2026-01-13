@@ -56,32 +56,32 @@ func (a *AddressRelationAttributeInfoHelpers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AddressRelationAttributeInfoHelpers) GetHintText() *string {
-	if o == nil {
+func (a *AddressRelationAttributeInfoHelpers) GetHintText() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintText
+	return a.HintText
 }
 
-func (o *AddressRelationAttributeInfoHelpers) GetHintTextKey() *string {
-	if o == nil {
+func (a *AddressRelationAttributeInfoHelpers) GetHintTextKey() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTextKey
+	return a.HintTextKey
 }
 
-func (o *AddressRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
-	if o == nil {
+func (a *AddressRelationAttributeInfoHelpers) GetHintCustomComponent() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintCustomComponent
+	return a.HintCustomComponent
 }
 
-func (o *AddressRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
-	if o == nil {
+func (a *AddressRelationAttributeInfoHelpers) GetHintTooltipPlacement() *string {
+	if a == nil {
 		return nil
 	}
-	return o.HintTooltipPlacement
+	return a.HintTooltipPlacement
 }
 
 type AddressRelationAttributeType string
@@ -159,6 +159,16 @@ type AddressRelationAttribute struct {
 	Protected *bool `json:"protected,omitempty"`
 	// A set of configurations meant to document and assist the user in filling the attribute.
 	InfoHelpers *AddressRelationAttributeInfoHelpers `json:"info_helpers,omitempty"`
+	// When set to true, this attribute will always be searchable regardless of
+	// the ELASTIC_MAX_SEARCH_FIELDS limit. Use this for critical search fields
+	// that must always be included in search operations.
+	//
+	ExplicitSearchable *bool `default:"false" json:"explicit_searchable"`
+	// When set to true, this attribute will be excluded from search fields.
+	// Use this for fields that should not be matched during entity search operations,
+	// such as internal hashes or identifiers that might accidentally match search terms.
+	//
+	ExcludeFromSearch *bool `default:"false" json:"exclude_from_search"`
 	// The attribute is a repeatable
 	Repeatable *bool                        `json:"repeatable,omitempty"`
 	HasPrimary *bool                        `json:"has_primary,omitempty"`
@@ -174,6 +184,7 @@ type AddressRelationAttribute struct {
 	//   - plot_of_land
 	//   - suburb
 	//   - country
+	//   - postbox
 	//   - additional_info
 	//   - coordinates
 	//   - start_date
@@ -182,6 +193,7 @@ type AddressRelationAttribute struct {
 	//   - title
 	//   - first_name
 	//   - last_name
+	//   - name_suffix
 	//   - company_name
 	//
 	DefaultAddressFields []string `json:"default_address_fields,omitempty"`
@@ -192,225 +204,239 @@ func (a AddressRelationAttribute) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AddressRelationAttribute) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "label", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AddressRelationAttribute) GetID() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AddressRelationAttribute) GetName() string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetName() string {
+	if a == nil {
 		return ""
 	}
-	return o.Name
+	return a.Name
 }
 
-func (o *AddressRelationAttribute) GetLabel() string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetLabel() string {
+	if a == nil {
 		return ""
 	}
-	return o.Label
+	return a.Label
 }
 
-func (o *AddressRelationAttribute) GetPlaceholder() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetPlaceholder() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Placeholder
+	return a.Placeholder
 }
 
-func (o *AddressRelationAttribute) GetHidden() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetHidden() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Hidden
+	return a.Hidden
 }
 
-func (o *AddressRelationAttribute) GetShowInTable() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetShowInTable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.ShowInTable
+	return a.ShowInTable
 }
 
-func (o *AddressRelationAttribute) GetSortable() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetSortable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Sortable
+	return a.Sortable
 }
 
-func (o *AddressRelationAttribute) GetRequired() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetRequired() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Required
+	return a.Required
 }
 
-func (o *AddressRelationAttribute) GetReadonly() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetReadonly() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Readonly
+	return a.Readonly
 }
 
-func (o *AddressRelationAttribute) GetDeprecated() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetDeprecated() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Deprecated
+	return a.Deprecated
 }
 
-func (o *AddressRelationAttribute) GetDefaultValue() any {
-	if o == nil {
+func (a *AddressRelationAttribute) GetDefaultValue() any {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultValue
+	return a.DefaultValue
 }
 
-func (o *AddressRelationAttribute) GetGroup() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetGroup() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Group
+	return a.Group
 }
 
-func (o *AddressRelationAttribute) GetOrder() *int64 {
-	if o == nil {
+func (a *AddressRelationAttribute) GetOrder() *int64 {
+	if a == nil {
 		return nil
 	}
-	return o.Order
+	return a.Order
 }
 
-func (o *AddressRelationAttribute) GetLayout() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetLayout() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Layout
+	return a.Layout
 }
 
-func (o *AddressRelationAttribute) GetHideLabel() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetHideLabel() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HideLabel
+	return a.HideLabel
 }
 
-func (o *AddressRelationAttribute) GetIcon() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetIcon() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Icon
+	return a.Icon
 }
 
-func (o *AddressRelationAttribute) GetRenderCondition() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetRenderCondition() *string {
+	if a == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return a.RenderCondition
 }
 
-func (o *AddressRelationAttribute) GetPurpose() []string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetPurpose() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Purpose
+	return a.Purpose
 }
 
-func (o *AddressRelationAttribute) GetManifest() []string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetManifest() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Manifest
+	return a.Manifest
 }
 
-func (o *AddressRelationAttribute) GetConstraints() *AddressRelationAttributeConstraints {
-	if o == nil {
+func (a *AddressRelationAttribute) GetConstraints() *AddressRelationAttributeConstraints {
+	if a == nil {
 		return nil
 	}
-	return o.Constraints
+	return a.Constraints
 }
 
-func (o *AddressRelationAttribute) GetFeatureFlag() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetFeatureFlag() *string {
+	if a == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return a.FeatureFlag
 }
 
-func (o *AddressRelationAttribute) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (a *AddressRelationAttribute) GetSettingsFlag() []SettingFlag {
+	if a == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return a.SettingsFlag
 }
 
-func (o *AddressRelationAttribute) GetValueFormatter() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ValueFormatter
+	return a.ValueFormatter
 }
 
-func (o *AddressRelationAttribute) GetPreviewValueFormatter() *string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetPreviewValueFormatter() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PreviewValueFormatter
+	return a.PreviewValueFormatter
 }
 
-func (o *AddressRelationAttribute) GetEntityBuilderDisableEdit() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetEntityBuilderDisableEdit() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.EntityBuilderDisableEdit
+	return a.EntityBuilderDisableEdit
 }
 
-func (o *AddressRelationAttribute) GetProtected() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetProtected() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Protected
+	return a.Protected
 }
 
-func (o *AddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeInfoHelpers {
-	if o == nil {
+func (a *AddressRelationAttribute) GetInfoHelpers() *AddressRelationAttributeInfoHelpers {
+	if a == nil {
 		return nil
 	}
-	return o.InfoHelpers
+	return a.InfoHelpers
 }
 
-func (o *AddressRelationAttribute) GetRepeatable() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetExplicitSearchable() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Repeatable
+	return a.ExplicitSearchable
 }
 
-func (o *AddressRelationAttribute) GetHasPrimary() *bool {
-	if o == nil {
+func (a *AddressRelationAttribute) GetExcludeFromSearch() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.HasPrimary
+	return a.ExcludeFromSearch
 }
 
-func (o *AddressRelationAttribute) GetType() AddressRelationAttributeType {
-	if o == nil {
+func (a *AddressRelationAttribute) GetRepeatable() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Repeatable
+}
+
+func (a *AddressRelationAttribute) GetHasPrimary() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.HasPrimary
+}
+
+func (a *AddressRelationAttribute) GetType() AddressRelationAttributeType {
+	if a == nil {
 		return AddressRelationAttributeType("")
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AddressRelationAttribute) GetDefaultAddressFields() []string {
-	if o == nil {
+func (a *AddressRelationAttribute) GetDefaultAddressFields() []string {
+	if a == nil {
 		return nil
 	}
-	return o.DefaultAddressFields
+	return a.DefaultAddressFields
 }

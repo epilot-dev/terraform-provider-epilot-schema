@@ -72,23 +72,23 @@ func (s *SearchMappings) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SearchMappings) GetIndex() *bool {
-	if o == nil {
+func (s *SearchMappings) GetIndex() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Index
+	return s.Index
 }
 
-func (o *SearchMappings) GetType() *Type {
-	if o == nil {
+func (s *SearchMappings) GetType() *Type {
+	if s == nil {
 		return nil
 	}
-	return o.Type
+	return s.Type
 }
 
-func (o *SearchMappings) GetFields() map[string]any {
-	if o == nil {
+func (s *SearchMappings) GetFields() map[string]any {
+	if s == nil {
 		return nil
 	}
-	return o.Fields
+	return s.Fields
 }

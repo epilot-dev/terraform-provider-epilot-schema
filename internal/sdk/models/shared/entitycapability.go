@@ -22,11 +22,11 @@ func (e *EntityCapabilityUIConfig) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityCapabilityUIConfig) GetIsFilterable() *bool {
-	if o == nil {
+func (e *EntityCapabilityUIConfig) GetIsFilterable() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.IsFilterable
+	return e.IsFilterable
 }
 
 // RequiredPermission - Require a permission to display UI hook
@@ -35,18 +35,18 @@ type RequiredPermission struct {
 	Resource *string `json:"resource,omitempty"`
 }
 
-func (o *RequiredPermission) GetAction() string {
-	if o == nil {
+func (r *RequiredPermission) GetAction() string {
+	if r == nil {
 		return ""
 	}
-	return o.Action
+	return r.Action
 }
 
-func (o *RequiredPermission) GetResource() *string {
-	if o == nil {
+func (r *RequiredPermission) GetResource() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Resource
+	return r.Resource
 }
 
 type UIHooks struct {
@@ -80,101 +80,101 @@ func (u UIHooks) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UIHooks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"hook"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UIHooks) GetHook() string {
-	if o == nil {
+func (u *UIHooks) GetHook() string {
+	if u == nil {
 		return ""
 	}
-	return o.Hook
+	return u.Hook
 }
 
-func (o *UIHooks) GetRenderCondition() *string {
-	if o == nil {
+func (u *UIHooks) GetRenderCondition() *string {
+	if u == nil {
 		return nil
 	}
-	return o.RenderCondition
+	return u.RenderCondition
 }
 
-func (o *UIHooks) GetOrder() *int64 {
-	if o == nil {
+func (u *UIHooks) GetOrder() *int64 {
+	if u == nil {
 		return nil
 	}
-	return o.Order
+	return u.Order
 }
 
-func (o *UIHooks) GetTitle() *string {
-	if o == nil {
+func (u *UIHooks) GetTitle() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Title
+	return u.Title
 }
 
-func (o *UIHooks) GetGroupExpanded() *bool {
-	if o == nil {
+func (u *UIHooks) GetGroupExpanded() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.GroupExpanded
+	return u.GroupExpanded
 }
 
-func (o *UIHooks) GetImport() *string {
-	if o == nil {
+func (u *UIHooks) GetImport() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Import
+	return u.Import
 }
 
-func (o *UIHooks) GetComponent() *string {
-	if o == nil {
+func (u *UIHooks) GetComponent() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Component
+	return u.Component
 }
 
-func (o *UIHooks) GetRoute() *string {
-	if o == nil {
+func (u *UIHooks) GetRoute() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Route
+	return u.Route
 }
 
-func (o *UIHooks) GetIcon() *string {
-	if o == nil {
+func (u *UIHooks) GetIcon() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Icon
+	return u.Icon
 }
 
-func (o *UIHooks) GetDisabled() *bool {
-	if o == nil {
+func (u *UIHooks) GetDisabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Disabled
+	return u.Disabled
 }
 
-func (o *UIHooks) GetHeader() *bool {
-	if o == nil {
+func (u *UIHooks) GetHeader() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Header
+	return u.Header
 }
 
-func (o *UIHooks) GetRequiredPermission() *RequiredPermission {
-	if o == nil {
+func (u *UIHooks) GetRequiredPermission() *RequiredPermission {
+	if u == nil {
 		return nil
 	}
-	return o.RequiredPermission
+	return u.RequiredPermission
 }
 
-func (o *UIHooks) GetAdditionalProperties() any {
-	if o == nil {
+func (u *UIHooks) GetAdditionalProperties() any {
+	if u == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return u.AdditionalProperties
 }
 
 // EntityCapability - Capabilities the Entity has. Turn features on/off for entities.
@@ -199,79 +199,79 @@ type EntityCapability struct {
 	SettingsFlag []SettingFlag `json:"settings_flag,omitempty"`
 }
 
-func (o *EntityCapability) GetID() *string {
-	if o == nil {
+func (e *EntityCapability) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityCapability) GetName() string {
-	if o == nil {
+func (e *EntityCapability) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntityCapability) GetTitle() *string {
-	if o == nil {
+func (e *EntityCapability) GetTitle() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Title
+	return e.Title
 }
 
-func (o *EntityCapability) GetAttributes() []Attribute {
-	if o == nil {
+func (e *EntityCapability) GetAttributes() []Attribute {
+	if e == nil {
 		return nil
 	}
-	return o.Attributes
+	return e.Attributes
 }
 
-func (o *EntityCapability) GetPurpose() []string {
-	if o == nil {
+func (e *EntityCapability) GetPurpose() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Purpose
+	return e.Purpose
 }
 
-func (o *EntityCapability) GetManifest() []string {
-	if o == nil {
+func (e *EntityCapability) GetManifest() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Manifest
+	return e.Manifest
 }
 
-func (o *EntityCapability) GetAppID() *string {
-	if o == nil {
+func (e *EntityCapability) GetAppID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AppID
+	return e.AppID
 }
 
-func (o *EntityCapability) GetUIConfig() *EntityCapabilityUIConfig {
-	if o == nil {
+func (e *EntityCapability) GetUIConfig() *EntityCapabilityUIConfig {
+	if e == nil {
 		return nil
 	}
-	return o.UIConfig
+	return e.UIConfig
 }
 
-func (o *EntityCapability) GetUIHooks() []UIHooks {
-	if o == nil {
+func (e *EntityCapability) GetUIHooks() []UIHooks {
+	if e == nil {
 		return nil
 	}
-	return o.UIHooks
+	return e.UIHooks
 }
 
-func (o *EntityCapability) GetFeatureFlag() *string {
-	if o == nil {
+func (e *EntityCapability) GetFeatureFlag() *string {
+	if e == nil {
 		return nil
 	}
-	return o.FeatureFlag
+	return e.FeatureFlag
 }
 
-func (o *EntityCapability) GetSettingsFlag() []SettingFlag {
-	if o == nil {
+func (e *EntityCapability) GetSettingsFlag() []SettingFlag {
+	if e == nil {
 		return nil
 	}
-	return o.SettingsFlag
+	return e.SettingsFlag
 }

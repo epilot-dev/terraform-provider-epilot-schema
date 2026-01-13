@@ -13,18 +13,18 @@ type PutSchemaGroupHeadlineRequest struct {
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeIDInput `request:"mediaType=application/json"`
 }
 
-func (o *PutSchemaGroupHeadlineRequest) GetCompositeID() string {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineRequest) GetCompositeID() string {
+	if p == nil {
 		return ""
 	}
-	return o.CompositeID
+	return p.CompositeID
 }
 
-func (o *PutSchemaGroupHeadlineRequest) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeIDInput {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineRequest) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeIDInput {
+	if p == nil {
 		return nil
 	}
-	return o.GroupHeadlineWithCompositeID
+	return p.GroupHeadlineWithCompositeID
 }
 
 type PutSchemaGroupHeadlineResponse struct {
@@ -38,30 +38,30 @@ type PutSchemaGroupHeadlineResponse struct {
 	GroupHeadlineWithCompositeID *shared.GroupHeadlineWithCompositeID
 }
 
-func (o *PutSchemaGroupHeadlineResponse) GetContentType() string {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutSchemaGroupHeadlineResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutSchemaGroupHeadlineResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PutSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeID {
-	if o == nil {
+func (p *PutSchemaGroupHeadlineResponse) GetGroupHeadlineWithCompositeID() *shared.GroupHeadlineWithCompositeID {
+	if p == nil {
 		return nil
 	}
-	return o.GroupHeadlineWithCompositeID
+	return p.GroupHeadlineWithCompositeID
 }
