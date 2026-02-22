@@ -137,6 +137,29 @@ actions:
     update:
       x-speakeasy-entity: SchemaGroupHeadline
 
+  # === API-AGNOSTIC: Allow unknown fields on all schema types ===
+  # This enables the provider to handle new API fields without requiring SDK updates.
+  # Unknown fields are captured in AdditionalProperties and preserved across CRUD operations.
+  - target: $["components"]["schemas"]["EntitySchemaItem"]["allOf"][0]
+    update:
+      additionalProperties: true
+
+  - target: $["components"]["schemas"]["AttributeWithCompositeID"]["allOf"][0]
+    update:
+      additionalProperties: true
+
+  - target: $["components"]["schemas"]["EntityCapabilityWithCompositeID"]["allOf"][0]
+    update:
+      additionalProperties: true
+
+  - target: $["components"]["schemas"]["EntitySchemaGroupWithCompositeID"]["allOf"][0]
+    update:
+      additionalProperties: true
+
+  - target: $["components"]["schemas"]["GroupHeadlineWithCompositeID"]["allOf"][0]
+    update:
+      additionalProperties: true
+
   # Ignore
   - target: $["components"]["schemas"]["SelectAttribute"]["allOf"][1]["properties"]["options"]
     update:
